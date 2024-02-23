@@ -220,7 +220,7 @@
                     <v-img src="/svg/Frame-1.svg" v-if="theme.global.current.value.dark"></v-img>
                     <v-img src="/svg/Frame03.svg" v-else></v-img>
                   </v-col>
-                  <v-col cols="" class="ma-1 mb-4">
+                  <v-col cols="" class="ma-1">
                      <v-img src="/svg/Frame-3.svg" v-if="theme.global.current.value.dark"></v-img>
                      <v-img src="/svg/Frame01.svg" v-else></v-img>
                   </v-col>
@@ -262,7 +262,7 @@
                 <div class="ma-2 pa-2">
                    <div :class="isDark ? 'barcode-section':'barcode-section-light'">
                       <div class="rectangle ">
-                          <img src="/img/Group(1).png" class="mt-3" style="display: flex; justify-self: center; width: 100%;" v-if="theme.global.current.value.dark"/>
+                          <img src="/img/Group(1).png" class="mt-3" style="display: flex; justify-self: center; margin: auto; width: 90%;" v-if="theme.global.current.value.dark"/>
                           
                           <div class="mb-7" style="background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%); padding-top: 28px; border-radius: 15px; width: 100%;"  v-else>
                             <img src="/svg/barcode-light.svg"  style="display: flex; justify-self: center; margin: auto; width: 90%;"/>
