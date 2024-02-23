@@ -261,9 +261,10 @@
               <v-col cols="md-6">
                 <div class="ma-2 pa-2">
                    <div :class="isDark ? 'barcode-section':'barcode-section-light'">
-                      <div class="rectangle " style="padding-top: 28px;">
-                          <img src="/img/Group(1).png"  style="display: flex; justify-self: center; margin: auto; width: 93%;" v-if="theme.global.current.value.dark"/>
-                          
+                      <div class="rectangle ">
+                        <div style="padding-top: 28px;" v-if="theme.global.current.value.dark">
+                          <img src="/img/Group(1).png"  style="display: flex; justify-self: center; margin: auto; width: 93%;" />
+                        </div> 
                           <div class="mb-7" style="background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%); padding-top: 28px; border-radius: 15px; width: 100%;"  v-else>
                             <img src="/svg/barcode-light.svg"  style="display: flex; justify-self: center; margin: auto; width: 90%;"/>
                           </div>
