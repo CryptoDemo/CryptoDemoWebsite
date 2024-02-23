@@ -265,7 +265,7 @@
                           <img src="/img/Group(1).png" class="mt-3" style="display: flex; justify-self: center; margin: auto; width: 90%;" v-if="theme.global.current.value.dark"/>
                           
                           <div class="mb-7" style="background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%); padding-top: 28px; border-radius: 15px; width: 100%;"  v-else>
-                            <img src="/svg/barcode-light.svg"  style="display: flex; justify-self: center; margin: auto; width: 90%;"/>
+                            <img src="/svg/barcode-light.svg" class="mt-3"  style="display: flex; justify-self: center; margin: auto; width: 90%;"/>
                           </div>
                       </div>
                       <div style=" margin-left: 25px"> 
