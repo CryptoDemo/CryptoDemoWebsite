@@ -109,7 +109,7 @@ line-height: 140%; /* 33.6px */
 letter-spacing: 0.72px;
 width: 547.609px;
 }
-.subtitle{
+.subtitle-light{
 color: #DBE8FF;
 display: flex;
 margin: auto;
