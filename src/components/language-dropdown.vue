@@ -80,9 +80,10 @@ border-radius: 100px;
 border: 1px solid #E2E8F0;
 background: #F8FAFC;
 text-transform: unset !important;
-color: #10192D;
+color: #10192D !important;
 font-weight: 500 !important;
 position: relative;
+box-shadow: none;
 }
 .v-list {
 background: rgba(6, 10, 29, 0.70)!important;

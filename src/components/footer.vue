@@ -1,8 +1,8 @@
 <template>
 <section  :class="isDark ? 'footer-wrapper':'footer-wrapper-light'">
     <v-container>
-        <div class="d-flex" style="justify-content: space-between;">
-          <span class="demo-web1">Demo Web</span>
+        <div class="d-flex mt-5 ma-2 px-4" style="justify-content: space-between;">
+          <span  :class="isDark ? 'demo-web1':'demo-web1-light'" >Demo Web</span>
           <Language-dropdown/>
         </div>
       <v-footer :class="isDark ? 'footer-bg':'footer-bg-light'">
@@ -34,7 +34,7 @@
           </div>
           <div class="d-flex" style="margin-top: 16px">
             <v-icon icon="mdi-information me-2" color="#165CDD"></v-icon>
-            <span class="FAQ-text">FAQ’s and Help Centre</span>
+            <span  :class="isDark ? 'FAQ-text':'FAQ-text-light'">FAQ’s and Help Centre</span>
           </div>
         </div>
     </v-container>
@@ -203,9 +203,27 @@ font-style: normal;
 font-weight: 700;
 line-height: normal;
 }
+.demo-web1-light {
+color: #10192D;
+font-family: "SF Pro Display";
+font-size: 36px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
 
 .FAQ-text{
 color: #E2E8F0;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-decoration-line: underline; 
+cursor: pointer;
+}
+.FAQ-text-light{
+color: #64748B;
 font-family: "SF Pro Display";
 font-size: 16px;
 font-style: normal;

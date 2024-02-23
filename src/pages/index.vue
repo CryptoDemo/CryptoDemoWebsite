@@ -189,7 +189,7 @@
                                     </div>
                                     <div  :class="isDark ? 'text-caption':'text-caption-light'">{{variant.textCaption}}</div>
                                     <div style="margin-top: 18px; display: inline-flex;">
-                                      <NuxtLink to="#"><span class="sell-btc-text me-2">Sell your bitcoin</span></NuxtLink>   
+                                      <NuxtLink to="#"><span class="sell-btc-text me-2" style="color: #2873FF !important">Sell your bitcoin</span></NuxtLink>   
                                       <img src="/svg/blue-arrow.svg" class=""/>
                                     </div>
                                 </div>
@@ -293,7 +293,7 @@
                 <v-row no-gutters>
               <v-col cols="md-6">
                 <div class="ma-2 pa-2">
-                  <span class="section2-subtitle d-flex" style="justify-content: start; margin-top: 79px">Awesome features of the demo web</span>
+                  <span class="section2-subtitle d-flex px-3" style="justify-content: start; margin-top: 79px">Awesome features of the demo web</span>
                   <span :class="isDark ? 'section2-title':'section2-title-light'" style="text-align: left; width: 625.645px;">Join the Future of Crypto Trading with Demo Web</span>
                   <span class="explore">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
                    <div class="d-flex" style="margin-top: 150px">
@@ -318,7 +318,7 @@
             </v-container>
           </div>
 
-          <v-container style="margin-top: 170px">
+          <v-container style="margin-top: 90px">
             <Expansion/>
               
           </v-container>

@@ -44,13 +44,12 @@
       
         <v-menu :location="location">
           <template v-slot:activator="{ props }">
-            <v-btn
-              :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"
+            <v-btn :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"
               dark
               v-bind="props">
               <v-img  width="20" class="me-3" :src="flag"/> 
               <span class="me-2" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{select}}</span>
-              <v-icon icon="mdi-chevron-down"></v-icon>
+              <v-icon icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
             </v-btn>
           </template>
 
@@ -244,4 +243,5 @@ gap: 10px;
 text-indent: unset !important;
 text-transform: unset !important;
 }
+
 </style>

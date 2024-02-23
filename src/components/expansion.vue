@@ -7,7 +7,7 @@
                 <v-expansion-panel  :class="isDark ? 'expansion-panel':'expansion-panel-light'"  >
                     <v-expansion-panel-title expand-icon="mdi-plus" collapse-icon="mdi-close">
                         <img src="/img/paper-fold-text.png" class="me-4"/>
-                       <span class="title-text"> {{FAQs.question}} </span>
+                       <span :class="isDark ? 'title-text':'title-text-light'"> {{FAQs.question}} </span>
                     </v-expansion-panel-title>
                     <v-expansion-panel-text>
                         <span class="answer-text">{{FAQs.answer}}</span>
@@ -131,6 +131,14 @@ line-height: 140%; /* 28px */
 }
 .title-text{
 color: #8E9BAE;
+font-family: "SF Pro Display";
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+line-height: 140%; /* 28px */ 
+}
+.title-text-light{
+color: #10192D;
 font-family: "SF Pro Display";
 font-size: 20px;
 font-style: normal;

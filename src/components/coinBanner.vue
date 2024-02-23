@@ -7,7 +7,7 @@
             <img src="/svg/Vector 1187.svg" class="position-absolute" style="right: 0;"/>
             <span class="caption">The fastest and trusted platform to trade</span>
             <span class="headline">Ready to get started?</span>
-            <span class="subtitle" style="margin-bottom: 48px;display: flex; text-align: center;">Explore thousands of offers to buy and sell Bitcoin to kickstart your trading journey.</span>
+            <span  :class="isDark ? 'subtitle':'subtitle-light'" style="margin-bottom: 48px;display: flex; text-align: center;">Explore thousands of offers to buy and sell Bitcoin to kickstart your trading journey.</span>
                 <div>
                  
                     <v-btn @click.prevent="navigateTo('/authentication/register')" class="create-acct-btn">Create your account
@@ -98,6 +98,19 @@ margin-top: 48px;
 }
 .subtitle{
 color: #8E9BAE;
+display: flex;
+margin: auto;
+margin-top: 48px;
+font-family: "SF Pro Display";
+font-size: 24px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 33.6px */
+letter-spacing: 0.72px;
+width: 547.609px;
+}
+.subtitle{
+color: #DBE8FF;
 display: flex;
 margin: auto;
 margin-top: 48px;
