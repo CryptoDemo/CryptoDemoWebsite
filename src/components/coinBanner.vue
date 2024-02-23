@@ -7,7 +7,7 @@
             <img src="/svg/Vector 1187.svg" class="position-absolute" style="right: 0;"/>
             <span class="caption">The fastest and trusted platform to trade</span>
             <span class="headline">Ready to get started?</span>
-            <span class="subtitle" style="margin-bottom: 48px">Explore thousands of offers to buy and sell Bitcoin to kickstart your trading journey.</span>
+            <span class="subtitle" style="margin-bottom: 48px;display: flex; text-align: center;">Explore thousands of offers to buy and sell Bitcoin to kickstart your trading journey.</span>
                 <div>
                  
                     <v-btn @click.prevent="navigateTo('/authentication/register')" class="create-acct-btn">Create your account

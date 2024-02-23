@@ -220,7 +220,7 @@
                     <v-img src="/svg/Frame-1.svg" v-if="theme.global.current.value.dark"></v-img>
                     <v-img src="/svg/Frame03.svg" v-else></v-img>
                   </v-col>
-                  <v-col cols="" class="ma-1">
+                  <v-col cols="" class="ma-1 mb-4">
                      <v-img src="/svg/Frame-3.svg" v-if="theme.global.current.value.dark"></v-img>
                      <v-img src="/svg/Frame01.svg" v-else></v-img>
                   </v-col>
@@ -234,18 +234,21 @@
               <v-col cols="md-6">
                 <div class="ma-2 pa-2">
                   <div  :class="isDark ? 'barcode-section':'barcode-section-light'">
-                      <div class="rectangle" style="display: flex; justify-self: center; background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%)" >
+                      <div class="rectangle" style="display: flex; justify-self: center;" >
                           <img src="/svg/grouped-gradient.svg" style="display: flex; justify-self: center; width: 100%; margin: auto" class=""  v-if="theme.global.current.value.dark"/>
-                          <img src="/svg/demo-light.svg" style="display: flex; justify-self: center; width: 90%; margin: auto; " class="" v-else/>
+                          
+                          <div style=" background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);border-radius: 15px; width: 100%;"  v-else>
+                          <img src="/svg/demo-light.svg"  style="display: flex; justify-self: center; width: 90%; margin: auto;margin-top:27px; " class=""/>
+                          </div>
                       </div> 
                           <div class="" style="display:grid;  margin-left: 30px">
                     
                                 <div class="wallet-frame">
                                   <img src="/svg/Wallet.svg">
-                                  <span class="sell-btc-text" style="font-size: 14px !important; color: white !important; font-weight: 400;">wallet</span>
+                                  <span  :class="isDark ? 'sell-btc-text':'sell-btc-text-light'" style="font-size: 14px !important;  font-weight: 400;">wallet</span>
                                 </div>
                                 <div style="display: grid">
-                                  <span class="free-demo">Free Demo Web Wallet</span>
+                                  <span :class="isDark ? 'free-demo':'free-demo-light'">Free Demo Web Wallet</span>
                                   <span style="margin-top: 8px; color: #8E9BAE;line-height: 140%;">Get a free <NuxtLink to="#"><span style="font-size: 16px;color: #2873FF;font-weight: 600; letter-spacing: 0.32px;">Demo Web</span></NuxtLink> 
                                   when you sign up to receive, send, and store your Bitcoin.</span>
                                 </div>
@@ -258,17 +261,20 @@
               <v-col cols="md-6">
                 <div class="ma-2 pa-2">
                    <div :class="isDark ? 'barcode-section':'barcode-section-light'">
-                      <div class="rectangle mt-2">
+                      <div class="rectangle ">
                           <img src="/img/Group(1).png" class="mt-3" style="display: flex; justify-self: center; width: 100%;" v-if="theme.global.current.value.dark"/>
-                          <img src="/svg/barcode-light.svg" class="mt-3" style="display: flex; justify-self: center; width: 100%;" v-else/>
+                          
+                          <div class="mb-7" style="background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%); padding-top: 28px; border-radius: 15px; width: 100%;"  v-else>
+                            <img src="/svg/barcode-light.svg"  style="display: flex; justify-self: center; margin: auto; width: 90%;"/>
+                          </div>
                       </div>
                       <div style=" margin-left: 25px"> 
                             <div class="wallet-frame" >
                               <img src="/svg/Users.svg">
-                              <span class="sell-btc-text" style="font-size: 14px !important; color: white !important; font-weight: 400;">Friends</span>
+                              <span :class="isDark ? 'sell-btc-text':'sell-btc-text-light'" style="font-size: 14px !important; font-weight: 400;">Friends</span>
                             </div>
                             <div style="display:grid;">
-                              <span class="free-demo">Invite friends</span>
+                              <span  :class="isDark ? 'free-demo':'free-demo-light'" style="margin-top: 16px ">Invite friends</span>
                               <span style="margin-top: 14px; color: #8E9BAE;line-height: 140%;">Get your friends and family  to
                                 <NuxtLink to="#"><span style="font-size: 16px; color: #8E9BAE; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline;">sign up</span></NuxtLink> 
                               for Demo Web
@@ -986,7 +992,18 @@ height: auto;
   top: 27px;
 }
 .sell-btc-text{
-color: #2873FF;
+color: white !important;
+text-align: center;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 100%; /* 16px */
+letter-spacing: 0.16px;
+
+}
+.sell-btc-text-light{
+color: #1B2537 !important;
 text-align: center;
 font-family: "SF Pro Display";
 font-size: 16px;
@@ -1054,11 +1071,9 @@ height: 455px;
 flex-direction: column;
 border: 1px solid #DBE8FF;
 border-radius: 25px;
-/* border-radius: 15px; */
 background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 65.19%, #F8FAFC 100%);
-/* background: #F8FAFC; */
 display: flex;
-padding: 30px ;
+/* padding: 30px ; */
 }
 
 .wallet-frame{
@@ -1074,13 +1089,24 @@ width: 88px;
 height: 36px;
 }
 .free-demo{
-/* text-align: center; */
 font-family: "SF Pro Display";
 font-size: 32px;
 font-style: normal;
 font-weight: 600;
 line-height: 120%; /* 38.4px */
 background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+margin-top: 16px;
+}
+.free-demo-light{
+font-family: "SF Pro Display";
+font-size: 32px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%; /* 38.4px */
+background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.50) 97.69%);
 background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
