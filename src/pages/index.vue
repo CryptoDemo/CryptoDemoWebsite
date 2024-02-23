@@ -262,7 +262,7 @@
                 <div class="ma-2 pa-2">
                    <div :class="isDark ? 'barcode-section':'barcode-section-light'">
                       <div class="rectangle " style="padding-top: 28px;">
-                          <img src="/img/Group(1).png" class="mt-3" style="display: flex; justify-self: center; margin: auto; width: 90%;" v-if="theme.global.current.value.dark"/>
+                          <img src="/img/Group(1).png" class="mt-3" style="display: flex; justify-self: center; margin: auto; width: 93%;" v-if="theme.global.current.value.dark"/>
                           
                           <div class="mb-7" style="background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%); padding-top: 28px; border-radius: 15px; width: 100%;"  v-else>
                             <img src="/svg/barcode-light.svg"  style="display: flex; justify-self: center; margin: auto; width: 90%;"/>
@@ -276,7 +276,7 @@
                             <div style="display:grid;">
                               <span  :class="isDark ? 'free-demo':'free-demo-light'" style="margin-top: 16px ">Invite friends</span>
                               <span style="margin-top: 14px; color: #8E9BAE;line-height: 140%;">Get your friends and family  to
-                                <NuxtLink to="#"><span style="font-size: 16px; color: #8E9BAE; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline;">sign up</span></NuxtLink> 
+                                <NuxtLink to="/authentication/register"><span style="font-size: 16px; color: #8E9BAE; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline;">sign up</span></NuxtLink> 
                               for Demo Web
                               </span>
                             </div>
