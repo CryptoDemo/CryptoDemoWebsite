@@ -62,9 +62,9 @@
         <div>
           <div class="d-flex mt-2" style="align-items: center; ">
             <v-checkbox color="primary"></v-checkbox>
-            <span style="align-self: flex-start; margin-top: 16px ">Play notification sound for trades</span>
+            <span style="align-self: flex-start; margin-top: 16px">Play notification sound for trades</span>
           </div>
-          <div class="d-flex" style="position: relative; bottom: 12px ">
+          <div class="d-flex" style=" align-items: center; position: relative; bottom: 12px ">
             <v-checkbox color="primary"></v-checkbox>
             <span style="align-self: flex-start; margin-top: 16px">Receive important emails from us </span>
           </div>
