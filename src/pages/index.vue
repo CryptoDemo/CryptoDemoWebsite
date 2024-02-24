@@ -28,7 +28,7 @@
 
                 <div class="d-flex text-img" v-if="theme.global.current.value.dark">
                   <span class="web" style="margin-right: 78px;">Demo Web</span>
-                  <img src="/svg/Frame 1305.svg" style="position: absolute; margin-left: 369px ;top: 14%;" /> 
+                  <img src="/svg/Frame 1305.svg" style="position: absolute; margin-left: 375px ;top: 144px;" /> 
                 </div>
                 <div class="d-flex text-img" v-else>
                   <span class="web">Demo Web✨️</span>
