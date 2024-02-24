@@ -198,7 +198,7 @@ font-weight: 400;
 line-height: normal;
 justify-content: center;
 align-items: center;
-
+letter-spacing: 0px!important;
 }
 .nav-subtitle-light{
 display: flex;
@@ -242,6 +242,7 @@ align-items: center;
 gap: 10px;
 text-indent: unset !important;
 text-transform: unset !important;
+letter-spacing: 0px!important;
 }
 
 </style>

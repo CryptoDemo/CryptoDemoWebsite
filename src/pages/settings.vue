@@ -58,7 +58,7 @@
                             </v-text-field>
                               <span class="number-caption">Please set your phone number with country code. <br><span style="font-weight: 700;">Must be a mobile number!</span></span>
                           </div>
-                          <v-btn  class="mt-4 update-btn" style="border-radius: 16px; height: 63px !important; width: 94px ">Confirm</v-btn>
+                          <v-btn  class="mt-4 update-btn" style="border-radius: 16px; height: 63px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
                       </div>
                     </v-col>
 
@@ -174,7 +174,7 @@
                       no-resize
                      
                     ></v-textarea>
-                      <v-btn class="update-btn mt-4">Update bio</v-btn>
+                      <v-btn class="update-btn mt-4" style="letter-spacing: 0px">Update bio</v-btn>
                 </div>
               <div class="pa-2 ma-2" style="width: 940px; flex-shrink: 0;">
                 <DataTable/>
@@ -239,7 +239,7 @@ const coin = [
                   }
 ];
 const validateInput = (value) => {
-      if (value.length > 25) {
+      if (value.length > 180) {
         return 'Max 180 characters:'; // Or customize the message
       }
       return; 

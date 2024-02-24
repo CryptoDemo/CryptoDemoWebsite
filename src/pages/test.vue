@@ -188,6 +188,7 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 text-transform: unset !important;
+letter-spacing: 0px;
 }
 .mdi-checkbox-blank-outline::before {
     content: "\F0131";

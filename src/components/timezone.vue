@@ -64,6 +64,7 @@ padding: 6px 13px;
 border-radius: 8px;
 gap: 95px;
 text-transform: unset;
+letter-spacing: 0px;
 }
 .dropdown-text{
 color: var(--Colors-Base-white, #FFF);
