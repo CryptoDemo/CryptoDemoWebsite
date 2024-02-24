@@ -982,7 +982,7 @@ max-width: 100%;
 height: auto;
 }
 .orange-coin{
-right: 160px;
+right: 164px;
 top: 24px;
 max-width: 100%;
 height: auto;
