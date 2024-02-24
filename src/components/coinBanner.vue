@@ -17,13 +17,13 @@
                 </div>
             <div style="margin-top: 62.2px;">
                 <div class="coin-container" style="padding-left: 58px; opacity: 0.5!important;">
-                    <v-img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins" width="80"  class="d-flex" ></v-img>
+                    <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"   class="d-flex" />
                 </div>
                 <div class="coin-container" style="padding-right: 58px; opacity: 0.5!important;">
-                    <v-img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins" width="80"  class="d-flex" ></v-img>
+                    <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins" width=""  class="d-flex"/>
                 </div>
                 <div class="coin-container" style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
-                    <v-img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins" width="80" style="" class="d-flex animated-coins" ></v-img>
+                    <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins"  style="" class="d-flex animated-coins" />
                 </div>
             </div>
         </div>
@@ -139,11 +139,9 @@ font-weight: 400;
 line-height: normal;
 }
 .coin-container{
-display: inline-flex;
-/* align-items: flex-start; */
-/* gap: 4.1%; */
-height: 88px;
-width: 103%;
+display: flex;
+justify-content: space-between;
+width: 100%;
 }
 .animated-coins{
 opacity: 0.3!important;

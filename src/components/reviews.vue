@@ -17,9 +17,8 @@
                 <!-- <v-img v-for="(imagePath, index) in reviews" :key="index" :src="imagePath" alt="reviews"  class="d-flex" ></v-img> -->
                 <div class="img-reviews position-relative" v-if="theme.global.current.value.dark" >
                      <div style="border-radius: 15px; background: linear-gradient(180deg, rgba(16, 25, 45, 0.00) 0%, #10192D 100%); height: 55.662px; position: absolute; bottom: 17px; z-index: 1; width: -webkit-fill-available;"></div>
-                <v-img src="/svg/dark-reviews1.svg" style="position: ; top: 16px" width="100%"  ></v-img>
-                <v-img src="/svg/Framedr.svg" class="position-relative" ></v-img>
-                <!-- <v-img src="/img/review-frame.png" class="position-relative" ></v-img> -->
+                    <v-img src="/svg/dark-reviews1.svg" style="position: ; top: 16px" width="100%"  ></v-img>
+                    <v-img src="/svg/Framedr.svg" class="position-absolut" ></v-img>
                 </div>
 
                 <div class="img-reviews position-relative" v-else>
@@ -61,7 +60,7 @@ gap: 2px;
 margin-top: 24px;
 margin-bottom: 24px;
 width: 100%;
-height: 375px;
+height: 374px;
 }
 .reviews-light{
 border-radius: 15px;
@@ -72,7 +71,7 @@ gap: 2px;
 margin-top: 24px;
 margin-bottom: 24px;
 width: 100%;
-height: 375px;
+height: 374px;
 }
 .wrapper{
 border-radius: 100px;

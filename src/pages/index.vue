@@ -296,15 +296,15 @@
             </v-row>
             </v-container>
 
-          <div class="section3" :class="isDark ? 'section3':'section3-light'" style="margin-top: 200px;">
+          <div :class="isDark ? 'section3':'section3-light'" style="margin-top: 200px;">
             <v-container>
                 <v-row no-gutters>
               <v-col cols="md-6">
                 <div class="ma-2 pa-2">
-                  <span class="section2-subtitle d-flex px-3" style="justify-content: start; margin-top: 79px">Awesome features of the demo web</span>
+                  <span class="section2-subtitle d-flex px-3" style="justify-content: start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
                   <span :class="isDark ? 'section2-title':'section2-title-light'" style="text-align: left; width: 625.645px;">Join the Future of Crypto Trading with Demo Web</span>
                   <span class="explore">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
-                   <div class="d-flex" style="margin-top: 150px">
+                   <div class="d-flex" style="margin-top: 150px; ">
                       <img src="/svg/BTN 1.svg" class="social-icons me-4"/>
                       <img src="/svg/BTN 2.svg" class="social-icons me-2"/>
                       <div class="border-line"></div>
@@ -1126,12 +1126,22 @@ background-clip: text;
 margin-top: 16px;
 }
 .section3{
-  background: #10192D;
-  padding: 0px, 120px, 0px, 120px;
+background: #10192D;
+display: flex;
+height: 897px;
+padding: 0px 120px;
+align-items: center;
+gap: 44px;
+flex-shrink: 0;
 }
 .section3-light{
  background: linear-gradient(270deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);
-padding: 0px, 120px, 0px, 120px;
+display: flex;
+height: 897px;
+padding: 0px 120px;
+align-items: center;
+gap: 44px;
+flex-shrink: 0;
 }
 .explore{
 color: #64748B;
