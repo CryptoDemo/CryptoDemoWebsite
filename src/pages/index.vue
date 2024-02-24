@@ -248,7 +248,7 @@
                           <img src="/svg/demo-light.svg"  style="display: flex; justify-self: center; width: 90%; margin: auto;margin-top:27px; " class=""/>
                           </div>
                       </div> 
-                          <div class="" style="display:grid;  margin-left: 30px">
+                          <div class="" style="display:grid;  margin-left: 36px">
                     
                                 <div class="wallet-frame">
                                   <img src="/svg/Wallet.svg">
@@ -276,7 +276,7 @@
                             <img src="/svg/barcode-light.svg"  style="display: flex; justify-self: center; margin: auto; width: 90%;"/>
                           </div>
                       </div>
-                      <div style=" margin-left: 25px"> 
+                      <div style=" margin-left: 36px"> 
                             <div class="wallet-frame" >
                               <img src="/svg/Users.svg">
                               <span :class="isDark ? 'sell-btc-text':'sell-btc-text-light'" style="font-size: 14px !important; font-weight: 400;">Friends</span>
