@@ -162,7 +162,7 @@ const  infos = [
 // const notification = ref (true)
 </script>
 
-<style scoped>
+<style>
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
     border: none !important;
     color: var(--Gray-Medium-light, #969696);

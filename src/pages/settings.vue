@@ -222,7 +222,7 @@ const currencies = [
 
 const selectedCoin  = ref ('Bitcoin (BTC)')
  
-const coinIcon = ref ('/svg/Bitcoin.svg')
+const coinIcon = ref ('Btc icon')
 
 const coin = [
                   {
