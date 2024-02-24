@@ -16,10 +16,10 @@
                  
                 </div>
             <div style="margin-top: 62.2px;">
-                <div class="coin-container" style="padding-left: 58px; opacity: 0.5!important;">
+                <div class="coin-container" style="padding-left: 52px; opacity: 0.5!important;">
                     <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"   class="d-flex" />
                 </div>
-                <div class="coin-container" style="padding-right: 58px; opacity: 0.5!important;">
+                <div class="coin-container" style="padding-right: 52px; opacity: 0.5!important;">
                     <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins" width=""  class="d-flex"/>
                 </div>
                 <div class="coin-container" style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
