@@ -481,7 +481,7 @@ gap: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 65px;
+  margin-top: 68px;
 }
 .top-ellipse{
   position: absolute;
