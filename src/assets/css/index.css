@@ -189,3 +189,18 @@ width: 100vw;
 overflow-y: auto;
 overflow-x: hidden;
 }
+.primary-btn1{
+  display: flex !important;
+  min-height: 64px;
+  align-items: center !important;
+  border-radius: 16px !important;
+  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF) !important;
+  text-transform: unset !important;
+  color: var(--Colors-Base-white, #FFF);
+  text-align: center !important;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal !important;
+  font-weight: 400;
+  line-height: normal !important;
+  }
