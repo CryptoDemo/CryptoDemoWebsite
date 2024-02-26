@@ -1,4 +1,4 @@
-<template>
+ <template>
      <div>
     <v-row justify="center" >
       <v-btn color="primary" class="ma-2" @click="dialog = true" >
@@ -112,8 +112,9 @@
         v-model="dialog2"
         width="auto"
       >
-        <v-card style="border-radius: 32px; border: 1px solid var(--border, #303A46); background:#12181F; padding: 32px 70px; box-shadow: none">
+        <v-card style="border-radius: 32px; border: 1px solid var(--border, #303A46); overflow: visible; height: 100%; background:#12181F; padding: 32px 70px; box-shadow: none">
           <v-card-title>
+               <span class="" style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Add account</span>
             <div class="d-flex">
                 <div>
                   <span style="color: #969696; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Bank</span>
@@ -144,8 +145,10 @@
                     </v-menu>
                 </div>
 
-                <div style="color: #969696; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; display: grid">
-                  <span style="color: #969696; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Account holder’s name</span>
+                <div style="color: #969696; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">
+                  <div style=" margin-top: 13px;">
+                    <span style="color: #969696; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Account holder’s name</span>
+                  </div>
                   <input type="text" placeholder="Okoli Bernard Chinedu" style="height: 47px; padding: 17px; width: 380px; border-radius: 16px; font-family: poppins; outline: none; background: #161D26;" />
                 </div>
             </div>
@@ -156,29 +159,79 @@
                   <input type="text"  style="height: 47px; padding: 17px; width: 380px; border-radius: 16px; font-family: poppins; outline: none; background: #161D26;" />
                   <span style="font-size: 12px; font-style: normal; font-weight: 400; line-height: normal; color: #646464"> Include additional bank account information if required.</span>
                 </div>
-                 <div style="color: #969696; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; display: grid">
+              
+                 <div style="color: #969696; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">
+                  <div style=" margin-top: 18px;">
                   <span style="color: #969696; margin-top: 18px; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Account number</span>
+                  </div>
                   <input type="text" placeholder="08456102341654" style="height: 47px; padding: 17px; width: 380px; border-radius: 16px; font-family: poppins; outline: none; background: #161D26;" />
+                 
                 </div>
             </div>
-            <v-btn color="#323232" variant="text" @click="dialog = false" style="border-radius: 16px; font-size: 16px; font-weight: 600; width: 208px; height: 63px; text-transform: unset; letter-spacing: 0px; border: 1px solid var(--border, #303A46); background: var(--Black-20, #E2E8F0);">
-              Close
-            </v-btn>
-            <v-btn></v-btn>
-            <v-btn color="#FFF" class="ma-2 primary-btn1" @click="dialog2 = true" style="width: 208px; height: 63px; font-size: 16px; font-weight: 600; text-transform: unset; letter-spacing: 0px;border-radius: 16px;">
-              Add account
-            </v-btn>
+                  <span style="font-size: 12px; font-style: normal; font-weight: 400; line-height: normal; color: #646464"> If you'd like to get money from other countries, we need more information about the account holder.</span>
+
+            <section v-if="isHidden">
+                 <div class="d-flex" style="justify-content: space-between; margin-top: 25px">
+                    <div style=" font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; display: grid">
+                        <span style="color: #969696; margin-top: 18px; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;"><span style="color: #969696; margin-top: 18px; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Country of residence</span></span>
+                        <input type="text"  style="height: 47px; padding: 17px; width: 380px; border-radius: 16px; font-family: poppins; outline: none; background: #161D26;" />
+ 
+                      </div>
+                    
+                      <div style="color: #969696; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">
+                        <div style=" margin-top: 18px;">
+                        <span style="color: #969696; margin-top: 18px; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">State/region</span>
+                        </div>
+                        <input type="text" placeholder="08456102341654" style="height: 47px; padding: 17px; width: 380px; border-radius: 16px; font-family: poppins; outline: none; background: #161D26;" />
+                      
+                      </div>
+                  </div>
+                 <div class="d-flex" style="justify-content: space-between;">
+                    <div style=" font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; display: grid">
+                        <span style="color: #969696; margin-top: 18px; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">City</span>
+                        <input type="text"  style="height: 47px; padding: 17px; width: 380px; border-radius: 16px; font-family: poppins; outline: none; background: #161D26;" />
+                        <span style="font-size: 12px; font-style: normal; font-weight: 400; line-height: normal; color: #646464"> Include additional bank account information if required.</span>
+                      </div>
+                    
+                      <div style="color: #969696; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">
+                        <div style=" margin-top: 18px;">
+                        <span style="color: #969696; margin-top: 18px; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Zip code</span>
+                        </div>
+                        <input type="text" placeholder="08456102341654" style="height: 47px; padding: 17px; width: 380px; border-radius: 16px; font-family: poppins; outline: none; background: #161D26;" />
+                      
+                      </div>
+                  </div>
+                   <div style="color: #969696; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">
+                        <div style=" margin-top: 18px;">
+                        <span style="color: #969696; margin-top: 18px; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Address</span>
+                        </div>
+                        <input type="text" placeholder="08456102341654" style="height: 47px; padding: 17px; width: 100%; border-radius: 16px; font-family: poppins; outline: none; background: #161D26;" />
+                      
+                      </div>
+            </section>
+            <div style="display: flex; justify-content: space-between; align-items: self-end; margin-top: 21px;">
+                  <v-btn color="#323232" variant="text" @click="dialog2 = false" style="border-radius: 16px; font-size: 16px; font-weight: 600; width: 208px; height: 63px; text-transform: unset; letter-spacing: 0px; border: 1px solid var(--border, #303A46); background: var(--Black-20, #E2E8F0);">
+                    Back
+                  </v-btn>
+
+                  <div >
+                    <h6  @click="isHidden = !isHidden" style="color: #5892FF; font-size: 12px;"> International trade details</h6>
+                    <div style="display: flex; justify-content: center;"> 
+                      <v-icon icon="mdi-chevron-up" color="#5892FF" v-if="isHidden"  ></v-icon>  
+                      <v-icon icon="mdi-chevron-down" color="#5892FF" v-else ></v-icon>  
+                      </div>
+                  </div>  
+
+                  <v-btn color="#FFF" class=" primary-btn1" @click="dialog2 = true" style="width: 208px; height: 63px; font-size: 16px; color:white; font-weight: 600; text-transform: unset; letter-spacing: 0px;border-radius: 16px;">
+                    Add account
+                  </v-btn> 
+           </div>
+
+
+
+
           </v-card-title>
-        
-          <v-card-actions>
-            <v-btn
-              color="primary"
-              variant="text"
-              @click="dialog2 = false"
-            >
-              Close
-            </v-btn>
-          </v-card-actions>
+       
         </v-card>
       </v-dialog>
 
@@ -193,7 +246,7 @@ import { ref } from 'vue'
 const dialog = ref(false);
 const dialog2 = ref(false);
 const dialog3 = ref (false);
-
+const isHidden = ref(false);
 const selected  = ref ('Nigeria') 
 
 const userResidence = [
