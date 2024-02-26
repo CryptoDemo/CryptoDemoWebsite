@@ -55,8 +55,7 @@ margin-bottom: 16px;
 }
 .expansion-panel-light{
 border-radius: 15px;
-background: #F8FAFC;;
-;
+background: #F8FAFC;
 display: flex;
 padding: 30px;
 flex-direction: column;

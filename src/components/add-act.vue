@@ -115,7 +115,7 @@
         v-model="dialog2" height=""
         width="auto"
       >
-        <v-card style="border-radius: 32px; border: 1px solid var(--border, #303A46); overflow: visible; height: 100%; background:#12181F; padding: 32px 70px; box-shadow: none">
+        <v-card style="border-radius: 32px; border: 1px solid var(--border, #303A46);  height: 100%; background:#12181F; padding: 32px 70px; box-shadow: none">
           <v-card-title>
             <div class="d-flex" style="align-items: center;margin-bottom: 52px">
                <span class="me-5" style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Add account</span>

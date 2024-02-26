@@ -256,4 +256,7 @@ width: 0.5px;
 height: 21px;
 background: #646464;
 }
+::-webkit-scrollbar{
+  display: none;
+}
 </style>

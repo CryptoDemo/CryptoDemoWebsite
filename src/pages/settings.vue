@@ -25,12 +25,13 @@
                     <v-col class="d-md-flex me-5" style=" flex-grow: 0 !important;">
                       <div class="d-flex">
                           <div class="pa-2 ma-2">
-                            <v-text-field class="input-styling1"
-                                v-model="number" variant="" placeholder="002-002-003" title="009">  
+                          
+                            <div>
+                              <input type=" text" class="input-styling1 position-relative" placeholder="002-002-003" style="outline: none; padding-left: 140px "/>
                                 <v-menu :location="location">
                                         <template v-slot:activator="{ props }">
                                           <v-btn 
-                                            class="dropdown-btn me-3" style="background: #161D26; width: 109px; height: 44px; border-radius: 17px; letter-spacing: unset!important; top: -5px  "
+                                            class="dropdown-btn me-3" style="background: #161D26; width: 109px; height: 44px; border-radius: 17px; letter-spacing: unset!important; position: relative; left: 14px; margin-top: -86px "
                                             dark
                                             v-bind="props">
                                             <v-img  width="20" class="me-3" :src="flag"/> 
@@ -54,8 +55,9 @@
                                           </v-list-item>
                                         </v-list>
                     
-                                  </v-menu> 
-                            </v-text-field>
+                                  </v-menu>
+                            </div> 
+                          
                               <span class="number-caption">Please set your phone number with country code. <br><span style="font-weight: 700;">Must be a mobile number!</span></span>
                           </div>
                           <v-btn  class="mt-4 update-btn" style="border-radius: 16px; height: 63px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
@@ -133,7 +135,8 @@
                                 dark
                                 v-bind="props">
                                 <div  class="py-3" style="display: flex; cursor: pointer; position: absolute; left: 37px; align-items: center;">
-                                    <span class="me-4" style="font-weight: 700; font-size: 16px;">{{ coinIcon }}</span>
+                  
+                                    <img :src="coinIcon" class="me-4"/>
                                     <span class="mt-" style="font-weight: 700; color: var(--Gray-Medium-light, #969696);">{{selectedCoin}}</span> 
                                 </div>
                                 <v-icon icon="mdi-chevron-down"  color="#E0E4F5" class="chevron-icon" style="position: absolute; right: 45px; bottom: 25px; "></v-icon>
@@ -144,9 +147,8 @@
                               <v-list-item>
                                 <div v-for="(coin, index) in coin" class="d-flex py-3" style="cursor: pointer" :key="index" >
                               
-                                  <v-list-item-title @click="selected=coin.title; coinIcon= coin.coinIcon"  class="d-flex">
+                                  <v-list-item-title @click="selectedCoin=coin.title; coinIcon= coin.coinIcon"  class="d-flex">
                                      <v-img  :src="coin.coinIcon"></v-img>  
-                                    <!-- <span>{{currency.icon}}</span>  -->
                                     <span> {{ coin.title }} </span>
                                   </v-list-item-title>
                                 </div>
@@ -222,11 +224,11 @@ const currencies = [
 
 const selectedCoin  = ref ('Bitcoin (BTC)')
  
-const coinIcon = ref ('Btc icon')
+const coinIcon = ref ('/svg/btc.svg')
 
 const coin = [
                   {
-                    icon:'$', title:"US Dollar USD"
+                    icon:'/svg/btc.svg', title:"US Dollar USD"
                   },
                   {
                     icon:'$', title:"US Dollar USD"
