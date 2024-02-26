@@ -3,7 +3,7 @@
           <v-row no-gutters style="overflow:;">
             <v-col cols="3">
               <div class="pa-2 ma-2">
-                          <!-- //side nav here../ -->
+                  <Side-nav/>
               </div>
             </v-col>
 
