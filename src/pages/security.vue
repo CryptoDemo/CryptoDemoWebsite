@@ -107,14 +107,7 @@ justify-content: space-between;
 align-items: center;
 margin-bottom: 16px;
 }
-.acct-text{
-color: var(--Primary-80, #5892FF);
-font-family: Manrope;
-font-size: 24px;
-font-style: normal;
-font-weight: 600;
-line-height: 28px; 
-}
+
 
 .mail-text{
   color: var(--Gray-Medium-light, #969696);

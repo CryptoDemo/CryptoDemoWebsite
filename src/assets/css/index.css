@@ -205,3 +205,11 @@ overflow-x: hidden;
   line-height: normal !important;
   letter-spacing: 0px!important;
   }
+  .acct-text{
+    color: var(--Primary-80, #5892FF);
+    font-family: Manrope;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px; 
+    }
