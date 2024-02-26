@@ -7,21 +7,79 @@
               </div>
             </v-col>
 
-            <v-col cols="9">
+            <v-col cols="9" style="margin-bottom: 194px">
                 <div class="pa-2 ma-2">
                     
-                    <div class="acct-settings" style="display: flex; justify-content: space-between">    
+                    <div class="acct-settings" style="display: flex; justify-content: space-between; margin-bottom: 47px">    
                         <span class="acct-text"> Payment methods</span>
                         <span class="mail-text">vaststudiosng@gmail.com</span>  
                     </div>
-                    <span class="setup-text"> Add your bank account details below.</span>
-                    <div>
-                       <v-btn class="primary-btn" @click="dialog = true">Add Account</v-btn>
-
-                       
-                    </div>
+ 
                     <section style="width: 938px;">
+                       <div style="margin-top: 35px; justify-content: space-between; display: flex;">
+                          <span class="setup-text"> Add your bank account details below.</span>  
+                          <Add-act/>  
+                       </div>
 
+                      <div style="margin-top: 28px; border-radius: 24px; border: 1px solid var(--border, #303A46); padding: 16px 26px;">
+                        <div >
+                          <span class="setup-text d-flex">Personal</span>
+                          <div class="d-flex" style="justify-content: space-between;">
+                            <div style="display: flex; margin-top: 36px">
+                              <span class="acct-details1">Okoli Bernard Chinedu</span>
+                              <div class="border1" style="position: relative;right: 3%;"></div>
+                              <span class="acct-details1">GUARANTY TRUST BANK</span>
+                               <div class="border1" style="position: relative;right: -4%;"></div>
+                              <span class="acct-details1 text-center" style="font-weight: 600;">NGN</span>
+                               <div class="border1" style="position: relative; right: 4%;"></div>
+                              <span class="acct-details1">0154175839</span>
+                            </div>
+
+                            <div class="d-flex" style="margin-top: 17px ">
+                              <v-btn  class="delete-btn  position-relative me-5" style="width: 96px; height: 40px;">
+                                  <img src="/svg/close-circle.svg" style="margin-right: 3px !important"/>
+                                  Delete 
+                                </v-btn>
+                              <v-btn  class="edit-btn  position-relative" style="width: 96px; height: 40px;">
+                                  <img src="/svg/magicpen.svg" style="margin-right: 3px !important"/>
+                                  Edit
+                                </v-btn>
+                            </div>
+                        </div>
+                        </div>
+                      </div>
+                       <div style="margin-top: 40px; justify-content: space-between; display: flex;">
+                          <span class="setup-text">  Add your online wallet details below.</span>  
+                          <Add-act/>  
+                       </div>
+
+                      <div style="margin-top: 28px; border-radius: 24px; border: 1px solid var(--border, #303A46); padding: 16px 26px;">
+                        <div >
+                          <span class="setup-text d-flex">Personal</span>
+                          <div class="d-flex" style="justify-content: space-between;">
+                            <div style="display: flex; margin-top: 36px">
+                              <span class="acct-details1">Okoli Bernard Chinedu</span>
+                              <div class="border1" style="position: relative;right: 3%;"></div>
+                              <span class="acct-details1">GUARANTY TRUST BANK</span>
+                               <div class="border1" style="position: relative;right: -4%;"></div>
+                              <span class="acct-details1 text-center" style="font-weight: 600;">NGN</span>
+                               <div class="border1" style="position: relative; right: 4%;"></div>
+                              <span class="acct-details1">0154175839</span>
+                            </div>
+
+                            <div class="d-flex" style="margin-top: 17px ">
+                              <v-btn  class="delete-btn  position-relative me-5" style="width: 96px; height: 40px;">
+                                  <img src="/svg/close-circle.svg" style="margin-right: 3px !important"/>
+                                  Delete 
+                                </v-btn>
+                              <v-btn  class="edit-btn  position-relative" style="width: 96px; height: 40px;">
+                                  <img src="/svg/magicpen.svg" style="margin-right: 3px !important"/>
+                                  Edit
+                                </v-btn>
+                            </div>
+                        </div>
+                        </div>
+                      </div>
                     </section>
                         
                         
@@ -140,5 +198,62 @@ letter-spacing: 0px;
     content: "\F0131";
     background: white !important;
     border-radius: 8px;
+}
+.acct-details1{
+overflow: hidden;
+color: var(--Gray-Light, #D8D8D8);
+text-overflow: ellipsis;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+display: -webkit-box;
+width: 138px;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 1;
+}
+
+.delete-btn{
+border-radius: 12px;
+background: rgba(246, 85, 86, 0.12);
+align-items: center !important;
+/* gap: 5px !important; */
+text-transform: unset !important;
+display: flex;
+padding: 8px 12px;
+align-items: center;
+gap: 5px;
+color: var(--Basic-White, var(--Colors-Base-white, #FFF));
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+}
+
+.edit-btn{
+border-radius: 12px;
+background: rgba(85, 159, 246, 0.12);
+display: flex;
+width: 96px;
+padding: 8px 12px;
+justify-content: space-between;
+align-items: center;
+flex-shrink: 0;
+color: var(--Basic-White, var(--Colors-Base-white, #FFF));
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+text-transform: unset;
+}
+.border1{
+width: 0.5px;
+height: 21px;
+background: #646464;
 }
 </style>

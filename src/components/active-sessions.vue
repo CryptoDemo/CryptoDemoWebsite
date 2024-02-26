@@ -56,7 +56,7 @@
         <td><span class="browser-txt">{{item.IPAddress}}</span></td>
         <td><span class="browser-txt">{{item.Location}}</span></td>
         <td><v-btn class="actv-btn"  style="width: 70px; height: 40px ">{{item.Status}}</v-btn></td>
-        <td><v-btn v-bind="props" text="Open Dialog" class="delete-btn position-relative" style="width: 96px; height: 40px;">
+        <td><v-btn v-bind="props"  class="delete-btn position-relative" style="width: 96px; height: 40px;">
           <img src="/svg/close-circle.svg" style="margin-right: 3px !important"/>
           {{item.Delete}} 
           </v-btn>
