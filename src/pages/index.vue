@@ -298,7 +298,7 @@
 
           <div :class="isDark ? 'section3':'section3-light'" style="margin-top: 200px;">
             <v-container>
-                <v-row no-gutters style="padding-top: 180px; padding-bottom: 150px">
+                <v-row no-gutters style="padding-top: 170px; padding-bottom: 140px">
               <v-col cols="md-6">
                 <div class="ma-2 pa-2">
                   <span class="section2-subtitle d-flex px-3" style="justify-content: start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
@@ -326,7 +326,7 @@
             </v-container>
           </div>
 
-          <v-container style="margin-top: 90px">
+          <v-container style="margin-top: 70px">
             <Expansion/>
               
           </v-container>
