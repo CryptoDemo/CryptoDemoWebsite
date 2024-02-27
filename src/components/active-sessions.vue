@@ -5,39 +5,39 @@
     </div>
        <v-table style="display: grid! important; margin-bottom: 32px">
         <thead>
-          <tr style="border-radius: 24px !important;  background: var(--secondary-background, #12181F); display: flex; justify-content: space-between  ">
+          <tr style="border-radius: 24px !important; height: 74px;  background: var(--secondary-background, #12181F); display: flex; justify-content: space-between  ">
           
 
-            <th style="display: flex; align-items: center;">
+            <th style="display: flex; align-items: center; align-self: center;">
               <div class="d-flex">
                   <span>S.N.</span>
                   <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
               </div>
             </th>
 
-            <th style="display: flex; align-items: center; position: relative;right: 47px">
+            <th style="display: flex; align-items: center; align-self: center; position: relative;right: 47px">
               <div class="d-flex">
                 <span>Signed in</span>
                 <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
               </div>
             </th>
 
-             <th style="display: flex; align-items: center; position: relative;right: 51px">
+             <th style="display: flex; align-items: center; align-self: center; position: relative;right: 51px">
               <span >Browser</span>
               <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
             </th>
 
-             <th style="display: flex; align-items: center; position: relative;right: 35px">
+             <th style="display: flex; align-items: center; align-self: center; position: relative;right: 35px">
               <span>IP Address</span>
               <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
             </th>
 
-            <th style="display: flex; align-items: center; position: relative;right: 61px">
+            <th style="display: flex; align-items: center; align-self: center; position: relative;right: 61px">
               <span> Location</span>
                 <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon> 
             </th>
 
-            <th style="display: flex; align-items: center; position: relative;right: 72px">
+            <th style="display: flex; align-items: center; align-self: center; position: relative;right: 72px">
               <span>Status</span>
               <v-icon size="large"  color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
             </th>
@@ -77,39 +77,39 @@
              </div>
               <v-table  class="mt-5" style="display: grid! important; margin-bottom: 32px" >
                 <thead>
-                  <tr style="border-radius: 24px !important;  background: var(--secondary-background, #12181F); display: flex; justify-content: space-between ">
+                  <tr style="border-radius: 24px !important; height: 74px;  background: var(--secondary-background, #12181F); display: flex; justify-content: space-between ">
                   
 
-                    <th style="display: flex; align-items: center;">
+                    <th style="display: flex; align-items: center; align-self: center;">
                       <div class="d-inline-flex">
                           <span>S.N.</span>
                           <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
                       </div>
                     </th>
 
-                  <th style="display: flex; align-items: center; position: relative;right: 36px">
+                  <th style="display: flex; align-items: center; align-self: center; position: relative;">
                       <div class="d-flex">
                         <span>Actions</span>
                         <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
                       </div>
                     </th>
 
-                      <th style="display: flex; align-items: center; position: relative;right: 13px">
+                      <th style="display: flex; align-items: center; align-self: center; position: relative;">
                       <span style="">Browser</span>
                       <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
                     </th>
 
-                    <th style="display: flex; align-items: center; position: relative;right: -10px">
+                    <th style="display: flex; align-items: center; align-self: center; position: relative;right: -10px">
                       <span>IP Address</span>
                       <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
                     </th>
 
-                    <th style="display: flex; align-items: center; position: relative;right: 0px"> 
+                    <th style="display: flex; align-items: center; align-self: center; position: relative;right: 0px"> 
                       <span> Location</span>
                         <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon> 
                     </th>
 
-                    <th style="display: flex; align-items: center; position: relative;right: 0px">
+                    <th style="display: flex; align-items: center; align-self: center; position: relative;right: 0px">
                       <span>Signed In</span>
                       <v-icon size="large"  color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
                     </th>
