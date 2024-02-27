@@ -166,9 +166,9 @@
                       <img src="/svg/Ellipse 2813.svg" class="position-absolute" style="right:0; bottom: 65%;"/>
                 <div :class="isDark ? 'section2':'section2-light'">
                       <span class="section2-subtitle ">TRADE YOUR COIN LIKE A FOREX EXPERT</span>
-                      <span :class="isDark ? 'section2-title':'section2-title-light'">Over 350 ways to buy and sell Bitcoin.</span>
+                      <span :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Over 350 ways to buy and sell Bitcoin.</span>
                       <span class="caption">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
-                        <div class="mx-auto" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
+                        <div class="mx-auto" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
 
                             <v-btn :class="`${transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction=true" style="border-radius: 41px !important">Sell✨</v-btn>
                             <v-btn :class="`${!transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction=false" style="border-radius: 41px !important" >Buy</v-btn>
@@ -211,7 +211,7 @@
         <v-container class=" position-relative" >
               <img src="/svg/Ellipse 2813.svg" class="position-absolute" style="right:0; margin-top: 144px ;"/>
             <div  :class="isDark ? 'section2':'section2-light'">
-              <span class="section2-subtitle ">Awesome features of The demo web</span>
+              <span class="section2-subtitle" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features of The demo web</span>
               <span :class="isDark ? 'section2-title':'section2-title-light'" style="margin-bottom: 88px !important;">Welcome to a financial system for the 100%.</span>
             </div>
             <v-row no-gutters>
@@ -298,13 +298,13 @@
 
           <div :class="isDark ? 'section3':'section3-light'" style="margin-top: 200px;">
             <v-container>
-                <v-row no-gutters>
+                <v-row no-gutters style="padding-top: 180px; padding-bottom: 150px">
               <v-col cols="md-6">
                 <div class="ma-2 pa-2">
                   <span class="section2-subtitle d-flex px-3" style="justify-content: start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
-                  <span :class="isDark ? 'section2-title':'section2-title-light'" style="text-align: left; width: 625.645px;">Join the Future of Crypto Trading with Demo Web</span>
+                  <span :class="isDark ? 'section2-title':'section2-title-light'" style="text-align: left; width: 625.645px; margin-top: 40px; margin-bottom: 48px">Join the Future of Crypto Trading with Demo Web</span>
                   <span class="explore">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
-                   <div class="d-flex" style="margin-top: 150px; ">
+                   <div class="d-flex" style="margin-top: 140px; ">
                       <img src="/svg/BTN 1.svg" class="social-icons me-4"/>
                       <img src="/svg/BTN 2.svg" class="social-icons me-2"/>
                       <div class="border-line"></div>
@@ -315,7 +315,7 @@
               </v-col>
               <v-col cols="md-6">
                 <div class="ma-2 pa-2">
-                  <div class="phone-rectangle">
+                  <div class="phone-rectangle" style="position: relative; top: -58px">
                     <img src="/svg/phoneHand.svg" v-if="theme.global.current.value.dark"/>
                     <img src="/img/light-phone.png" v-else/>
                     
@@ -858,8 +858,8 @@ background-clip: text;
 width: 688.35px;
 display: flex;
 justify-content: center;
-margin-top: 48px !important;
-margin-bottom: 48px !important;
+/* margin-top: 40px !important; */
+/* margin-bottom: 40px !important; */
 margin: auto;
 }
 .section2-subtitle{
@@ -893,8 +893,6 @@ background-clip: text;
 width: 688.35px;
 display: flex;
 justify-content: center;
-margin-top: 48px !important;
-margin-bottom: 48px !important;
 margin: auto;
 }
 .section2-title-light{
@@ -912,8 +910,6 @@ background-clip: text;
 width: 688.35px;
 display: flex;
 justify-content: center;
-margin-top: 48px !important;
-margin-bottom: 48px !important;
 margin: auto;
 }
 .caption{
@@ -1128,7 +1124,7 @@ margin-top: 16px;
 .section3{
 background: #10192D;
 display: flex;
-height: 897px;
+/* height: 897px; */
 padding: 0px 120px;
 align-items: center;
 gap: 44px;
@@ -1137,7 +1133,7 @@ flex-shrink: 0;
 .section3-light{
  background: linear-gradient(270deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);
 display: flex;
-height: 897px;
+/* height: 897px; */
 padding: 0px 120px;
 align-items: center;
 gap: 44px;

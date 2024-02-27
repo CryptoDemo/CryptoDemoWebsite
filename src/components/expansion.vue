@@ -46,7 +46,7 @@ const FAQ = [
 .expansion-panel{
 border-radius: 15px;
 background: #10192D;
-padding: 30px;
+padding: 20px;
 flex-direction: column;
 align-items: flex-start;
 gap: 24px;
@@ -56,8 +56,9 @@ margin-bottom: 16px;
 .expansion-panel-light{
 border-radius: 15px;
 background: #F8FAFC;
+height: 94px;
 display: flex;
-padding: 30px;
+justify-content: center;
 flex-direction: column;
 align-items: flex-start;
 gap: 24px;
@@ -96,8 +97,8 @@ background-clip: text;
 width: 688.35px;
 display: flex;
 justify-content: center;
-margin-top: 48px !important;
-margin-bottom: 48px !important;
+margin-top: 40px !important;
+margin-bottom: 88px !important;
 margin: auto;
 }
 .section2-title-light{
@@ -115,8 +116,8 @@ background-clip: text;
 width: 688.35px;
 display: flex;
 justify-content: center;
-margin-top: 48px !important;
-margin-bottom: 48px !important;
+margin-top: 40px !important;
+margin-bottom: 88px !important;
 margin: auto;
 }
 

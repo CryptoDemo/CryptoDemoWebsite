@@ -13,7 +13,7 @@
       </v-navigation-drawer>
       <v-main style="height: 344px"></v-main>
     </v-layout>
-      <div style="border-radius: 16px; background: #12181F; height: 215px; padding: var(--spacing-3xl, 24px); width: 307px;display: flex; margin: auto; margin-top: 32px">
+      <div style="border-radius: 16px; background: #12181F; height: 215px; padding: var(--spacing-3xl, 24px); width: 307px; display: flex; margin: auto; margin-top: 32px">
 
       </div>
     </div>

@@ -101,7 +101,7 @@ margin-bottom: 16px;
 border-radius: 15px;
 background: #F8FAFC;
 display: flex;
-padding: 30px;
+/* padding: 30px; */
 flex-direction: column;
 align-items: flex-start;
 gap: 24px;
