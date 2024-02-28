@@ -62,17 +62,6 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 
 <style scoped>
 
-.acct-settings{
-border-radius: 16px;
-background: var(--secondary-background, #12181F);
-display: flex;
-width: 940px;
-padding: 21px var(--spacing-3xl, 24px);
-justify-content: space-between;
-align-items: center;
-margin-bottom: 16px;
-}
-
 .title-text{
 color: var(--Gray-Medium-light, #969696);
 font-family: Manrope;

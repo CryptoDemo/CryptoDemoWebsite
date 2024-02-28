@@ -101,16 +101,6 @@
 </script>
 <style >
 
-.acct-settings{
-border-radius: 16px;
-background: var(--secondary-background, #12181F);
-display: flex;
-width: 940px;
-padding: 21px var(--spacing-3xl, 24px);
-justify-content: space-between;
-align-items: center;
-margin-bottom: 16px;
-}
 .acct-text{
 color: var(--Primary-80, #5892FF);
 font-family: Manrope;

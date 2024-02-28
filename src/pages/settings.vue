@@ -253,16 +253,7 @@ const rules = [
 
 </script>
 <style>
-.settings-header{
-border-radius: 16px;
-background: rgba(245, 249, 253, 0.54);
-display: flex;
-width: 940px;
-padding: 27px 16px;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 32px;
-}
+
 .header-text1{
 color: var(--Gray-Dark, #323232);
 font-feature-settings: 'clig' off, 'liga' off;

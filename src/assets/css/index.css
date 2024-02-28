@@ -213,3 +213,14 @@ overflow-x: hidden;
     font-weight: 600;
     line-height: 28px; 
     }
+    .acct-settings{
+      border-radius: 16px;
+      background: var(--secondary-background, #12181F);
+      display: flex;
+      width: 940px;
+      height:68px ;
+      padding: 21px var(--spacing-3xl, 24px);
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      }
