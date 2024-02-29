@@ -81,7 +81,7 @@
         
                 <div class="mt-5">
                       <v-row>
-                        <v-btn class=" me-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
+                        <v-btn class=" me-4 mb-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
                             <span style="position: relative; left: -18px">Crypto purchased</span>
                           <span style="position: relative; right: -18px; font-weight: 800;">0</span>
                          </v-btn>
@@ -105,20 +105,172 @@
                                 </v-list>
                         </v-menu>
                       </v-row>
-                        <div style="height: 1px; width: 920px; background: #303A46; margin-top:16px"></div>
-                    <div>
-                        <div style="margin-bottom: 32px">
-                            <div>
-                                 <span>Esewa</span>
-                                 <img src="flags/ae.svg"/>
-                            </div>
 
+                        <div style="height: 1px; width: 930px; background: #303A46; margin-top:16px"></div>
+                    <div style="display: flex; justify-content: space-between;  width: 930px;">
+                        <div style="margin-top: 32px;">
+                            <div style="display: flex; margin-bottom: 14px">
+                                 <span class="me-3">Esewa</span>
+                                 <img src="/flags/do.svg" width="25px"/>
+                            </div>
+                            <div style="display: grid">
+                                <span class="mb-3" style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">Bank Transfer</span>
+                                <span class="mb-3" style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">First Bank only</span>
+                            <div style="display:flex">
+                                <v-btn class="smaller-btn me-4">Guided Trade</v-btn>
+                                <v-btn class="smaller-btn">Receipt required</v-btn>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        <div class="" style="display: flex; align-items: center;">
+                            <img src="/svg/star.svg" class="me-2 mb-2"/>
+                            <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
+                        </div>
+
+                        <div style="margin-top: 32px; margin-block-start: auto;">
+                            <div style="display: flex; margin-bottom: 14px">
+                                 <span style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">Limit 15,000 - 100,000 NGN</span>
+                            </div>
+                            <div style="display: grid">
+                                <span class="mb-3" style="color: #8E9BAE;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">62,797,850.5 NGN</span>
+                                <div class="d-flex mb-3">
+                                    <img src="/svg/btc.svg" class="me-3" width="20px"/> 
+                                    <span  style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600; line-height: 150%;">BTC</span>
+                                    <span style="color: #22C36B; font-size: 12px; font-style: normal; font-weight: 400;line-height: 150%;">-10%</span>
+                                </div>
+                            <div style="display:flex">
+                                <v-btn class="smaller-btn me-4" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Buy now</v-btn>
+                    
+                            </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                        <div style="height: 1px; width: 930px; background: #303A46; margin-top:16px"></div>
+                    <div style="display: flex; justify-content: space-between;  width: 920px;">
+                        <div style="margin-top: 32px;">
+                            <div style="display: flex; margin-bottom: 14px">
+                                 <span class="me-3">Esewa</span>
+                                 <img src="/flags/dz.svg" width="25px"/>
+                            </div>
+                            <div style="display: grid">
+                                <span class="mb-3" style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">Bank Transfer</span>
+                                <span class="mb-3" style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">First Bank only</span>
+                            <div style="display:flex">
+                                <v-btn class="smaller-btn me-4">Guided Trade</v-btn>
+                                <v-btn class="smaller-btn">Receipt required</v-btn>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        <div class="" style="display: flex; align-items: center;">
+                            <img src="/svg/star.svg" class="me-2 mb-2"/>
+                            <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
+                        </div>
+
+                        <div style="margin-top: 32px; margin-block-start: auto;">
+                            <div style="display: flex; margin-bottom: 14px">
+                                 <span style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">Limit 15,000 - 100,000 NGN</span>
+                            </div>
+                            <div style="display: grid">
+                                <span class="mb-3" style="color: #8E9BAE;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">62,797,850.5 NGN</span>
+                                <div class="d-flex mb-3">
+                                    <img src="/svg/btc.svg" class="me-3" width="20px"/> 
+                                    <span  style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600; line-height: 150%;">BTC</span>
+                                    <span style="color: #22C36B; font-size: 12px; font-style: normal; font-weight: 400;line-height: 150%;">-10%</span>
+                                </div>
+                            <div style="display:flex">
+                                <v-btn class="smaller-btn me-4" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Buy now</v-btn>
+                    
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div style="margin-top: 115px">
+                     <span class="user-location">Feedback</span>
+                    </div>
+
+                    <div class="mt-5" style="width: 930px;"> 
+                        <v-btn class=" me-4 inactive-btn"> 
+                            <span style="position: relative; left: -18px">From buyers</span>
+                          <span style="position: relative; right: -18px; font-weight: 800;">0</span>
+                         </v-btn>
+                        <v-btn class=" me-4 inactive-btn"> 
+                            <span style="position: relative; left: -18px">From sellers</span>
+                          <span style="position: relative; right: -18px; font-weight: 800;">0</span>
+                         </v-btn>
+                        <div style="height: 1px; background: #303A46; margin-top:16px"></div> 
+
+
+                        <div style="justify-content: space-between; display: flex;"> 
+
+
+                        <div class="d-flex">
+                            <img src="/svg/Image (1).svg" class="me-3" alt="avatar"/>
+                                <div>
+                                    <div style="padding-top: 35px;">
+                                    <span class="username">UID : <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Ogadinma2024</span></span>
+                                    <div style="display: grid">
+                                        <span class="username">Feb 5, 2024</span>
+                                        <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
+                                    </div>
+                                    </div>
+                                </div>
+                        </div> 
+
+                            <div style="margin-top: 35px">
+                                <span class="me-5" style="color: #969696; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
+                                <span class="me-5" style="color: #119254; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">NGN</span>
+                                <span style="color: #FACC15; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Low Ammount</span>
+                                <div>
+                                    <span style="color: #D8D8D8; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">Very Fast</span>
+                                </div>
+                            </div>
+
+                            <div  style="margin-top: 35px">
+                                <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">View Offer</span>
+                            </div>
+                        </div>
+
+                            <div style="height: 1px; background: #303A46; margin-top:16px"></div>
+
+                        <div style="justify-content: space-between; display: flex; margin-bottom: 191px"> 
+
+
+                        <div class="d-flex">
+                            <img src="/svg/Image (1).svg" class="me-3" alt="avatar"/>
+                                <div>
+                                    <div style="padding-top: 35px;">
+                                    <span class="username">UID : <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Ogadinma2024</span></span>
+                                    <div style="display: grid">
+                                        <span class="username">Feb 5, 2024</span>
+                                        <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
+                                    </div>
+                                    </div>
+                                </div>
+                        </div> 
+
+                            <div style="margin-top: 35px">
+                                <span class="me-5" style="color: #969696; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
+                                <span class="me-5" style="color: #119254; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">NGN</span>
+                                <span style="color: #FACC15; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Low Ammount</span>
+                                <div>
+                                    <span style="color: #D8D8D8; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">Very Fast</span>
+                                </div>
+                            </div>
+
+                            <div  style="margin-top: 35px">
+                                <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">View Offer</span>
+                            </div>
+                        </div>
+
+                 </div>
               </div>
 
-              
+              </div>
                         
                 
             </v-col>
@@ -184,7 +336,7 @@ line-height: normal;
 .username{
 color: var(--Gray-Medium-light, #969696);
 font-family: Poppins;
-font-size: 18px;
+font-size: 16px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
@@ -302,5 +454,22 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal; 
+}
+.smaller-btn{
+border-radius: 8px;
+background: var(--secondary-background, #12181F);
+display: flex;
+padding: 6px 16px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+color: var(--Gray-Medium-light, #969696);
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-transform: unset;
+letter-spacing:0px;
 }
 </style>

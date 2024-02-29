@@ -20,10 +20,10 @@
                     <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"   class="d-flex" />
                 </div>
                 <div class="coin-container" style="padding-right: 52px; opacity: 0.5!important;">
-                    <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins" width=""  class="d-flex"/>
+                    <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins"  class="d-flex"/>
                 </div>
                 <div class="coin-container" style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
-                    <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins"  style="" class="d-flex animated-coins" />
+                    <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins" class="d-flex animated-coins" />
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@ font-weight: 600;
 line-height: 140%; /* 22.4px */
 letter-spacing: 0.8px;
 text-transform: uppercase;
-padding-top: 40px;
+padding-top: 109px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -94,7 +94,8 @@ background-clip: text;
 -webkit-text-fill-color: transparent;
 display: flex;
 justify-content: center;
-margin-top: 48px;
+margin-top: 40px;
+margin-bottom: 48px;
 }
 .subtitle{
 color: #8E9BAE;

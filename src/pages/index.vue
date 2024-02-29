@@ -278,7 +278,7 @@
                       </div>
                       <div style=" margin-left: 36px"> 
                             <div class="wallet-frame" >
-                              <img src="/svg/Users.svg">
+                              <img src="/svg/Users1.svg">
                               <span :class="isDark ? 'sell-btc-text':'sell-btc-text-light'" style="font-size: 14px !important; font-weight: 400;">Friends</span>
                             </div>
                             <div style="display:grid;">

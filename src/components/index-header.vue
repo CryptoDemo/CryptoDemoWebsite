@@ -113,7 +113,7 @@ const items = [
   
 </script>
 
-<style >
+<style scoped>
 .navbar-bg{
 border-bottom: 1px solid #10192D;
 background: rgba(6, 10, 29, 0.60)!important;
@@ -224,6 +224,7 @@ border-radius: 10px !important;
 background: #2873FF !important;
 text-indent: unset !important;
 text-transform: unset !important;
+letter-spacing: 0px;
 }
 .register-text{
 color: var(--Colors-Base-white, #FFF);
