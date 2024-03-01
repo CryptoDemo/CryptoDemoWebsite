@@ -8,9 +8,11 @@
           </v-app-bar-nav-icon>
         </template>
       
-        <v-app-bar-title class="nav-title">Demo</v-app-bar-title>
+        <v-app-bar-title class="nav-title">Demo
+          
+        </v-app-bar-title>
 
-        <img :src="props.Menuicon" @click.prevent="navigateTo('/profile')" style="position: absolute; margin-left: 215px"/>      
+        <div style="position: relative;"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
        
         <template v-slot:append >
           <span class="text1">{{props.text2}}</span>
