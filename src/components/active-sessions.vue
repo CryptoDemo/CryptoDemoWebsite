@@ -87,14 +87,14 @@
                       </div>
                     </th>
 
-                  <th style="display: flex; align-items: center; align-self: center; position: relative;">
+                  <th style="display: flex; align-items: center; align-self: center; position: relative; right: 36px ">
                       <div class="d-flex">
                         <span>Actions</span>
                         <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
                       </div>
                     </th>
 
-                      <th style="display: flex; align-items: center; align-self: center; position: relative;">
+                      <th style="display: flex; align-items: center; align-self: center; position: relative; right: 15px;">
                       <span style="">Browser</span>
                       <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
                     </th>

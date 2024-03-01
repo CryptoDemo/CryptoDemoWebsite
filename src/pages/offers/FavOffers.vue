@@ -1,12 +1,14 @@
 <template>
   <div>
-        <v-row no-gutters>
+      <Header/>
+        <v-row no-gutters style="margin-top: 100px">
             <v-col cols="8">
               <div class="pa-1 ma-1">
                 <div class="profile" style="padding: 30px 0px ">
 
                   <div class="d-flex" style="justify-content: space-around;">
                     <div class="d-flex">
+                         
                       <img src="/svg/Image (1).svg" class="me-3" alt="avatar"/>
                         <div>
                           <span class="username mt-5 d-flex">UID : Ogadinma2024</span>
@@ -139,7 +141,10 @@
                         </div>
                         
                         <div class="" style="display: flex; align-items: center;">
-                            <img src="/svg/star.svg" class="me-2 mb-2"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M13.73 3.51063L15.49 7.03063C15.73 7.52063 16.37 7.99062 16.91 8.08063L20.1 8.61062C22.14 8.95062 22.62 10.4306 21.15 11.8906L18.67 14.3706C18.25 14.7906 18.02 15.6006 18.15 16.1806L18.86 19.2506C19.42 21.6806 18.13 22.6206 15.98 21.3506L12.99 19.5806C12.45 19.2606 11.56 19.2606 11.01 19.5806L8.02 21.3506C5.88 22.6206 4.58 21.6706 5.14 19.2506L5.85 16.1806C5.98 15.6006 5.75 14.7906 5.33 14.3706L2.85 11.8906C1.39 10.4306 1.86 8.95062 3.9 8.61062L7.09 8.08063C7.62 7.99062 8.26 7.52063 8.5 7.03063L10.26 3.51063C11.22 1.60063 12.78 1.60063 13.73 3.51063Z" fill="#FACC15"/>
+                            </svg>
+
                             <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
                         </div>
 
@@ -180,7 +185,9 @@
                         </div>
                         
                         <div class="" style="display: flex; align-items: center;">
-                            <img src="/svg/star.svg" class="me-2 mb-2"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M13.73 3.51063L15.49 7.03063C15.73 7.52063 16.37 7.99062 16.91 8.08063L20.1 8.61062C22.14 8.95062 22.62 10.4306 21.15 11.8906L18.67 14.3706C18.25 14.7906 18.02 15.6006 18.15 16.1806L18.86 19.2506C19.42 21.6806 18.13 22.6206 15.98 21.3506L12.99 19.5806C12.45 19.2606 11.56 19.2606 11.01 19.5806L8.02 21.3506C5.88 22.6206 4.58 21.6706 5.14 19.2506L5.85 16.1806C5.98 15.6006 5.75 14.7906 5.33 14.3706L2.85 11.8906C1.39 10.4306 1.86 8.95062 3.9 8.61062L7.09 8.08063C7.62 7.99062 8.26 7.52063 8.5 7.03063L10.26 3.51063C11.22 1.60063 12.78 1.60063 13.73 3.51063Z" fill="#FACC15"/>
+                            </svg>
                             <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
                         </div>
 
@@ -204,85 +211,7 @@
                     </div>
 
 
-                    <div style="margin-top: 115px">
-                     <span class="user-location">Feedback</span>
-                    </div>
-
-                    <div class="mt-5" style="width: 930px;"> 
-                        <v-btn class=" me-4 inactive-btn"> 
-                            <span style="position: relative; left: -18px">From buyers</span>
-                          <span style="position: relative; right: -18px; font-weight: 800;">0</span>
-                         </v-btn>
-                        <v-btn class=" me-4 inactive-btn"> 
-                            <span style="position: relative; left: -18px">From sellers</span>
-                          <span style="position: relative; right: -18px; font-weight: 800;">0</span>
-                         </v-btn>
-                        <div style="height: 1px; background: #303A46; margin-top:16px"></div> 
-
-
-                        <div style="justify-content: space-between; display: flex;"> 
-
-
-                        <div class="d-flex">
-                            <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
-                                <div>
-                                    <div style="padding-top: 35px;">
-                                    <span class="username">UID : <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Ogadinma2024</span></span>
-                                    <div style="display: grid">
-                                        <span class="username">Feb 5, 2024</span>
-                                        <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
-                                    </div>
-                                    </div>
-                                </div>
-                        </div> 
-
-                            <div style="margin-top: 35px">
-                                <span class="me-5" style="color: #969696; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
-                                <span class="me-5" style="color: #119254; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">NGN</span>
-                                <span style="color: #FACC15; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Low Ammount</span>
-                                <div>
-                                    <span style="color: #D8D8D8; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">Very Fast</span>
-                                </div>
-                            </div>
-
-                            <div  style="margin-top: 35px">
-                                <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">View Offer</span>
-                            </div>
-                        </div>
-
-                            <div style="height: 1px; background: #303A46; margin-top:16px"></div>
-
-                        <div style="justify-content: space-between; display: flex; margin-bottom: 191px"> 
-
-
-                        <div class="d-flex">
-                            <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
-                                <div>
-                                    <div style="padding-top: 35px;">
-                                    <span class="username">UID : <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Ogadinma2024</span></span>
-                                    <div style="display: grid">
-                                        <span class="username">Feb 5, 2024</span>
-                                        <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
-                                    </div>
-                                    </div>
-                                </div>
-                        </div> 
-
-                            <div style="margin-top: 35px">
-                                <span class="me-5" style="color: #969696; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
-                                <span class="me-5" style="color: #119254; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">NGN</span>
-                                <span style="color: #FACC15; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Low Ammount</span>
-                                <div>
-                                    <span style="color: #D8D8D8; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">Very Fast</span>
-                                </div>
-                            </div>
-
-                            <div  style="margin-top: 35px">
-                                <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">View Offer</span>
-                            </div>
-                        </div>
-
-                 </div>
+                   
               </div>
 
               </div>

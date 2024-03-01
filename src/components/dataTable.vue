@@ -60,7 +60,7 @@
         <img src="/img/Line 355.png" style="height: 102px; margin-top: 19px; position: absolute; right: 374px" />
 
         <div>
-          <div class="d-flex mt-2" style="align-items: center; ">
+          <div class="d-flex mt-2" style="align-items: center; position: relative;">
             <v-checkbox color="primary"></v-checkbox>
             <span style="align-self: flex-start; margin-top: 16px">Play notification sound for trades</span>
           </div>

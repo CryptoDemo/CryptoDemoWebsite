@@ -1,6 +1,7 @@
 <template>
   <div>
-          <v-row no-gutters style="overflow:;">
+    <Header/>
+          <v-row no-gutters style="margin-top:70px;">
             <v-col cols="3">
               <div class="pa-2 ma-2">
                           <!-- //side nav here../ -->
@@ -21,10 +22,9 @@
                         <tr style="border-radius: 24px !important; height:  74px; background: var(--secondary-background, #12181F); display: flex;">
                         
 
-                          <th style="display: flex; align-items: center; align-self: center;">
+                          <th class="me-2" style="display: flex; align-items: center; align-self: center;">
                             <div class="d-flex">
-                                <span class="table-header-text">S.N.</span>
-                                <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
+                                <span class="table-header-text me-14" style="margin-left: 5px"></span>
                             </div>
                           </th>
 
@@ -36,7 +36,7 @@
                           </th>
 
                           <th style="display: flex; align-items: center; align-self: center; position: relative;">
-                            <span class="table-header-text" style="margin-left: 10px ">Outcome</span>
+                            <span class="table-header-text me-1" style="margin-left: 10px ">Outcome</span>
                             <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer; margin-left: 12px"></v-icon>
                           </th>
 
@@ -59,15 +59,20 @@
                       </thead>
                     
                   <tbody>
-                    <tr v-for="item in Tradepartners" :key="item.name" style="display: flex; border-bottom: 1px solid #242D39 !important; justify-content: space-between; align-items: baseline; margin-top: 10px">
+                    <tr v-for="item in Tradepartners" :key="item.name" style="display: flex; border-bottom: 1px solid #242D39 !important; justify-content: space-between; align-items: baseline;">
                 
-                      <td><span class="browser-txt" style="margin-left: 10px" >{{item.serialNumber}}</span></td>
-                      <td><span class="browser-txt" style="margin-left: 7px "><img src="/svg/Image (1).svg" alt="avatar" style="width: 54px; position: relative; top: 15px "/></span></td>
-                      <td><span class="browser-txt"  style="color:#2873FF; font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 500; line-height: 160%;">{{item.Outcome}}</span></td>
+                      <td><span class="browser-txt"> <v-badge color="success" dot class="success-dot"><img src="/svg/Image (1).svg" class="me-5" alt="avatar" style="width: 40px; position: relative; top: 15px "/> </v-badge> </span></td>
+                      <td><span class="browser-txt" style="margin-left: -26px; font-family: Manrope; color: #2873FF; font-size: 14px; font-style: normal; font-weight: 500; line-height: 160%">{{item.Username}}</span></td>
+                      <td><span class="browser-txt" >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2 mt-2" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <path d="M6 4.58489L9.53553 1.04936C9.92606 0.658833 10.5592 0.658832 10.9497 1.04936C11.3403 1.43988 11.3403 2.07305 10.9497 2.46357L7.41421 5.9991L10.9497 9.53464C11.3403 9.92516 11.3403 10.5583 10.9497 10.9489C10.5592 11.3394 9.92606 11.3394 9.53553 10.9489L6 7.41332L2.46447 10.9489C2.07394 11.3394 1.44078 11.3394 1.05025 10.9489C0.659728 10.5583 0.659729 9.92516 1.05025 9.53464L4.58579 5.9991L1.05025 2.46357C0.659728 2.07305 0.659728 1.43988 1.05025 1.04936C1.44078 0.658832 2.07394 0.658832 2.46447 1.04936L6 4.58489Z" fill="#969696"/>
+                        </svg>
+                        {{item.Outcome}}</span>
+                      </td>
                       <td><span class="browser-txt">{{item.Date}}</span></td>
                       <td><div class="d-flex" style="position: relative; top: 9px "><img src="/svg/shield.svg" style="margin-right: 3px !important"/> <span class="browser-txt" >{{item.trust}}</span> </div></td>
-                      <td> <div class="d-flex" style="position: relative; top: 9px "><img src="/svg/forbidden.svg" style="margin-right: 3px !important"/> {{item.Status}}</div> </td>
-                      <td> <div class="d-flex" style="color:#2873FF; font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600; line-height: 160%;"> {{item.View}}</div> </td>
+                      <td> <div class="d-flex" style="position: relative; top: 9px; cursor: pointer;"><img src="/svg/forbidden.svg" style="margin-right: 3px !important"/> {{item.Status}}</div> </td>
+                      <td> <div class="d-flex" style="color:#2873FF; font-family: Manrope; font-size: 14px; font-style: normal; cursor: pointer; font-weight: 600; line-height: 160%;"> {{item.View}}</div> </td>
                     
                             </tr>
                           </tbody>
@@ -77,24 +82,25 @@
               </div>
             </v-col>
           </v-row>
+    <Footer/>
   </div>
 </template>
 
 <script setup>
 const  Tradepartners = [
           {
-            serialNumber: '1',
-            Username: "Username",
-            Outcome: "X Expired",
+            serialNumber: '',
+            Username: "CryptoMP1",
+            Outcome: "Expired",
             Date: "Feb, 5 2024, 11:56 AM",
             trust:'Trust',
             Status: "Block",
             View: "View",
           },
           {
-            serialNumber: '2',
-            Username: "Username",
-            Outcome: "X Expired",
+            serialNumber: '',
+            Username: "CryptoMP1",
+            Outcome: "Expired",
             Date: "Feb, 5 2024, 11:56 AM",
             trust:'Trust',
             Status: "Block",
@@ -105,7 +111,7 @@ const  Tradepartners = [
         ];
 </script>
 
-<style scoped>
+<style>
 
 
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
@@ -172,5 +178,11 @@ font-size: 16px;
 font-style: normal;
 font-weight: 700;
 line-height: 160%; /* 25.6px */
+}
+
+.v-badge--dot .v-badge__badge {
+position: absolute;
+bottom: -14px !important;
+left: 32px !important;
 }
 </style>

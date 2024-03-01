@@ -1,9 +1,10 @@
 <template>
   <div>
-          <v-row no-gutters style="margin-bottom: 113px;">
+    <Header icon="/svg/white-wallet.svg" Menuicon="/svg/Main Menu Icons.svg" icon1="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+          <v-row no-gutters style="margin-bottom: 113px; margin-top: 65px">
             <v-col cols="3">
               <div class="pa-2 ma-2">
-                      <Side-nav/>
+                      
               </div>
             </v-col>
 
@@ -13,7 +14,7 @@
                     <span class="header-text1">Setting answers to your security questions is a requirement in the event that you need to reset or update your phone number. <span style="color: var(--Primary-100, #2873FF);">Set Answers!</span></span>
                   </div>
 
-                  <div class="acct-settings" style="display: flex; justify-content: space-between">
+                  <div class="acct-settings" style="display: flex; justify-content: space-between; margin-top: 32px">
                      
                         <span class="acct-text"> Account Settings</span>
                         <span class="mail-text">vaststudiosng@gmail.com</span>
@@ -26,12 +27,12 @@
                       <div class="d-flex">
                           <div class="pa-2 ma-2">
                           
-                            <div>
+                            <div style="display: grid;">
                               <input type=" text" class="input-styling1 position-relative" placeholder="002-002-003" style="outline: none; padding-left: 140px "/>
                                 <v-menu :location="location">
                                         <template v-slot:activator="{ props }">
                                           <v-btn 
-                                            class="dropdown-btn me-3" style="background: #161D26; width: 109px; height: 44px; border-radius: 17px; letter-spacing: unset!important; position: relative; left: 14px; margin-top: -86px "
+                                            class="dropdown-btn me-3" style="background: #161D26; width: 109px; height: 44px; border-radius: 17px; letter-spacing: unset!important; position: relative; left: 14px; margin-top: -53px; box-shadow: none; "
                                             dark
                                             v-bind="props">
                                             <v-img  width="20" class="me-3" :src="flag"/> 
@@ -56,9 +57,11 @@
                                         </v-list>
                     
                                   </v-menu>
+                              <div>
+                                  <span class="number-caption">Please set your phone number with country code. <br><span style="font-weight: 700;">Must be a mobile number!</span></span>
+                              </div>
                             </div> 
                           
-                              <span class="number-caption">Please set your phone number with country code. <br><span style="font-weight: 700;">Must be a mobile number!</span></span>
                           </div>
                           <v-btn  class="mt-4 update-btn" style="border-radius: 16px; height: 63px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
                       </div>
@@ -66,6 +69,7 @@
 
                     <v-col>
                       <div class="pa-2 ma-2 d-flex">
+                        <img src="/svg/Camera.svg" style="position: absolute; margin-left: 17px; margin-top: 17px;"/>
                         <img src="/svg/Image (1).svg" class="me-4" style="align-self: start;"/>
                         <div>
                          <v-text-field placeholder="Email Address" class="input-styling1" variant="">
@@ -253,7 +257,13 @@ const rules = [
 
 </script>
 <style>
-
+.settings-header {
+border-radius: 16px;
+background: rgba(245, 249, 253, 0.54);
+padding: 27px 16px;
+width: 940px;
+margin-top: 30px;
+}
 .header-text1{
 color: var(--Gray-Dark, #323232);
 font-feature-settings: 'clig' off, 'liga' off;
@@ -261,6 +271,8 @@ font-size: 12px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+display: flex;
+justify-content: center;
 }
 .acct-settings{
 border-radius: 16px;
@@ -302,7 +314,7 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
-margin-top: 5px;
+/* margin-top: 5px; */
 }
 
 .update-btn{

@@ -205,22 +205,21 @@ overflow-x: hidden;
   line-height: normal !important;
   letter-spacing: 0px!important;
   }
-  .acct-text{
-    color: var(--Primary-80, #5892FF);
-    font-family: Manrope;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 28px; 
-    }
-    .acct-settings{
-      border-radius: 16px;
-      background: var(--secondary-background, #12181F);
-      display: flex;
-      width: 940px;
-      height:68px ;
-      padding: 21px var(--spacing-3xl, 24px);
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      }
+.acct-text{
+color: var(--Primary-80, #5892FF);
+font-family: Manrope;
+font-size: 24px;
+font-style: normal;
+font-weight: 600;
+line-height: 28px; 
+}
+.acct-settings{
+  border-radius: 16px;
+  background: var(--secondary-background, #12181F);
+  display: flex;
+  padding: 27px 16px;
+  width: 940px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  }
