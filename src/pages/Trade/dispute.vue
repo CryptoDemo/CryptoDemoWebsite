@@ -1,6 +1,6 @@
 <template>
   <div>
-          <v-row no-gutters style="overflow:;">
+          <v-row no-gutters>
             <v-col cols="3">
               <div class="pa-2 ma-2">
                           <!-- //side nav here../ -->
@@ -49,7 +49,7 @@
                                 </v-btn>
                               </template>
 
-                              <v-card min-width="304" style="border-radius: 24px; padding: 21px; border: 1px solid var(--border, #303A46; background: #161D26;">
+                              <v-card min-width="304" style="border-radius: 24px; padding: 21px; border: 1px solid var(--border, #303A46); background: #161D26;">
                                   <div class="d-flex" style="margin-bottom: 15px;">
                                       <img src="/svg/Image (1).svg" width="50" class="me-3" alt="avatar"/>
                                           <div>
@@ -99,25 +99,56 @@
                       </div>
                    
                   </div>
-                  <div class="chat-border"></div>             
-                   <span style="color: #D8D8D8; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: 150%;">Use this form to report any trade disputes.
-                   <span style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: 150%;">Provide details of the issue and we will be in touch soon.</span>
-                   </span>
-                    <div class="d-flex" style="margin-bottom: 16px; margin-top: 8px;">
-                        <v-btn class="me-4" style="border-radius: 15px!important; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); width: 112px; height: 48px;">
-                        </v-btn>
-
-                        <v-btn style="border-radius: 15px; background: #1B2537; width: 112px; height: 48px;">
-
-                        </v-btn>
+                  <div class="chat-border"></div>  
+                    <div style="margin-bottom: 41px;">          
+                        <span style="color: #D8D8D8; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: 150%;">Use this form to report any trade disputes.
+                        <span style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: 150%;">Provide details of the issue and we will be in touch soon.</span></span>
                     </div>
-                    <span style="color: #D8D8D8; text-align: justify; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Leave a comment about this trade partner</span>
+
+                       <span style="color: #969696; text-align: justify; font-family: manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">How can we contact you?</span>
+                    
+                        <div class="d-flex" style="margin-bottom: 16px; margin-top: 8px;">
+                      <v-menu :location="location">
+                        <template v-slot:activator="{ props }">
+            <v-btn class="mx-auto active-offers" style="letter-spacing: 0px"
+                v-bind="props">
+                <img  width="25" class="me-2" :src="flag" style="margin-left: -60px "/> 
+                <div style="display: grid; cursor: pointer;">
+                <span >{{select}}</span> 
+                <span class="me- small-text">{{coin}}</span> 
+                </div>
+                <v-icon icon="mdi-chevron-down"  color="#E0E4F5" style="position: absolute; display: flex; right: 15px;"></v-icon>
+            </v-btn>
+                        </template>
+
+                        <v-list>
+                            <v-list-item>
+                            <div v-for="(item, index) in allCoins" class="d-flex py-3" style="cursor: pointer"
+                                :key="index" >
+                            
+                                <v-list-item-title @click="select=item.title" class="d-flex" >    
+                                <span> {{ item.title }} </span>
+                            </v-list-item-title>
+                            </div>
+                            </v-list-item>
+                        </v-list>
+                      </v-menu> 
+
+                    </div>
+                    <span style="color: #969696; text-align: justify; font-family: manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Describe the trade dispute</span>
                     <div style="border-radius: 16px; margin-top: 12px;">
                         <v-textarea variant=""  rows="7" row-height="10" auto-grow placeholder="I love the speed" style="background: #12181F;"></v-textarea>
                     </div>
 
-                    <div style="    display: flex; justify-content: end; margin-top: 12px ">
-                        <v-btn class="submit-review">Submit</v-btn>
+
+                    <div class="upload-section">
+                        <span class="upload-txt">Upload supporting evidence </span>
+                        <v-btn class="upload-btn">Upload File</v-btn>
+                    </div>
+
+
+                    <div style="display: flex; justify-content: end; margin-top: 55px ">
+                        <v-btn class="register-dispute">Register Dispute</v-btn>
                     </div>
                  </div>
               </div>
@@ -131,10 +162,16 @@
 import { ref } from 'vue'
 
 const  menu = ref (false);
+
+const select =ref("Email or Phone")
+const allCoins = [
+        { title: 'Email'},
+        { title: 'Phone Number'},
+       
+      ];
 </script>
 
-<style>
-
+<style scoped>
 
 .header{
 color: var(--Gray-Medium-light, #969696);
@@ -146,6 +183,16 @@ font-weight: 400;
 line-height: 160%; /* 22.4px */
 }
 
+.active-offers{
+border-radius: 16px;
+background: var(--secondary-background, #12181F);
+display: flex;
+width: 100%;
+padding: 12px 40px;
+justify-content: space-between;
+height: 48px;
+text-transform: unset;
+}
 .chat-headings{
 width: 940px;
 padding: 21px var(--spacing-3xl, 24px);
@@ -166,20 +213,48 @@ margin-bottom: 28px;
 padding: 20px;
 border-radius: 16px;
 }
-.submit-review{
-color: var(--Colors-Base-white, #FFF);
+.register-dispute{
+color: #FFF;
 text-align: justify;
 font-family: Poppins;
 font-size: 16px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
-border-radius: 8px !important;
-background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF) !important;
-display: inline-flex;
-padding: 11px 15px;
-align-items: center;
+border-radius: 8px;
+background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);
 letter-spacing: 0px !important;
 text-transform: unset !important;
+}
+
+.upload-section{
+border-radius: 16px;
+background: var(--secondary-background, #12181F);
+display: flex;
+padding: 17px 16px;
+justify-content: space-between;
+align-items: center;
+height: 80px;
+margin-top: 20px;
+}
+
+.upload-btn{
+border-radius: 8px;
+background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);
+display: flex;
+padding: 11px 15px;
+align-items: center;
+letter-spacing: 0px;
+text-transform: unset;
+}
+.upload-txt{
+color: var(--Gray-Light, #D8D8D8);
+text-align: center;
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+line-height: 24px; /* 171.429% */
 }
 </style>

@@ -306,8 +306,7 @@ const profileCards = [
 ];
 
 const select =ref("All Cryptocurrency")
-// const coin = ref ("BTC")
-// const flag = ref("/svg/bitcoin-btc-logo 1.svg")
+
 
 const allCoins = [
         { title: 'Bitcoin', coinText:"Dai",  image:"/svg/btc.svg" },
@@ -318,12 +317,7 @@ const allCoins = [
         { title: 'Bitcoin',  coinText:"BTC", image:"/svg/btc.svg"},
       ];
 
-   const items = [
-        { title: 'Ethereum' },
-        { title: 'USDT' },
-        { title: 'Dodge' },
-        { title: 'Bitcoin' },
-      ];
+  
     
 </script>
 <style scoped>

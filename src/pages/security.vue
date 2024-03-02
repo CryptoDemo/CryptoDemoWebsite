@@ -1,7 +1,7 @@
 <template>
   <div>
      <Header icon="/svg/white-wallet.svg" Menuicon="/svg/Main Menu Icons.svg" icon1="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
-          <v-row no-gutters style="overflow:;">
+          <v-row no-gutters >
             <v-col cols="3">
               <div class="pa-2 ma-2">
                           <!-- //side nav here../ -->
@@ -28,13 +28,13 @@
                                 <span class="second-text"> The Login 2step Verification adds an extra layer of security to your account.</span>
                               </div>
                           </div>
-                            <v-btn class="primary-btn"  width="100px">Enable</v-btn>
+                            <v-btn class="primary-btn" width="100px">Enable</v-btn>
                       </div>
-                      <div style="margin-top:23px !important; display:flex; justify-content: space-between;">
+                      <div style="margin-top: 23px !important; display: flex; justify-content: space-between;">
                           <div class="d-flex">
                                 <img src="/svg/sms (2).svg" class="me-4" style="display: flex; align-self: start;"/>
                               <div style="display: grid">
-                                <span class="pswrd-mgt" style="white">Email Setup</span>
+                                <span class="pswrd-mgt">Email Setup</span>
                                 <span class="second-text" style="margin-top: 4px"> Please enter your email correctly</span>
                               </div>
                           </div>
