@@ -217,9 +217,23 @@ line-height: 28px;
   border-radius: 16px;
   background: var(--secondary-background, #12181F);
   display: flex;
-  padding: 27px 16px;
+  padding: 16px var(--spacing-3xl, 24px);
   width: 940px;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
   }
+.partners-text{
+color: var(--Gray-Medium-dark, #646464);
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-align: center;
+font-family: Poppins;
+font-size: 24px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%; /* 28.8px */
+}

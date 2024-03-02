@@ -1,0 +1,183 @@
+<template>
+  <div>
+          <v-row no-gutters style="overflow:;">
+            <v-col cols="3">
+              <div class="pa-2 ma-2">
+                          <!-- //side nav here../ -->
+              </div>
+            </v-col>
+
+            <v-col cols="9">
+              <div class="pa-2 ma-2">
+                 <div class="chat-headings" > 
+                  <div  style="display: flex; justify-content: space-between; width: 940px; margin-bottom: 23px">    
+                      <div class="d-flex">
+                          <img src="/svg/apple.svg" class="me-3" alt="avatar"/>
+
+                          <div>
+                              <span style="font-family: Poppins; display: flex; color: #2873FF; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Tom Gravesen</span>
+                              <span style="color: var(--Second-Text, #A4A8AB); font-family: Poppins; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal; letter-spacing: 0.1px;">Online</span>
+                          </div>
+                      </div>
+                      
+                      <div class="d-flex" style="margin-right: 30px;">
+                          <img src="/svg/call1.svg" class="me-6"/>
+                          <img src="/svg/profile-circle(2).svg" class="me-6"/>
+                          <div class="d-flex me-6" style="align-items: center;">
+                            <img src="/svg/heart-tick.svg" alt="icon">
+                            <span class="user-location">0</span>
+                          </div>
+
+                          <div class="d-flex me-8" style="align-items: center;">
+                            <img src="/svg/heart-remove.svg" alt="icon">
+                            <span class="user-location">0</span>
+                          </div> 
+
+                           <v-menu v-model="menu" :close-on-content-click="false" location="end">
+                              <template v-slot:activator="{ props }">
+                                <v-btn v-bind="props" style="background: #12181F; backdrop-filter: blur(10.5px); border-radius: 16px; height: 48px !important; min-width: 48px !important">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                          <g clip-path="url(#clip0_4035_64725)">
+                                            <path d="M5.35498 10.1992C4.25498 10.1992 3.35498 11.0992 3.35498 12.1992C3.35498 13.2992 4.25498 14.1992 5.35498 14.1992C6.45498 14.1992 7.35498 13.2992 7.35498 12.1992C7.35498 11.0992 6.45498 10.1992 5.35498 10.1992ZM19.355 10.1992C18.255 10.1992 17.355 11.0992 17.355 12.1992C17.355 13.2992 18.255 14.1992 19.355 14.1992C20.455 14.1992 21.355 13.2992 21.355 12.1992C21.355 11.0992 20.455 10.1992 19.355 10.1992ZM12.355 10.1992C11.255 10.1992 10.355 11.0992 10.355 12.1992C10.355 13.2992 11.255 14.1992 12.355 14.1992C13.455 14.1992 14.355 13.2992 14.355 12.1992C14.355 11.0992 13.455 10.1992 12.355 10.1992Z" fill="white"/>
+                                          </g>
+                                          <defs>
+                                            <clipPath id="clip0_4035_64725">
+                                              <rect width="24" height="24" fill="white" transform="translate(0.35498 0.199219)"/>
+                                            </clipPath>
+                                          </defs>
+                                        </svg>
+                                </v-btn>
+                              </template>
+
+                              <v-card min-width="304" style="border-radius: 24px; padding: 21px; border: 1px solid var(--border, #303A46; background: #161D26;">
+                                  <div class="d-flex" style="margin-bottom: 15px;">
+                                      <img src="/svg/Image (1).svg" width="50" class="me-3" alt="avatar"/>
+                                          <div>
+                                              <span style="font-family: Poppins; display: flex; color: #2873FF; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Tom Gravesen</span>
+                                                <div class="d-flex">
+                                                  <div class="d-flex me-6" style="align-items: center;">
+                                                    <img src="/svg/heart-tick.svg" alt="icon">
+                                                    <span class="user-location">0</span>
+                                                  </div>
+
+                                                  <div class="d-flex me-8" style="align-items: center;">
+                                                    <img src="/svg/heart-remove.svg" alt="icon">
+                                                    <span class="user-location">0</span>
+                                                  </div> 
+                                                </div>
+                                          </div>
+                                      <v-btn variant="text" @click="menu = false" style="border-radius: 14px; background: #12181F; min-width: 45px !important; height: 45px !important;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                                          <path d="M17.5 16.0849L21.0355 12.5494C21.4261 12.1588 22.0592 12.1588 22.4497 12.5494C22.8403 12.9399 22.8403 13.573 22.4497 13.9636L18.9142 17.4991L22.4497 21.0346C22.8403 21.4252 22.8403 22.0583 22.4497 22.4489C22.0592 22.8394 21.4261 22.8394 21.0355 22.4489L17.5 18.9133L13.9645 22.4489C13.5739 22.8394 12.9408 22.8394 12.5503 22.4489C12.1597 22.0583 12.1597 21.4252 12.5503 21.0346L16.0858 17.4991L12.5503 13.9636C12.1597 13.573 12.1597 12.9399 12.5503 12.5494C12.9408 12.1588 13.5739 12.1588 13.9645 12.5494L17.5 16.0849Z" fill="white"/>
+                                        </svg>
+                                      </v-btn>
+                                  </div>
+
+                                  <span style="font-family: Poppins; margin-top: 15px;  font-size: 16px; font-style: normal; font-weight: 600; line-height: 22px;">About</span>
+                                  <div style=" display: flex; margin-top: 24px">
+                                   <img src="/svg/call1.svg" class="me-4"/>
+                                   <span style="font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 400; color: #35B233">Phone verified</span>
+                                  </div>
+
+                                  <div style="display: flex; margin-top: 6px; margin-bottom: 28px">
+                                     <img sfrc="/svg/profile-circle(2).svg" class="me-4"/>
+                                     <span style="font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 400; color: #35B233">ID verified</span>
+                                  </div>
+
+                                  <span style="font-family: Manrope; color: #F8FAFC; font-size: 14px; font-style: normal; font-weight: 600; line-height: 150%;">Estimated Response  time</span>
+                                  <div style="display: grid; margin-top: 12px">
+                                    <span class="mb-3" style="font-family: Manrope; color: #8E9BAE; font-size: 14px; font-style: normal; font-weight: 400; line-height: 140%;">Speed - 3mns</span>
+                                    <span class="mb-5" style="font-family: Manrope; color: #8E9BAE; font-size: 14px; font-style: normal; font-weight: 400; line-height: 140%;">Status - Last seen 1min ago</span>
+                                    <span class="mb-3" style="font-family: Manrope; color: #8E9BAE; font-size: 14px; font-style: normal; font-weight: 400; line-height: 140%;">Name - Nehemiah Bernard Judas</span>
+                                    <span class="mb-3" style="font-family: Manrope; color: #8E9BAE; font-size: 14px; font-style: normal; font-weight: 400; line-height: 140%;">Mobile carrier info - MTN NG</span>
+                                    <span class="mb-3" style="font-family: Manrope; color: #8E9BAE; font-size: 14px; font-style: normal; font-weight: 400; line-height: 140%;">IP Loc- Nigeria</span>
+                                    <span class="mb-3" style="font-family: Manrope; color: #8E9BAE; font-size: 14px; font-style: normal; font-weight: 400; line-height: 140%;">Detected Loc- Nigeria</span>
+                                  </div>
+                              </v-card>
+                          </v-menu>
+   
+                      </div>
+                   
+                  </div>
+                  <div class="chat-border"></div>             
+                   <span style="color: #F8FAFC; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: 150%; /* 24px */">Do you like or dislike this trade partner?</span>
+                    <div class="d-flex" style="margin-bottom: 16px; margin-top: 8px;">
+                        <v-btn class="me-4" style="border-radius: 15px!important; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); width: 112px; height: 48px;">
+                        </v-btn>
+
+                        <v-btn style="border-radius: 15px; background: #1B2537; width: 112px; height: 48px;">
+
+                        </v-btn>
+                    </div>
+                    <span style="color: #D8D8D8; text-align: justify; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Leave a comment about this trade partner</span>
+                    <div style="border-radius: 16px; margin-top: 12px;">
+                        <v-textarea variant=""  rows="7" row-height="10" auto-grow placeholder="I love the speed" style="background: #12181F;"></v-textarea>
+                    </div>
+
+                    <div style="    display: flex; justify-content: end; margin-top: 12px ">
+                        <v-btn class="submit-review">Submit</v-btn>
+                    </div>
+                 </div>
+              </div>
+            </v-col>
+          </v-row>
+          <Footer/>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const  menu = ref (false);
+</script>
+
+<style>
+
+
+.header{
+color: var(--Gray-Medium-light, #969696);
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 160%; /* 22.4px */
+}
+
+.chat-headings{
+width: 940px;
+padding: 21px var(--spacing-3xl, 24px);
+justify-content: space-between;
+align-items: center;
+margin-bottom: 16px;
+}
+
+.chat-border{
+background: var(--border, #303A46);
+height: 2px;
+flex-shrink: 0;
+width: 100%;
+margin-bottom: 28px;
+}
+
+.v-input--density-default {
+padding: 20px;
+border-radius: 16px;
+}
+.submit-review{
+color: var(--Colors-Base-white, #FFF);
+text-align: justify;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+border-radius: 8px !important;
+background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF) !important;
+display: inline-flex;
+padding: 11px 15px;
+align-items: center;
+letter-spacing: 0px !important;
+text-transform: unset !important;
+}
+</style>

@@ -198,14 +198,7 @@ const  menu = ref (false);
 
 <style scoped>
 
-.partners-text{
-color: var(--Gray-Medium-dark, #646464);
-font-family: Poppins;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
+
 .header{
 color: var(--Gray-Medium-light, #969696);
 font-feature-settings: 'clig' off, 'liga' off;
