@@ -10,10 +10,8 @@
 
                 <div style="justify-content: center; display: flex; margin-top: 39px;">
                     <div class=" px-4" style="border-radius: 40px; width: 92%; justify-content: center; padding: 44px; border: 1px solid var(--border, #303A46); background: var(--secondary-background, #12181F); box-shadow: 0px 20px 36.1px 0px rgba(0, 0, 0, 0.10);">
-                        <div class="d-flex" style="border-radius: 24px; display: flex; justify-content: center; width: 470px; margin: auto; border: 1px solid var(--border, #303A46); background: #12181F;  padding: 5px;">
-                            <v-btn :class="PurchaseCrypto ? 'sell-offers': 'buy-offers'"  @click.prevent="PurchaseCrypto=true">Buy</v-btn>
-                            <v-btn :class="PurchaseCrypto ? 'buy-offers': 'sell-offers'"  @click.prevent="PurchaseCrypto=false">Sell</v-btn>
-                        </div>
+                       
+                        <span style="color: #D8D8D8; display: flex; justify-content: center; font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 700; line-height: normal;">How much Crypto do you want to buy?</span>
 
                         <div style="display: flex; justify-content: center; margin-top: 39px; margin-bottom: 40px; width: 100%;"> 
                         
@@ -105,7 +103,7 @@
                         </div>
 
                         <div v-if="PurchaseCrypto === true" class="display:none" style="border-radius: 16px; border: 1px solid #303A46;  position: relative; background: #12181F; display: flex; width: 345px; height: 56px; flex-shrink: 0;">
-                          <span style="color: #969696; font-family: Manrope; justify-content: center; padding:  17px; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Select payment method</span>
+                          <span style="color: #969696; font-family: Manrope; justify-content: center; padding:  17px; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;"> Select partner’s bank</span>
                             <v-dialog width="624">
                                         <template v-slot:activator="{ props }">
                                           <v-btn v-bind="props" text="View" style="border-radius: 0px 16px 16px 0px; position: absolute; text-transform: capitalize; right: 0; border-left: 1px solid #303A46; background: #10192D; width: 72px; height: 53px;"> </v-btn>
@@ -162,71 +160,88 @@
 
                         </div>
 
-
                         <v-btn class="sell-offers" width="100%">Find Offers</v-btn>
                     </div>
                 </div>              
             
                 <div style="background: #303A46; width: 100%; height: 1px; display: flex; justify-content: center; margin-top: 53px; margin-bottom: 53px;"></div>
 
-                <div v-for="n in 4" :key="n" style="display: flex; justify-content: space-between; border-radius: 24px; padding: 29px 50px 28px 49px; border: 1px solid #303A46; margin-bottom: 20px;">
-                        <div>
-                            <div style="display: flex; margin-bottom: 14px">
-                                 <span class="me-3" style="color: #2873FF; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Esewa</span>
-                            </div>
-                            <div style="display: grid">
-                              <div class="d-flex" style="align-items: center;">
-                                <img src="/svg/heart-tick.svg" alt="icon">
-                                <span class="heart-number">23</span>
-                              </div>
-                                <span class="mb-3" style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Last seen: <span style="font-weight: 400;">3 minutes ago</span></span>
+                <span>About Offer</span>
+                <div style="border-radius: 16px; border: 1px solid #303A46; padding: 37px; width: 100%; margin-bottom: 32px; margin-top: 16px; display: flex; justify-content: space-between;">
+                    <div style="display: flex; flex-direction: column; align-self: center;">
+                        <span style="color: #969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700;line-height: normal;">Seller rate</span>
+                        <span style="color: #D8D8D8;font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 700; line-height: normal;">67,107,299.589 NGN•1% below market</span>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-self: center;">
+                        <span style="color: #969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700;line-height: normal;">Buy limits</span>
+                        <span style="color: #969696;font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 700; line-height: normal;">Min 
+                            <span style="color:#D8D8D8;"> 55,000 NGN -</span> Max <span style="color:#D8D8D8;">55,259 NGN</span>
+                        </span>
+                    </div>
 
-                                <div style="display:flex">
-                                <v-btn class="smaller-btn me-4">Guided Trade</v-btn>
-                                <v-btn class="smaller-btn">Receipt required</v-btn>
-                            </div>
-                            </div>
+                    <div style="display: flex; flex-direction: column; align-self: center;">
+                        <span style="color: #969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700;line-height: normal;">Trade time limit</span>
+                        <span style="color: #D8D8D8;font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 700; line-height: normal;">30 Minutes</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-self: center;">
+                        <span style="color: #969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700;line-height: normal;">Demo Fee</span>
+                        <span style="color: #D8D8D8;font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 700; line-height: normal;">0%</span>
+                    </div>
+                </div>
+
+
+
+                <span>About Seller</span>
+
+                <div style="border-radius: 16px; border: 1px solid #303A46; display: flex; justify-content: space-between;  padding: 37px; margin-top: 16px; margin-bottom: 32px;">
+                    <div class="d-flex">
+                        <img src="/svg/Image (1).svg" class="me-3" width="70" alt="avatar"/>
+                        <div style="display: flex; flex-direction: column; align-self: center;">
+                            <span class="user-name">Tom Gravesen</span>
+                            <span class="ifonline">Online</span>
                         </div>
-                        
-                        <div>
-                            <div style="margin-bottom: 17px; display: flex; align-items: center;">
-                              <span class="me-3">Bank Transfer</span>
-                              <img src="/flags/ae.svg"   width="30"/>
-                            </div>
-                            <span style="color:#969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400;line-height: normal; margin-top: 17px;">All banks accepted</span>
-                          </div>
+                    </div>
 
-                        <div>
-                          <span style="color: #D8D8D8; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Trade Speed</span>
-                          <div style="margin-top: 17px; margin-bottom: 55px;">
-                            <span style="color: #969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">5 min (Avg)</span>
-                          </div>
-                            <div class="" style="display: flex; align-items: center;">
-                              <img src="/svg/star.svg" class="me-2"/>
-
-                                <span style="color:#969696; font-family: Manrope; margin-bottom: 3px; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
-                            </div>
+                    <div style="display: flex; align-items: center;">
+                        <img src="/svg/profile-circle(2).svg" class="me-3" width="24" />
+                        <span style="font-family: manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; color: #D8D8D8">ID verified</span>
                       </div>
 
-                        <div>
-                            <div style="display: flex; margin-bottom: 14px">
-                                 <span style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">Limit 15,000 - 100,000 NGN</span>
-                            </div>
-                            <div style="display: grid">
-                                <span class="mb-3" style="color: #8E9BAE;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; margin-top: 13px; line-height: normal; text-align-last: right;">62,797,850.5 NGN</span>
-                                <div class="d-flex mb-3" style="justify-content: end;">
-                                    <img src="/svg/btc.svg" class="me-3" width="20px"/> 
-                                    <span  style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600; line-height: 150%;">BTC</span>
-                                    <img src="/svg/arrow-up.svg" class="mb-1 me-1"/>
-                                    <span style="color: #22C36B; font-size: 12px; font-style: normal; font-weight: 400;line-height: 150%;">-10%</span>
-                                </div>
-                            <div style="display:flex; justify-content: end;">
-                                <v-btn class="smaller-btn" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Buy now</v-btn>
-                    
-                            </div>
-                            </div>
-                        </div>
+                    <div style="display: flex; align-items: center;">
+                        <img src="/svg/sms-green.svg" class="me-3" width="24"/>
+                        <span style="font-family: manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; color: #D8D8D8">Email verified</span>
+                      </div>
+
+                    <div style="display: flex; align-items: center;">
+                        <img src="/svg/location-green.svg" class="me-3" width="24"/>
+                        <span style="font-family: manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; color: #D8D8D8">Address verified</span>
+                      </div>
+
+                    <div style=" display: flex; align-items: center;">
+                        <img src="/svg/call1.svg" class="me-3" width="24"/>
+                        <span style="font-family: manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%; color: #D8D8D8">Phone verified</span>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;">
+                      <span style="color: #D8D8D8; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%;">Trade speed</span>
+                      <span style="color: #FFF; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700;line-height: 150%;">5 min</span>
+                    </div>
+
+
+                    <div class="d-flex" style="align-items: center;">
+                          <img src="/svg/heart-tick.svg" alt="icon">
+                            <span class="user-location">241</span>
+                    </div>
+
+                    <div class="d-flex" style="align-items: center;">
+                      <img src="/svg/heart-remove.svg" alt="icon">
+                      <span class="user-location">0</span>
+                    </div>
+
+
                 </div>
+                
           </div>
     </v-container>
     <Footer/>
@@ -276,33 +291,25 @@ font-weight: 700;
 line-height: 28px; /* 200% */
 }
 
-.heart-number{
-color: var(--Gray-Medium-light, #969696);
-font-family: Manrope;
+.user-name{
+color: var(--Primary-100, #2873FF);
+text-align: justify;
+font-family: Poppins;
 font-size: 16px;
 font-style: normal;
-font-weight: 400;
+font-weight: 600;
 line-height: normal;
 }
-::-webkit-scrollbar{
-  display: none;
-}
-.smaller-btn{
-border-radius: 8px;
-background: var(--secondary-background, #12181F);
-display: flex;
-padding: 6px 16px;
-justify-content: center;
-align-items: center;
-gap: 10px;
-color: var(--Gray-Medium-light, #969696);
-font-family: Manrope;
-font-size: 14px;
+
+.ifonline{
+color: var(--Second-Text, #A4A8AB);
+text-align: justify;
+font-family: Poppins;
+font-size: 12px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
-text-transform: unset;
-letter-spacing:0px;
+letter-spacing: 0.1px;
 }
 .coin-btn:hover{
 border-radius: 16px;

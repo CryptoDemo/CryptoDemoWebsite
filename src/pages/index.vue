@@ -41,7 +41,7 @@
                 <div class="form-wrap position-relative">
                   <img src="/img/Group 1302.png" class="top-ellipse"/>
                   <img src="/img/Group 1301.png" class="side-ellipse"/>
-                  <img src="/svg/Ellipse.svg" class="blue-ellipse position-absolute" style="width: ;"/>
+                  <img src="/svg/Ellipse.svg" class="blue-ellipse position-absolute"/>
                   <!-- <img src="/img/Group 1300.png" class="right-ellipse"/> -->
                   <img src="/img/Group 1299.png" class="bottom-ellipse"/>
 

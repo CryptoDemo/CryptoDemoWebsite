@@ -61,10 +61,10 @@
         </v-menu> 
       
       <div style="display: grid">
-            <v-btn @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; background: #161D26; min-width: 50px; height: 51.2px; flex-shrink: 0;">         
+            <v-btn :class="props.icon" @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; background: #161D26; min-width: 50px; height: 51.2px; flex-shrink: 0;">         
                 <img :src="props.icon"/> 
             </v-btn>
-            <span class="nav-icon-text">Wallet</span>     
+            <span  class="nav-icon-text">Wallet</span>     
       </div>
 
        <div style="display: grid">

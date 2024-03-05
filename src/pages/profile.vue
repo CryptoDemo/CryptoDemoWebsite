@@ -44,7 +44,7 @@
           </v-row>
 
         
-          <v-row no-gutters style="overflow:;">
+          <v-row no-gutters>
             <v-col cols="3">
               <div class="pa-2 ma-2">
                           <!-- //side nav here../ -->

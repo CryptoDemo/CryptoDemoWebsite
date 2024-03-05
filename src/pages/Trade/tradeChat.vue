@@ -1,6 +1,6 @@
 <template>
   <div>
-          <v-row no-gutters style="overflow:;">
+          <v-row no-gutters >
             <v-col cols="3">
               <div class="pa-2 ma-2">
                           <!-- //side nav here../ -->
@@ -49,7 +49,7 @@
                                 </v-btn>
                               </template>
 
-                              <v-card min-width="304" style="border-radius: 24px; padding: 21px; border: 1px solid var(--border, #303A46; background: #161D26;">
+                              <v-card min-width="304" style="border-radius: 24px; padding: 21px; border: 1px solid  #303A46; background: #161D26;">
                                   <div class="d-flex" style="margin-bottom: 15px;">
                                       <img src="/svg/Image (1).svg" width="50" class="me-3" alt="avatar"/>
                                           <div>
@@ -109,8 +109,8 @@
 
                    <div class="ma-2" style="border-radius: 0px 24px 24px 24px; background: #12181F; padding: 30px; width: 705px; height: 256px ">
                      
-                        <span style="color: var(--Gray-Medium-light, #969696);nfont-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;letter-spacing: 0.1px;">
-                            <span style="color:#D8D8D8; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; ine-height: 24px; /* 171.429% */ letter-spacing: 0.1px;"> You're buying 0.00032299 BTC (19,788.47 NGN) for 20,000 NGN via Bank Transfer. The BTC is now in escrow and it's safe to make your payment. </span>
+                        <span style="color: var(--Gray-Medium-light, #969696); font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;letter-spacing: 0.1px;">
+                            <span style="color:#D8D8D8; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px; /* 171.429% */ letter-spacing: 0.1px;"> You're buying 0.00032299 BTC (19,788.47 NGN) for 20,000 NGN via Bank Transfer. The BTC is now in escrow and it's safe to make your payment. </span>
                            <div style="display: grid">
                              <span class="mb-1 mt-2">1. When the seller is ready to start the transaction, they'll share their bank account details in the trade chat.</span>
                             <span class="mb-1">2. Make your payment.</span>
@@ -124,7 +124,7 @@
                     <span style="font-family: Poppins; font-size: 12px; font-style: normal;font-weight: 400; color: #A4A8AB">03:49PM</span>
 
                       <div class="ma-2" style="border-radius: 0px 24px 24px 24px; background: var(--secondary-background, #12181F);padding: 30px; width: 705px; height: 112px">
-                          <span style="color:#D8D8D8; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; ine-height: 24px; /* 171.429% */ letter-spacing: 0.1px;">Third-party payments are not accepted for this trade. The selected bank accounts must belong to the buyer and seller respectively.</span>
+                          <span style="color:#D8D8D8; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px; /* 171.429% */ letter-spacing: 0.1px;">Third-party payments are not accepted for this trade. The selected bank accounts must belong to the buyer and seller respectively.</span>
                       </div>
 
                        <span style="font-family: Poppins; font-size: 12px; font-style: normal;font-weight: 400; color: #A4A8AB">04:49PM</span>

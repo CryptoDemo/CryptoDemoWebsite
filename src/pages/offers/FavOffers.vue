@@ -44,7 +44,7 @@
           </v-row>
 
         
-          <v-row no-gutters style="overflow:;">
+          <v-row no-gutters>
             <v-col cols="3">
               <div class="pa-2 ma-2">
                           <!-- //side nav here../ -->
@@ -83,44 +83,47 @@
         
                 <div class="mt-5">
                       <v-row>
-                        <v-btn class=" me-4 mb-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
-                            <span style="position: relative; left: -18px">Crypto purchased</span>
-                          <span style="position: relative; right: -18px; font-weight: 800;">0</span>
-                         </v-btn>
-                        <v-btn  :class="PurchaseCrypto ? 'inactive-btn': 'active-btn'"  @click.prevent="PurchaseCrypto=false">
-                             <span style="position: relative; left:-37px">Crypto sold </span>
-                             <span style="position: relative; right: -32px; font-weight: 800;">0</span>
-                        </v-btn>
-                  
+                      <div class="d-flex">
+                        <div class="d-flex">
+                          <v-btn class=" me-4 mb-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
+                              <span style="position: relative; left: -18px">Crypto purchased</span>
+                            <span style="position: relative; right: -18px; font-weight: 800;">0</span>
+                          </v-btn>
+                          <v-btn  :class="PurchaseCrypto ? 'inactive-btn': 'active-btn'"  @click.prevent="PurchaseCrypto=false">
+                              <span style="position: relative; left:-37px">Crypto sold </span>
+                              <span style="position: relative; right: -32px; font-weight: 800;">0</span>
+                          </v-btn>
+                        </div>
 
+                        <div style="position: relative; left: 38%;">
+                          <v-menu :location="location">
+                            <template v-slot:activator="{ props }">
+                              <v-btn class="mx-auto active-offers" style="letter-spacing: 0px"
+                                v-bind="props">
+                                <img  width="25" class="me-2" :src="flag" style="margin-left: -60px "/> 
+                                <div style="display: grid; cursor: pointer;">
+                                <span >{{select}}</span> 
+                                <span class="me- small-text">{{coin}}</span> 
+                                </div>
+                                <v-icon icon="mdi-chevron-down"  color="#E0E4F5" style="position: absolute; display: flex; right: 15px;"></v-icon>
+                              </v-btn>
+                            </template>
 
-                     <v-menu :location="location">
-                          <template v-slot:activator="{ props }">
-                            <v-btn class="mx-auto active-offers" style="letter-spacing: 0px"
-                              v-bind="props">
-                              <img  width="25" class="me-2" :src="flag" style="margin-left: -60px "/> 
-                              <div style="display: grid; cursor: pointer;">
-                              <span >{{select}}</span> 
-                              <span class="me- small-text">{{coin}}</span> 
+                          <v-list>
+                            <v-list-item>
+                              <div v-for="(item, index) in allCoins" class="d-flex py-3" style="cursor: pointer"
+                                :key="index" >
+                            
+                                <v-list-item-title @click="select=item.title; coin=item.coinText; flag= item.image" class="d-flex">
+                                <v-img width="20" class="rounded-5 me-3" :src="item.image"/>    
+                                <span> {{ item.title }} </span>
+                              </v-list-item-title>
                               </div>
-                              <v-icon icon="mdi-chevron-down"  color="#E0E4F5" style="position: absolute; display: flex; right: 15px;"></v-icon>
-                            </v-btn>
-                          </template>
-
-                        <v-list>
-                          <v-list-item>
-                            <div v-for="(item, index) in allCoins" class="d-flex py-3" style="cursor: pointer"
-                              :key="index" >
-                          
-                              <v-list-item-title @click="select=item.title; coin=item.coinText; flag= item.image" class="d-flex">
-                              <v-img width="20" class="rounded-5 me-3" :src="item.image"/>    
-                              <span> {{ item.title }} </span>
-                            </v-list-item-title>
-                            </div>
-                          </v-list-item>
-                        </v-list>
-                      </v-menu> 
-                     
+                            </v-list-item>
+                          </v-list>
+                          </v-menu> 
+                        </div>
+                      </div>
                       </v-row>
 
                         <div style="height: 1px; width: 930px; background: #303A46; margin-top:16px"></div>
@@ -148,7 +151,7 @@
                             <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
                         </div>
 
-                        <div style="margin-top: 32px; margin-block-start: auto;">
+                        <div style="margin-top: 32px;">
                             <div style="display: flex; margin-bottom: 14px">
                                  <span style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">Limit 15,000 - 100,000 NGN</span>
                             </div>
@@ -157,6 +160,7 @@
                                 <div class="d-flex mb-3" style="justify-content: end;">
                                     <img src="/svg/btc.svg" class="me-3" width="20px"/> 
                                     <span  style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600; line-height: 150%;">BTC</span>
+                                    <img src="/svg/arrow-up.svg" class="mb-1 me-1"/>
                                     <span style="color: #22C36B; font-size: 12px; font-style: normal; font-weight: 400;line-height: 150%;">-10%</span>
                                 </div>
                             <div style="display:flex; justify-content: end;">
@@ -191,7 +195,7 @@
                             <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
                         </div>
 
-                        <div style="margin-top: 32px; margin-block-start: auto;">
+                        <div style="margin-top: 32px;">
                             <div style="display: flex; margin-bottom: 14px">
                                  <span style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">Limit 15,000 - 100,000 NGN</span>
                             </div>
@@ -200,8 +204,9 @@
                                 <div class="d-flex mb-3" style="justify-content: end;">
                                     <img src="/svg/btc.svg" class="me-3" width="20px"/> 
                                     <span  style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600; line-height: 150%;">BTC</span>
+                                    <img src="/svg/arrow-up.svg" class="mb-1 me-1"/>
                                     <span style="color: #22C36B; font-size: 12px; font-style: normal; font-weight: 400;line-height: 150%;">-10%</span>
-                                </div>
+                                  </div>
                             <div style="display:flex; justify-content: end;">
                                 <v-btn class="smaller-btn" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Buy now</v-btn>
                     
