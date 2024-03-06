@@ -151,8 +151,8 @@
                               <v-list-item>
                                 <div v-for="(coin, index) in coin" class="d-flex py-3" style="cursor: pointer" :key="index" >
                               
-                                  <v-list-item-title @click="selectedCoin=coin.title; coinIcon= coin.coinIcon"  class="d-flex">
-                                     <v-img  :src="coin.coinIcon"></v-img>  
+                                  <v-list-item-title @click="selectedCoin=coin.title; coinIcon= coin.icon"  class="d-flex">
+                                     <v-img  :src="coin.icon"></v-img>  
                                     <span> {{ coin.title }} </span>
                                   </v-list-item-title>
                                 </div>
@@ -305,6 +305,7 @@ line-height: 28px;
   height: 64px !important;
   background: var(--secondary-background, #12181F) !important;
   border-radius: 15px ;
+  letter-spacing: 0px;
 }
 .number-caption{
 color: var(--Gray-Medium-light, #969696);

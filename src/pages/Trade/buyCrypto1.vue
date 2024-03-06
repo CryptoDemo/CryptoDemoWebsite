@@ -196,7 +196,8 @@
 
                 <div style="border-radius: 16px; border: 1px solid #303A46; display: flex; justify-content: space-between;  padding: 37px; margin-top: 16px; margin-bottom: 32px;">
                     <div class="d-flex">
-                        <img src="/svg/Image (1).svg" class="me-3" width="70" alt="avatar"/>
+                      <v-badge color="success" dot style="position: absolute; margin-left: 55px; margin-top: 47px "></v-badge>
+                        <img src="/svg/Image (1).svg" class="me-3" width="60" alt="avatar"/>
                         <div style="display: flex; flex-direction: column; align-self: center;">
                             <span class="user-name">Tom Gravesen</span>
                             <span class="ifonline">Online</span>
@@ -236,13 +237,51 @@
 
                     <div class="d-flex" style="align-items: center;">
                       <img src="/svg/heart-remove.svg" alt="icon">
-                      <span class="user-location">0</span>
+                      <span class="user-location">2</span>
                     </div>
 
 
                 </div>
                 
-          </div>
+
+                <span>Offer terms</span>
+
+                <div style="border-radius: 16px; border: 1px solid #303A46; display: flex; justify-content: space-between;  padding: 37px; margin-top: 16px; margin-bottom: 32px;">
+                    <div style="display: flex; flex-direction: column;">
+                      <span>1. Before a trade starts, the seller selects the bank account they’ll receive payment to and the buyer selects the account they will send funds to.</span>
+                      <span>2. When the seller is ready to start the trade, they'll share their bank account details with the buyer.</span>
+                      <span>3. The buyer makes the payment to the seller's specified account.</span>
+                      <span>4. We recommend the buyer uploads a screenshot of the transaction, featuring the transaction reference number, as proof of payment.</span>
+                    </div>
+                </div>
+
+                <div style="border-radius: 16px; border: 1px solid #303A46; display: flex; justify-content: space-between;  padding: 37px; margin-top: 16px; margin-bottom: 32px;">
+                    <div class="d-flex">
+                        <img src="/svg/Image (1).svg" class="me-3" width="70" alt="avatar"/>
+                        <div style="display: flex; flex-direction: column; align-self: center;">
+                            <span class="user-name">Tom Gravesen</span>
+                            <span class="ifonline">Online</span>
+                        </div>
+                    </div>
+
+
+                    <div>
+                      <span class="me-5" style="color: #969696; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
+                      <span class="me-5" style="color: #119254; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">NGN</span>
+                      <span style="color: #FACC15; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Low Ammount</span>
+                      <div>
+                        <span style="color: #D8D8D8; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">Very Fast</span>
+                     </div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                      <img src="/svg/heart-tick.svg" width="40" alt="icon">
+                      <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">View Offer</span>
+                    </div>
+                  </div>
+
+
+             </div>
     </v-container>
     <Footer/>
   </template>
