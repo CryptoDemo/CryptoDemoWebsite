@@ -5,7 +5,7 @@
             <span class="swap1">Swap</span>
             <div style="border-radius: 24px; border: 1px solid #303A46; padding: 37px; margin-top: 40px;">
     
-                <div class="d-flex" style="justify-content: space-between; background: #060A1D; position: relative;">
+                <div class="d-flex" style="justify-content: space-between;  position: relative;">
                     <div style="display: flex; align-items: center;">
                         <span class="success-text-1"> Successful <br>
                             <span style="font-size: 24px;font-style: normal; font-weight: 400;">Your coin has been successfully swapped</span>

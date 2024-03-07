@@ -3,14 +3,15 @@
       <v-row no-gutters>
             <v-col>
               <div class="ma-2 pa-2">
-                <div class="frame1 position-relative">
+                <div class="position-relative" :class="isDark ? 'frame1':'frame1-light'">
                       <div style="display: flex; align-self: center; position: relative; margin-bottom: 30px;">
-                      <img src="/svg/Framebtc1.svg"/>
+                      <img src="/svg/Framebtc1.svg" v-if="theme.global.current.value.dark"/>
+                      <img src="/svg/Framelight.svg" v-else/>
                       <img src="/svg/greencoin1.svg" style="position: absolute; top: 0; bottom: -273px; display: flex; margin: auto; left: -11%;"/>
                       <img src="/svg/yellowCoin1.svg" style="position: absolute; margin-top: 121px; right: -20px;"/>
                       </div>
 
-                      <div class="svg-frame" style="position: absolute"></div>
+                      <div class="svg-frame" :class="isDark ? 'svg-frame':'svg-frame-light'" style="position: absolute"></div>
 
                       <v-btn @click.prevent="navigateTo('#')" style="border-radius: 100px; letter-spacing: 0px; text-transform: capitalize; box-shadow: none; display: flex; margin-top: 30px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; align-items: center;">
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" class="me-2">
@@ -30,11 +31,12 @@
 
             <v-col >
                 <v-col cols="" class="mt-2 ma-1">
-                  <div class="frame2" style="padding: 0 40px; width: 100%;">
+                  <div  :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 40px; width: 100%;">
                     <div>
                       <div class="position-relative">
-                        <div class="coin-wrap1"></div>
-                          <img src="/svg/Frame 12.svg"/>
+                        <div class="coin-wrap1" :class="isDark ? 'coin-wrap1':'coin-wrap1-light'"></div>
+                          <img src="/svg/Frame 12.svg" v-if="theme.global.current.value.dark"/>
+                          <img src="/svg/Frame 1light.svg" v-else/>
                           <img src="/svg/pointer.svg" class="cursor"/>
                       </div>
                       <v-btn @click.prevent="navigateTo('#')" style="border-radius: 100px; box-shadow: none; text-transform: capitalize; letter-spacing: 0px; display: flex; margin-top: 5px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; width: 78px; align-items: center;">
@@ -53,16 +55,16 @@
 
 
                 <v-col cols="" class=" ma-1">
-                  <div class="frame2" style="padding: 0 40px; position: relative;">
-                    <div  style="display: flex; flex-direction: column; padding: 0 60px; position: relative; height: 209px;">
+                  <div :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 30px; position: relative;">
+                    <div  style="display: flex; flex-direction: column; padding: 0 60px; position: relative; right: 10%; height: 205px;">
                       <div class="position-relative">
-                        <div class="coin-wrap1"></div>
+                        <div class="coin-wrap1" :class="isDark ? 'coin-wrap1':'coin-wrap1-light'"></div>
                           <img src="/svg/item1.svg" />
                           <img src="/svg/item2.svg" class="card1i"/>
                           <img src="/svg/item3.svg" class="card1ii"/>   
                       </div>
                     </div>
-                    <div class="position-relative">
+                    <div class="position-relative mb-5">
                     
                       <v-btn @click.prevent="navigateTo('/security')" style="border-radius: 100px; box-shadow: none; text-transform: capitalize; letter-spacing: 0px; display: flex;  margin-top: 5px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; width: 100px; align-items: center;">
                          <img src="/svg/shield1.svg"/>
@@ -92,9 +94,21 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 
 <style scoped>
 .frame1{
-border-radius: 15px;
+border-radius: 25px;
 border: 0.5px solid #64748B;
 background: #10192D;
+display: flex;
+height: 773px;
+flex-direction: column;
+padding: 40px;
+align-items: flex-start;
+position: relative;
+width: 100%;
+}
+.frame1-light{
+border-radius: 25px;
+border: 1px solid #DBE8FF;
+background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);
 display: flex;
 height: 773px;
 flex-direction: column;
@@ -111,7 +125,15 @@ width: 95%;
 height: 490px;
 position: absolute;
 left: 0;
-/* z-index: 1000; */
+}
+.svg-frame-light{
+/* border-radius: 15px; */
+background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 65.19%, #F8FAFC 100%);
+width: 100%;
+height: 490px;
+position: absolute;
+left: 0;
+opacity: 0.4;
 }
 
 .buy{
@@ -153,7 +175,18 @@ align-items: center;
 border-radius: 15px;
 background: linear-gradient(180deg, rgba(16, 25, 45, 0.00) 65.19%, #10192D 100%);
 padding: 40px;
-height: 370px;
+height: 372px;
+border-radius: 15px;
+border: 0.5px solid #64748B;
+background: #10192D;
+width: 100%;
+}
+
+.frame2-light{
+border: 1px solid #DBE8FF !important;
+background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%)!important;
+padding: 40px;
+height: 372px;
 border-radius: 15px;
 border: 0.5px solid #64748B;
 background: #10192D;
@@ -177,6 +210,17 @@ height: 208.961px;
 width: 100%;
 position: absolute;
 z-index: 1000;
+}
+.coin-wrap1-light{
+display: flex;
+flex-direction: column;
+border-radius: 15px;
+background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 65.19%, #F8FAFC 100%) !important;
+height: 208.961px;
+width: 100%;
+position: absolute;
+z-index: 1000;
+opacity: 0.4;
 }
 
 .card1i{

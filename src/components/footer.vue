@@ -51,8 +51,8 @@
                   </v-col>
                   <v-col>
                 <div style="display: flex; gap: var(--spacing-3xl, 24px); justify-content: end">
-                  <img src="/svg/Social icon.svg"  class="social-icons me-2" v-if="theme.global.current.value.dark"/>
-                  <img src="/svg/Social icon (1).svg" class="social-icons me-2" v-else/>
+                  <img src="/svg/Social icon.svg"  class="social-icons me-2" />
+                  <img src="/svg/Social icon (1).svg" class="social-icons me-2"/>
                   <img src="/svg/Social icon (2).svg" class="social-icons me-2" />
                   <img src="/svg/Social icon (3).svg" class="social-icons me-2"/>
                   <img src="/svg/Social icon (4).svg" class="social-icons me-2"/>

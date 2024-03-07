@@ -17,7 +17,7 @@
                 <!-- <v-img v-for="(imagePath, index) in reviews" :key="index" :src="imagePath" alt="reviews"  class="d-flex" ></v-img> -->
                 <div class="img-reviews position-relative" v-if="theme.global.current.value.dark" >
                      <div style="border-radius: 15px; background: linear-gradient(180deg, rgba(16, 25, 45, 0.00) 0%, #10192D 100%); height: 55.662px; position: absolute; bottom: 17px; z-index: 1; width: -webkit-fill-available;"></div>
-                    <v-img src="/svg/dark-reviews1.svg" style="position: ; top: 16px" width="100%"  ></v-img>
+                    <v-img src="/svg/dark-reviews1.svg" style=" top: 16px" width="100%"  ></v-img>
                     <v-img src="/svg/Framedr.svg" class="position-absolut" ></v-img>
                 </div>
 

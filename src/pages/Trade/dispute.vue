@@ -246,6 +246,13 @@ padding: 11px 15px;
 align-items: center;
 letter-spacing: 0px;
 text-transform: unset;
+color: var(--Colors-Base-white, #FFF);
+text-align: justify;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
 }
 .upload-txt{
 color: var(--Gray-Light, #D8D8D8);
