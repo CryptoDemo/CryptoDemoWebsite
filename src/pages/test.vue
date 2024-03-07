@@ -1,32 +1,26 @@
 <template>
-  <div>
-
-      <v-dialog max-width="500">
-        <template v-slot:activator="{ props: activatorProps }">
-          <v-btn
-            v-bind="activatorProps"
-            color="surface-variant"
-            text="Open Dialog"
-            variant="flat"
-          ></v-btn>
-        </template>
-
-        <template v-slot:default="{ isActive }">
-          <v-card title="Dialog">
-            <v-card-text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </v-card-text>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-
-              <v-btn
-                text="Close Dialog"
-                @click="isActive.value = false"
-              ></v-btn>
-            </v-card-actions>
-          </v-card>
-        </template>
-      </v-dialog>
-</div>
+  {{ countDown }}
 </template>
+
+<script>
+   export default {
+       data () {
+           return {
+               countDown: 10
+           }
+       },
+       methods: {
+           countDownTimer () {
+               if (this.countDown > 0) {
+                   setTimeout(() => {
+                       this.countDown -= 1
+                       this.countDownTimer()
+                   }, 1000)
+               }
+           }
+       },
+       created () {
+           this.countDownTimer()
+       }
+   }
+</script>

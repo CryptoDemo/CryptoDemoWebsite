@@ -15,7 +15,7 @@
                    <div style="border-radius: 24px; border: 1px solid  #303A46; padding: 30px; width: 930px">
                     <v-table style="display: grid! important; background: inherit;">
                       <thead>
-                        <tr style="display: flex; justify-content: space-between; margin-bottom: 30px;">
+                        <tr style="display: flex; margin-bottom: 30px;">
                         
 
                           <th class="me-2" style="display: flex; align-items: center; align-self: center;">
@@ -24,18 +24,18 @@
                             </div>
                           </th>
 
-                          <th style="display: flex; align-items: center; align-self: center; position: relative; right: 13px;">
-                            <div class="d-flex">
+                          <th style="display: flex; align-items: center; align-self: center; margin-right: 42px">
+                            <div class="d-flex" >
                               <span class="table-header-text">Coin</span>
                             </div>
                           </th>
 
-                          <th style="display: flex; align-items: center; align-self: center; position: relative;">
+                          <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 50px">
                             <span class="table-header-text me-1" style="margin-left: ">Price</span>
                           </th>
 
-                          <th style="display: flex; align-items: center; align-self: center; position: relative;">
-                            <span class="table-header-text" style="margin-left: ">Binance</span>
+                          <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 50px">
+                            <span class="table-header-text" style="margin-left: ">Balance</span>
                           </th>
 
                           <th style="display: flex; align-items: center; align-self: center; position: relative; left: -16px ">
@@ -59,9 +59,9 @@
                       </thead>
                     
                   <tbody>
-                    <tr v-for="item in Tradepartners" :key="item.name" style="display: flex; justify-content: space-between; margin-bottom: 32px;">
+                    <tr v-for="item in Tradepartners" :key="item.name" style="display: flex; justify-content: space-between; margin-bottom: 15px;">
                 
-                      <td style="display: flex; align-items: center;"><span class="sml-text">{{ item.serialNumber }} </span></td>
+                      <td style="display: flex; align-items: end;"><span class="sml-text">{{ item.serialNumber }} </span></td>
                       <td style="display: contents;">
                           <div class="d-flex" style="align-items: center;">
                               <img :src="item.image" class="me-3"/>
@@ -72,22 +72,57 @@
                             </div>
                       </td>
 
-                      <td style="display: flex;align-items: center;"><span class="browser-txt" > {{item.Price}}</span></td>
+                      <td style="display: flex;align-items: end;"><span class="browser-txt" > {{item.Price}}</span></td>
 
-                      <td style="display: flex;align-items: center;"><span class="browser-txt">{{item.Binance}}</span></td>
+                      <td style="display: flex;align-items: end;"><span class="browser-txt">{{item.Balance}}</span></td>
 
-                      <td style="display: flex;align-items: center;"><span class="browser-txt" >{{item.USDEqv}}</span></td>
-                      <td style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
-                      <td style="display: flex;align-items: center;"> <div class="d-flex" style="color:#2873FF; font-family: Manrope; font-size: 14px; font-style: normal; cursor: pointer; font-weight: 600; line-height: 160%;"> {{item.View}}</div> </td>
-                      <td> <div class="d-flex" style="color:#2873FF; font-family: Manrope; font-size: 14px; font-style: normal; cursor: pointer; font-weight: 600; line-height: 160%;"> {{item.View}}</div> </td>
-                    
+                      <td style="display: flex;align-items: end;"><span class="browser-txt" >{{item.USDEqv}}</span></td>
+
+                      <div class="d-flex" > 
+                        <td style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
+                        <td class="me-4" style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
+                        <td style="display: flex; align-items: center;"><div><v-btn class="swap">
+                          <img src="/svg/arrow-swap.svg"/>
+                          Swap</v-btn></div> 
+                        </td>
+                    </div>
                             </tr>
                           </tbody>
-                      </v-table>
+                    </v-table>
+                  </div>
 
+                  <div style="margin-top: 63px; margin-bottom: 94px;">
+                      <span style="color: #D8D8D8; font-family: Poppins; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Latest transactions</span>
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; width: 930px;">
+                    <span>1</span>
+                      <div style="display: flex;">
+                        <img src="/svg/btc.svg" class="me-3"/>
+                        <div style="display: flex; flex-direction: column;">
+                          <span class="browser-txt" style="font-weight: 600;">Bitcoin</span>
+                          <span class="sml-text">BTC</span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <span class="browser-txt">Jan 17, 4:33 PM</span>
+                      </div>
+
+                      <div>
+                        <span class="browser-txt" style="color: #35B233; font-weight: 600; font-family: Poppins;">Completed</span>
+                      </div>
+
+                      <div>
+                        <span class="browser-txt" style="font-weight: 600;">+2.820436 USDT</span>
+                      </div>
+
+                      <div>
+                        <span class="browser-txt" style="font-weight: 600;">+2.82 USD</span>
+                      </div>
                   </div>
                 </div>
-  
+                
                 
               </v-col>
             </v-row>
@@ -104,7 +139,7 @@ const  Tradepartners = [
             Coin: "Tether",
             Subtitle:'USDT',
             Price: "$38,755",
-            Binance: "2.8236",
+            Balance: "2.8236",
             USDEqv:'2.83',
             Status: "Block",
             Get: "",
@@ -117,7 +152,7 @@ const  Tradepartners = [
             Coin: "Bitcoin ",
             Subtitle:'BTC',
             Price: "$1.0964",
-            Binance: "9.0549",
+            Balance: "9.0549",
             USDEqv:'1.009',
             Status: "Block",
             Get: "",
@@ -132,7 +167,7 @@ const  Tradepartners = [
             Coin: "Bitcoin ",
             Subtitle:'BTC',
             Price: "$1.0964",
-            Binance: "9.0549",
+            Balance: "9.0549",
             USDEqv:'1.009',
             Status: "Block",
             Get: "View",
@@ -145,7 +180,7 @@ const  Tradepartners = [
             Coin: "Bitcoin ",
             Subtitle:'BTC',
             Price: "$1.0964",
-            Binance: "9.0549",
+            Balance: "9.0549",
             USDEqv:'1.009',
             Status: "Block",
             Get: "View",
@@ -157,7 +192,23 @@ const  Tradepartners = [
         ];
 </script>
 <style scoped>
-
+.swap{
+border-radius: 16px;
+border: 1px solid var(--border, #303A46);
+background: var(--dark-bg, #10192D);
+box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
+display: flex;
+width: 86.333px;
+height: 48px !important;
+padding: 12px 16px;
+justify-content: center;
+align-items: center;
+gap: 8px;
+flex-shrink: 0;
+letter-spacing: 0px;
+text-transform: unset;
+align-content: center;
+}
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
     border: none !important;
     color: var(--Gray-Medium-light, #969696);

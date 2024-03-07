@@ -420,8 +420,6 @@ background: linear-gradient(90deg, #060A1D 7.92%, rgba(6, 10, 29, 0.50) 91.5%);
 background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-/* margin-top: 40px ;
-display: flex; */
 justify-content: center
 
 }

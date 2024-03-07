@@ -2,7 +2,7 @@
     <div class="pa-4 text-center">
      <v-btn @click="dialog = true" class="send-btn">
        <img src="/svg/send-arrow.svg"/>
-       <span class="send-txt">send</span>
+       <span class="send-txt">Send</span>
      </v-btn>
  
      <v-dialog v-model="dialog" max-width="479">
@@ -136,14 +136,22 @@
  
  <style >
  .send-btn{
- border-radius: 16px;
- border: 1px solid var(--border, #303A46);
- background: var(--dark-bg, #10192D);
- box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
- padding: 12px 16px;
- letter-spacing: 0px;
- text-transform: unset;
- align-content: center;
+border-radius: 16px;
+border: 1px solid var(--border, #303A46);
+background: var(--dark-bg, #10192D);
+box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
+display: flex;
+max-width: 86.333px !important;
+height: 48px !important;
+padding: 12px 16px;
+justify-content: center;
+align-items: center;
+gap: 8px;
+flex-shrink: 0;
+letter-spacing: 0px;
+text-transform: unset;
+align-content: center;
+
  }
  
  .success-txt{
