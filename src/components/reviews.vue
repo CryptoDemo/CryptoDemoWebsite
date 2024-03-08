@@ -14,19 +14,42 @@
             </v-col>
             <v-col cols="12" sm="6">
                 <div class="ma-2 pa-2 position-relative ">
-                <!-- <v-img v-for="(imagePath, index) in reviews" :key="index" :src="imagePath" alt="reviews"  class="d-flex" ></v-img> -->
-                <div class="img-reviews position-relative" v-if="theme.global.current.value.dark" >
-                     <div style="border-radius: 15px; background: linear-gradient(180deg, rgba(16, 25, 45, 0.00) 0%, #10192D 100%); height: 55.662px; position: absolute; bottom: 17px; z-index: 1; width: -webkit-fill-available;"></div>
-                    <v-img src="/svg/dark-reviews1.svg" style=" top: 16px" width="100%"  ></v-img>
-                    <v-img src="/svg/Framedr.svg" class="position-absolut" ></v-img>
-                </div>
+              
+                <div class="img-reviews position-relative"  style="padding-top: 53px;">
+                     <div  :class="isDark ? 'gradient1i':'gradient1i-light'"></div>
+                    <!-- <v-img src="/svg/dark-reviews1.svg" style=" top: 16px" width="100%"  ></v-img> -->
+                  
 
-                <div class="img-reviews position-relative" v-else>
-                    <div style="border-radius: 15px; background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 0%, #F8FAFC 100%); height: 55.662px; position: absolute; bottom: 17px; z-index: 1; width: -webkit-fill-available;"></div>
-                    <v-img src="/img/reviews1.png" style="position: relative; top: 16px" width="100%" ></v-img>
-                    <v-img src="/svg/reviews1.svg" class="position-relative" style="" ></v-img>
-                </div>
-                <!-- <v-img src="/img/review-frame.png"></v-img> -->
+                    <div v-for="(review, i) in reviews" :key="i" class="position-relative" :class="isDark ? 'review-cards':'review-cards-light'" :style=" i === 0? 'right: 41px; margin-bottom: 20px;' : ''">
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                            <div style="display: flex;">    
+                                <img :src="review.img" :alt="review.alt" class="me-4" :class="isDark ? 'img-avt':'img-avt-light'"/>
+                                <div style="display: flex; flex-direction: column;">
+                                    <span class="review-name" :class="isDark ? 'review-name':'review-name-light'">{{ review.name }}</span>
+                                    <div class="d-flex">
+                                        <span class="location-txt me-3">{{ review.location }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="4" height="5" viewBox="0 0 4 5" fill="none" class="me-3 mt-2" style="display: flex; align-self: center;">
+                                            <circle cx="2" cy="2.37598" r="2" fill="#64748B"/>
+                                        </svg>
+                                        <span class="location-txt">{{ review.date }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                                <div style="border-radius: 100px; background: #2873FF; padding: 10px; height: 27px !important; width: 81px; display: flex; align-self: center; position: absolute; right: 18px"></div>
+                            </div>
+                            <div>
+                                <img :src="review.textlines" class="mt-4" v-if="theme.global.current.value.dark"/>
+                                <img :src="review.textlines1" class="mt-5" v-else/>
+                            </div>
+                            </div>
+                           
+                     </div>
+
+
+                
+                    </div>
+                
                 </div>
             </v-col>   
         </v-row>
@@ -35,17 +58,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 
 import { useTheme } from 'vuetify';
 
-const transaction = ref(true);
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-// const reviews = ref([
-//     '/img/review-frame.png', 
-// ]);
+
+const reviews = [
+   {
+     img:'/svg/user-avatar.svg', name:'Franklin User', alt:'avatar', location: 'In Netherland', date:'4th, August', 
+   } ,
+
+   {
+     img:'/svg/user-avatar.svg', name:'Okoli Bonaventure', alt:'avatar', location: 'In Germany', date:'25th, December', textlines:'/svg/textLines.svg', textlines1:'/svg/linetext-light.svg',
+   } 
+];
 </script>
 
 <style scoped>
@@ -61,7 +89,7 @@ margin-top: 24px;
 margin-bottom: 24px;
 width: 100%;
 height: 374px;
-
+overflow: hidden;
 }
 .reviews-light{
 border-radius: 15px;
@@ -73,6 +101,48 @@ margin-top: 24px;
 margin-bottom: 24px;
 width: 100%;
 height: 374px;
+overflow: hidden;
+}
+.gradient1i{
+border-radius: 15px; 
+background: linear-gradient(180deg, rgba(16, 25, 45, 0.00) 0%, #10192D 100%); 
+height: 55.662px;
+position: absolute; 
+bottom: 0; 
+z-index: 1; 
+width: -webkit-fill-available;
+}
+.gradient1i-light{
+border-radius: 15px;
+background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 0%, #F8FAFC 100%);
+height: 55.662px;
+position: absolute; 
+bottom: 0; 
+z-index: 1; 
+opacity: 0.8;
+width: 100%;
+}
+.img-avt{
+border-radius: 100px;
+background: #10192D;
+display: flex;
+width: 50px;
+height: 50px;
+padding: 10px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+}
+.img-avt-light{
+border-radius: 100px;
+background: #DBE8FF;
+display: flex;
+width: 50px;
+height: 50px;
+padding: 10px;
+justify-content: center;
+align-items: center;
+gap: 10px;
 }
 .wrapper{
 border-radius: 100px;
@@ -149,6 +219,26 @@ height: 38px;
 flex-direction: column;
 justify-content: center;
 }
+.review-name{
+color: var(--Colors-Base-white, #FFF);
+font-family: Manrope;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 140%; /* 22.4px */
+display: flex;
+align-items: center;
+}
+.review-name-light{
+color: #1B2537;
+font-family: Manrope;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 140%; /* 22.4px */
+display: flex;
+align-items: center;
+}
 .feedback-subtitle{
 color: #64748B;
 font-family: "SF Pro Display";
@@ -159,9 +249,41 @@ line-height: 140%; /* 22.4px */
 letter-spacing: 0.32px;
 width: 357px;
 }
-.img-reviews{
+
+
+.review-cards{
+border-radius: 15px;
+border: 0.5px solid #2f3946;
+background: #1B2537;
+box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
 display: flex;
+width: 458px;
 padding: var(--spacing-3xl, 24px);
 flex-direction: column;
+align-items: flex-start;
+gap: var(--spacing-4xl, 32px);
+position: relative;
+}
+
+.review-cards-light{
+border-radius: 15px;
+background: #FFF;
+box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
+display: flex;
+width: 458px;
+padding: var(--spacing-3xl, 24px);
+flex-direction: column;
+align-items: flex-start;
+gap: var(--spacing-4xl, 32px);
+position: relative;
+}
+.location-txt{
+color: #8E9BAE;
+font-family: Manrope;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 140%; /* 16.8px */
+margin-top: 5px;
 }
 </style>
