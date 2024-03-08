@@ -4,10 +4,10 @@
         <v-row no-gutters>
             <v-col cols="12" sm="6">
                 <div class="layout">
-                    <div class="wrapper">
-                        <img src="/svg/comment-2-text.svg"/>
+                    <v-btn class="wrapper">
+                        <img src="/svg/comment-2-text.svg" class="me-3"/>
                         <span :class="isDark ? 'feedback':'feedback-light'">Feedback</span>
-                    </div>
+                    </v-btn>
                     <span :class="isDark ? 'valuable-feedback':'valuable-feedback-light'" >Valuable feedback</span>
                     <span class="feedback-subtitle">Our feedback system highlights reliable, experienced users, helping you to trade smoothly.</span>
                 </div>
@@ -61,6 +61,7 @@ margin-top: 24px;
 margin-bottom: 24px;
 width: 100%;
 height: 374px;
+
 }
 .reviews-light{
 border-radius: 15px;
@@ -80,6 +81,9 @@ display: flex;
 padding: 8px;
 align-items: center;
 gap: 8px;
+box-shadow: none;
+letter-spacing: 0px;
+text-transform: capitalize;
 }
 .feedback{
 color: var(--Colors-Base-white, #FFF);
@@ -90,6 +94,7 @@ font-style: normal;
 font-weight: 600;
 line-height: 100%; /* 14px */
 letter-spacing: 0.14px;
+
 }
 .feedback-light{
 color: #1B2537;

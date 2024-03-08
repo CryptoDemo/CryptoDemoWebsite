@@ -29,7 +29,7 @@
       </v-footer>
         <div class="d-flex" style="justify-content: space-between; margin-top: 64px; display: flex">
           <div style="display: flex; align-items: center">
-            <Toggle @click="toggleTheme" class="me-3"/>
+            <ToggleBtn  class="me-3"/>
             <span class="" style="color: #E2E8F0"></span>
           </div>
           <div class="d-flex" style="margin-top: 16px">
