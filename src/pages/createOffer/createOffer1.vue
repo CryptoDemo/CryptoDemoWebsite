@@ -41,6 +41,11 @@
                         </v-list>
                     
                   </v-menu> 
+
+                  <div class="d-flex" style="border-radius: 24px; display: flex; justify-content: center; width: 470px; margin: auto; border: 1px solid var(--border, #303A46); background: #12181F;  padding: 5px;">
+                    <v-btn :class="PurchaseCrypto ? 'sell-offers': 'buy-offers'"  @click.prevent="PurchaseCrypto=true">Buy</v-btn>
+                    <v-btn :class="PurchaseCrypto ? 'buy-offers': 'sell-offers'"  @click.prevent="PurchaseCrypto=false">Sell</v-btn>
+                  </div>
                 </div>
              </div>
             
@@ -61,13 +66,13 @@
 </template>
 
 <script setup>
- import { ref } from 'vue'
+import { ref } from 'vue'
 
-
+const PurchaseCrypto = ref(true);
 const coinIcon = ref ('/svg/btc.svg')
- const selectedCoin  = ref ('Bitcoin')
- const caption =  ref('BTC')
- 
+const selectedCoin  = ref ('Bitcoin')
+const caption =  ref('BTC')
+
  const coin = [
                    {
                      icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
@@ -99,5 +104,46 @@ height: 64px;
 width: 100%;
 background: var(--secondary-background, #12181F);
 border-radius: 24px;
+}
+
+.sell-offers {
+display: flex;
+width: 372px;
+height: 56px;
+padding: 16px 68px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+flex-shrink: 0;
+border-radius: 16px;
+border: 1px solid var(--border, #303A46);
+background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);
+letter-spacing: 0px;
+text-transform: unset;
+color: var(--Colors-Base-white, #FFF);
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.buy-offers{
+width: 372px;
+height: 56px;
+padding: 16px 68px;
+background: inherit;
+border-radius: 22px;
+color: var(--Gray-Medium-light, #FFF);
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: 0px;
+text-transform: unset;
+box-shadow: none;
+display: flex;
+align-self: center;
 }
 </style>

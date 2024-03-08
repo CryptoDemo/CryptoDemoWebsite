@@ -44,7 +44,7 @@
       
         <v-menu :location="location">
           <template v-slot:activator="{ props }">
-            <v-btn :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"
+            <v-btn  class="me-4" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"
               dark
               v-bind="props">
               <v-img  width="20" class="me-3" :src="flag"/> 
@@ -70,6 +70,8 @@
           </v-list>
          
         </v-menu>
+
+        <ToggleBtn  class="me-3"/>
         </template>
       </v-app-bar>
   </div>

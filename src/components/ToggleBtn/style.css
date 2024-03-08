@@ -28,6 +28,7 @@
 	cursor: pointer;
 }
 .switch__icon {
+	/* color: hsla(219, 100%, 58%, 1); */
 	color: hsla(var(--hue),10%,80%);
 	pointer-events: none;
 	position: absolute;
