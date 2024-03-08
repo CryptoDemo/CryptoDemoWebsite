@@ -76,7 +76,7 @@
                                 <v-list style="width: 544px; height: 181px; border-radius: 24px; border: 1px solid #303A46; background: #12181F;">
                                   <v-list-item>
                                     <v-row dense >
-                                    <v-col v-for="(item, index) in locations" class="" sm="12"
+                                    <v-col v-for="(item, index) in TradeCoins" class="" sm="12"
                                       :key="index" >
                                   
                                       <v-list-item-title @click="selectCoin=item.title; coinType= item.image; coinCaption= item.caption "> 
@@ -107,55 +107,58 @@
                         <div v-if="PurchaseCrypto === true" class="display:none" style="border-radius: 16px; border: 1px solid #303A46;  position: relative; background: #12181F; display: flex; width: 345px; height: 56px; flex-shrink: 0;">
                           <span style="color: #969696; font-family: Manrope; justify-content: center; padding:  17px; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Select payment method</span>
                             <v-dialog width="624">
-                                        <template v-slot:activator="{ props }">
-                                          <v-btn v-bind="props" text="View" style="border-radius: 0px 16px 16px 0px; position: absolute; text-transform: capitalize; right: 0; border-left: 1px solid #303A46; background: #10192D; width: 72px; height: 53px;"> </v-btn>
-                                        </template>
+                                  <template v-slot:activator="{ props }">
+                                    <v-btn v-bind="props" text="View" style="border-radius: 0px 16px 16px 0px; position: absolute; text-transform: capitalize; right: 0; border-left: 1px solid #303A46; background: #10192D; width: 72px; height: 54px;"> </v-btn>
+                                  </template>
 
-                                        <template v-slot:default="{ isActive }">
-                                          <div>
-                                              <v-card class="dialog">
-                                                <v-card-text class="mt-5">
-                                                  <div class="searchbar" style=" flex-shrink: 0; border-radius: 20px; background: #12181F; border: 1px solid var(--border, #303A46); display: flex;">
-                                                      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px ">
-                                                        <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                      </svg>
-                                                      <v-text-field  hide-details variant="none"> </v-text-field>
-                                                  </div>
-                                                  
-                                                  <div class="d-flex" style="padding: 0 61px; justify-content: center; margin: auto;">
-
-                                                    <v-row no-gutters>
-
-                                                    <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" class="d-flex" style="justify-content: center;">
-                                                      <div style="border-radius: 24px; width: 159px; cursor: pointer;  margin-top: 44px;  border: 1px solid var(--border, #303A46); background: #10192D;">
-                                                        <div style="display: flex; justify-content: center; margin-top: 28px;">
-                                                          <img src="/svg/ball.svg"/>
-                                                        </div>  
-                                                        <span style="color: #D8D8D8; display: flex; justify-content: center; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: 28px;">Bank Transfers</span>
-                                                          
-                                                          <div style="display: flex; justify-content: center; margin-bottom: 28px;">
-                                                              <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 700;line-height: 28px;">Available (10) </span>
-                                                          </div>   
-                                                      </div>
-                                                    </v-col>
-
-                                                  </v-row>
-                                                  
-                                                  </div>
-                                                </v-card-text>
-
-                                                <!-- <v-card-actions>
-                                                  <v-spacer></v-spacer>
-
-                                                  <v-btn
-                                                    text="Close Dialog"
-                                                    @click="isActive.value = false"
-                                                  ></v-btn>
-                                                </v-card-actions> -->
-                                              </v-card>
+                                  <template v-slot:default="{ isActive }">
+                                    <div>
+                                        <v-card class="dialog">
+                                          <v-card-text class="mt-5">
+                                            <div class="searchbar" style=" flex-shrink: 0; border-radius: 20px; background: #12181F; border: 1px solid var(--border, #303A46); display: flex;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px ">
+                                                  <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                  <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <v-text-field  hide-details variant="none"> </v-text-field>
                                             </div>
-                                        </template>
+                                            
+                                            <div class="d-flex" style="padding: 0 61px; justify-content: center; margin: auto;">
+
+                                              <v-row no-gutters>
+
+                                              
+                                                <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" class="d-flex" style="justify-content: center;">
+                                                  <div style="border-radius: 24px; width: 159px; cursor: pointer;  margin-top: 44px;  border: 1px solid var(--border, #303A46); background: #10192D;">
+                                                  
+                                                      <div style="display: flex; justify-content: center; margin-top: 28px;">
+                                                        <img :src="item.image"/>
+                                                      </div>  
+
+                                                      <span style="color: #D8D8D8; display: flex; justify-content: center; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: 28px;">{{ item.title }}</span>
+                                                        
+                                                        <div style="display: flex; justify-content: center; margin-bottom: 28px;">
+                                                            <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 700;line-height: 28px;">Available (10) </span>
+                                                        </div>   
+                                                  </div>
+                                              </v-col>
+
+                                            </v-row>
+                                            
+                                            </div>
+                                          </v-card-text>
+
+                                          <!-- <v-card-actions>
+                                            <v-spacer></v-spacer>
+
+                                            <v-btn
+                                              text="Close Dialog"
+                                              @click="isActive.value = false"
+                                            ></v-btn>
+                                          </v-card-actions> -->
+                                        </v-card>
+                                    </div>
+                                  </template>
                             </v-dialog>
                         </div>
 
@@ -238,18 +241,18 @@ import { ref } from 'vue'
 const PurchaseCrypto = ref(true);
 
 const paymentOptions = [
-        { title: 'English', image:"/img/china.png" },
-        { title: 'Spanish',  image:"/img/china.png" },
-        { title: 'French',  image:"/img/china.png" },
-        { title: 'French',  image:"/img/china.png" },
-        { title: 'French',  image:"/img/china.png" },
-        { title: 'Igbo', image:"/img/china.png" },
+        { title: 'English', image:"/svg/bank.svg" },
+        { title: 'Spanish',  image:"/svg/bank.svg" },
+        { title: 'French',  image:"/svg/bank.svg" },
+        { title: 'French',  image:"/svg/bank.svg"},
+        { title: 'French',  image:"/svg/bank.svg"},
+        { title: 'Igbo', image:"/svg/bank.svg"},
       ];
 
 
 const coinType = ref("/svg/btc.svg")
 
-const locations = [
+const TradeCoins = [
         {image:"/svg/btc.svg", title: 'Bitcoin', caption: 'BTC'},
         { image:"/svg/btc.svg", title: 'Tether', caption: 'USDT' },
         { image:"/svg/btc.svg", title: 'USD Coin', caption: 'USDC'},
@@ -322,6 +325,7 @@ background: var(--secondary-background, #12181F);
 color: white;
 box-shadow: none !important;
 height: 566px;
+overflow: scroll;
 }
 
 .header {
@@ -395,4 +399,8 @@ font-style: normal;
 font-weight: 500;
 line-height: normal;
 } 
+
+::-webkit-scrollbar{
+  display: none;
+}
   </style>

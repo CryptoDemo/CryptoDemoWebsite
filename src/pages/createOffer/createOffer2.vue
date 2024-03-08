@@ -54,56 +54,93 @@
                   </div>
 
                   <div>
-                    <span class="payment1">Payment Method</span>
 
-                    <div style="height: 64px; border-radius: 24px; background: #12181F; position: relative; margin-top: 19px;">
-                      <span class="select1">Select payment method</span>
-                          <v-dialog width="624">
-                              <template v-slot:activator="{ props }">
-                                <v-btn v-bind="props" text="View" style="border-radius: 0px 24px 24px 0px; position: absolute; background: #2873FF; text-transform: capitalize; right: 0;  width: 72px; height: 64px; padding: 8px var(--spacing-3xl, 24px);"> </v-btn>
-                              </template>
+                    
 
-                              <template v-slot:default="{  }">
-                                <div>
-                                    <v-card class="dialog">
-                                      <v-card-text class="mt-5">
-                                        <div class="searchbar" style=" flex-shrink: 0; border-radius: 20px; background: #12181F; border: 1px solid var(--border, #303A46); display: flex;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px ">
-                                              <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                              <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                            <v-text-field  hide-details variant="none"> </v-text-field>
-                                        </div>
-                                        
-                                        <div class="d-flex" style="padding: 0 61px; justify-content: center; margin: auto;">
 
-                                          <v-row no-gutters>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="display: flex; flex-direction: column; width: 50%;">
+                            <span class="payment1 mb-3">Payment Method</span>
+                            <div style="height: 64px; border-radius: 24px; background: #12181F; position: relative;">
+                                <span class="select1">Select payment method</span>
+                                <v-dialog width="624">
+                                    <template v-slot:activator="{ props }">
+                                        <v-btn v-bind="props" text="View" style="border-radius: 0px 24px 24px 0px; position: absolute; background: #2873FF; text-transform: capitalize; right: 0;  width: 72px; height: 64px; padding: 8px var(--spacing-3xl, 24px);"> </v-btn>
+                                    </template>
 
-                                          <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" class="d-flex" style="justify-content: center;">
-                                              <div style="border-radius: 24px; width: 159px; cursor: pointer;  margin-top: 44px;  border: 1px solid var(--border, #303A46); background: #10192D;">
-                                              
-                                                  <div style="display: flex; justify-content: center; margin-top: 28px;">
-                                                    <img :src="item.image"/>
-                                                  </div>  
+                                    <template v-slot:default="{  }">
+                                        <div>
+                                            <v-card class="dialog">
+                                            <v-card-text class="mt-5">
+                                                <div class="searchbar" style=" flex-shrink: 0; border-radius: 20px; background: #12181F; border: 1px solid var(--border, #303A46); display: flex;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px ">
+                                                    <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                    <v-text-field  hide-details variant="none"> </v-text-field>
+                                                </div>
+                                                
+                                                <div class="d-flex" style="padding: 0 61px; justify-content: center; margin: auto;">
 
-                                                  <span style="color: #D8D8D8; display: flex; justify-content: center; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: 28px;">{{ item.title }}</span>
+                                                <v-row no-gutters>
+
+                                                <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" class="d-flex" style="justify-content: center;">
+                                                    <div style="border-radius: 24px; width: 159px; cursor: pointer;  margin-top: 44px;  border: 1px solid var(--border, #303A46); background: #10192D;">
                                                     
-                                                    <div style="display: flex; justify-content: center; margin-bottom: 28px;">
-                                                        <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 700;line-height: 28px;">Available (10) </span>
-                                                    </div>   
-                                              </div>
-                                          </v-col>
+                                                        <div style="display: flex; justify-content: center; margin-top: 28px;">
+                                                            <img :src="item.image"/>
+                                                        </div>  
 
-                                            </v-row>
-                                        
+                                                        <span style="color: #D8D8D8; display: flex; justify-content: center; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: 28px;">{{ item.title }}</span>
+                                                            
+                                                            <div style="display: flex; justify-content: center; margin-bottom: 28px;">
+                                                                <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 700;line-height: 28px;">Available (10) </span>
+                                                            </div>   
+                                                    </div>
+                                                </v-col>
+
+                                                    </v-row>
+                                                
+                                                </div>
+                                            </v-card-text>
+
+                                            
+                                            </v-card>
                                         </div>
-                                      </v-card-text>
+                                    </template>
+                                </v-dialog>
+                            </div> 
+                        </div>
 
-                                      
-                                    </v-card>
-                                  </div>
-                              </template>
-                          </v-dialog>
+                         <div style="display: flex; flex-direction: column;">
+                            <span class="payment1 mb-3">Preferred currency</span>
+                            <v-menu :currency="currency">
+                                <template v-slot:activator="{ props }">
+                                <v-btn
+                                    class="input-styling4 mb-2" v-bind="props">
+                                    <div  class="py-3" style="display: flex; cursor: pointer; position: absolute; left: 37px; align-items: center;">
+                                        <span class="me-4" style="font-weight: 700; font-size: 16px;">{{currencyIcon}}</span>
+                                        <span class="mt-" style="font-weight: 700; color: var(--Gray-Medium-light, #969696);">{{selected}}</span> 
+                                    </div>
+                                    <v-icon icon="mdi-chevron-down"  color="#E0E4F5" class="chevron-icon" style="position: absolute; right: 45px; bottom: 25px; "></v-icon>
+                                </v-btn>
+                                </template>
+
+                                <v-list>
+                                <v-list-item>
+                                    <div v-for="(currency, index) in currencies" class="d-flex py-3" style="cursor: pointer"
+                                    :key="index" >
+                                
+                                    <v-list-item-title @click="selected=currency.title;" class="d-flex">
+                                        <span>{{currency.icon}}</span> 
+                                        <span> {{ currency.title }} </span>
+                                    </v-list-item-title>
+                                    </div>
+                                </v-list-item>
+                                </v-list>
+                            </v-menu> 
+                            <span class="currency-list">This list shows only the currencies supported for your selected payment method. If you think we're missing a currency that's supported, let us know and we'll add it.</span>
+                         </div>
                     </div>
 
                     <div>
@@ -113,6 +150,12 @@
 
                       <div style="width: 464px; margin-top: 18px;">
                           <span class="text-step">Start creating your offer by selecting the cryptocurrency you want to trade, whether or not you want to buy or sell, and the payment method you want to use.</span>
+                      </div>
+
+                      <div style="display: flex; flex-direction: column; margin-top: 18px;">
+                        <span class="abt-txt1">You want to sell Bitcoin (BTC)</span>
+                        <span class="abt-txt1">And get paid via NIP (NIBSS Instant Payment) in US Dollar (USD)</span>
+                        <span class="abt-txt1">ou will pay Paxful a 1% fee for each trade</span>
                       </div>
                     </div>
 
@@ -190,28 +233,47 @@ const selectedCoin  = ref ('Bitcoin')
 const caption =  ref('BTC')
 
  const coin = [
-                   {
-                     icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
-                   },
-                   {
-                     icon:'/svg/btc.svg', title:"Bitcoin", caption:'BTC'
-                   },
-                   {
-                     icon:'/svg/btc.svg', title:"Bitcoin", caption:'BTC'
-                   },
-                   {
-                     icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
-                   }
+    {
+        icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
+    },
+    {
+        icon:'/svg/btc.svg', title:"Bitcoin", caption:'BTC'
+    },
+    {
+        icon:'/svg/btc.svg', title:"Bitcoin", caption:'BTC'
+    },
+    {
+        icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
+    }
  ];
 
  const paymentOptions = [
-        { title: 'English', image:"/svg/bank.svg" },
-        { title: 'Spanish',  image:"/svg/bank.svg" },
-        { title: 'French',  image:"/svg/bank.svg" },
-        { title: 'French',  image:"/svg/bank.svg"},
-        { title: 'French',  image:"/svg/bank.svg"},
-        { title: 'Igbo', image:"/svg/bank.svg"},
+    { title: 'English', image:"/svg/bank.svg" },
+    { title: 'Spanish',  image:"/svg/bank.svg" },
+    { title: 'French',  image:"/svg/bank.svg" },
+    { title: 'French',  image:"/svg/bank.svg"},
+    { title: 'French',  image:"/svg/bank.svg"},
+    { title: 'Igbo', image:"/svg/bank.svg"},
       ];
+
+
+const selected  = ref ('US Dollar USD') 
+const currencyIcon = ref ('$')
+
+const currencies = [
+    {
+    icon:'$', title:"US Dollar USD"
+    },
+    {
+    icon:'$', title:"US Dollar USD"
+    },
+    {
+    icon:'$', title:"Canadian Dollar"
+    },
+    {
+    icon:'$', title:"US Dollar USD"
+    }
+];
 </script>
 
 <style scoped>
@@ -229,6 +291,16 @@ height: 64px;
 width: 100%;
 background: var(--secondary-background, #12181F);
 border-radius: 24px;
+letter-spacing: 0px;
+box-shadow: none;
+}
+.input-styling4{
+border-radius: 16px;
+height: 64px !important;
+width: 367px;
+background: var(--secondary-background, #12181F);
+letter-spacing: 0px;
+box-shadow: none;
 }
 
 .sell-offers {
@@ -315,7 +387,6 @@ font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
-
 }
 
 .payment1{
@@ -349,6 +420,16 @@ box-shadow: none !important;
 height: 566px;
 overflow: scroll;
 }
+.abt-txt1{
+color: var(--Gray-Light, #D8D8D8);
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+display: list-item; 
+margin-left: 15px;
+}
 .text-step{
 color: var(--Gray-Light, #D8D8D8);
 font-family: Poppins;
@@ -360,5 +441,16 @@ width: 464px;
 }
 ::-webkit-scrollbar{
   display: none;
+}
+.currency-list{
+color: var(--Primary-40, #B9D1FF);
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Manrope;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+width: 361px;
+flex-shrink: 0;
 }
 </style>
