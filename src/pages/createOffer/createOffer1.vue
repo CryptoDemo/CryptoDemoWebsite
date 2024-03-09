@@ -143,7 +143,7 @@
                     <!-- <div> -->
                       <div class="d-flex" style="flex-direction: column;">
                        <div class="d-flex" style="display: flex; position: absolute; left: 0; right: 0; justify-content: center;">
-                        <span>Payment Method</span>
+                        <span class="prc" style="color: #D8D8D8;">Payment Method</span>
                        </div>
                       
                           <svg xmlns="http://www.w3.org/2000/svg" width="7" height="243" viewBox="0 0 7 243" fill="none" style="position: relative; left: 131px; margin-top: 30px;">
@@ -151,7 +151,7 @@
                           </svg>
 
                         <div class="d-flex" style="position: relative; left: 110px; top: 12px;">
-                          <span>Pricing</span>
+                          <span class="prc">Pricing</span>
                         </div>
 
                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="243" viewBox="0 0 7 243" fill="none" style="position: relative; left: 131px; margin-top: 30px;">
@@ -159,7 +159,7 @@
                         </svg>
 
                         <div class="d-flex" style="position: relative; left: 80px;">
-                          <span>Other Settings</span>
+                          <span class="prc">Other Settings</span>
                         </div>
                     </div>
                   </div>
@@ -229,6 +229,7 @@ height: 64px;
 width: 100%;
 background: var(--secondary-background, #12181F);
 border-radius: 24px;
+margin-top: 84px;
 }
 
 .sell-offers {
@@ -357,6 +358,15 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 width: 464px;
+}
+.prc{
+color: var(--Gray-Medium-light, #969696);
+text-align: center;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
 }
 ::-webkit-scrollbar{
   display: none;

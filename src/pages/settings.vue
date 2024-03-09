@@ -32,8 +32,7 @@
                                 <v-menu :location="location">
                                         <template v-slot:activator="{ props }">
                                           <v-btn 
-                                            class="dropdown-btn me-3" style="background: #161D26; width: 109px; height: 44px; border-radius: 17px; letter-spacing: unset!important; position: relative; left: 14px; margin-top: -53px; box-shadow: none; "
-                                            dark
+                                            
                                             v-bind="props">
                                             <v-img  width="20" class="me-3" :src="flag"/> 
                                             <span class="me-2">{{select}}</span>

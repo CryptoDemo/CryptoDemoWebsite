@@ -1,70 +1,39 @@
 <template>
-<div class="rainbow">
-  Rotating border
-</div>
+   <v-combobox 
+       v-model="select" :items="items" style="border: 1px solid #1B2537; background: #10192D; "
+       variant="none"
+          chips
+          multiple>
+        <template #prepend-item> <v-card flat width="100%" height="100%" style=" background: #161D26;  position: absolute; top: 0px " /> </template> 
+  </v-combobox>
 </template>
 
-<style scoped>
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+<script setup>
+const  select = ref (['25,000', '25,000', '25,000' ]);
+const items =ref([
+          'Programming',
+          'Design',
+          'Vue',
+          'Vuetify',
+        ]);
+</script>
+<style>
+
+.v-chip{
+border-radius: 12px !important;
+background: #131D35 !important;
+width: 67px !important;
+height: 36px !important;
+display: flex !important;
+align-items: center !important;
+font-family: Manrope; 
+color: #8E9BAE !important; 
+font-size: 14px !important;
+line-height: 140% !important;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+.v-input--density-default .v-field__input {
+    row-gap: 8px;
+    width: 50%;
 }
-
-@keyframes rotate {
-  100% {
-    transform: rotate(1turn);
-  }
-}
-
-.rainbow {
-  position: relative;
-  z-index: 0;
-  width: 400px;
-  height: 300px;
-  border-radius: 10px;
-  overflow: hidden;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
-  font-weight: bold;
-}
-
-.rainbow::before {
-  content: '';
-  position: absolute;
-  z-index: -2;
-  left: -50%;
-  top: -50%;
-  width: 200%;
-  height: 200%;
-  /* background-color: #399953; */
-  background-repeat: no-repeat;
-  background-size: 50% 50%, 50% 50%;
-  background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-  background-image: linear-gradient(#2873FF, #2873FF), linear-gradient(#2873FF, #2873FF), linear-gradient(#d53e33, #d53e33), linear-gradient(#377af5, #377af5);
-  animation: rotate 4s linear infinite;
-}
-
-.rainbow::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  left: 6px;
-  top: 6px;
-  width: calc(100% - 12px);
-  height: calc(100% - 12px);
-  background: white;
-  border-radius: 5px;
-}
-
 </style>

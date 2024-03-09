@@ -105,7 +105,7 @@
                         </div>
 
                         <div v-if="PurchaseCrypto === true" class="display:none" style="border-radius: 16px; border: 1px solid #303A46;  position: relative; background: #12181F; display: flex; width: 345px; height: 56px; flex-shrink: 0;">
-                          <span style="color: #969696; font-family: Manrope; justify-content: center; padding:  17px; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Select payment method</span>
+                          <span style="color: #969696; font-family: Manrope; justify-content: center; padding:  17px; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">{{ Paymentmethod }}</span>
                             <v-dialog width="624">
                                   <template v-slot:activator="{ props }">
                                     <v-btn v-bind="props" text="View" style="border-radius: 0px 16px 16px 0px; position: absolute; text-transform: capitalize; right: 0; border-left: 1px solid #303A46; background: #10192D; width: 72px; height: 54px;"> </v-btn>
@@ -128,7 +128,7 @@
                                               <v-row no-gutters>
 
                                               
-                                                <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" class="d-flex" style="justify-content: center;">
+                                                <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" @click="Paymentmethod=item.title; isActive.value = false"   class="d-flex" style="justify-content: center;">
                                                   <div style="border-radius: 24px; width: 159px; cursor: pointer;  margin-top: 44px;  border: 1px solid var(--border, #303A46); background: #10192D;">
                                                   
                                                       <div style="display: flex; justify-content: center; margin-top: 28px;">
@@ -148,14 +148,6 @@
                                             </div>
                                           </v-card-text>
 
-                                          <!-- <v-card-actions>
-                                            <v-spacer></v-spacer>
-
-                                            <v-btn
-                                              text="Close Dialog"
-                                              @click="isActive.value = false"
-                                            ></v-btn>
-                                          </v-card-actions> -->
                                         </v-card>
                                     </div>
                                   </template>
@@ -240,6 +232,7 @@ import { ref } from 'vue'
   
 const PurchaseCrypto = ref(true);
 
+const Paymentmethod = ref('Select Payment method')
 const paymentOptions = [
         { title: 'English', image:"/svg/bank.svg" },
         { title: 'Spanish',  image:"/svg/bank.svg" },
@@ -254,7 +247,7 @@ const coinType = ref("/svg/btc.svg")
 
 const TradeCoins = [
         {image:"/svg/btc.svg", title: 'Bitcoin', caption: 'BTC'},
-        { image:"/svg/btc.svg", title: 'Tether', caption: 'USDT' },
+        { image:"/svg/tether.svg", title: 'Tether', caption: 'USDT' },
         { image:"/svg/btc.svg", title: 'USD Coin', caption: 'USDC'},
       ];
 
@@ -266,6 +259,8 @@ const country = [
         { image:"/flags/gr.svg", title: 'British Pound', caption:'/svg/Currency (1).svg' },
         { image:"/flags/al.svg", title: 'Canadian Dollar', caption:'/svg/Currency.svg'},
       ];
+
+
   </script>
   
 <style scoped>

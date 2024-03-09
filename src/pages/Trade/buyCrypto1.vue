@@ -103,7 +103,7 @@
                         </div>
 
                         <div v-if="PurchaseCrypto === true" class="display:none" style="border-radius: 16px; border: 1px solid #303A46;  position: relative; background: #12181F; display: flex; width: 345px; height: 56px; flex-shrink: 0;">
-                          <span style="color: #969696; font-family: Manrope; justify-content: center; padding:  17px; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;"> Select partner’s bank</span>
+                          <span style="color: #969696; font-family: Manrope; justify-content: center; padding:  17px; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;"> {{ Paymentmethod }}</span>
                             <v-dialog width="624">
                                         <template v-slot:activator="{ props }">
                                           <v-btn v-bind="props" text="View" style="border-radius: 0px 16px 16px 0px; position: absolute; text-transform: capitalize; right: 0; border-left: 1px solid #303A46; background: #10192D; width: 72px; height: 53px;"> </v-btn>
@@ -125,12 +125,12 @@
 
                                                     <v-row no-gutters>
 
-                                                    <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" class="d-flex" style="justify-content: center;">
+                                                    <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" class="d-flex" @click="Paymentmethod=item.title; isActive.value = false" style="justify-content: center;">
                                                       <div style="border-radius: 24px; width: 159px; cursor: pointer;  margin-top: 44px;  border: 1px solid var(--border, #303A46); background: #10192D;">
                                                         <div style="display: flex; justify-content: center; margin-top: 28px;">
                                                           <img src="/svg/ball.svg"/>
                                                         </div>  
-                                                        <span style="color: #D8D8D8; display: flex; justify-content: center; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: 28px;">Bank Transfers</span>
+                                                        <span style="color: #D8D8D8; display: flex; justify-content: center; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: 28px;">{{ item.title }}</span>
                                                           
                                                           <div style="display: flex; justify-content: center; margin-bottom: 28px;">
                                                               <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 700;line-height: 28px;">Available (10) </span>
@@ -143,14 +143,6 @@
                                                   </div>
                                                 </v-card-text>
 
-                                                <!-- <v-card-actions>
-                                                  <v-spacer></v-spacer>
-
-                                                  <v-btn
-                                                    text="Close Dialog"
-                                                    @click="isActive.value = false"
-                                                  ></v-btn>
-                                                </v-card-actions> -->
                                               </v-card>
                                             </div>
                                         </template>
@@ -291,13 +283,14 @@ import { ref } from 'vue'
   
 const PurchaseCrypto = ref(true);
 
+const Paymentmethod = ref('Select partner’s bank')
 const paymentOptions = [
-        { title: 'English', image:"/img/china.png" },
-        { title: 'Spanish',  image:"/img/china.png" },
-        { title: 'French',  image:"/img/china.png" },
-        { title: 'French',  image:"/img/china.png" },
-        { title: 'French',  image:"/img/china.png" },
-        { title: 'Igbo', image:"/img/china.png" },
+        { title: 'Monie Point', image:"/img/china.png" },
+        { title: 'Access Bank',  image:"/img/china.png" },
+        { title: 'Fidelity Bank',  image:"/img/china.png" },
+        { title: 'Zenith Bank',  image:"/img/china.png" },
+        { title: 'UBA ',  image:"/img/china.png" },
+        { title: 'GT Bank', image:"/img/china.png" },
       ];
 
 
@@ -305,7 +298,7 @@ const coinType = ref("/svg/btc.svg")
 
 const locations = [
         {image:"/svg/btc.svg", title: 'Bitcoin', caption: 'BTC'},
-        { image:"/svg/btc.svg", title: 'Tether', caption: 'USDT' },
+        { image:"/svg/tether.svg", title: 'Tether', caption: 'USDT' },
         { image:"/svg/btc.svg", title: 'USD Coin', caption: 'USDC'},
       ];
 
@@ -367,6 +360,7 @@ border: 1px solid var(--border, #303A46);
 background: var(--secondary-background, #12181F);
 color: white;
 box-shadow: none !important;
+overflow: scroll;
 height: 566px;
 }
 
@@ -441,4 +435,8 @@ font-style: normal;
 font-weight: 500;
 line-height: normal;
 } 
+
+::-webkit-scrollbar{
+  display: none;
+}
   </style>
