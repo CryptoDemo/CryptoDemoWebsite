@@ -57,13 +57,13 @@
                     <span class="payment1">Payment Method</span>
 
                     <div style="height: 64px; border-radius: 24px; background: #12181F; position: relative; margin-top: 19px;">
-                      <span class="select1">Select payment method</span>
+                      <span class="select1">{{ Paymentmethod }}</span>
                           <v-dialog width="624">
                               <template v-slot:activator="{ props }">
                                 <v-btn v-bind="props" text="View" style="border-radius: 0px 24px 24px 0px; position: absolute; background: #2873FF; text-transform: capitalize; right: 0;  width: 72px; height: 64px; padding: 8px var(--spacing-3xl, 24px);"> </v-btn>
                               </template>
 
-                              <template v-slot:default="{  }">
+                              <template v-slot:default="{ isActive }">
                                 <div>
                                     <v-card class="dialog">
                                       <v-card-text class="mt-5">
@@ -79,7 +79,7 @@
 
                                           <v-row no-gutters>
 
-                                          <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" class="d-flex" style="justify-content: center;">
+                                          <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" @click="Paymentmethod=item.title; isActive.value = false"  class="d-flex" style="justify-content: center;">
                                               <div style="border-radius: 24px; width: 159px; cursor: pointer;  margin-top: 44px;  border: 1px solid var(--border, #303A46); background: #10192D;">
                                               
                                                   <div style="display: flex; justify-content: center; margin-top: 28px;">
@@ -204,13 +204,14 @@ const caption =  ref('BTC')
                    }
  ];
 
+ const Paymentmethod = ref('Select payment method')
  const paymentOptions = [
-        { title: 'English', image:"/svg/bank.svg" },
-        { title: 'Spanish',  image:"/svg/bank.svg" },
-        { title: 'French',  image:"/svg/bank.svg" },
-        { title: 'French',  image:"/svg/bank.svg"},
-        { title: 'French',  image:"/svg/bank.svg"},
-        { title: 'Igbo', image:"/svg/bank.svg"},
+        { title: 'Bank Transfer', image:"/svg/bank.svg" },
+        { title: 'Cash',  image:"/svg/bank.svg" },
+        { title: 'Paypal',  image:"/svg/bank.svg" },
+        { title: 'FNB',  image:"/svg/bank.svg"},
+        { title: 'Standard Bank',  image:"/svg/bank.svg"},
+        { title: 'Monie Point', image:"/svg/bank.svg"},
       ];
 </script>
 

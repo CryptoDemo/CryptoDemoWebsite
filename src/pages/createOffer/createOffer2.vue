@@ -62,13 +62,13 @@
                         <div style="display: flex; flex-direction: column; width: 50%;">
                             <span class="payment1 mb-3">Payment Method</span>
                             <div style="height: 64px; border-radius: 24px; background: #12181F; position: relative;">
-                                <span class="select1">Select payment method</span>
+                                <span class="select1">{{ Paymentmethod }}</span>
                                 <v-dialog width="624">
                                     <template v-slot:activator="{ props }">
                                         <v-btn v-bind="props" text="View" style="border-radius: 0px 24px 24px 0px; position: absolute; background: #2873FF; text-transform: capitalize; right: 0;  width: 72px; height: 64px; padding: 8px var(--spacing-3xl, 24px);"> </v-btn>
                                     </template>
 
-                                    <template v-slot:default="{  }">
+                                    <template v-slot:default="{ isActive }">
                                         <div>
                                             <v-card class="dialog">
                                             <v-card-text class="mt-5">
@@ -84,18 +84,18 @@
 
                                                 <v-row no-gutters>
 
-                                                <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" class="d-flex" style="justify-content: center;">
+                                                <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" @click="Paymentmethod=item.title; isActive.value = false"  class="d-flex" style="justify-content: center;">
                                                     <div style="border-radius: 24px; width: 159px; cursor: pointer;  margin-top: 44px;  border: 1px solid var(--border, #303A46); background: #10192D;">
                                                     
                                                         <div style="display: flex; justify-content: center; margin-top: 28px;">
-                                                            <img :src="item.image"/>
+                                                          <img :src="item.image"/>
                                                         </div>  
 
                                                         <span style="color: #D8D8D8; display: flex; justify-content: center; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: 28px;">{{ item.title }}</span>
-                                                            
-                                                            <div style="display: flex; justify-content: center; margin-bottom: 28px;">
-                                                                <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 700;line-height: 28px;">Available (10) </span>
-                                                            </div>   
+                                                          
+                                                          <div style="display: flex; justify-content: center; margin-bottom: 28px;">
+                                                              <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 700;line-height: 28px;">Available (10) </span>
+                                                          </div>   
                                                     </div>
                                                 </v-col>
 
@@ -247,13 +247,16 @@ const caption =  ref('BTC')
     }
  ];
 
+ 
+ const Paymentmethod = ref('Select payment method')
+
  const paymentOptions = [
-    { title: 'English', image:"/svg/bank.svg" },
-    { title: 'Spanish',  image:"/svg/bank.svg" },
-    { title: 'French',  image:"/svg/bank.svg" },
-    { title: 'French',  image:"/svg/bank.svg"},
-    { title: 'French',  image:"/svg/bank.svg"},
-    { title: 'Igbo', image:"/svg/bank.svg"},
+    { title: 'Bank Payment', image:"/svg/bank.svg" },
+    { title: 'Paypal',  image:"/svg/bank.svg" },
+    { title: 'BNB',  image:"/svg/bank.svg" },
+    { title: 'Easy Pay',  image:"/svg/bank.svg"},
+    { title: 'Demo',  image:"/svg/bank.svg"},
+    { title: 'Opay', image:"/svg/bank.svg"},
       ];
 
 

@@ -29,7 +29,7 @@
                     <div style="margin-top: 40px;">
                       <span class="prc3">Your Offer label</span>
                       <div style="margin-top: 10px;">
-                        <v-textarea variant="none" no-resize clearable  placeholder="Maximum 25 Characters. Only letters, numbers and dashes." style="border-radius: 15px; height: 61px;  border: 1px solid #1B2537; background: #10192D;"></v-textarea>   
+                        <v-textarea variant="none" no-resize clearable placeholder="Maximum 25 Characters. Only letters, numbers and dashes." style="border-radius: 15px; height: 61px;  border: 1px solid #1B2537; background: #10192D;"></v-textarea>   
                         <span class="subtitle2">Make your offer stand out to other users with a catchy label. Your offer label can be up to 25 characters long and can contain letters, numbers, the apostrophe and the hyphen.</span>
                       </div>
                       </div>
@@ -63,7 +63,90 @@
                           <v-checkbox></v-checkbox>
                           <span class="d-flex mt-4 offr-cnd">Trade partner must show their full name</span>
                         </div>
-                    </div>
+
+                        <span class="subtitle3">Target Country</span>
+                        <span class="subtitle2 mt-4">Select your target country</span>
+                        <v-textarea variant="none" no-resize clearable  placeholder="Select (Optional)" style="border-radius: 15px; height: 61px; margin-top: 18px; margin-bottom: 18px;  border: 1px solid #1B2537; background: #10192D;"></v-textarea>
+                        <span class="subtitle2">Only users who have completed past trades up to your required number will be able to sell to you</span>
+                      
+                       <div style="display: flex; flex-direction: column; margin-top: 24px;">
+                        <span class="subtitle3">Visibility</span>
+
+                        <div style="display: -webkit-inline-box; height: 40px;">                         
+                          <v-checkbox></v-checkbox>
+                          <span class="d-flex mt-4 offr-cnd">Show this offer to my trusted users only</span>
+                        </div>
+                       <!-- </div> -->
+
+                      <v-row>
+                        <v-col>
+                          <div>
+                            <span class="subtitle3 mb-4">Minimum Trade Required</span>
+                            <span></span>
+                            <input type="text" placeholder="App fixed amount" style="outline: none; height: 61px; padding-right: 25px!important; position: relative; border-radius: 15px; border: 1px solid #1B2537; background: #10192D; width: 100%;  padding-left: 15px;"/>
+                            <v-menu>
+                                <template v-slot:activator="{ props }">
+                                  <v-btn v-bind="props" style="min-width: 70px; height: 53px; position: absolut; top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: px; letter-spacing: 0px;  text-transform: capitalize;"> 
+                                    <span class="currency-list">{{ currencyType }}</span>
+                                  </v-btn>
+                                </template>
+
+                                <v-list style="width: 60%; border-radius: 24px;  border: 1px solid #303A46; background: #12181F;">
+                                  <v-list-item>
+                                    <v-row dense >
+                                        <v-col v-for="(item, index) in Currency" class="" sm="12" :key="index" >
+                                      
+                                          <v-list-item-title @click="currencyType=item"> 
+                                            <div style="display: flex; justify-content: center;">
+                                              <span class="currency-list my-2">{{ item }}</span>
+
+                                            </div>
+
+                                          </v-list-item-title>
+                                        </v-col>
+                                    </v-row>
+                                  </v-list-item>
+                                </v-list>
+                            </v-menu> 
+                          </div>
+                        </v-col>
+
+                        <v-col>
+                          <div>
+                            <input type="text" placeholder="App fixed amount" style="outline: none; height: 61px; margin-left: 28px; padding-right: 25px!important; position: relative; border-radius: 15px; border: 1px solid #1B2537; background: #10192D; width: 100%;  padding-left: 15px;"/>
+                            <v-menu>
+                                <template v-slot:activator="{ props }">
+                                  <v-btn v-bind="props" style="min-width: 70px; height: 53px; position: absolut; top: 93px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 12px; letter-spacing: 0px;  text-transform: capitalize;"> 
+                                    <span class="currency-list">{{ currencyType }}</span>
+                                  </v-btn>
+                                </template>
+
+                                <v-list style="width: 60%; border-radius: 24px;  border: 1px solid #303A46; background: #12181F;">
+                                  <v-list-item>
+                                    <v-row dense >
+                                        <v-col v-for="(item, index) in Currency" class="" sm="12" :key="index" >
+                                      
+                                          <v-list-item-title @click="currencyType=item"> 
+                                            <div style="display: flex; justify-content: center;">
+                                              <span class="currency-list my-2">{{ item }}</span>
+
+                                            </div>
+
+                                          </v-list-item-title>
+                                        </v-col>
+                                    </v-row>
+                                  </v-list-item>
+                                </v-list>
+                            </v-menu> 
+                          </div>
+                        </v-col>
+
+                      </v-row>
+                     
+
+
+                       </div>
+                      </div>
 
 
 
@@ -155,6 +238,16 @@ import { ref } from 'vue'
 
 const items = ref(['Guided trade', 'No third parties', 'Receipt required', 'Exchange', 'Demo']);
 const value = ref([ 'Guided trade', 'No third parties', 'Receipt required',]);
+
+const currencyType = ref('NGN')
+
+const Currency = ([
+  'USD',
+  'Euro',
+  'NGN',
+  'NGN',
+
+]);
 </script>
 
 <style>
@@ -363,6 +456,14 @@ line-height: 140%; /* 22.4px */
   line-height: normal;
 }
 
+.subtitle3{
+color: var(--Black-5, #F8FAFC);
+font-family: Manrope;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 150%; /* 24px */
+}
 .mdi-checkbox-blank-outline::before {
     content: "\F0131";
     background: #10192D !important;

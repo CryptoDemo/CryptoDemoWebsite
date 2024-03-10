@@ -73,7 +73,7 @@
                             <span class="select1i">Minimum</span>
                             <div style="margin-top: 8px; margin-bottom: 16px;">
                               <input type="text" placeholder="App fixed amount" style="outline: none; height: 61px; margin-left: 28px; padding-right: 25px!important; position: relative; border-radius: 15px; border: 1px solid #1B2537; background: #10192D; width: 95%;  padding-left: 15px;"/>
-                              <v-menu :Coin="Coin">
+                              <v-menu>
                                   <template v-slot:activator="{ props }">
                                     <v-btn v-bind="props" style="min-width: 70px; height: 53px; position: absolute; top: 93px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 12px; letter-spacing: 0px;  text-transform: capitalize;"> 
                                       <span class="currency-list">{{ currencyType }}</span>
@@ -102,7 +102,7 @@
                             <span class="select1i">Maximum</span>
                             <div style="margin-top: 8px; margin-bottom: 16px; position: relative;">
                               <input type="text" placeholder="Enter an amount" style="outline: none; height: 61px; margin-left: 28px; padding-right: 25px!important; position: relative; border-radius: 15px; border: 1px solid #1B2537; background: #10192D; width: 95%;  padding-left: 15px;"/>
-                              <v-menu :Coin="Coin">
+                              <v-menu>
                                   <template v-slot:activator="{ props }">
                                     <v-btn v-bind="props" style="min-width: 70px; height: 53px; position: absolute; top: 4px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 0; letter-spacing: 0px;  text-transform: capitalize;"> 
                                       <span class="currency-list">{{ currencyType1 }}</span>
