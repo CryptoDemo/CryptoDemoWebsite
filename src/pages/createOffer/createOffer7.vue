@@ -4,59 +4,106 @@
     <v-container style="margin-top: 80px;">
       <v-row no-gutters>
             <v-col cols="9">
-              <div class="pa-2 ma-2">      
-                <span class="offer-txt1">Create an Offer to Sell your Crypto</span>
+                <div class="pa-2 ma-2">      
+                  <span class="offer-txt1">Create an Offer to Sell your Crypto</span>
 
-                <div style="display: flex; flex-direction: column; margin-top: 56px;">
-                    <span class="prc1">Trade Instructions</span>
-                    <span class="prc3" style="margin-top: 35px;">Offer Tags</span>
-                </div>
-
-                <div>
-                
-
-                
-
-                  <div>
-                   
+                  <div style="display: flex; flex-direction: column; margin-top: 56px;">
+                      <span class="prc1">Trade Instructions</span>
+                      <span class="prc3" style="margin-top: 35px;">Offer Tags</span>
                   </div>
 
+                  <div style="margin-top: 11px;">    
+                    <span class="subtitle2">Select up to 3 tags that will apply to this offer</span>
+                        <v-select style="border-radius: 15px; border: 1px solid #1B2537; background: #10192D;"
+                            v-model="value" :items="items" variant="none"
+                            closable-chips chips
+                            multiple>
+                            <template><v-chip></v-chip></template>
+                        </v-select>
+                        <span class="subtitle2">Tags are requirements that sellers must meet to participate in this transaction. </span>
+                      <div style="margin-top: 20px;">
+                        <span style="color: #2873FF; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 150%;">See all tags</span>
+                      </div>
+                  
 
-
-
-                  <div>
-
-              
-                    <div>
-                      <div style="margin-top: 89px;">
-                        <span class="payment1" style="font-size: 32px; color: #D8D8D8;">About this step</span>
+                    <div style="margin-top: 40px;">
+                      <span class="prc3">Your Offer label</span>
+                      <div style="margin-top: 10px;">
+                        <v-textarea variant="none" no-resize clearable rows="1" placeholder="Maximum 25 Characters. Only letters, numbers and dashes." style="border-radius: 15px;  border: 1px solid #1B2537; background: #10192D;"></v-textarea>   
+                        <span class="subtitle2">Make your offer stand out to other users with a catchy label. Your offer label can be up to 25 characters long and can contain letters, numbers, the apostrophe and the hyphen.</span>
+                      </div>
                       </div>
 
-                      <div style="width: 464px; margin-top: 18px;">
-                          <span class="text-step">Start creating your offer by selecting the cryptocurrency you want to trade, whether or not you want to buy or sell, and the payment method you want to use.</span>
-                      </div>
 
-                      <div style="display: flex; flex-direction: column; margin-top: 18px;">
-                        <span class="abt-txt1">You want to sell Bitcoin (BTC)</span>
-                        <span class="abt-txt1">And get paid via NIP (NIBSS Instant Payment) in US Dollar (USD)</span>
-                        <span class="abt-txt1">ou will pay Paxful a 1% fee for each trade</span>
+                    <div style="margin-top: 40px;">
+                      <span class="prc3">Offer Terms</span>
+                      <div style="margin-top: 10px;">
+                        <v-textarea variant="none" clearable no-resize placeholder="Write your offer terms..." style="border-radius: 15px;  border: 1px solid #1B2537; background: #10192D;"></v-textarea>    
+                        <span class="subtitle2">Anybody who views your offer will see these terms. Keep them simple and clear to make your offer sound attractive.</span>
                       </div>
                     </div>
 
-                    <div class="d-flex" style="justify-content: space-between; margin-top: 53px; margin-bottom: 39px;">
-                    <div>
-                      <v-btn class="previous-step me-4">Previous step</v-btn>
-                     
-                 
-                      <v-btn class="next-step" :disabled="loading" :loading="loading" @click.prevent="navigateTo('/createOffer/createOffer5')" >Next step</v-btn>
-                     
-                    </div>
-                  </div>
 
+                    <div style="margin-top: 40px;">
+                      <span class="prc3">Trade Instructions</span>
+                      <div style="margin-top: 10px;">
+                        <v-textarea variant="none" clearable no-resize placeholder="List out your instructions for your trade partner." style="border-radius: 15px;  border: 1px solid #1B2537; background: #10192D;"></v-textarea>    
+                        <span class="subtitle2">To ensure a successful trade be transparent about what you expect from your trade partner and list out what you need.</span>
+                      </div>
+                    </div>
                     
+                    <div style="margin-top: 35px; margin-bottom: 25px; display: grid;">
+                      <span class="prc3" style="font-family: manrope;">Offer conditions</span>
+                      
+                        <div style="display: -webkit-inline-box; height: 40px;">                         
+                          <v-checkbox></v-checkbox>
+                          <span class="d-flex mt-4 offr-cnd">Trade partner must be verified</span>
+                        </div>
+                        <div style="display: -webkit-inline-box;">                         
+                          <v-checkbox></v-checkbox>
+                          <span class="d-flex mt-4 offr-cnd">Trade partner must show their full name</span>
+                        </div>
+                    </div>
+
+
+
+                    <div>
+
+                      <div>
+                        <div style="margin-top: 130px;">
+                          <span class="payment1" style="font-size: 32px; color: #D8D8D8;">About this step</span>
+                        </div>
+
+                        <span style="color: #D8D8D8; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Set the terms, instructions, and limitations for people to trade <br> on this offer.</span>
+
+                        <div style="width: 464px; margin-top: 18px;">
+                            <span class="text-step">Start creating your offer by selecting the cryptocurrency you want to trade, whether or not you want to buy or sell, and the payment method you want to use.</span>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; margin-top: 18px;">
+                          <span class="abt-txt1">You want to sell Bitcoin (BTC)</span>
+                          <span class="abt-txt1">And get paid via NIP (NIBSS Instant Payment) in US Dollar (USD)</span>
+                          <span class="abt-txt1">ou will pay Demo a 1% fee for each trade</span>
+                        </div>
+                      </div>
+
+                      <div class="d-flex" style="justify-content: space-between; margin-top: 53px; margin-bottom: 39px;">
+                      <div>
+                        <v-btn class="previous-step me-4">Previous step</v-btn>
+                      
+                  
+                        <v-btn class="next-step" :disabled="loading" :loading="loading" @click.prevent="navigateTo('/createOffer/createOffer5')" >Next step</v-btn>
+                      
+                      </div>
+                    </div>
+
+                      
+                    </div>
                   </div>
-                </div>
-             </div>
+
+
+
+            </div>
             
            
 
@@ -102,14 +149,30 @@
 <script setup>
 import { ref } from 'vue'
 
+
+const items = ref(['Guided trade', 'No third parties', 'Receipt required', 'Exchange', 'Demo']);
+const value = ref([ 'Guided trade', 'No third parties', 'Receipt required',]);
 </script>
 
 <style>
 
+.prc1{
+color: var(--Primary-100, #2873FF);
+font-family: Poppins;
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
 
-
-
-
+.offer-txt1{
+color: var(--Gray-Light, #D8D8D8);
+font-family: Poppins;
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
 
 .box2{
 border-radius: 24px;
@@ -216,15 +279,10 @@ line-height: 140%;
 margin-left: 28px; /* 19.6px */
 }
 
-
-::-webkit-scrollbar{
-  display: none;
-}
-
 .v-chip{
 border-radius: 12px !important;
 background: #131D35 !important;
-width: 67px !important;
+width: fit-content !important;
 height: 36px !important;
 display: flex !important;
 align-items: center !important;
@@ -236,7 +294,15 @@ cursor: pointer !important;
 margin-top: 5px!important ;
 }
 
-
+.subtitle2{
+color: var(--Main-Greyscale-40, #8E9BAE);
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+}
 ::-webkit-input-placeholder {
 color: var(--Black-40, #8E9BAE);
 font-family: Manrope;
@@ -244,8 +310,20 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: 140%; /* 19.6px */
-  }
+}
 
+::-webkit-scrollbar{
+  display: none;
+}
+
+.abt-txt1{
+  color: #D8D8D8;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 .prc3{
 color: var(--Gray-Medium-light, #969696);
 font-family: Poppins;
@@ -253,5 +331,30 @@ font-size: 24px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
+}
+
+.offr-cnd{
+color: #E2E8F0;
+font-family: Manrope;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 22.4px */
+}
+.payment1{
+  color: #D8D8D8;
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.mdi-checkbox-blank-outline::before {
+    content: "\F0131";
+    background: #10192D !important;
+    border-radius: 8px;
+    /* outline:1px solid #F00; */
+    /* border: 1px solid red; */
 }
 </style>

@@ -370,7 +370,16 @@ font-weight: 400;
 line-height: normal;
 margin-top: 11px;
 }
-
+.box1{
+border-radius: 24px;
+border: 1px solid var(--linear-card, #1DA1DB);
+background: var(--dark-bg, #10192D);
+padding: 33px;
+display: flex;
+flex-direction: column;
+width: 48%;
+cursor: pointer;
+}
 .box2{
 border-radius: 24px;
 border: 1px solid var(--border, #303A46);
@@ -484,7 +493,7 @@ margin-left: 28px; /* 19.6px */
 .v-chip{
 border-radius: 12px !important;
 background: #131D35 !important;
-width: 67px !important;
+width: fit-content !important;
 height: 36px !important;
 display: flex !important;
 align-items: center !important;

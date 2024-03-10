@@ -29,8 +29,8 @@
       </v-footer>
         <div class="d-flex" style="justify-content: space-between; margin-top: 64px; display: flex">
           <div style="display: flex; align-items: center">
-            <ToggleBtn  class="me-3"/>
-            <span class="" style="color: #E2E8F0"></span>
+            <ToggleBtn  class="me-3" />
+            <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">Light</span> Mode</span>
           </div>
           <div class="d-flex" style="margin-top: 16px">
             <v-icon icon="mdi-information me-2" color="#165CDD"></v-icon>
@@ -230,6 +230,24 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 text-decoration-line: underline; 
+cursor: pointer;
+}
+.switch-text{
+color: #E2E8F0;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+cursor: pointer;
+}
+.switch-text-light{
+color: #64748B;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
 cursor: pointer;
 }
 .footer-icon{

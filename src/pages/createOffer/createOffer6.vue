@@ -366,6 +366,16 @@ font-weight: 400;
 line-height: normal;
 margin-top: 11px;
 }
+.box1{
+border-radius: 24px;
+border: 1px solid var(--linear-card, #1DA1DB);
+background: var(--dark-bg, #10192D);
+padding: 33px;
+display: flex;
+flex-direction: column;
+width: 48%;
+cursor: pointer;
+}
 
 .box2{
 border-radius: 24px;

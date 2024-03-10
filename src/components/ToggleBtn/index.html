@@ -19,7 +19,8 @@
 	</symbol>
 </svg>
 <label class="switch">
-	<input class="switch__input" type="checkbox" @input="changeTheme" role="switch" name="dark" />
+	<input class="switch__input" type="checkbox" @input="changeTheme" role="switch" name="dark" 
+	:checked="theme.global.name=='LightThemeConfig'" />
 	<svg class="switch__icon" width="24px" height="24px" aria-hidden="true">
 		<use href="#light" />
 	</svg>
