@@ -10,7 +10,7 @@ const theme = useTheme();
   document.querySelectorAll(".switch__input").forEach((el)=>{
     el.checked = e.target.checked;
   });
-  document.querySelector(".switch-hint").innerHTML = e.target.checked ? 'Dark' : 'Light';
+  document.querySelector(".switch-hint").innerHTML = e.target.checked ? 'dark' : 'light';
  }
 
 

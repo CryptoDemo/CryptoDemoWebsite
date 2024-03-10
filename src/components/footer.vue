@@ -30,7 +30,7 @@
         <div class="d-flex" style="justify-content: space-between; margin-top: 64px; display: flex">
           <div style="display: flex; align-items: center">
             <ToggleBtn  class="me-3" />
-            <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">Light</span> Mode</span>
+            <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
           </div>
           <div class="d-flex" style="margin-top: 16px">
             <v-icon icon="mdi-information me-2" color="#165CDD"></v-icon>
