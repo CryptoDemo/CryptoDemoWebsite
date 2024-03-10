@@ -252,7 +252,8 @@ cursor: pointer;
 }
 .footer-icon{
 display: flex;
-padding: 48px 120px;
+padding-top: 48px;
+padding-bottom: 48px;
 flex-direction: column;
 align-items: flex-start;
 gap: 10px;
@@ -260,7 +261,8 @@ background: #10192D;
 }
 .footer-icon-light{
 display: flex;
-padding: 48px 120px;
+padding-top: 48px;
+padding-bottom: 48px;
 flex-direction: column;
 align-items: flex-start;
 gap: 10px;
