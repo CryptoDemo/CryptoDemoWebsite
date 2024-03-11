@@ -147,13 +147,13 @@
                               </v-btn>
                             </template>
 
-                            <v-list>
+                            <v-list style="background: #161D26; border-radius: 15px;">
                               <v-list-item>
                                 <div v-for="(coin, index) in coin" class="d-flex py-3" style="cursor: pointer" :key="index" >
                               
                                   <v-list-item-title @click="selectedCoin=coin.title; coinIcon= coin.icon"  class="d-flex">
-                                     <v-img  :src="coin.icon"></v-img>  
-                                    <span> {{ coin.title }} </span>
+                                     <img  :src="coin.icon" class="me-3"/>  
+                                    <span style="display: flex; align-items: center;"> {{ coin.title }} </span>
                                   </v-list-item-title>
                                 </div>
                               </v-list-item>
@@ -234,13 +234,13 @@ const coin = [
                     icon:'/svg/btc.svg', title:"US Dollar USD"
                   },
                   {
-                    icon:'$', title:"US Dollar USD"
+                    icon:'/svg/tether.svg', title:"US Dollar USD"
                   },
                   {
-                    icon:'$', title:"Canadian Dollar"
+                    icon:'/svg/btc.svg', title:"Canadian Dollar"
                   },
                   {
-                    icon:'$', title:"US Dollar USD"
+                    icon:'/svg/btc.svg', title:"US Dollar USD"
                   }
 ];
 const validateInput = (value) => {
