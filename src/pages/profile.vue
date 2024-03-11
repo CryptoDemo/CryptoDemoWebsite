@@ -32,7 +32,7 @@
               <div class="pa-1 ma-1">
                 <div class="acct-level">
                   <div class="d-flex" style="padding: 35px"> 
-                      <img src="/svg/Dashboard.svg" class="me-3" alt="dashboard-icon">
+                      <img src="/svg/Dashboard.svg" class="me-10" alt="dashboard-icon">
                       <div style="display: grid;">
                         <div class="d-flex">
                           <span class="acct-level-text me-2">Account Level 1</span>

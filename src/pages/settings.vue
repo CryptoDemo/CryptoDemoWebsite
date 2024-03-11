@@ -29,33 +29,30 @@
                           
                             <div style="display: grid;">
                               <input type=" text" class="input-styling1 position-relative" placeholder="002-002-003" style="outline: none; padding-left: 140px "/>
-                                <v-menu :location="location">
-                                        <template v-slot:activator="{ props }">
-                                          <v-btn 
-                                            
-                                            v-bind="props">
-                                            <v-img  width="20" class="me-3" :src="flag"/> 
-                                            <span class="me-2">{{select}}</span>
-                                            <v-icon icon="mdi-chevron-down"></v-icon>
-                                          </v-btn>
-                                        </template>
+                                <v-menu>
+                                    <template v-slot:activator="{ props }">
+                                      <v-btn class="area-num" v-bind="props">
+                                        <v-img  width="20" class="me-3" :src="flag"/> 
+                                        <span class="me-2">{{select}}</span>
+                                        <v-icon icon="mdi-chevron-down"></v-icon>
+                                      </v-btn>
+                                    </template>
 
-                                        <v-list>
-                                          <v-list-item>
-                                            <v-row dense>
-                                            <v-col v-for="(item, index) in locations" class="" sm="6" 
-                                              :key="index" >
-                                          
-                                              <v-list-item-title @click="select=item.title; flag= item.image" style="text-align: -webkit-center;">
-                                              <v-img width="30" class="rounded-5" :src="item.image"></v-img>    
-                                              <span> {{ item.title }} </span>
-                                            </v-list-item-title>
-                                              </v-col>
-                                            </v-row>
-                                          </v-list-item>
-                                        </v-list>
+                                    <v-list style="background: #161D26; border-radius: 15px;">
+                                      <v-list-item>
+                                        <v-row dense>
+                                        <v-col v-for="(item, index) in locations" class="" sm="6"  :key="index">
+                                      
+                                          <v-list-item-title @click="select=item.title; flag= item.image" style="text-align: -webkit-center;">
+                                          <v-img width="30" class="rounded-5" :src="item.image"></v-img>    
+                                          <span> {{ item.title }} </span>
+                                        </v-list-item-title>
+                                          </v-col>
+                                        </v-row>
+                                      </v-list-item>
+                                    </v-list>
                     
-                                  </v-menu>
+                                </v-menu>
                               <div>
                                   <span class="number-caption">Please set your phone number with country code. <br><span style="font-weight: 700;">Must be a mobile number!</span></span>
                               </div>
@@ -68,8 +65,12 @@
 
                     <v-col>
                       <div class="pa-2 ma-2 d-flex">
+                        <div :rules="rules"
+    accept="image/png, image/jpeg, image/bmp"
+    label="Avatar">
                         <img src="/svg/Camera.svg" style="position: absolute; margin-left: 17px; margin-top: 17px;"/>
                         <img src="/svg/Image (1).svg" class="me-4" style="align-self: start;"/>
+                        </div>
                         <div>
                          <v-text-field placeholder="Email Address" class="input-styling1" variant="">
                             <v-icon class="prepend-inner-icon">
@@ -171,7 +172,6 @@
                       autocomplete="text"
                       placeholder="Your biography is visible on your public profile..."
                       :rules="rules"
-                      :model-value="value"
                       bg-color="#12181F"
                       variant=""
                       clearable
@@ -289,6 +289,17 @@ font-size: 24px;
 font-style: normal;
 font-weight: 600;
 line-height: 28px; 
+}
+
+.area-num{
+border-radius: 17px;
+background: #161D26;
+width: 109px;
+height: 44px!important;
+box-shadow: none !important;
+position: absolute;
+margin-top: 10px;
+margin-left: 9px;
 }
 
 .mail-text{
