@@ -1,39 +1,54 @@
 <template>
-   <v-combobox 
-       v-model="select" :items="items" style="border: 1px solid #1B2537; background: #10192D; "
-       variant="none"
-          chips
-          multiple>
-        <template #prepend-item> <v-card flat width="100%" height="100%" style=" background: #161D26;  position: absolute; top: 0px " /> </template> 
-  </v-combobox>
+  <button @click="handleClick">{{ formattedTime }}</button>
 </template>
 
 <script setup>
-const  select = ref (['25,000', '25,000', '25,000' ]);
-const items =ref([
-          'Programming',
-          'Design',
-          'Vue',
-          'Vuetify',
-        ]);
+
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const isRunning = ref(false)
+const elapsedTime = ref(0)
+let intervalId = null
+
+const formattedTime = computed(() => {
+  const seconds = Math.floor((elapsedTime.value / 1000) % 60)
+  const minutes = Math.floor((elapsedTime.value / (1000 * 60)) % 60)
+  const hours = Math.floor((elapsedTime.value / (1000 * 60 * 60)) % 24)
+
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+})
+
+function startTimer() {
+  intervalId = setInterval(() => {
+    elapsedTime.value += 100
+  }, 100)
+}
+
+function stopTimer() {
+  clearInterval(intervalId)
+  intervalId = null
+}
+
+onMounted(() => {
+  // Reset timer on component mount
+  elapsedTime.value = 0
+  isRunning.value = false
+})
+
+onBeforeUnmount(() => {
+  stopTimer()
+})
+
+const handleClick = () => {
+  if (!isRunning.value) {
+    isRunning.value = true
+    startTimer()
+  } else {
+    isRunning.value = false
+    stopTimer()
+  }
+}
 </script>
 <style>
 
-.v-chip{
-border-radius: 12px !important;
-background: #131D35 !important;
-width: 67px !important;
-height: 36px !important;
-display: flex !important;
-align-items: center !important;
-font-family: Manrope; 
-color: #8E9BAE !important; 
-font-size: 14px !important;
-line-height: 140% !important;
-}
-
-.v-input--density-default .v-field__input {
-    row-gap: 8px;
-    width: 50%;
-}
 </style>

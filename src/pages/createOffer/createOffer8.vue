@@ -225,8 +225,54 @@
                         <v-btn class="previous-step me-4">Previous step</v-btn>
                       
                   
-                        <v-btn class="next-step" :disabled="loading" :loading="loading" @click.prevent="navigateTo('/createOffer/createOffer5')" >Create Offer</v-btn>
+                        <!-- <v-btn class="next-step" :disabled="loading" :loading="loading" @click.prevent="navigateTo('/createOffer/createOffer5')" >Create Offer</v-btn> -->
                       
+                        <v-dialog max-width="602">
+                            <template v-slot:activator="{ props: activatorProps }">
+                              <v-btn
+                                v-bind="activatorProps" class="next-step"
+                                text="Create Offer"
+                                variant="flat"
+                              ></v-btn>
+                            </template>
+
+                            <template v-slot:default="{ isActive }">
+                              <v-card style="height: 507px; border-radius: 32px; background: #12181F; padding: 0 61px;">
+                                <v-card-text>
+                                  <div style="display: flex; justify-content: end">
+                                   <v-btn  @click="isActive.value = false" style="max-width: 40px; height: 40px; display: flex; background: inherit; box-shadow: none; margin-top: 10px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="58" height="58" viewBox="0 0 58 58" fill="none">
+                                        <path d="M29.0713 26.6812L34.9638 20.7886C35.6147 20.1378 36.67 20.1378 37.3209 20.7886C37.9717 21.4395 37.9717 22.4948 37.3209 23.1457L31.4283 29.0382L37.3209 34.9308C37.9717 35.5817 37.9717 36.6369 37.3209 37.2878C36.67 37.9387 35.6147 37.9387 34.9638 37.2878L29.0713 31.3952L23.1787 37.2878C22.5279 37.9387 21.4726 37.9387 20.8217 37.2878C20.1708 36.6369 20.1708 35.5817 20.8217 34.9308L26.7143 29.0382L20.8217 23.1457C20.1708 22.4948 20.1708 21.4395 20.8217 20.7886C21.4726 20.1378 22.5279 20.1378 23.1787 20.7886L29.0713 26.6812Z" fill="white"/>
+                                    </svg>
+                                   </v-btn>
+                                  </div>
+
+                                  <div style="display: flex; justify-content: center; flex-direction: column; margin-top: 13px;">
+                                     <span class="crt-offr">Your Offer has been successfully created</span>
+                                        <div style="margin-top: 28px; margin-bottom: 31px;">
+                                          <span class="subtitle2" style="color: #8E9BAE; font-size: 16px; padding-left: ">Your offer has been created. Once somebody starts a trade on this offer, the selected cryptocurrency will be automatically reserved for that trade.</span>
+                                        </div>
+
+                                       
+                                  </div>
+
+                                  <div class="px-4" style="border-radius: 25px; margin-bottom: 70px; border: 1px solid var(--border, #303A46); background: #12181F; height: 64px; display: flex;  align-items:  center; justify-content: space-around;">
+                                      <span class="ref-code1 me-3">https://demo.com/offer/bc1qXY2kGdygjrsqtzE2n0yrf2XY3</span>
+                                      <v-btn class="ref-btn">Copy
+                                        <img src="/svg/copy1.svg" style="margin-left: 15px;"/>
+                                      </v-btn>
+                                  </div>
+                                  <div style="display: flex; justify-content: end;">
+                                    <v-btn class="ref-btn"> View Offer</v-btn>
+                                  </div>
+                                </v-card-text>
+
+                               
+                              </v-card>
+                            </template>
+                        </v-dialog>  
+
+
                       </div>
                     </div>
 
@@ -296,6 +342,8 @@ const Currency = ([
   'NGN',
 
 ]);
+
+
 </script>
 
 <style>
@@ -456,12 +504,14 @@ font-weight: 400;
 line-height: 140%; /* 19.6px */
 }
 ::-webkit-input-placeholder {
-color: var(--Black-40, #8E9BAE);
+color: var(--Black-40, red);
 font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: 140%; /* 19.6px */
+display: flex !important;
+align-content: center;
 }
 
 ::-webkit-scrollbar{
@@ -503,6 +553,20 @@ line-height: 140%; /* 22.4px */
   font-weight: 700;
   line-height: normal;
 }
+.ref-btn{
+border-radius: 17px !important;
+background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);
+width: 114px;
+height: 47px!important;
+letter-spacing: 0px;
+text-transform: capitalize;
+color: var(--White, var(--Colors-Base-white, #FFF));
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
 
 .subtitle3{
 color: var(--Black-5, #F8FAFC);
@@ -519,5 +583,31 @@ line-height: 150%; /* 24px */
     border-radius: 8px;
     /* outline:1px solid #F00; */
     /* border: 1px solid red; */
+}
+
+.ref-code1{
+overflow: hidden;
+color: var(--White, var(--Colors-Base-white, #FFF));
+text-overflow: ellipsis;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+display: -webkit-box;
+width: 318px;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 1;
+}
+
+.crt-offr{
+color: #F8FAFC;
+font-family: Manrope;
+font-size: 24px;
+font-style: normal;
+font-weight: 800;
+line-height: 120%; /* 28.8px */
+display: flex;
+justify-content: center;
 }
 </style>
