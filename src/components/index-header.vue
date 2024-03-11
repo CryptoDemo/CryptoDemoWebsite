@@ -129,9 +129,10 @@ flex-shrink: 0;
 }
 .navbar-bg-light{
 border-bottom: 1px solid #E2E8F0;
-background: rgba(255, 255, 255, 0.60);
+background: rgba(255, 255, 255, 0.60) !important;
 backdrop-filter: blur(50px);
 box-shadow: none;
+
 }
 .nav-title{
 color: var(--Colors-Base-white, #FFF);

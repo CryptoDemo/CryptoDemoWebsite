@@ -75,7 +75,7 @@
                               <input type="text" placeholder="App fixed amount" style="outline: none; height: 61px; margin-left: 28px; padding-right: 25px!important; position: relative; border-radius: 15px; border: 1px solid #1B2537; background: #10192D; width: 95%;  padding-left: 15px;"/>
                               <v-menu>
                                   <template v-slot:activator="{ props }">
-                                    <v-btn v-bind="props" style="min-width: 70px; height: 53px; position: absolute; top: 93px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 12px; letter-spacing: 0px;  text-transform: capitalize;"> 
+                                    <v-btn v-bind="props" style="max-width: 60px; height: 53px; position: absolute; top: 93px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 12px; letter-spacing: 0px;  text-transform: capitalize;"> 
                                       <span class="currency-list">{{ currencyType }}</span>
                                     </v-btn>
                                   </template>
@@ -104,7 +104,7 @@
                               <input type="text" placeholder="Enter an amount" style="outline: none; height: 61px; margin-left: 28px; padding-right: 25px!important; position: relative; border-radius: 15px; border: 1px solid #1B2537; background: #10192D; width: 95%;  padding-left: 15px;"/>
                               <v-menu>
                                   <template v-slot:activator="{ props }">
-                                    <v-btn v-bind="props" style="min-width: 70px; height: 53px; position: absolute; top: 4px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 0; letter-spacing: 0px;  text-transform: capitalize;"> 
+                                    <v-btn v-bind="props" style="max-width: 60px; height: 53px; position: absolute; top: 4px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 0; letter-spacing: 0px;  text-transform: capitalize;"> 
                                       <span class="currency-list">{{ currencyType1 }}</span>
                                     </v-btn>
                                   </template>
@@ -327,7 +327,14 @@ const Currency1 = ([
 </script>
 
 <style>
-
+.prc2{
+color: var(--Gray-Medium-light, #969696);
+font-family: Poppins;
+font-size: 32px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
 
 
 
