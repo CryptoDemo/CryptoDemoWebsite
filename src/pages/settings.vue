@@ -97,7 +97,7 @@
 
                     <v-col style="flex-grow: 0 !important;">
                       <div class="pa-2 ma-2" style="display: grid;">
-                        <span class="number-caption" style="line-height: 28px; font-family: manrope; font-weight: 600;">Preferred currency</span>
+                        <span class="number-caption" style="line-height: 28px; font-family: manrope; font-weight: 600; font-size: 16px;">Preferred currency</span>
                          <v-menu :currency="currency">
                             <template v-slot:activator="{ props }">
                               <v-btn
@@ -131,12 +131,12 @@
 
                     <v-col>
                       <div class="pa-2 ma-2" style="display: grid;">
-                        <span class="number-caption" style="line-height: 28px; font-family: manrope; font-weight: 600;">Preferred coin</span>
+                        <span class="number-caption" style="line-height: 28px; font-family: manrope; font-weight: 600; font-size: 16px;">Preferred coin</span>
                          <v-menu :coin="coin">
                             <template v-slot:activator="{ props }">
                               <v-btn
-                                class="input-styling1" width="456px"
-                                dark
+                                class="input-styling1" style="text-transform: capitalize;" width="456px"
+                                
                                 v-bind="props">
                                 <div  class="py-3" style="display: flex; cursor: pointer; position: absolute; left: 37px; align-items: center;">
                   
@@ -166,20 +166,7 @@
                </v-row>
 
                 <div class="pa-2 ma-2">
-                  <span class="number-caption" style="line-height: 28px; font-family: manrope; font-weight: 600;  ">Biography</span>
-                    <v-textarea style="border-radius:32px !important; width: 940px;"
-                      counter
-                      autocomplete="text"
-                      placeholder="Your biography is visible on your public profile..."
-                      :rules="rules"
-                      bg-color="#12181F"
-                      variant=""
-                      clearable
-                      clear-icon="mdi-close-circle" color="gray"
-                      no-resize
-                     
-                    ></v-textarea>
-                      <v-btn class="update-btn mt-4" style="letter-spacing: 0px">Update bio</v-btn>
+                  <Biography/>
                 </div>
               <div class="pa-2 ma-2" style="width: 940px; flex-shrink: 0;">
                 <DataTable/>
@@ -231,16 +218,16 @@ const coinIcon = ref ('/svg/btc.svg')
 
 const coin = [
                   {
-                    icon:'/svg/btc.svg', title:"US Dollar USD"
+                    icon:'/svg/btc.svg', title:"Bitcoin (BTC)"
                   },
                   {
-                    icon:'/svg/tether.svg', title:"US Dollar USD"
+                    icon:'/svg/tether.svg', title:"Tether (USDT)"
                   },
                   {
-                    icon:'/svg/btc.svg', title:"Canadian Dollar"
+                    icon:'/svg/tron.svg', title:"Tron (TRX)"
                   },
                   {
-                    icon:'/svg/btc.svg', title:"US Dollar USD"
+                    icon:'/svg/binance.svg', title:"Binance (BNB)"
                   }
 ];
 const validateInput = (value) => {
@@ -311,11 +298,17 @@ font-weight: 500;
 line-height: 28px; 
 }
 .input-styling1{
-  width: 350px;
-  height: 64px !important;
-  background: var(--secondary-background, #12181F) !important;
-  border-radius: 15px ;
-  letter-spacing: 0px;
+width: 350px;
+height: 64px !important;
+background: var(--secondary-background, #12181F) !important;
+border-radius: 15px ;
+letter-spacing: 0px;
+color: var(--Gray-Medium-light, #969696);
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
 }
 .number-caption{
 color: var(--Gray-Medium-light, #969696);
