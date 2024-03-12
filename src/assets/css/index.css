@@ -222,6 +222,7 @@ line-height: 28px;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+  height: 70px;
   }
 .partners-text{
 color: var(--Gray-Medium-dark, #646464);

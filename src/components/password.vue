@@ -1,7 +1,7 @@
 <template>
     <div class="position-relative" style="margin-top:24px">
               <v-text-field class="password-styling"  :type="isToggled ? 'text' : 'password'"
-                placeholder="Enter current password"
+                :placeholder="placeholder"
                 variant="">
                
             <div  class="eye-icon">
@@ -37,6 +37,10 @@ const isToggled = ref(true);
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };
+
+const props = defineProps ({
+  placeholder: String,
+});
 </script>
 
 <style scoped>
