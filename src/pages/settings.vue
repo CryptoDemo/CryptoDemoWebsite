@@ -16,9 +16,14 @@
 
                   <div class="acct-settings" style="display: flex; justify-content: space-between; margin-top: 32px">
                      
-                        <span class="acct-text"> Account Settings</span>
-                        <span class="mail-text">vaststudiosng@gmail.com</span>
-                     
+                        <span class="acct-text" > Account Settings</span>
+                        <span class="mail-text" >vaststudiosng@gmail.com</span>
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none" class="me-10">
+                           <path d="M6.65557 9.37269L15.8378 0.179688L17.2513 1.59369L6.65557 12.2007L0.29834 5.83669L1.71084 4.42269L6.65557 9.37269Z" fill="#5FC381"/>
+                        </svg>
+                        <span style="color: #5FC381; font-feature-settings: 'clig' off, 'liga' off; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Your phone number has been verified</span>
+                      </div>
                   </div>
               </div>
 
@@ -28,7 +33,7 @@
                           <div class="pa-2 ma-2">
                           
                             <div style="display: grid;">
-                              <input type=" text" class="input-styling1 position-relative" placeholder="002-002-003" style="outline: none; padding-left: 140px "/>
+                              <input type="text" v-if="showPhoneNumber" class="input-styling1 position-relative" placeholder="002-002-003" style="outline: none; padding-left: 140px; color: #fff; font-size: 14px; font-weight: 600;"/>
                                 <v-menu>
                                     <template v-slot:activator="{ props }">
                                       <v-btn class="area-num" v-bind="props">
@@ -53,13 +58,16 @@
                                     </v-list>
                     
                                 </v-menu>
+
+                                <input type="text" v-if="showOtp" style="font-size: 14px; font-weight: 700; outline: none; padding: 25px; color: #D8D8D8;" placeholder="6-4-0-1" class="input-styling1 position-relative"/>
                               <div>
-                                  <span class="number-caption">Please set your phone number with country code. <br><span style="font-weight: 700;">Must be a mobile number!</span></span>
+                                  <span class="number-caption" v-if="showPhoneNumber">Please set your phone number with country code. <br><span style="font-weight: 700;">Must be a mobile number!</span></span>
+                                  <span class="number-caption" v-if="showOtp">Input the code sent to your number</span>
                               </div>
                             </div> 
                           
                           </div>
-                          <v-btn  class="mt-4 update-btn" style="border-radius: 16px; height: 63px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
+                          <v-btn  @click="toggleInputType" class="mt-4 update-btn" style="border-radius: 16px; height: 63px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
                       </div>
                     </v-col>
 
@@ -179,7 +187,17 @@
   </div>
 </template>
 <script setup>
-  import { ref } from 'vue'
+import { ref } from 'vue'
+
+
+const showPhoneNumber = ref(true);
+const showOtp= ref(false);
+
+ 
+const toggleInputType = () => {
+  showPhoneNumber.value = !showPhoneNumber.value;
+  showOtp.value = !showOtp.value;
+};
 
 const select =ref("+90")
 
