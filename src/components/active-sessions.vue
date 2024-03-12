@@ -56,7 +56,7 @@
         <td><span class="browser-txt">{{item.IPAddress}}</span></td>
         <td><span class="browser-txt">{{item.Location}}</span></td>
         <td><v-btn class="actv-btn"  style="width: 70px; height: 40px ">{{item.Status}}</v-btn></td>
-        <td><v-btn v-bind="props"  class="delete-btn position-relative" style="width: 96px; height: 40px;">
+        <td><v-btn class="delete-btn position-relative" style="width: 96px; height: 40px;">
           <img src="/svg/close-circle.svg" style="margin-right: 3px !important"/>
           {{item.Delete}} 
           </v-btn>
@@ -144,21 +144,21 @@
                     <template v-slot:default="{ isActive }">
                           <v-card style="background: var(--secondary-background, #12181F);border-radius: 32px; border: 1px solid var(--border, #303A46)!important;  padding: 40px ">
                             <v-card-text>
-                              <div>
+                              <div style="margin-bottom: 20px;">
                                <img src="/svg/delete-icon.svg"/>
                               </div>
-                            <span style="font-size: 20px;color: #D8D8D8; font-family: Manrope; font-weight: 600;line-height: normal;">Are you sure you want to delete your account permanently?</span>
+                            <span style="font-size: 20px;color: #D8D8D8; font-family: Manrope; font-weight: 600;line-height: normal;">Are you sure you want to delete your <br> account permanently?</span>
                             <div style="margin-top: 20px">
                                 <span style="color:#969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Press “Delete account” to remove it permanently, you’ll receive a confirmation link via email and a moderator will process your request or “Cancel” if you want to keep your benefits. </span>
                             </div>
                             </v-card-text>
 
-                            <v-card-actions style="justify-content: space-around;">
+                            <v-card-actions style="justify-content: space-around; margin-top: 35px;">
                               <!-- <v-spacer></v-spacer> -->
                                 <v-btn style="border-radius: 16px; border: 1px solid var(--border, #303A46); background: var(--Black-20, #E2E8F0); display: flex;width: 230px; height: 63px; color: var(--Gray-Dark, #323232);text-align: center; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; text-transform: unset; letter-spacing: 0px">
                                       Delete account
                                 </v-btn>
-                              <v-btn class="primary-btn" style="display: flex; width: 230px; height: 64px"
+                              <v-btn class="primarybtn" style="display: flex; width: 230px; height: 64px; font-weight: 600;"
                                 text="Cancel"
                                 @click="isActive.value = false"
                               ></v-btn>
