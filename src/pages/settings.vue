@@ -16,14 +16,16 @@
 
                   <div class="acct-settings" style="display: flex; justify-content: space-between; margin-top: 32px">
                      
-                        <span class="acct-text" > Account Settings</span>
-                        <span class="mail-text" >vaststudiosng@gmail.com</span>
-                      <div>
+                        <span class="acct-text" v-if="phoneVerificationStep!=3"> Account Settings</span>
+                        <span class="mail-text" v-if="phoneVerificationStep!=3">vaststudiosng@gmail.com</span>
+
+                      <div class="verified" id="verified" v-if="phoneVerificationStep==3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none" class="me-10">
                            <path d="M6.65557 9.37269L15.8378 0.179688L17.2513 1.59369L6.65557 12.2007L0.29834 5.83669L1.71084 4.42269L6.65557 9.37269Z" fill="#5FC381"/>
                         </svg>
                         <span style="color: #5FC381; font-feature-settings: 'clig' off, 'liga' off; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Your phone number has been verified</span>
                       </div>
+
                   </div>
               </div>
 
@@ -33,7 +35,7 @@
                           <div class="pa-2 ma-2">
                           
                             <div style="display: grid;">
-                              <input type="text" v-if="showPhoneNumber" class="input-styling1 position-relative" placeholder="002-002-003" style="outline: none; padding-left: 140px; color: #fff; font-size: 14px; font-weight: 600;"/>
+                              <input type="text" v-if="phoneVerificationStep==1 || phoneVerificationStep==3" class="input-styling1 position-relative" placeholder="002-002-003" style="outline: none; padding-left: 140px; color: #fff; font-size: 14px; font-weight: 600;"/>
                                 <v-menu>
                                     <template v-slot:activator="{ props }">
                                       <v-btn class="area-num" v-bind="props">
@@ -59,25 +61,26 @@
                     
                                 </v-menu>
 
-                                <input type="text" v-if="showOtp" style="font-size: 14px; font-weight: 700; outline: none; padding: 25px; color: #D8D8D8;" placeholder="6-4-0-1" class="input-styling1 position-relative"/>
+                                <input type="text" v-if="phoneVerificationStep==2" style="font-size: 14px; font-weight: 700; outline: none; padding: 25px; color: #D8D8D8;" placeholder="6-4-0-1" class="input-styling1 position-relative"/>
                               <div>
-                                  <span class="number-caption" v-if="showPhoneNumber">Please set your phone number with country code. <br><span style="font-weight: 700;">Must be a mobile number!</span></span>
-                                  <span class="number-caption" v-if="showOtp">Input the code sent to your number</span>
+                                  <span class="number-caption" v-if="phoneVerificationStep==1">Please set your phone number with country code. <br><span style="font-weight: 700;">Must be a mobile number!</span></span>
+                                  <span class="number-caption" v-if="phoneVerificationStep==2">Input the code sent to your number</span>
                               </div>
                             </div> 
                           
                           </div>
-                          <v-btn  @click="toggleInputType" class="mt-4 update-btn" style="border-radius: 16px; height: 63px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
+                          <v-btn v-if="phoneVerificationStep==1"  @click="sendOTP" class="mt-4 update-btn" style="border-radius: 16px; height: 63px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
+                          <v-btn v-if="phoneVerificationStep==2" @click="verifyOTP" class="mt-4 update-btn" style="border-radius: 16px; height: 63px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
                       </div>
                     </v-col>
 
                     <v-col>
                       <div class="pa-2 ma-2 d-flex">
-                        <div :rules="rules"
-    accept="image/png, image/jpeg, image/bmp"
-    label="Avatar">
-                        <img src="/svg/Camera.svg" style="position: absolute; margin-left: 17px; margin-top: 17px;"/>
-                        <img src="/svg/Image (1).svg" class="me-4" style="align-self: start;"/>
+                        <div>
+    
+ 
+                        <input type="image" src="/svg/Camera.svg" accept="image/png, image/jpeg, image/bmp" style="position: absolute; margin-left: 17px; margin-top: 17px;"/>
+                        <input type="image" src="/svg/Image-grad.svg" class="me-4" style="align-self: start;"/>
                         </div>
                         <div>
                          <v-text-field placeholder="Email Address" class="input-styling1" variant="">
@@ -190,16 +193,22 @@
 import { ref } from 'vue'
 
 
-const showPhoneNumber = ref(true);
-const showOtp= ref(false);
+const phoneVerificationStep = ref(1);
 
- 
-const toggleInputType = () => {
-  showPhoneNumber.value = !showPhoneNumber.value;
-  showOtp.value = !showOtp.value;
-};
 
-const select =ref("+90")
+const sendOTP = ()=>{
+  // write logic for sending otp to user's phone
+
+  phoneVerificationStep.value = 2;
+}
+
+const verifyOTP = ()=>{
+  // write logic for verifying otp here
+
+  phoneVerificationStep.value = 3;
+}
+
+const select = ref("+90");
 
 const flag = ref("/svg/nigeria-flag.svg")
 
@@ -248,18 +257,9 @@ const coin = [
                     icon:'/svg/binance.svg', title:"Binance (BNB)"
                   }
 ];
-const validateInput = (value) => {
-      if (value.length > 180) {
-        return 'Max 180 characters:'; // Or customize the message
-      }
-      return; 
-    };
-const rules = [
-      (v) => (v || '').length <= 180 || 'Max 180 characters:',
-    ];
 
 
-</script>
+</script >
 <style>
 .settings-header {
 border-radius: 16px;

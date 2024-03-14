@@ -11,7 +11,7 @@
           <div class="card-subtitle">Setting up an account takes less than 1 minute.</div>
           
             <div class="position-relative">
-            <v-text-field placeholder="Email Address" class="input-styling"
+            <v-text-field placeholder="Email Address" class="input-styling"  v-model="email" 
                 variant="">
              <v-icon class="prepend-inner-icon">
                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 25 24" fill="none">
@@ -97,7 +97,7 @@
                 </v-icon>
             </v-text-field>
                <NuxtLink to="/authentication/sign-up-email-verification">  
-                <Button buttonText="Continue" class="mt-4"/>
+                <Button buttonText="Continue" @click.prevent="isFormValid" class="mt-4"/>
                </NuxtLink>
               <NuxtLink to="/authentication/register-phone-number">  
                 <v-btn variant="outlined"  color="blue-darken-4" class="btn-outlined" style="color: var(--Primary-100, #2873FF)!important; margin-top:15.33px;">Create account with phone number</v-btn>
@@ -120,8 +120,8 @@
         </div>
       </v-col>
      
-      <v-col cols="7">
-          <div class="ma-8  carousel-styling">
+      <v-col md="7" class="flex-lg-and-up hidden-sm-and-down">
+          <div class="ma-8  carousel-styling" >
           <Carousel />
         </div>
       </v-col>
@@ -134,11 +134,15 @@
 <script setup>
 import { ref } from 'vue'
 
+
 const isToggled = ref(true);
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };
 
+const isFormValid =() =>{
+  
+}
 </script>
 <style scoped>
 .btn-outlined{

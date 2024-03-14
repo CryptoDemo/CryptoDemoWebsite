@@ -1,6 +1,6 @@
 <template>
   <div>
-          <v-row no-gutters style="overflow:;">
+          <v-row no-gutters style="margin-top: 80px;">
             <v-col cols="3">
               <div class="pa-2 ma-2">
                           <!-- //side nav here../ -->
@@ -27,9 +27,9 @@
                             <span class="noti-text">Turn off all offers</span>
                         </div>
                   </div>
-                        <div style="background: #303A46; height: 1px; border 1px solid;"></div>
+                        <div style="background: #303A46; height: 1px;"></div>
 
-                         <v-table style="display: grid! important; margin-bottom: 32px; margin-top: 13px; border-radius: 0px 0px 24px 24px; border-right: 1px solid var(--border, #303A46); border-bottom: 1px solid var(--border, #303A46); border-left: 1px solid var(--border, #303A46);">
+                         <v-table v-for="n in 2" :key="n" style="display: grid! important; margin-bottom: 32px; margin-top: 13px;  border-radius: 0px 0px 24px 24px; border-right: 1px solid var(--border, #303A46); border-bottom: 1px solid var(--border, #303A46); border-left: 1px solid var(--border, #303A46);">
                             <thead>
                                 <tr style=" display: flex;">
                                 
@@ -43,15 +43,15 @@
                                 </th>
 
                                 <th style="display: flex; align-items: center; align-self: center; position: relative;">
-                                    <span class="table-header-text1" style="margin-left: 65px ">Min-Max amount</span>
+                                    <span class="table-header-text1" style="margin-left: 85px ">Min-Max amount</span>
                                 </th>
 
                                 <th style="display: flex; align-items: center; align-self: center; position: relative;">
-                                    <span class="table-header-text1" style="margin-left: 5px ">Payment method</span>
+                                    <span class="table-header-text1" style="margin-left: 20px ">Payment method</span>
                                 </th>
 
                                 <th style="display: flex; align-items: center; align-self: center; position: relative;">
-                                    <span class="table-header-text1" style="margin-left: 5px">Offer views</span> 
+                                    <span class="table-header-text1" style="margin-left: 25px;">Offer views</span> 
                                 </th>
 
                                 <th style="display: flex; align-items: center; align-self: center; position: relative;right: 72px">
@@ -64,78 +64,31 @@
                             </thead>
                     
                             <tbody>
-                        <tr v-for="item in Tradepartners" :key="item.name" style="display: flex; justify-content: space-between; align-items: baseline; ">
+                        <tr v-for="item in Tradepartners" :key="item.name" style="display: flex; justify-content: unset; align-items: baseline; ">
                     
-                        <td><span class="smaller-txt" style="margin-left: 7px ">{{item.Rate}}</span></td>
-                        <td><span class="smaller-txt">{{item.MinMaxamount}}</span></td>
-                        <td><div class="d-flex"><span class="smaller-txt me-3">{{item.Paymentmethod}}</span> <img src="/flags/cr.svg" width="30px" style="position: relative; top: -5px; border-radius: 10px "/></div></td>
-                        <td><span class="smaller-txt" style="position: relative; right:  ">{{item.offerviews}}</span></td>
-                        <td><div class="d-flex"> <v-btn  class="edit-btn  position-relative" style="width: 96px; height: 40px; top: 6px"><img src="/svg/magicpen.svg" style="margin-right: 3px !important"/>
+                        <td><span class="smaller-txt" style="margin-left: 7px; font-size: 16px; font-weight: 700;">{{item.Rate}}</span></td>
+                        <td><span class="smaller-txt me-2" style="font-size: 16px; font-weight: 700;">{{item.MinMaxamount}}</span></td>
+                        <td><div class="d-flex me-10"><span class="smaller-txt me-3" style="font-size: 16px; font-weight: 700;">{{item.Paymentmethod}}</span> <img :src="item.flag" width="30px" style="position: relative; top: -5px; border-radius: 10px "/></div></td>
+                        <td><span class="smaller-txt me-10" style="position: relative; font-size: 16px; font-weight: 700;">{{item.offerviews}}</span></td>
+                        <div>
+                        <td><div class="d-flex me-3"> <v-btn  class="edit-btn  position-relative" style="width: 96px; height: 40px; top: 6px"><img src="/svg/magicpen.svg" style="margin-right: 3px !important"/>
                                     Edit
                                     </v-btn></div></td>
-                        <td> <div class="d-flex" style="color:#2873FF; font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600; line-height: 160%;">{{item.Status}}</div> </td>
-                        <td> <div class="d-flex" style="position: relative; top: 22px "> <v-switch  inset color="#2873FF" ></v-switch></div> </td>
-                        
+                        <td> <v-btn class="d-flex me-3" style="color:#2873FF; background: inherit; text-transform: capitalize; letter-spacing: 0px; font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600; line-height: 160%;">{{item.Status}}</v-btn> </td>
+                        <td> <div class="d-flex me-3" style="position: relative; top: 22px "> <v-switch  inset color="#2873FF" ></v-switch></div> </td>
+                        </div>
                                 </tr>
                             </tbody>
                          </v-table>
-                         <v-table style="display: grid! important; margin-bottom: 32px; margin-top: 13px; border-radius: 0px 0px 24px 24px; border-right: 1px solid var(--border, #303A46); border-bottom: 1px solid var(--border, #303A46); border-left: 1px solid var(--border, #303A46);">
-                            <thead>
-                                <tr style=" display: flex;">
-                                
-
-                                
-                                <th style="display: flex; align-items: center; align-self: center; position: relative;  margin-left: 26px;">
-                                    <div class="d-flex">
-                                    <span class="table-header-text1">Rate</span>
-                                    
-                                    </div>
-                                </th>
-
-                                <th style="display: flex; align-items: center; align-self: center; position: relative;">
-                                    <span class="table-header-text1" style="margin-left: 65px ">Min-Max amount</span>
-                                </th>
-
-                                <th style="display: flex; align-items: center; align-self: center; position: relative;">
-                                    <span class="table-header-text1" style="margin-left: 5px ">Payment method</span>
-                                </th>
-
-                                <th style="display: flex; align-items: center; align-self: center; position: relative;">
-                                    <span class="table-header-text1" style="margin-left: 5px">Offer views</span> 
-                                </th>
-
-                                <th style="display: flex; align-items: center; align-self: center; position: relative;right: 72px">
-                                    <span></span>
-                                </th>
-                                <th class=""> 
-                                    
-                                </th>
-                                </tr>
-                            </thead>
-                    
-                            <tbody>
-                        <tr v-for="item in Tradepartners" :key="item.name" style="display: flex; justify-content: space-between; align-items: baseline;">
-                    
-                        <td><span class="smaller-txt" style="margin-left: 7px ">{{item.Rate}}</span></td>
-                        <td><span class="smaller-txt">{{item.MinMaxamount}}</span></td>
-                        <td><div class="d-flex"><span class="smaller-txt me-3">{{item.Paymentmethod}}</span> <img src="/flags/ar.svg" width="30px" style="position: relative; top: -5px; border-radius: 10px "/></div></td>
-                        <td><span class="smaller-txt" style="position: relative; right:  ">{{item.offerviews}}</span></td>
-                        <td><div class="d-flex"> <v-btn  class="edit-btn  position-relative" style="width: 96px; height: 40px; top: 6px"><img src="/svg/magicpen.svg" style="margin-right: 3px !important"/>
-                                    Edit
-                                    </v-btn></div></td>
-                        <td> <div class="d-flex" style="color:#2873FF; font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600; line-height: 160%;">{{item.Status}}</div> </td>
-                        <td> <div class="d-flex" style="position: relative; top: 22px "> <v-switch  inset color="#2873FF" ></v-switch></div> </td>
                         
-                                </tr>
-                            </tbody>
-                         </v-table>
-
-                <div>
-                    <v-btn style="display: flex; margin-left: auto; text-transform: unset; letter-spacing: 0px padding: 8px 40px; justify-content: center; align-items: center; gap: 10px; border-radius: 8px;background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Create Offer</v-btn>
+                <div style="margin-bottom: 302px;">
+                    <v-btn style="display: flex; margin-left: auto; text-transform: unset; letter-spacing: 0px; padding: 8px 40px; justify-content: center; align-items: center; gap: 10px; border-radius: 8px;background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Create Offer</v-btn>
                 </div>
               </div>
             </v-col>
           </v-row>
+
+          <Footer/>
   </div>
 </template>
 
@@ -150,6 +103,7 @@ const  Tradepartners = [
     Rate: "62,797,850.5 NGN",
     MinMaxamount: "14,950 - 15,950 NGN",
     Paymentmethod: "Bank Transfer",
+    flag:'/flags/au.svg',
     offerviews: '0',
     trust:'Trust',
     Status: "View",

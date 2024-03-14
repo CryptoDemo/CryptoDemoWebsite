@@ -28,7 +28,7 @@
                            <v-btn class="inputstyling1" v-bind="props">
    
                              <div  class="py-3" style="display: flex; padding-left: 12px; align-items: center; position: absolute; left: 15px; border-radius: 17px; background: #161D26; width: 135px; height: 44px;">
-                                 <img :src="coinIcon" class="me-3"/>
+                                 <img :src="coinIcon" class="me-3" width="30"/>
                                  <span style="font-weight: 600; color:  #fff; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{selectedCoin}}</span> 
                              </div>
                                <span class="me-5" style="color: #A4A8AB; font-family: Poppins; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ caption }}</span>
@@ -42,13 +42,13 @@
                            </v-btn>
                          </template>
    
-                         <v-list>
+                         <v-list style="background: #12181F; border-radius: 15px;">
                            <v-list-item>
                              <div v-for="(coin, index) in coin" class="d-flex py-3" style="cursor: pointer" :key="index" >
                            
                                <v-list-item-title @click="selectedCoin=coin.title; coinIcon= coin.icon; caption = coin.caption"  class="d-flex">
-                                   <v-img  :src="coin.icon"></v-img>  
-                                 <span class="me-3"> {{ coin.title }} </span>
+                                   <img  :src="coin.icon" class="me-3" width="30"/>  
+                                 <span style="display: flex; align-items: center;"> {{ coin.title }} </span>
                                  <span style="color: #A4A8AB; font-family: Poppins; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ coin.caption }}</span>
                                </v-list-item-title>
                              </div>
@@ -89,18 +89,19 @@
    const caption =  ref('BTC')
    
    const coin = [
-                     {
-                       icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
-                     },
-                     {
-                       icon:'/svg/btc.svg', title:"Bitcoin", caption:'BTC'
-                     },
-                     {
-                       icon:'/svg/btc.svg', title:"Bitcoin", caption:'BTC'
-                     },
-                     {
-                       icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
-                     }
+                   {
+                     icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
+                   },
+                   {
+                     icon:'/svg/tron.svg', title:"Tron", caption:'TRX'
+                   },
+                   {
+                     icon:'/svg/binance.svg', title:"Binance", caption:'BTC'
+                   },
+                   {
+                     icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
+                   }
+                     
    ];
   </script>
   

@@ -152,7 +152,7 @@
 
                         </div>
 
-                        <v-btn class="sell-offers" width="100%">Find Offers</v-btn>
+                        <v-btn class="sell-offers" width="100%">Buy Crypto</v-btn>
                     </div>
                 </div>              
             

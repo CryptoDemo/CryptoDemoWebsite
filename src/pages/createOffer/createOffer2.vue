@@ -5,7 +5,7 @@
       <v-row no-gutters>
             <v-col cols="9">
               <div class="pa-2 ma-2">      
-                <span class="offer-txt1">Create an Offer to Sell your Crypto</span>
+                <span class="offer-txt1">{{ PurchaseCrypto ? 'Create an Offer to Sell your Crypto' : 'Create an Offer to Buy your Crypto'}}</span>
                  <div>
                   <v-menu :coin="coin">
                         <template v-slot:activator="{ props }">
@@ -153,9 +153,9 @@
                       </div>
 
                       <div style="display: flex; flex-direction: column; margin-top: 18px;">
-                        <span class="abt-txt1">You want to sell Bitcoin (BTC)</span>
-                        <span class="abt-txt1">And get paid via NIP (NIBSS Instant Payment) in US Dollar (USD)</span>
-                        <span class="abt-txt1">ou will pay Paxful a 1% fee for each trade</span>
+                        <span class="abt-txt1">{{ PurchaseCrypto ? 'You want to sell Bitcoin (BTC)' : 'You want to buy Bitcoin (BTC)'}}</span>
+                        <span class="abt-txt1"> {{ PurchaseCrypto ? 'And get paid via NIP (NIBSS Instant Payment) in US Dollar (USD)' : 'And pay for it via NIP (NIBSS Instant Payment) in Nigerian Naira (NGN)'}}</span>
+                        <span class="abt-txt1">{{ PurchaseCrypto ? 'You will pay Demo a 1% fee for each trade' : 'You will pay 5% below market price on every purchase'}}</span>
                       </div>
                     </div>
 
@@ -248,7 +248,7 @@ const caption =  ref('BTC')
  ];
 
  
- const Paymentmethod = ref('Select payment method')
+ const Paymentmethod = ref('NIP (NIBSS Instant Payment)')
 
  const paymentOptions = [
     { title: 'Bank Payment', image:"/svg/bank.svg" },

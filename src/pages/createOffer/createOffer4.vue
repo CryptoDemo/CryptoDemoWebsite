@@ -5,7 +5,7 @@
       <v-row no-gutters>
             <v-col cols="9">
               <div class="pa-2 ma-2">      
-                <span class="offer-txt1">Create an Offer to Sell your Crypto</span>
+                <span class="offer-txt1">{{ PurchaseCrypto ? 'Create an Offer to Sell your Crypto' : 'Create an Offer to Buy your Crypto'}}</span>
 
                 <div style="display: flex; flex-direction: column; margin-top: 56px;">
                     <span class="prc1">Trade Pricing</span>

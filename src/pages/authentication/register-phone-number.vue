@@ -11,7 +11,7 @@
             <div class="card-subtitle">Setting up an account takes less than 1 minute.</div>
             
            <div class="position-relative input-styling d-flex" >
-            <v-text-field placeholder="Phone number"  style="width: 124px!important; position-relative; left: -21px !important;"
+            <v-text-field placeholder="Phone number"  style="width: 124px!important; position:relative; left: -21px !important;"
                 variant="">
                <template v-slot:prepend>
                     <v-select class="form-select mt-1"  style="position: relative; padding-left: 4px!important;" 
@@ -117,7 +117,7 @@
         </div>
       </v-col>
      
-      <v-col cols="7">
+      <v-col cols="7" class="flex-lg-and-up hidden-sm-and-down">
           <div class="ma-8  carousel-styling">
           <Carousel />
         </div>

@@ -105,11 +105,14 @@
                                 <span >{{select}}</span> 
                                 <span class="me- small-text">{{coin}}</span> 
                                 </div>
-                                <v-icon icon="mdi-chevron-down"  color="#E0E4F5" style="position: absolute; display: flex; right: 15px;"></v-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;">
+                                   <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" fill="#E0E4F5"/>
+                                </svg>
+
                               </v-btn>
                             </template>
 
-                          <v-list>
+                          <v-list style="background: #303A46; border-radius: 15px;">
                             <v-list-item>
                               <div v-for="(item, index) in allCoins" class="d-flex py-3" style="cursor: pointer"
                                 :key="index" >
@@ -164,7 +167,7 @@
                                     <span style="color: #22C36B; font-size: 12px; font-style: normal; font-weight: 400;line-height: 150%;">-10%</span>
                                 </div>
                             <div style="display:flex; justify-content: end;">
-                                <v-btn class="smaller-btn" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Buy now</v-btn>
+                                <v-btn class="smaller-btn" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">{{ PurchaseCrypto ? 'Buy Now' : 'Sell Now'}}</v-btn>
                     
                             </div>
                             </div>
@@ -208,7 +211,7 @@
                                     <span style="color: #22C36B; font-size: 12px; font-style: normal; font-weight: 400;line-height: 150%;">-10%</span>
                                   </div>
                             <div style="display:flex; justify-content: end;">
-                                <v-btn class="smaller-btn" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Buy now</v-btn>
+                                <v-btn class="smaller-btn" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">{{ PurchaseCrypto ? 'Buy Now' : 'Sell Now'}}</v-btn>
                     
                             </div>
                             </div>
@@ -244,12 +247,10 @@ const select =ref("All Cryptocurrency")
 // const flag = ref("/svg/bitcoin-btc-logo 1.svg")
 
 const allCoins = [
-        { title: 'Bitcoin', coinText:"Dai",  image:"/svg/btc.svg" },
-        { title: 'Bitcoin', coinText:"BTC", image:"/svg/btc.svg" },
-        { title: 'Bitcoin',  coinText:"BTC", image:"/svg/btc.svg"},
-        { title: 'Ethereum',  coinText:"ETH", image:"/svg/btc.svg"},
-        { title: 'Dodge',  coinText:"DOD",  image:"/svg/btc.svg"},
-        { title: 'Bitcoin',  coinText:"BTC", image:"/svg/btc.svg"},
+    { title: 'Tron', coinText:"TRX",  image:"/svg/tron.svg" },
+    { title: 'Tether', coinText:"USDT", image:"/svg/tether.svg" },
+    { title: 'Binance',  coinText:"BNN", image:"/svg/binance.svg"},
+    { title: 'Ethereum',  coinText:"ETH", image:"/svg/btc.svg"},
       ];
 
    const items = [

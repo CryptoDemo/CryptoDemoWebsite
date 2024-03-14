@@ -115,12 +115,14 @@
                                     <div>
                                         <v-card class="dialog">
                                           <v-card-text class="mt-5">
-                                            <div class="searchbar" style=" flex-shrink: 0; border-radius: 20px; background: #12181F; border: 1px solid var(--border, #303A46); display: flex;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px ">
-                                                  <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                  <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                                <v-text-field  hide-details variant="none"> </v-text-field>
+                                            <div class="searchbar"  v-if="!allSelected" style=" border-radius: 20px; height: 48px; width: 85%; display: flex; margin: auto; background: #12181F; border: 1px solid var(--border, #303A46); display: flex;">
+                                            <v-btn  @click="searchField.focus()" style="background: inherit; box-shadow: none; margin-top: 4px; position: absolute; left: 79px; z-index: 1000;">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                  <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#4263EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                  <path d="M22 22L20 20" stroke="#4263EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                              </svg>
+                                            </v-btn>
+                                                <input type="text"  v-model="search"  ref="searchField" style="outline: none; width: 100%; padding-left: 100px"/>
                                             </div>
                                             
                                             <div class="d-flex" style="padding: 0 61px; justify-content: center; margin: auto;">
@@ -128,14 +130,14 @@
                                               <v-row no-gutters>
 
                                               
-                                                <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" @click="Paymentmethod=item.title; isActive.value = false"   class="d-flex" style="justify-content: center;">
+                                                <v-col v-for="(item, index) in paymentOptions" :key="index" sm="6" @click="Paymentmethod=item.title; isActive.value = false"  class="d-flex" style="justify-content: center;">
                                                   <div style="border-radius: 24px; width: 159px; cursor: pointer;  margin-top: 44px;  border: 1px solid var(--border, #303A46); background: #10192D;">
                                                   
                                                       <div style="display: flex; justify-content: center; margin-top: 28px;">
                                                         <img :src="item.image"/>
                                                       </div>  
 
-                                                      <span style="color: #D8D8D8; display: flex; justify-content: center; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: 28px;">{{ item.title }}</span>
+                                                      <span  @click.prevent="selected.splice(i, 1)" style="color: #D8D8D8; display: flex; justify-content: center; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: 28px;">{{ item.title }}</span>
                                                         
                                                         <div style="display: flex; justify-content: center; margin-bottom: 28px;">
                                                             <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 700;line-height: 28px;">Available (10) </span>
@@ -158,7 +160,7 @@
                         </div>
 
 
-                        <v-btn class="sell-offers" width="100%">Find Offers</v-btn>
+                       <NuxtLink to="/trade/buyCrypto1"><v-btn class="sell-offers" width="100%">Find Offers</v-btn></NuxtLink> 
                     </div>
                 </div>              
             
@@ -185,7 +187,7 @@
                         
                         <div>
                             <div style="margin-bottom: 17px; display: flex; align-items: center;">
-                              <span class="me-3">Bank Transfer</span>
+                              <span class="me-3" style="color: #D8D8D8; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Bank Transfer</span>
                               <img src="/flags/ae.svg"   width="30"/>
                             </div>
                             <span style="color:#969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400;line-height: normal; margin-top: 17px;">All banks accepted</span>
@@ -208,15 +210,15 @@
                                  <span style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">Limit 15,000 - 100,000 NGN</span>
                             </div>
                             <div style="display: grid">
-                                <span class="mb-3" style="color: #8E9BAE;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; margin-top: 13px; line-height: normal; text-align-last: right;">62,797,850.5 NGN</span>
+                                <span class="mb-3" style="color: #fff;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; margin-top: 13px; line-height: normal; text-align-last: right;">62,797,850.5 NGN</span>
                                 <div class="d-flex mb-3" style="justify-content: end;">
                                     <img src="/svg/btc.svg" class="me-3" width="20px"/> 
-                                    <span  style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600; line-height: 150%;">BTC</span>
+                                    <span class="me-1" style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600; line-height: 150%;">BTC</span>
                                     <img src="/svg/arrow-up.svg" class="mb-1 me-1"/>
                                     <span style="color: #22C36B; font-size: 12px; font-style: normal; font-weight: 400;line-height: 150%;">-10%</span>
                                 </div>
                             <div style="display:flex; justify-content: end;">
-                                <v-btn class="smaller-btn" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Buy now</v-btn>
+                                <v-btn class="smaller-btn" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">{{ PurchaseCrypto ? 'Buy Now' : 'Sell Now'}}</v-btn>
                     
                             </div>
                             </div>

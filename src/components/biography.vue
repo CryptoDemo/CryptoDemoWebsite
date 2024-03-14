@@ -9,7 +9,7 @@
                 autocomplete="text"
                 placeholder="Your biography is visible on your public profile..."
                 bg-color="#12181F"
-                variant=""
+                variant="none"
                 clearable
                 hint="Max 180 characters: "
                 persistent-hint

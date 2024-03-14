@@ -1,7 +1,7 @@
 <template>
   <div>
        <Header icon="/svg/white-wallet.svg" Menuicon="/svg/Main Menu Icons.svg" icon1="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
-          <v-row no-gutters>
+          <v-row no-gutters style="margin-top: 90px;">
             <v-col cols="3">
               <div class="pa-2 ma-2">
                           <!-- //side nav here../ -->
@@ -35,8 +35,11 @@
                             </div>
                         <div class="trade-box">
                             <div style="padding-top: 120px">
-                                <img src="/svg/search-status.svg" class="d-flex mx-auto mb-5"/>
-                                <span class="title-text d-flex" style="font-weight: 500; justify-content: center">You are yet to <NuxtLink to="#"><span class="title-text" style="color:#2873FF; font-weight: 500"> start trading</span></NuxtLink></span>
+                                <img src="/svg/search-status.svg" class="d-flex mx-auto mb-5 icon1"/>
+                                <div class="d-flex" style="justify-content: center">
+                                    <span class="title-text me-1" style="font-weight: 500;">You are yet to</span>
+                                    <NuxtLink to="#"><span class="title-text" style="color:#2873FF; font-weight: 500;"> start trading</span></NuxtLink>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -62,7 +65,20 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 </script>
 
 <style scoped>
+.icon1 {
+  transform-origin: 0% 50%;
+  animation: slide4 4s linear infinite;
+}
 
+@keyframes slide4 {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .title-text{
 color: var(--Gray-Medium-light, #969696);
 font-family: Manrope;

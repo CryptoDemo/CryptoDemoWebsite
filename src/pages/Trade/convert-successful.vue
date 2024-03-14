@@ -3,7 +3,7 @@
         <Header/>
         <v-container style="margin-top: 70px;">
             <span class="swap1">Swap</span>
-            <div style="border-radius: 24px; border: 1px solid #303A46; padding: 37px; margin-top: 40px;">
+            <div style="border-radius: 24px; border: 1px solid #303A46; padding: 37px; margin-top: 40px; margin-bottom: 525px;">
     
                 <div class="d-flex" style="justify-content: space-between;  position: relative;">
                     <div style="display: flex; align-items: center;">

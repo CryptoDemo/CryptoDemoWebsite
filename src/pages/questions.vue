@@ -1,7 +1,7 @@
 <template>
   <div>
      <Header icon="/svg/white-wallet.svg" Menuicon="/svg/Main Menu Icons.svg" icon1="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
-          <v-row no-gutters >
+          <v-row no-gutters style="margin-top: 90px;">
             <v-col cols="3">
               <div class="pa-2 ma-2">
                           <!-- //side nav here../ -->
@@ -17,24 +17,27 @@
                     </div>
  
                     <section style="width: 938px;">
-                         <v-expansion-panels variant="popout" style="display: contents !important">
+                         <v-expansion-panels variant="popout" style="display: contents !important; ">
                                 <div v-for=" (FAQs, i ) in FAQ" :key="i" >
-                                        <v-expansion-panel  :class="isDark ? 'expansion-panel':'expansion-panel-light'"  >
-                                            <v-expansion-panel-title expand-icon="mdi-chevron-down" collapse-icon="mdi-chevron-up">
+                                        <v-expansion-panel  :class="isDark ? 'expansion-panel1':'expansion-panel1-light'"  >
+                                            <v-expansion-panel-title>
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="position: absolute; right: 25;">
+                                                  <path d="M19.92 8.94922L13.4 15.4692C12.63 16.2392 11.37 16.2392 10.6 15.4692L4.08002 8.94922" stroke="#969696" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                              </svg>
                                             <span :class="isDark ? 'title-text':'title-text-light'"> {{FAQs.question}} </span>
                                             </v-expansion-panel-title>
                                             
-                                            <v-expansion-panel-text>
-                                                <div><span class="answer-text d-flex" style="margin-bottom: 32px;">{{FAQs.subQuestion1}}</span></div>
-                                                <div><span class="answer-text d-flex" style="margin-bottom: 32px;">{{FAQs.subQuestion2}}</span></div>
-                                                <div><span class="answer-text d-flex" style="margin-bottom: 32px;">{{FAQs.subQuestion3}}</span></div>
-                                                <div><span class="answer-text d-flex">{{FAQs.subQuestion4}}</span></div>
-                                            </v-expansion-panel-text>
-                                        </v-expansion-panel>
-                                            <input type="text" class="response-input" placeholder="Your answer here" width="100%"/>
+                                              <v-expansion-panel-text>
+                                                  <div><span class="answer-text d-flex" style="margin-bottom: 32px;">{{FAQs.subQuestion1}}</span></div>
+                                                  <div><span class="answer-text d-flex" style="margin-bottom: 32px;">{{FAQs.subQuestion2}}</span></div>
+                                                  <div><span class="answer-text d-flex" style="margin-bottom: 32px;">{{FAQs.subQuestion3}}</span></div>
+                                                  <div><span class="answer-text d-flex">{{FAQs.subQuestion4}}</span></div>
+                                              </v-expansion-panel-text>
+                                            </v-expansion-panel>
+                                            <input type="text" class="response-input" placeholder="Your answer here" width="100%" style="height: 57px;"/>
                                     </div>
                         </v-expansion-panels>
-                                    <v-btn class="primary-btn1" style="font-weight: 600" width="224px">Save Answers</v-btn>
+                                    <v-btn class="primary-btn1" style="font-weight: 600; font-size: 16px;" width="224px">Save Answers</v-btn>
                     </section>
                         
                         
@@ -62,8 +65,12 @@ const FAQ = [
 ]
 </script>
 
-<style scoped>
+<style >
 
+.v-icon--size-default {
+  font-size: calc(var(--v-icon-size-multiplier)* 1.5em);
+  display: none;
+}
 
 .mail-text{
   color: var(--Gray-Medium-light, #969696);
@@ -74,9 +81,9 @@ font-weight: 500;
 line-height: 28px; 
 }
 
-.expansion-panel{
-border-radius: 16px;
-background: var(--secondary-background, #12181F);
+.expansion-panel1{
+border-radius: 16px !important;
+background: var(--secondary-background, #12181F)!important;
 display: flex;
 width: 938px;
 /* padding: 12px 40px; */
@@ -87,7 +94,7 @@ align-self: stretch;
 margin-bottom: 16px;
 }
 
-.expansion-panel-light{
+.expansion-panel1-light{
 border-radius: 15px;
 background: #F8FAFC;
 display: flex;
@@ -107,6 +114,7 @@ font-weight: 700;
 line-height: 150%; /* 24px */
 flex: 1 0 0;
 margin-bottom: 32px;
+cursor: pointer;
 }
 .title-text{
 color: var(--Gray-Medium-light, #969696);
@@ -133,4 +141,13 @@ padding: 15px;
 outline: none;
 margin-bottom: 16px;
 }
+
+::-webkit-input-placeholder {
+color: var(--Gray-Medium-light, #969696);
+font-family: Manrope;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+  }
 </style>

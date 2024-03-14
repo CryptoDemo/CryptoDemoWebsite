@@ -52,7 +52,7 @@
              
               <input type="text" placeholder="0" class="time-box me-4" style="outline: none"/>
                 <img src="/img/Line 354.png" class="me-4"/>
-                <span style="align-self:center; color: white; font=size: 16px">How often do you want to be notified?</span>
+                <span style="align-self:center; color: white; font-size: 16px">How often do you want to be notified?</span>
             </div>
             <Timezone/>
         </div>

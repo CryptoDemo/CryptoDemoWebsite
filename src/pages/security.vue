@@ -34,7 +34,7 @@
                           </v-btn>
 
                       </div>
-                      <div style="margin-top: 23px !important; display: flex; justify-content: space-between;">
+                      <div style="margin-top: 23px!important; display: flex; justify-content: space-between;">
                           <div class="d-flex">
                                 <img src="/svg/sms (2).svg" class="me-4" alt="SMS Icon" style="display: flex; align-self: start;"/>
                               <div style="display: grid;">
@@ -137,7 +137,7 @@ const toggleState = () => {
 
 
 </script>
-<style >
+<style scoped>
 
 .mail-text{
   color: var(--Gray-Medium-light, #969696);
