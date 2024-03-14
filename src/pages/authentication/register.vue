@@ -55,6 +55,7 @@
                     <path opacity="0.4" d="M1.06026 1.31102V14.311" stroke="#C3CDDB" stroke-linecap="round"/>
                 </svg>
                 </v-icon>
+                <!-- <small v-if="!isFormValid && email.length > 0">Please enter a valid email address.</small> -->
             </v-text-field> 
             <div  class="position-relative">
 
@@ -97,7 +98,7 @@
                 </v-icon>
             </v-text-field>
                <NuxtLink to="/authentication/sign-up-email-verification">  
-                <Button buttonText="Continue" @click.prevent="isFormValid" class="mt-4"/>
+                <Button buttonText="Continue"  @click.prevent="isFormValid ? register() : null" class="mt-4"/>
                </NuxtLink>
               <NuxtLink to="/authentication/register-phone-number">  
                 <v-btn variant="outlined"  color="blue-darken-4" class="btn-outlined" style="color: var(--Primary-100, #2873FF)!important; margin-top:15.33px;">Create account with phone number</v-btn>
@@ -140,9 +141,14 @@ const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };
 
-const isFormValid =() =>{
-  
-}
+const email=ref("")
+const password =ref("")
+
+const isFormValid = computed(() => password.value.length && validateEmail(email.value));
+
+const register =  () => {
+ 
+};
 </script>
 <style scoped>
 .btn-outlined{

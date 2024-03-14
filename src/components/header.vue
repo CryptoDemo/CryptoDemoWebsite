@@ -8,18 +8,18 @@
           </v-app-bar-nav-icon>
         </template>
       
-        <v-app-bar-title class="nav-title">Demo
+        <v-app-bar-title class="nav-title flex-lg-and-up hidden-sm-and-down">Demo
           
         </v-app-bar-title>
 
         <div style="position: relative;"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
        
         <template v-slot:append >
-          <span class="text1">{{props.text2}}</span>
+          <span class="text1 flex-lg-and-up hidden-sm-and-down">{{props.text2}}</span>
         <NuxtLink :to="props.link">  <span class="text2">{{props.title}}</span></NuxtLink>
  
 
-       <div :class="searchbar" style="width: 400px; height: 62px ; flex-shrink: 0; border-radius: 20px; background: #161D26; display: flex;position: absolute; right: 54%">
+       <div  v-if="hide"   style="width: 400px; height: 62px ; flex-shrink: 0; border-radius: 20px; background: #161D26; display: flex;position: absolute; right: 54%">
               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px ">
                 <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -28,16 +28,13 @@
         </div>
 
      
-        <v-menu :location="location">
+        <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn
-              color="primary"
-              
-              class="dropdown-btn me-5"
+            <v-btn class="dropdown-btn me-5"
              
               v-bind="props">
               <v-img  width="20" class="me-3" :src="flag"/> 
-              <span class="me-2">{{select}}</span>
+              <span class="me-2 flex-lg-and-up hidden-sm-and-down">{{select}}</span>
               <v-icon icon="mdi-chevron-down"></v-icon>
             </v-btn>
           </template>
@@ -60,23 +57,23 @@
          
         </v-menu> 
       
-      <div style="display: grid">
-            <v-btn :class="props.icon" @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; background: #161D26; min-width: 50px; height: 51.2px; flex-shrink: 0;">         
-                <img :src="props.icon"/> 
+      <div v-if="icon1" style="display: grid">
+            <v-btn  @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; background: #161D26; min-width: 50px; height: 51.2px; flex-shrink: 0;">         
+                <img /> 
             </v-btn>
             <span  class="nav-icon-text">Wallet</span>     
       </div>
 
-       <div style="display: grid">
+       <div v-if="icon2"  style="display: grid">
             <v-btn @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; background: #161D26; min-width: 50px; height: 51.2px; flex-shrink: 0;">         
                 <img :src="props.icon1"/>
             </v-btn>
            <span class="nav-icon-text">Profile</span>     
       </div>
 
-       <div style="display: grid">
+       <div v-if="icon3"  style="display: grid">
           <v-btn @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; background: #161D26; min-width: 50px; height: 51.2px; flex-shrink: 0;">         
-              <img :src="props.icon2"/>   
+              <img />   
           </v-btn>
           <span class="nav-icon-text">Notification</span>     
       </div>
@@ -106,12 +103,13 @@ const props = defineProps(
   {
     title:String,
     text2:String,
-    link:"",
-    icon:"",
-    Menuicon:"",
-    icon1:"",
-    icon2:"",
-    searchbar:"",
+    link:String,
+    icon:String,
+    Menuicon:String,
+    icon1:Boolean,
+    icon2:Boolean,
+    icon3:Boolean,
+    hide: Boolean,
   }
   
 )   
@@ -158,7 +156,7 @@ margin-right: 15px ;
 cursor: pointer;
 }
 .dropdown-btn{
-width: 142px;
+width: fit-content;
 height: 50px !important;
 flex-shrink: 0;
 border-radius: 16px;
