@@ -9,6 +9,7 @@
         </svg>
       </v-btn>
 
+
       <v-dialog v-model="dialog" width="647" >
         <v-card style="border-radius: 32px; border: 1px solid var(--border, #303A46); background:#12181F; padding: 32px 72px; box-shadow: none">
           <v-card-title>
@@ -20,22 +21,24 @@
                     <img src="/svg/personalcard.svg" style="transform: rotate(-89deg);">
                     </v-btn>
                   </div>
-                
-                 
-                    <v-btn style="border-radius: 16px;  position: absolute; left: 54px; top: 201px ; border: 1px solid #2873FF; background: #12181F;  width: auto !important; margin-top: 20px;  color: #DBE8FF; text-transform: unset; letter-spacing: 0px; transform: rotate(-90deg); padding: 25px; display: flex;">
-                       <div style="display: flex; align-items: center; ">
-                           <span style="margin-right: 12px; font-size: 14px; font-family: poppins; font-weight: 600;">Personal</span> 
-                          <img src="/svg/profile-circle(1).svg"  style="transform: rotateZ(89deg);">
+                    <v-btn class="psl-btn" style="border-radius: 16px; position: absolute; box-shadow: none; left: 54px; top: 201px; border: 1px solid transparent; display: inline-block; background:  linear-gradient(#12181F, #12181F) padding-box, linear-gradient(60deg, #0B6B96, #2873FF) border-box; width: auto !important; margin-top: 20px; color: #DBE8FF; text-transform: unset; letter-spacing: 0px; transform: rotate(-90deg); padding: 25px; display: flex;">
+                       <div style="display: flex; align-items: center;">
+                           <span style="margin-right: 12px; font-size: 14px; font-family: Poppins; font-weight: 600;">Personal</span>
+                          <img src="/svg/profile-circle(1).svg" style="transform: rotateZ(89deg);">
                        </div>
                       </v-btn>
               
                 </div>
 
               <div>
-             
-                   <span class="ma-4" style="background-image: linear-gradient(360deg, #2873FF, #0B6B96); background-clip: text;  -webkit-text-fill-color: transparent ; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Add account</span>
-                   
-             
+                  <div style="display: flex; align-items: center; justify-content: space-between;">
+                      <span class="ma-4" style="background-image: linear-gradient(360deg, #2873FF, #0B6B96); background-clip: text;  -webkit-text-fill-color: transparent ; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Add account</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"  @click="dialog = false" style="cursor: pointer;">
+                        <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.17001 14.8299L14.83 9.16992" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14.83 14.8299L9.17001 9.16992" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>      
+                  </div>
                 <div style=" margin-top: 57px; margin-bottom: 13px; margin-left: 15px ">
                     <span style="color: #969696; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Bank account residence</span>
                     <div>
@@ -127,9 +130,18 @@
       >
         <v-card style="border-radius: 32px; border: 1px solid var(--border, #303A46);  height: 100%; background:#12181F; padding: 32px 70px; box-shadow: none">
           <v-card-title>
-            <div class="d-flex" style="align-items: center;margin-bottom: 52px">
-               <span class="me-5" style="background-image: linear-gradient(360deg, #2873FF, #0B6B96); background-clip: text;  -webkit-text-fill-color: transparent ; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Add account</span>
-                 <img src="/flags/bi.svg" width="30" style="border-radius: 9px">
+            <div class="d-flex" style="align-items: center; justify-content: space-between; margin-bottom: 52px">
+               <div class="d-flex" style="align-items: center;">
+                 <span class="me-5" style="background-image: linear-gradient(360deg, #2873FF, #0B6B96); background-clip: text;  -webkit-text-fill-color: transparent ; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Add account</span>
+                 <img src="/flags/bi.svg" width="24" style="border-radius: 9px">
+                </div>
+                 <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click="dialog2 = false"  style="cursor: pointer;">
+                    <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9.16998 14.8299L14.83 9.16992" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14.83 14.8299L9.16998 9.16992" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                 </div>
             </div>
             <div class="d-flex">
                 <div>
@@ -357,4 +369,15 @@ align-items: center;
 gap: 316px;
 box-shadow: none!important;
 }
+
+::-webkit-input-placeholder {
+color: var(--Gray-Medium-light, #969696)!important;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+
+}
+
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
-     <Header icon="/svg/white-wallet.svg" Menuicon="/svg/Main Menu Icons.svg" icon1="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
-          <v-row no-gutters style="margin-top: 100px;">
+    <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+          <v-row no-gutters style="margin-top: 130px;">
             <v-col cols="3">
               <div class="pa-2 ma-2">
                   <Side-nav/>
@@ -37,11 +37,11 @@
                             </div>
 
                             <div class="d-flex" style="margin-top: 17px ">
-                              <v-btn  class="delete-btn  position-relative me-5" style="width: 96px; height: 40px;">
+                              <v-btn  class="delete-btn  position-relative me-5" style="width: 96px; height: 40px; letter-spacing: 0px; font-family: Manrope;line-height: 140%;">
                                   <img src="/svg/close-circle.svg" style="margin-right: 3px !important"/>
                                   Delete 
                                 </v-btn>
-                              <v-btn  class="edit-btn  position-relative" style="width: 96px; height: 40px;">
+                              <v-btn  class="edit-btn  position-relative" style="width: 96px; height: 40px; letter-spacing: 0px; font-family: Manrope;line-height: 140%;">
                                   <img src="/svg/magicpen.svg" style="margin-right: 3px !important"/>
                                   Edit
                                 </v-btn>
@@ -69,11 +69,11 @@
                             </div>
 
                             <div class="d-flex" style="margin-top: 17px ">
-                              <v-btn  class="delete-btn  position-relative me-5" style="width: 96px; height: 40px;">
+                              <v-btn  class="delete-btn  position-relative me-5" style="width: 96px; height: 40px; letter-spacing: 0px; font-family: Manrope;line-height: 140%;">
                                   <img src="/svg/close-circle.svg" style="margin-right: 3px !important"/>
                                   Delete 
                                 </v-btn>
-                              <v-btn  class="edit-btn  position-relative" style="width: 96px; height: 40px;">
+                              <v-btn  class="edit-btn  position-relative" style="width: 96px; height: 40px; letter-spacing: 0px; font-family: Manrope;line-height: 140%;">
                                   <img src="/svg/magicpen.svg" style="margin-right: 3px !important"/>
                                   Edit
                                 </v-btn>
