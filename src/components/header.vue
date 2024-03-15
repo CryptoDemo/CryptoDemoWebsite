@@ -33,7 +33,16 @@
               v-bind="props">
               <v-img  width="20" class="me-3" :src="flag"/> 
               <span class="me-2 flex-lg-and-up hidden-sm-and-down">{{select}}</span>
-              <v-icon icon="mdi-chevron-down"></v-icon>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                <g clip-path="url(#clip0_7328_44812)">
+                  <path d="M12.0007 13.7951L16.9507 8.74609L18.3647 10.1884L12.0007 16.6797L5.63672 10.1884L7.05072 8.74609L12.0007 13.7951Z" fill="white"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_7328_44812">
+                    <rect width="24" height="24.48" fill="white" transform="translate(0 0.359375)"/>
+                  </clipPath>
+                </defs>
+              </svg>
             </v-btn>
           </template>
 
@@ -153,12 +162,12 @@ margin-right: 15px ;
 cursor: pointer;
 }
 .dropdown-btn{
-width: fit-content;
+width: fit-content !important;
 height: 50px !important;
 flex-shrink: 0;
-border-radius: 16px;
+border-radius: 16px !important;
 border: 1px solid var(--border, #303A46) !important;
-background: #161D26;
+background: #161D26 !important;
 text-transform: unset !important;
 color: white !important;
 }
