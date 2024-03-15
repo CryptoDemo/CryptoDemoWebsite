@@ -157,7 +157,7 @@ width: fit-content;
 height: 50px !important;
 flex-shrink: 0;
 border-radius: 16px;
-border: 1px solid var(--border, #303A46);
+border: 1px solid var(--border, #303A46) !important;
 background: #161D26;
 text-transform: unset !important;
 color: white !important;
