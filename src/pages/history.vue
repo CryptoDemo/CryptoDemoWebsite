@@ -19,7 +19,7 @@
                         <div style="margin-bottom: 34px">
                           <span class="title-text">You are currently reviewing all transactions from the past 30 days.</span>  
                         </div >   
-                         <span class="title-text"  style="font-weight: 500; color: white">Completed Trades:<span class="title-text" style="font-weight: 800; color: white">{{tradePercentage}}</span></span>
+                         <span class="title-text"  style="font-weight: 500; color: white">Completed Trades: <span class="title-text" style="font-weight: 800; color: white">{{tradePercentage}}</span></span>
                             <div class="d-flex" style="justify-content: space-between; margin-top: 36px; align-items: center;">
                                 <span class="title-text" style="font-weight: 500; color: white">Past trades</span>
                                 <div>
@@ -36,9 +36,9 @@
                         <div class="trade-box">
                             <div style="padding-top: 120px">
                                 <img src="/svg/search-status.svg" class="d-flex mx-auto mb-5 icon1"/>
-                                <div class="d-flex" style="justify-content: center">
+                                <div class="d-flex" style="justify-content: center; align-items: center;">
                                     <span class="title-text me-1" style="font-weight: 500;">You are yet to</span>
-                                    <NuxtLink to="#"><span class="title-text" style="color:#2873FF; font-weight: 500;"> start trading</span></NuxtLink>
+                                    <NuxtLink to="#"><span class="grad-text"> start trading</span></NuxtLink>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,18 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 </script>
 
 <style scoped>
-
+.grad-text{
+background-image: linear-gradient(360deg, #2873FF, #0B6B96); 
+background-clip: text;  
+-webkit-text-fill-color: transparent ; 
+font-family: Poppins; 
+font-size: 16px; 
+font-style: normal; 
+font-weight: 500; 
+line-height: normal;
+display: flex;
+align-items: center;
+}
 .title-text{
 color: var(--Gray-Medium-light, #969696);
 font-family: Manrope;

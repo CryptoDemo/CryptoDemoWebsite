@@ -28,10 +28,8 @@
      
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn class="dropdown-btn me-5"
-             
-              v-bind="props">
-              <v-img  width="20" class="me-3" :src="flag"/> 
+            <v-btn class="dropdown-btn me-5" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 4px;">
+              <v-img  width="24" class="me-3" :src="flag"/> 
               <span class="me-2 flex-lg-and-up hidden-sm-and-down">{{select}}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                 <g clip-path="url(#clip0_7328_44812)">
@@ -82,7 +80,7 @@
               <path d="M20.12 14.49L19.12 12.83C18.91 12.46 18.72 11.76 18.72 11.35V8.82C18.72 6.47 17.34 4.44 15.35 3.49C14.83 2.57 13.87 2 12.77 2C11.68 2 10.7 2.59 10.18 3.52C8.23003 4.49 6.88003 6.5 6.88003 8.82V11.35C6.88003 11.76 6.69003 12.46 6.48003 12.82L5.47003 14.49C5.07003 15.16 4.98003 15.9 5.23003 16.58C5.47003 17.25 6.04003 17.77 6.78003 18.02C8.72003 18.68 10.76 19 12.8 19C14.84 19 16.88 18.68 18.82 18.03C19.52 17.8 20.06 17.27 20.32 16.58C20.58 15.89 20.51 15.13 20.12 14.49Z" fill="#FAFAFA"/>
               <path d="M15.61 20.01C15.19 21.17 14.08 22 12.78 22C11.99 22 11.21 21.68 10.66 21.11C10.34 20.81 10.1 20.41 9.96002 20C10.09 20.02 10.22 20.03 10.36 20.05C10.59 20.08 10.83 20.11 11.07 20.13C11.64 20.18 12.22 20.21 12.8 20.21C13.37 20.21 13.94 20.18 14.5 20.13C14.71 20.11 14.92 20.1 15.12 20.07C15.28 20.05 15.44 20.03 15.61 20.01Z" fill="#FAFAFA"/>
             </svg>  
-            <span style="position: absolute; background: #FF3E46; width: 20px; border-radius: 6px; right: 9px; top: 9px; font-family: manrope;">8</span>
+            <span style="position: absolute; background: #FF3E46; width: 20px; height: 21px;  border-radius: 6px; right: 9px; top: 12px; font-family: manrope;">8</span>
           </v-btn>
           <span class="nav-icon-text" style="margin-right: 13px ">Notification</span>     
       </div>
@@ -174,6 +172,7 @@ border-radius: 20px !important;
 background: #161D26 !important;
 text-transform: unset !important;
 color: white !important;
+letter-spacing: 0px;
 }
 .v-list {
 background: #12181F!important;

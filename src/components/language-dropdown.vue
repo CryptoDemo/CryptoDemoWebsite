@@ -3,7 +3,7 @@
       <v-menu :Country="Country">
           <template v-slot:activator="{ props }">
             <v-btn                       
-             :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"
+             :class="isDark ? 'dropdown-btn2':'dropdown-btn2-light'"
               dark
               v-bind="props">
                <v-img  width="30" class="me-3" :src="flag"/> 
@@ -53,7 +53,7 @@ const locations = [
 </script>
 
 <style scoped>
-.dropdown-btn{
+.dropdown-btn2{
 display: flex;
 width: 172px;
 height: 48px !important;
@@ -68,7 +68,7 @@ text-transform: unset !important;
 color: white !important;
 position: relative;
 }
-.dropdown-btn-light{
+.dropdown-btn2-light{
 display: flex;
 width: 172px;
 height: 48px !important;

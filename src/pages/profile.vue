@@ -115,9 +115,9 @@
                                 
                             <v-card-actions>
                               <NuxtLink to="#"><span class="verify-text">
-                                {{ variant.status }}
-                                <span style="color: #646464;">{{ variant.status1 }}</span>
-                              </span></NuxtLink>
+                                {{ variant.status }}</span>
+                                <span style="color: #646464 !important; right: 0; position: absolute;">{{ variant.status1 }}</span>
+                              </NuxtLink>
                             </v-card-actions>
                         </v-card>
                    </v-col>
@@ -148,7 +148,9 @@
                           <span class="slt">{{select}}</span> 
                           <span class="small-text">{{coin}}</span> 
                           </div>
-                          <v-icon icon="mdi-chevron-down"  color="#E0E4F5" style="position: absolute; display: flex; right: 15px;"></v-icon>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;">
+                              <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" fill="#E0E4F5"/>
+                          </svg>
                         </v-btn>
                       </template>
 
@@ -240,9 +242,9 @@
                     <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
                         <div>
                             <div style="padding-top: 35px;">
-                            <span class="username">UID : <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Ogadinma2024</span></span>
+                            <span class="username" style="font-size: 16px;">UID : <span class="grad-text">Ogadinma2024</span></span>
                             <div style="display: grid">
-                                <span class="username">Feb 5, 2024</span>
+                                <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
                                 <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
                             </div>
                             </div>
@@ -259,7 +261,7 @@
                     </div>
 
                     <div  style="margin-top: 35px">
-                        <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">View Offer</span>
+                        <span class="grad-text">View Offer</span>
                     </div>
                 </div>
 
@@ -272,9 +274,9 @@
                     <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
                         <div>
                             <div style="padding-top: 35px;">
-                            <span class="username">UID : <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Ogadinma2024</span></span>
+                            <span class="username" style="font-size: 16px;">UID : <span class="grad-text">Ogadinma2024</span></span>
                             <div style="display: grid">
-                                <span class="username">Feb 5, 2024</span>
+                                <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
                                 <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
                             </div>
                             </div>
@@ -291,7 +293,7 @@
                     </div>
 
                     <div  style="margin-top: 35px">
-                        <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">View Offer</span>
+                        <span class="grad-text">View Offer</span>
                     </div>
                 </div>
 
@@ -346,6 +348,17 @@ border-radius: 20px;
 background: var(--secondary-background, #12181F);
 height: 130px;
 flex-shrink: 0;
+}
+
+.grad-text{
+  background-image: linear-gradient(360deg, #2873FF, #0B6B96); 
+  background-clip: text;  
+  -webkit-text-fill-color: transparent ; 
+  font-family: Poppins; 
+  font-size: 16px; 
+  font-style: normal; 
+  font-weight: 600; 
+  line-height: normal;
 }
 .acct-level{
 height: 130px;
@@ -450,7 +463,9 @@ justify-content: center;
 
 }
 .verify-text{
-color: var(--Primary-100, #2873FF);
+background-image: linear-gradient(360deg, #2873FF, #0B6B96); 
+background-clip: text;  
+-webkit-text-fill-color: transparent ; 
 font-feature-settings: 'clig' off, 'liga' off;
 font-family: Poppins;
 font-size: 16px;
