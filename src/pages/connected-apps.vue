@@ -1,16 +1,17 @@
 <template>
   <div>
-          <v-row no-gutters style="overflow:;">
+    <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+          <v-row no-gutters style="margin-top: 130px;">
             <v-col cols="3">
               <div class="pa-2 ma-2">
-                          <!-- //side nav here../ -->
+                  <Side-nav/>
               </div>
             </v-col>
 
             <v-col cols="9" style="margin-bottom: 194px">
                 <div class="pa-2 ma-2">
                     
-                    <div class="acct-settings" style="display: flex; justify-content: space-between; margin-bottom: 47px">    
+                    <div class="acct-settings" style="display: flex; justify-content: space-between; margin-bottom: 32px">    
                         <span class="acct-text"> Connected Apps and Websites</span>
                         <span class="mail-text">vaststudiosng@gmail.com</span>  
                     </div>

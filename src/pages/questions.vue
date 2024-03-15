@@ -1,22 +1,22 @@
 <template>
   <div>
-     <Header icon="/svg/white-wallet.svg" Menuicon="/svg/Main Menu Icons.svg" icon1="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
-          <v-row no-gutters style="margin-top: 90px;">
+     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+          <v-row no-gutters style="margin-top: 130px;">
             <v-col cols="3">
               <div class="pa-2 ma-2">
-                          <!-- //side nav here../ -->
+                  <Side-nav/>
               </div>
             </v-col>
 
             <v-col cols="9" style="margin-bottom: 194px">
                 <div class="pa-2 ma-2">
                     
-                    <div class="acct-settings" style="display: flex; justify-content: space-between; margin-bottom: 47px">    
+                    <div class="acct-settings" style="display: flex; justify-content: space-between; margin-bottom: 8px">    
                         <span class="acct-text"> Security Questions</span>
                         <span class="mail-text">vaststudiosng@gmail.com</span>  
                     </div>
- 
-                    <section style="width: 938px;">
+                    <span style="color: #969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: 28px;">Please keep these answers in mind as they will assist us in verifying your identity.</span>
+                    <section style="width: 938px; margin-top: 34px;">
                          <v-expansion-panels variant="popout" style="display: contents !important; ">
                                 <div v-for=" (FAQs, i ) in FAQ" :key="i" >
                                         <v-expansion-panel  :class="isDark ? 'expansion-panel1':'expansion-panel1-light'"  >
@@ -37,8 +37,10 @@
                                             <input type="text" class="response-input" placeholder="Your answer here" width="100%" style="height: 57px;"/>
                                     </div>
                         </v-expansion-panels>
-                                    <v-btn class="primary-btn1" style="font-weight: 600; font-size: 16px;" width="224px">Save Answers</v-btn>
-                    </section>
+                                <div style="margin-top: 42px;">
+                                    <v-btn class="primary-btn1" style="font-weight: 600; font-size: 16px; color: #D8D8D8; font-family: Manrope;" width="224px">Save Answers</v-btn>
+                                </div>
+                   </section>
                         
                         
                 </div>
@@ -86,12 +88,11 @@ border-radius: 16px !important;
 background: var(--secondary-background, #12181F)!important;
 display: flex;
 width: 938px;
-/* padding: 12px 40px; */
 flex-direction: column;
 align-items: flex-start;
 gap: 24px;
 align-self: stretch;
-margin-bottom: 16px;
+margin-bottom: 22px;
 }
 
 .expansion-panel1-light{
@@ -143,7 +144,7 @@ margin-bottom: 16px;
 }
 
 ::-webkit-input-placeholder {
-color: var(--Gray-Medium-light, #969696);
+  color: var(--Gray-Medium-light, #969696) !important;
 font-family: Manrope;
 font-size: 16px;
 font-style: normal;

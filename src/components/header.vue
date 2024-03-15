@@ -209,4 +209,13 @@ flex-direction: column;
 justify-content: center;
 flex-shrink: 0;
 }
+
+::-webkit-input-placeholder {
+color: #92929D !important;
+font-family: Poppins !important;
+font-size: 14px !important;
+font-style: normal;
+font-weight: 400 !important;
+line-height: normal;
+  }
 </style>
