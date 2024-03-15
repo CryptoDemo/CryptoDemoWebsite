@@ -1,10 +1,10 @@
 <template>
   <div>
-     <Header/>
-          <v-row no-gutters style="margin-top: 90px;">
+    <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+          <v-row no-gutters style="margin-top: 130px;">
             <v-col cols="3">
               <div class="pa-2 ma-2">
-                          <!-- //side nav here../ -->
+                  <Side-nav/>
               </div>
             </v-col>
 
@@ -32,9 +32,8 @@
                           <v-btn :class="{ 'toggled': login === 'toggled', 'primarybtn': login === 'initial1' }"
                            @click="toggleState1" width="100px"> {{ login === 'initial1' ? 'Enable' : 'Disable' }}
                           </v-btn>
-
                       </div>
-                      <div style="margin-top: 23px!important; display: flex; justify-content: space-between;">
+                      <div style="margin-top: 23px !important; display: flex; justify-content: space-between;">
                           <div class="d-flex">
                                 <img src="/svg/sms (2).svg" class="me-4" alt="SMS Icon" style="display: flex; align-self: start;"/>
                               <div style="display: grid;">
@@ -80,17 +79,17 @@
                       
                         </div>
                     <div style="margin-top: 42px">
-                        <span>Forgot Password</span>
+                        <span class="pswrd-mgt" style="font-weight: 700;">Change Password</span>
                         <div class="d-flex" style="align-items: center;">
                             <Password class=" me-4" placeholder="Enter current password"/>
-                            <NuxtLink to="#"><span class="second-text" style="color: var(--Primary-100, #2873FF); padding-top: 19px;">Forgot password</span></NuxtLink>
+                            <NuxtLink to="#"><span class="second-text" style="color: var(--Primary-100, #2873FF); padding-top: 25px;">Forgot password</span></NuxtLink>
                         </div>
                         <div class="d-flex">
                             <Password class="me-5" placeholder="Enter new password"/>  <Password class="me-7" placeholder="confirm new password"/>
                             <v-btn class="primarybtn mt-5" style=" align-self: center;">Change Password</v-btn>
                         </div>
                       <div  style="display: inline-flex;">
-                          <v-checkbox color="primary"></v-checkbox>
+                          <v-checkbox base-color="#fff" color="white" ></v-checkbox>
                           <span style="align-self: flex-start; margin-top: 16px; font-weight: 400;color: var(--Gray-Light, #D8D8D8); font-family: Poppins; font-size: 14px;">Log out of all active sessions</span>
                       </div>
                     </div>
@@ -137,7 +136,7 @@ const toggleState = () => {
 
 
 </script>
-<style scoped>
+<style>
 
 .mail-text{
   color: var(--Gray-Medium-light, #969696);
@@ -222,8 +221,20 @@ text-transform: unset !important;
 letter-spacing: 0px;
 }
 .mdi-checkbox-blank-outline::before {
-    content: "\F0131";
+    content: "\F0131" !important;
     background: white !important;
-    border-radius: 8px;
+    border-radius: 8px !important;
+    fill: white;
+}
+
+::-webkit-input-placeholder {
+color: #808195!important;
+font-size: 0.875rem !important;
+font-style: normal;
+font-size: 14px;
+font-weight: 400;
+line-height: normal;
+display: flex !important;
+width:190px !important;
 }
 </style>

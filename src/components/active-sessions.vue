@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="margin-bottom: 13px!important">
-      <span>Active sessions</span>
+      <span class="pswrd-mgt" style="font-weight: 700;">Active sessions</span>
     </div>
        <v-table style="display: grid! important; margin-bottom: 32px">
         <thead>
@@ -73,7 +73,7 @@
               </div>
 
             <div style="margin-bottom: 13px!important; margin-top:48px">
-                <span>Activity</span>
+                <span class="pswrd-mgt" style="font-weight: 700;">Activity</span>
              </div>
               <v-table  class="mt-5" style="display: grid! important; margin-bottom: 32px" >
                 <thead>
@@ -125,7 +125,7 @@
                       <td><span class="browser-txt">{{item.Browser}}</span></td>
                       <td><span class="browser-txt">{{item.IPAddress}}</span></td>
                       <td><span class="browser-txt">{{item.Location}}</span></td>
-                      <td><v-btn class="" style="width: 91px; height: 40px; border-radius: 12px; background: var(--Primary-60, #89B2FF);color: #165CDD; fomt-weight: 700; font-family: manrope;font-size: 12px; text-transform: unset" >{{item.SignedIn}}</v-btn></td>
+                      <td><v-btn class="" style="width: 91px; height: 40px; border-radius: 12px; background: var(--Primary-60, #89B2FF);color: #165CDD; font-weight: 700; font-family: manrope;font-size: 12px; text-transform: unset" >{{item.SignedIn}}</v-btn></td>
                     <!-- <td></td> -->
                       
                     

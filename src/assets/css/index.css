@@ -10,7 +10,8 @@ font-style: normal;
 font-size: 14px;
 font-weight: 400;
 line-height: normal;
-  }
+
+}
 .section {
   background: var(--Dark, #161D26);
   height: 100%;
