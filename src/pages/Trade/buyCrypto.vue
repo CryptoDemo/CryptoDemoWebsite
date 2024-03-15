@@ -304,6 +304,7 @@ line-height: normal;
 text-transform: unset;
 letter-spacing:0px;
 }
+
 .coin-btn:hover{
 border-radius: 16px;
 background: rgba(40, 115, 255, 0.10) !important;

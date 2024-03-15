@@ -119,18 +119,18 @@
  const caption =  ref('BTC')
  
  const coin = [
-                   {
-                     icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
-                   },
-                   {
-                     icon:'/svg/tron.svg', title:"Tron", caption:'TRX'
-                   },
-                   {
-                     icon:'/svg/binance.svg', title:"Binance", caption:'BTC'
-                   },
-                   {
-                     icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
-                   }
+    {
+      icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
+    },
+    {
+      icon:'/svg/tron.svg', title:"Tron", caption:'TRX'
+    },
+    {
+      icon:'/svg/binance.svg', title:"Binance", caption:'BTC'
+    },
+    {
+      icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
+    }
  ];
  </script>
  

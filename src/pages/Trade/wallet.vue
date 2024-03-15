@@ -1,10 +1,10 @@
 <template>
     <div>
        <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
-            <v-row no-gutters style="margin-top: 100px">
+            <v-row no-gutters style="margin-top: 130px">
                <v-col cols="3">
-                  <div class="pa-2 ma-2">
-                            <!-- //side nav here../ -->
+                  <div class="pa-2 ma-2 mt-5">
+                    <Wallet-nav/>
                    </div>
               </v-col>
   
@@ -12,7 +12,7 @@
                 <div class="pa-2 ma-2">
                    <span style="color: #FFF;font-family: Poppins; font-size: 32px; font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
                     
-                   <div style="border-radius: 24px; border: 1px solid  #303A46; padding: 30px; width: 930px">
+                   <div style="border-radius: 24px; border: 1px solid  #303A46; padding: 30px; width: 930px; margin-top: 28px;">
                     <v-table style="display: grid! important; background: inherit;">
                       <thead>
                         <tr style="display: flex; margin-bottom: 30px;">
@@ -95,7 +95,7 @@
                       <span style="color: #D8D8D8; font-family: Poppins; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Latest transactions</span>
                   </div>
 
-                  <div style="display: flex; justify-content: space-between; width: 930px;">
+                  <div style="display: flex; justify-content: space-between; width: 930px; margin-bottom: 284px;">
                     <span>1</span>
                       <div style="display: flex;">
                         <img src="/svg/btc.svg" class="me-3"/>

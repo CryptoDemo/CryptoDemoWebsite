@@ -1,97 +1,35 @@
 <template>
   <div>
-      <Header/>
-        <v-row no-gutters style="margin-top: 100px">
-            <v-col cols="8">
-              <div class="pa-1 ma-1">
-                <div class="profile" style="padding: 30px 0px ">
-
-                  <div class="d-flex" style="justify-content: space-around;">
-                    <div class="d-flex">
-                         
-                      <img src="/svg/Image (1).svg" class="me-3" alt="avatar"/>
-                        <div>
-                          <span class="username mt-5 d-flex">UID : Ogadinma2024</span>
-                        </div>
-                    </div>
-                    <div class="d-flex">
-                     <div class="d-flex me-4" style="color:#2873FF; font-family: Poppins; font-size: 16px; align-self: center; font-style: normal; font-weight: 700; line-height: 160%;"><img src="/svg/shield.svg" style="margin-right: 3px !important"/>Trust</div>
-                     <div class="d-flex" style="color: #F65556; font-family: Poppins; align-self: center; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal; "><img src="/svg/forbidden.svg" style="margin-right: 3px !important"/>Block</div>
-                    </div>
-                    <div class="d-flex" style="align-items: center;">
-                      <img src="/svg/heart-remove.svg" alt="icon">
-                      <span class="user-location">0</span>
-                    </div>
-                      <div class="d-flex" style="align-items: center;">
-                          <img src="/svg/heart-tick.svg" alt="icon">
-                            <span class="user-location">0</span>
-                      </div>
-                  </div>
-
-                </div>
-              </div>
-            </v-col>
-            <v-col>
-              <div class="pa-1 ma-1">
-                <div class="acct-level">
-                  <div class="d-flex" style="padding: 45px; justify-content: center"> 
-                      <img src="/svg/btc.svg" class="me-3" alt="dashboard-icon"> 
-                      <span class="acct-level-text">Send Bitcoin</span>
-                  </div>
-                </div>
-              </div>
-            </v-col>
-          </v-row>
-
+    <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+              
         
-          <v-row no-gutters>
+          <v-row no-gutters style="margin-top: 130px; margin-bottom: 338px">
             <v-col cols="3">
               <div class="pa-2 ma-2">
-                          <!-- //side nav here../ -->
+                <Sd-nav1/>
               </div>
             </v-col>
 
             <v-col>
               <div class="pa-2 ma-2">
-                  <v-row align="center" justify="start" style="gap: 16px; margin-bottom: 32px !important">
-                    <v-col v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="auto">
-                        <v-card class="mx-auto" max-width="301" height="140px" :variant="variant" >
-                            <v-card-item>
-                              <div>
-                                <div class="d-flex">
-                                  <img :src="variant.image" class="me-3"/>
-                                  <span class="card-text">{{ variant.Title }}</span>
-                                  <span class="card-text">{{ variant.Title1 }}</span>
-                                </div>
-                                
-                                <div class="textCaption" style="color: var(--Gray-Medium-dark, #646464);margin-top: 8px; font-size: 14px;">{{variant.textCaption}}</div>
-                              </div>
-                            </v-card-item>
-                                
-                            <v-card-actions>
-                              <NuxtLink to="#"><span class="verify-text">
-                                Verified
-                              </span></NuxtLink>
-                            </v-card-actions>
-                        </v-card>
-                   </v-col>
-                   
-                  </v-row>
+                <div class="acct-settings" style="display: flex; justify-content: space-between; margin-bottom: 74px">    
+                      <span class="partners-text"> Complete verification to access Demo products and services.</span>
+                      <div> <v-btn class="primary-btn" style="height: 37px!important; width: 120px; border-radius: 8px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);text-transform: capitalize; letter-spacing: 0px">Verify</v-btn> </div>
+                  </div>
 
 
-                  <span class="user-location " >Active offers</span>
         
-                <div class="mt-5">
+                  <div class="mt-5">
                       <v-row>
                       <div class="d-flex">
                         <div class="d-flex">
                           <v-btn class=" me-4 mb-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
                               <span style="position: relative; left: -18px">Crypto purchased</span>
-                            <span style="position: relative; right: -18px; font-weight: 800;">0</span>
+                            <span style="position: relative; right: -18px; font-weight: 800;">2</span>
                           </v-btn>
                           <v-btn  :class="PurchaseCrypto ? 'inactive-btn': 'active-btn'"  @click.prevent="PurchaseCrypto=false">
                               <span style="position: relative; left:-37px">Crypto sold </span>
-                              <span style="position: relative; right: -32px; font-weight: 800;">0</span>
+                              <span style="position: relative; right: -32px; font-weight: 800;">2</span>
                           </v-btn>
                         </div>
 
@@ -134,7 +72,7 @@
                         <div style="margin-top: 32px;">
                             <div style="display: flex; margin-bottom: 14px">
                                  <span class="me-3">Esewa</span>
-                                 <img src="/flags/do.svg" width="25px"/>
+                                 <img src="/flags/do.svg" width="24px" style="border-radius: 10px;"/>
                             </div>
                             <div style="display: grid">
                                 <span class="mb-3" style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">Bank Transfer</span>
@@ -162,12 +100,12 @@
                                 <span class="mb-3" style="color: #fff;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal; text-align-last: right;">62,797,850.5 NGN</span>
                                 <div class="d-flex mb-3" style="justify-content: end;">
                                     <img src="/svg/btc.svg" class="me-3" width="20px"/> 
-                                    <span  style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600; line-height: 150%;">BTC</span>
+                                    <span class="me-1" style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600; line-height: 150%;">BTC</span>
                                     <img src="/svg/arrow-up.svg" class="mb-1 me-1"/>
                                     <span style="color: #22C36B; font-size: 12px; font-style: normal; font-weight: 400;line-height: 150%;">-10%</span>
                                 </div>
                             <div style="display:flex; justify-content: end;">
-                                <v-btn class="smaller-btn" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">{{ PurchaseCrypto ? 'Buy Now' : 'Sell Now'}}</v-btn>
+                                <v-btn class="smaller-btn" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">{{ PurchaseCrypto? 'Buy Now' : 'Sell Now'}}</v-btn>
                     
                             </div>
                             </div>
@@ -179,7 +117,7 @@
                         <div style="margin-top: 32px;">
                             <div style="display: flex; margin-bottom: 14px">
                                  <span class="me-3">Esewa</span>
-                                 <img src="/flags/dz.svg" width="25px"/>
+                                 <img src="/flags/dz.svg" width="24px" style="border-radius: 10px;"/>
                             </div>
                             <div style="display: grid">
                                 <span class="mb-3" style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">Bank Transfer</span>
@@ -220,7 +158,7 @@
 
 
                    
-              </div>
+                 </div>
 
               </div>
                         
@@ -428,5 +366,13 @@ font-weight: 400;
 line-height: normal;
 text-transform: unset;
 letter-spacing:0px;
+}
+.partners-text{
+color: var(--Gray-Medium-dark, #646464);
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
 }
 </style>

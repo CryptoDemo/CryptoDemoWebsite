@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Header/>
-          <v-row no-gutters style="margin-top:70px;">
+    <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+          <v-row no-gutters style="margin-top:130px; margin-bottom: 444px;">
             <v-col cols="3">
               <div class="pa-2 ma-2">
-                          <!-- //side nav here../ -->
+                <Sd-nav1/>
               </div>
             </v-col>
 
@@ -25,10 +25,10 @@
                         <span class="share-link">Share the link, referral code for registration, or scan barcode</span>
 
                         <div style="display: flex; justify-content: center;">
-                          <v-text-field class="copy-link-box"  variant="" style="align-content: baseline;">
+                          <div class="copy-link-box px-4"  variant="" style="align-content: baseline;">
                             <span class="referral-link">https://demo.com/register?r=nxYXDm8</span>
-                            <img src="/svg/copy.svg" style="position: relative; margin-left: 39px "/>
-                          </v-text-field>
+                            <v-btn @click="copyURL" style=" background: inherit !important; width: 10px; box-shadow: none;"><img src="/svg/copy.svg" style="position: relative;"/></v-btn>
+                          </div>
                         </div>
 
                         </div>
@@ -45,6 +45,15 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
+const currentURL = useRoute().fullPath; 
+
+const copyURL =() =>{
+  
+    alert('Copied!');
+ 
+}
 </script>
 
 <style scoped>
@@ -64,6 +73,11 @@ background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
 background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
+font-family: Poppins;
+font-size: 24px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%; /* 28.8px */
 }
 
 .share-link{
@@ -78,7 +92,7 @@ line-height: 140%; /* 17.675px */
 
 .copy-link-box{
 border-radius: 13.527px;
-border: 0.902px solid #2A3340;
+border: 0.902px solid #2f3946;
 background: #10192D;
 display: flex;
 align-items: center;
@@ -99,5 +113,14 @@ display: -webkit-box;
 width: 239px;
 -webkit-box-orient: vertical;
 -webkit-line-clamp: 1;
+}
+
+.partners-text{
+color: var(--Gray-Medium-dark, #646464);
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
 }
 </style>

@@ -1,9 +1,10 @@
 <template>
   <div>
-          <v-row no-gutters style="margin-top: 80px;">
+    <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+          <v-row no-gutters style="margin-top: 130px;">
             <v-col cols="3">
               <div class="pa-2 ma-2">
-                          <!-- //side nav here../ -->
+                <Sd-nav1/>
               </div>
             </v-col>
 
@@ -43,7 +44,7 @@
                                 </th>
 
                                 <th style="display: flex; align-items: center; align-self: center; position: relative;">
-                                    <span class="table-header-text1" style="margin-left: 85px ">Min-Max amount</span>
+                                    <span class="table-header-text1" style="margin-left: 80px ">Min-Max amount</span>
                                 </th>
 
                                 <th style="display: flex; align-items: center; align-self: center; position: relative;">
@@ -64,11 +65,11 @@
                             </thead>
                     
                             <tbody>
-                        <tr v-for="item in Tradepartners" :key="item.name" style="display: flex; justify-content: unset; align-items: baseline; ">
+                        <tr v-for="item in Tradepartners" :key="item.name" style="display: flex; justify-content: unset; align-items: baseline; margin-bottom: 5px;">
                     
                         <td><span class="smaller-txt" style="margin-left: 7px; font-size: 16px; font-weight: 700;">{{item.Rate}}</span></td>
-                        <td><span class="smaller-txt me-2" style="font-size: 16px; font-weight: 700;">{{item.MinMaxamount}}</span></td>
-                        <td><div class="d-flex me-10"><span class="smaller-txt me-3" style="font-size: 16px; font-weight: 700;">{{item.Paymentmethod}}</span> <img :src="item.flag" width="30px" style="position: relative; top: -5px; border-radius: 10px "/></div></td>
+                        <td><span class="smaller-txt me-4" style="font-size: 16px; font-weight: 700;">{{item.MinMaxamount}}<span style="font-weight:600; color: #D8D8D8; font-size: 12px;;">{{ item.denomination }}</span></span></td>
+                        <td><div class="d-flex me-10"><span class="smaller-txt me-3" style="font-size: 16px; font-weight: 700;">{{item.Paymentmethod}}</span> <img :src="item.flag" width="24px" style="position: relative; top: 1px; border-radius: 10px; display: flex;"/></div></td>
                         <td><span class="smaller-txt me-10" style="position: relative; font-size: 16px; font-weight: 700;">{{item.offerviews}}</span></td>
                         <div>
                         <td><div class="d-flex me-3"> <v-btn  class="edit-btn  position-relative" style="width: 96px; height: 40px; top: 6px"><img src="/svg/magicpen.svg" style="margin-right: 3px !important"/>
@@ -82,7 +83,7 @@
                          </v-table>
                         
                 <div style="margin-bottom: 302px;">
-                    <v-btn style="display: flex; margin-left: auto; text-transform: unset; letter-spacing: 0px; padding: 8px 40px; justify-content: center; align-items: center; gap: 10px; border-radius: 8px;background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Create Offer</v-btn>
+                    <v-btn style="display: flex; margin-left: auto; height: 37px; text-transform: unset; letter-spacing: 0px; padding: 8px 40px; justify-content: center; align-items: center; gap: 10px; border-radius: 8px;background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Create Offer</v-btn>
                 </div>
               </div>
             </v-col>
@@ -101,7 +102,8 @@ const  Tradepartners = [
     {
   
     Rate: "62,797,850.5 NGN",
-    MinMaxamount: "14,950 - 15,950 NGN",
+    MinMaxamount: "14,950 - 15,950",
+    denomination:"NGN",
     Paymentmethod: "Bank Transfer",
     flag:'/flags/au.svg',
     offerviews: '0',
@@ -114,9 +116,7 @@ const  Tradepartners = [
 </script>
 
 <style >
-.v-table {
-    --v-table-header-height: 25px !important;
-}
+
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
     border: none !important;
     color: var(--Gray-Medium-light, #969696);
@@ -130,7 +130,7 @@ const  Tradepartners = [
 .v-table {
     background: inherit !important;
     width: 940px;
-  
+    height: fit-content !important;
 }
 .v-table--density-default > .v-table__wrapper > table > thead > tr > th, .v-table--density-default > .v-table__wrapper > table > tfoot > tr > th {
     border: none !important;

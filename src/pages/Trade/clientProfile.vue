@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header/>
-        <v-row no-gutters style="margin-top: 100px;">
+    <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+        <v-row no-gutters style="margin-top: 130px;">
             <v-col cols="8">
               <div class="pa-1 ma-1">
                 <div class="profile" style="padding: 30px 0px ">
@@ -14,17 +14,18 @@
                         </div>
                     </div>
                     <div class="d-flex">
-                     <div class="d-flex me-4" style="color:#2873FF; font-family: Poppins; font-size: 16px; align-self: center; font-style: normal; font-weight: 700; line-height: 160%;"><img src="/svg/shield.svg" style="margin-right: 3px !important"/>Trust</div>
-                     <div class="d-flex" style="color: #F65556; font-family: Poppins; align-self: center; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal; "><img src="/svg/forbidden.svg" style="margin-right: 3px !important"/>Block</div>
+                     <v-btn class="d-flex  grad-text" style="font-weight: 700; line-height: 160%; align-self: center; box-shadow: none; letter-spacing: 0px; text-transform: capitalize;"><img src="/svg/shield.svg" style="margin-right: 3px !important"/>Trust</v-btn>
+                     <v-btn class="d-flex" style="color: #F65556; font-family: Poppins; align-self: center; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal; box-shadow: none; letter-spacing: 0px; text-transform: capitalize; background: inherit;"><img src="/svg/forbidden.svg" style="margin-right: 3px !important"/>Block</v-btn>
                     </div>
-                    <div class="d-flex" style="align-items: center;">
-                      <img src="/svg/heart-remove.svg" alt="icon">
-                      <span class="user-location">0</span>
-                    </div>
-                      <div class="d-flex" style="align-items: center;">
+
+                    <v-btn class="d-flex" style="align-self: center; box-shadow: none; letter-spacing: 0px; background: inherit; height: fit-content;">
                           <img src="/svg/heart-tick.svg" alt="icon">
                             <span class="user-location">0</span>
-                      </div>
+                    </v-btn>
+                    <v-btn class="d-flex" style="align-self: center; height: fit-content; background: inherit; box-shadow: none;">
+                      <img src="/svg/heart-remove.svg" alt="icon">
+                      <span class="user-location">0</span>
+                    </v-btn>
                   </div>
 
                 </div>
@@ -46,7 +47,36 @@
           <v-row no-gutters>
             <v-col cols="3">
               <div class="pa-2 ma-2">
-                          <!-- //side nav here../ -->
+                <div class="sd-nav1">
+                  <div style="border-bottom: 1px solid var(--border, #303A46);">
+                    <div style="padding: 20px 24px;">
+                      <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
+                      </div>
+                      </div>
+                      <div v-for="(item, i) in navigation" :key="i">
+                        <div style="display: flex; justify-content: space-between;">
+                            <v-btn class="nav-options"> 
+                              <img :src="item.icon" class="me-3"/>
+                              {{ item.title }}
+
+                              <div style="align-items: center; display: flex; position: absolute; right: 20px;">
+                                
+                                <img :src="item.flag" width="25" class="me-3" style="border-radius: 9px;"/>
+                                <span >{{ item.country }}</span>
+                                <span>{{ item.type }}</span>
+                                <span>{{ item.number }}</span>
+                                
+                              </div>
+
+                            </v-btn>
+                        </div>
+                      </div>
+                      <div style="border-top: 1px solid var(--border, #303A46);">
+                        <div style="padding: 20px 24px;">
+                        <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
+                        </div>
+                      </div>
+                  </div>
               </div>
             </v-col>
 
@@ -233,7 +263,7 @@
                             <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
                                 <div>
                                     <div style="padding-top: 35px;">
-                                    <span class="username">UID : <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Ogadinma2024</span></span>
+                                    <span class="username">UID : <span class="grad-text">Ogadinma2024</span></span>
                                     <div style="display: grid">
                                         <span class="username">Feb 5, 2024</span>
                                         <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
@@ -252,7 +282,7 @@
                             </div>
 
                             <div  style="margin-top: 35px">
-                                <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">View Offer</span>
+                                <span class="grad-text" style="font-weight: 700;">View Offer</span>
                             </div>
                         </div>
 
@@ -265,7 +295,7 @@
                             <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
                                 <div>
                                     <div style="padding-top: 35px;">
-                                    <span class="username">UID : <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Ogadinma2024</span></span>
+                                    <span class="username">UID : <span class="grad-text">Ogadinma2024</span></span>
                                     <div style="display: grid">
                                         <span class="username">Feb 5, 2024</span>
                                         <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
@@ -284,7 +314,7 @@
                             </div>
 
                             <div  style="margin-top: 35px">
-                                <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">View Offer</span>
+                              <span class="grad-text" style="font-weight: 700;">View Offer</span>
                             </div>
                         </div>
 
@@ -305,9 +335,9 @@ import { ref } from 'vue'
 
 const PurchaseCrypto = ref(true);
 const profileCards = [
-                        {image:'/svg/call.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number' },
-                        {image:'/svg/sms.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.' }, 
-                        {image:'/svg/profile-circle.svg', Title:'I.D. not verified', textCaption: 'You have verified your phone I.D.'}, 
+    {image:'/svg/call.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number' },
+    {image:'/svg/sms.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.' }, 
+    {image:'/svg/profile-circle.svg', Title:'I.D. not verified', textCaption: 'You have verified your phone I.D.'}, 
                         
 ];
 
@@ -315,14 +345,24 @@ const select =ref("All Cryptocurrency")
 
 
 const allCoins = [
-        { title: 'Tron', coinText:"TRX",  image:"/svg/tron.svg" },
-        { title: 'Tether', coinText:"USDT", image:"/svg/tether.svg" },
-        { title: 'Binance',  coinText:"BNN", image:"/svg/binance.svg"},
-        { title: 'Ethereum',  coinText:"ETH", image:"/svg/btc.svg"},
+    { title: 'Tron', coinText:"TRX",  image:"/svg/tron.svg" },
+    { title: 'Tether', coinText:"USDT", image:"/svg/tether.svg" },
+    { title: 'Binance',  coinText:"BNN", image:"/svg/binance.svg"},
+    { title: 'Ethereum',  coinText:"ETH", image:"/svg/btc.svg"},
         
-      ];
+  ];
 
-  
+  const navigation = [
+  {icon:'/svg/grad-location.svg', title: 'location', link:'/profile', flag:'/flags/ag.svg', country:'Argentina'},
+  {icon:'/svg/globe.svg', title: 'Languages:', link:'/payment', type:'English'},
+  {icon:'/svg/partners.svg', title: 'Trade partners:', link:'', number:0},
+  {icon:'/svg/trade1.svg', title: 'Trades', link:'/history'},
+  {icon:'/svg/trade1.svg', title: 'Trade volume:', link:'/settings', number:0},
+  {icon:'/svg/trust1.svg', title: 'Trusted By:', link:'/trade/invite', number:0},
+  {icon:'/svg/blocked1.svg', title: 'Blocked By:', link:'', number:0},
+  {icon:'/svg/blocked2.svg', title: 'Blocked', link:'', number:0},
+];
+    
     
 </script>
 <style scoped>
@@ -493,5 +533,44 @@ font-weight: 400;
 line-height: normal;
 text-transform: unset;
 letter-spacing:0px;
+}
+
+.sd-nav1{
+width: 305px;
+align-items: center;
+gap: 10px;
+border-radius: 24px;
+background: var(--secondary-background, #12181F);
+ }  
+ 
+ .nav-options{
+display: flex;
+width: 305px;
+padding: 16px 28px;
+height: 54px!important;
+justify-content: flex-start!important;
+align-items: center;
+background: inherit !important;
+box-shadow: none !important;
+color: var(--Gray-Medium-light, #969696)!important;
+text-align: center;
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize !important;
+letter-spacing: 0px;
+ }
+
+ .grad-text{
+  background-image: linear-gradient(360deg, #2873FF, #0B6B96); 
+  background-clip: text;  
+  -webkit-text-fill-color: transparent ; 
+  font-family: Poppins; 
+  font-size: 16px; 
+  font-style: normal; 
+  font-weight: 600; 
+  line-height: normal;
 }
 </style>

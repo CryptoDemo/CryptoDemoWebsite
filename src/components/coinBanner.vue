@@ -15,15 +15,20 @@
                     </v-btn>
                  
                 </div>
-            <div style="margin-top: 62.2px;">
+            <div  style="margin-top: 62.2px;">
                 <div class="coin-container" style="padding-left: 52px; opacity: 0.5!important;">
                     <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"   class="d-flex" />
                 </div>
-                <div class="coin-container" style="padding-right: 52px; opacity: 0.5!important;">
+ 
+                <div class="coin-container " style="padding-right: 52px; opacity: 0.5!important;">
                     <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins"  class="d-flex"/>
                 </div>
+             
+
+                <div class="loop-slider" style="--duration:10449ms; --direction:normal;">
                 <div class="coin-container" style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
                     <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins" class="d-flex animated-coins" />
+                </div>
                 </div>
             </div>
         </div>
@@ -149,7 +154,6 @@ opacity: 0.3!important;
 }
 .coin-wrap{
 display: flex;
-/* width: 1440px; */
 height: 1103px;
 flex-direction: column;
 justify-content: center;
@@ -158,4 +162,21 @@ gap: 10px;
 flex-shrink: 0;
 }
 
+/* .loop-slider .inner{
+    display: flex;
+    width: fit-content;
+    animation-name: loop;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: var(--direction);
+    animation-duration: var(--duration);
+  }
+  @keyframes loop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+} */
 </style>
