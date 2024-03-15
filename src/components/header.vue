@@ -65,7 +65,7 @@
         </v-menu> 
       
       <div v-if="icon1" style="display: grid">
-            <v-btn  @click.prevent="navigateTo('/trade/wallet')" class="me-" style="border-radius: 20px; background: #161D26; max-width: 60px; height: 61.2px; flex-shrink: 0;">         
+            <v-btn  @click.prevent="navigateTo('/trade/wallet')" class="me-" style="border-radius: 20px; background: #161D26; min-width: 60px!important; height: 61.2px; flex-shrink: 0;">         
                 <img src="/svg/white-wallet.svg"/> 
             </v-btn>
             <span  class="nav-icon-text" style="margin-left: 3px;">Wallet</span>     
@@ -77,7 +77,7 @@
       </div>
 
        <div v-if="icon3"  style="display: grid">
-          <v-btn @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; background: #161D26; max-width: 60px; height: 61.2px; flex-shrink: 0;">         
+          <v-btn @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; background: #161D26; min-width: 60px !important; height: 61.2px; flex-shrink: 0;">         
               <img src="/svg/Notification.svg"/>   
           </v-btn>
           <span class="nav-icon-text" style="margin-right: 13px ">Notification</span>     
@@ -163,10 +163,10 @@ cursor: pointer;
 }
 .dropdown-btn{
 width: fit-content !important;
-height: 50px !important;
+height: 58px !important;
 flex-shrink: 0;
-border-radius: 16px !important;
-border: 1px solid var(--border, #303A46) !important;
+border-radius: 20px !important;
+/* border: 1px solid var(--border, #303A46) !important; */
 background: #161D26 !important;
 text-transform: unset !important;
 color: white !important;

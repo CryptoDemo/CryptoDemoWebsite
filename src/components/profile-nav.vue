@@ -8,7 +8,7 @@
          <v-spacer></v-spacer>
 
          <v-menu> <template v-slot:activator="{ props }">
-             <v-btn v-bind="props" style="border-radius: 20px; background: #161D26; max-width: 60px!important; height: 61.2px;">
+             <v-btn v-bind="props" style="border-radius: 20px; background: #161D26; min-width: 60px!important; height: 61.2px;">
                <img src="/svg/profile-icon.svg"/>
              </v-btn>
            </template>
