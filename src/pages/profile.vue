@@ -1,7 +1,7 @@
 <template>
   <div>
-     <Header icon="/svg/white-wallet.svg" Menuicon="/svg/Main Menu Icons.svg" icon1="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
-        <v-row no-gutters style="margin-top: 100px;">
+     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+        <v-row no-gutters style="margin-top: 130px;">
             <v-col cols="8">
               <div class="pa-1 ma-1">
                 <div class="profile" style="padding: 30px 0px ">
@@ -15,14 +15,16 @@
                         </div>
                     </div>
                     <span class="user-location" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
-                    <div class="d-flex" style="align-items: center;">
-                      <img src="/svg/heart-remove.svg" alt="icon">
-                      <span class="user-location">0</span>
-                    </div>
-                      <div class="d-flex" style="align-items: center;">
+                    
+                      <v-btn class="d-flex" style="align-self: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
                           <img src="/svg/heart-tick.svg" alt="icon">
                             <span class="user-location">0</span>
-                      </div>
+                      </v-btn>
+
+                      <v-btn class="d-flex" style="align-self: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
+                      <img src="/svg/heart-remove.svg" alt="icon">
+                      <span class="user-location">0</span>
+                      </v-btn>
                   </div>
 
                 </div>
@@ -57,11 +59,40 @@
         </v-row>
 
         
-          <v-row no-gutters>
+          <v-row no-gutters style="margin-top: 32px;">
             <v-col cols="3">
-              <div class="pa-2 ma-2">
-                          <!-- //side nav here../ -->
-              </div>
+              <div class=" ma-2">
+                <div class="sd-nav1">
+                  <div style="border-bottom: 1px solid var(--border, #303A46);">
+                    <div style="padding: 20px 24px;">
+                      <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
+                      </div>
+                      </div>
+                      <div v-for="(item, i) in navigation" :key="i">
+                        <div style="display: flex; justify-content: space-between;">
+                            <v-btn class="nav-options"> 
+                              <img :src="item.icon" class="me-3"/>
+                              {{ item.title }}
+
+                              <div style="align-items: center; display: flex; position: absolute; right: 20px;">
+                                
+                                <img :src="item.flag" width="25" class="me-3" style="border-radius: 9px;"/>
+                                <span >{{ item.country }}</span>
+                                <span>{{ item.type }}</span>
+                                <span>{{ item.number }}</span>
+                                
+                              </div>
+
+                            </v-btn>
+                        </div>
+                      </div>
+                      <div style="border-top: 1px solid var(--border, #303A46);">
+                        <div style="padding: 20px 24px;">
+                        <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
+                        </div>
+                      </div>
+                  </div>
+                </div>
             </v-col>
 
             <v-col>
@@ -297,7 +328,16 @@ const allCoins = [
         { title: 'Dodge',  coinText:"DOD",  image:"/svg/btc.svg"},
         { title: 'Bitcoin',  coinText:"BTC", image:"/svg/btc.svg"},
       ];
-
+const navigation = [
+  {icon:'/svg/grad-location.svg', title: 'location', link:'/profile', flag:'/flags/ag.svg', country:'Argentina'},
+  {icon:'/svg/globe.svg', title: 'Languages:', link:'/payment', type:'English'},
+  {icon:'/svg/partners.svg', title: 'Trade partners:', link:'', number:0},
+  {icon:'/svg/trade1.svg', title: 'Trades', link:'/history'},
+  {icon:'/svg/trade1.svg', title: 'Trade volume:', link:'/settings', number:0},
+  {icon:'/svg/trust1.svg', title: 'Trusted By:', link:'/trade/invite', number:0},
+  {icon:'/svg/blocked1.svg', title: 'Blocked By:', link:'', number:0},
+  {icon:'/svg/blocked2.svg', title: 'Blocked', link:'', number:0},
+];
      
 </script>
 <style scoped>
@@ -382,7 +422,7 @@ justify-content: center;
 
 .active-offers{
 width: 202.371px !important;
-height: 50px;
+height: 50px!important;
 flex-shrink: 0;
 border-radius: 20px;
 border-radius: 20px;
@@ -428,7 +468,7 @@ background: var(--secondary-background, #12181F);
 text-transform: unset;
 letter-spacing: 0px;
 width: 231.714px;
-height: 50px;
+height: 50px!important;
 flex-shrink: 0;
 color: #C2C2C2;
 font-family: Poppins;
@@ -443,7 +483,7 @@ background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%)
 text-transform: unset;
 letter-spacing: 0px;
 width: 231.714px;
-height: 50px;
+height: 50px!important;
 flex-shrink: 0;
 color: var(--Gray-Light, #D8D8D8);
 font-family: Poppins;
@@ -488,4 +528,35 @@ flex-direction: column;
 justify-content: center;
 flex-shrink: 0;
 }
+
+.sd-nav1{
+/* display: flex; */
+width: 305px;
+/* padding: 20px 28px; */
+align-items: center;
+gap: 10px;
+border-radius: 24px;
+/* border-bottom: 1px solid var(--border, #303A46); */
+background: var(--secondary-background, #12181F);
+ }  
+ 
+ .nav-options{
+display: flex;
+width: 305px;
+padding: 16px 28px;
+height: 54px!important;
+justify-content: flex-start!important;
+align-items: center;
+background: inherit !important;
+box-shadow: none !important;
+color: var(--Gray-Medium-light, #969696)!important;
+text-align: center;
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize !important;
+letter-spacing: 0px;
+ }
 </style>

@@ -23,14 +23,24 @@
 
 <style>
 .v-counter {
-    color: #D8D8D8 !important;
-    flex: 0 1 auto;
-    font-size: 12px;
-    transition-duration: 150ms;
-    font-weight: 700 !important;
-    display: flex;
-    position: absolute;
-    margin-left: 134px;
+color: #D8D8D8 !important;
+flex: 0 1 auto;
+font-size: 12px;
+transition-duration: 150ms;
+font-weight: 700 !important;
+display: flex;
+position: absolute;
+margin-left: 134px;
 }
 
+::-webkit-input-placeholder {
+color: #808195!important;
+font-size: 0.875rem !important;
+font-style: normal;
+font-size: 14px !important;
+font-weight: 400 !important;
+line-height: normal;
+width: 100% !important;
+display: fle !important;
+}
 </style>

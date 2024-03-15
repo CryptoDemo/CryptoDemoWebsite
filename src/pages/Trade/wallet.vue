@@ -1,6 +1,6 @@
 <template>
     <div>
-       <Header icon="/svg/white-wallet.svg" Menuicon="/svg/Main Menu Icons.svg" icon1="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+       <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
             <v-row no-gutters style="margin-top: 100px">
                <v-col cols="3">
                   <div class="pa-2 ma-2">

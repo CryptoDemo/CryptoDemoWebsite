@@ -8,9 +8,7 @@
           </v-app-bar-nav-icon>
         </template>
       
-        <v-app-bar-title class="nav-title flex-lg-and-up hidden-sm-and-down">Demo
-          
-        </v-app-bar-title>
+        <v-app-bar-title class="nav-title flex-lg-and-up hidden-sm-and-down">Demo </v-app-bar-title>
 
         <div style="position: relative;"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
        
@@ -24,7 +22,7 @@
                 <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <v-text-field  hide-details placeholder="Search in dashboard..." variant="none"> </v-text-field>
+              <v-text-field  hide-details placeholder="Search in dashboard..." variant="none" style="width: fit-content;"> </v-text-field>
         </div>
 
      
@@ -58,24 +56,22 @@
         </v-menu> 
       
       <div v-if="icon1" style="display: grid">
-            <v-btn  @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; background: #161D26; min-width: 50px; height: 51.2px; flex-shrink: 0;">         
-                <img /> 
+            <v-btn  @click.prevent="navigateTo('/trade/wallet')" class="me-" style="border-radius: 20px; background: #161D26; max-width: 60px; height: 61.2px; flex-shrink: 0;">         
+                <img src="/svg/white-wallet.svg"/> 
             </v-btn>
-            <span  class="nav-icon-text">Wallet</span>     
+            <span  class="nav-icon-text" style="margin-left: 3px;">Wallet</span>     
       </div>
 
-       <div v-if="icon2"  style="display: grid">
-            <v-btn @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; background: #161D26; min-width: 50px; height: 51.2px; flex-shrink: 0;">         
-                <img :src="props.icon1"/>
-            </v-btn>
-           <span class="nav-icon-text">Profile</span>     
+      <div v-if="icon2" style="display: flex; flex-direction: column;">
+        <Profile-nav  class="me-11"/>
+        <span class="nav-icon-text" style="margin-left: 2px;">Profile</span>    
       </div>
 
        <div v-if="icon3"  style="display: grid">
-          <v-btn @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; background: #161D26; min-width: 50px; height: 51.2px; flex-shrink: 0;">         
-              <img />   
+          <v-btn @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; background: #161D26; max-width: 60px; height: 61.2px; flex-shrink: 0;">         
+              <img src="/svg/Notification.svg"/>   
           </v-btn>
-          <span class="nav-icon-text">Notification</span>     
+          <span class="nav-icon-text" style="margin-right: 13px ">Notification</span>     
       </div>
            
 
@@ -115,7 +111,7 @@ const props = defineProps(
 )   
 </script>
 
-<style scoped>
+<style>
 .v-toolbar{
 align-items: center;
 display: flex;
@@ -124,6 +120,7 @@ position: relative;
 transition: inherit;
 width: 100%;
 padding: 32px;
+/* max-height: 83px !important; */
 background: rgba(22, 29, 38, 0.60)!important;
 backdrop-filter: blur(20px)!important;
 color: white!important;
@@ -179,6 +176,37 @@ font-size: 12px;
 font-style: normal;
 font-weight: 300;
 line-height: normal;
-margin-right: 17px;
+}
+
+.nav-title{
+color: var(--Colors-Base-white, #FFF);
+font-family: Manrope !important;
+font-size: 20px !important;
+font-style: normal !important;
+font-weight: 800!important;
+line-height: 120% !important; /* 24px */
+}
+.v-toolbar__content, .v-toolbar__extension {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    position: relative;
+    transition: inherit;
+    width: 100%;
+    height: 83px !important;
+}
+::-webkit-input-placeholder {
+color: #92929D;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+display: flex;
+width: 156px !important;
+height: 21.42px;
+flex-direction: column;
+justify-content: center;
+flex-shrink: 0;
 }
 </style>

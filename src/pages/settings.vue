@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Header icon="/svg/white-wallet.svg" Menuicon="/svg/Main Menu Icons.svg" icon1="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
-          <v-row no-gutters style="margin-bottom: 113px; margin-top: 65px">
+    <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+          <v-row no-gutters style="margin-bottom: 113px; margin-top: 130px">
             <v-col cols="3">
-              <div class="pa-2 ma-2">
-                      
+              <div class="ma- mt-3">
+                <Side-nav/>           
               </div>
             </v-col>
 
@@ -19,11 +19,11 @@
                         <span class="acct-text" v-if="phoneVerificationStep!=3"> Account Settings</span>
                         <span class="mail-text" v-if="phoneVerificationStep!=3">vaststudiosng@gmail.com</span>
 
-                      <div class="verified" id="verified" v-if="phoneVerificationStep==3">
+                      <div class="verified" id="verified" v-if="phoneVerificationStep==3" style="display: flex; margin: auto; align-items: center; ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none" class="me-10">
                            <path d="M6.65557 9.37269L15.8378 0.179688L17.2513 1.59369L6.65557 12.2007L0.29834 5.83669L1.71084 4.42269L6.65557 9.37269Z" fill="#5FC381"/>
                         </svg>
-                        <span style="color: #5FC381; font-feature-settings: 'clig' off, 'liga' off; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Your phone number has been verified</span>
+                        <span style="color: #5FC381; font-feature-settings: 'clig' off, 'liga' off; font-family: Manrope; align-items: center; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Your phone number has been verified</span>
                       </div>
 
                   </div>
@@ -32,10 +32,10 @@
                <v-row no-gutters >
                     <v-col class="d-md-flex me-5" style=" flex-grow: 0 !important;">
                       <div class="d-flex">
-                          <div class="pa-2 ma-2">
+                          <div class="pa-2 ma-2" style="margin-top: 0px!important;">
                           
-                            <div style="display: grid;">
-                              <input type="text" v-if="phoneVerificationStep==1 || phoneVerificationStep==3" class="input-styling1 position-relative" placeholder="002-002-003" style="outline: none; padding-left: 140px; color: #fff; font-size: 14px; font-weight: 600;"/>
+                            <div style="display: grid; width: 100%;">
+                              <input type="text" v-if="phoneVerificationStep==1 || phoneVerificationStep==3" class="input-styling1 position-relative" placeholder="002-002-003" style="outline: none; padding-left: 140px; color: #fff;  font-size: 14px; font-weight: 600;"/>
                                 <v-menu>
                                     <template v-slot:activator="{ props }">
                                       <v-btn class="area-num" v-bind="props">
@@ -46,7 +46,7 @@
                                     </template>
 
                                     <v-list style="background: #161D26; border-radius: 15px;">
-                                      <v-list-item>
+                                      <v-list-item>m 
                                         <v-row dense>
                                         <v-col v-for="(item, index) in locations" class="" sm="6"  :key="index">
                                       
@@ -75,7 +75,7 @@
                     </v-col>
 
                     <v-col>
-                      <div class="pa-2 ma-2 d-flex">
+                      <div class="pa-2 ma-2 d-flex" style="margin-top: 0px!important;">
                         <div>
     
  
@@ -83,7 +83,7 @@
                         <input type="image" src="/svg/Image-grad.svg" class="me-4" style="align-self: start;"/>
                         </div>
                         <div>
-                         <v-text-field placeholder="Email Address" class="input-styling1" variant="">
+                         <v-text-field placeholder="Email Address" class="input-styling1" variant="" style="color: #fff;text-align: justify; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400;">
                             <v-icon class="prepend-inner-icon">
                               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 25 24" fill="none">
                                   <path d="M20.2258 11.9998C20.2257 10.2167 19.6413 8.48476 18.5655 7.07901C17.4898 5.67327 15.9843 4.6743 14.2882 4.24076C12.592 3.80721 10.8025 3.96393 9.20367 4.68603C7.60486 5.40813 6.28846 6.65421 5.46349 8.22641C4.63853 9.79861 4.3523 11.6068 4.65025 13.3638C4.9482 15.1209 5.81326 16.7261 7.10805 17.9245C8.40285 19.1229 10.0532 19.8458 11.7969 19.9785C13.5407 20.1112 15.2779 19.646 16.7328 18.6568L17.8213 20.3208C16.0028 21.5574 13.8312 22.139 11.6515 21.9733C9.47177 21.8076 7.40882 20.904 5.79024 19.406C4.17166 17.9081 3.09024 15.9016 2.71771 13.7053C2.34518 11.509 2.70289 9.24875 3.73404 7.28344C4.76519 5.31814 6.41066 3.76046 8.40917 2.85777C10.4077 1.95508 12.6446 1.75913 14.7648 2.30102C16.885 2.84292 18.7669 4.0916 20.1117 5.84878C21.4564 7.60596 22.1869 9.7709 22.1871 11.9998V13.4998C22.1885 14.2497 21.9536 14.9802 21.5172 15.5837C21.0807 16.1872 20.4657 16.6317 19.7627 16.8519C19.0598 17.0721 18.3061 17.0563 17.6127 16.8067C16.9192 16.5572 16.3227 16.0871 15.911 15.4658C15.2562 16.1595 14.4188 16.6456 13.4996 16.8658C12.5803 17.0859 11.6183 17.0307 10.7291 16.7068C9.83992 16.3829 9.06134 15.804 8.48693 15.0398C7.91253 14.2756 7.56673 13.3585 7.49109 12.3987C7.41545 11.4389 7.61319 10.4773 8.06054 9.62935C8.50789 8.7814 9.18583 8.08319 10.0129 7.61864C10.84 7.15408 11.781 6.94292 12.7229 7.01054C13.6648 7.07816 14.5675 7.42168 15.3226 7.99982H17.2839V13.4998C17.2839 13.8976 17.4389 14.2792 17.7147 14.5605C17.9906 14.8418 18.3648 14.9998 18.7549 14.9998C19.145 14.9998 19.5191 14.8418 19.795 14.5605C20.0709 14.2792 20.2258 13.8976 20.2258 13.4998V11.9998ZM12.3807 8.99982C11.7988 8.99982 11.23 9.17577 10.7462 9.50541C10.2624 9.83506 9.88536 10.3036 9.66269 10.8518C9.44002 11.3999 9.38176 12.0031 9.49528 12.5851C9.60879 13.167 9.88898 13.7016 10.3004 14.1211C10.7119 14.5407 11.2361 14.8264 11.8067 14.9422C12.3774 15.0579 12.9689 14.9985 13.5065 14.7715C14.0441 14.5444 14.5036 14.1599 14.8268 13.6665C15.1501 13.1732 15.3226 12.5932 15.3226 11.9998C15.3226 11.2042 15.0127 10.4411 14.4609 9.8785C13.9092 9.31589 13.1609 8.99982 12.3807 8.99982Z" fill="#C4C4C4"/>
@@ -107,19 +107,22 @@
                     <v-responsive width="100%"></v-responsive>
 
                     <v-col style="flex-grow: 0 !important;">
-                      <div class="pa-2 ma-2" style="display: grid;">
+                      <div class="pa-2 ma-2" style="display: grid; margin-top: 0!important;">
                         <span class="number-caption" style="line-height: 28px; font-family: manrope; font-weight: 600; font-size: 16px;">Preferred currency</span>
                          <v-menu :currency="currency">
                             <template v-slot:activator="{ props }">
                               <v-btn
                                 class="input-styling1" width="456px"
-                                dark
+                                
                                 v-bind="props">
                                 <div  class="py-3" style="display: flex; cursor: pointer; position: absolute; left: 37px; align-items: center;">
-                                    <span class="me-4" style="font-weight: 700; font-size: 16px;">{{currencyIcon}}</span>
+                                    <span class="me-4" style="font-weight: 700; font-size: 16px; color: white;">{{currencyIcon}}</span>
                                     <span class="mt-" style="font-weight: 700; color: var(--Gray-Medium-light, #969696);">{{selected}}</span> 
                                 </div>
-                                <v-icon icon="mdi-chevron-down"  color="#E0E4F5" class="chevron-icon" style="position: absolute; right: 45px; bottom: 25px; "></v-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none" style="position: absolute; right: 45px; bottom: 27px;">
+                                  <path d="M5.05508 5.99413C5.19232 5.99415 5.32822 5.96714 5.45502 5.91463C5.58182 5.86213 5.69705 5.78516 5.7941 5.68813L9.69409 1.78814C9.88995 1.59227 10 1.32663 10 1.04964C10 0.772651 9.88995 0.50701 9.69409 0.311147C9.49823 0.115285 9.23259 0.00523901 8.9556 0.00523901C8.67861 0.00523901 8.41296 0.115285 8.2171 0.311147L5.0531 2.71114L1.8891 0.311147C1.69324 0.115285 1.4276 0.00523901 1.1506 0.00523901C0.873613 0.00523901 0.607941 0.115285 0.412079 0.311147C0.216217 0.50701 0.106201 0.772651 0.106201 1.04964C0.106201 1.32663 0.216217 1.59227 0.412079 1.78814L4.3121 5.68813C4.4096 5.78569 4.52546 5.86297 4.65298 5.91549C4.78051 5.96801 4.91716 5.99473 5.05508 5.99413Z" fill="#E0E4F5"/>
+                                </svg>
+
                               </v-btn>
                             </template>
 
@@ -141,7 +144,7 @@
                     </v-col>
 
                     <v-col>
-                      <div class="pa-2 ma-2" style="display: grid;">
+                      <div class="pa-2 ma-2" style="display: grid;  margin-top: 0!important;">
                         <span class="number-caption" style="line-height: 28px; font-family: manrope; font-weight: 600; font-size: 16px;">Preferred coin</span>
                          <v-menu :coin="coin">
                             <template v-slot:activator="{ props }">
@@ -154,7 +157,9 @@
                                     <img :src="coinIcon" class="me-4"/>
                                     <span class="mt-" style="font-weight: 700; color: var(--Gray-Medium-light, #969696);">{{selectedCoin}}</span> 
                                 </div>
-                                <v-icon icon="mdi-chevron-down"  color="#E0E4F5" class="chevron-icon" style="position: absolute; right: 45px; bottom: 25px; "></v-icon>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none" style="position: absolute; right: 45px; bottom: 27px;">
+                                  <path d="M5.05508 5.99413C5.19232 5.99415 5.32822 5.96714 5.45502 5.91463C5.58182 5.86213 5.69705 5.78516 5.7941 5.68813L9.69409 1.78814C9.88995 1.59227 10 1.32663 10 1.04964C10 0.772651 9.88995 0.50701 9.69409 0.311147C9.49823 0.115285 9.23259 0.00523901 8.9556 0.00523901C8.67861 0.00523901 8.41296 0.115285 8.2171 0.311147L5.0531 2.71114L1.8891 0.311147C1.69324 0.115285 1.4276 0.00523901 1.1506 0.00523901C0.873613 0.00523901 0.607941 0.115285 0.412079 0.311147C0.216217 0.50701 0.106201 0.772651 0.106201 1.04964C0.106201 1.32663 0.216217 1.59227 0.412079 1.78814L4.3121 5.68813C4.4096 5.78569 4.52546 5.86297 4.65298 5.91549C4.78051 5.96801 4.91716 5.99473 5.05508 5.99413Z" fill="#E0E4F5"/>
+                                </svg>
                               </v-btn>
                             </template>
 
@@ -258,7 +263,14 @@ const coin = [
                   }
 ];
 
-
+const navigation = [
+        {icon:'/svg/profile1.svg', title1: 'profile', link:'/profile', },
+        {icon:'/svg/settings.svg', title1: 'Security', link:'/settings',},
+        {icon:'/svg/payment1.svg', title1: 'payment methods', link:'/payment', },
+        {icon:'/svg/connected.svg', title1: 'Connected Apps and Websites', link:'/connected-apps',},
+        {icon:'/svg/item.svg', title1: 'Security Questions ', link:'/Questions'},
+        
+      ];
 </script >
 <style>
 .settings-header {
@@ -266,7 +278,7 @@ border-radius: 16px;
 background: rgba(245, 249, 253, 0.54);
 padding: 27px 16px;
 width: 940px;
-margin-top: 30px;
+/* margin-top: 30px; */
 }
 .header-text1{
 color: var(--Gray-Dark, #323232);
@@ -377,4 +389,5 @@ text-transform: unset!important;
     border-radius: 32px;
     height: 356px!important
 }
+
 </style>
