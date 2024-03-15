@@ -35,7 +35,7 @@ const navigation = [
      {icon:'/svg/settings.svg', title: 'Security', link:'/settings',},
      {icon:'/svg/payment1.svg', title: 'payment methods', link:'/payment', },
      {icon:'/svg/connected.svg', title: 'Connected Apps and Websites', link:'/connected-apps',},
-     {icon:'/svg/item.svg', title: 'Security Questions ', link:'/Questions'},
+     {icon:'/svg/Item.svg', title: 'Security Questions ', link:'/Questions'},
      
    ];
 </script>
