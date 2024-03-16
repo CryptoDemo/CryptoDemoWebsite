@@ -240,7 +240,7 @@
                                 </v-btn>
                                 <div style="display: grid">
                                   <span :class="isDark ? 'free-demo':'free-demo-light'">Free Demo Web Wallet</span>
-                                  <span style="margin-top: 8px; color: #8E9BAE;line-height: 140%;">Get a free <NuxtLink to="#"><span style="font-size: 16px;color: #2873FF;font-weight: 600; letter-spacing: 0.32px;">Demo Web</span></NuxtLink> 
+                                  <span style="margin-top: 8px; color: #8E9BAE;line-height: 140%; font-family: SF Pro Display ;">Get a free <NuxtLink to="#"><span style="font-size: 16px;color: #2873FF;font-weight: 600; font-family: SF Pro Display; letter-spacing: 0.32px;">Demo Web</span></NuxtLink> 
                                   when you sign up to receive, send, and store your Bitcoin.</span>
                                 </div>
                         
@@ -269,8 +269,8 @@
                             </v-btn>
                             <div style="display:grid;">
                               <span  :class="isDark ? 'free-demo':'free-demo-light'" style="margin-top : 16px ">Invite friends</span>
-                              <span style="margin-top: 14px; color: #8E9BAE;line-height: 140%;">Get your friends and family  to
-                                <NuxtLink to="/authentication/register"><span style="font-size: 16px; color: #8E9BAE; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline;">sign up</span></NuxtLink> 
+                              <span style="margin-top: 14px; color: #8E9BAE;line-height: 140%; font-family: SF Pro Display;">Get your friends and family  to
+                                <NuxtLink to="/authentication/register"><span style="font-size: 16px; color: #8E9BAE; font-family: SF Pro Display; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline;">sign up</span></NuxtLink> 
                               for Demo Web
                               </span>
                             </div>
