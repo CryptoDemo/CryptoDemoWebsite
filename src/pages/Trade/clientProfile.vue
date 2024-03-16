@@ -44,9 +44,9 @@
           </v-row>
 
         
-          <v-row no-gutters>
+          <v-row no-gutters style="margin-top: 32px;">
             <v-col cols="3">
-              <div class="pa-2 ma-2">
+              <div class="pa-2">
                 <div class="sd-nav1">
                   <div style="border-bottom: 1px solid var(--border, #303A46);">
                     <div style="padding: 20px 24px;">
@@ -265,7 +265,7 @@
                                     <div style="padding-top: 35px;">
                                     <span class="username">UID : <span class="grad-text">Ogadinma2024</span></span>
                                     <div style="display: grid">
-                                        <span class="username">Feb 5, 2024</span>
+                                        <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
                                         <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
                                     </div>
                                     </div>
@@ -297,7 +297,7 @@
                                     <div style="padding-top: 35px;">
                                     <span class="username">UID : <span class="grad-text">Ogadinma2024</span></span>
                                     <div style="display: grid">
-                                        <span class="username">Feb 5, 2024</span>
+                                        <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
                                         <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
                                     </div>
                                     </div>

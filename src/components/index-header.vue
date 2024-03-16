@@ -124,6 +124,7 @@ display: flex;
 height: 80px;
 padding: 0px 120px;
 justify-content: space-between;
+justify-content: center;
 align-items: center;
 flex-shrink: 0;
 }
