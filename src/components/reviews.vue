@@ -17,7 +17,7 @@
               
                 <div class="img-reviews position-relative"  style="padding-top: 53px;">
                      <div  :class="isDark ? 'gradient1i':'gradient1i-light'"></div>
-                    <!-- <v-img src="/svg/dark-reviews1.svg" style=" top: 16px" width="100%"  ></v-img> -->
+
                   
 
                     <div v-for="(review, i) in reviews" :key="i" class="position-relative" :class="isDark ? 'review-cards':'review-cards-light'" :style=" i === 0? 'right: 41px; margin-bottom: 20px;' : ''">

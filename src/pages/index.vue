@@ -285,22 +285,22 @@
           <div :class="isDark ? 'section3':'section3-light'" style="margin-top: 200px;">
             <v-container>
                 <v-row no-gutters style="padding-top: 170px; padding-bottom: 140px">
-              <v-col cols="md-6">
-                <div class="ma-2 pa-2">
+              <v-col cols="md-7">
+                <div class="ma-2">
                   <span class="section2-subtitle " style="justify-content: start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
                   <span :class="isDark ? 'section2-title':'section2-title-light'" style="text-align: left; width: 625.645px; margin-top: 40px; margin-bottom: 48px">Join the Future of Crypto Trading with Demo Web</span>
                   <span class="explore">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
                    <div class="d-flex" style="margin-top: 140px; ">
-                      <img src="/svg/BTN 1.svg" class="social-icons me-4"/>
-                      <img src="/svg/BTN 2.svg" class="social-icons me-2"/>
+                      <img src="/svg/applestore.svg" class="social-icons me-4"/>
+                      <img src="/svg/playstore.svg" class="social-icons me-2"/>
                       <div class="border-line"></div>
-                      <span class="icon-text">Demo Web App now available for download</span>
+                      <span class="icon-text" style="color: #8E9BAE;font-family: SF Pro Display">Demo Web App now <br> available for download</span>
                     </div>
                 </div>
 
               </v-col>
-              <v-col cols="md-6">
-                <div class="ma-2 pa-2">
+              <v-col cols="md-5">
+                <div class="ma-2">
                   <div class="phone-rectangle" style="position: relative; top: -58px">
                     <img src="/svg/phoneHand.svg" v-if="theme.global.current.value.dark"/>
                     <img src="/img/light-phone.png" v-else/>
@@ -1127,14 +1127,14 @@ gap: 44px;
 flex-shrink: 0;
 }
 .explore{
-color: #64748B;
+color: #8E9BAE;
 font-family: "SF Pro Display";
 font-size: 24px;
 font-style: normal;
 font-weight: 400;
 line-height: 140%; /* 33.6px */
 letter-spacing: 0.72px;
-margin-top: 48px;
+width: 612px;
 }
 
 .border-line{
