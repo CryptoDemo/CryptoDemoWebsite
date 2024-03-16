@@ -516,6 +516,7 @@ justify-content: center;
 align-items: center;
 gap: 10px;
 flex: 1 0 0;
+font-family: "SF Pro Display";
 border: 1px solid rgba(40, 115, 255, 0.33);
 background: #060A1D;
 color: var(--Main-Primary-100, #2873FF);
@@ -529,6 +530,7 @@ box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02) !important;
 display: flex;
 height: 40px;
 padding: 8px;
+font-family: "SF Pro Display";
 justify-content: center;
 align-items: center;
 gap: 8.037px;
@@ -796,7 +798,7 @@ margin-top: 32px;
 border-radius: 10px;
 background: var(--Main-Primary-100, #2873FF);
 text-align: center;
-/* letter-spacing: unset!important; */
+letter-spacing: unset!important;
 text-transform: unset !important;
 /* filter: blur(1px); */
 }
