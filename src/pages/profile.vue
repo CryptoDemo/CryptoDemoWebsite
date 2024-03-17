@@ -1,10 +1,11 @@
 <template>
   <div>
      <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
-        <v-row no-gutters style="margin-top: 130px;">
-            <v-col cols="8">
-              <div class="pa-1 ma-1">
-                <div class="profile" style="padding: 30px 0px ">
+     <v-container>
+        <div style="margin-top: 130px; display: flex;">
+            <v-row>
+              <v-col cols="8" class="pa-1 ma-1">
+                <div class="profile" style="padding: 30px 0px">
 
                   <div class="d-flex" style="justify-content: space-around;">
                     <div class="d-flex">
@@ -28,10 +29,10 @@
                   </div>
 
                 </div>
-              </div>
-            </v-col>
-            <v-col>
-              <div class="pa-1 ma-1">
+              </v-col>
+          
+            <!-- <div> -->
+              <v-col class="pa-1 ma-1">
                 <div class="acct-level">
                   <div class="d-flex" style="padding: 35px"> 
                       <img src="/svg/Dashboard.svg" class="me-10" alt="dashboard-icon">
@@ -54,20 +55,22 @@
                       </div>
                   </div>
                 </div>
-              </div>
-            </v-col>
-        </v-row>
+              </v-col>
+            <!-- </div> -->
+          </v-row>
+        </div>
+      
 
         
-          <v-row no-gutters style="margin-top: 32px;">
-            <v-col cols="3">
-              <div class=" ma-2">
+          <v-row style="margin-top: 32px; display: flex;">
+            <!-- <div> -->
+              <v-col cols="4" class="ma-2">
                 <div class="sd-nav1">
                   <div style="border-bottom: 1px solid var(--border, #303A46);">
                     <div style="padding: 20px 24px;">
                       <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
                       </div>
-                      </div>
+                      <!-- </div> -->
                       <div v-for="(item, i) in navigation" :key="i">
                         <div style="display: flex; justify-content: space-between;">
                             <v-btn class="nav-options"> 
@@ -93,13 +96,13 @@
                       </div>
                   </div>
                 </div>
-            </v-col>
+              </v-col>
 
-            <v-col>
-              <div class="pa-2 ma-2" >
+            <!-- <div> -->
+              <v-col cols="8" class="pa-2 ma-2" >
                   <v-row align="center" justify="start" style="gap: 16px; margin-bottom: 32px !important">
                     <v-col
-                        v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="auto">
+                        v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="3">
                         <v-card class="mx-auto" max-width="344" :variant="variant">
                             <v-card-item>
                               <div>
@@ -122,12 +125,12 @@
                         </v-card>
                    </v-col>
                   </v-row>
-              </div>
+              <!-- </div> -->
 
               <span class="user-location" >Active offers</span>
         
-        <div class="mt-5">
-              <v-row style="width: 930px; margin-left: 1px;">
+            <div class="mt-5">
+              <v-row style="margin-left: 1px;">
                 <v-btn class=" me-4 mb-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
                     <span style="position: relative; left: -18px">Crypto purchased</span>
                   <span style="position: relative; right: -18px; font-weight: 800;">0</span>
@@ -170,7 +173,7 @@
                 </div>
               </v-row>
 
-                <div style="height: 1px; width: 930px; background: #303A46; margin-top:16px"></div>
+                <div style="height: 1px; background: #303A46; margin-top:16px"></div>
                 <div v-for="n in 2" :key="n" >
                   <div style="display: flex; justify-content: space-between;  width: 930px;">
                       <div style="margin-top: 32px;">
@@ -223,7 +226,7 @@
              <span class="user-location">Feedback</span>
             </div>
 
-            <div class="mt-5" style="width: 930px;"> 
+            <div class="mt-5"> 
                 <v-btn class=" me-4 inactive-btn"> 
                     <span style="position: relative; left: -18px">From buyers</span>
                   <span style="position: relative; right: -18px; font-weight: 800;">0</span>
@@ -293,16 +296,16 @@
                     </div>
 
                     <div  style="margin-top: 35px">
-                        <span class="grad-text">View Offer</span>
+                      <span class="grad-text">View Offer</span>
                     </div>
+                  </div>
                 </div>
-
-         </div>
-      </div>
+              </div>
             </v-col>
           </v-row>
-          
-          <Footer/>
+            <!-- </div> -->
+        </v-container>
+       <Footer/>
   </div>
 </template>
 <script setup>

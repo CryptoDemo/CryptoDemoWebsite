@@ -60,21 +60,20 @@ const thirdCoin = ref([
 
 .coin-banner{
 position: relative;
-background: linear-gradient(90deg, #10192D 0%, rgba(16, 25, 45, 0.00) 100%);
+background: linear-gradient(90deg, #10192D 0%, rgba(16, 25, 45, 0.00) 100%)  !important;
 width: auto;
 border-radius: 15px!important;
 height: 100%;
+z-index: 1000;
 }
 
 .border-div{
-/* background-image: linear-gradient(120deg,#FFFFFF, #10192D00, #10192D, #fff ) 1; */
-background: linear-gradient(90deg,#10192D, #10192D) padding-box,
-              linear-gradient(120deg, #FFFFFF, #10192D, #10192D, #fff ) border-box;
-width: auto;
+background: linear-gradient(120deg,#060A1D, #060A1D) padding-box,
+              linear-gradient(120deg, #fff, #10192D, #10192D, #fff ) border-box; 
+width:auto;
 border-radius: 15px!important;
-border: 0.5px solid transparent;
+border: 0.2px solid transparent;
 content: "";
-
 }
 
 .coin-banner-light{
@@ -106,7 +105,7 @@ font-style: normal;
 font-weight: 700;
 line-height: 120%; /* 76.8px */
 letter-spacing: -1.92px;
-background: linear-gradient(90deg, #FFF 8%, rgba(255, 255, 255, 0.68) 86.51%);
+background: linear-gradient(90deg, #FFF 8%, rgba(247, 242, 242, 0.68) 86.51%);
 background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;

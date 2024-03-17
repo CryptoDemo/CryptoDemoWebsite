@@ -13,8 +13,8 @@
         <div style="position: relative;"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
        
         <template v-slot:append >
-          <span class="text1 flex-lg-and-up hidden-sm-and-down">{{props.text2}}</span>
-        <NuxtLink :to="props.link">  <span class="text2">{{props.title}}</span></NuxtLink>
+          <span class="text1 flex-lg-and-up hidden-sm-and-down" style="align-items: center; display: flex;">{{props.text2}}</span>
+          <NuxtLink :to="props.link">  <span class="text2">{{props.title}}</span></NuxtLink>
  
 
        <div  v-if="hide"   style="width: 400px; height: 62px ; flex-shrink: 0; border-radius: 20px; background: #161D26; display: flex;position: absolute; right: 54%">
@@ -28,7 +28,7 @@
      
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn class="dropdown-btn me-5" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 4px;">
+            <v-btn class="dropdown-btn1i me-3" v-bind="props" style="display: flex; align-self: flex-start; margin-top: px;">
               <v-img  width="24" class="me-3" :src="flag"/> 
               <span class="me-2 flex-lg-and-up hidden-sm-and-down">{{select}}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -122,7 +122,7 @@ const props = defineProps(
 )   
 </script>
 
-<style>
+<style scoped>
 .v-toolbar{
 align-items: center;
 display: flex;
@@ -132,7 +132,8 @@ transition: inherit;
 width: 100%;
 padding: 32px;
 /* max-height: 83px !important; */
-background: rgba(22, 29, 38, 0.60)!important;
+background: rgba(18, 24, 31, 0.85) !important;
+backdrop-filter: blur(18.200000762939453px);
 backdrop-filter: blur(20px)!important;
 color: white!important;
 box-shadow: none!important;
@@ -163,13 +164,13 @@ line-height: normal;
 margin-right: 15px ;
 cursor: pointer;
 }
-.dropdown-btn{
+.dropdown-btn1i{
 width: fit-content !important;
 height: 58px !important;
 flex-shrink: 0;
 border-radius: 20px !important;
 /* border: 1px solid var(--border, #303A46) !important; */
-background: #161D26 !important;
+background-color: #161D26 !important;
 text-transform: unset !important;
 color: white !important;
 letter-spacing: 0px;

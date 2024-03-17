@@ -219,7 +219,7 @@ line-height: 28px;
   background: var(--secondary-background, #12181F);
   display: flex;
   padding: 16px var(--spacing-3xl, 24px);
-  width: 940px;
+  /* width: 940px; */
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;

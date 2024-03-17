@@ -1,28 +1,29 @@
 <template>
   <div>
     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
-          <v-row no-gutters style="margin-top: 130px;">
-            <v-col cols="3">
-              <div class="pa-2 ma-2">
+    <v-container>
+          <div no-gutters  style="margin-top: 130px; display: flex;">
+            <div class="me-5">
+              <div class="pa-5 ma-">
                   <Side-nav/>
               </div>
-            </v-col>
+            </div>
 
-            <v-col cols="9" style="margin-bottom: 194px">
-                <div class="pa-2 ma-2">
+            <div style="margin-bottom: 194px">
+                <div class="mt-5">
                     
                     <div class="acct-settings" style="display: flex; justify-content: space-between; margin-bottom: 47px">    
                         <span class="acct-text"> Payment methods</span>
                         <span class="mail-text">vaststudiosng@gmail.com</span>  
                     </div>
  
-                    <section style="width: 938px;">
-                       <div style="margin-top: 35px; justify-content: space-between; display: flex;">
+                    <section >
+                       <div class="px-3"  style="margin-top: 35px; justify-content: space-between; display: flex;">
                           <span class="setup-text"> Add your bank account details below.</span>  
                           <Add-act/>  
                        </div>
 
-                      <div style="margin-top: 28px; border-radius: 24px; border: 1px solid var(--border, #303A46); padding: 16px 26px;">
+                      <div style="margin-top: 28px; border-radius: 24px; border: 1px solid var(--border, #303A46); padding: 16px 26px; width: fit-content;">
                         <div >
                           <span class="setup-text d-flex">Personal</span>
                           <div class="d-flex" style="justify-content: space-between;">
@@ -49,12 +50,12 @@
                         </div>
                         </div>
                       </div>
-                       <div style="margin-top: 40px; justify-content: space-between; display: flex;">
+                       <div class="px-3" style="margin-top: 40px; justify-content: space-between; display: flex;">
                           <span class="setup-text">  Add your online wallet details below.</span>  
                           <Add-act/>  
                        </div>
 
-                      <div style="margin-top: 28px; border-radius: 24px; border: 1px solid var(--border, #303A46); padding: 16px 26px;">
+                      <div style="margin-top: 28px; border-radius: 24px; border: 1px solid var(--border, #303A46); padding: 16px 26px; width: fit-content;">
                         <div >
                           <span class="setup-text d-flex">Personal</span>
                           <div class="d-flex" style="justify-content: space-between;">
@@ -85,9 +86,9 @@
                         
                         
                 </div>
-            </v-col>     
-          </v-row>
-          
+              </div>     
+          </div>
+    </v-container>      
           <Footer/>
   </div>
 </template>

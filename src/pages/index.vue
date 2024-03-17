@@ -1,6 +1,8 @@
 <template>
-            <img src="/svg/Background pattern.svg" class="position-absolute" style=" opacity: 0.4; left: 0; right: 0;" v-if="theme.global.current.value.dark" />
-            <img src="/svg/Background pattern.svg" class="position-absolute" style=" opacity: 0.2; left: 0; right: 0;" v-else />
+          <!-- <v-container> -->
+            <img src="/svg/Background pattern.svg" class="position-absolute" style=" opacity: 0.4; left: 0; right: 0;display: flex; margin: auto;" v-if="theme.global.current.value.dark" />
+            <img src="/svg/Background pattern.svg" class="position-absolute" style=" opacity: 0.2; left: 0; right: 0; display: flex; margin: auto;" v-else />
+          <!-- </v-container> -->
     <div>
       <Index-header title="Log in" link="/authentication/login"/>
       <div>
@@ -33,8 +35,10 @@
                 <div class="d-flex text-img" v-else>
                   <span class="web">Demo Web✨️</span>
                 </div>
-                    <img src="/svg/Group 1318.svg" class="position-absolute"/>
+                  <div class="position-relative">
+                    <img src="/svg/Group 1318.svg" class="position-absolute" style="margin-left: 27px; top: -43px;"/>
                     <img src="/svg/Group 1320.svg" class="green-coin position-absolute"/>
+                  </div>
                   <div>
                     <span class="subtitle-text">Join over 12 million people just like you on everyone's favorite peer-to-peer platform to buy and sell Bitcoin.</span>
                   </div> 
@@ -959,13 +963,13 @@ cursor: pointer;
 }
 .green-coin{
 display: flex;
-right: 145px;
+right: 4%;
 max-width: 100%;
 height: auto;
 }
 .orange-coin{
-right: 164px;
-top: 24px;
+right: 8%;
+top: -1%;
 max-width: 100%;
 height: auto;
 }
@@ -983,8 +987,8 @@ max-width: 100%;
 height: auto;
 }
 .pink-coin{
-  left: 183px;
-  top: 27px;
+  margin-left: 128px;
+  /* top: 27px; */
 }
 .sell-btc-text{
 color: white !important;
