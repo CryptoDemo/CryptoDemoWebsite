@@ -1,7 +1,7 @@
 <template>
 <div>
-    <span class="section2-subtitle">Frequently asked questions</span>
-         <span  :class="isDark ? 'section2-title':'section2-title-light'" >We know you have some questions for us.</span>
+    <span class="section2-subtitlei">Frequently asked questions</span>
+         <span  :class="isDark ? 'section2-titlei':'section2-titlei-light'" >We know you have some questions for us.</span>
          <v-expansion-panels variant="popout" style="display: contents !important">
              <div v-for=" (FAQs, i ) in FAQ" :key="i" >
                 <v-expansion-panel  :class="isDark ? 'expansion-panel':'expansion-panel-light'"  >
@@ -32,7 +32,7 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 
 const FAQ = [
     {question: 'What is Demo Web and how does it work?', answer:'To start trading on Demo Web, simply sign up for an account on our platform. Once your account is verified, you can browse listings of Bitcoin offers from other users and initiate a trade by selecting an offer that suits your requirements.'},
-    {question:'How can I start trading on Demo Web?', answer:''},
+    {question:'How can I start trading on Demo Web?', answer:'To start trading on Demo Web, simply sign up for an account on our platform. Once your account is verified, you can browse listings of Bitcoin offers from other users and initiate a trade by selecting an offer that suits your requirements.'},
     {question:'Which cryptocurrencies are available for trading on Demo Web?', answer:'Currently, Demo Web primarily focuses on facilitating trades in Bitcoin (BTC). However, we may introduce support for additional cryptocurrencies in the future based on user demand and market trends.'},
     {question:'How secure is Demo Web for trading?', answer:' At Demo Web, we prioritize the security of our users funds and personal information. We employ robust encryption protocols, two-factor authentication, and cold storage solutions to ensure the safety of transactions and user data on our platform. '},
     {question:'What are the trading fees on Demo Web?', answer:' Demo Web charges a nominal fee for facilitating trades on our platform. This fee is typically calculated as a percentage of the transaction amount and is transparently displayed to users before they finalize their trades.'},
@@ -42,11 +42,11 @@ const FAQ = [
 ]
 
 </script>
-<style scoped>
+<style>
 .expansion-panel{
-border-radius: 15px;
-background: #10192D;
-padding: 20px;
+border-radius: 15px !important;
+background: #10192D !important;
+padding: 20px !important;
 flex-direction: column;
 align-items: flex-start;
 gap: 24px;
@@ -54,10 +54,10 @@ align-self: stretch;
 margin-bottom: 16px;
 }
 .expansion-panel-light{
-border-radius: 15px;
-background: #F8FAFC;
+border-radius: 15px !important;
+background: #F8FAFC !important;
 display: flex;
-padding: 20px;
+padding: 20px !important;
 justify-content: center;
 flex-direction: column;
 align-items: flex-start;
@@ -66,7 +66,7 @@ align-self: stretch;
 margin-bottom: 16px;
 }
 
-.section2-subtitle{
+.section2-subtitlei{
 color: #38BDF8;
 text-align: center;
 font-family: "SF Pro Display";
@@ -82,7 +82,7 @@ margin-top: 173.66px;
 letter-spacing: 0.8px;
 text-transform: uppercase;
 }
-.section2-title{
+.section2-titlei{
 text-align: center;
 font-family: "SF Pro Display";
 font-size: 64px;
@@ -101,7 +101,7 @@ margin-top: 40px !important;
 margin-bottom: 88px !important;
 margin: auto;
 }
-.section2-title-light{
+.section2-titlei-light{
 text-align: center;
 font-family: "SF Pro Display";
 font-size: 64px;
@@ -128,6 +128,7 @@ font-size: 20px;
 font-style: normal;
 font-weight: 400;
 line-height: 140%; /* 28px */
+/* padding-bottom: 70px !important; */
 }
 .title-text{
 color: #8E9BAE;
@@ -145,4 +146,14 @@ font-style: normal;
 font-weight: 500;
 line-height: 140%; /* 28px */ 
 }
+.v-expansion-panel-title--active > .v-expansion-panel-title__overlay, .v-expansion-panel-title[aria-haspopup=menu][aria-expanded=true] > .v-expansion-panel-title__overlay {
+opacity: calc(var(--v-activated-opacity)* var(--v-theme-overlay-multiplier));
+background: rgb(135, 138, 147) !important;
+/* height: 35% !important; */
+padding: 85px !important;
+opacity: 0.4;
+border-radius: 15px;
+/* backdrop-filter: blur(25px); */
+}
+
 </style>

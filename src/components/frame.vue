@@ -1,8 +1,8 @@
 <template>
   <div>
-      <v-row no-gutters>
+      <v-row no-gutters style="display: flex; align-items: center;">
             <v-col>
-              <div class="ma-2 pa-2">
+              <div class="me-3">
                 <div class="position-relative" :class="isDark ? 'frame1':'frame1-light'">
                       <div style="display: flex; align-self: center; position: relative; margin-bottom: 30px;">
                       <img src="/svg/Framebtc1.svg" v-if="theme.global.current.value.dark"/>
@@ -30,8 +30,8 @@
               </div>
             </v-col>
 
-            <v-col >
-                <v-col cols="" class="mt-2 ma-1">
+            <v-col class="">
+                <v-col cols="" class="">
                   <div  :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 40px; width: 100%;">
                     <div>
                       <div class="position-relative">
@@ -55,7 +55,7 @@
                 </v-col>
 
 
-                <v-col cols="" class=" ma-1">
+                <v-col cols="" class="">
                   <div :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 30px; position: relative;">
                     <div  style="display: flex; flex-direction: column; padding: 0 60px; position: relative; right: 10%; height: 205px;">
                       <div class="position-relative">

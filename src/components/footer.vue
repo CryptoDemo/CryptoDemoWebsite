@@ -1,11 +1,11 @@
 <template>
 <section  :class="isDark ? 'footer-wrapper':'footer-wrapper-light'">
     <v-container>
-        <div class="d-flex mt-5 ma-2 px-4" style="justify-content: space-between;">
+        <div class="d-flex mt-5" style="justify-content: space-between;">
           <span  :class="isDark ? 'demo-web1':'demo-web1-light'" >Demo Web</span>
           <Language-dropdown/>
         </div>
-      <v-footer :class="isDark ? 'footer-bg':'footer-bg-light'">
+      <div :class="isDark ? 'footer-bg':'footer-bg-light'">
         <v-row  no-gutters style="justify-content: space-between;" sm="4" >
           <div
             v-for="link in footer" 
@@ -26,7 +26,7 @@
             </v-col>
           </div>
         </v-row>    
-      </v-footer>
+      </div>
         <div class="d-flex" style="justify-content: space-between; margin-top: 64px; display: flex">
           <div style="display: flex; align-items: center">
             <ToggleBtn  class="me-3" />

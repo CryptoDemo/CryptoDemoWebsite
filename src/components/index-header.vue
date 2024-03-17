@@ -1,14 +1,12 @@
 <template>
-  <div class="head" >
-    <v-app-bar :elevation="2" class="px-10 pt-3 pb-3  d-flex" :class="isDark ? 'navbar-bg':'navbar-bg-light'" >
+  <v-container class="head" >
+    <v-app-bar :elevation="2" class="px-15 pt-3 pb-3  d-flex" :class="isDark ? 'navbar-bg':'navbar-bg-light'" >
   
         <template v-slot:prepend>
-          <v-app-bar-nav-icon>
-               <img src="/img/Logo.png"/>
-          </v-app-bar-nav-icon>
+         
         </template>
       
-        <v-app-bar-title  :class="isDark ? 'nav-title':'nav-title-light'" >Demo</v-app-bar-title>
+        <v-app-bar-title  :class="isDark ? 'nav-title':'nav-title-light'" >Demo Web</v-app-bar-title>
  
         <div style="position: absolute;left: 16%; display: flex; align-items: center; ">
              <v-btn class="header-link"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Create an offer</span> </NuxtLink></v-btn>
@@ -21,20 +19,21 @@
                       </v-btn>
                   </template>
 
-                  <v-list class="hub-dropdown">
+                  <v-list :class="isDark ? 'hub-dropdown':'hub-dropdown-light'" >
                     <v-row>
                       <v-col>
-                        <div style="border-radius: 10px; background: #10192D; height: 249px; display: flex;">
+                        <div :class="isDark ? 'avatar-bg':'avatar-bg-light'">
                           <img src="/svg/hub.svg" style="display: flex; margin: auto;"/>
                         </div>
                       </v-col>
                       <v-col cols="7">
                         <v-list-item v-for="(item, index) in items" :key="index" :style="index === 1? 'margin-bottom: 30px; margin-top: 30px' : ''">
                           <div class="d-flex">
-                            <img :src="item.icon" class="me-4"/>
+                            <img :src="item.icon1" class="me-4" v-if="theme.global.current.value.dark"/>
+                            <img :src="item.icon2" class="me-4" v-else/>
                             <div style="display: flex;">
                               <div class="d-flex" style="flex-direction: column;">
-                                <v-list-item-title class="icon-text1">{{ item.title }}</v-list-item-title>
+                                <v-list-item-title :class="isDark ? 'icon-text1':'icon-text1-light'">{{ item.title }}</v-list-item-title>
                                 <span class="icon-subtitle1 mt-1">{{ item.subtitle }}</span>
                               </div>
                                 <div style="display: flex; align-items: center;">
@@ -97,7 +96,7 @@
         <ToggleBtn  class="me-3"/>
         </template>
       </v-app-bar>
-  </div>
+  </v-container>
 </template>
 
 <script setup>
@@ -130,9 +129,9 @@ const props = defineProps(
 )
 
 const items = [
-        {icon:'/svg/bitcoin-hub.svg', title: 'Buy with bitcoin', subtitle:'Search for offers to buy gift cards with Bitcoin.'},
-        {icon:'/svg/bitcoin-hub.svg', title: 'Buy with Tether', subtitle:'Search for offers to buy gift cards with Tether.'},
-        {icon:'/svg/bitcoin-hub.svg', title: 'Buy with Binance Coin', subtitle:'Search for offers to buy gift cards with Binance Coin.'},
+        {icon1:'/svg/bitcoin-hub.svg', icon2:'/svg/tether-light.svg', title: 'Buy with bitcoin', subtitle:'Search for offers to buy gift cards with Bitcoin.'},
+        {icon1:'/svg/bitcoin-hub.svg', icon2:'/svg/tether-light.svg', title: 'Buy with Tether', subtitle:'Search for offers to buy gift cards with Tether.'},
+        {icon1:'/svg/bitcoin-hub.svg', icon2:'/svg/tether-light.svg', title: 'Buy with Binance Coin', subtitle:'Search for offers to buy gift cards with Binance Coin.'},
         
       ];
   
@@ -155,7 +154,8 @@ flex-shrink: 0;
 border-bottom: 1px solid #E2E8F0;
 background: rgba(255, 255, 255, 0.60) !important;
 backdrop-filter: blur(50px);
-box-shadow: none;
+box-shadow: none!important;
+/* box-shadow: #FFF!important; */
 display: flex;
 height: 80px;
 padding: 0px 120px;
@@ -292,9 +292,45 @@ padding: var(--spacing-2xl, 20px);
 align-items: center;
 gap: var(--spacing-3xl, 24px);
 }
-
+.hub-dropdown-light{
+border-radius: 15px !important;
+border: 1px solid var(--Gradient-Line, rgba(226, 232, 240, 0.50)) !important;
+background: #FFF !important;
+box-shadow: 0px 4px 50px 0px rgba(27, 37, 55, 0.15) !important;
+display: flex;
+width: 659px;
+padding: var(--spacing-2xl, 20px);
+align-items: center;
+gap: var(--spacing-3xl, 24px);
+}
+.avatar-bg{
+border-radius: 10px;
+background: #10192D;
+display: flex;
+margin: auto;
+padding: 51.69px 13.585px 0px 13.267px;
+height: 249px !important;
+}
+.avatar-bg-light{
+border-radius: 10px;
+background: #E9F1FF;
+padding: 51.69px 13.585px 0px 13.267px;
+height: 249px !important;
+display: flex;
+margin: auto;
+}
 .icon-text1{
 color: var(--Colors-Base-white, #FFF);
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+display: flex;
+align-items: center;
+}
+.icon-text1-light{
+color: #10192D !important;
 font-family: "SF Pro Display";
 font-size: 16px;
 font-style: normal;

@@ -4,9 +4,9 @@
             <img src="/svg/Background pattern.svg" class="position-absolute" style=" opacity: 0.2; left: 0; right: 0; display: flex; margin: auto;" v-else />
           <!-- </v-container> -->
     <div>
-      <Index-header title="Log in" link="/authentication/login"/>
       <div>
-          <section class="position-relative">
+        <Index-header title="Log in" link="/authentication/login"/>
+        <section class="position-relative">
             <div>
               <div class="position-absolute">    
                 <img src="/svg/Frame.svg" class="pink-coin position-absolute"/>
@@ -221,13 +221,13 @@
 
             <Frame/>
             
-            <v-container>
+            <div>
               <Reviews/>
-            </v-container>
+            </div>
             
             <v-row no-gutters>
               <v-col cols="md-6">
-                <div class="ma-2 pa-2">
+                <div class="me-4">
                   <div  :class="isDark ? 'barcode-section':'barcode-section-light'">
                       <div class="rectangle" style="display: flex; justify-self: center;" >
                           <img src="/svg/grouped-gradient.svg" style="display: flex; justify-self: center; width: 100%; margin: auto" class=""  v-if="theme.global.current.value.dark"/>
@@ -245,7 +245,7 @@
                                 <div style="display: grid">
                                   <span :class="isDark ? 'free-demo':'free-demo-light'">Free Demo Web Wallet</span>
                                   <span style="margin-top: 8px; color: #8E9BAE;line-height: 140%; font-family: SF Pro Display ;">Get a free <NuxtLink to="#"><span style="font-size: 16px;color: #2873FF;font-weight: 600; font-family: SF Pro Display; letter-spacing: 0.32px;">Demo Web</span></NuxtLink> 
-                                  when you sign up to receive, send, and store your Bitcoin.</span>
+                                  when you sign up to receive, send, and store <br>your Bitcoin.</span>
                                 </div>
                         
                           </div>
@@ -254,7 +254,7 @@
 
               </v-col>
               <v-col cols="md-6">
-                <div class="ma-2 pa-2">
+                <div class="">
                    <div :class="isDark ? 'barcode-section':'barcode-section-light'">
                       <div class="rectangle ">
                         <div style="padding-top: 28px;" v-if="theme.global.current.value.dark">
@@ -290,11 +290,11 @@
             <v-container>
                 <v-row no-gutters style="padding-top: 170px; padding-bottom: 140px">
               <v-col cols="md-7">
-                <div class="ma-2">
-                  <span class="section2-subtitle " style="justify-content: start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
-                  <span :class="isDark ? 'section2-title':'section2-title-light'" style="text-align: left; width: 625.645px; margin-top: 40px; margin-bottom: 48px">Join the Future of Crypto Trading with Demo Web</span>
+                <div class="">
+                  <span class="section2-subtitle " style="justify-content: flex-start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
+                  <span :class="isDark ? 'section2-title':'section2-title-light'" style="text-align: start; display: flex; justify-content: flex-start;  margin-top: 40px; margin-bottom: 48px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
                   <span class="explore">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
-                   <div class="d-flex" style="margin-top: 140px; ">
+                   <div class="d-flex" style="margin-top: 150px; ">
                       <img src="/svg/applestore.svg" class="social-icons me-4"/>
                       <img src="/svg/playstore.svg" class="social-icons me-2"/>
                       <div class="border-line"></div>
@@ -304,7 +304,7 @@
 
               </v-col>
               <v-col cols="md-5">
-                <div class="ma-2">
+                <div class="">
                   <div class="phone-rectangle" style="position: relative; top: -58px">
                     <img src="/svg/phoneHand.svg" v-if="theme.global.current.value.dark"/>
                     <img src="/img/light-phone.png" v-else/>
@@ -845,7 +845,7 @@ background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.5) 97.69%);
 background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-width: 688.35px;
+/* width: 688.35px; */
 display: flex;
 justify-content: center;
 /* margin-top: 40px !important; */
@@ -963,14 +963,14 @@ cursor: pointer;
 }
 .green-coin{
 display: flex;
-right: 4%;
+right: 7%;
 max-width: 100%;
 height: auto;
 }
 .orange-coin{
-right: 8%;
+right: 12%;
 top: -1%;
-max-width: 100%;
+max-width: 13%;
 height: auto;
 }
 .yellow-coin{
@@ -987,7 +987,7 @@ max-width: 100%;
 height: auto;
 }
 .pink-coin{
-  margin-left: 128px;
+  margin-left: 146px;
   /* top: 27px; */
 }
 .sell-btc-text{
@@ -1119,7 +1119,7 @@ margin-top: 16px;
 background: #10192D;
 display: flex;
 /* height: 897px; */
-padding: 0px 120px;
+padding: 0px 70px;
 align-items: center;
 gap: 44px;
 flex-shrink: 0;
@@ -1128,7 +1128,7 @@ flex-shrink: 0;
  background: linear-gradient(270deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);
 display: flex;
 /* height: 897px; */
-padding: 0px 120px;
+padding: 0px 70px;
 align-items: center;
 gap: 44px;
 flex-shrink: 0;

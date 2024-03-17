@@ -13,7 +13,7 @@
                 </div>
             </v-col>
             <v-col cols="12" sm="6">
-                <div class="ma-2 pa-2 position-relative ">
+                <div class="position-relative ">
               
                 <div class="img-reviews position-relative"  style="padding-top: 53px;">
                      <div  :class="isDark ? 'gradient1i':'gradient1i-light'"></div>
