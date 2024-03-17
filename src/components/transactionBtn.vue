@@ -32,7 +32,7 @@ letter-spacing: unset !important;
 font-family: Manrope;
 font-size: 12px;
 font-style: normal;
-font-weight: 700;
+font-weight: 700 !important;
 line-height: 150%; /* 18px */
 }
 .payment-btn-light{

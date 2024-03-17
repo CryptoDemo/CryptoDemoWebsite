@@ -94,7 +94,7 @@
                       <div style="margin-top: 30px;">
                           <span :class="isDark ? 'pay-with':'pay-with-light'" >Pay with</span>
                           <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px;">
-                            <span class="text2">Select payment method (20+)</span>
+                            <span class="text2" style="font-weight: 700 !important; font-family: Manrope;">Select payment method (20+)</span>
                                   <v-dialog width="600">
                                     <template v-slot:activator="{ props }">
                                       <v-btn v-bind="props" :class="isDark ? 'show-all':'show-all-light'" text="Show all"> </v-btn>
@@ -1029,20 +1029,21 @@ margin-top: 36px;
 
 .Demo-header{
 -webkit-text-stroke-width: 1;
--webkit-text-stroke-color: #000;
+-webkit-text-stroke-color: #000 !important;
 font-family: "SF Pro Display";
 font-size: 240.955px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
-background: linear-gradient(90deg, rgba(40, 115, 255, 0.39) 0%, rgba(40, 115, 255, 0.00) 100%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+background: linear-gradient(90deg, rgba(40, 115, 255, 0.39) 0%, rgba(40, 115, 255, 0.00) 100%) !important;
+background-clip: text !important;
+-webkit-background-clip: text !important;
+-webkit-text-fill-color: transparent !important;
 width: 1194px;
 height: 313.157px;
 display: block;
-
+-webkit-text-stroke-width: 0.2px;
+-webkit-text-stroke-color: #2873FF !important;
 }
 .dialog{
 background: rgba(6, 10, 29, 0.70)!important;
@@ -1149,4 +1150,21 @@ margin-right: 28.5px;
 .social-icons{
   cursor: pointer;
 }
+
+::-webkit-input-placeholder {
+/* color: #808195!important;
+font-size: 0.875rem;
+font-style: normal;
+font-size: 14px;
+font-weight: 400;
+line-height: normal; */
+
+color: #8E9BAE !important;
+font-family: Manrope !important;
+font-size: 14px !important;
+font-style: normal;
+font-weight: 700 !important;
+line-height: 150% !important; /* 21px */
+}
+
 </style>

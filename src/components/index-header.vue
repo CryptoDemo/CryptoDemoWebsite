@@ -21,10 +21,33 @@
                       </v-btn>
                   </template>
 
-                  <v-list>
-                    <v-list-item v-for="(item, index) in items" :key="index">
-                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                  <v-list class="hub-dropdown">
+                    <v-row>
+                      <v-col>
+                        <div style="border-radius: 10px; background: #10192D; height: 249px; display: flex;">
+                          <img src="/svg/hub.svg" style="display: flex; margin: auto;"/>
+                        </div>
+                      </v-col>
+                      <v-col cols="7">
+                        <v-list-item v-for="(item, index) in items" :key="index" :style="index === 1? 'margin-bottom: 30px; margin-top: 30px' : ''">
+                          <div class="d-flex">
+                            <img :src="item.icon" class="me-4"/>
+                            <div style="display: flex;">
+                              <div class="d-flex" style="flex-direction: column;">
+                                <v-list-item-title class="icon-text1">{{ item.title }}</v-list-item-title>
+                                <span class="icon-subtitle1 mt-1">{{ item.subtitle }}</span>
+                              </div>
+                                <div style="display: flex; align-items: center;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                      <path d="M10.4004 7.5L15.4004 12.5L10.4004 17.5" stroke="#2973FE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                          </div>
                     </v-list-item>
+                      </v-col>
+                    </v-row>
+                   
                   </v-list>
               </v-menu>
             </div>
@@ -107,10 +130,10 @@ const props = defineProps(
 )
 
 const items = [
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me 2' },
+        {icon:'/svg/bitcoin-hub.svg', title: 'Buy with bitcoin', subtitle:'Search for offers to buy gift cards with Bitcoin.'},
+        {icon:'/svg/bitcoin-hub.svg', title: 'Buy with Tether', subtitle:'Search for offers to buy gift cards with Tether.'},
+        {icon:'/svg/bitcoin-hub.svg', title: 'Buy with Binance Coin', subtitle:'Search for offers to buy gift cards with Binance Coin.'},
+        
       ];
   
 </script>
@@ -133,7 +156,13 @@ border-bottom: 1px solid #E2E8F0;
 background: rgba(255, 255, 255, 0.60) !important;
 backdrop-filter: blur(50px);
 box-shadow: none;
-
+display: flex;
+height: 80px;
+padding: 0px 120px;
+justify-content: space-between;
+justify-content: center;
+align-items: center;
+flex-shrink: 0;
 }
 .nav-title{
 color: var(--Colors-Base-white, #FFF);
@@ -250,4 +279,37 @@ text-transform: unset !important;
 letter-spacing: 0px!important;
 }
 
+.hub-dropdown{
+border-radius: 15px;
+border: 1px solid #10192D;
+background: rgba(6, 10, 29, 0.70);
+box-shadow: 0px 4px 50px 0px rgba(6, 10, 29, 0.25);
+backdrop-filter: blur(50px);
+display: flex;
+width: 659px;
+/* height: 289px; */
+padding: var(--spacing-2xl, 20px);
+align-items: center;
+gap: var(--spacing-3xl, 24px);
+}
+
+.icon-text1{
+color: var(--Colors-Base-white, #FFF);
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+display: flex;
+align-items: center;
+}
+
+.icon-subtitle1{
+color: #64748B;
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
 </style>

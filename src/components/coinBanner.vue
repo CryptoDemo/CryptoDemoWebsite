@@ -1,7 +1,7 @@
 <template>
 <section class="coin-wrap">
 <v-container>
-    <div>
+    <div class="border-div">
         <div :class="isDark ? 'coin-banner':'coin-banner-light'">
             <img src="/svg/Vector 1186.svg" class="position-absolute"/>
             <img src="/svg/Vector 1187.svg" class="position-absolute" style="right: 0;"/>
@@ -20,8 +20,8 @@
                     <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"   class="d-flex" />
                 </div>
  
-                <div class="coin-container " style="padding-right: 52px; opacity: 0.5!important;">
-                    <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins"  class="d-flex"/>
+                <div class="coin-container " style="padding-right: 17px; opacity: 0.5!important; margin-top: 24.01px; margin-bottom: 24.01px;">
+                    <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins" class="d-flex"/>
                 </div>
              
 
@@ -59,11 +59,24 @@ const thirdCoin = ref([
 @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 
 .coin-banner{
-border-radius: 15px;
 position: relative;
 background: linear-gradient(90deg, #10192D 0%, rgba(16, 25, 45, 0.00) 100%);
-width: 100%;
+width: auto;
+border-radius: 15px!important;
+height: 100%;
 }
+
+.border-div{
+/* background-image: linear-gradient(120deg,#FFFFFF, #10192D00, #10192D, #fff ) 1; */
+background: linear-gradient(90deg,#10192D, #10192D) padding-box,
+              linear-gradient(120deg, #FFFFFF, #10192D, #10192D, #fff ) border-box;
+width: auto;
+border-radius: 15px!important;
+border: 0.5px solid transparent;
+content: "";
+
+}
+
 .coin-banner-light{
 border-radius: 15px;
 position: relative;
@@ -162,21 +175,5 @@ gap: 10px;
 flex-shrink: 0;
 }
 
-/* .loop-slider .inner{
-    display: flex;
-    width: fit-content;
-    animation-name: loop;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: var(--direction);
-    animation-duration: var(--duration);
-  }
-  @keyframes loop {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-} */
+
 </style>
