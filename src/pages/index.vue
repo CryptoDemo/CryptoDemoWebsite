@@ -1130,7 +1130,8 @@ gap: 44px;
 flex-shrink: 0;
 }
 .section3-light{
- background: linear-gradient(270deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);
+ /* background: linear-gradient(270deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%); */
+ background: #E9F1FF;
 display: flex;
 /* height: 897px; */
 padding: 0px 80px;
