@@ -1,6 +1,7 @@
 <template>
-  <v-container class="head" >
-    <v-app-bar :elevation="2" class="px-15 pt-3 pb-3 mx-auto  d-flex" :class="isDark ? 'navbar-bg':'navbar-bg-light'" style="margin: 0 auto !important;">
+  <div>
+    <!-- <v-container> -->
+    <v-app-bar :elevation="2"  class="pt-3 pb-3" :class="isDark ? 'navbar-bg':'navbar-bg-light'">
 <!--   
         <template v-slot:prepend>
          
@@ -64,7 +65,7 @@
 
     
       
-        <v-menu :location="location">
+        <v-menu>
           <template v-slot:activator="{ props }">
             <v-btn  class="me-4" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"
               dark
@@ -96,7 +97,8 @@
         <ToggleBtn  class="me-3"/>
         </template>
       </v-app-bar>
-  </v-container>
+    <!-- </v-container> -->
+      </div>
 </template>
 
 <script setup>
@@ -142,11 +144,11 @@ const items = [
 border-bottom: 1px solid #10192D;
 background: rgba(6, 10, 29, 0.60)!important;
 backdrop-filter: blur(50px);
-/* display: flex; */
+display: flex !important;
 height: 80px;
-/* width: 1200px !important; */
+/* width: 100% !important; */
 margin: auto !important;
-padding: 0px 120px !important;
+padding: 0px 72px !important;
 justify-content: space-between !important;
 justify-content: center !important;
 align-items: center !important;

@@ -105,7 +105,7 @@ display: flex;
 height: 773px;
 flex-direction: column;
 padding: 40px;
-align-items: flex-start;
+/* align-items: flex-start; */
 position: relative;
 width: 100%;
 }
@@ -117,7 +117,7 @@ display: flex;
 height: 773px;
 flex-direction: column;
 padding: 40px;
-align-items: flex-start;
+/* align-items: flex-start; */
 position: relative;
 width: 100%;
 }
