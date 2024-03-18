@@ -1,10 +1,10 @@
 <template>
   <v-container class="head" >
-    <v-app-bar :elevation="2" class="px-15 pt-3 pb-3  d-flex" :class="isDark ? 'navbar-bg':'navbar-bg-light'" >
-  
+    <v-app-bar :elevation="2" class="px-15 pt-3 pb-3 mx-auto  d-flex" :class="isDark ? 'navbar-bg':'navbar-bg-light'" style="margin: 0 auto !important;">
+<!--   
         <template v-slot:prepend>
          
-        </template>
+        </template> -->
       
         <v-app-bar-title  :class="isDark ? 'nav-title':'nav-title-light'" >Demo Web</v-app-bar-title>
  
@@ -142,12 +142,14 @@ const items = [
 border-bottom: 1px solid #10192D;
 background: rgba(6, 10, 29, 0.60)!important;
 backdrop-filter: blur(50px);
-display: flex;
+/* display: flex; */
 height: 80px;
-padding: 0px 120px;
-justify-content: space-between;
-justify-content: center;
-align-items: center;
+/* width: 1200px !important; */
+margin: auto !important;
+padding: 0px 120px !important;
+justify-content: space-between !important;
+justify-content: center !important;
+align-items: center !important;
 flex-shrink: 0;
 }
 .navbar-bg-light{
