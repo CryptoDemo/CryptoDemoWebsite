@@ -64,7 +64,7 @@
         
           <div style="margin-top: 32px;">
             <!-- <div> -->
-              <v-container style="display: flex">
+              <v-container style="display: fle">
               <div  class="me">
                 <div class="sd-nav1">
                   <div style="border-bottom: 1px solid var(--border, #303A46);">
