@@ -292,9 +292,9 @@
               <v-col cols="md-7">
                 <div class="">
                   <span class="section2-subtitle " style="justify-content: flex-start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
-                  <span :class="isDark ? 'section2-title':'section2-title-light'" style="text-align: start; display: flex; justify-content: flex-start;  margin-top: 40px; margin-bottom: 48px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
+                  <span :class="isDark ? 'section2-title':'section2-title-light'" style="text-align: start; display: flex; justify-content: flex-start;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
                   <span class="explore">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
-                   <div class="d-flex" style="margin-top: 150px; ">
+                   <div class="d-flex" style="margin-top: 88px; ">
                       <img src="/svg/applestore.svg" class="social-icons me-4"/>
                       <img src="/svg/playstore.svg" class="social-icons me-2"/>
                       <div class="border-line"></div>

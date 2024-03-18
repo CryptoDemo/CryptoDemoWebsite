@@ -2,7 +2,7 @@
   <div>
      <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
      <v-container>
-        <div style="margin-top: 110px; display: flex;">
+        <div style="margin-top: 100px; display: flex;">
             <v-row>
               <v-col cols="8" class="pa-1 ma-1">
                 <div class="profile" style="padding: 30px 0px">
@@ -228,7 +228,7 @@
                
 
 
-            <div style="margin-top: 40px">
+            <div style="margin-top: 101px">
              <span class="user-location">Feedback</span>
             </div>
 

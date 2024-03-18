@@ -1,7 +1,7 @@
 <template>
   <div class="head">
 
-    <v-app-bar :elevation="2" class="px-15 pt-3 pb-3 d-flex">
+    <v-app-bar :elevation="2" class="px-15 pt-3 py-15 pb-3 d-flex">
         <template v-slot:prepend>
           <v-app-bar-nav-icon>
                <img src="/img/Logo.png"/>
