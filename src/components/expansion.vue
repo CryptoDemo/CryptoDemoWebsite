@@ -146,10 +146,9 @@ font-weight: 500;
 line-height: 140%; /* 28px */ 
 }
 .v-expansion-panel-title--active > .v-expansion-panel-title__overlay, .v-expansion-panel-title[aria-haspopup=menu][aria-expanded=true] > .v-expansion-panel-title__overlay {
-/* background: rgb(182, 190, 213) !important; */
+background: rgb(182, 190, 213) !important;
 min-height: 143px !important;
 position: absolute;
-background: green;
 /* padding: 85px !important; */
 opacity: 0.4;
 border-radius: 15px;
