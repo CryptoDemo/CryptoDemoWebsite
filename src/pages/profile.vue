@@ -62,7 +62,7 @@
      </v-container>
 
         
-          <div style="margin-top: 32px; display: flex;">
+          <div style="margin-top: 32px;">
             <!-- <div> -->
               <v-container style="display: flex">
               <div  class="me">
