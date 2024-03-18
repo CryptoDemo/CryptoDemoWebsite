@@ -2,7 +2,7 @@
   <div>
      <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
      <v-container>
-        <div style="margin-top: 130px; display: flex;">
+        <div style="margin-top: 110px; display: flex;">
             <v-row>
               <v-col cols="8" class="pa-1 ma-1">
                 <div class="profile" style="padding: 30px 0px">
@@ -100,19 +100,24 @@
 
             <!-- <div> -->
               <div>
-                  <v-row  style="gap: 16px; margin-bottom: 32px !important; width: 114%;">
+                <!-- <v-container> -->
+                  <v-row  style="gap: 16px; width: ;">
                     <v-col
-                        v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="3">
+                        v-for="(variant, i) in profileCards" class="profile-cards mt-2" :key="i" cols="3">
                         <v-card class="mx-auto" max-width="500" :variant="variant">
                             <v-card-item>
-                              <div>
-                                <div class="d-flex">
-                                  <img :src="variant.image" class="me-3"/>
-                                  <span class="card-text">{{ variant.Title }}</span>
-                                  <span class="card-text" style="color:#969696">{{ variant.Title1 }}</span>
+                              <div style="display: flex;">
+                                <div>
+                                <img :src="variant.image" class="me-3 mt-1"/>
+                                </div>
+                                <div class="d-flex" style="flex-direction: column;">
+                                  <!-- <div> -->
+                                      <span class="card-text">{{ variant.Title }}</span>
+                                      <span class="card-text" style="color:#969696">{{ variant.Title1 }}</span>
+                                      <div class="textCaption" style="color: var(--Gray-Medium-dark, #646464);margin-top: 8px;">{{variant.textCaption}}</div>
+                                  <!-- </div> -->
                                 </div>
                                 
-                                <div class="textCaption" style="color: var(--Gray-Medium-dark, #646464);margin-top: 8px;">{{variant.textCaption}}</div>
                               </div>
                             </v-card-item>
                                 
@@ -126,9 +131,10 @@
                    </v-col>
                   <!-- </v-row> -->
                   </v-row>
+                <!-- </v-container> -->
               <!-- </div> -->
-
-              <span class="user-location" >Active offers</span>
+<!-- <div> -->
+            <span class="user-location" >Active offers</span>
         
             <div class="mt-5">
               <v-row>
@@ -302,6 +308,7 @@
                   </div>
                 </div>
               </div>
+            <!-- </v-container> -->
             </div>
           </div>
             <!-- </div> -->
@@ -416,8 +423,8 @@ line-height: normal;
 border-radius: 24px;
 background: var(--secondary-background, #12181F)!important;
 /* display: flex; */
-width: 50% !important;
-max-height: fit-content;
+/* width: 50% !important; */
+/* max-height: 180px; */
 /* padding: 20px 20px 16px 20px; */
 /* flex-direction: column; */
 /* justify-content: center; */
