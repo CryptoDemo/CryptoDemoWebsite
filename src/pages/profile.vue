@@ -7,7 +7,7 @@
               <v-col cols="8" class="pa-1 ma-1">
                 <div class="profile" style="padding: 30px 0px">
 
-                  <div class="d-flex" style="justify-content: space-around;">
+                  <div class="d-flex" style="justify-content: space-around; align-items: center;">
                     <div class="d-flex">
                       <img src="/svg/Image (1).svg" class="me-3" alt="avatar" style="display: flex; align-self: flex-start;"/>
                         <div>
@@ -17,15 +17,15 @@
                     </div>
                     <span class="user-location" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
                     
-                      <v-btn class="d-flex" style="align-self: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
+                      <div class="d-flex" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
                           <img src="/svg/heart-tick.svg" alt="icon">
                             <span class="user-location">0</span>
-                      </v-btn>
+                      </div>
 
-                      <v-btn class="d-flex" style="align-self: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
+                      <div class="d-flex" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
                       <img src="/svg/heart-remove.svg" alt="icon">
                       <span class="user-location">0</span>
-                      </v-btn>
+                      </div>
                   </div>
 
                 </div>
@@ -62,9 +62,9 @@
       
 
         
-          <v-row style="margin-top: 32px; display: flex;">
+          <div style="margin-top: 32px; display: flex;">
             <!-- <div> -->
-              <v-col cols="4" class="ma-2">
+              <div  class="me-10">
                 <div class="sd-nav1">
                   <div style="border-bottom: 1px solid var(--border, #303A46);">
                     <div style="padding: 20px 24px;">
@@ -96,14 +96,14 @@
                       </div>
                   </div>
                 </div>
-              </v-col>
+              </div>
 
             <!-- <div> -->
-              <v-col cols="8" class="pa-2 ma-2" >
-                  <v-row align="center" justify="start" style="gap: 16px; margin-bottom: 32px !important">
+              <div>
+                  <v-row  style="gap: 16px; margin-bottom: 32px !important; width: 114%;">
                     <v-col
                         v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="3">
-                        <v-card class="mx-auto" max-width="344" :variant="variant">
+                        <v-card class="mx-auto" max-width="500" :variant="variant">
                             <v-card-item>
                               <div>
                                 <div class="d-flex">
@@ -124,13 +124,14 @@
                             </v-card-actions>
                         </v-card>
                    </v-col>
+                  <!-- </v-row> -->
                   </v-row>
               <!-- </div> -->
 
               <span class="user-location" >Active offers</span>
         
             <div class="mt-5">
-              <v-row style="margin-left: 1px;">
+              <v-row>
                 <v-btn class=" me-4 mb-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
                     <span style="position: relative; left: -18px">Crypto purchased</span>
                   <span style="position: relative; right: -18px; font-weight: 800;">0</span>
@@ -175,7 +176,7 @@
 
                 <div style="height: 1px; background: #303A46; margin-top:16px"></div>
                 <div v-for="n in 2" :key="n" >
-                  <div style="display: flex; justify-content: space-between;  width: 930px;">
+                  <div style="display: flex; justify-content: space-between;">
                       <div style="margin-top: 32px;">
                           <div style="display: flex; margin-bottom: 14px">
                               <span class="me-3">Esewa</span>
@@ -301,8 +302,8 @@
                   </div>
                 </div>
               </div>
-            </v-col>
-          </v-row>
+            </div>
+          </div>
             <!-- </div> -->
         </v-container>
        <Footer/>
@@ -414,15 +415,15 @@ line-height: normal;
 .profile-cards{
 border-radius: 24px;
 background: var(--secondary-background, #12181F)!important;
-display: flex;
-width: 302px;
-min-height: 140px;
-padding: 20px 20px 16px 20px;
-flex-direction: column;
-justify-content: center;
-align-items: flex-end;
-gap: 16px;
-color: white;
+/* display: flex; */
+width: 50% !important;
+max-height: fit-content;
+/* padding: 20px 20px 16px 20px; */
+/* flex-direction: column; */
+/* justify-content: center; */
+/* align-items: flex-end; */
+/* gap: 16px; */
+/* color: white; */
 }
 .card-text{
 color: var(--Warm-Red, #E33E38);

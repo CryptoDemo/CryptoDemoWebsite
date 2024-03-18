@@ -36,8 +36,8 @@ const FAQ = [
     {question:'Which cryptocurrencies are available for trading on Demo Web?', answer:'Currently, Demo Web primarily focuses on facilitating trades in Bitcoin (BTC). However, we may introduce support for additional cryptocurrencies in the future based on user demand and market trends.'},
     {question:'How secure is Demo Web for trading?', answer:' At Demo Web, we prioritize the security of our users funds and personal information. We employ robust encryption protocols, two-factor authentication, and cold storage solutions to ensure the safety of transactions and user data on our platform. '},
     {question:'What are the trading fees on Demo Web?', answer:' Demo Web charges a nominal fee for facilitating trades on our platform. This fee is typically calculated as a percentage of the transaction amount and is transparently displayed to users before they finalize their trades.'},
-    {question:'How quickly are deposits and withdrawals processed?', answer:' Deposits and withdrawals on Demo Web are processed promptly, with most transactions being completed within minutes to hours, depending on blockchain confirmation times and other factors. We strive to ensure swift and efficient processing to minimize any inconvenience to our users. '},
-    {question:'Does Demo Web offer customer support?', answer:'Yes, Demo Web provides comprehensive customer support to assist users with any inquiries or issues they may encounter while using our platform. Our dedicated support team is available via live chat, email, and our help center during specified hours to address user concerns promptly and efficiently.'},
+    {question:'How quickly are deposits and withdrawals processed?', answer:' Deposits and withdrawals on Demo Web are processed promptly, depending on blockchain confirmation times and other factors. We strive to ensure swift and efficient processing to minimize any inconvenience to our users. '},
+    {question:'Does Demo Web offer customer support?', answer:'Yes, Demo Web provides customer support to assist users with any inquiries or issues they may encounter while using our platform. Our dedicated support team  and our help  center  is available during specified hours to address user concerns promptly.'},
 
 ]
 
@@ -147,12 +147,14 @@ font-weight: 500;
 line-height: 140%; /* 28px */ 
 }
 .v-expansion-panel-title--active > .v-expansion-panel-title__overlay, .v-expansion-panel-title[aria-haspopup=menu][aria-expanded=true] > .v-expansion-panel-title__overlay {
-opacity: calc(var(--v-activated-opacity)* var(--v-theme-overlay-multiplier));
-background: rgb(135, 138, 147) !important;
-/* height: 35% !important; */
-padding: 85px !important;
+/* opacity: calc(var(--v-activated-opacity)* var(--v-theme-overlay-multiplier)); */
+background: rgb(182, 190, 213) !important;
+min-height: 143px !important;
+position: absolute;
+/* padding: 85px !important; */
 opacity: 0.4;
 border-radius: 15px;
+flex-grow: inherit;
 /* backdrop-filter: blur(25px); */
 }
 

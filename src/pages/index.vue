@@ -1119,7 +1119,7 @@ margin-top: 16px;
 background: #10192D;
 display: flex;
 /* height: 897px; */
-padding: 0px 70px;
+padding: 0px 80px;
 align-items: center;
 gap: 44px;
 flex-shrink: 0;
@@ -1128,7 +1128,7 @@ flex-shrink: 0;
  background: linear-gradient(270deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);
 display: flex;
 /* height: 897px; */
-padding: 0px 70px;
+padding: 0px 80px;
 align-items: center;
 gap: 44px;
 flex-shrink: 0;
