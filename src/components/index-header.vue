@@ -1,15 +1,16 @@
 <template>
   <div>
-    <!-- <v-container> -->
     <v-app-bar :elevation="2"  class="pt-3 pb-3" :class="isDark ? 'navbar-bg':'navbar-bg-light'">
-<!--   
+      <!--   
         <template v-slot:prepend>
-         
+          
         </template> -->
+        <v-container style="display: flex; align-items: center;">
       
         <v-app-bar-title  :class="isDark ? 'nav-title':'nav-title-light'" >Demo Web</v-app-bar-title>
  
-        <div style="position: absolute;left: 16%; display: flex; align-items: center; ">
+        <!-- <div style="display: flex; align-items: center;  justify-content: end;"> -->
+          <div class="d-flex" style="position: absolute; margin-left: 150px;">
              <v-btn class="header-link"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Create an offer</span> </NuxtLink></v-btn>
              <v-btn class="header-link"><NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Wallet</span> </NuxtLink></v-btn>
              <div class="text-center">
@@ -19,7 +20,7 @@
                         <v-icon color="primary" class="mt-1"  icon="mdi-chevron-down"></v-icon>
                       </v-btn>
                   </template>
-
+                  <div style="display: flex; align-items: center;  justify-content: end;">
                   <v-list :class="isDark ? 'hub-dropdown':'hub-dropdown-light'" >
                     <v-row>
                       <v-col>
@@ -49,13 +50,16 @@
                     </v-row>
                    
                   </v-list>
+                  </div>
               </v-menu>
             </div>
             <v-btn class="header-link"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Become a Vendor</span></NuxtLink> </v-btn>
         </div>
        
       
-        <template v-slot:append >
+        <!-- <template v-slot:append > -->
+
+                <!-- <div style="display: flex; align-items: center;  justify-content: end;"> -->
 
           <v-btn class="header-link me-3">  <NuxtLink :to="props.link">  <span class="text2 d-flex" style="align-self: center; margin: auto;" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{props.title}}</span></NuxtLink> </v-btn>
 
@@ -95,9 +99,10 @@
         </v-menu>
 
         <ToggleBtn  class="me-3"/>
-        </template>
+        <!-- </template> -->
+        <!-- </div> -->
+        </v-container>
       </v-app-bar>
-    <!-- </v-container> -->
       </div>
 </template>
 
@@ -148,10 +153,12 @@ display: flex !important;
 height: 80px;
 /* width: 100% !important; */
 margin: auto !important;
-padding: 0px 72px !important;
-justify-content: space-between !important;
+/* padding: 0px 72px !important; */
+/* justify-content: space-between !important; */
 justify-content: center !important;
 align-items: center !important;
+align-self: center !important;
+margin: auto !important;
 flex-shrink: 0;
 }
 .navbar-bg-light{
@@ -162,8 +169,9 @@ box-shadow: none!important;
 /* box-shadow: #FFF!important; */
 display: flex;
 height: 80px;
-padding: 0px 120px;
-justify-content: space-between;
+padding: 0px 72px !important;
+margin: auto;
+/* justify-content: space-between; */
 justify-content: center;
 align-items: center;
 flex-shrink: 0;

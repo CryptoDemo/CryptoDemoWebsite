@@ -7,11 +7,11 @@
       <div>
         <Index-header title="Log in" link="/authentication/login"/>
         <section class="position-relative">
-            <div>
+            <v-container class="position-relative">
               <div class="position-absolute">    
+                <!-- <img src="/svg/Group 1318.svg" class="position-absolute" style="top: px; left: 0;"/> -->
                 <img src="/svg/Frame.svg" class="pink-coin position-absolute"/>
-              
-                <!-- <img src="/svg/Group 1320.svg" class="position-relative"/> -->
+                
                 </div>
                 <div>
                   <div class="frame-1"  :class="isDark ? 'frame-1':'frame-1-light'">
@@ -21,22 +21,22 @@
                   </div>
                   
 
-                   <div style="justify-content: center; display: flex; margin-top: 40px">
+                   <div style="justify-content: center; display: flex; margin-top: 40px; position: relative;">
                          <span :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
                            <img src="/img/Frame.png" class="orange-coin position-absolute"/> 
                     </div>
 
 
 
-                <div class="d-flex text-img" v-if="theme.global.current.value.dark">
+                <div class="d-flex text-img position-relative" v-if="theme.global.current.value.dark">
                   <span class="web" style="margin-right: 78px;">Demo Web</span>
-                  <img src="/svg/Frame 1305.svg" style="position: absolute; margin-left: 375px ;top: 144px;" /> 
+                  <img src="/svg/Frame 1305.svg" style="position: absolute; margin-left: 375px ;top: -27px;" /> 
                 </div>
                 <div class="d-flex text-img" v-else>
                   <span class="web">Demo Web✨️</span>
                 </div>
                   <div class="position-relative">
-                    <img src="/svg/Group 1318.svg" class="position-absolute" style="margin-left: 27px; top: -43px;"/>
+                    <img src="/svg/Group 1318.svg" class="position-absolute" style="top: -43px; left: 0;"/>
                     <img src="/svg/Group 1320.svg" class="green-coin position-absolute"/>
                   </div>
                   <div>
@@ -161,9 +161,12 @@
                   </div>
               </div>
                 </div>
-      </div>
+            </v-container>
 
           </section>
+
+
+
       </div>
           <v-container class=" position-relative" style="">
             <div class=""> 
@@ -968,10 +971,11 @@ max-width: 100%;
 height: auto;
 }
 .orange-coin{
-right: 12%;
-top: -1%;
+right: 10%;
+/* margin-bottom: 60px; */
 max-width: 13%;
 height: auto;
+top: -64px;
 }
 .yellow-coin{
 z-index: 100;
@@ -987,9 +991,10 @@ max-width: 100%;
 height: auto;
 }
 .pink-coin{
-  margin-left: 146px;
-  /* top: 27px; */
+  margin-left: 120px;
+  top: 190px;
 }
+
 .sell-btc-text{
 color: white !important;
 text-align: center;
