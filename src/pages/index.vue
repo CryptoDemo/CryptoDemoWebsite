@@ -966,7 +966,7 @@ cursor: pointer;
 }
 .green-coin{
 display: flex;
-right: 7%;
+right: 2%;
 max-width: 100%;
 height: auto;
 }

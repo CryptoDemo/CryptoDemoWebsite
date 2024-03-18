@@ -59,12 +59,13 @@
             <!-- </div> -->
           </v-row>
         </div>
-      
+     </v-container>
 
         
           <div style="margin-top: 32px; display: flex;">
             <!-- <div> -->
-              <div  class="me-10">
+              <v-container style="display: flex">
+              <div  class="me">
                 <div class="sd-nav1">
                   <div style="border-bottom: 1px solid var(--border, #303A46);">
                     <div style="padding: 20px 24px;">
@@ -97,11 +98,9 @@
                   </div>
                 </div>
               </div>
-
-           
-              <div>
+            
              
-                  <v-row  style="gap: 16px; width: 80vw;">
+                  <v-row  style="gap: 16px; width: ;">
                     <v-col
                         v-for="(variant, i) in profileCards" class="profile-cards mt-2" :key="i" cols="3">
                         <v-card class="mx-auto" max-width="500" :variant="variant">
@@ -131,7 +130,9 @@
                    </v-col>
                   <!-- </v-row> -->
                   </v-row>
-               
+              </v-container>
+
+          <!-- <v-container> -->
           <div style="width: 78%; margin-top: 42px;">
             <span class="user-location" >Active offers</span>
         
@@ -227,7 +228,7 @@
                 </div>
                
 
-
+            <v-container>
             <div style="margin-top: 101px">
              <span class="user-location">Feedback</span>
             </div>
@@ -306,16 +307,18 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </v-container>
+            </div>
+          
           </div>
             </div>
 
 
 
             
-          </div>
+         
           
-        </v-container>
+        <!-- </v-container> -->
        <Footer/>
   </div>
 </template>
