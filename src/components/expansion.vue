@@ -56,9 +56,9 @@ margin-bottom: 16px;
 .expansion-panel-light{
 border-radius: 15px !important;
 background: #F8FAFC !important;
-display: flex;
+/* display: flex; */
 padding: 20px !important;
-justify-content: center;
+/* justify-content: center; */
 flex-direction: column;
 align-items: flex-start;
 gap: 24px;
@@ -128,7 +128,6 @@ font-size: 20px;
 font-style: normal;
 font-weight: 400;
 line-height: 140%; /* 28px */
-/* padding-bottom: 70px !important; */
 }
 .title-text{
 color: #8E9BAE;
@@ -147,15 +146,13 @@ font-weight: 500;
 line-height: 140%; /* 28px */ 
 }
 .v-expansion-panel-title--active > .v-expansion-panel-title__overlay, .v-expansion-panel-title[aria-haspopup=menu][aria-expanded=true] > .v-expansion-panel-title__overlay {
-/* opacity: calc(var(--v-activated-opacity)* var(--v-theme-overlay-multiplier)); */
-background: rgb(182, 190, 213) !important;
+/* background: rgb(182, 190, 213) !important; */
 min-height: 143px !important;
 position: absolute;
+background: green;
 /* padding: 85px !important; */
 opacity: 0.4;
 border-radius: 15px;
-flex-grow: inherit;
-/* backdrop-filter: blur(25px); */
 }
 
 </style>
