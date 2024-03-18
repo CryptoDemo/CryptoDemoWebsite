@@ -64,8 +64,8 @@
         
           <div style="margin-top: 32px;">
             <!-- <div> -->
-              <v-container style="display: fle">
-              <div  class="me">
+              <v-container style="display: flex">
+              <div  class="me-9">
                 <div class="sd-nav1">
                   <div style="border-bottom: 1px solid var(--border, #303A46);">
                     <div style="padding: 20px 24px;">
@@ -100,9 +100,9 @@
               </div>
             
              
-                  <v-row  style="gap: 16px; width: ;">
+                  <v-row  style="gap: 16px;">
                     <v-col
-                        v-for="(variant, i) in profileCards" class="profile-cards mt-2" :key="i" cols="3">
+                        v-for="(variant, i) in profileCards" class="profile-cards mt-2" :key="i" cols="3" style="display: flex;">
                         <v-card class="mx-auto" max-width="500" :variant="variant">
                             <v-card-item>
                               <div style="display: flex;">
@@ -428,6 +428,7 @@ line-height: normal;
 .profile-cards{
 border-radius: 24px;
 background: var(--secondary-background, #12181F)!important;
+/* height: 140px; */
 /* display: flex; */
 /* width: 50% !important; */
 /* max-height: 180px; */

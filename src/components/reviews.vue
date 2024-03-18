@@ -4,8 +4,8 @@
         <v-row no-gutters>
             <v-col cols="12" sm="6">
                 <div class="layout">
-                    <v-btn class="wrapper">
-                        <img src="/svg/comment-2-text.svg" class="me-3"/>
+                    <v-btn class="wrapper" style="width: 106px; height: 36px;">
+                        <img src="/svg/comment-2-text.svg" class="me-2"/>
                         <span :class="isDark ? 'feedback':'feedback-light'">Feedback</span>
                     </v-btn>
                     <span :class="isDark ? 'valuable-feedback':'valuable-feedback-light'" >Valuable feedback</span>
