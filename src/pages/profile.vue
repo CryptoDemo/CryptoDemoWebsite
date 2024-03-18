@@ -98,10 +98,10 @@
                 </div>
               </div>
 
-            <!-- <div> -->
+           
               <div>
-                <!-- <v-container> -->
-                  <v-row  style="gap: 16px; width: ;">
+             
+                  <v-row  style="gap: 16px; width: 80vw;">
                     <v-col
                         v-for="(variant, i) in profileCards" class="profile-cards mt-2" :key="i" cols="3">
                         <v-card class="mx-auto" max-width="500" :variant="variant">
@@ -131,9 +131,8 @@
                    </v-col>
                   <!-- </v-row> -->
                   </v-row>
-                <!-- </v-container> -->
-              <!-- </div> -->
-<!-- <div> -->
+               
+          <div style="width: 78%; margin-top: 42px;">
             <span class="user-location" >Active offers</span>
         
             <div class="mt-5">
@@ -224,12 +223,12 @@
                     
                   </div>
 
-                  <div style="height: 1px; width: 930px; background: #303A46; margin-top:16px"></div>
+                  <div style="height: 1px; background: #303A46; margin-top:16px"></div>
                 </div>
                
 
 
-            <div style="margin-top: 115px">
+            <div style="margin-top: 40px">
              <span class="user-location">Feedback</span>
             </div>
 
@@ -308,10 +307,10 @@
                   </div>
                 </div>
               </div>
-            <!-- </v-container> -->
+          </div>
             </div>
           </div>
-            <!-- </div> -->
+          
         </v-container>
        <Footer/>
   </div>
@@ -325,7 +324,7 @@ const PurchaseCrypto = ref(true);
 const profileCards = [
     {image:'/svg/call.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number', status:'Verify now'},
     {image:'/svg/sms.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.',  status1:'Verified' },
-    {image:'/svg/login.svg', Title: '2FA not enabled', textCaption: 'Enabling 2FA is a great way to secure your account',  status:'Verify now'}, 
+    {image:'/svg/login.svg', Title: '2FA not enabled', textCaption: 'Enabling 2FA is a great way to secure',  status:'Verify now'}, 
     {image:'/svg/profile-circle.svg', Title:'I.D. not verified', textCaption: 'Take a minute to verify your phone I.D.',  status:'Verify now'}, 
     {image:'/svg/location.svg', Title: 'Address not verified', textCaption:'Take a minute to verify your address',  status:'Verify now'},
 ];
