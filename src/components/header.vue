@@ -3,7 +3,7 @@
 
     <v-app-bar :elevation="2" class="px-15 pt-3 py-15 pb-3 d-flex">
 
-      <v-container style="display: flex;">
+      <v-container style="display: flex; align-items: center;">
         <template v-slot:prepend>
           <v-app-bar-nav-icon>
                <img src="/img/Logo.png"/>
@@ -14,12 +14,12 @@
 
         <div style="position: relative;"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
        
-        <template v-slot:append >
+        <!-- <template v-slot:append > -->
           <span class="text1 flex-lg-and-up hidden-sm-and-down" style="align-items: center; display: flex;">{{props.text2}}</span>
           <NuxtLink :to="props.link">  <span class="text2">{{props.title}}</span></NuxtLink>
  
 
-       <div  v-if="hide"   style="width: 400px; height: 62px ; flex-shrink: 0; border-radius: 20px; background: #161D26; display: flex;position: absolute; right: 54%">
+       <div  v-if="hide"   style="width: 400px; height: 61px ; flex-shrink: 0; border-radius: 20px; background: #161D26; display: flex;position: absolute; right: 54%">
               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px ">
                 <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -30,7 +30,7 @@
      
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn class="dropdown-btn1i me-3" v-bind="props" style="display: flex; align-self: flex-start; margin-top: px;">
+            <v-btn class="dropdown-btn1i me-3" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px;">
               <v-img  width="24" class="me-3" :src="flag"/> 
               <span class="me-2 flex-lg-and-up hidden-sm-and-down">{{select}}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -64,19 +64,19 @@
          
         </v-menu> 
       
-      <div v-if="icon1" style="display: grid">
+      <div v-if="icon1" style="display: grid; margin-top: 10px;">
             <v-btn  @click.prevent="navigateTo('/trade/wallet')" class="me-" style="border-radius: 20px; background: #161D26; min-width: 60px!important; height: 61.2px; flex-shrink: 0;">         
                 <img src="/svg/white-wallet.svg"/> 
             </v-btn>
             <span  class="nav-icon-text" style="margin-left: 3px;">Wallet</span>     
       </div>
 
-      <div v-if="icon2" style="display: flex; flex-direction: column;">
+      <div v-if="icon2" style="display: flex; flex-direction: column; margin-top: 10px;">
         <Profile-nav  class="me-11"/>
         <span class="nav-icon-text" style="margin-left: 2px;">Profile</span>    
       </div>
 
-       <div v-if="icon3"  style="display: grid; position: relative;">
+       <div v-if="icon3"  style="display: grid; position: relative; margin-top: 10px;">
           <v-btn @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; position: relative; background: #161D26; min-width: 60px !important; height: 61.2px; flex-shrink: 0;">         
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
               <path d="M20.12 14.49L19.12 12.83C18.91 12.46 18.72 11.76 18.72 11.35V8.82C18.72 6.47 17.34 4.44 15.35 3.49C14.83 2.57 13.87 2 12.77 2C11.68 2 10.7 2.59 10.18 3.52C8.23003 4.49 6.88003 6.5 6.88003 8.82V11.35C6.88003 11.76 6.69003 12.46 6.48003 12.82L5.47003 14.49C5.07003 15.16 4.98003 15.9 5.23003 16.58C5.47003 17.25 6.04003 17.77 6.78003 18.02C8.72003 18.68 10.76 19 12.8 19C14.84 19 16.88 18.68 18.82 18.03C19.52 17.8 20.06 17.27 20.32 16.58C20.58 15.89 20.51 15.13 20.12 14.49Z" fill="#FAFAFA"/>
@@ -88,7 +88,7 @@
       </div>
            
 
-        </template>
+        <!-- </template> -->
 
       </v-container>
       </v-app-bar>
@@ -126,7 +126,7 @@ const props = defineProps(
 )   
 </script>
 
-<style scoped>
+<style>
 .v-toolbar{
 align-items: center;
 display: flex;

@@ -1,19 +1,20 @@
 <template>
     <div>
        <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
-            <v-row no-gutters style="margin-top: 130px">
+       <v-container>
+            <v-row style="margin-top: 130px; display: flex; gap: 16px;">
                <v-col cols="3">
-                  <div class="pa-2 ma-2 mt-5">
+                  <div class="ma-2 me-4 mt-5">
                     <Wallet-nav/>
                    </div>
               </v-col>
   
               <v-col>
-                <div class="pa-2 ma-2">
-                   <span style="color: #FFF;font-family: Poppins; font-size: 32px; font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
+                <div class="pa-2 ma-2" style="width: 100%;">
+                   <span style="color: #FFF;font-family: Poppins; font-size: 32px;  font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
                     
-                   <div style="border-radius: 24px; border: 1px solid  #303A46; padding: 30px; width: 930px; margin-top: 28px;">
-                    <v-table style="display: grid! important; background: inherit;">
+                   <div style="border-radius: 24px; border: 1px solid  #303A46; width: 98%; padding: 30px; margin-top: 28px;">
+                    <v-table style="display: grid! important; background: inherit; min-width: 100%;">
                       <thead>
                         <tr style="display: flex; margin-bottom: 30px;">
                         
@@ -95,7 +96,7 @@
                       <span style="color: #D8D8D8; font-family: Poppins; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Latest transactions</span>
                   </div>
 
-                  <div style="display: flex; justify-content: space-between; width: 930px; margin-bottom: 284px;">
+                  <div style="display: flex; justify-content: space-between;  margin-bottom: 284px;">
                     <span>1</span>
                       <div style="display: flex;">
                         <img src="/svg/btc.svg" class="me-3"/>
@@ -126,7 +127,7 @@
                 
               </v-col>
             </v-row>
-            
+        </v-container>   
         <Footer/>
     </div>
   </template>
