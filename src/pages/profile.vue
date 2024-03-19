@@ -2,7 +2,7 @@
   <div>
      <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
      <v-container>
-        <div style="margin-top: 120px; max-height: 100%;">
+        <div style="margin-top: 120px; min-height: 100%;">
             <v-row no-gutters>
               <v-col cols="8" class="">
                 <div class="profile" style="padding: 30px 0px">
@@ -43,7 +43,7 @@
      </v-container>
 
         
-          <div style="margin-top: px;">      
+          <div>      
               <v-container style="display: flex; flex-direction: column;">
                 <div style="display: flex; position: relative;">
                   <div  class="me-9">
@@ -79,9 +79,9 @@
                     </div>
                   </div>
              
-                  <v-row   style=" min-width: 93%; height: fit-content; margin-top: px;">
+                  <v-row style=" min-width: 93%; height: fit-content; margin-top: 1px; gap: 16px;">
                     <v-col
-                        v-for="(variant, i) in profileCards" class="profile-cards ma-2" :key="i" cols="3" style="display: flex;">
+                        v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="3" style="display: flex;">
                         <v-card class="mx-auto"  :variant="variant">
                             <v-card-item>
                               <div style="display: flex;">
@@ -205,7 +205,7 @@
                 </div>
                
 
-            <v-container>
+        
             <div style="margin-top: 101px">
              <span class="user-location">Feedback</span>
             </div>
@@ -285,8 +285,7 @@
                   </div>
                 </div>
               
-              
-              </v-container>
+       ]
             </div>
           
           <!-- </div> -->

@@ -21,21 +21,21 @@
 
                           <th class="me-2" style="display: flex; align-items: center; align-self: center;">
                             <div class="d-flex">
-                                <span class="table-header-text me-14" style="margin-left: 5px"></span>
+                                <span class="table-header-text me-9" style="margin-left: 5px"></span>
                             </div>
                           </th>
 
-                          <th style="display: flex; align-items: center; align-self: center; margin-right: 42px">
+                          <th style="display: flex; align-items: center; align-self: center; margin-right: 25px">
                             <div class="d-flex" >
                               <span class="table-header-text">Coin</span>
                             </div>
                           </th>
 
-                          <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 50px">
+                          <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px">
                             <span class="table-header-text me-1" style="margin-left: ">Price</span>
                           </th>
 
-                          <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 50px">
+                          <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 21px">
                             <span class="table-header-text" style="margin-left: ">Balance</span>
                           </th>
 
