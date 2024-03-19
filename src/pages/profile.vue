@@ -406,7 +406,7 @@ line-height: normal;
 .profile-cards{
 border-radius: 24px;
 background: var(--secondary-background, #12181F)!important;
-/* height: fit-content; */
+height: 180px;
 /* display: flex; */
 /* width: 50% !important; */
 /* max-height: 180px; */
