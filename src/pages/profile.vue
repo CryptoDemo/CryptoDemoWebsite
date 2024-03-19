@@ -64,46 +64,46 @@
         
           <div style="margin-top: 32px;">
             <!-- <div> -->
-              <v-container style="display: flex">
-              <div  class="me-9">
-                <div class="sd-nav1">
-                  <div style="border-bottom: 1px solid var(--border, #303A46);">
-                    <div style="padding: 20px 24px;">
-                      <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
-                      </div>
-                      <!-- </div> -->
-                      <div v-for="(item, i) in navigation" :key="i">
-                        <div style="display: flex; justify-content: space-between;">
-                            <v-btn class="nav-options"> 
-                              <img :src="item.icon" class="me-3"/>
-                              {{ item.title }}
-
-                              <div style="align-items: center; display: flex; position: absolute; right: 20px;">
-                                
-                                <img :src="item.flag" width="25" class="me-3" style="border-radius: 9px;"/>
-                                <span >{{ item.country }}</span>
-                                <span>{{ item.type }}</span>
-                                <span>{{ item.number }}</span>
-                                
-                              </div>
-
-                            </v-btn>
-                        </div>
-                      </div>
-                      <div style="border-top: 1px solid var(--border, #303A46);">
+              <v-container style="display: flex; flex-direction: column;">
+                <div style="display: flex;">
+                  <div  class="me-9">
+                    <div class="sd-nav1">
+                      <div style="border-bottom: 1px solid var(--border, #303A46);">
                         <div style="padding: 20px 24px;">
-                        <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
-                        </div>
+                          <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
+                          </div>
+                          <!-- </div> -->
+                          <div v-for="(item, i) in navigation" :key="i">
+                            <div style="display: flex; justify-content: space-between;">
+                                <v-btn class="nav-options"> 
+                                  <img :src="item.icon" class="me-3"/>
+                                  {{ item.title }}
+
+                                  <div style="align-items: center; display: flex; position: absolute; right: 20px;">
+                                    
+                                    <img :src="item.flag" width="25" class="me-3" style="border-radius: 9px;"/>
+                                    <span >{{ item.country }}</span>
+                                    <span>{{ item.type }}</span>
+                                    <span>{{ item.number }}</span>
+                                    
+                                  </div>
+
+                                </v-btn>
+                            </div>
+                          </div>
+                          <div style="border-top: 1px solid var(--border, #303A46);">
+                            <div style="padding: 20px 24px;">
+                            <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
+                            </div>
+                          </div>
                       </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            
              
-                  <v-row  style="gap: 16px;">
+                  <v-row  style="gap: 16px; min-width: 93%; height: fit-content;">
                     <v-col
-                        v-for="(variant, i) in profileCards" class="profile-cards mt-2" :key="i" cols="3" style="display: flex;">
-                        <v-card class="mx-auto" max-width="500" :variant="variant">
+                        v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="3" style="display: flex;">
+                        <v-card class="mx-auto"  :variant="variant">
                             <v-card-item>
                               <div style="display: flex;">
                                 <div>
@@ -128,57 +128,55 @@
                             </v-card-actions>
                         </v-card>
                    </v-col>
-                  <!-- </v-row> -->
+                 
+     
+                  <div style="min-width: 79%;">
+                  <div class="mt-5"><span class="user-location" style="color: white;">Active offers</span></div>
+              
+                  <div style="margin-top: 32px;">
+                  <v-row class="px-3">
+                      <v-btn class=" me-4 mb-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
+                          <span style="position: relative; left: -18px">Crypto purchased</span>
+                        <span style="position: relative; right: -18px; font-weight: 800;">0</span>
+                      </v-btn>
+                      <v-btn  :class="PurchaseCrypto ? 'inactive-btn': 'active-btn'"  @click.prevent="PurchaseCrypto=false">
+                          <span style="position: relative; left:-37px">Crypto sold </span>
+                          <span style="position: relative; right: -32px; font-weight: 800;">0</span>
+                      </v-btn>
+                
+
+                      <div style="display: flex; margin-inline-start: auto;">
+                        <v-menu :location="location">
+                            <template v-slot:activator="{ props }">
+                              <v-btn class="mx-auto active-offers" style="letter-spacing: 0px"
+                                v-bind="props">
+                                <img  width="25" class="me-2" :src="flag" style="margin-left: -60px "/> 
+                                <div style="display: grid; cursor: pointer;">
+                                <span class="slt">{{select}}</span> 
+                                <span class="small-text">{{coin}}</span> 
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;">
+                                    <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" fill="#E0E4F5"/>
+                                </svg>
+                              </v-btn>
+                            </template>
+
+                          <v-list>
+                            <v-list-item>
+                              <div v-for="(item, index) in allCoins" class="d-flex py-3" style="cursor: pointer"
+                                :key="index" >
+                            
+                                <v-list-item-title @click="select=item.title; coin=item.coinText; flag= item.image" class="d-flex">
+                                <v-img width="20" class="rounded-5 me-3" :src="item.image"/>    
+                                <span> {{ item.title }} </span>
+                              </v-list-item-title>
+                              </div>
+                            </v-list-item>
+                          </v-list>
+                        </v-menu> 
+                      </div>
                   </v-row>
-              </v-container>
-
-          <!-- <v-container> -->
-          <div style="width: 78%; margin-top: 42px;">
-            <span class="user-location" >Active offers</span>
-        
-            <div class="mt-5">
-              <v-row>
-                <v-btn class=" me-4 mb-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
-                    <span style="position: relative; left: -18px">Crypto purchased</span>
-                  <span style="position: relative; right: -18px; font-weight: 800;">0</span>
-                 </v-btn>
-                <v-btn  :class="PurchaseCrypto ? 'inactive-btn': 'active-btn'"  @click.prevent="PurchaseCrypto=false">
-                     <span style="position: relative; left:-37px">Crypto sold </span>
-                     <span style="position: relative; right: -32px; font-weight: 800;">0</span>
-                </v-btn>
-          
-
-                <div style="display: flex; margin-inline-start: auto;">
-                  <v-menu :location="location">
-                      <template v-slot:activator="{ props }">
-                        <v-btn class="mx-auto active-offers" style="letter-spacing: 0px"
-                          v-bind="props">
-                          <img  width="25" class="me-2" :src="flag" style="margin-left: -60px "/> 
-                          <div style="display: grid; cursor: pointer;">
-                          <span class="slt">{{select}}</span> 
-                          <span class="small-text">{{coin}}</span> 
-                          </div>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;">
-                              <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" fill="#E0E4F5"/>
-                          </svg>
-                        </v-btn>
-                      </template>
-
-                    <v-list>
-                      <v-list-item>
-                        <div v-for="(item, index) in allCoins" class="d-flex py-3" style="cursor: pointer"
-                          :key="index" >
-                      
-                          <v-list-item-title @click="select=item.title; coin=item.coinText; flag= item.image" class="d-flex">
-                          <v-img width="20" class="rounded-5 me-3" :src="item.image"/>    
-                          <span> {{ item.title }} </span>
-                        </v-list-item-title>
-                        </div>
-                      </v-list-item>
-                    </v-list>
-                  </v-menu> 
                 </div>
-              </v-row>
 
                 <div style="height: 1px; background: #303A46; margin-top:16px"></div>
                 <div v-for="n in 2" :key="n" >
@@ -307,10 +305,15 @@
                     </div>
                   </div>
                 </div>
+              
+              
               </v-container>
             </div>
           
-          </div>
+          <!-- </div> -->
+                  </v-row>
+                </div>
+              </v-container>
             </div>
 
 
@@ -428,7 +431,7 @@ line-height: normal;
 .profile-cards{
 border-radius: 24px;
 background: var(--secondary-background, #12181F)!important;
-/* height: 140px; */
+/* height: fit-content; */
 /* display: flex; */
 /* width: 50% !important; */
 /* max-height: 180px; */

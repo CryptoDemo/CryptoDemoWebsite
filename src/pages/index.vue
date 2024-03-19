@@ -21,7 +21,7 @@
                   </div>
                   
 
-                   <div style="justify-content: center; display: flex; margin-top: 40px; position: relative;">
+                   <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000;">
                          <span :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
                            <img src="/img/Frame.png" class="orange-coin position-absolute"/> 
                     </div>
@@ -29,7 +29,7 @@
 
 
                 <div class="d-flex text-img position-relative" v-if="theme.global.current.value.dark">
-                  <span class="web" style="margin-right: 78px;">Demo Web</span>
+                  <span class="web" style="margin-right: 78px; z-index: 1000;">Demo Web</span>
                   <img src="/svg/Frame 1305.svg" style="position: absolute; margin-left: 375px ;top: -27px;" /> 
                 </div>
                 <div class="d-flex text-img" v-else>
@@ -448,6 +448,8 @@ justify-content: center;
 align-items: center;
 margin: auto;
 margin-top: 16px;
+z-index: 1000;
+position: relative;
 }
 .landing-page-form{
 padding: 60px;
@@ -1130,10 +1132,8 @@ gap: 44px;
 flex-shrink: 0;
 }
 .section3-light{
- /* background: linear-gradient(270deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%); */
- background: #E9F1FF;
+background: #E9F1FF;
 display: flex;
-/* height: 897px; */
 padding: 0px 80px;
 align-items: center;
 gap: 44px;
