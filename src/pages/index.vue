@@ -168,7 +168,7 @@
 
 
       </div>
-          <v-container class=" position-relative" style="">
+          <v-container class=" position-relative">
             <div class=""> 
                       <img src="/svg/Ellipse 2813.svg" class="position-absolute" style="right:0; bottom: 65%;"/>
                 <div :class="isDark ? 'section2':'section2-light'">
@@ -224,13 +224,13 @@
 
             <Frame/>
             
-            <div>
+            <div style="margin-top: -5px;">
               <Reviews/>
             </div>
             
-            <v-row no-gutters>
+            <v-row no-gutters class="mt-7">
               <v-col cols="md-6">
-                <div class="me-4">
+                <div class="me-7">
                   <div  :class="isDark ? 'barcode-section':'barcode-section-light'">
                       <div class="rectangle" style="display: flex; justify-self: center;" >
                           <img src="/svg/grouped-gradient.svg" style="display: flex; justify-self: center; width: 100%; margin: auto" class=""  v-if="theme.global.current.value.dark"/>

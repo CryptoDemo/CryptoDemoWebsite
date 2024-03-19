@@ -2,7 +2,7 @@
   <div>
      <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
      <v-container>
-        <div style="margin-top: 100px; display: flex;">
+        <div style="margin-top: 110px; display: flex;">
             <v-row>
               <v-col cols="8" class="pa-1 ma-1">
                 <div class="profile" style="padding: 30px 0px">
@@ -62,8 +62,7 @@
      </v-container>
 
         
-          <div style="margin-top: 32px;">
-            <!-- <div> -->
+          <div style="margin-top: 5px;">      
               <v-container style="display: flex; flex-direction: column;">
                 <div style="display: flex;">
                   <div  class="me-9">
@@ -72,7 +71,6 @@
                         <div style="padding: 20px 24px;">
                           <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
                           </div>
-                          <!-- </div> -->
                           <div v-for="(item, i) in navigation" :key="i">
                             <div style="display: flex; justify-content: space-between;">
                                 <v-btn class="nav-options"> 
@@ -100,7 +98,7 @@
                     </div>
                   </div>
              
-                  <v-row  style="gap: 16px; min-width: 93%; height: fit-content;">
+                  <v-row  style="gap: 16px; min-width: 93%; height: fit-content; margin-top: 1px;">
                     <v-col
                         v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="3" style="display: flex;">
                         <v-card class="mx-auto"  :variant="variant">
@@ -130,7 +128,7 @@
                    </v-col>
                  
      
-                  <div style="min-width: 79%;">
+                  <div style="min-width: 77%;">
                   <div class="mt-5"><span class="user-location" style="color: white;">Active offers</span></div>
               
                   <div style="margin-top: 32px;">
@@ -314,14 +312,11 @@
                   </v-row>
                 </div>
               </v-container>
-            </div>
+          </div>
 
 
 
-            
-         
-          
-        <!-- </v-container> -->
+
        <Footer/>
   </div>
 </template>
