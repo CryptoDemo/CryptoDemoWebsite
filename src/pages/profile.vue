@@ -64,10 +64,10 @@
         
           <div style="margin-top: 5px;">      
               <v-container style="display: flex; flex-direction: column;">
-                <div style="display: flex;">
+                <div style="display: flex; position: relative;">
                   <div  class="me-9">
-                    <div class="sd-nav1">
-                      <div style="border-bottom: 1px solid var(--border, #303A46);">
+                    <div class="sd-nav1 position-relative">
+                      <div style="border-bottom: 1px solid var(--border, #303A46); position: relative;top: 58px;"></div>
                         <div style="padding: 20px 24px;">
                           <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
                           </div>
@@ -94,7 +94,7 @@
                             <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
                             </div>
                           </div>
-                      </div>
+                      <!-- </div> -->
                     </div>
                   </div>
              
