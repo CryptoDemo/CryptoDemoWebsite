@@ -1,15 +1,16 @@
 <template>
   <div>
     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+    <v-container style="display: flex;">
           <v-row no-gutters style="margin-bottom: 113px; margin-top: 130px">
-            <v-col cols="3">
-              <div class="ma- mt-3">
+            <v-col cols="2">
+              <div class="mt-3">
                 <Side-nav/>           
               </div>
             </v-col>
 
             <v-col>
-              <div class="pa-2 ma-2">
+              <div class="">
                   <div class="settings-header">
                     <span class="header-text1">Setting answers to your security questions is a requirement in the event that you need to reset or update your phone number. <span style="color: var(--Primary-100, #2873FF);">Set Answers!</span></span>
                   </div>
@@ -184,13 +185,13 @@
                 <div class="pa-2 ma-2">
                   <Biography/>
                 </div>
-              <div class="pa-2 ma-2" style="width: 940px; flex-shrink: 0;">
+              <div class="pa-2 ma-2" style="flex-shrink: 0;">
                 <DataTable/>
               
               </div>
             </v-col>     
           </v-row>
-          
+    </v-container>     
           <Footer/>
   </div>
 </template>
@@ -277,7 +278,7 @@ const navigation = [
 border-radius: 16px;
 background: rgba(245, 249, 253, 0.54);
 padding: 27px 16px;
-width: 940px;
+/* width: 940px; */
 /* margin-top: 30px; */
 }
 .header-text1{
@@ -294,7 +295,7 @@ justify-content: center;
 border-radius: 16px;
 background: var(--secondary-background, #12181F);
 display: flex;
-width: 940px;
+/* width: 940px; */
 padding: 21px var(--spacing-3xl, 24px);
 justify-content: space-between;
 align-items: center;

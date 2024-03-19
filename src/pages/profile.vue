@@ -79,7 +79,7 @@
                     </div>
                   </div>
              
-                  <v-row style=" min-width: 93%; height: fit-content; margin-top: 1px; gap: 16px;">
+                  <v-row style=" min-width: 90%; height: fit-content; margin-top: 1px; gap: 16px;">
                     <v-col
                         v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="3" style="display: flex;">
                         <v-card class="mx-auto"  :variant="variant">
@@ -285,7 +285,7 @@
                   </div>
                 </div>
               
-       ]
+       
             </div>
           
           <!-- </div> -->
