@@ -20,8 +20,8 @@
                   </div>
                   
 
-                   <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000; width: 100%;">
-                         <span class="header-text1ii" :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
+                   <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000;">
+                         <span class="headertext1" :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
                            <img src="/img/Frame.png" class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
                     </div>
 
@@ -395,24 +395,11 @@ const location = ref([
 @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 @import url('https://fonts.googleapis.com/css2?family=Manrope&family=Poppins&display=swap');
 
-/* .bg-vector{
-opacity: 0.4; 
-left: 0; 
-right: 0;
-display: flex; 
-margin: auto"
-}
-.bg-vector-light{
-opacity: 0.2 !important; 
-left: 0; 
-right: 0;
-display: flex; 
-margin: auto"
-} */
+
 .header-text1{
 text-align: center;
 font-family: "SF Pro Display" !important;
-font-size: 80px !important;
+font-size: 80px ;
 font-style: normal;
 font-weight: 700;
 line-height: 100%; 
