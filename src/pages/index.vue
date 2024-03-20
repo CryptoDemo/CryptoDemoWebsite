@@ -212,10 +212,10 @@
             </div>
           </v-container>
 
-        <v-container class=" position-relative" >
+        <v-container class=" position-relative section2ii" >
               <img src="/svg/Ellipse 2813.svg" class="position-absolute" style="right:0; margin-top: 144px ;"/>
             <div  :class="isDark ? 'section2':'section2-light'">
-              <span class="section2-subtitle" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features of The demo web</span>
+              <span class="section2-subtitle sub-text2" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features of The demo web</span>
               <span :class="isDark ? 'section2-title':'section2-title-light'" style="margin-bottom: 88px !important;">Welcome to a financial system for the 100%.</span>
             </div>
 
