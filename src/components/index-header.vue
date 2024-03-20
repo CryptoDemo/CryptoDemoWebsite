@@ -64,7 +64,7 @@
       
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn  class="me-4" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"
+            <v-btn  class="me-4 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"
               dark
               v-bind="props">
               <v-img  width="20" class="me-3" :src="flag"/> 
@@ -91,7 +91,7 @@
          
         </v-menu>
 
-        <ToggleBtn/>
+        <ToggleBtn class="flex-lg-and-up hidden-sm-and-down"/>
         <!-- </template> -->
         <!-- </div> -->
         </v-container>

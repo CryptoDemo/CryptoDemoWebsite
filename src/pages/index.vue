@@ -13,7 +13,7 @@
                 
                 </div>
                 <div>
-                  <div  :class="isDark ? 'frame-1':'frame-1-light'">
+                  <div class="frame-1" :class="isDark ? 'frame-1':'frame-1-light'">
                     <v-btn color="#2873FF" class="writing-btn" style="letter-spacing: 0px">Writing</v-btn>
                     <span  :class="isDark ? 'writing-text':'writing-text-light'">The number one trading platform in Europe</span>
                     <img src="/svg/blue-arrow.svg"/>
@@ -21,7 +21,7 @@
                   
 
                    <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000; width: 100%;">
-                         <span :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
+                         <span class="header-text1" :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
                            <img src="/img/Frame.png" class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
                     </div>
 
@@ -127,7 +127,7 @@
                                   </v-dialog>
 
                           </div>
-                          <div class="payment-wrap">
+                          <div class="payment-wrap" style="overflow: scroll;">
                              <Transaction-btn buttonText="Bank Transfers" class="mt-4"/>
                              <Transaction-btn buttonText="Paypal" class="mt-4"/>
                              <Transaction-btn buttonText="Paystack" class="mt-4"/>
@@ -175,29 +175,22 @@
       </div>
           <v-container class=" position-relative">
             <div class=""> 
-                      <img src="/svg/Ellipse 2813.svg" class="position-absolute" style="right:0; bottom: 65%;"/>
-                <div :class="isDark ? 'section2':'section2-light'">
-                      <span class="section2-subtitle ">TRADE YOUR COIN LIKE A FOREX EXPERT</span>
-                      <span :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Over 350 ways to buy and sell Bitcoin.</span>
+                      <img src="/svg/Ellipse 2813.svg"  class="position-absolute blue-ellipse1" style="right:0; bottom: 65%;"/>
+                <div class="section2i" :class="isDark ? 'section2':'section2-light'">
+                      <span class="section2-subtitle card-sub1">TRADE YOUR COIN LIKE A FOREX EXPERT</span>
+                      <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Over 350 ways to buy and sell Bitcoin.</span>
                       <span class="caption">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
-                        <div class="mx-auto" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
+                        <div class="mx-auto btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
 
                             <v-btn :class="`${transaction1 ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction1=true" style="border-radius: 41px !important">Sell✨</v-btn>
                             <v-btn :class="`${!transaction1 ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction1=false" style="border-radius: 41px !important" >Buy</v-btn>
                         </div>
                 </div>
             
-                <div>
+                <div class="card-layout1">
                     <v-row align="center" justify="center">
-                      <v-col
-                        v-for="(variant, i) in variants"   sm="4"
-                        :key="i"
-                       cols="12">
-                        <v-card
-                            :class="isDark ? 'card-layout':'card-layout-light'"
-                            bg-color="#10192D"
-                            color="white"
-                            :variant="variant">
+                      <v-col v-for="(variant, i) in variants"   sm="4" :key="i" cols="12">
+                        <v-card  :class="isDark ? 'card-layout':'card-layout-light'" bg-color="#10192D"  color="white" :variant="variant">
                             <v-card-item style="padding: 0px !important">
                                 <div>
                                     <div class="">
