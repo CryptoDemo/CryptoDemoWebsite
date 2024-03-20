@@ -102,7 +102,7 @@
                       <div style="margin-top: 30px;">
                       <span :class="isDark ? 'pay-with':'pay-with-light'" > {{transaction? "Pay with" : "Get paid via" }}</span>
                           <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
-                            <span class="text2" style="font-weight: 700 !important; font-family: Manrope;">Select payment method (20+)</span>
+                            <span class="text2" style="font-weight: 700; display: flex; font-family: Manrope;">Select payment method (20+)</span>
                                 <v-dialog width="600">
                                   <template v-slot:activator="{ props }">
                                     <v-btn v-bind="props" :class="isDark ? 'show-all':'show-all-light'" text="Show all"> </v-btn>
