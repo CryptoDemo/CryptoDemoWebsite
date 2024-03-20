@@ -142,22 +142,23 @@
                                   
                         placeholder="Enter Amount"/>
                         <v-menu transition="scale-transition">
-                            <template v-slot:activator="{ props }">
-                              <v-btn v-bind="props" class="position-absolute" :class="isDark ? 'show-all':'show-all-light'" style="right: 72px;margin-top: 8px;">
-                                USDT
-                                  <v-icon icon="mdi-chevron-down"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
+                            <template v-slot:activator="{ props, value }">
+                              <v-btn v-bind="props" class="position-absolute" :class="isDark ? 'show-all':'show-all-light'" style="right: 72px;margin-top: 8px;font-weight: 700;">
+                                {{ selected }}
+                                <v-icon v-if="props" icon="mdi-chevron-down"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
+                                <v-icon v-else icon="mdi-chevron-up"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
                             </v-btn>
                             </template>
 
                             <v-list>
-                              <v-list-item v-for="(item, i) in coinType" :key="i">
-                                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                              <v-list-item v-for="(item, i) in coinType" :key="i" style="cursor: pointer;">
+                                  <v-list-item-title @click="selected=item.title">{{ item.title }}</v-list-item-title>
                               </v-list-item>
                             </v-list>
                         </v-menu>
                         </div>
                         <div style=" margin-top: 9px ;">
-                          <span class="hint-text">Mininum: 10 USD</span>
+                          <span class="hint-text">Mininum: 10 {{ selected }}</span>
                         </div>
                       </div>
                       <v-btn class="exchange-btn" color=""> <span class="exchange-text">Exchange Now </span></v-btn>
@@ -367,15 +368,16 @@ const variants = [
         { cardImages: '/svg/Featured icon (5).svg', title:'Goods and services' , textCaption:'Use Bitcoin to pay for goods and services from around the world.'}, 
        
   ];
+
+const selected =ref("USD")
 const coinType = [
-        { title: 'BTC' },
-        { title: 'Ethereum' },
-        { title: 'USDT' },
-        { title: 'Dodge' },
+        { title: 'EUR' },
+        { title: 'AFN' },
+        { title: 'GBP' },
+        { title: 'AUD' },
       ];
 
 let input = ref("");
-
 
 const location = ref([
   { title: 'Bitcoin', coinText:"Dai",  image:"/svg/bitcoin-btc-logo 1.svg" },
