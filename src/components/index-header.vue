@@ -136,9 +136,9 @@ const props = defineProps(
 )
 
 const items = [
-        {icon1:'/svg/bitcoin-hub.svg', icon2:'/svg/tether-light.svg', title: 'Buy with bitcoin', subtitle:'Search for offers to buy gift cards with Bitcoin.'},
-        {icon1:'/svg/bitcoin-hub.svg', icon2:'/svg/tether-light.svg', title: 'Buy with Tether', subtitle:'Search for offers to buy gift cards with Tether.'},
-        {icon1:'/svg/bitcoin-hub.svg', icon2:'/svg/tether-light.svg', title: 'Buy with Binance Coin', subtitle:'Search for offers to buy gift cards with Binance Coin.'},
+        {icon1:'/svg/bitcoin-hub.svg', icon2:'/svg/btc-logo-light1.svg', title: 'Buy with bitcoin', subtitle:'Search for offers to buy gift cards with Bitcoin.'},
+        {icon1:'/svg/btc-logolight.svg', icon2:'/svg/tether-light.svg', title: 'Buy with Tether', subtitle:'Search for offers to buy gift cards with Tether.'},
+        {icon1:'/svg/btc-logodark.svg', icon2:'/svg/binance-lightlogo.svg', title: 'Buy with Binance Coin', subtitle:'Search for offers to buy gift cards with Binance Coin.'},
         
       ];
   
@@ -151,10 +151,7 @@ background: rgba(6, 10, 29, 0.60)!important;
 backdrop-filter: blur(50px);
 display: flex !important;
 height: 80px;
-/* width: 100% !important; */
 margin: auto !important;
-/* padding: 0px 72px !important; */
-/* justify-content: space-between !important; */
 justify-content: center !important;
 align-items: center !important;
 align-self: center !important;
@@ -166,30 +163,27 @@ border-bottom: 1px solid #E2E8F0;
 background: rgba(255, 255, 255, 0.60) !important;
 backdrop-filter: blur(50px);
 box-shadow: none!important;
-/* box-shadow: #FFF!important; */
 display: flex;
 height: 80px;
-padding: 0px 72px !important;
 margin: auto;
-/* justify-content: space-between; */
 justify-content: center;
 align-items: center;
 flex-shrink: 0;
 }
 .nav-title{
 color: var(--Colors-Base-white, #FFF);
-font-family: "SF Pro Display";
-font-size: 24px;
+font-family: "SF Pro Display" !important;
+font-size: 24px !important;
 font-style: normal;
-font-weight: 700;
+font-weight: 700 !important;
 line-height: normal;
 }
 .nav-title-light{
 color: #10192D;
-font-family: "SF Pro Display";
-font-size: 24px;
+font-family: "SF Pro Display" !important;
+font-size: 24px !important;
 font-style: normal;
-font-weight: 700;
+font-weight: 700 !important;
 line-height: normal;
 }
 
