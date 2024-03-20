@@ -240,7 +240,7 @@ font-weight: 600;
 line-height: 120%; /* 28.8px */
 }
 
-/* 
+
 @media screen and (max-width: 600px) {
   .frame-1{
   display: flex !important;
@@ -249,15 +249,15 @@ line-height: 120%; /* 28.8px */
   padding: 4px;
 
   }
- .bg-vector{
-  opacity: 0.9 !important;
-  top: 0 !important;
-  justify-content: center !important;
- }
-  .header-text1, .web {
+
+  .header-text1ii, .web {
     font-size: 48px !important;
     letter-spacing: -1.44px !important;
   }
+  /* .header-text1{
+    font-size: 48px !important;
+    letter-spacing: -1.44px !important;
+  } */
   .demo-star{
     margin-left: 230px !important;
     display: flex !important;
@@ -326,4 +326,4 @@ line-height: 120%; /* 28.8px */
   .sub-text2{
     margin-top: 61px !important;
   }
-} */
+}

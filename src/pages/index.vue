@@ -1,6 +1,7 @@
 <template>
   
-    <img src="/svg/Background pattern.svg" class="position-absolute bg-vector" :class="isDark ? 'bg-vector':'bg-vector-light'"/>
+    <img src="/svg/Background pattern.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
+    <img src="/svg/Background pattern.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
        
     <div>
       <div>
@@ -20,7 +21,7 @@
                   
 
                    <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000; width: 100%;">
-                         <span class="header-text1" :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
+                         <span class="header-text1ii" :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
                            <img src="/img/Frame.png" class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
                     </div>
 
