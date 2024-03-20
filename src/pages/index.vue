@@ -394,7 +394,7 @@ const location = ref([
 @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 @import url('https://fonts.googleapis.com/css2?family=Manrope&family=Poppins&display=swap');
 
-.bg-vector{
+/* .bg-vector{
 opacity: 0.4; 
 left: 0; 
 right: 0;
@@ -407,11 +407,11 @@ left: 0;
 right: 0;
 display: flex; 
 margin: auto"
-}
+} */
 .header-text1{
 text-align: center;
 font-family: "SF Pro Display" !important;
-font-size: 80px;
+font-size: 80px !important;
 font-style: normal;
 font-weight: 700;
 line-height: 100%; 
@@ -1185,12 +1185,6 @@ margin-right: 28.5px;
 }
 
 ::-webkit-input-placeholder {
-/* color: #808195!important;
-font-size: 0.875rem;
-font-style: normal;
-font-size: 14px;
-font-weight: 400;
-line-height: normal; */
 
 color: #8E9BAE !important;
 font-family: Manrope !important;
@@ -1203,7 +1197,7 @@ line-height: 150% !important; /* 21px */
 border-radius: 15px;
 background: #1B2537;
 }
-::-webkit-scrollbar{
+/* ::-webkit-scrollbar{
   display: none;
-}
+} */
 </style>
