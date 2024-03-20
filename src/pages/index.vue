@@ -1,8 +1,7 @@
 <template>
   
-    <img src="/svg/Background pattern.svg" class="position-absolute" style=" opacity: 0.4; left: 0; right: 0;display: flex; margin: auto;" v-if="theme.global.current.value.dark" />
-    <img src="/svg/Background pattern.svg" class="position-absolute" style=" opacity: 0.2; left: 0; right: 0; display: flex; margin: auto;" v-else />
-    
+    <img src="/svg/Background pattern.svg" class="position-absolute bg-vector" :class="isDark ? 'bg-vector':'bg-vector-light'"/>
+       
     <div>
       <div>
         <Index-header title="Log in" link="/authentication/login" class=""/>
@@ -103,28 +102,28 @@
                           <span :class="isDark ? 'pay-with':'pay-with-light'" >Pay with</span>
                           <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px;">
                             <span class="text2" style="font-weight: 700 !important; font-family: Manrope;">Select payment method (20+)</span>
-                                  <v-dialog width="600">
-                                    <template v-slot:activator="{ props }">
-                                      <v-btn v-bind="props" :class="isDark ? 'show-all':'show-all-light'" text="Show all"> </v-btn>
-                                    </template>
+                                <v-dialog width="600">
+                                  <template v-slot:activator="{ props }">
+                                    <v-btn v-bind="props" :class="isDark ? 'show-all':'show-all-light'" text="Show all"> </v-btn>
+                                  </template>
 
-                                    <template v-slot:default="{ isActive }">
-                                      <v-card title="More payment options...." class="dialog">
-                                        <v-card-text class="mt-5">
-                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        </v-card-text>
+                                  <template v-slot:default="{ isActive }">
+                                    <v-card title="More payment options...." class="dialog">
+                                      <v-card-text class="mt-5">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                      </v-card-text>
 
-                                        <v-card-actions>
-                                          <v-spacer></v-spacer>
+                                      <v-card-actions>
+                                        <v-spacer></v-spacer>
 
-                                          <v-btn
-                                            text="Close Dialog"
-                                            @click="isActive.value = false"
-                                          ></v-btn>
-                                        </v-card-actions>
-                                      </v-card>
-                                    </template>
-                                  </v-dialog>
+                                        <v-btn
+                                          text="Close Dialog"
+                                          @click="isActive.value = false"
+                                        ></v-btn>
+                                      </v-card-actions>
+                                    </v-card>
+                                  </template>
+                                </v-dialog>
 
                           </div>
                           <div class="payment-wrap" style="overflow: scroll;">
@@ -382,11 +381,11 @@ const location = ref([
   const filteredItems = computed(() => {
   const searchTerm = input.value.toLowerCase();
   return location.value.filter((loc) => {
-    const lowerTitle = loc.title.toLowerCase();
-    const lowerCoinText = loc.coinText.toLowerCase();
-    return (
-      lowerTitle.includes(searchTerm) || lowerCoinText.includes(searchTerm)
-    );
+  const lowerTitle = loc.title.toLowerCase();
+  const lowerCoinText = loc.coinText.toLowerCase();
+  return (
+    lowerTitle.includes(searchTerm) || lowerCoinText.includes(searchTerm)
+  );
   });
 });
 </script>
@@ -395,7 +394,20 @@ const location = ref([
 @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 @import url('https://fonts.googleapis.com/css2?family=Manrope&family=Poppins&display=swap');
 
-
+.bg-vector{
+opacity: 0.4; 
+left: 0; 
+right: 0;
+display: flex; 
+margin: auto"
+}
+.bg-vector-light{
+opacity: 0.2; 
+left: 0; 
+right: 0;
+display: flex; 
+margin: auto"
+}
 .header-text1{
 text-align: center;
 font-family: "SF Pro Display" !important;

@@ -142,14 +142,14 @@ const items = [
 border-bottom: 1px solid #10192D;
 background: rgba(6, 10, 29, 0.60)!important;
 backdrop-filter: blur(50px);
-display: flex !important;
+/* display: flex !important; */
 height: 80px;
-margin: auto !important;
+/* margin: auto !important; */
 justify-content: center !important;
-align-items: center !important;
-align-self: center !important;
-margin: auto !important;
-flex-shrink: 0;
+/* align-items: center !important; */
+/* align-self: center !important; */
+/* margin: auto !important; */
+/* flex-shrink: 0; */
 }
 .navbar-bg-light{
 border-bottom: 1px solid #E2E8F0;

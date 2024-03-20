@@ -249,7 +249,16 @@ line-height: 120%; /* 28.8px */
   padding: 4px;
 
   }
- 
+ .bg-vector{
+  opacity: 0.9 !important;
+  top: 0 !important;
+  display: flex !important;
+  /* left: 0 !important; */
+  /* right: 0 !important; */
+  justify-content: center !important;
+  /* margin: auto !important; */
+  /* width: fit-content !important; */
+ }
   .header-text1, .web {
     font-size: 48px !important;
     letter-spacing: -1.44px !important;
@@ -269,7 +278,11 @@ line-height: 120%; /* 28.8px */
   }
   .yellow-coin{
     left: -30% !important;
-    top: 37% !important;
+    top: 40% !important;
+  }
+  .light-green-coin{
+    right: -92px !important;
+    top: 171px !important;
   }
   .landing-page-form{
     width: 100% !important;
