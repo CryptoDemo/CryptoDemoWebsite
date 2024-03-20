@@ -239,3 +239,22 @@ font-style: normal;
 font-weight: 600;
 line-height: 120%; /* 28.8px */
 }
+
+
+@media screen and (max-width: 600px) {
+  .frame-1{
+  display: flex !important;
+  margin-top: 100px !important;
+  /* width: 344px !important; */
+  padding: 4px;
+
+  }
+  .header-text1, .web {
+    font-size: 50px !important;
+  }
+  .demo-star{
+    margin-left: 230px !important;
+    /* width: 47.63px !important;
+    height: 47.427px !important; */
+  }
+}

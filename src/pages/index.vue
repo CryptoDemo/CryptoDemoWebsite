@@ -5,38 +5,38 @@
     
     <div>
       <div>
-        <Index-header title="Log in" link="/authentication/login"/>
+        <Index-header title="Log in" link="/authentication/login" class=""/>
         <section class="position-relative">
             <v-container class="position-relative">
               <div class="position-absolute">    
-                <img src="/svg/Frame.svg" class="pink-coin position-absolute"/>
+                <img src="/svg/Frame.svg" class="pink-coin position-absolute flex-lg-and-up hidden-sm-and-down"/>
                 
                 </div>
                 <div>
-                  <div class="frame-1"  :class="isDark ? 'frame-1':'frame-1-light'">
+                  <div  :class="isDark ? 'frame-1':'frame-1-light'">
                     <v-btn color="#2873FF" class="writing-btn" style="letter-spacing: 0px">Writing</v-btn>
                     <span  :class="isDark ? 'writing-text':'writing-text-light'">The number one trading platform in Europe</span>
                     <img src="/svg/blue-arrow.svg"/>
                   </div>
                   
 
-                   <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000;">
+                   <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000; width: 100%;">
                          <span :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
-                           <img src="/img/Frame.png" class="orange-coin position-absolute"/> 
+                           <img src="/img/Frame.png" class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
                     </div>
 
 
 
                 <div class="d-flex text-img position-relative" v-if="theme.global.current.value.dark">
                   <span class="web" style="margin-right: 78px; z-index: 1000;">Demo Web</span>
-                  <img src="/svg/Frame 1305.svg" style="position: absolute; margin-left: 375px ;top: -27px;" /> 
+                  <img src="/svg/Frame 1305.svg" class="demo-star" style="position: absolute; margin-left: 375px ;top: -27px;  max-width: 100%; height: auto;" /> 
                 </div>
                 <div class="d-flex text-img" v-else>
                   <span class="web">Demo Web✨️</span>
                 </div>
                   <div class="position-relative">
-                    <img src="/svg/Group 1318.svg" class="position-absolute" style="top: -76px; left: -4%;"/>
-                    <img src="/svg/Group 1320.svg" class="green-coin position-absolute"/>
+                    <img src="/svg/Group 1318.svg" class="position-absolute flex-lg-and-up hidden-sm-and-down" style="top: -76px; left: -4%;"/>
+                    <img src="/svg/Group 1320.svg" class="green-coin position-absolute flex-lg-and-up hidden-sm-and-down"/>
                   </div>
                   <div>
                     <span class="subtitle-text">Join over 12 million people just like you on everyone's favorite peer-to-peer platform to buy and sell Bitcoin.</span>
@@ -142,11 +142,11 @@
                                   
                         placeholder="Enter Amount"/>
                         <v-menu transition="scale-transition">
-                            <template v-slot:activator="{ props, value }">
+                            <template v-slot:activator="{ props }">
                               <v-btn v-bind="props" class="position-absolute" :class="isDark ? 'show-all':'show-all-light'" style="right: 72px;margin-top: 8px;font-weight: 700;">
                                 {{ selected }}
-                                <v-icon v-if="props" icon="mdi-chevron-down"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
-                                <v-icon v-else icon="mdi-chevron-up"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
+                                <v-icon  icon="mdi-chevron-down"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
+                                <!-- <v-icon v-else icon="mdi-chevron-up"  color="#8E9BAE" style="margin-left: 6px "></v-icon> -->
                             </v-btn>
                             </template>
 
@@ -623,6 +623,7 @@ display: flex;
 width: 380px;
 padding: 4px;
 align-items: center;
+justify-content: center !important;
 gap: 8px;
 border-radius: 100px;
 border: 0.5px solid #64748B;
@@ -668,7 +669,7 @@ letter-spacing: 0.14px;
 }
 .writing-btn {
 display: flex;
-width: 74px;
+width: 78px;
 padding: 8px;
 justify-content: center;
 align-items: center;
@@ -1199,14 +1200,4 @@ border-radius: 15px;
 background: #1B2537;
 }
 
-
-#filter-toggle:after {
- 
-  transform: rotate(45deg);
-  transition: all .2s;
-}
-
-#filter-toggle.expanded:after {
-  transform: rotate(-135deg);
-}
 </style>

@@ -1,22 +1,18 @@
 <template>
   <div>
     <v-app-bar :elevation="2"  class="pt-3 pb-3" :class="isDark ? 'navbar-bg':'navbar-bg-light'">
-      <!--   
-        <template v-slot:prepend>
-          
-        </template> -->
+   
         <v-container style="display: flex; align-items: center;">
       
         <v-app-bar-title  :class="isDark ? 'nav-title':'nav-title-light'" >Demo Web</v-app-bar-title>
  
-        <!-- <div style="display: flex; align-items: center;  justify-content: end;"> -->
           <div class="d-flex" style="position: absolute; margin-left: 150px;">
-             <v-btn class="header-link"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Create an offer</span> </NuxtLink></v-btn>
-             <v-btn class="header-link"><NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Wallet</span> </NuxtLink></v-btn>
-             <div class="text-center">
+             <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Create an offer</span> </NuxtLink></v-btn>
+             <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"><NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Wallet</span> </NuxtLink></v-btn>
+             <div class="text-center flex-lg-and-up hidden-sm-and-down">
               <v-menu open-on-hover>
                   <template v-slot:activator="{ props }">
-                      <v-btn color="" class="header-link" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" v-bind="props">Gift Card Hub
+                      <v-btn color="" class="header-link flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" v-bind="props">Gift Card Hub
                         <v-icon color="primary" class="mt-1"  icon="mdi-chevron-down"></v-icon>
                       </v-btn>
                   </template>
@@ -53,18 +49,15 @@
                   </div>
               </v-menu>
             </div>
-            <v-btn class="header-link"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Become a Vendor</span></NuxtLink> </v-btn>
+            <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Become a Vendor</span></NuxtLink> </v-btn>
         </div>
        
       
-        <!-- <template v-slot:append > -->
 
-                <!-- <div style="display: flex; align-items: center;  justify-content: end;"> -->
-
-          <v-btn class="header-link me-3">  <NuxtLink :to="props.link">  <span class="text2 d-flex" style="align-self: center; margin: auto;" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{props.title}}</span></NuxtLink> </v-btn>
+          <v-btn class="header-link me-3 flex-lg-and-up hidden-sm-and-down">  <NuxtLink :to="props.link">  <span class="text2 d-flex" style="align-self: center; margin: auto;" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{props.title}}</span></NuxtLink> </v-btn>
 
           <NuxtLink to="/authentication/register">  
-            <v-btn class="register me-3" style="border-radius: 10px !important;"> <span class="register-text" >Register </span></v-btn>
+            <v-btn class="register me-3 flex-lg-and-up hidden-sm-and-down" style="border-radius: 10px !important;"> <span class="register-text" >Register </span></v-btn>
           </NuxtLink>
 
     
