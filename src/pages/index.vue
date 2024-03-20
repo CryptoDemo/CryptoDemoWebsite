@@ -99,8 +99,8 @@
                         <span class="btc-ammt">40 BTC = <span class="btc-ammt1">40,144.86 USD</span></span>
                       </div>
                       <div style="margin-top: 30px;">
-                          <span :class="isDark ? 'pay-with':'pay-with-light'" >Pay with</span>
-                          <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px;">
+                      <span :class="isDark ? 'pay-with':'pay-with-light'" > {{transaction? "Pay with" : "Get paid via" }}</span>
+                          <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
                             <span class="text2" style="font-weight: 700 !important; font-family: Manrope;">Select payment method (20+)</span>
                                 <v-dialog width="600">
                                   <template v-slot:activator="{ props }">
@@ -136,13 +136,13 @@
                       </div>
                       <div style="margin-top: 30px;">
                         <span  :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to  spend" : "I want to  receive" }}</span>
-                        <div class="d-flex" style="margin-top:9px;">
-                        <input type="text" style="outline: none; position:relative;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
+                        <div class="d-flex" style="margin-top:9px; position: relative;">
+                        <input type="text" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
                                   
                         placeholder="Enter Amount"/>
                         <v-menu transition="scale-transition">
                             <template v-slot:activator="{ props }">
-                              <v-btn v-bind="props" class="position-absolute" :class="isDark ? 'show-all':'show-all-light'" style="right: 72px;margin-top: 8px;font-weight: 700;">
+                              <v-btn v-bind="props" class="position-absolute" :class="isDark ? 'show-all':'show-all-light'" style="right: 10px;margin-top: 8px;font-weight: 700;">
                                 {{ selected }}
                                 <v-icon  icon="mdi-chevron-down"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
                                 <!-- <v-icon v-else icon="mdi-chevron-up"  color="#8E9BAE" style="margin-left: 6px "></v-icon> -->
@@ -402,7 +402,7 @@ display: flex;
 margin: auto"
 }
 .bg-vector-light{
-opacity: 0.2; 
+opacity: 0.2 !important; 
 left: 0; 
 right: 0;
 display: flex; 
@@ -1199,10 +1199,11 @@ font-style: normal;
 font-weight: 700 !important;
 line-height: 150% !important; /* 21px */
 }
-
 .coin-bg1 {
 border-radius: 15px;
 background: #1B2537;
 }
-
+::-webkit-scrollbar{
+  display: none;
+}
 </style>
