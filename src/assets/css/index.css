@@ -240,7 +240,7 @@ font-weight: 600;
 line-height: 120%; /* 28.8px */
 }
 
-
+/* 
 @media screen and (max-width: 600px) {
   .frame-1{
   display: flex !important;
@@ -313,7 +313,7 @@ line-height: 120%; /* 28.8px */
   }
   .caption{
     width: fit-content !important;
-    line-height: 160% !important; /* 25.6px */
+    line-height: 160% !important; 
     letter-spacing: 0.48px !important;
     margin-top: 24px !important;
   }
@@ -326,4 +326,4 @@ line-height: 120%; /* 28.8px */
   .sub-text2{
     margin-top: 61px !important;
   }
-}
+} */
