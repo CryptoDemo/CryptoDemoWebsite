@@ -1,21 +1,20 @@
 <template>
-          <!-- <v-container> -->
-            <img src="/svg/Background pattern.svg" class="position-absolute" style=" opacity: 0.4; left: 0; right: 0;display: flex; margin: auto;" v-if="theme.global.current.value.dark" />
-            <img src="/svg/Background pattern.svg" class="position-absolute" style=" opacity: 0.2; left: 0; right: 0; display: flex; margin: auto;" v-else />
-          <!-- </v-container> -->
+  
+    <img src="/svg/Background pattern.svg" class="position-absolute" style=" opacity: 0.4; left: 0; right: 0;display: flex; margin: auto;" v-if="theme.global.current.value.dark" />
+    <img src="/svg/Background pattern.svg" class="position-absolute" style=" opacity: 0.2; left: 0; right: 0; display: flex; margin: auto;" v-else />
+    
     <div>
       <div>
         <Index-header title="Log in" link="/authentication/login"/>
         <section class="position-relative">
             <v-container class="position-relative">
               <div class="position-absolute">    
-                <!-- <img src="/svg/Group 1318.svg" class="position-absolute" style="top: px; left: 0;"/> -->
                 <img src="/svg/Frame.svg" class="pink-coin position-absolute"/>
                 
                 </div>
                 <div>
                   <div class="frame-1"  :class="isDark ? 'frame-1':'frame-1-light'">
-                    <v-btn color="#2873FF" class="writing-btn" style="letter-spacing: opx">Writing</v-btn>
+                    <v-btn color="#2873FF" class="writing-btn" style="letter-spacing: 0px">Writing</v-btn>
                     <span  :class="isDark ? 'writing-text':'writing-text-light'">The number one trading platform in Europe</span>
                     <img src="/svg/blue-arrow.svg"/>
                   </div>
@@ -46,7 +45,6 @@
                   <img src="/img/Group 1302.png" class="top-ellipse"/>
                   <img src="/img/Group 1301.png" class="side-ellipse"/>
                   <img src="/svg/Ellipse.svg" class="blue-ellipse position-absolute"/>
-                  <!-- <img src="/img/Group 1300.png" class="right-ellipse"/> -->
                   <img src="/img/Group 1299.png" class="bottom-ellipse"/>
 
 
@@ -65,28 +63,34 @@
                     </div>
 
                     <div style="margin-top: 24px;">
-                      <v-menu :location="location">
+                      <v-menu>
                         <template v-slot:activator="{ props }">
                           <v-btn :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" style="letter-spacing: 0px"
-                            dark
                             v-bind="props">
                             <v-img  width="25" class="me-3 select" :src="flag"/> 
                             <div  class="py-3" style="display: grid; cursor: pointer;">
                             <span class="me-2">{{select}}</span> 
                             <span class="me-2 small-text">{{coin}}</span> 
                             </div>
-                            <v-icon icon="mdi-chevron-down"  color="#8E9BAE" class="chevron-icon"></v-icon>
+                            <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon"></v-icon>
                           </v-btn>
                         </template>
 
                         <v-list>
-                          <v-list-item>
-                            <div v-for="(item, index) in locations" class="d-flex py-3" style="cursor: pointer"
-                              :key="index" >
-                          
+                          <v-list-item class="coin-bg1">
+                            <div  @click.stop style="margin-top: 15px; margin-bottom: 15px;">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 35px; margin-left: 19px;">
+                                    <path d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z" stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                               <input type="text"  placeholder="Search for Coins..." v-model="input" style="outline: none; border:  1px solid #64748B; height: 48px; width: 100%; border-radius: 25px; padding-left: 60px;"/>
+                            </div>
+
+
+                            <div  v-for="(item, index) in filteredItems?.length ? filteredItems : location" :key="index" class="d-flex py-3" style="cursor: pointer">
                               <v-list-item-title @click="select=item.title; coin=item.coinText; flag= item.image" class="d-flex">
                               <v-img width="20" class="rounded-5 me-3" :src="item.image"/>    
-                              <span> {{ item.title }} </span>
+                              <span v-if="item.coinText"> {{ item.title }} </span>
+                              <p v-else>Coin Not Found</p>
                             </v-list-item-title>
                             </div>
                           </v-list-item>
@@ -132,7 +136,7 @@
                           </div>
                       </div>
                       <div style="margin-top: 30px;">
-                        <span  :class="isDark ? 'pay-with':'pay-with-light'">I want to  spend</span>
+                        <span  :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to  spend" : "I want to  receive" }}</span>
                         <div class="d-flex" style="margin-top:9px;">
                         <input type="text" style="outline: none; position:relative;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
                                   
@@ -177,8 +181,8 @@
                       <span class="caption">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
                         <div class="mx-auto" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
 
-                            <v-btn :class="`${transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction=true" style="border-radius: 41px !important">Sell✨</v-btn>
-                            <v-btn :class="`${!transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction=false" style="border-radius: 41px !important" >Buy</v-btn>
+                            <v-btn :class="`${transaction1 ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction1=true" style="border-radius: 41px !important">Sell✨</v-btn>
+                            <v-btn :class="`${!transaction1 ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction1=false" style="border-radius: 41px !important" >Buy</v-btn>
                         </div>
                 </div>
             
@@ -344,6 +348,7 @@ import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 
 const transaction = ref(true);
+const transaction1 = ref(true);
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -352,15 +357,6 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const select =ref("Bitcoin")
 const coin = ref ("BTC")
 const flag = ref("/svg/bitcoin-btc-logo 1.svg")
-
-const locations = [
-        { title: 'Bitcoin', coinText:"Dai",  image:"/svg/bitcoin-btc-logo 1.svg" },
-        { title: 'Bitcoin', coinText:"BTC",  image:"/svg/bitcoin-btc-logo 1.svg" },
-        { title: 'Bitcoin',  coinText:"BTC",  image:"/svg/bitcoin-btc-logo 1.svg" },
-        { title: 'Ethereum',  coinText:"ETH",  image:"/svg/bitcoin-btc-logo 1.svg" },
-        { title: 'Dodge',  coinText:"DOD",  image:"/svg/bitcoin-btc-logo 1.svg" },
-        { title: 'Bitcoin',  coinText:"BTC", image:"/svg/bitcoin-btc-logo 1.svg" },
-      ];
 
 const variants = [
         { cardImages: '/svg/Featured icon.svg', title:'Bank transfer', textCaption:'Our guided bank transfer trades make it even easier to sell Bitcoin and receive payment.'}, 
@@ -377,6 +373,27 @@ const coinType = [
         { title: 'USDT' },
         { title: 'Dodge' },
       ];
+
+let input = ref("");
+
+
+const location = ref([
+  { title: 'Bitcoin', coinText:"Dai",  image:"/svg/bitcoin-btc-logo 1.svg" },
+  { title: 'Ethereum',  coinText:"ETH",  image:"/svg/bitcoin-btc-logo 1.svg" },
+  { title: 'Dodge',  coinText:"DOD",  image:"/svg/bitcoin-btc-logo 1.svg" },
+  { title: 'Bitcoin',  coinText:"BTC", image:"/svg/bitcoin-btc-logo 1.svg" },
+]);
+
+  const filteredItems = computed(() => {
+  const searchTerm = input.value.toLowerCase();
+  return location.value.filter((loc) => {
+    const lowerTitle = loc.title.toLowerCase();
+    const lowerCoinText = loc.coinText.toLowerCase();
+    return (
+      lowerTitle.includes(searchTerm) || lowerCoinText.includes(searchTerm)
+    );
+  });
+});
 </script>
 
 <style scoped>
@@ -396,8 +413,6 @@ background: linear-gradient(90deg, #FFF 8.61%, #8E9BAE 91.11%);
 background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-/* margin-top: 40px ;
-display: flex; */
 justify-content: center
 
 }
@@ -1177,4 +1192,19 @@ font-weight: 700 !important;
 line-height: 150% !important; /* 21px */
 }
 
+.coin-bg1 {
+border-radius: 15px;
+background: #1B2537;
+}
+
+
+#filter-toggle:after {
+ 
+  transform: rotate(45deg);
+  transition: all .2s;
+}
+
+#filter-toggle.expanded:after {
+  transform: rotate(-135deg);
+}
 </style>
