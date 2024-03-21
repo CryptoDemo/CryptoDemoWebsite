@@ -53,7 +53,7 @@
 
                       <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute"/>
 
-                    <div :class="isDark ? 'btn-segment':'btn-segment-light'">
+                    <div class="btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'">
                       <v-btn  :class="`${transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction=true" > Buy
 
                       </v-btn>
