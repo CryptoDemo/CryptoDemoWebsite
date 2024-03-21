@@ -379,6 +379,7 @@ line-height: 120%; /* 28.8px */
   .second-coli{
   margin-top: 26px !important;
   padding: 0px !important;
+  height: 60% !important;
   }
   .frame-2{
   padding: 0  !important;
@@ -399,12 +400,15 @@ line-height: 120%; /* 28.8px */
   }
   .img-wrap1{
     padding: 0 45px !important;
+    margin-top: 10px !important;
+    height: 170px !important;
   }
   .card1i{
     margin-left: 27% !important;
   }
   .card1ii{
     left: 10% !important;
+    margin-top: 74px !important;
   }
   .coin-wrap1{
     height: 80% !important;
@@ -412,6 +416,7 @@ line-height: 120%; /* 28.8px */
   .coin-wrap1i{
     height: 200px !important;
     width: fit-content !important;
+    /* padding: 10px !important; */
   }
   .reverse{
     height: 100% !important;
