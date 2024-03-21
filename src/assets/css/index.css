@@ -249,12 +249,13 @@ line-height: 120%; /* 28.8px */
   padding: 4px;
   }
   .writing-btn{
-    width: 48px !important;
-
+    width: 37px !important;
+    height: 30px !important;
   }
   .writing-text{
     font-size: 12px !important;
     letter-spacing: 0.12px !important;
+    /* font-weight: 500 !important; */
   }
   .headertext1, .web {
     font-size: 48px !important;
