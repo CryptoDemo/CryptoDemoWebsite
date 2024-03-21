@@ -336,6 +336,9 @@ line-height: 120%; /* 28.8px */
   .card-layout1{
     display: flex !important;
   }
+  .card-layout{
+   height: fit-content !important;
+  }
   .section2ii{
     margin-top: 8px !important;
   }
@@ -388,7 +391,7 @@ line-height: 120%; /* 28.8px */
   }
   .cursor{
   width: 46%;
-  left: -5% !important;
+  margin-left: 55% !important;
   top: 51% !important;
   }
   .sell-col{
@@ -409,5 +412,8 @@ line-height: 120%; /* 28.8px */
   .coin-wrap1i{
     height: 200px !important;
     width: fit-content !important;
+  }
+  .reverse{
+    height: 100% !important;
   }
 }

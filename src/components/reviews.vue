@@ -1,8 +1,8 @@
 <template>
   <div>
-      <div :class="isDark ? 'reviews':'reviews-light'" >
+      <div class="reverse" :class="isDark ? 'reviews':'reviews-light'" >
         <v-row no-gutters>
-            <v-col cols="12" sm="6" md="6">
+            <v-col cols="12" sm="6" md="6" class="order-last order-sm-first">
                 <div class="layout">
                     <v-btn class="wrapper" style="width: 106px; height: 36px;">
                         <img src="/svg/comment-2-text.svg" class="me-2"/>
@@ -18,9 +18,7 @@
                 <div class="img-reviews position-relative"  style="padding-top: 53px;">
                      <div  :class="isDark ? 'gradient1i':'gradient1i-light'"></div>
 
-                  
-
-                    <div v-for="(review, i) in reviews" :key="i" class="position-relative" :class="isDark ? 'review-cards':'review-cards-light'" :style=" i === 0? 'right: 41px; margin-bottom: 20px;' : ''">
+                    <div v-for="(review, i) in reviews" :key="i" class="position-relative review-cards" :class="isDark ? 'review-cards':'review-cards-light'" :style=" i === 0? 'right: 41px; margin-bottom: 20px;' : ''">
                         <div>
                             <div style="display: flex; justify-content: space-between;">
                             <div style="display: flex;">    
