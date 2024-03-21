@@ -3,27 +3,27 @@
       <div class="reverse" :class="isDark ? 'reviews':'reviews-light'" >
         <v-row no-gutters>
             <v-col cols="12" sm="6" md="6" class="order-last order-sm-first">
-                <div class="layout">
+                <div class="layouti">
                     <v-btn class="wrapper" style="width: 106px; height: 36px;">
                         <img src="/svg/comment-2-text.svg" class="me-2"/>
                         <span :class="isDark ? 'feedback':'feedback-light'">Feedback</span>
                     </v-btn>
-                    <span :class="isDark ? 'valuable-feedback':'valuable-feedback-light'" >Valuable feedback</span>
+                    <span class="buy" :class="isDark ? 'valuable-feedback':'valuable-feedback-light'" >Valuable feedback</span>
                     <span class="feedback-subtitle">Our feedback system highlights reliable, experienced users, helping you to trade smoothly.</span>
                 </div>
             </v-col>
             <v-col cols="12" sm="6">
                 <div class="position-relative ">
               
-                <div class="img-reviews position-relative"  style="padding-top: 53px;">
+                <div class="img-reviews position-relative"  style="padding-top: px;">
                      <div  :class="isDark ? 'gradient1i':'gradient1i-light'"></div>
 
-                    <div v-for="(review, i) in reviews" :key="i" class="position-relative review-cards" :class="isDark ? 'review-cards':'review-cards-light'" :style=" i === 0? 'right: 41px; margin-bottom: 20px;' : ''">
+                    <div v-for="(review, i) in reviews" :key="i" class="position-relative review-cards" :class="isDark ? 'review-cards':'review-cards-light'" :style=" i === 0? 'right: 40px; margin-bottom: 20px; height: 100px; margin-top: 40px' : ''">
                         <div>
                             <div style="display: flex; justify-content: space-between;">
                             <div style="display: flex;">    
                                 <img :src="review.img" :alt="review.alt" class="me-4" :class="isDark ? 'img-avt':'img-avt-light'"/>
-                                <div style="display: flex; flex-direction: column;">
+                                <div style="display: flex; flex-direction: column; align-self: center;">
                                     <span class="review-name" :class="isDark ? 'review-name':'review-name-light'">{{ review.name }}</span>
                                     <div class="d-flex">
                                         <span class="location-txt me-3">{{ review.location }}</span>
@@ -34,11 +34,11 @@
                                     </div>
                                 </div>
                             </div>
-                                <div style="border-radius: 100px; background: #2873FF; padding: 10px; height: 27px !important; width: 81px; display: flex; align-self: center; position: absolute; right: 18px"></div>
+                                <div class="blue-box" style="border-radius: 100px; background: #2873FF; padding: 10px; height: 27px !important; width: 81px; display: flex; align-self: center; position: absolute; right: 18px"></div>
                             </div>
                             <div>
-                                <img :src="review.textlines" class="mt-4" v-if="theme.global.current.value.dark"/>
-                                <img :src="review.textlines1" class="mt-5" v-else/>
+                                <img :src="review.textlines" class="mt-4" style="max-width: 100%;" v-if="theme.global.current.value.dark"/>
+                                <img :src="review.textlines1" class="mt-5" style="max-width: 100%;"  v-else/>
                             </div>
                             </div>
                            
@@ -174,7 +174,7 @@ font-weight: 600;
 line-height: 100%; /* 14px */
 letter-spacing: 0.14px;
 }
-.layout{
+.layouti{
 display: flex;
 width: 499px;
 height: 375px;

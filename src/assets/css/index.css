@@ -432,11 +432,56 @@ line-height: 120%; /* 28.8px */
     font-size: 24px !important;
     line-height: normal !important;
   }
+  .security-btn{
+    margin-top: 30px !important;
+  }
   .coin-wrap1i{
     height: 200px !important;
     width: fit-content !important;
   }
   .reverse{
     height: 100% !important;
+    padding: 20px !important;
   }
+  .review-cards{
+  width: 58% !important;
+  margin-left: 5% !important;
+  display: flex !important;
+  margin-bottom: 20px !important;
+  /* margin-inline: auto !important; */
+  }
+  .review-name{
+  font-size: 10.728px !important;
+  font-style: normal !important; 
+  
+  }
+  .location-txt{
+  font-size: 8.046px !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  }
+  .blue-box{
+  width: 54.309px !important;
+  padding: 6.705px;
+  top: 14% !important;
+  }
+  .layouti{
+    padding: 0 !important;
+    height: 220px !important;
+  }
+  .feedback-subtitle{
+  width: 68% !important;
+  align-self: stretch !important;
+  }
+  .demo-div1{
+    margin: 0px !important;
+    margin-bottom: 26px !important;
+  }
+  .barcode-section{
+    height: 380px !important;
+  }
+  .wallet-div{
+  margin-left: 26px !important;
+  }
+
 }

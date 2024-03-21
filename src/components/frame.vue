@@ -70,7 +70,7 @@
                           <img src="/svg/item1-light.svg" class="card1ii" style="max-width: 100%;" v-else />   
                       </div>
                     </div>
-                    <div class="position-relative sell-col mb-5">
+                    <div class="position-relative sell-col  security-btn mb-5">
                     
                       <v-btn @click.prevent="navigateTo('/security')" style="border-radius: 100px; box-shadow: none; width: 101px; height: 36px; text-transform: capitalize; letter-spacing: 0px; display: flex;  margin-top: 5px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; width: 100px; align-items: center;">
                          <img src="/svg/shield1.svg" class="me-1"/>
