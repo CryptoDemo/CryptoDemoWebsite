@@ -248,7 +248,14 @@ line-height: 120%; /* 28.8px */
   width: fit-content !important;
   padding: 4px;
   }
+  .writing-btn{
+    width: 48px !important;
 
+  }
+  .writing-text{
+    font-size: 12px !important;
+    letter-spacing: 0.12px !important;
+  }
   .headertext1, .web {
     font-size: 48px !important;
     letter-spacing: -1.44px !important;
@@ -303,6 +310,11 @@ line-height: 120%; /* 28.8px */
     right: 0% !important;
     width: 70% !important;
   }
+  .blue-ellipse2{
+    top: 2%;
+  right: 0% !important;
+  width: 70% !important;
+  }
   .section2-title{
     font-size: 40px !important;
     width: fit-content !important;
@@ -322,5 +334,7 @@ line-height: 120%; /* 28.8px */
   }
   .sub-text2{
     margin-top: 61px !important;
+    letter-spacing: 0.6px !important;
+    font-size: 12px !important;
   }
 }

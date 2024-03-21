@@ -14,7 +14,7 @@
                 </div>
                 <div>
                   <div class="frame-1" :class="isDark ? 'frame-1':'frame-1-light'">
-                    <v-btn color="#2873FF" class="writing-btn" style="letter-spacing: 0px">Writing</v-btn>
+                    <v-btn color="#2873FF" class="writing-btn">Writing</v-btn>
                     <span  :class="isDark ? 'writing-text':'writing-text-light'">The number one trading platform in Europe</span>
                     <img src="/svg/blue-arrow.svg"/>
                   </div>
@@ -48,7 +48,7 @@
                   <img src="/img/Group 1299.png" class="bottom-ellipse"/>
 
 
-                  <div :class="isDark ? 'landing-page-form':'light-landing-page-form'" >
+                  <div class="landing-page-form" :class="isDark ? 'landing-page-form':'light-landing-page-form'" >
                       <img src="/svg/bitcoin-star.svg" class="yellow-coin position-absolute"/>
 
                       <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute"/>
@@ -214,10 +214,10 @@
           </v-container>
 
         <v-container class=" position-relative section2ii" >
-              <img src="/svg/Ellipse 2813.svg" class="position-absolute" style="right:0; margin-top: 144px ;"/>
+              <img src="/svg/Ellipse 2813.svg" class="position-absolute blue-ellipse2" style="right:0; margin-top: 144px ;"/>
             <div  :class="isDark ? 'section2':'section2-light'">
               <span class="section2-subtitle sub-text2" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features of The demo web</span>
-              <span :class="isDark ? 'section2-title':'section2-title-light'" style="margin-bottom: 88px !important;">Welcome to a financial system for the 100%.</span>
+              <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-bottom: 88px !important;">Welcome to a financial system for the 100%.</span>
             </div>
 
             <Frame/>
