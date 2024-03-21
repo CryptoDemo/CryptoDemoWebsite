@@ -249,7 +249,7 @@ line-height: 120%; /* 28.8px */
   padding: 4px;
   }
   .writing-btn{
-    width: 37px !important;
+    width: 60px !important;
     height: 30px !important;
   }
   .writing-text{
@@ -279,12 +279,14 @@ line-height: 120%; /* 28.8px */
   margin-top: 16px !important;
   }
   .yellow-coin{
-    left: -30% !important;
-    top: 40% !important;
+    left: -16% !important;
+    top: 44% !important;
+    width: 90px !important;
   }
   .light-green-coin{
-    right: -92px !important;
+    right: -52px !important;
     top: 171px !important;
+    width: 90px !important;
   }
   .landing-page-form{
     width: 100% !important;

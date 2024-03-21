@@ -1185,7 +1185,7 @@ line-height: 150% !important; /* 21px */
 border-radius: 15px;
 background: #1B2537;
 }
-/* ::-webkit-scrollbar{
+::-webkit-scrollbar{
   display: none;
-} */
+}
 </style>
