@@ -478,10 +478,11 @@ line-height: 120%; /* 28.8px */
     margin-bottom: 26px !important;
   }
   .barcode-section{
-    height: 370px !important;
+    height: 100% !important;
   }
   .wallet-div{
   margin-left: 26px !important;
+  margin-bottom: 25px !important;
   }
 
 }
