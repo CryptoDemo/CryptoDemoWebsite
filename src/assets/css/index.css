@@ -350,7 +350,7 @@ line-height: 120%; /* 28.8px */
   }
   .green-coin1{
     width: 80px !important;
-    bottom: -240px !important;
+    top: -10% !important;
     left: -6% !important;
   }
   .first-col{
@@ -388,7 +388,7 @@ line-height: 120%; /* 28.8px */
   }
   .cursor{
   width: 46%;
-  margin-left: 225px !important;
+  left: -5% !important;
   top: 51% !important;
   }
   .sell-col{
@@ -398,10 +398,10 @@ line-height: 120%; /* 28.8px */
     padding: 0 45px !important;
   }
   .card1i{
-    margin-left: 82px !important;
+    margin-left: 27% !important;
   }
   .card1ii{
-    left: 30px !important;
+    left: 10% !important;
   }
   .coin-wrap1{
     height: 80% !important;
