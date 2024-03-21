@@ -245,7 +245,7 @@
                                 </v-btn>
                                 <div style="display: grid">
                                   <span class="buy" :class="isDark ? 'free-demo':'free-demo-light'">Free Demo Web Wallet</span>
-                                  <span style="margin-top: 8px; color: #8E9BAE;line-height: 140%; font-family: SF Pro Display ;">Get a free <NuxtLink to="#"><span style="font-size: 16px;color: #2873FF;font-weight: 600; font-family: SF Pro Display; letter-spacing: 0.32px;">Demo Web</span></NuxtLink> 
+                                  <span style="margin-top: 8px; color: #8E9BAE;line-height: 140%; font-family: SF Pro Display ;">Get a free <NuxtLink to="#"><span class="text-demoi"  style="font-size: 16px;color: #2873FF;font-weight: 600; font-family: SF Pro Display; letter-spacing: 0.32px;">Demo Web</span></NuxtLink> 
                                   when you sign up to receive, send, and store your Bitcoin.</span>
                                 </div>
                         
@@ -257,7 +257,7 @@
               <v-col cols="12" sm="6" md="6">
                 <div class="">
                    <div :class="isDark ? 'barcode-section':'barcode-section-light'">
-                      <div class="rectangle ">
+                      <div class="rectangle">
                         <div style="padding-top: 28px;" v-if="theme.global.current.value.dark">
                           <img src="/svg/Group-barcode.svg"  style="display: flex; justify-self: center; margin: auto; width: 93%;" />
                         </div> 
@@ -275,7 +275,7 @@
                             <div style="display:grid;">
                               <span class="buy"  :class="isDark ? 'free-demo':'free-demo-light'" style="margin-top : 16px ">Invite friends</span>
                               <span style="margin-top: 14px; color: #8E9BAE;line-height: 140%; font-family: SF Pro Display;">Get your friends and family  to
-                                <NuxtLink to="/authentication/register"><span style="font-size: 16px; color: #8E9BAE; font-family: SF Pro Display; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline;">sign up</span></NuxtLink> 
+                                <NuxtLink to="/authentication/register"><span class="text-demoi"  style="font-size: 16px; color: #8E9BAE; font-family: SF Pro Display; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline;">sign up</span></NuxtLink> 
                               for Demo Web
                               </span>
                             </div>
@@ -287,17 +287,17 @@
             </v-row>
             </v-container>
 
-          <div :class="isDark ? 'section3':'section3-light'" style="margin-top: 200px;">
+          <div class="section3" :class="isDark ? 'section3':'section3-light'" style="margin-top: 200px;">
             <v-container>
                 <v-row no-gutters style="padding-top: 170px; padding-bottom: 140px">
               <v-col cols="md-7">
                 <div class="">
-                  <span class="section2-subtitle " style="justify-content: flex-start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
-                  <span :class="isDark ? 'section2-title':'section2-title-light'" style="text-align: start; display: flex; justify-content: flex-start;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
-                  <span class="explore">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
+                  <span class="section2-subtitle sub-text2" style="justify-content: flex-start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
+                  <span class="section2-titlei2" :class="isDark ? 'section2-title':'section2-title-light'" style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
+                  <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
                    <div class="d-flex" style="margin-top: 88px; ">
-                      <img src="/svg/applestore.svg" class="social-icons me-4"/>
-                      <img src="/svg/playstore.svg" class="social-icons me-2"/>
+                      <img src="/svg/applestore.svg" style="max-width: 100%;" class="social-icons me-4"/>
+                      <img src="/svg/playstore.svg" style="max-width: 100%;" class="social-icons me-2"/>
                       <div class="border-line"></div>
                       <span class="icon-text" style="color: #8E9BAE;font-family: SF Pro Display">Demo Web App now <br> available for download</span>
                     </div>
@@ -866,7 +866,7 @@ display: flex;
 justify-content: center;
 /* margin-top: 40px !important; */
 /* margin-bottom: 40px !important; */
-margin: auto;
+/* margin: auto; */
 }
 .section2-subtitle{
 color: #38BDF8;
@@ -899,7 +899,7 @@ background-clip: text;
 width: 688.35px;
 display: flex;
 justify-content: center;
-margin: auto;
+/* margin: auto; */
 }
 .section2-title-light{
 text-align: center;
@@ -1159,6 +1159,8 @@ font-weight: 400;
 line-height: 140%; /* 33.6px */
 letter-spacing: 0.72px;
 width: 612px;
+display: flex;
+justify-content: flex-start;
 }
 
 .border-line{

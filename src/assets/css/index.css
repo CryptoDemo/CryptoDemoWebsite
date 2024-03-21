@@ -342,11 +342,24 @@ line-height: 120%; /* 28.8px */
     margin-top: 24px !important;
     margin-bottom: 48px !important;
   }
+  .section2-titlei2{
+    font-size: 40px !important;
+    width: fit-content !important;
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
+  }
   .caption{
     width: fit-content !important;
     line-height: 160% !important; 
     letter-spacing: 0.48px !important;
     font-size: 16px !important;
+  }
+  .captionii{
+    width: fit-content !important;
+    line-height: 160% !important; 
+    letter-spacing: 0.48px !important;
+    font-size: 16px !important;
+    margin-top: 24px !important;
   }
   .card-layout1{
     display: flex !important;
@@ -400,6 +413,10 @@ line-height: 120%; /* 28.8px */
   padding: 0  !important;
   margin: 0px !important;
   width: 100% !important;
+  height: 100% !important;
+  }
+  .sel-coli{
+    margin-bottom: 25px !important;
   }
   .btc-box1{
    width: 80% !important;
@@ -433,7 +450,7 @@ line-height: 120%; /* 28.8px */
     line-height: normal !important;
   }
   .security-btn{
-    margin-top: 5% !important;
+    margin-top: 4% !important;
   }
   .coin-wrap1i{
     height: 200px !important;
@@ -448,7 +465,6 @@ line-height: 120%; /* 28.8px */
   margin-left: 5% !important;
   display: flex !important;
   margin-bottom: 20px !important;
-  /* margin-inline: auto !important; */
   }
   .review-name{
   font-size: 10.728px !important;
@@ -484,5 +500,12 @@ line-height: 120%; /* 28.8px */
   margin-left: 26px !important;
   margin-bottom: 25px !important;
   }
-
+  .text-demoi{
+    text-decoration: none !important;
+    color: #8E9BAE !important;
+    font-weight: 400 !important;
+  }
+  .section3{
+   padding: 0px !important;
+  }
 }
