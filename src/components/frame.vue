@@ -22,7 +22,7 @@
                       </v-btn>
 
                   <div class="mb-3">
-                    <span  :class="isDark ? 'buy':'buy-light'">Buy Bitcoin</span>
+                    <span class="buy" :class="isDark ? 'buy':'buy-light'">Buy Bitcoin</span>
                   </div> 
                   <span class="caption1">Buy Bitcoin from real people in our peer-to-peer Marketplace.</span>
                 
@@ -48,7 +48,7 @@
                           <span  :class="isDark ? 'buy1':'buy1-light'">Sell</span>
                         </v-btn>
                       <div class="mb-3">
-                        <span  :class="isDark ? 'buy':'buy-light'">Sell Bitcoin</span>
+                        <span  class="buy" :class="isDark ? 'buy':'buy-light'">Sell Bitcoin</span>
                         </div> 
                         <span class="caption1">Set your own rates and choose how you want to be paid.</span>
                       </div>
@@ -77,7 +77,7 @@
                         <span :class="isDark ? 'buy1':'buy1-light'">Security</span>
                       </v-btn>
                       <div class="mb-3">
-                    <span :class="isDark ? 'buy':'buy-light'">Secure trading</span>
+                    <span class="buy" :class="isDark ? 'buy':'buy-light'">Secure trading</span>
                    </div> 
                   <span class="caption1">Bitcoin is held in secure escrow until a trade is successfully completed.</span>
                     </div>

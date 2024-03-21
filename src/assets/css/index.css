@@ -261,9 +261,11 @@ line-height: 120%; /* 28.8px */
     letter-spacing: -1.44px !important;
     display: flex !important;
   }
- 
+ .webi{
+  margin-right: 50px !important;
+ }
   .demo-star{
-    margin-left: 230px !important;
+    margin-left: 235px !important;
     display: flex !important;
     width: 100px !important; 
   }
@@ -413,10 +415,13 @@ line-height: 120%; /* 28.8px */
   .coin-wrap1{
     height: 80% !important;
   }
+  .buy{
+    font-size: 24px !important;
+    line-height: normal !important;
+  }
   .coin-wrap1i{
     height: 200px !important;
     width: fit-content !important;
-    /* padding: 10px !important; */
   }
   .reverse{
     height: 100% !important;
