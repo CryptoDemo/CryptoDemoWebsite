@@ -311,7 +311,7 @@ line-height: 120%; /* 28.8px */
     width: 70% !important;
   }
   .blue-ellipse2{
-    top: 2%;
+  top: 2%;
   right: 0% !important;
   width: 70% !important;
   }
@@ -319,12 +319,19 @@ line-height: 120%; /* 28.8px */
     font-size: 40px !important;
     width: fit-content !important;
     margin-top: 24px !important;
+    margin-bottom: 20px !important;
+  }
+  .section2-titleii{
+    font-size: 40px !important;
+    width: fit-content !important;
+    margin-top: 24px !important;
+    margin-bottom: 48px !important;
   }
   .caption{
     width: fit-content !important;
     line-height: 160% !important; 
     letter-spacing: 0.48px !important;
-    margin-top: 24px !important;
+    font-size: 16px !important;
   }
   .card-layout1{
     display: flex !important;
@@ -336,5 +343,71 @@ line-height: 120%; /* 28.8px */
     margin-top: 61px !important;
     letter-spacing: 0.6px !important;
     font-size: 12px !important;
+  }
+  .svg-frame{
+    height: 70% !important;
+    width: 100% !important;
+  }
+  .green-coin1{
+    width: 80px !important;
+    bottom: -240px !important;
+    left: -6% !important;
+  }
+  .first-col{
+    margin-inline-end: unset !important;
+    margin-top: 0 !important;
+    margin-bottom: 26px !important;
+  }
+  .frame1{
+    padding: 20px !important;
+    width: 100% !important;
+  }
+  .yellow-coin1{
+    margin-top: 95px !important;
+    width: 75px !important;
+  }
+  .first-col-wrap{
+    margin-bottom: 0px !important;
+  }
+  .second-col{
+  margin: 0px !important;
+  padding: 0px !important;
+  }
+  .second-coli{
+  margin-top: 26px !important;
+  padding: 0px !important;
+  }
+  .frame-2{
+  padding: 0  !important;
+  margin: 0px !important;
+  width: 100% !important;
+  }
+  .btc-box1{
+   width: 80% !important;
+   margin-top: 13px !important;
+  }
+  .cursor{
+  width: 46%;
+  margin-left: 225px !important;
+  top: 51% !important;
+  }
+  .sell-col{
+    padding: 0 20px !important;
+  }
+  .img-wrap1{
+    padding: 0 45px !important;
+  }
+  .card1i{
+    margin-left: 82px !important;
+  }
+  .card1ii{
+    left: 30px !important;
+  }
+  .coin-wrap1{
+    height: 80% !important;
+  }
+  .coin-wrap1i{
+    height: 200px !important;
+    width: fit-content !important;
   }
 }

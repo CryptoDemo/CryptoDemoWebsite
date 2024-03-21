@@ -102,7 +102,7 @@
                       <div style="margin-top: 30px;">
                       <span :class="isDark ? 'pay-with':'pay-with-light'" > {{transaction? "Pay with" : "Get paid via" }}</span>
                           <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
-                            <span class="text2" style="font-weight: 700; display: flex; font-family: Manrope;">Select payment method (20+)</span>
+                            <span class="text2" style="font-weight: 700; display: contents; font-family: Manrope;">Select payment method (20+)</span>
                                 <v-dialog width="600">
                                   <template v-slot:activator="{ props }">
                                     <v-btn v-bind="props" :class="isDark ? 'show-all':'show-all-light'" text="Show all"> </v-btn>
@@ -217,7 +217,7 @@
               <img src="/svg/Ellipse 2813.svg" class="position-absolute blue-ellipse2" style="right:0; margin-top: 144px ;"/>
             <div  :class="isDark ? 'section2':'section2-light'">
               <span class="section2-subtitle sub-text2" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features of The demo web</span>
-              <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-bottom: 88px !important;">Welcome to a financial system for the 100%.</span>
+              <span class="section2-titleii" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-bottom: 88px;">Welcome to a financial system for the 100%.</span>
             </div>
 
             <Frame/>
@@ -227,7 +227,7 @@
             </div>
             
             <v-row no-gutters class="mt-7">
-              <v-col cols="md-6">
+              <v-col cols="12" sm="6" md="6">
                 <div class="me-7">
                   <div  :class="isDark ? 'barcode-section':'barcode-section-light'">
                       <div class="rectangle" style="display: flex; justify-self: center;" >
@@ -254,7 +254,7 @@
                 </div>
 
               </v-col>
-              <v-col cols="md-6">
+              <v-col cols="12" sm="6" md="6">
                 <div class="">
                    <div :class="isDark ? 'barcode-section':'barcode-section-light'">
                       <div class="rectangle ">
@@ -281,7 +281,7 @@
                             </div>
                       </div>
                    </div>
-                  <!-- <v-img src="/svg/Frame-6.svg"></v-img> -->
+                 
                 </div>
               </v-col>
             </v-row>

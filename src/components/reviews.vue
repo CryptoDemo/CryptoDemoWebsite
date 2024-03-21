@@ -2,7 +2,7 @@
   <div>
       <div :class="isDark ? 'reviews':'reviews-light'" >
         <v-row no-gutters>
-            <v-col cols="12" sm="6">
+            <v-col cols="12" sm="6" md="6">
                 <div class="layout">
                     <v-btn class="wrapper" style="width: 106px; height: 36px;">
                         <img src="/svg/comment-2-text.svg" class="me-2"/>

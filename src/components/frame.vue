@@ -1,15 +1,15 @@
 <template>
   <div>
       <v-row no-gutters style="display: flex; align-items: center;">
-            <v-col>
-              <div class="me-4">
+            <v-col cols="12" md="6" sm="6">
+              <div class="first-col" style="margin-inline-end: 16px;">
                 <div class="position-relative" :class="isDark ? 'frame1':'frame1-light'">
-                      <div style="display: flex; align-self: center; position: relative; margin-bottom: 30px;">
-                      <img src="/svg/Framebtc1.svg" v-if="theme.global.current.value.dark"/>
-                      <img src="/svg/Framelight.svg" height="94%" v-else/>
-                      <img src="/svg/greencoin1.svg" style="position: absolute; top: 0; bottom: -273px; display: flex; margin: auto; left: -11%;" v-if="theme.global.current.value.dark"/>
+                      <div class="first-col-wrap" style="display: flex; align-self: center; position: relative; margin-bottom: 30px;">
+                      <img src="/svg/Framebtc1.svg" style="max-width: 100%;" v-if="theme.global.current.value.dark"/>
+                      <img src="/svg/Framelight.svg" style="max-width: 100%;" height="94%" v-else/>
+                      <img src="/svg/greencoin1.svg" class="green-coin1" style="position: absolute; max-width: 100%; top: 0; bottom: -273px; display: flex; margin: auto; left: -11%;" v-if="theme.global.current.value.dark"/>
                       <img src="/svg/greencoin1.svg" style="position: absolute; top: 0; bottom: -273px; display: flex; margin: auto; left: -21%;" v-else/>
-                      <img src="/svg/yellowCoin1.svg" style="position: absolute; margin-top: 121px; right: -20px;"/>
+                      <img src="/svg/yellowCoin1.svg" class="yellow-coin1" style="position: absolute; margin-top: 121px; right: -20px;"/>
                       </div>
 
                       <div class="svg-frame" :class="isDark ? 'svg-frame':'svg-frame-light'" style="position: absolute"></div>
@@ -30,50 +30,52 @@
               </div>
             </v-col>
 
-            <v-col class="">
-                <v-col cols="" class="pa-2 mb-2">
-                  <div  :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 40px; width: 100%;">
+            <v-col>
+                <v-col class="second-col" style="padding: 8px; margin-bottom: 8px;">
+                  <div class="frame-2"  :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 40px; width: 100%;">
                     <div>
                       <div class="position-relative">
                         <div class="coin-wrap1" :class="isDark ? 'coin-wrap1':'coin-wrap1-light'"></div>
-                          <img src="/svg/Frame 12.svg" v-if="theme.global.current.value.dark"/>
-                          <img src="/svg/Frame 1light.svg" v-else/>
-                          <img src="/svg/pointer.svg" class="cursor"/>
+                          <img src="/svg/Frame 12.svg" class="btc-box1" style="max-width: 100%;" v-if="theme.global.current.value.dark"/>
+                          <img src="/svg/Frame 1light.svg" class="btc-box1" style="max-width: 100%;" v-else/>
+                          <img src="/svg/pointer.svg" style="max-width: 100%; z-index: 1000;" class="cursor"/>
                       </div>
-                      <v-btn @click.prevent="navigateTo('#')" style="border-radius: 100px; box-shadow: none; text-transform: capitalize; letter-spacing: 0px; display: flex; margin-top: 5px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; width: 72px; height: 36px; align-items: center;">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" class="me-2">
-                            <path d="M13.125 10.5C13.125 11.1181 12.9417 11.7223 12.5983 12.2362C12.255 12.7501 11.7669 13.1506 11.1959 13.3871C10.6249 13.6236 9.99653 13.6855 9.39034 13.565C8.78415 13.4444 8.22733 13.1467 7.79029 12.7097C7.35325 12.2727 7.05562 11.7158 6.93505 11.1097C6.81447 10.5035 6.87635 9.87513 7.11288 9.30411C7.3494 8.7331 7.74994 8.24504 8.26384 7.90166C8.77775 7.55828 9.38193 7.375 10 7.375C10.8288 7.375 11.6237 7.70424 12.2097 8.29029C12.7958 8.87634 13.125 9.6712 13.125 10.5ZM19.375 5.5V15.5C19.375 15.6658 19.3092 15.8247 19.1919 15.9419C19.0747 16.0592 18.9158 16.125 18.75 16.125H1.25C1.08424 16.125 0.925268 16.0592 0.808058 15.9419C0.690848 15.8247 0.625 15.6658 0.625 15.5V5.5C0.625 5.33424 0.690848 5.17527 0.808058 5.05806C0.925268 4.94085 1.08424 4.875 1.25 4.875H18.75C18.9158 4.875 19.0747 4.94085 19.1919 5.05806C19.3092 5.17527 19.375 5.33424 19.375 5.5ZM18.125 9.12109C17.4153 8.91125 16.7694 8.52719 16.2461 8.00389C15.7228 7.48059 15.3387 6.83468 15.1289 6.125H4.87109C4.66125 6.83468 4.27719 7.48059 3.75389 8.00389C3.23059 8.52719 2.58468 8.91125 1.875 9.12109V11.8789C2.58468 12.0887 3.23059 12.4728 3.75389 12.9961C4.27719 13.5194 4.66125 14.1653 4.87109 14.875H15.1289C15.3387 14.1653 15.7228 13.5194 16.2461 12.9961C16.7694 12.4728 17.4153 12.0887 18.125 11.8789V9.12109Z" fill="#2873FF"/>
-                          </svg>
-                        <span  :class="isDark ? 'buy1':'buy1-light'">Sell</span>
-                      </v-btn>
+                      <div class="sell-col">
+                        <v-btn @click.prevent="navigateTo('#')" style="border-radius: 100px; box-shadow: none; text-transform: capitalize; letter-spacing: 0px; display: flex; margin-top: 5px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; width: 72px; height: 36px; align-items: center;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" class="me-2">
+                              <path d="M13.125 10.5C13.125 11.1181 12.9417 11.7223 12.5983 12.2362C12.255 12.7501 11.7669 13.1506 11.1959 13.3871C10.6249 13.6236 9.99653 13.6855 9.39034 13.565C8.78415 13.4444 8.22733 13.1467 7.79029 12.7097C7.35325 12.2727 7.05562 11.7158 6.93505 11.1097C6.81447 10.5035 6.87635 9.87513 7.11288 9.30411C7.3494 8.7331 7.74994 8.24504 8.26384 7.90166C8.77775 7.55828 9.38193 7.375 10 7.375C10.8288 7.375 11.6237 7.70424 12.2097 8.29029C12.7958 8.87634 13.125 9.6712 13.125 10.5ZM19.375 5.5V15.5C19.375 15.6658 19.3092 15.8247 19.1919 15.9419C19.0747 16.0592 18.9158 16.125 18.75 16.125H1.25C1.08424 16.125 0.925268 16.0592 0.808058 15.9419C0.690848 15.8247 0.625 15.6658 0.625 15.5V5.5C0.625 5.33424 0.690848 5.17527 0.808058 5.05806C0.925268 4.94085 1.08424 4.875 1.25 4.875H18.75C18.9158 4.875 19.0747 4.94085 19.1919 5.05806C19.3092 5.17527 19.375 5.33424 19.375 5.5ZM18.125 9.12109C17.4153 8.91125 16.7694 8.52719 16.2461 8.00389C15.7228 7.48059 15.3387 6.83468 15.1289 6.125H4.87109C4.66125 6.83468 4.27719 7.48059 3.75389 8.00389C3.23059 8.52719 2.58468 8.91125 1.875 9.12109V11.8789C2.58468 12.0887 3.23059 12.4728 3.75389 12.9961C4.27719 13.5194 4.66125 14.1653 4.87109 14.875H15.1289C15.3387 14.1653 15.7228 13.5194 16.2461 12.9961C16.7694 12.4728 17.4153 12.0887 18.125 11.8789V9.12109Z" fill="#2873FF"/>
+                            </svg>
+                          <span  :class="isDark ? 'buy1':'buy1-light'">Sell</span>
+                        </v-btn>
                       <div class="mb-3">
-                    <span  :class="isDark ? 'buy':'buy-light'">Sell Bitcoin</span>
-                   </div> 
-                  <span class="caption1">Set your own rates and choose how you want to be paid.</span>
+                        <span  :class="isDark ? 'buy':'buy-light'">Sell Bitcoin</span>
+                        </div> 
+                        <span class="caption1">Set your own rates and choose how you want to be paid.</span>
+                      </div>
                     </div>
                   </div>
                 </v-col>
 
 
-                <v-col cols="" class="pa-2 mt-3">
-                  <div :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 30px; position: relative;">
-                    <div  style="display: flex; flex-direction: column; padding: 0 60px; position: relative; right: 10%; height: 205px;">
+                <v-col class="second-coli" style="padding: 8px; margin-bottom: 8px;">
+                  <div class="frame-2" :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 30px; position: relative;">
+                    <div class="img-wrap1" style="display: flex; flex-direction: column; padding: 0 60px; position: relative; right: 10%; height: 205px;">
                       <div class="position-relative">
-                        <div class="coin-wrap1" :class="isDark ? 'coin-wrap1':'coin-wrap1-light'"></div>
-                          <img src="/svg/item1.svg"  v-if="theme.global.current.value.dark"/>
-                          <img src="/svg/item2-light.svg" v-else/>
-                          <img src="/svg/item2.svg" class="card1i" v-if="theme.global.current.value.dark"/>
-                          <img src="/svg/item3-light.svg" class="card1i" v-else/>
-                          <img src="/svg/item3.svg" class="card1ii" v-if="theme.global.current.value.dark" />   
-                          <img src="/svg/item1-light.svg" class="card1ii" v-else />   
+                        <div class="coin-wrap1i" :class="isDark ? 'coin-wrap1':'coin-wrap1-light'"></div>
+                          <img src="/svg/item1.svg" style="max-width: 100%;" v-if="theme.global.current.value.dark"/>
+                          <img src="/svg/item2-light.svg" style="max-width: 100%;" v-else/>
+                          <img src="/svg/item2.svg" class="card1i" style="max-width: 100%;" v-if="theme.global.current.value.dark"/>
+                          <img src="/svg/item3-light.svg" class="card1i" style="max-width: 100%;" v-else/>
+                          <img src="/svg/item3.svg" class="card1ii" style="max-width: 100%;" v-if="theme.global.current.value.dark" />   
+                          <img src="/svg/item1-light.svg" class="card1ii" style="max-width: 100%;" v-else />   
                       </div>
                     </div>
-                    <div class="position-relative mb-5">
+                    <div class="position-relative sell-col mb-5">
                     
                       <v-btn @click.prevent="navigateTo('/security')" style="border-radius: 100px; box-shadow: none; width: 101px; height: 36px; text-transform: capitalize; letter-spacing: 0px; display: flex;  margin-top: 5px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; width: 100px; align-items: center;">
                          <img src="/svg/shield1.svg" class="me-1"/>
                         <span :class="isDark ? 'buy1':'buy1-light'">Security</span>
-                    </v-btn>
+                      </v-btn>
                       <div class="mb-3">
                     <span :class="isDark ? 'buy':'buy-light'">Secure trading</span>
                    </div> 
@@ -102,10 +104,9 @@ border-radius: 25px;
 border: 0.5px solid #2f3946;
 background: #10192D;
 display: flex;
-height: 773px;
+/* height: 773px; */
 flex-direction: column;
 padding: 40px;
-/* align-items: flex-start; */
 position: relative;
 width: 100%;
 }
@@ -117,7 +118,6 @@ display: flex;
 height: 773px;
 flex-direction: column;
 padding: 40px;
-/* align-items: flex-start; */
 position: relative;
 width: 100%;
 }
