@@ -261,6 +261,7 @@ line-height: 120%; /* 28.8px */
     font-size: 48px !important;
     letter-spacing: -1.44px !important;
     display: flex !important;
+    margin: 0 !important;
   }
  .webi{
   margin-right: 50px !important;
@@ -348,7 +349,7 @@ line-height: 120%; /* 28.8px */
     margin-top: 24px !important;
     margin-bottom: 24px !important;
   }
-  .caption{
+  .caption2{
     width: fit-content !important;
     line-height: 160% !important; 
     letter-spacing: 0.48px !important;
@@ -371,6 +372,11 @@ line-height: 120%; /* 28.8px */
     margin-top: 8px !important;
   }
   .sub-text2{
+    margin-top: 61px !important;
+    letter-spacing: 0.6px !important;
+    font-size: 12px !important;
+  }
+  .sub-text2i{
     margin-top: 61px !important;
     letter-spacing: 0.6px !important;
     font-size: 12px !important;
@@ -488,6 +494,7 @@ line-height: 120%; /* 28.8px */
   .feedback-subtitle{
   width: 68% !important;
   align-self: stretch !important;
+  color: #8E9BAE !important;
   }
   .demo-div1{
     margin: 0px !important;
@@ -508,4 +515,71 @@ line-height: 120%; /* 28.8px */
   .section3{
    padding: 0px !important;
   }
+  .icon-text{
+    font-size: 12px !important;
+    border-left: 0.875px solid #8E9BAE !important;
+    padding-left: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    line-height: normal !important;
+  }
+  .social-icons{
+    width: 27% !important;
+  }
+  .social-icons-div{
+    margin-top: 50px !important;
+  }
+  .desktop-screen {
+    display: none !important;
+  }
+  .mobile-screen{
+    margin-top: 72px !important;
+  }
+  .phone-section{
+    padding-top: 110px !important;
+    padding-bottom: 10px !important;
+  }
+  .title-text{
+  font-size: 16px !important;
+  color: white !important;
+  }
+  .title-text-light{
+  font-size: 16px !important;
+  color: #10192D !important;
+  }
+  .answer-text{
+    font-size: 16px !important;
+  }
+  .expansion-panel{
+    padding: 8px !important;
+  }
+  .v-expansion-panel-title--active > .v-expansion-panel-title__overlay, .v-expansion-panel-title[aria-haspopup=menu][aria-expanded=true] > .v-expansion-panel-title__overlay {
+    background: rgb(182, 190, 213) !important;
+    border-radius: 15px;
+    display: none !important;
+    }
+  .headline{
+    font-size: 40px !important;
+  }
+  .caption1i{
+    font-size: 12px !important;
+    letter-spacing: 0.6px !important;
+  }
+  .explore2i{
+  font-size: 16px !important;
+  color: #DBE8FF !important;
+  letter-spacing: 0.48px !important;
+  width: fit-content !important;
+  }
+  .explore-trade{
+    font-size: 16px !important;
+    width: fit-content !important;
+  }
 }
+
+
+@media only screen and (min-width: 1026px) {
+  .mobile-screen {
+      display:none !important;
+  }
+} 

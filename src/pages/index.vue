@@ -179,7 +179,7 @@
                 <div class="section2i" :class="isDark ? 'section2':'section2-light'">
                       <span class="section2-subtitle card-sub1">TRADE YOUR COIN LIKE A FOREX EXPERT</span>
                       <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Over 350 ways to buy and sell Bitcoin.</span>
-                      <span class="caption">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
+                      <span class="explore-trade">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
                         <div class="mx-auto btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
 
                             <v-btn :class="`${transaction1 ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction1=true" style="border-radius: 41px !important">Sell✨</v-btn>
@@ -289,25 +289,28 @@
 
           <div class="section3" :class="isDark ? 'section3':'section3-light'" style="margin-top: 200px;">
             <v-container>
-                <v-row no-gutters style="padding-top: 170px; padding-bottom: 140px">
+                <v-row no-gutters  class="phone-section" style="padding-top: 170px; padding-bottom: 140px">
               <v-col cols="md-7">
                 <div class="">
-                  <span class="section2-subtitle sub-text2" style="justify-content: flex-start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
-                  <span class="section2-titlei2" :class="isDark ? 'section2-title':'section2-title-light'" style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
+                  <span class="section2-subtitlei1 sub-text2i" style="justify-content: flex-start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
+                  <span class="section2-titlei2" :class="isDark ? 'section2-title1':'section2-title1-light'" style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
                   <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
-                   <div class="d-flex" style="margin-top: 88px; ">
+                   <div class="d-flex social-icons-div" style="margin-top: 88px; width: fit-content;">
                       <img src="/svg/applestore.svg" style="max-width: 100%;" class="social-icons me-4"/>
                       <img src="/svg/playstore.svg" style="max-width: 100%;" class="social-icons me-2"/>
-                      <div class="border-line"></div>
-                      <span class="icon-text" style="color: #8E9BAE;font-family: SF Pro Display">Demo Web App now <br> available for download</span>
+                      <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
+                      <span class="icon-text" style="color: #8E9BAE;font-family: SF Pro Display; font-weight: 500; font-size: 16px;width: 155px;">Demo Web App now  available for download</span>
                     </div>
                 </div>
 
               </v-col>
               <v-col cols="md-5">
                 <div class="">
-                  <div class="phone-rectangle" style="position: relative; top: -58px">
-                    <img src="/svg/phoneHand.svg" v-if="theme.global.current.value.dark"/>
+                  <div class="phone-rectangle" style="position: relative; top: -58px; display: flex; justify-content: center;">
+                    <div v-if="theme.global.current.value.dark">
+                      <img src="/svg/mobile-dark.svg" class="mobile-screen"/>
+                      <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
+                   </div>  
                     <img src="/img/light-phone.png" v-else/>
                     
                 </div>
@@ -389,6 +392,8 @@ const location = ref([
   );
   });
 });
+
+
 </script>
 
 <style scoped>
@@ -866,7 +871,7 @@ display: flex;
 justify-content: center;
 /* margin-top: 40px !important; */
 /* margin-bottom: 40px !important; */
-/* margin: auto; */
+margin: auto;
 }
 .section2-subtitle{
 color: #38BDF8;
@@ -884,7 +889,52 @@ margin-top: 173.66px;
 letter-spacing: 0.8px;
 text-transform: uppercase;
 }
+.section2-subtitlei{
+color: #38BDF8;
+text-align: center;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 140%; /* 22.4px */
+letter-spacing: 0.8px;
+/* display: flex; */
+/* justify-content: center; */
+/* align-items: center; */
+margin-top: 173.66px;
+letter-spacing: 0.8px;
+text-transform: uppercase;
+}
+.section2-subtitlei1{
+color: #38BDF8;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 140%; /* 22.4px */
+letter-spacing: 0.8px;
+margin-top: 173.66px;
+letter-spacing: 0.8px;
+text-transform: uppercase;
+}
 .section2-title{
+text-align: center;
+font-family: "SF Pro Display";
+font-size: 64px;
+font-style: normal;
+font-weight: 700;
+line-height: 120%; /* 76.8px */
+letter-spacing: -1.92px;
+background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+width: 688.35px;
+display: flex;
+justify-content: center;
+margin: auto;
+}
+.section2-title1{
 text-align: center;
 font-family: "SF Pro Display";
 font-size: 64px;
@@ -917,6 +967,23 @@ width: 688.35px;
 display: flex;
 justify-content: center;
 margin: auto;
+}
+.section2-title1-light{
+text-align: center;
+font-family: "SF Pro Display";
+font-size: 64px;
+font-style: normal;
+font-weight: 700;
+line-height: 120%; /* 76.8px */
+letter-spacing: -1.92px;
+background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.50) 97.69%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+width: 688.35px;
+display: flex;
+justify-content: center;
+/* margin: auto; */
 }
 .caption{
 color: #64748B;
@@ -1161,6 +1228,20 @@ letter-spacing: 0.72px;
 width: 612px;
 display: flex;
 justify-content: flex-start;
+}
+.explore-trade{
+color: #8E9BAE;
+font-family: "SF Pro Display";
+font-size: 24px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 33.6px */
+letter-spacing: 0.72px;
+width: 690px;
+display: flex;
+justify-content: center;
+text-align: center;
+margin: auto;
 }
 
 .border-line{

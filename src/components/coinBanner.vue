@@ -3,11 +3,11 @@
 <v-container>
     <div class="border-div">
         <div :class="isDark ? 'coin-banner':'coin-banner-light'">
-            <img src="/svg/Vector 1186.svg" class="position-absolute"/>
-            <img src="/svg/Vector 1187.svg" class="position-absolute" style="right: 0;"/>
-            <span class="caption">The fastest and trusted platform to trade</span>
+            <img src="/svg/Vector 1186.svg" style="max-width: 100%;" class="position-absolute"/>
+            <img src="/svg/Vector 1187.svg" class="position-absolute" style="right: 0; max-width: 100%;"/>
+            <span class="caption1i ">The fastest and trusted platform to trade</span>
             <span class="headline">Ready to get started?</span>
-            <span  :class="isDark ? 'subtitle':'subtitle-light'" style="margin-bottom: 48px;display: flex; text-align: center;">Explore thousands of offers to buy and sell Bitcoin to kickstart your trading journey.</span>
+            <span class="explore2i"  :class="isDark ? 'subtitle':'subtitle-light'" style="margin-bottom: 48px;display: flex; text-align: center;">Explore thousands of offers to buy and sell Bitcoin to kickstart your trading journey.</span>
                 <div>
                  
                     <v-btn @click.prevent="navigateTo('/authentication/register')" class="create-acct-btn">Create your account
@@ -64,6 +64,7 @@ background: linear-gradient(90deg, #10192D 0%, rgba(16, 25, 45, 0.00) 100%)  !im
 width: auto;
 border-radius: 15px!important;
 height: 100%;
+max-width: 100%;
 z-index: 1000;
 }
 
@@ -82,7 +83,7 @@ position: relative;
 background: #165CDD;
 width: 100%;
 }
-.caption{
+.caption1i{
 color: #38BDF8;
 text-align: center;
 font-family: "SF Pro Display";

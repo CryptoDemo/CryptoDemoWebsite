@@ -1,10 +1,10 @@
 <template>
 <div>
-    <span class="section2-subtitlei">Frequently asked questions</span>
-         <span  :class="isDark ? 'section2-titlei':'section2-titlei-light'" >We know you have some questions for us.</span>
+    <span class="section2-subtitlei sub-text2i">Frequently asked questions</span>
+         <span  class="section2-titlei2" :class="isDark ? 'section2-titlei':'section2-titlei-light'" >We know you have some questions for us.</span>
          <v-expansion-panels variant="popout" style="display: contents !important">
              <div v-for=" (FAQs, i ) in FAQ" :key="i" >
-                <v-expansion-panel  :class="isDark ? 'expansion-panel':'expansion-panel-light'"  >
+                <v-expansion-panel class="expansion-panel" :class="isDark ? 'expansion-panel':'expansion-panel-light'"  >
                     <v-expansion-panel-title expand-icon="mdi-plus" collapse-icon="mdi-close">
                         <img src="/img/paper-fold-text.png" class="me-4"/>
                        <span :class="isDark ? 'title-text':'title-text-light'"> {{FAQs.question}} </span>
@@ -46,7 +46,7 @@ const FAQ = [
 .expansion-panel{
 border-radius: 15px !important;
 background: #10192D !important;
-padding: 20px !important;
+padding: 20px ;
 flex-direction: column;
 align-items: flex-start;
 gap: 24px;
@@ -147,7 +147,7 @@ line-height: 140%; /* 28px */
 }
 .v-expansion-panel-title--active > .v-expansion-panel-title__overlay, .v-expansion-panel-title[aria-haspopup=menu][aria-expanded=true] > .v-expansion-panel-title__overlay {
 background: rgb(182, 190, 213) !important;
-min-height: 143px !important;
+min-height: 143px ;
 position: absolute;
 /* padding: 85px !important; */
 opacity: 0.4;
