@@ -256,7 +256,7 @@
               </v-col>
               <v-col cols="12" sm="6" md="6">
                 <div class="">
-                   <div :class="isDark ? 'barcode-section':'barcode-section-light'">
+                   <div class="barcode-section"   :class="isDark ? 'barcode-section':'barcode-section-light'">
                       <div class="rectangle">
                         <div style="padding-top: 28px;" v-if="theme.global.current.value.dark">
                           <img src="/svg/Group-barcode.svg"  style="display: flex; justify-self: center; margin: auto; width: 93%;" />
@@ -310,10 +310,12 @@
                     <div v-if="theme.global.current.value.dark">
                       <img src="/svg/mobile-dark.svg" class="mobile-screen"/>
                       <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
-                   </div>  
-                    <img src="/img/light-phone.png" v-else/>
-                    
-                </div>
+                   </div>
+                   <div v-else>
+                    <img src="/svg/mobile-light.svg" class="mobile-screen"/>
+                    <img src="/img/light-phone.png" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
+                  </div>
+                  </div>
                 </div>
               </v-col>
             </v-row>
@@ -1145,7 +1147,7 @@ display: flex;
 height: 455px;
 flex-direction: column;
 border-radius: 15px;
-border: 0.5px solid #2f3946 !important;
+border: 0.5px solid #2f3946;
 background: #10192D;
 display: flex;
 /* padding: 30px ; */

@@ -56,9 +56,7 @@ margin-bottom: 16px;
 .expansion-panel-light{
 border-radius: 15px !important;
 background: #F8FAFC !important;
-/* display: flex; */
-padding: 20px !important;
-/* justify-content: center; */
+padding: 20px;
 flex-direction: column;
 align-items: flex-start;
 gap: 24px;

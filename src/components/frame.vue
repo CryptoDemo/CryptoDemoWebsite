@@ -115,7 +115,7 @@ border-radius: 25px;
 border: 1px solid #DBE8FF;
 background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);
 display: flex;
-height: 773px;
+/* height: 773px; */
 flex-direction: column;
 padding: 40px;
 position: relative;
@@ -213,7 +213,7 @@ width: 100%;
 border: 1px solid #DBE8FF !important;
 background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%)!important;
 padding: 40px;
-height: 372px;
+/* height: 372px; */
 border-radius: 15px;
 border: 0.5px solid #64748B;
 background: #10192D;
