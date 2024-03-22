@@ -565,6 +565,10 @@ line-height: 120%; /* 28.8px */
   }
   .headline{
     font-size: 40px !important;
+    width: 151px !important;
+    margin: auto !important;
+    letter-spacing: -1.2px !important;
+    margin-top: 24px !important;
   }
   .caption1i{
     font-size: 12px !important;
@@ -575,12 +579,39 @@ line-height: 120%; /* 28.8px */
   color: #DBE8FF !important;
   letter-spacing: 0.48px !important;
   width: fit-content !important;
+  margin-top: 24px !important;
   }
   .explore-trade{
-    font-size: 16px !important;
-    width: fit-content !important;
+  font-size: 16px !important;
+  width: fit-content !important;
   }
-
+  .coin-box2{
+  gap: 20px !important;
+  }
+  .coin-box1{
+  padding-left: 18px !important;
+  gap: 20px !important;
+  }
+  .coin-box3{
+  padding-left: 15px !important;
+  gap: 20px !important;
+  }
+  .right-vector1{
+    right: 70% !important;
+  }
+  .left-vector1{
+   left: 70% !important;
+  }
+  .coin-ani{
+    width: 65px !important;
+    height: 65px !important;
+  }
+  .Demo-header{
+    font-size: 128px !important;
+    position: absolute !important;
+    width: fit-content !important;
+    /* left: 30% !important; */
+  }
 }
 
 

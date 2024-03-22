@@ -3,8 +3,8 @@
 <v-container>
     <div class="border-div">
         <div :class="isDark ? 'coin-banner':'coin-banner-light'">
-            <img src="/svg/Vector 1186.svg" style="max-width: 100%;" class="position-absolute"/>
-            <img src="/svg/Vector 1187.svg" class="position-absolute" style="right: 0; max-width: 100%;"/>
+            <img src="/svg/Vector 1186.svg" style="max-width: 100%;" class="position-absolute right-vector1"/>
+            <img src="/svg/Vector 1187.svg" class="position-absolute left-vector1" style="right: 0; max-width: 100%;"/>
             <span class="caption1i ">The fastest and trusted platform to trade</span>
             <span class="headline">Ready to get started?</span>
             <span class="explore2i"  :class="isDark ? 'subtitle':'subtitle-light'" style="margin-bottom: 48px;display: flex; text-align: center;">Explore thousands of offers to buy and sell Bitcoin to kickstart your trading journey.</span>
@@ -15,21 +15,21 @@
                     </v-btn>
                  
                 </div>
-            <div  style="margin-top: 62.2px;">
-                <div class="coin-container" style="padding-left: 52px; opacity: 0.5!important;">
-                    <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"   class="d-flex" />
+            <div  style="margin-top: 62.2px; overflow: hidden;">
+                <div class="coin-container coin-box1" style="padding-left: 52px; opacity: 0.5!important;">
+                    <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"   class="d-flex coin-ani"/>
                 </div>
  
-                <div class="coin-container " style="padding-right: 17px; opacity: 0.5!important; margin-top: 24.01px; margin-bottom: 24.01px;">
-                    <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins" class="d-flex"/>
+                <div class="coin-container coin-box2" style="padding-right: 17px; opacity: 0.5!important; margin-top: 24.01px; margin-bottom: 24.01px;">
+                    <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins" class="d-flex coin-ani"/>
                 </div>
              
 
-                <div class="loop-slider" style="--duration:10449ms; --direction:normal;">
-                <div class="coin-container" style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
-                    <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins" class="d-flex animated-coins" />
+             
+                <div class="coin-container coin-box3" style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
+                    <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins" style="max-width: 100%" class="d-flex animated-coins coin-ani" />
                 </div>
-                </div>
+          
             </div>
         </div>
     </div>
@@ -75,6 +75,7 @@ width:auto;
 border-radius: 15px!important;
 border: 0.2px solid transparent;
 content: "";
+overflow: hidden;
 }
 
 .coin-banner-light{
