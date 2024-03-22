@@ -27,7 +27,7 @@
 
              
                 <div class="coin-container coin-box3" style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
-                    <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins" style="max-width: 100%" class="d-flex animated-coins coin-ani" />
+                    <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins" style="max-width: 100%" class="d-flex animated-coins" />
                 </div>
           
             </div>
