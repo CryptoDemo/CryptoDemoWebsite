@@ -612,8 +612,8 @@ line-height: 120%; /* 28.8px */
   .Demo-header{
     font-size: 128px !important;
     position: absolute !important;
-    width: fit-content !important;
-    /* left: 30% !important; */
+    /* width: fit-content !important; */
+    left: -26% !important;
   }
 }
 
