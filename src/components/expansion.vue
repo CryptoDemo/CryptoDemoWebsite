@@ -1,8 +1,10 @@
 <template>
 <div>
     <span class="section2-subtitlei sub-text2i">Frequently asked questions</span>
-         <span  class="section2-titlei2" :class="isDark ? 'section2-titlei':'section2-titlei-light'" >We know you have some questions for us.</span>
-         <v-expansion-panels variant="popout" style="display: contents !important">
+    <div class="faq-div" style="margin-bottom: 88px; margin-top: 40px;">
+        <span  class="section2-titlei2" :class="isDark ? 'section2-titlei':'section2-titlei-light'" >We know you have some questions for us.</span>
+     </div>    
+    <v-expansion-panels variant="popout" style="display: contents !important;">
              <div v-for=" (FAQs, i ) in FAQ" :key="i" >
                 <v-expansion-panel class="expansion-panel" :class="isDark ? 'expansion-panel':'expansion-panel-light'"  >
                     <v-expansion-panel-title expand-icon="mdi-plus" collapse-icon="mdi-close">
@@ -95,8 +97,7 @@ background-clip: text;
 width: 688.35px;
 display: flex;
 justify-content: center;
-margin-top: 40px !important;
-margin-bottom: 88px !important;
+
 margin: auto;
 }
 .section2-titlei-light{
@@ -114,8 +115,6 @@ background-clip: text;
 width: 688.35px;
 display: flex;
 justify-content: center;
-margin-top: 40px !important;
-margin-bottom: 88px !important;
 margin: auto;
 }
 

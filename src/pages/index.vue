@@ -323,7 +323,7 @@
               
           </v-container>
 
-          <Coin-Banner style="margin-bottom:253.88px; margin-top: 19.33px"/>
+          <Coin-Banner style="margin-bottom:253.88px; margin-top: 19.33px" class="banner-wrap"/>
           
       
         <div class="position-relative">

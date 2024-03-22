@@ -45,7 +45,7 @@
                 <div class="d-flex">
                   <img src="/svg/BTN 1.svg" class="social-icons me-4"/>
                   <img src="/svg/BTN 2.svg" class="social-icons me-2"/>
-                  <div class="border-line"></div>
+                  <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
                   <span class="icon-text" style="color: #64748B; font-family: SF Pro Display; font-size: 16px;">Demo Web App now available for download</span>
                 </div>
                   </v-col>
@@ -291,7 +291,6 @@ margin-right: 28.5px;
 }
 .footer-container{
 display: flex;
-height: 175px;
 padding: var(--spacing-3xl, 24px) 10px;
 justify-content: center;
 align-items: center;

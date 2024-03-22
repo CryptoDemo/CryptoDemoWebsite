@@ -312,6 +312,7 @@ line-height: 120%; /* 28.8px */
   }
   .section2i{
     height: fit-content;
+    margin-top: 130px !important;
     /* width: 100%vw !important; */
   }
   .blue-ellipse{
@@ -348,8 +349,10 @@ line-height: 120%; /* 28.8px */
   .section2-titlei2{
     font-size: 40px !important;
     width: fit-content !important;
+  }
+  .faq-div{
     margin-top: 24px !important;
-    margin-bottom: 24px !important;
+    margin-bottom: 48px !important;
   }
   .caption2{
     width: fit-content !important;
@@ -371,7 +374,7 @@ line-height: 120%; /* 28.8px */
    height: fit-content !important;
   }
   .section2ii{
-    margin-top: 8px !important;
+    margin-top: -40px !important;
   }
   .sub-text2{
     margin-top: 61px !important;
@@ -517,6 +520,7 @@ line-height: 120%; /* 28.8px */
   }
   .section3{
    padding: 0px !important;
+   margin-top: 130px !important;
   }
   .icon-text{
     font-size: 12px !important;
@@ -539,7 +543,7 @@ line-height: 120%; /* 28.8px */
     margin-top: 72px !important;
   }
   .phone-section{
-    padding-top: 110px !important;
+    padding-top: 80px !important;
     padding-bottom: 10px !important;
   }
   .title-text{
@@ -576,6 +580,7 @@ line-height: 120%; /* 28.8px */
   .caption1i{
     font-size: 12px !important;
     letter-spacing: 0.6px !important;
+ 
   }
   .explore2i{
   font-size: 16px !important;
@@ -610,10 +615,14 @@ line-height: 120%; /* 28.8px */
     height: 65px !important;
   }
   .Demo-header{
-    font-size: 128px !important;
+    font-size: 68px !important;
     position: absolute !important;
-    /* width: fit-content !important; */
-    left: -26% !important;
+    width: fit-content !important;
+    /* left: -26% !important; */
+  }
+  .banner-wrap{
+    margin-bottom:153.88px !important;
+    margin-top: -35px !important;
   }
 }
 
