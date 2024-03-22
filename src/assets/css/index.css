@@ -391,6 +391,7 @@ line-height: 120%; /* 28.8px */
     width: 80px !important;
     top: -10% !important;
     left: -6% !important;
+    bottom: -67% !important;
   }
   .first-col{
     margin-inline-end: unset !important;
