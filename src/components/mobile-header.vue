@@ -198,6 +198,7 @@ position: absolute;
 overflow: hidden !important;
 left: 0px;
 width: calc(100% + 0px);
+height: fit-content !important;
 /* bottom: 100% !important; */
 top: -100% !important;
 border-radius: 15px;
