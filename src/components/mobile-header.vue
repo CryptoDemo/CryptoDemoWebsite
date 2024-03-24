@@ -193,7 +193,7 @@ top: 0 !important;
 }
 .v-navigation-drawer{
 /* z-index: 0 !important; */
-transform: translateX(70%);
+transform: translateY(0);
 position: absolute;
 overflow: hidden !important;
 left: 0px;
