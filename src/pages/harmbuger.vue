@@ -95,25 +95,6 @@ export default {
   }
 }
 
-/* Animate bar width on hover (desktop only) */
-.menu-icon.active:hover span:first-of-type,
-.menu-icon.active:hover span:last-of-type,
-.menu-icon:hover .menu-icon__cheeckbox:checked + .menu-icon div span:first-of-type,
-.menu-icon:hover .menu-icon__cheeckbox:checked + .menu-icon div span:last-of-type {
-  width: 22px;
-}
 
-/* Hover effect for menu icon on desktop only */
-.menu-icon:hover {
-  @media (min-width: 1024px) {
-    span:first-of-type {
-      width: 26px;
-    }
-
-    span:last-of-type {
-      width: 12px;
-    }
-  }
-}
 
 </style>

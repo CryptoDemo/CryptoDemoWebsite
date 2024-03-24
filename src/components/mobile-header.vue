@@ -12,7 +12,7 @@
 
         </v-app-bar>
   
-        <v-navigation-drawer v-model="drawer" location="bottom" temporary  :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 10px; height: fit-content;">
+        <v-navigation-drawer v-model="drawer" location="top" temporary  :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 10px; height: fit-content;">
           <v-menu>
           <template v-slot:activator="{ props }">
             <v-btn  class="me-4 flex-lg-and-up" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
@@ -193,14 +193,15 @@ top: 0 !important;
 }
 .v-navigation-drawer{
 /* z-index: 0 !important; */
-transform: translateY(0);
+/* transform: translateY(0); */
 position: absolute;
 overflow: hidden !important;
 left: 0px;
 width: calc(100% + 0px);
 height: fit-content !important;
-bottom: 100% !important;
+/* bottom: 100% !important; */
 /* top: -100% !important; */
+top: 0 !important;
 border-radius: 15px;
 background: #060A1D !important;
 }
@@ -208,7 +209,7 @@ background: #060A1D !important;
 /* z-index: 904; */
 transform: translateY(0%);
 position: absolute;
-height: 256px;
+/* height: 256px; */
 left: 0px;
 width: calc(100% + 0px);
 bottom: 99% !important;
@@ -234,7 +235,7 @@ align-self: stretch;
 letter-spacing: 0px !important;
 width: 100% !important;
 padding-left: 30px !important;
-margin-top: 31px;
+margin-top: 110px;
 text-transform: capitalize;
 }
 .dropdown-mobile-light{
