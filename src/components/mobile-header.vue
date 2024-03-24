@@ -124,7 +124,7 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
 
-const drawer=ref(true)
+const drawer=ref(false)
 
  
 const select =ref("NGN")
@@ -250,7 +250,7 @@ align-self: stretch;
 letter-spacing: 0px !important;
 width: 100% !important;
 padding-left: 30px !important;
-margin-top: 31px;
+margin-top: 110px;
 text-transform: capitalize;
 box-shadow: none;
 }
