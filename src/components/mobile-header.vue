@@ -124,7 +124,7 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
 
-const drawer=ref(false)
+const drawer=ref(true)
 
  
 const select =ref("NGN")
@@ -173,6 +173,7 @@ height: 80px;
 position: fixed;
 top: 0 !important;
 justify-content: center !important;
+position: relative;
 
 }
 .navbar-bg-light{
@@ -187,24 +188,25 @@ justify-content: center;
 align-items: center;
 flex-shrink: 0;
 position: fixed;
+position: relative !important;
 top: 0 !important;
 }
 .v-navigation-drawer{
-/* z-index: 904; */
-transform: translateY(0%);
+/* z-index: 0 !important; */
+transform: translateX(70%);
 position: absolute;
-height: 256px;
+/* height: 256px; */
 left: 0px;
 width: calc(100% + 0px);
-/* top: 0 !important; */
-/* bottom: 99% !important; */
+/* bottom: 100% !important; */
+top: -100% !important;
 border-radius: 15px;
 background: #060A1D !important;
 }
 .v-navigation-drawer-light{
-z-index: 904;
+/* z-index: 904; */
 transform: translateY(0%);
-position: absolute;
+position: relative !important;
 height: 256px;
 left: 0px;
 width: calc(100% + 0px);

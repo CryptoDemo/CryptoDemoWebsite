@@ -7,9 +7,9 @@
       <div>
         
         <Index-header title="Log in" link="/authentication/login" class="desktop-header"/>
-        <Mobile-header class="mobile-header"/>
-        <section class="position-relative">
-            <v-container class="position-relative">
+        <Mobile-header class="mobile-header position-relative"/>
+        <section class="position-relative" style="z-index: 100 !important;">
+            <v-container class="position-relative" style="z-index: 100 !important;">
               <div class="position-absolute">    
                 <img src="/svg/Frame.svg" class="pink-coin position-absolute flex-lg-and-up hidden-sm-and-down"/>
                 
