@@ -195,7 +195,7 @@ top: 0 !important;
 /* z-index: 0 !important; */
 transform: translateX(70%);
 position: absolute;
-/* height: 256px; */
+overflow: hidden !important;
 left: 0px;
 width: calc(100% + 0px);
 /* bottom: 100% !important; */
