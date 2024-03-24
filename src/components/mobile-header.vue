@@ -206,7 +206,7 @@ background: #060A1D !important;
 .v-navigation-drawer-light{
 /* z-index: 904; */
 transform: translateY(0%);
-position: relative !important;
+position: absolute;
 height: 256px;
 left: 0px;
 width: calc(100% + 0px);
