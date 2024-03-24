@@ -5,7 +5,9 @@
        
     <div>
       <div>
-        <Index-header title="Log in" link="/authentication/login" class=""/>
+        
+        <Index-header title="Log in" link="/authentication/login" class="desktop-header"/>
+        <Mobile-header class="mobile-header"/>
         <section class="position-relative">
             <v-container class="position-relative">
               <div class="position-absolute">    
@@ -141,7 +143,7 @@
                             <template v-slot:activator="{ props }">
                               <v-btn v-bind="props" class="position-absolute" :class="isDark ? 'show-all':'show-all-light'" style="right: 10px;margin-top: 8px;font-weight: 700;">
                                 {{ selected }}
-                                <v-icon  icon="mdi-chevron-down"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
+                                <v-icon  icon="mdi-chevron-down notranslate"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
                                 <!-- <v-icon v-else icon="mdi-chevron-up"  color="#8E9BAE" style="margin-left: 6px "></v-icon> -->
                             </v-btn>
                             </template>
