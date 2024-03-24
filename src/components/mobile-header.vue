@@ -124,7 +124,7 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
 
-const drawer=ref(true)
+const drawer=ref(false)
 
  
 const select =ref("NGN")
@@ -190,13 +190,14 @@ position: fixed;
 top: 0 !important;
 }
 .v-navigation-drawer{
-z-index: 904;
+/* z-index: 904; */
 transform: translateY(0%);
 position: absolute;
 height: 256px;
 left: 0px;
 width: calc(100% + 0px);
-bottom: 99% !important;
+/* top: 0 !important; */
+/* bottom: 99% !important; */
 border-radius: 15px;
 background: #060A1D !important;
 }
