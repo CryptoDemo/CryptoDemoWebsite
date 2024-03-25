@@ -49,7 +49,7 @@
         <v-list style="margin-top: 25px;">
           <v-btn class="mobile-btn">Create an offer</v-btn>
         </v-list>
-        <v-list style="margin-bottom: 25px; margin-top: 20px;">
+        <v-list style="margin-bottom: 20px; margin-top: 20px;">
           <v-btn class="mobile-btn">Wallet</v-btn>
         </v-list>
       
@@ -96,7 +96,7 @@
           <v-btn class="mobile-btn">Become a Vendor</v-btn>
         </v-list>
 
-        <div style="display: flex; justify-content: flex-start; margin-top: 31px; align-items: center; margin-left: 10px;">
+        <div style="display: flex; justify-content: flex-start; margin-top: 25px; align-items: center; margin-left: 10px;">
            <ToggleBtn class="me-3"/>
            <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
         </div>
@@ -239,7 +239,7 @@ align-self: stretch;
 letter-spacing: 0px !important;
 width: 100% !important;
 padding-left: 30px !important;
-margin-top: 110px;
+margin-top: 90px;
 text-transform: capitalize;
 }
 .dropdown-mobile-light{
