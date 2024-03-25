@@ -8,7 +8,8 @@
            
                  <v-spacer></v-spacer>
   
-          <v-btn icon="mdi-dots-vertical" @click.stop="drawer = !drawer" variant="text"></v-btn>
+                 <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"/>
+        
 
         </v-app-bar>
   
@@ -53,7 +54,7 @@
         </v-list>
       
 
-            <v-menu open-on-hover>
+            <v-menu>
                   <template v-slot:activator="{ props }">
                       <v-btn v-bind="props" :class="isDark ? 'mobile-btn':'mobile-btn-light'">Gift Card Hub
                         <v-icon color="primary" class="mt-1"  icon="mdi-chevron-down"></v-icon>
@@ -125,8 +126,11 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 
 
 const drawer=ref(false)
+const ToggleMenu =() =>{
+drawer.value = !drawer.value
+console.log (drawer.value)
+}
 
- 
 const select =ref("NGN")
 
 const flag = ref("/svg/nigeria-flag.svg")
@@ -193,7 +197,7 @@ top: 0 !important;
 }
 .v-navigation-drawer{
 /* z-index: 0 !important; */
-/* transform: translateY(0); */
+transform: translateY(0);
 position: absolute;
 overflow: hidden !important;
 left: 0px;

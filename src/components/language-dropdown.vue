@@ -1,10 +1,10 @@
 <template>
   <div>
-      <v-menu :Country="Country">
+      <v-menu>
           <template v-slot:activator="{ props }">
             <v-btn                       
              :class="isDark ? 'dropdown-btn2':'dropdown-btn2-light'"
-              dark
+            
               v-bind="props">
                <v-img  width="30" class="me-3" :src="flag"/> 
               <span class="me-2">{{select}}</span>
