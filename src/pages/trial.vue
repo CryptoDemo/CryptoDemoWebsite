@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div style="background: rgba(6, 10, 29, 0.70) !important; backdrop-filter: blur(25px) !important; ">
-      <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important;">
+      <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
           <span  :class="isDark ? 'demo-web1':'demo-web1-light'" >Demo Web</span>
           <Language-dropdown/>
         </div>
@@ -43,11 +43,13 @@
                 <span class="mobile-footer">{{ links.subtitle8 }}</span>
                 </v-list-item>
               </div>
-              </template> 
-            </v-list-group>
-
-          
+            </template> 
           </v-list-group>
+        </v-list-group>
+          <div class="d-flex" style="margin-top: 16px; align-items: center;">
+            <v-icon icon="mdi-information me-2" color="#165CDD"></v-icon>
+            <span  :class="isDark ? 'FAQ-text':'FAQ-text-light'">FAQ’s and Help Centre</span>
+          </div>
         </v-list>
       </v-card>
     </div>
@@ -55,6 +57,15 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { useTheme } from 'vuetify';
+
+
+
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
+
 const open = ref(['Users']);
 const footer = ref ([
         {
@@ -141,5 +152,33 @@ font-style: normal;
 font-weight: 600;
 line-height: 100%; /* 16px */
 letter-spacing: 0.16px;
+}
+.demo-web1{
+ font-family: "SF Pro Display";
+font-size: 24px;
+font-style: normal;
+font-weight: 700 !important;
+line-height: normal;
+}
+
+.FAQ-text{
+  color: #8E9BAE;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-decoration-line: underline; 
+cursor: pointer;
+}
+.FAQ-text-light{
+color: #64748B;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-decoration-line: underline; 
+cursor: pointer;
 }
 </style>

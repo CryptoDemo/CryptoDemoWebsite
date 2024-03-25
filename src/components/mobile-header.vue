@@ -46,10 +46,10 @@
          
         </v-menu>
       
-        <v-list style="margin-top: 31px;">
+        <v-list style="margin-top: 25px;">
           <v-btn class="mobile-btn">Create an offer</v-btn>
         </v-list>
-        <v-list style="margin-bottom: 31px; margin-top: 31px;">
+        <v-list style="margin-bottom: 25px; margin-top: 20px;">
           <v-btn class="mobile-btn">Wallet</v-btn>
         </v-list>
       
@@ -92,7 +92,7 @@
                   </v-list>
                   </div>
             </v-menu>
-            <v-list style="margin-top: 31px;">
+            <v-list style="margin-top: 25px;">
           <v-btn class="mobile-btn">Become a Vendor</v-btn>
         </v-list>
 
@@ -100,11 +100,11 @@
            <ToggleBtn class="me-3"/>
            <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
         </div>
-        <v-list style="margin-top: 31px;">
+        <v-list style="margin-top: 25px;">
           <v-btn class="mobile-btn" style="width: 100%; height: 50px;">Log In</v-btn>
         </v-list>
 
-        <v-list style="margin-bottom: 31px; border-radius: 10px; background: #2873FF;">
+        <v-list style="margin-bottom: 31px; border-radius: 10px !important; background: #2873FF;">
           <v-btn class="mobile-btn" style="background: #2873FF !important; width: 100%; height: 50px;">Register</v-btn>
         </v-list>
         </v-navigation-drawer>
