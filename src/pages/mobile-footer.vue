@@ -1,0 +1,199 @@
+<template>
+  <v-container>
+    <div style="background: rgba(6, 10, 29, 0.70) !important; backdrop-filter: blur(25px) !important; ">
+      <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
+          <span :class="isDark ? 'demo-web1':'demo-web1-light'">Demo Web</span>
+          <Language-dropdown/>
+        </div>
+      <v-card class="mx-auto footer-body" width="100%" :class="isDark ? 'footer-body':'footer-body-light'">
+        <v-list  v-model:opened="open" style="background: rgba(6, 10, 29, 0.70); backdrop-filter: blur(25px);">
+
+          <v-list-group v-for="(links, i) in footer" :key="i" style="border-bottom: 1px solid #10192D;">
+            <template v-slot:activator="{ props }">
+              <v-list-item v-bind="props">
+              <span class="mobile-title">{{ links.title }}</span>
+              </v-list-item>
+            </template>
+
+            <v-list-group>
+              <template v-slot:activator="{props}">   
+                <div>
+                  <v-list-item  v-bind="props" :append-icon="null" v-for="(item,i) in links.items" :key="i">
+                    <NuxtLink :to="item.link"><span class="mobile-footer">{{ item.subtitle }}</span></NuxtLink>
+                  </v-list-item>
+              </div>
+            </template> 
+          </v-list-group>
+        </v-list-group>
+          <div class="d-flex" style="margin-top: 16px; align-items: center; border-bottom: 1px solid #10192D">
+            <v-icon icon="mdi-information me-2" color="#165CDD"></v-icon>
+            <span  :class="isDark ? 'FAQ-text':'FAQ-text-light'">FAQ’s and Help Centre</span>
+          </div>
+
+          <div style="display: flex; justify-content: flex-start; margin-top: 25px; align-items: center; margin-left: 10px;">
+           <ToggleBtn class="me-3"/>
+           <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
+        </div>
+        </v-list>
+      </v-card>
+    </div>
+  </v-container>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { useTheme } from 'vuetify';
+
+
+
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
+
+const open = ref(['Users']);
+const footer = ref ([
+        {
+          title: 'Legal', 
+          items: [
+            {subtitle:'Vendor Reminder', link:'#'},
+            {subtitle:"Terms & Conditions", link:'#'},
+            {subtitle: 'AML Policy', link:'#'},
+            {subtitle: 'Stablecoin Terms Of Service', link:'#'},
+            {subtitle: 'Privacy Notice', link:'#'},
+            {subtitle: 'Cookie Policy', link:'#'},
+            {subtitle: 'Restricted Countries', link:'#'},
+            {subtitle: 'Bug Bounty Policy', link:'#'},
+          ]
+
+        },
+
+        {
+          title: 'For You', 
+          items: [
+            {subtitle:'Buy Bitcoin'},
+            {subtitle:'Buy Tether'},
+            {subtitle:'Sell Bitcoin'},
+            {subtitle:'Buy Bitcoin'},
+            {subtitle:'Demo web Wallet'},
+            {subtitle:'Become Vendor'},
+          ]
+        },
+        {
+          title: 'For Your Business', 
+          items: [
+            {subtitle:'Demo Web Pay'},
+            {subtitle:'Virtual Bitcoin Kiosk'},
+            {subtitle:'API Documentation'},
+          ]
+      
+        },
+
+        {
+          title: 'Growth', 
+          items: [
+            {subtitle:'Demo Web Rewards Program'},
+            {subtitle:'Demo Web Trader Program'},
+            {subtitle:'Demo Web Peer Program'},
+            {subtitle:'Community'},
+          ]
+        },
+
+        {
+          title: 'Buy Anywhere', 
+          items: [
+            {subtitle:'Buy Bitcoin in USA'},
+            {subtitle:'Buy Bitcoin in Nigeria'},
+            {subtitle:'Buy Bitcoin in India'},
+          ]
+        },
+
+        {
+          title: 'Useful Links', 
+          items: [
+            {subtitle:'Demo Web Status'},
+            {subtitle:'Bitcoin Calculator'},
+            {subtitle:'Peer-to-Peer Market Prices'},
+          ]
+        },
+        {
+          title: 'About Demo Web', 
+          items: [
+            {subtitle:'About Us'},
+            {subtitle:'Business Contacts'},
+            {subtitle:'Careers'},
+            {subtitle:'Demo Web Blog'},
+            {subtitle:'Demo Web Reviews'},
+          ]
+        },
+      ])
+
+</script>
+
+<style scoped>
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+.mobile-footer{
+color: #8E9BAE;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 100%; /* 16px */
+letter-spacing: 0.16px;
+}
+
+.mobile-title{
+color: var(--Colors-Base-white, #FFF);
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 100%; /* 16px */
+letter-spacing: 0.16px;
+}
+.demo-web1{
+ font-family: "SF Pro Display";
+font-size: 24px;
+font-style: normal;
+font-weight: 700 !important;
+line-height: normal;
+}
+
+.demo-web1-light{
+color: #10192D;
+font-family: "SF Pro Display";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+.FAQ-text{
+  color: #8E9BAE;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-decoration-line: underline; 
+cursor: pointer;
+}
+.FAQ-text-light{
+color: #64748B;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-decoration-line: underline; 
+cursor: pointer;
+}
+.footer-body{
+background: rgba(6, 10, 29, 0.70); 
+backdrop-filter: blur(25px);
+box-shadow: none;
+}
+.footer-body-light{
+background: white !important; 
+backdrop-filter: blur(25px);
+box-shadow: none;
+}
+</style>

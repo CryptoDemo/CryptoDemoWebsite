@@ -8,21 +8,15 @@
       <div :class="isDark ? 'footer-bg':'footer-bg-light'">
         <v-row  no-gutters style="justify-content: space-between;" sm="4" >
           <div
-            v-for="link in footer" 
-            :key="link"
+           v-for="(links, i) in footer" :key="i"
             variant="text"
             class="mx-2" :class="isDark ? 'footer-text':'footer-text-light'"
             rounded="xl">
-            {{ link.title }}
+            {{ links.title }}
             <v-col class="py-2" style="padding: 0px; margin-top: 11px; display: grid;">
-              <NuxtLink :to="link.link"><span class="footer-links">{{link.subtitle1}}</span></NuxtLink>
-              <NuxtLink to="#"><span class="footer-links" >{{link.subtitle2}}</span></NuxtLink>
-              <NuxtLink to="#"><span class="footer-links">{{link.subtitle3}}</span></NuxtLink>
-              <NuxtLink to="#"><span class="footer-links">{{link.subtitle4}}</span></NuxtLink>
-              <NuxtLink to="#"><span class="footer-links">{{link.subtitle5}}</span></NuxtLink>
-              <NuxtLink to="#"><span class="footer-links">{{link.subtitle6}}</span></NuxtLink>
-              <NuxtLink to="#"><span class="footer-links">{{link.subtitle7}}</span></NuxtLink>
-              <NuxtLink to="#"><span class="footer-links">{{link.subtitle8}}</span> </NuxtLink>  
+              <div v-for="(item, i) in links.items" :key="i">
+                 <NuxtLink :to="item.link"><span class="footer-links">{{item.subtitle }}</span></NuxtLink>
+              </div>
             </v-col>
           </div>
         </v-row>    
@@ -86,66 +80,78 @@ const toggleTheme = () =>{
 const footer = ref ([
         {
           title: 'Legal', 
-          subtitle1:'Vendor Reminder', link:'#',
-          subtitle2:"Terms & Conditions", link:'#',
-          subtitle3: 'AML Policy', link:'#',
-          subtitle4: 'Stablecoin Terms Of Service', link:'#',
-          subtitle5: 'Privacy Notice', link:'#',
-          subtitle6: 'Cookie Policy', link:'#',
-          subtitle7: 'Restricted Countries', link:'#',
-          subtitle8: 'Bug Bounty Policy', link:'#',
+          items: [
+            {subtitle:'Vendor Reminder', link:'#'},
+            {subtitle:"Terms & Conditions", link:'#'},
+            {subtitle: 'AML Policy', link:'#'},
+            {subtitle: 'Stablecoin Terms Of Service', link:'#'},
+            {subtitle: 'Privacy Notice', link:'#'},
+            {subtitle: 'Cookie Policy', link:'#'},
+            {subtitle: 'Restricted Countries', link:'#'},
+            {subtitle: 'Bug Bounty Policy', link:'#'},
+          ]
 
         },
 
         {
           title: 'For You', 
-          subtitle1:'Buy Bitcoin',
-          subtitle2:'Buy Tether',
-          subtitle3:'Sell Bitcoin',
-          subtitle4:'Buy Bitcoin',
-          subtitle5:'Demo web Wallet',
-          subtitle6:'Become Vendor',
+          items: [
+            {subtitle:'Buy Bitcoin'},
+            {subtitle:'Buy Tether'},
+            {subtitle:'Sell Bitcoin'},
+            {subtitle:'Buy Bitcoin'},
+            {subtitle:'Demo web Wallet'},
+            {subtitle:'Become Vendor'},
+          ]
         },
-
         {
           title: 'For Your Business', 
-          subtitle1:'Demo Web Pay',
-          subtitle2:'Virtual Bitcoin Kiosk',
-          subtitle3:'API Documentation',
+          items: [
+            {subtitle:'Demo Web Pay'},
+            {subtitle:'Virtual Bitcoin Kiosk'},
+            {subtitle:'API Documentation'},
+          ]
       
         },
 
         {
           title: 'Growth', 
-          subtitle1:'Demo Web Rewards Program',
-          subtitle2:'Demo Web Trader Program',
-          subtitle3:'Demo Web Peer Program',
-          subtitle4:'Community',
+          items: [
+            {subtitle:'Demo Web Rewards Program'},
+            {subtitle:'Demo Web Trader Program'},
+            {subtitle:'Demo Web Peer Program'},
+            {subtitle:'Community'},
+          ]
         },
 
         {
           title: 'Buy Anywhere', 
-          subtitle1:'Buy Bitcoin in USA',
-          subtitle2:'Buy Bitcoin in Nigeria',
-          subtitle3:'Buy Bitcoin in India',
+          items: [
+            {subtitle:'Buy Bitcoin in USA'},
+            {subtitle:'Buy Bitcoin in Nigeria'},
+            {subtitle:'Buy Bitcoin in India'},
+          ]
         },
 
         {
           title: 'Useful Links', 
-          subtitle1:'Demo Web Status',
-          subtitle2:'Bitcoin Calculator',
-          subtitle3:'Peer-to-Peer Market Prices',
+          items: [
+            {subtitle:'Demo Web Status'},
+            {subtitle:'Bitcoin Calculator'},
+            {subtitle:'Peer-to-Peer Market Prices'},
+          ]
         },
-
         {
           title: 'About Demo Web', 
-          subtitle1:'About Us',
-          subtitle2:'Business Contacts',
-          subtitle3:'Careers',
-          subtitle4:'Demo Web Blog',
-          subtitle5:'Demo Web Reviews',
+          items: [
+            {subtitle:'About Us'},
+            {subtitle:'Business Contacts'},
+            {subtitle:'Careers'},
+            {subtitle:'Demo Web Blog'},
+            {subtitle:'Demo Web Reviews'},
+          ]
         },
-      ]);
+      ])
 
 </script>
 
