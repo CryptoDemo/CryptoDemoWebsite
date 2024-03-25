@@ -258,7 +258,6 @@ line-height: 120%; /* 28.8px */
   .writing-text{
     font-size: 12px !important;
     letter-spacing: 0.12px !important;
-    /* font-weight: 500 !important; */
   }
   .headertext1, .web {
     font-size: 48px !important;
@@ -348,6 +347,9 @@ line-height: 120%; /* 28.8px */
     width: fit-content !important;
     margin-top: 24px !important;
     margin-bottom: 48px !important;
+    line-height: 120% !important; /* 48px */
+    letter-spacing: -1.2px !important;
+    width: 300px !important;
   }
   .section2-titlei2{
     font-size: 40px !important;
@@ -598,6 +600,14 @@ line-height: 120%; /* 28.8px */
   .explore-trade{
   font-size: 16px !important;
   width: fit-content !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 160% !important; /* 25.6px */
+  letter-spacing: 0.48px !important;
+  width: 350px !important;
+  }
+  .btn-segment2{
+    margin-top: 48px !important;
   }
   .coin-box2{
   gap: 20px !important;
