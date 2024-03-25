@@ -23,7 +23,7 @@
             </v-btn>
           </template>
 
-          <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px;">
+          <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; overflow: scroll;">
             <v-list-item>
               <div @click.stop style="margin-top: 15px; margin-bottom: 15px;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 35px; margin-left: 19px;">
@@ -105,7 +105,7 @@
         </v-list>
 
         <v-list style="margin-bottom: 31px; border-radius: 10px; background: #2873FF;">
-          <v-btn class="mobile-btn" style="background: #2873FF; width: 100%; height: 50px;">Register</v-btn>
+          <v-btn class="mobile-btn" style="background: #2873FF !important; width: 100%; height: 50px;">Register</v-btn>
         </v-list>
         </v-navigation-drawer>
   
@@ -197,9 +197,9 @@ top: 0 !important;
 }
 .v-navigation-drawer{
 /* z-index: 0 !important; */
-transform: translateY(0);
+transform: translateY(0%);
 position: absolute;
-overflow: hidden !important;
+/* overflow: hidden !important; */
 left: 0px;
 width: calc(100% + 0px);
 height: fit-content !important;
@@ -278,7 +278,7 @@ line-height: normal;
 letter-spacing: -0.14px;
 }
 .mobile-btn{
-background: inherit;
+background: #060A1D !important;
 box-shadow: none;
 letter-spacing: 0px;
 text-transform: unset;

@@ -1,5 +1,5 @@
 <template>
-    <div style="padding-top: 10px;">
+    <div style="margin-bottom: 6px;">
      <label for="check">
       <input type="checkbox" id="check" :checked="isOpen"/> 
       <span></span>
@@ -28,9 +28,9 @@ body{
 
 label{
  display:flex;
-  flex-direction:column;
-  width:70px;
-  cursor:pointer;
+ flex-direction:column;
+ width:70px;
+ cursor:pointer;
 }
 
 label span{
@@ -47,13 +47,13 @@ span:nth-of-type(1){
 width: 29.381px;
 height: 2.102px;
 position: relative; 
+top: 10px;
 }
 
 span:nth-of-type(2){
 width: 29.381px;
 height: 2.102px;
 position: relative;
-
 }
 
 
@@ -64,14 +64,14 @@ input[type="checkbox"]{
 
 input[type="checkbox"]:checked ~ span:nth-of-type(1){
   transform-origin:bottom;
-  transform:rotatez(45deg) translate(9px,-7px)
+  transform:rotatez(45deg) translate(3px,-12px)
 }
 
 
 input[type="checkbox"]:checked ~ span:nth-of-type(2){
   
   transform-origin:top;
-  transform: translate(10px,-14px) rotatez(-45deg)
+  transform: translate(10px,-12px) rotatez(-45deg)
 }
 
 
