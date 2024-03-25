@@ -547,6 +547,9 @@ line-height: 120%; /* 28.8px */
   .desktop-header {
     display: none !important;
   }
+  .desktop-footer {
+    display: none !important;
+  }
   .mobile-screen{
     margin-top: 72px !important;
   }
@@ -648,6 +651,9 @@ line-height: 120%; /* 28.8px */
       display:none !important;
   }
   .mobile-header{
+    display:none !important;
+  }
+  .mobile-footer{
     display:none !important;
   }
 } 

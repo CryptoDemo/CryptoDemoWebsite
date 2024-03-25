@@ -8,7 +8,7 @@
              <div v-for=" (FAQs, i ) in FAQ" :key="i" >
                 <v-expansion-panel class="expansion-panel" :class="isDark ? 'expansion-panel':'expansion-panel-light'"  >
                     <v-expansion-panel-title expand-icon="mdi-plus" collapse-icon="mdi-close">
-                        <img src="/img/paper-fold-text.png" class="me-4"/>
+                        <img src="/svg/paper-fold.svg" class="me-4"/>
                        <span :class="isDark ? 'title-text':'title-text-light'"> {{FAQs.question}} </span>
                     </v-expansion-panel-title>
                     <v-expansion-panel-text>

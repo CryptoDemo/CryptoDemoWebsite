@@ -287,7 +287,7 @@
           <div class="section3" :class="isDark ? 'section3':'section3-light'" style="margin-top: 200px;">
             <v-container>
                 <v-row no-gutters  class="phone-section" style="padding-top: 170px; padding-bottom: 140px">
-              <v-col cols="md-7">
+              <v-col cols="md-7" sm="12">
                 <div class="">
                   <span class="section2-subtitlei1 sub-text2i" style="justify-content: flex-start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
                   <span class="section2-titlei2" :class="isDark ? 'section2-title1':'section2-title1-light'" style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
@@ -310,7 +310,7 @@
                    </div>
                    <div v-else>
                     <img src="/svg/mobile-light.svg" class="mobile-screen"/>
-                    <img src="/img/light-phone.png" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
+                    <img src="/img/light-phone.png" style="max-width: 100%; z-index: 1000;" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                   </div>
                   </div>
                 </div>
@@ -331,7 +331,8 @@
           <v-container style="position: absolute; top: -197px; left: 0; right: 0;">
             <span class="Demo-header">Demo Web</span>
           </v-container>
-            <Footer class=""/>
+            <Footer class="desktop-footer"/>
+            <Mobile-footer class="mobile-footer"/>
           </div>
      
       

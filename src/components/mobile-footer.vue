@@ -6,11 +6,11 @@
           <Language-dropdown/>
         </div>
       <v-card class="mx-auto footer-body" width="100%" :class="isDark ? 'footer-body':'footer-body-light'">
-        <v-list  v-model:opened="open" style="background: rgba(6, 10, 29, 0.70); backdrop-filter: blur(25px);">
+        <v-list  v-model:opened="open" :class="isDark ? 'footer-list':'footer-list-light'">
 
           <v-list-group v-for="(links, i) in footer" :key="i" style="border-bottom: 1px solid #10192D;">
             <template v-slot:activator="{ props }">
-              <v-list-item v-bind="props">
+              <v-list-item v-bind="props" class="py-6">
               <span class="mobile-title">{{ links.title }}</span>
               </v-list-item>
             </template>
@@ -25,14 +25,14 @@
             </template> 
           </v-list-group>
         </v-list-group>
-          <div class="d-flex" style="margin-top: 16px; align-items: center; border-bottom: 1px solid #10192D">
+          <div class="d-flex py-4" style="margin-top: 16px; align-items: center; border-bottom: 1px solid #10192D">
             <v-icon icon="mdi-information me-2" color="#165CDD"></v-icon>
             <span  :class="isDark ? 'FAQ-text':'FAQ-text-light'">FAQ’s and Help Centre</span>
           </div>
 
-          <div style="display: flex; justify-content: flex-start; margin-top: 25px; align-items: center; margin-left: 10px;">
+          <div style="display: flex; justify-content: flex-start; flex-direction: column; margin-top: 25px; align-items: center; margin-left: 10px;">
            <ToggleBtn class="me-3"/>
-           <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
+           <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint" style="margin-top: 13px;">light</span> Mode</span>
         </div>
         </v-list>
       </v-card>
@@ -43,8 +43,6 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-
-
 
 
 const theme = useTheme()
@@ -167,7 +165,7 @@ font-weight: 700;
 line-height: normal;
 }
 .FAQ-text{
-  color: #8E9BAE;
+color: #8E9BAE;
 font-family: "SF Pro Display";
 font-size: 16px;
 font-style: normal;
@@ -176,18 +174,9 @@ line-height: normal;
 text-decoration-line: underline; 
 cursor: pointer;
 }
-.FAQ-text-light{
-color: #64748B;
-font-family: "SF Pro Display";
-font-size: 16px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-text-decoration-line: underline; 
-cursor: pointer;
-}
+
 .footer-body{
-background: rgba(6, 10, 29, 0.70); 
+background: rgba(6, 10, 29, 0.70) !important; 
 backdrop-filter: blur(25px);
 box-shadow: none;
 }
@@ -195,5 +184,14 @@ box-shadow: none;
 background: white !important; 
 backdrop-filter: blur(25px);
 box-shadow: none;
+}
+.footer-list{
+background: rgba(6, 10, 29, 0.70) !important; 
+backdrop-filter: blur(25px) !important;
+}
+.footer-list-light{
+background: #E2E8F0 !important;
+backdrop-filter: blur(25px) !important;
+color: #10192D !important;
 }
 </style>
