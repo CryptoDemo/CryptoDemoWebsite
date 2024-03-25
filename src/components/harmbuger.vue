@@ -1,9 +1,9 @@
 <template>
-    <div style="margin-bottom: 6px;">
-     <label for="check">
+    <div style="margin-bottom: px;">
+     <label for="check" >
       <input type="checkbox" id="check" :checked="isOpen"/> 
-      <span></span>
-      <span></span>
+      <span :class="isDark ? 'span':'span-light'"></span>
+      <span :class="isDark ? 'span':'span-light'"></span>
       
      </label>
     </div>
@@ -11,9 +11,16 @@
 
 <script setup>
 import { ref } from 'vue'
+
+import { useTheme } from 'vuetify';
+
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
   const props = defineProps({
     isOpen: Boolean
   })
+
 </script>
 
 <style scoped>
@@ -33,13 +40,19 @@ label{
  cursor:pointer;
 }
 
-label span{
+.span{
   background: #fff;
   border-radius:10px;
   height:7px;
   margin: 7px 0;
   transition: .4s  cubic-bezier(0.68, -0.6, 0.32, 1.6);
-
+}
+.span-light{
+  background: #060A1D;
+  border-radius:10px;
+  height:7px;
+  margin: 7px 0;
+  transition: .4s  cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 
 

@@ -1,16 +1,17 @@
 <template>
- 
       <div>
        
         <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
+
+          <div class="px-3" style="display: flex; align-items: center; width: fit-content;">
             
             <v-toolbar-title class="header-title" :class="isDark ? 'header-title':'header-title-light'">Demo Web</v-toolbar-title>
            
                  <v-spacer></v-spacer>
   
-                 <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"/>
+                 <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"  style="position: absolute; right: -5%;"/>
         
-
+          </div>
         </v-app-bar>
   
         <v-navigation-drawer v-model="drawer" location="top" temporary  :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 10px; height: fit-content;">
@@ -172,7 +173,7 @@ const items = [
 border-bottom: 1px solid #10192D;
 background: rgba(6, 10, 29, 0.60)!important;
 backdrop-filter: blur(50px);
-/* display: flex !important; */
+display: flex !important;
 height: 80px;
 position: fixed;
 top: 0 !important;
@@ -192,7 +193,6 @@ justify-content: center;
 align-items: center;
 flex-shrink: 0;
 position: fixed;
-position: relative !important;
 top: 0 !important;
 }
 .v-navigation-drawer{
@@ -225,6 +225,8 @@ font-size: 20px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
+display: contents;
+width: fit-content !important;
 }
 .header-title-light{
 font-family: "SF Pro Display";
