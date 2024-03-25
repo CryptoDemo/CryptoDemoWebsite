@@ -4,7 +4,7 @@
        
         <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
             
-            <v-toolbar-title class="header-title">Demo Web</v-toolbar-title>
+            <v-toolbar-title class="header-title" :class="isDark ? 'header-title':'header-title-light'">Demo Web</v-toolbar-title>
            
                  <v-spacer></v-spacer>
   
@@ -23,7 +23,7 @@
             </v-btn>
           </template>
 
-          <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; overflow: scroll;">
+          <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; border:  1px solid #64748B;">
             <v-list-item>
               <div @click.stop style="margin-top: 15px; margin-bottom: 15px;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 35px; margin-left: 19px;">
@@ -47,10 +47,10 @@
         </v-menu>
       
         <v-list style="margin-top: 25px;">
-          <v-btn class="mobile-btn">Create an offer</v-btn>
+          <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
         </v-list>
         <v-list style="margin-bottom: 20px; margin-top: 20px;">
-          <v-btn class="mobile-btn">Wallet</v-btn>
+          <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" >Wallet</v-btn>
         </v-list>
       
 
@@ -93,7 +93,7 @@
                   </div>
             </v-menu>
             <v-list style="margin-top: 25px;">
-          <v-btn class="mobile-btn">Become a Vendor</v-btn>
+          <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Become a Vendor</v-btn>
         </v-list>
 
         <div style="display: flex; justify-content: flex-start; margin-top: 25px; align-items: center; margin-left: 10px;">
@@ -101,7 +101,7 @@
            <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
         </div>
         <v-list style="margin-top: 25px;">
-          <v-btn class="mobile-btn" style="width: 100%; height: 50px;">Log In</v-btn>
+          <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; height: 50px;">Log In</v-btn>
         </v-list>
 
         <v-list style="margin-bottom: 31px; border-radius: 10px !important; background: #2873FF;">
@@ -196,7 +196,6 @@ position: relative !important;
 top: 0 !important;
 }
 .v-navigation-drawer{
-/* z-index: 0 !important; */
 transform: translateY(0%);
 position: absolute;
 /* overflow: hidden !important; */
@@ -212,11 +211,11 @@ background: #060A1D !important;
 .v-navigation-drawer-light{
 /* z-index: 904; */
 transform: translateY(0%);
-position: absolute;
+/* position: absolute; */
 /* height: 256px; */
 left: 0px;
 width: calc(100% + 0px);
-bottom: 99% !important;
+top: 0 !important;
 border-radius: 15px;
 background: #fff !important;
 }
@@ -226,6 +225,14 @@ font-size: 20px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
+}
+.header-title-light{
+font-family: "SF Pro Display";
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+color: #060A1D !important;
 }
 .dropdown-mobile{
 border-radius: 100px;
@@ -254,7 +261,7 @@ align-self: stretch;
 letter-spacing: 0px !important;
 width: 100% !important;
 padding-left: 30px !important;
-margin-top: 110px;
+margin-top: 90px;
 text-transform: capitalize;
 box-shadow: none;
 }
@@ -279,6 +286,17 @@ letter-spacing: -0.14px;
 }
 .mobile-btn{
 background: #060A1D !important;
+box-shadow: none;
+letter-spacing: 0px;
+text-transform: unset;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.mobile-btn-light{
+background: #fff !important;
 box-shadow: none;
 letter-spacing: 0px;
 text-transform: unset;

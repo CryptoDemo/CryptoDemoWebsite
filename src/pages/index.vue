@@ -7,17 +7,16 @@
       <div>
         
         <Index-header title="Log in" link="/authentication/login" class="desktop-header"/>
-        <Mobile-header class="mobile-header position-relative"/>
-        <section class="position-relative" style="z-index: 1000 !important;">
-            <v-container class="position-relative" style="z-index: 1000 !important;">
+        <Mobile-header class="mobile-header"/>
+        <section class="position-relative">
+            <v-container class="position-relative">
               <div class="position-absolute">    
-                <img src="/svg/Frame.svg" class="pink-coin position-absolute flex-lg-and-up hidden-sm-and-down"/>
-                
-                </div>
+                <img src="/svg/Frame.svg" class="pink-coin position-absolute flex-lg-and-up hidden-sm-and-down"/>  
+              </div>
                 <div>
                   <div class="frame-1" :class="isDark ? 'frame-1':'frame-1-light'">
                     <v-btn color="#2873FF" class="writing-btn">Writing</v-btn>
-                    <span  :class="isDark ? 'writing-text':'writing-text-light'">The number one trading platform in Europe</span>
+                    <span class="writing-text" :class="isDark ? 'writing-text':'writing-text-light'">The number one trading platform in Europe</span>
                     <img src="/svg/blue-arrow.svg"/>
                   </div>
                   
@@ -55,7 +54,7 @@
 
                       <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute"/>
 
-                    <div :class="isDark ? 'btn-segment':'btn-segment-light'">
+                    <div class="btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'">
                       <v-btn  :class="`${transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction=true" > Buy </v-btn>
                       <v-btn :class="`${!transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction=false" >Sell</v-btn>
                     </div>
@@ -482,6 +481,7 @@ border-radius: 15px;
 background: rgba(255, 255, 255, 0.90);
 padding: 60px;
 backdrop-filter: blur(25px);
+border: 1px solid #DBE8FF !important;
 align-items: center;
 gap: 32px;
 }
