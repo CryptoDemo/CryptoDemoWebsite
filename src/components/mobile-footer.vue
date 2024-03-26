@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <div style="background: rgba(6, 10, 29, 0.70) !important; backdrop-filter: blur(25px) !important; ">
       <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
           <span :class="isDark ? 'demo-web1':'demo-web1-light'">Demo Web</span>
@@ -69,8 +69,8 @@
             </span>
         </v-container>
         </div>
+      </div>
     </div>
-  </v-container>
 </template>
 
 <script setup>
