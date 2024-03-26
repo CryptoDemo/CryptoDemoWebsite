@@ -1024,7 +1024,7 @@ border: 0.5px solid #F8FAFC !important;
 background: #F8FAFC;
 }
 .text-caption{
-color: var(--Colors-Base-white, #FFF);
+color: #8E9BAE;
 font-family: "SF Pro Display";
 font-size: 16px !important;
 font-style: normal;
