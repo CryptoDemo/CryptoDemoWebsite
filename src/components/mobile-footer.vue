@@ -29,7 +29,7 @@
             </v-list-group>
               <div class="d-flex py-4" style="margin-top: 16px;"  :class="isDark ? 'border-dark':'border-light'">
                 <v-icon icon="mdi-information me-2" color="#165CDD"></v-icon>
-                <span  :class="isDark ? 'FAQ-text':'FAQ-text-light'">FAQ’s and Help Centre</span>
+                <span class="faq-text">FAQ’s and Help Centre</span>
               </div>
 
               <div style="display: flex; justify-content: flex-start; flex-direction: column; margin-top: 31px; align-items: center; margin-left: 10px;">
@@ -238,7 +238,15 @@ background: #fff !important;
 backdrop-filter: blur(25px) !important;
 color: #10192D !important;
 }
-
+.faq-text{
+color: #64748B;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-decoration-line: underline;
+}
 .footer-icon{
 display: flex;
 padding-top: 40px;
