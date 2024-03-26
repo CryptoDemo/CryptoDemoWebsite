@@ -14,7 +14,7 @@
           </div>
         </v-app-bar>
   
-        <v-navigation-drawer v-model="drawer" location="top" temporary  :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 10px; height: fit-content;">
+        <v-navigation-drawer v-model="drawer" location="top" temporary  :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 20px; height: fit-content;">
           <v-menu>
           <template v-slot:activator="{ props }">
             <v-btn  class="me-4 flex-lg-and-up" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
@@ -50,7 +50,7 @@
         <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
         </v-list>
-        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 20px; margin-top: 17px;">
+        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 17px; margin-top: 17px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" >Wallet</v-btn>
         </v-list>
       

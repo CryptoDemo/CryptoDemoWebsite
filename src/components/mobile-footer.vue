@@ -295,7 +295,7 @@ backdrop-filter: blur(25px) !important;
 .border-light{
   border-bottom: 1px solid #E2E8F0 !important;
 }
-/* .Switch-text{
+.Switch-text{
 color: #E2E8F0;
 font-family: "SF Pro Display";
 font-size: 16px;
@@ -310,5 +310,5 @@ font-size: 16px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
-} */
+}
 </style>
