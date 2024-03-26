@@ -12,10 +12,10 @@
                     <span class="feedback-subtitle">Our feedback system highlights reliable, experienced users, helping you to trade smoothly.</span>
                 </div>
             </v-col>
-            <v-col cols="12" sm="6">
-                <div class="position-relative ">
+            <v-col cols="12" sm="6" style="display: flex; justify-content: flex-end;">
+                <div class="position-relative">
               
-                <div class="img-reviews position-relative"  style="padding-top: px;">
+                <div class="img-reviews position-relative">
                      <div  :class="isDark ? 'gradient1i':'gradient1i-light'"></div>
 
                     <div v-for="(review, i) in reviews" :key="i" class="position-relative review-cards" :class="isDark ? 'review-cards':'review-cards-light'" :style=" i === 0? 'right: 40px; margin-bottom: 20px; height: 100px; margin-top: 40px' : ''">
@@ -85,6 +85,7 @@ align-items: center;
 gap: 2px;
 margin-top: 24px;
 margin-bottom: 24px;
+/* padding: 0 10px; */
 width: 100%;
 height: 374px;
 overflow: hidden;
@@ -261,6 +262,7 @@ flex-direction: column;
 align-items: flex-start;
 gap: var(--spacing-4xl, 32px);
 position: relative;
+margin-right: 45px;
 }
 
 .review-cards-light{
