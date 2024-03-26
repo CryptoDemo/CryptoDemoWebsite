@@ -80,8 +80,11 @@ import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 
 
+
+
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
+
 
 const open = ref(['Users']);
 const footer = ref ([
@@ -289,7 +292,7 @@ backdrop-filter: blur(25px) !important;
 .border-light{
   border-bottom: 1px solid #E2E8F0 !important;
 }
-.Switch-text{
+/* .Switch-text{
 color: #E2E8F0;
 font-family: "SF Pro Display";
 font-size: 16px;
@@ -304,5 +307,5 @@ font-size: 16px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
-}
+} */
 </style>

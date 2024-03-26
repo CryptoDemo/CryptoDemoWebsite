@@ -11,7 +11,7 @@
         <section class="position-relative">
             <v-container class="position-relative">
               <div class="position-absolute">    
-                <img src="/svg/Frame.svg" class="pink-coin position-absolute flex-lg-and-up hidden-sm-and-down"/>  
+                <img src="/svg/Frame.svg" class="pink-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
               </div>
                 <div>
                   <div class="frame-1" :class="isDark ? 'frame-1':'frame-1-light'">
@@ -36,8 +36,8 @@
                   <span class="web">Demo Web✨️</span>
                 </div>
                   <div class="position-relative">
-                    <img src="/svg/Group 1318.svg" class="position-absolute flex-lg-and-up hidden-sm-and-down" style="top: -76px; left: -4%;"/>
-                    <img src="/svg/Group 1320.svg" class="green-coin position-absolute flex-lg-and-up hidden-sm-and-down"/>
+                    <img v-lazy="'/svg/Group 1318.svg'" class="position-absolute flex-lg-and-up hidden-sm-and-down" style="top: -76px; left: -4%;"/>
+                    <img v-lazy="'/svg/Group 1320.svg'" class="green-coin position-absolute flex-lg-and-up hidden-sm-and-down"/>
                   </div>
                   <div>
                     <span class="subtitle-text">Join over 12 million people just like you on everyone's favorite peer-to-peer platform to buy and sell Bitcoin.</span>
@@ -211,11 +211,11 @@
           </v-container>
 
         <v-container class=" position-relative section2ii" >
-              <img src="/svg/Ellipse 2813.svg" class="position-absolute blue-ellipse2" style="right:0; margin-top: 144px ;"/>
-            <div  :class="isDark ? 'section2':'section2-light'">
-              <span class="section2-subtitle sub-text2" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features of The demo web</span>
-              <span class="section2-titleii" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-bottom: 88px;">Welcome to a financial system for the 100%.</span>
-            </div>
+              <img v-lazy="'/svg/Ellipse 2813.svg'" class="position-absolute blue-ellipse2" style="right:0; margin-top: 144px ;"/>
+             <div  :class="isDark ? 'section2':'section2-light'">
+                <span class="section2-subtitle sub-text2" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features of The demo web</span>
+                <span class="section2-titleii" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-bottom: 88px;">Welcome to a financial system for the 100%.</span>
+             </div>
 
             <Frame/>
             
@@ -228,10 +228,10 @@
                 <div class="demo-div1" style="margin-inline-end: 28px;">
                   <div class="barcode-section"  :class="isDark ? 'barcode-section':'barcode-section-light'">
                       <div class="rectangle" style="display: flex; justify-self: center;" >
-                          <img src="/svg/grouped-gradient.svg" style="display: flex; justify-self: center; width: 100%; margin: auto" class=""  v-if="theme.global.current.value.dark"/>
+                          <img v-lazy="'/svg/grouped-gradient.svg'" style="display: flex; justify-self: center; width: 100%; margin: auto" class=""  v-if="theme.global.current.value.dark"/>
                           
                           <div style=" background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);border-radius: 15px; width: 100%;"  v-else>
-                          <img src="/svg/demo-light.svg"  style="display: flex; justify-self: center; width: 90%; margin: auto;margin-top:27px; " class=""/>
+                          <img v-lazy="'/svg/demo-light.svg'"  style="display: flex; justify-self: center; width: 90%; margin: auto;margin-top:27px; " class=""/>
                           </div>
                       </div> 
                           <div class="wallet-div" style="display:grid;  margin-left: 36px">
@@ -293,8 +293,8 @@
                   <span class="section2-titlei2" :class="isDark ? 'section2-title1':'section2-title1-light'" style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
                   <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
                    <div class="d-flex social-icons-div" style="margin-top: 88px; width: fit-content;">
-                      <img src="/svg/applestore.svg" style="max-width: 100%;" class="social-icons me-4"/>
-                      <img src="/svg/playstore.svg" style="max-width: 100%;" class="social-icons me-2"/>
+                      <img v-lazy="'/svg/applestore.svg'" style="max-width: 100%;" class="social-icons me-4"/>
+                      <img v-lazy="'/svg/playstore.svg'" style="max-width: 100%;" class="social-icons me-2"/>
                       <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
                       <span class="icon-text" style="color: #8E9BAE;font-family: SF Pro Display; font-weight: 500; font-size: 16px;width: 155px;">Demo Web App now  available for download</span>
                     </div>
@@ -305,12 +305,12 @@
                 <div class="">
                   <div class="phone-rectangle" style="position: relative; top: -58px; display: flex; justify-content: center;">
                     <div v-if="theme.global.current.value.dark">
-                      <img src="/svg/mobile-dark.svg" class="mobile-screen"/>
-                      <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
+                      <img v-lazy="'/svg/mobile-dark.svg'" class="mobile-screen"/>
+                      <img v-lazy="'/svg/phoneHand.svg'" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                    </div>
                    <div v-else>
-                    <img src="/svg/mobile-light.svg" class="mobile-screen"/>
-                    <img src="/img/light-phone.png" style="max-width: 100%; z-index: 1000;" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
+                    <img v-lazy="'/svg/mobile-light.svg'" class="mobile-screen"/>
+                    <img v-lazy="'/img/light-phone.png'" style="max-width: 100%; z-index: 1000;" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                   </div>
                   </div>
                 </div>

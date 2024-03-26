@@ -276,6 +276,7 @@ flex-direction: column;
 align-items: flex-start;
 gap: var(--spacing-4xl, 32px);
 position: relative;
+border: none !important;
 }
 .location-txt{
 color: #8E9BAE;
