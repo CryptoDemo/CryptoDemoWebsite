@@ -1,10 +1,10 @@
 <template>
   <div>
     <div  :class="isDark ? 'footer-bg1':'footer-bg1-light'">
-      <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
+      <v-container class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
           <span :class="isDark ? 'demo-web1':'demo-web1-light'">Demo Web</span>
           <Language-dropdown/>
-        </div>
+        </v-container>
 
         <v-card class="mx-auto footer-body" width="100%" :class="isDark ? 'footer-body':'footer-body-light'">
           <v-container>
@@ -32,9 +32,9 @@
                 <span class="faq-text">FAQ’s and Help Centre</span>
               </div>
 
-              <div style="display: flex; justify-content: flex-start; flex-direction: column; margin-top: 31px; align-items: center; margin-left: 10px;">
+              <div style="display: flex; justify-content: flex-start; flex-direction: column; margin-top: 72px; align-items: center; margin-left: 10px;">
               <ToggleBtn class="me-3" style="margin-bottom: 13px"/>
-              <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint" style="margin-top: 13px;">light</span> Mode</span>
+              <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class=".switch-hint" style="margin-top: 13px;">light</span> Mode</span>
             </div>
 
             </v-list>
@@ -254,7 +254,7 @@ padding-bottom: 40px;
 flex-direction: column;
 align-items: flex-start;
 gap: 10px;
-background: #10192D;
+background: #10192D !important;
 }
 .footer-icon-light{
 display: flex;
@@ -263,7 +263,7 @@ padding-bottom: 40px;
 flex-direction: column;
 align-items: flex-start;
 gap: 10px;
-background: #F8FAFC;
+background: #F8FAFC !important;
 }
 
 .footer-text2{
@@ -276,7 +276,7 @@ line-height: 200%; /* 24px */
 letter-spacing: 0.12px;
 }
 .footer-bg1{
-/* background: rgba(6, 10, 29, 0.70) !important;  */
+background: rgba(6, 10, 29, 0.70) !important; 
 /* backdrop-filter: blur(25px) !important;  */
 }
 .footer-bg1-light{
@@ -288,5 +288,21 @@ backdrop-filter: blur(25px) !important;
 }
 .border-light{
   border-bottom: 1px solid #E2E8F0 !important;
+}
+.Switch-text{
+color: #E2E8F0;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+.Switch-text-light{
+color: #64748B;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
 }
 </style>
