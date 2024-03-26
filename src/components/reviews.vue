@@ -8,7 +8,7 @@
                         <img src="/svg/comment-2-text.svg" class="me-2"/>
                         <span :class="isDark ? 'feedback':'feedback-light'">Feedback</span>
                     </v-btn>
-                    <span class="buy" :class="isDark ? 'valuable-feedback':'valuable-feedback-light'" >Valuable feedback</span>
+                    <span class="buy1i" :class="isDark ? 'valuable-feedback':'valuable-feedback-light'">Valuable feedback</span>
                     <span class="feedback-subtitle">Our feedback system highlights reliable, experienced users, helping you to trade smoothly.</span>
                 </div>
             </v-col>
