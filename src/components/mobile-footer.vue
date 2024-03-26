@@ -50,7 +50,7 @@
                     </div>
                   </div>
                       <v-col>
-                    <div style="display: flex; gap: var(--spacing-2xl, 32px); justify-content: center; margin: auto; width: min-content; margin-top: 58px;">
+                    <div style="display: flex; gap: var(--spacing-2xl, 12px); justify-content: center; margin: auto; width: min-content; margin-top: 58px;">
                       <img src="/svg/Social icon.svg"  class="social-icons me-1" />
                       <img src="/svg/Social icon (1).svg" class="social-icons me-1"/>
                       <img src="/svg/Social icon (2).svg" class="social-icons me-1" />
@@ -62,7 +62,7 @@
               </v-row>
             </v-container>
         </div>
-        <div class="footer-container"  :class="theme.global.current.value.dark?'custom-dark':'custom-light'">
+        <div class="footer-container">
         <v-container>
             <span class="footer-text2">
               “DEMO WEB” is a registered trademark of Paxful, Inc. Copyright © 2024 Demo Web, Inc. All Rights Reserved. Paxful Inc. has no relation to MoneyGram, Western Union, Payoneer, WorldRemit, Paxum, PayPal, Amazon, OkPay, Payza, Walmart, Reloadit, Perfect Money, WebMoney, Google Wallet, BlueBird, Serve, Square Cash, NetSpend, Chase QuickPay, Skrill, Vanilla, MyVanilla, OneVanilla, Neteller, Venmo, Apple, ChimpChange or any other payment method. We make no claims about being supported by or supporting these services. Their respective wordmarks and trademarks belong to them alone. Official mailing address: 4023 Kennett Pike #50541, Wilmington, DE 19807
@@ -250,17 +250,10 @@ background: #F8FAFC;
 .footer-text2{
 color: #8E9BAE;
 font-family: "SF Pro Display";
-font-size: 14px;
+font-size: 12px;
 font-style: normal;
 font-weight: 400;
-line-height: 160%; /* 22.4px */
-letter-spacing: 0.14px;
-color: #8E9BAE;
-font-family: "SF Pro Display";
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 160%; /* 22.4px */
-letter-spacing: 0.14px;
+line-height: 200%; /* 24px */
+letter-spacing: 0.12px;
 }
 </style>

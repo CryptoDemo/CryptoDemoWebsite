@@ -311,13 +311,6 @@ font-style: normal;
 font-weight: 400;
 line-height: 160%; /* 22.4px */
 letter-spacing: 0.14px;
-color: #8E9BAE;
-font-family: "SF Pro Display";
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 160%; /* 22.4px */
-letter-spacing: 0.14px;
 }
 .footer-wrapper{
 flex-direction: column;
