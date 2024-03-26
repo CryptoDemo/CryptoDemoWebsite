@@ -13,7 +13,7 @@
               <v-list-group v-for="(links, i) in footer" :key="i" :class="isDark ? 'border-dark':'border-light'">
                 <template v-slot:activator="{ props }">
                   <v-list-item v-bind="props" class="py-6">
-                  <span class="mobile-title">{{ links.title }}</span>
+                  <span :class="isDark ? 'mobile-title':'mobile-title-light'">{{ links.title }}</span>
                   </v-list-item>
                 </template>
 
@@ -176,6 +176,15 @@ letter-spacing: 0.16px;
 
 .mobile-title{
 color: var(--Colors-Base-white, #FFF);
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 100%; /* 16px */
+letter-spacing: 0.16px;
+}
+.mobile-title-light{
+color: #10192D;
 font-family: "SF Pro Display";
 font-size: 16px;
 font-style: normal;
