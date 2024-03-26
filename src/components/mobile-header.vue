@@ -24,7 +24,7 @@
             </v-btn>
           </template>
 
-          <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; border:  1px solid #64748B;">
+          <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; border: 0.5px solid #2f3946;">
             <v-list-item>
               <div @click.stop style="margin-top: 15px; margin-bottom: 15px;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 35px; margin-left: 19px;">
@@ -50,7 +50,7 @@
         <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
         </v-list>
-        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 20px; margin-top: 20px;">
+        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 20px; margin-top: 17px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" >Wallet</v-btn>
         </v-list>
       
@@ -101,7 +101,7 @@
            <ToggleBtn class="me-3"/>
            <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
         </div>
-        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
+        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; height: 50px;">Log In</v-btn>
         </v-list>
 
