@@ -326,18 +326,7 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
-.mobile-btn-light{
-background: inherit;
-box-shadow: none;
-letter-spacing: 0px;
-text-transform: unset;
-font-family: "SF Pro Display";
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-box-shadow: none;
-}
+
 .icon-text1{
 font-family: "SF Pro Display";
 font-size: 14px;
