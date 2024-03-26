@@ -634,10 +634,10 @@ line-height: 120%; /* 28.8px */
     height: 65px !important;
   }
   .Demo-header{
-    font-size: 68px !important;
+    font-size: 70px !important;
     position: absolute !important;
     width: fit-content !important;
-    top: 182px  !important;
+    top: 142px  !important;
     /* left: -26% !important; */
   }
   .banner-wrap{
