@@ -1,13 +1,15 @@
 <template>
   <div>
     <div  :class="isDark ? 'footer-bg1':'footer-bg1-light'">
-      <v-container class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
+      <v-container>
+       <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
           <span :class="isDark ? 'demo-web1':'demo-web1-light'">Demo Web</span>
-          <Language-dropdown/>
-        </v-container>
+          <Language-dropdown style="width: 136px;"/>
+        </div>
+      </v-container>
 
         <v-card class="mx-auto footer-body" width="100%" :class="isDark ? 'footer-body':'footer-body-light'">
-          <v-container>
+          <v-container :class="isDark ? 'footer-body':'footer-body-light'">
             <v-list  v-model:opened="open" :class="isDark ? 'footer-list':'footer-list-light'">
 
               <v-list-group v-for="(links, i) in footer" :key="i" :class="isDark ? 'border-dark':'border-light'">
@@ -196,7 +198,8 @@ line-height: 100%; /* 16px */
 letter-spacing: 0.16px;
 }
 .demo-web1{
- font-family: "SF Pro Display";
+color: #fff;
+font-family: "SF Pro Display";
 font-size: 24px;
 font-style: normal;
 font-weight: 700 !important;
@@ -239,7 +242,7 @@ backdrop-filter: blur(25px) !important;
 .footer-list-light{
 background: #fff !important;
 backdrop-filter: blur(25px) !important;
-color: #10192D !important;
+/* color: #10192D !important; */
 }
 .faq-text{
 color: #64748B;

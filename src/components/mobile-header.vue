@@ -3,13 +3,13 @@
        
         <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
 
-          <div class="px-3" style="display: flex; align-items: center; width: fit-content;">
+          <div style="display: flex; align-items: center; width: fit-content;">
             
             <v-toolbar-title class="header-title" :class="isDark ? 'header-title':'header-title-light'">Demo Web</v-toolbar-title>
            
                  <v-spacer></v-spacer>
   
-                 <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"  style="position: absolute; right: -5%;"/>
+                 <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"   style="position: absolute; right: -10%;"/>
         
           </div>
         </v-app-bar>
@@ -47,10 +47,10 @@
          
         </v-menu>
       
-        <v-list style="margin-top: 25px;">
+        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
         </v-list>
-        <v-list style="margin-bottom: 20px; margin-top: 20px;">
+        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 20px; margin-top: 20px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" >Wallet</v-btn>
         </v-list>
       
@@ -93,7 +93,7 @@
                   </v-list>
                   </div>
             </v-menu>
-            <v-list style="margin-top: 25px;">
+            <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Become a Vendor</v-btn>
         </v-list>
 
@@ -101,12 +101,12 @@
            <ToggleBtn class="me-3"/>
            <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
         </div>
-        <v-list style="margin-top: 25px;">
+        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; height: 50px;">Log In</v-btn>
         </v-list>
 
-        <v-list style="margin-bottom: 31px; border-radius: 10px !important; background: #2873FF;">
-          <v-btn class="mobile-btn" style="background: #2873FF !important; width: 100%; height: 50px;">Register</v-btn>
+        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 31px; border-radius: 10px !important; background: #2873FF;">
+          <v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; border-radius: 10px !important; height: 50px;">Register</v-btn>
         </v-list>
         </v-navigation-drawer>
   
@@ -181,6 +181,24 @@ justify-content: center !important;
 position: relative;
 
 }
+.v-toolbar {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    position: relative;
+    transition: inherit;
+    width: 100%;
+    padding: 15px !important;
+}
+.v-toolbar__content, .v-toolbar__extension {
+    align-items: flex-start !important;
+    display: flex;
+    /* flex: 0 0 auto; */
+    /* position: relative; */
+    /* transition: inherit; */
+    width: 100vw !important;
+}
+
 .navbar-bg-light{
 border-bottom: 1px solid #E2E8F0;
 background: rgba(255, 255, 255, 0.60) !important;
