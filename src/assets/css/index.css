@@ -622,12 +622,12 @@ line-height: 120%; /* 28.8px */
     margin-top: 48px !important;
   }
   .coin-box2{
-  gap: 42px !important;
-  padding-right: 315px !important;
+  gap: 30px !important;
+  /* padding-right: 315px !important; */
   }
   .coin-box1{
   padding-left: 45px !important;
-  gap: 35px !important;
+  gap: 30px !important;
   }
   .coin-box3{
   padding-left: 5px !important;
