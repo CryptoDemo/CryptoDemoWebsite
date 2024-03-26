@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="background: rgba(6, 10, 29, 0.70) !important; backdrop-filter: blur(25px) !important; ">
+    <div  :class="isDark ? 'footer-bg1':'footer-bg1-light'">
       <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
           <span :class="isDark ? 'demo-web1':'demo-web1-light'">Demo Web</span>
           <Language-dropdown/>
@@ -10,7 +10,7 @@
           <v-container>
             <v-list  v-model:opened="open" :class="isDark ? 'footer-list':'footer-list-light'">
 
-              <v-list-group v-for="(links, i) in footer" :key="i" style="border-bottom: 1px solid #10192D;">
+              <v-list-group v-for="(links, i) in footer" :key="i" :class="isDark ? 'border-dark':'border-light'">
                 <template v-slot:activator="{ props }">
                   <v-list-item v-bind="props" class="py-6">
                   <span class="mobile-title">{{ links.title }}</span>
@@ -27,13 +27,13 @@
                 </template> 
               </v-list-group>
             </v-list-group>
-              <div class="d-flex py-4" style="margin-top: 16px; align-items: center; border-bottom: 1px solid #10192D">
+              <div class="d-flex py-4" style="margin-top: 16px;"  :class="isDark ? 'border-dark':'border-light'">
                 <v-icon icon="mdi-information me-2" color="#165CDD"></v-icon>
                 <span  :class="isDark ? 'FAQ-text':'FAQ-text-light'">FAQ’s and Help Centre</span>
               </div>
 
-              <div style="display: flex; justify-content: flex-start; flex-direction: column; margin-top: 25px; align-items: center; margin-left: 10px;">
-              <ToggleBtn class="me-3"/>
+              <div style="display: flex; justify-content: flex-start; flex-direction: column; margin-top: 31px; align-items: center; margin-left: 10px;">
+              <ToggleBtn class="me-3" style="margin-bottom: 13px"/>
               <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint" style="margin-top: 13px;">light</span> Mode</span>
             </div>
 
@@ -67,7 +67,7 @@
         <div class="footer-container">
         <v-container>
             <span class="footer-text2">
-              “DEMO WEB” is a registered trademark of Paxful, Inc. Copyright © 2024 Demo Web, Inc. All Rights Reserved. Paxful Inc. has no relation to MoneyGram, Western Union, Payoneer, WorldRemit, Paxum, PayPal, Amazon, OkPay, Payza, Walmart, Reloadit, Perfect Money, WebMoney, Google Wallet, BlueBird, Serve, Square Cash, NetSpend, Chase QuickPay, Skrill, Vanilla, MyVanilla, OneVanilla, Neteller, Venmo, Apple, ChimpChange or any other payment method. We make no claims about being supported by or supporting these services. Their respective wordmarks and trademarks belong to them alone. Official mailing address: 4023 Kennett Pike #50541, Wilmington, DE 19807
+              “DEMO WEB” is a registered trademark of Demo, Inc. Copyright © 2024 Demo Web, Inc. All Rights Reserved. Paxful Inc. has no relation to MoneyGram, Western Union, Payoneer, WorldRemit, Paxum, PayPal, Amazon, OkPay, Payza, Walmart, Reloadit, Perfect Money, WebMoney, Google Wallet, BlueBird, Serve, Square Cash, NetSpend, Chase QuickPay, Skrill, Vanilla, MyVanilla, OneVanilla, Neteller, Venmo, Apple, ChimpChange or any other payment method. We make no claims about being supported by or supporting these services. Their respective wordmarks and trademarks belong to them alone. Official mailing address: 4023 Kennett Pike #50541, Wilmington, DE 19807
             </span>
         </v-container>
         </div>
@@ -212,7 +212,7 @@ cursor: pointer;
 
 .footer-body{
 background: rgba(6, 10, 29, 0.70) !important; 
-backdrop-filter: blur(25px);
+/* backdrop-filter: blur(25px); */
 box-shadow: none;
 }
 .footer-body-light{
@@ -225,7 +225,7 @@ background: rgba(6, 10, 29, 0.70) !important;
 backdrop-filter: blur(25px) !important;
 }
 .footer-list-light{
-background: #E2E8F0 !important;
+background: #fff !important;
 backdrop-filter: blur(25px) !important;
 color: #10192D !important;
 }
@@ -257,5 +257,19 @@ font-style: normal;
 font-weight: 400;
 line-height: 200%; /* 24px */
 letter-spacing: 0.12px;
+}
+.footer-bg1{
+/* background: rgba(6, 10, 29, 0.70) !important;  */
+/* backdrop-filter: blur(25px) !important;  */
+}
+.footer-bg1-light{
+background: #fff !important; 
+backdrop-filter: blur(25px) !important; 
+}
+.border-dark{
+  border-bottom: 1px solid #10192D;
+}
+.border-light{
+  border-bottom: 1px solid #E2E8F0 !important;
 }
 </style>
