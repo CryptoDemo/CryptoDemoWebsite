@@ -15,18 +15,30 @@
                     </v-btn>
                  
                 </div>
-            <div  style="margin-top: 62.2px; overflow: hidden;">
-                <div class="coin-container coin-box1" style="padding-left: 52px; opacity: 0.5!important;">
+            <div class="marquee-container" style="overflow: hidden; margin-top: 362px;">
+                <div class="coin-container coin-box1 marquee" style="padding-left: 52px; opacity: 0.5!important;">
+                    <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"   class="d-flex coin-ani"/>
+                </div>
+                
+                <div class="coin-container coin-box1 marquee marquee2" style="padding-left: 52px; opacity: 0.5!important;">
                     <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"   class="d-flex coin-ani"/>
                 </div>
  
-                <div class="coin-container coin-box2" style="padding-right: 17px; opacity: 0.5!important; margin-top: 24.01px; margin-bottom: 24.01px;">
+
+                <div class="coin-container coin-box2 marquee-A" style="padding-right: 52px; opacity: 0.5!important; margin-top: 24.01px; margin-bottom: 24.01px;">
+                    <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins" class="d-flex coin-ani"/>
+                </div>
+
+                <div class="coin-container coin-box2  marquee-A marquee2a" style="padding-right: 52px; opacity: 0.5!important; margin-top: 24.01px; margin-bottom: 24.01px;">
                     <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins" class="d-flex coin-ani"/>
                 </div>
              
 
              
-                <div class="coin-container coin-box3" style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
+                <div class="coin-container coin-box3  marquee2b" style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
+                    <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins" style="max-width: 100%" class="d-flex animated-coins" />
+                </div>
+                <div class="coin-container coin-box3 marquee2b marquee2" style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
                     <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins" style="max-width: 100%" class="d-flex animated-coins" />
                 </div>
           
@@ -40,19 +52,19 @@
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 
-const transaction = ref(true);
+
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
 const firstCoin = ref([
-    '/img/Frame 14.png', '/img/Frame 19.png', '/img/Frame 2.png', '/img/Frame 3.png', '/img/Frame 6.png','/img/Frame 12.png','/img/Frame 8.png','/img/Frame 1.png',
+    '/img/Frame 14.png', '/img/Frame 19.png', '/img/Frame 2.png', '/img/Frame 3.png', '/img/Frame 6.png','/img/Frame 12.png','/img/Frame 8.png','/img/Frame 19.png',
 ]);
 const secondCoin = ref([
-    '/img/Frame 5.png', '/img/Frame 4.png', '/img/Frame 9.png', '/img/Frame 10.png', '/img/Frame 18.png','/img/Frame 20.png','/img/Frame 22.png','/img/Frame 23.png',
+    '/img/Frame 20.png', '/img/Frame 4.png', '/img/Frame 9.png', '/img/Frame 10.png', '/img/Frame 18.png','/img/Frame 20.png','/img/Frame 22.png','/img/Frame 23.png',
 ]);
 const thirdCoin = ref([
-    '/img/Frame 7.png', '/img/Frame 11.png', '/img/Frame 14 (1).png', '/img/Frame 15.png', '/img/Frame 16.png','/img/Frame 17.png','/img/Frame 18 (1).png','/img/Frame 19 (1).png',
+    '/img/Frame 7.png', '/img/Frame 11.png', '/img/Frame 14 (1).png', '/img/Frame 15.png', '/img/Frame 16.png','/img/Frame 17.png','/img/Frame 18 (1).png','/img/Frame 14 (1).png',
 ])
 </script>
 <style scoped>
@@ -176,5 +188,65 @@ gap: 10px;
 flex-shrink: 0;
 }
 
+.marquee-container {
+  overflow: hidden;
+}
+
+.marquee {
+bottom: 25%;
+left: 100%;
+width: 100%;
+overflow: hidden;
+position: absolute;
+z-index: -1;
+white-space: nowrap;
+animation: marquee 30s linear infinite;
+  }
+.marquee2b{
+bottom: 0%;
+left: 100%;
+width: 100%;
+overflow: hidden;
+position: absolute;
+z-index: -1;
+white-space: nowrap;
+animation: marquee 30s linear infinite;
+  }
+
+  .marquee2 {
+    animation-delay: 15s;
+  }
+  b {
+    padding-left: 10px;
+  }
+
+
+@keyframes marquee {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%
+  }
+}
+
+.marquee-A{
+bottom: 7%;
+right: 100%;
+width: 100%;
+overflow: hidden;
+position: absolute;
+z-index: -1;
+white-space: nowrap;
+animation-direction: reverse !important;
+animation: marquee 30s linear infinite;
+  }
+
+  .marquee2a {
+    animation-delay: 15s;
+  }
+  b {
+    padding-left: 10px;
+  }
 
 </style>
