@@ -637,10 +637,11 @@ line-height: 120%; /* 28.8px */
     font-size: 68px !important;
     position: absolute !important;
     width: fit-content !important;
+    top: 182px  !important;
     /* left: -26% !important; */
   }
   .banner-wrap{
-    margin-bottom:153.88px !important;
+    margin-bottom:23.88px !important;
     margin-top: -35px !important;
   }
 }

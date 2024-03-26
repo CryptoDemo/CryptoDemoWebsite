@@ -34,8 +34,41 @@
            <ToggleBtn class="me-3"/>
            <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint" style="margin-top: 13px;">light</span> Mode</span>
         </div>
+
         </v-list>
       </v-card>
+
+      <div class="footer-icon"  :class="isDark ? 'footer-icon':'footer-icon-light'" style="margin-top: 50px">
+            <v-container>
+              <v-row class="d-flex">
+                <div>
+                    <div class="d-flex">
+                      <img src="/svg/BTN 1.svg" class="social-icons me-4"/>
+                      <img src="/svg/BTN 2.svg" class="social-icons me-2"/>
+                      <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
+                      <span class="icon-text" style="color: #64748B; font-family: SF Pro Display; font-size: 16px;">Demo Web App now available for download</span>
+                    </div>
+                  </div>
+                      <v-col>
+                    <div style="display: flex; gap: var(--spacing-2xl, 32px); justify-content: center; margin: auto; width: min-content; margin-top: 58px;">
+                      <img src="/svg/Social icon.svg"  class="social-icons me-1" />
+                      <img src="/svg/Social icon (1).svg" class="social-icons me-1"/>
+                      <img src="/svg/Social icon (2).svg" class="social-icons me-1" />
+                      <img src="/svg/Social icon (3).svg" class="social-icons me-1"/>
+                      <img src="/svg/Social icon (4).svg" class="social-icons me-1"/>
+                      <img src="/svg/Social icon (5).svg" class="social-icons me-1" />
+                    </div>
+                </v-col>
+              </v-row>
+            </v-container>
+        </div>
+        <div class="footer-container"  :class="theme.global.current.value.dark?'custom-dark':'custom-light'">
+        <v-container>
+            <span class="footer-text2">
+              “DEMO WEB” is a registered trademark of Paxful, Inc. Copyright © 2024 Demo Web, Inc. All Rights Reserved. Paxful Inc. has no relation to MoneyGram, Western Union, Payoneer, WorldRemit, Paxum, PayPal, Amazon, OkPay, Payza, Walmart, Reloadit, Perfect Money, WebMoney, Google Wallet, BlueBird, Serve, Square Cash, NetSpend, Chase QuickPay, Skrill, Vanilla, MyVanilla, OneVanilla, Neteller, Venmo, Apple, ChimpChange or any other payment method. We make no claims about being supported by or supporting these services. Their respective wordmarks and trademarks belong to them alone. Official mailing address: 4023 Kennett Pike #50541, Wilmington, DE 19807
+            </span>
+        </v-container>
+        </div>
     </div>
   </v-container>
 </template>
@@ -193,5 +226,41 @@ backdrop-filter: blur(25px) !important;
 background: #E2E8F0 !important;
 backdrop-filter: blur(25px) !important;
 color: #10192D !important;
+}
+
+.footer-icon{
+display: flex;
+padding-top: 40px;
+padding-bottom: 40px;
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+background: #10192D;
+}
+.footer-icon-light{
+display: flex;
+padding-top: 40px;
+padding-bottom: 40px;
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+background: #F8FAFC;
+}
+
+.footer-text2{
+color: #8E9BAE;
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 160%; /* 22.4px */
+letter-spacing: 0.14px;
+color: #8E9BAE;
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 160%; /* 22.4px */
+letter-spacing: 0.14px;
 }
 </style>
