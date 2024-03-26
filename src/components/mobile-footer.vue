@@ -5,39 +5,41 @@
           <span :class="isDark ? 'demo-web1':'demo-web1-light'">Demo Web</span>
           <Language-dropdown/>
         </div>
-      <v-card class="mx-auto footer-body" width="100%" :class="isDark ? 'footer-body':'footer-body-light'">
-        <v-list  v-model:opened="open" :class="isDark ? 'footer-list':'footer-list-light'">
 
-          <v-list-group v-for="(links, i) in footer" :key="i" style="border-bottom: 1px solid #10192D;">
-            <template v-slot:activator="{ props }">
-              <v-list-item v-bind="props" class="py-6">
-              <span class="mobile-title">{{ links.title }}</span>
-              </v-list-item>
-            </template>
+        <v-card class="mx-auto footer-body" width="100%" :class="isDark ? 'footer-body':'footer-body-light'">
+          <v-container>
+            <v-list  v-model:opened="open" :class="isDark ? 'footer-list':'footer-list-light'">
 
-            <v-list-group>
-              <template v-slot:activator="{props}">   
-                <div>
-                  <v-list-item  v-bind="props" :append-icon="null" v-for="(item,i) in links.items" :key="i">
-                    <NuxtLink :to="item.link"><span class="mobile-footer">{{ item.subtitle }}</span></NuxtLink>
+              <v-list-group v-for="(links, i) in footer" :key="i" style="border-bottom: 1px solid #10192D;">
+                <template v-slot:activator="{ props }">
+                  <v-list-item v-bind="props" class="py-6">
+                  <span class="mobile-title">{{ links.title }}</span>
                   </v-list-item>
+                </template>
+
+                <v-list-group>
+                  <template v-slot:activator="{props}">   
+                    <div>
+                      <v-list-item  v-bind="props" :append-icon="null" v-for="(item,i) in links.items" :key="i">
+                        <NuxtLink :to="item.link"><span class="mobile-footer">{{ item.subtitle }}</span></NuxtLink>
+                      </v-list-item>
+                  </div>
+                </template> 
+              </v-list-group>
+            </v-list-group>
+              <div class="d-flex py-4" style="margin-top: 16px; align-items: center; border-bottom: 1px solid #10192D">
+                <v-icon icon="mdi-information me-2" color="#165CDD"></v-icon>
+                <span  :class="isDark ? 'FAQ-text':'FAQ-text-light'">FAQ’s and Help Centre</span>
               </div>
-            </template> 
-          </v-list-group>
-        </v-list-group>
-          <div class="d-flex py-4" style="margin-top: 16px; align-items: center; border-bottom: 1px solid #10192D">
-            <v-icon icon="mdi-information me-2" color="#165CDD"></v-icon>
-            <span  :class="isDark ? 'FAQ-text':'FAQ-text-light'">FAQ’s and Help Centre</span>
-          </div>
 
-          <div style="display: flex; justify-content: flex-start; flex-direction: column; margin-top: 25px; align-items: center; margin-left: 10px;">
-           <ToggleBtn class="me-3"/>
-           <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint" style="margin-top: 13px;">light</span> Mode</span>
-        </div>
+              <div style="display: flex; justify-content: flex-start; flex-direction: column; margin-top: 25px; align-items: center; margin-left: 10px;">
+              <ToggleBtn class="me-3"/>
+              <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint" style="margin-top: 13px;">light</span> Mode</span>
+            </div>
 
-        </v-list>
-      </v-card>
-
+            </v-list>
+          </v-container>
+          </v-card>
       <div class="footer-icon"  :class="isDark ? 'footer-icon':'footer-icon-light'" style="margin-top: 50px">
             <v-container>
               <v-row class="d-flex">
