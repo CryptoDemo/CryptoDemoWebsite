@@ -293,8 +293,8 @@
                   <span class="section2-titlei2" :class="isDark ? 'section2-title1':'section2-title1-light'" style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
                   <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
                    <div class="d-flex social-icons-div" style="margin-top: 88px; width: fit-content;">
-                      <img v-lazy="'/svg/applestore.svg'" style="max-width: 100%;" class="social-icons me-4"/>
-                      <img v-lazy="'/svg/playstore.svg'" style="max-width: 100%;" class="social-icons me-2"/>
+                      <img src="/svg/applestore.svg" style="max-width: 100%;" class="social-icons me-4"/>
+                      <img src="/svg/playstore.svg" style="max-width: 100%;" class="social-icons me-2"/>
                       <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
                       <span class="icon-text" style="color: #8E9BAE;font-family: SF Pro Display; font-weight: 500; font-size: 16px;width: 155px;">Demo Web App now  available for download</span>
                     </div>
@@ -305,12 +305,12 @@
                 <div class="">
                   <div class="phone-rectangle" style="position: relative; top: -58px; display: flex; justify-content: center;">
                     <div v-if="theme.global.current.value.dark">
-                      <img v-lazy="'/svg/mobile-dark.svg'" class="mobile-screen"/>
-                      <img v-lazy="'/svg/phoneHand.svg'" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
+                      <img src="/svg/mobile-dark.svg" class="mobile-screen"/>
+                      <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                    </div>
                    <div v-else>
                     <img v-lazy="'/svg/mobile-light.svg'" class="mobile-screen"/>
-                    <img v-lazy="'/img/light-phone.png'" style="max-width: 100%; z-index: 1000;" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
+                    <img src="/img/light-phone.png" style="max-width: 100%; z-index: 1000;" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                   </div>
                   </div>
                 </div>
