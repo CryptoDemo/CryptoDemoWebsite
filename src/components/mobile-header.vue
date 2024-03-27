@@ -17,8 +17,8 @@
         <v-navigation-drawer v-model="drawer" location="top" temporary  :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 20px; height: fit-content;">
           <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn  class="me-4 flex-lg-and-up" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
-              <v-img  width="32" class="me-3" :src="flag"/> 
+            <v-btn  class="me-4" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
+              <img  width="32" class="me-3" :src="flag"/> 
               <span class="me-2" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{select}}</span>
               <v-icon icon="mdi-chevron-down" style="color: #8E9BAE; position: absolute; right: 3%;"></v-icon>
             </v-btn>
@@ -47,10 +47,10 @@
          
         </v-menu>
       
-        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
+        <div style="margin-top: 25px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
-        </v-list>
-        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 17px; margin-top: 17px;">
+        </div>
+        <v-list style="margin-bottom: 17px; margin-top: 17px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" >Wallet</v-btn>
         </v-list>
       
@@ -159,9 +159,9 @@ const locations = ref([
 });
 
 const items = [
-        {icon1:'/svg/bitcoin-hub.svg', icon2:'/svg/btc-logo-light1.svg', title: 'Buy with bitcoin', subtitle:'Search for offers to buy gift cards with Bitcoin.'},
-        {icon1:'/svg/btc-logolight.svg', icon2:'/svg/tether-light.svg', title: 'Buy with Tether', subtitle:'Search for offers to buy gift cards with Tether.'},
-        {icon1:'/svg/btc-logodark.svg', icon2:'/svg/binance-lightlogo.svg', title: 'Buy with Binance Coin', subtitle:'Search for offers to buy gift cards with Binance Coin.'},
+  {icon1:'/svg/bitcoin-hub.svg', icon2:'/svg/btc-logo-light1.svg', title: 'Buy with bitcoin', subtitle:'Search for offers to buy gift cards with Bitcoin.'},
+  {icon1:'/svg/btc-logolight.svg', icon2:'/svg/tether-light.svg', title: 'Buy with Tether', subtitle:'Search for offers to buy gift cards with Tether.'},
+  {icon1:'/svg/btc-logodark.svg', icon2:'/svg/binance-lightlogo.svg', title: 'Buy with Binance Coin', subtitle:'Search for offers to buy gift cards with Binance Coin.'},
         
   ];
 

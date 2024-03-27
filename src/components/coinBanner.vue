@@ -58,7 +58,7 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
 const firstCoin = ref([
-    '/img/Frame 14.png', '/img/Frame 19.png', '/img/Frame 2.png', '/img/Frame 3.png', '/img/Frame 6.png','/img/Frame 12.png','/img/Frame 8.png','/img/Frame 19.png',
+    '/svg/testball1.svg', '/img/Frame 19.png', '/img/Frame 2.png', '/img/Frame 3.png', '/img/Frame 6.png','/img/Frame 12.png','/img/Frame 8.png','/img/Frame 19.png',
 ]);
 const secondCoin = ref([
     '/img/Frame 20.png', '/img/Frame 4.png', '/img/Frame 9.png', '/img/Frame 10.png', '/img/Frame 18.png','/img/Frame 20.png','/img/Frame 22.png','/img/Frame 23.png',
@@ -95,6 +95,8 @@ border-radius: 15px;
 position: relative;
 background: #165CDD;
 width: 100%;
+max-width: 100%;
+z-index: 1000;
 }
 .caption1i{
 color: #38BDF8;
