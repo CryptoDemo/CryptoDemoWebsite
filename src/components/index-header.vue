@@ -64,25 +64,23 @@
       
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn  class="me-4 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"
-              dark
+            <v-btn  class="me-4 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"  style="letter-spacing: 0px;"        
               v-bind="props">
-              <v-img  width="20" class="me-3" :src="flag"/> 
-              <span class="me-2" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{select}}</span>
+              <img  width="30" class="me-3" :src="flag" style="height: fit-content; object-fit: cover !important; border-radius: 50% !important;"/> 
+              <span class="me-2" :class="isDark ? 'nav-subtitle1':'nav-subtitle1-light'">{{select}}</span>
               <v-icon icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
             </v-btn>
           </template>
 
-          <v-list>
+          <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'">
             <v-list-item>
-              <v-row dense style="max-width: 290px;">
-              <v-col v-for="(item, index) in locations" class="" sm="4" 
-                :key="index" >
+              <v-row dense style="width: 240px;">
+              <v-col v-for="(item, index) in locations" class="" sm="12" :key="index">
             
-                
-                <v-list-item-title @click="select=item.title; flag= item.image" style="text-align: -webkit-center;">
-                 <v-img width="50" class="rounded-5" :src="item.image"></v-img>    
-                <span> {{ item.title }} </span>
+                <v-list-item-title @click="select=item.title; flag= item.image" style="display: flex; align-items: center">
+                 <img width="30" class="me-3" :src="item.image" style="border-radius: 10px;"/>    
+                <!-- <span class="country-name"> {{ item.title }} </span> -->
+                <span class="country-name" :class="isDark ? 'country-name':'country-name-light'"> {{ item.countryname }} </span>
               </v-list-item-title>
                 </v-col>
               </v-row>
@@ -92,8 +90,7 @@
         </v-menu>
 
         <ToggleBtn class="flex-lg-and-up hidden-sm-and-down"/>
-        <!-- </template> -->
-        <!-- </div> -->
+      
         </v-container>
       </v-app-bar>
       </div>
@@ -110,15 +107,18 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 
 const select =ref("NGN")
 
-const flag = ref("/svg/nigeria-flag.svg")
+const flag = ref("/flags/ng.svg")
 
 const locations = [
-        { title: 'USA', image:"/img/china.png" },
-        { title: 'ARM',  image:"/img/china.png" },
-        { title: 'ALG',  image:"/img/china.png" },
-        { title: 'NGN',  image:"/img/china.png" },
-        { title: 'NGN',  image:"/img/china.png" },
-        { title: 'Igbo', image:"/img/china.png" },
+        { title: 'USA', countryname:'United State', image:"/flags/us.svg" },
+        { title: 'KW',countryname:'Kuwait',  image:"/flags/kw.svg" },
+        { title: 'ALG', countryname:'Australia',  image:"/flags/au.svg" },
+        { title: 'NI', countryname:'Nigeria',  image:"/flags/ni.svg" },
+        { title: 'NIG', countryname:'Niger', image:"/flags/ng.svg" },
+        { title: 'NU', countryname:'Niue', image:"/flags/nu.svg" },
+        { title: 'SX', countryname:'Sint Maarten', image:"/flags/sx.svg" },
+        { title: 'BA', countryname:'Bosnia and Herzegovina', image:"/flags/ba.svg" },
+        { title: 'SVK', countryname:'Slovakia', image:"/flags/sk.svg" },
       ];
 const props = defineProps(
   {
@@ -142,11 +142,12 @@ const items = [
 border-bottom: 1px solid #10192D;
 background: rgba(6, 10, 29, 0.60)!important;
 backdrop-filter: blur(50px);
-/* display: flex !important; */
+display: flex !important;
 height: 80px;
-
+width: 100% !important;
 justify-content: center !important;
-
+position: fixed !important;
+top: 0 !important;
 }
 .navbar-bg-light{
 border-bottom: 1px solid #E2E8F0;
@@ -159,6 +160,8 @@ margin: auto;
 justify-content: center;
 align-items: center;
 flex-shrink: 0;
+position: fixed !important;
+top: 0 !important;
 }
 .nav-title{
 color: var(--Colors-Base-white, #FFF);
@@ -229,6 +232,18 @@ justify-content: center;
 align-items: center;
 letter-spacing: 0px!important;
 }
+.nav-subtitle1{
+color: var(--Colors-Base-white, #FFF);
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.14px;
+justify-content: center;
+align-items: center;
+letter-spacing: 0px!important;
+}
 .nav-subtitle-light{
 display: flex;
 color: #10192D !important;
@@ -237,6 +252,20 @@ font-size: 16px !important;
 font-style: normal;
 font-weight: 400 !important;
 line-height: normal;
+justify-content: center;
+align-items: center;
+
+}
+.nav-subtitle1-light{
+display: flex;
+color: #10192D !important;
+color: var(--Colors-Base-white, #FFF);
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.14px;
 justify-content: center;
 align-items: center;
 
@@ -343,5 +372,34 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+}
+
+.country-dropdown{
+border-radius: 15px;
+border: 0.5px solid #2f3946;
+background: #1B2537 !important;
+backdrop-filter: blur(50px) !important;
+}
+.country-dropdown-light{
+border-radius: 15px;
+background: #fff !important;
+}
+.country-name{
+color: var(--Colors-Base-white, #FFF);
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.14px;
+}
+.country-name-light{
+color: #10192D;
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.14px;
 }
 </style>

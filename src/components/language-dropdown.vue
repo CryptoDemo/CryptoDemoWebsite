@@ -7,20 +7,19 @@
             
               v-bind="props">
                <v-img  width="30" class="me-3" :src="flag"/> 
-              <span class="me-2">{{select}}</span>
+              <span class="me-2" :class="isDark ? 'selected-language':'selected-language-light'">{{select}}</span>
               <v-icon icon="mdi-chevron-down" style="position: absolute;right: 10px "></v-icon>
             </v-btn>
           </template>
 
-          <v-list>
+          <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'">
             <v-list-item>
-              <v-row dense style="max-width: 290px;">
-              <v-col v-for="(item, index) in locations" class="" sm="4"  
-                :key="index" >
+              <v-row dense style="display: contents;">
+              <v-col v-for="(item, index) in locations" md="12" sm="12" :key="index" >
             
-                 <v-list-item-title @click="select=item.title; flag= item.image" style="text-align: -webkit-center;"> 
-                    <v-img width="50" class="rounded-5" :src="item.image"></v-img>   
-                    <span> {{ item.title }} </span>
+                 <v-list-item-title @click="select=item.title; flag= item.image" style="display: flex; align-items: center;"> 
+                    <img width="30" class="me-3" :src="item.image"/>   
+                    <span class="country-name" :class="isDark ? 'country-name':'country-name-light'"> {{ item.title }} </span>
                 </v-list-item-title>
                 </v-col>
               </v-row>
@@ -46,9 +45,9 @@ const locations = [
         { title: 'Algeria', image:"/svg/ball.svg" },
         { title: 'English',  image:"/svg/ball.svg" },
         { title: 'Spanish',  image:"/svg/ball.svg" },
-        { title: 'NGN',  image:"/svg/ball.svg" },
-        { title: 'NGN',  image:"/svg/ball.svg" },
-        { title: 'Igbo', image:"/img/china.png" },
+        { title: 'French',  image:"/svg/ball.svg" },
+        { title: 'Yoruba',  image:"/svg/ball.svg" },
+        { title: 'Igbo', image:"/svg/ball.svg" },
       ];
 </script>
 
@@ -94,4 +93,51 @@ margin-top: 10px;
 cursor: pointer;
 }
 
+.country-dropdown{
+border-radius: 15px;
+border: 0.5px solid #2f3946;
+background: #1B2537 !important;
+backdrop-filter: blur(50px) !important;
+}
+.country-dropdown-light{
+border-radius: 15px;
+background: #fff !important;
+}
+
+.country-name{
+color: var(--Colors-Base-white, #FFF);
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.14px;
+}
+.country-name-light{
+color: #10192D;
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.14px;
+}
+.selected-language{
+color: var(--Colors-Base-white, #FFF);
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.14px;
+}
+.selected-language-light{
+color: #10192D ;
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.14px;
+}
 </style>

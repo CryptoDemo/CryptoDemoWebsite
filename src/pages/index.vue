@@ -9,7 +9,7 @@
         <Index-header title="Log in" link="/authentication/login" class="desktop-header"/>
         <Mobile-header class="mobile-header"/>
         <section class="position-relative">
-            <v-container class="position-relative">
+        <v-container class="position-relative">
               <div class="position-absolute">    
                 <img src="/svg/Frame.svg" class="pink-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
               </div>
@@ -42,14 +42,22 @@
                   <div>
                     <span class="subtitle-text">Join over 12 million people just like you on everyone's favorite peer-to-peer platform to buy and sell Bitcoin.</span>
                   </div> 
-                <div class="form-wrap position-relative">
-                  <img src="/img/Group 1302.png" class="top-ellipse"/>
-                  <img src="/img/Group 1301.png" class="side-ellipse"/>
+                <div class="form-wrap position-relative" style="overflow: hidden;">
+                  <!-- <span class="top-grad border-span"></span> -->
+                  <!-- <span class="right-grad"></span>
+                  <span class="bottom-grad"></span>
+                  <span class="left-grad"></span> -->
+                  <!-- <img src="/img/Group 1302.png" class="top-ellipse"/> -->
+                  <!-- <img src="/img/Group 1301.png" class="side-ellipse"/>
                   <img src="/svg/Ellipse.svg" class="blue-ellipse position-absolute"/>
-                  <img src="/img/Group 1299.png" class="bottom-ellipse"/>
+                  <img src="/img/Group 1299.png" class="bottom-ellipse"/> -->
 
 
                   <div class="landing-page-form" :class="isDark ? 'landing-page-form':'light-landing-page-form'" >
+                    <span class="top-grad border-span"></span>
+                    <span class="right-grad"></span>
+                    <span class="bottom-grad border-span"></span>
+                    <span class="left-grad"></span>
                       <img src="/svg/bitcoin-star.svg" class="yellow-coin position-absolute"/>
 
                       <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute"/>
@@ -161,11 +169,11 @@
                       <v-btn class="exchange-btn" color=""> <span class="exchange-text">Exchange Now </span></v-btn>
                     </div>
                   </div>
-              </div>
                 </div>
-            </v-container>
-
-          </section>
+                </div>
+                
+              </v-container>
+            </section>
 
 
 
@@ -179,8 +187,13 @@
                       <span class="explore-trade">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
                         <div class="mx-auto btn-segment2" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
 
-                            <v-btn :class="`${transaction1 ? 'buy-btn btn-seg1': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction1=true" style="border-radius: 41px !important; height: 40px !important;">Sell✨</v-btn>
-                            <v-btn :class="`${!transaction1 ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction1=false" style="border-radius: 41px !important; height: 40px !important;" >Buy</v-btn>
+                            <v-btn :class="`${transaction1 ? 'buy-btn btn-seg1': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction1=true" style="border-radius: 41px !important; height: 40px !important;">
+                              <span>{{transaction1 ?  'Sell✨' : 'Sell' }}</span>
+                            </v-btn>
+                            <v-btn :class="`${!transaction1 ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction1=false" style="border-radius: 41px !important; height: 40px !important;" >
+                            <span>{{transaction1 ?  'Buy' : 'Buy✨' }}</span>
+                              <!-- <span v-else>Buy✨</span> -->
+                            </v-btn>
                         </div>
                 </div>
             
@@ -196,7 +209,7 @@
                                     <div :class="isDark ? 'card-header':'card-header-light'">
                                       {{ variant.title }}
                                     </div>
-                                    <div  :class="isDark ? 'text-caption':'text-caption-light'">{{variant.textCaption}}</div>
+                                    <div  :class="isDark ? 'text-caption':'text-caption-light'">{{transaction1? variant.textCaption : variant.textCaption1}}</div>
                                     <div style="margin-top: 18px; display: inline-flex;">
                                       <NuxtLink to="#"><span class="sell-btc-text me-2" style="color: #2873FF !important">Sell your bitcoin</span></NuxtLink>   
                                       <img src="/svg/blue-arrow.svg" class=""/>
@@ -356,12 +369,12 @@ const coin = ref ("BTC")
 const flag = ref("/svg/bitcoin-btc-logo 1.svg")
 
 const variants = [
-        { cardImages: '/svg/Featured icon.svg', title:'Bank transfer', textCaption:'Our guided bank transfer trades make it even easier to sell Bitcoin and receive payment.'}, 
-        { cardImages: '/svg/Featured icon (1).svg', title:'Cash payment' , textCaption:'Happy to accept cash? Then you can do just that.'}, 
-        { cardImages: '/svg/Featured icon (2).svg', title:'Online Wallets' , textCaption:'Receive payment through popular online wallets including MTN Mobile Money.'}, 
-        { cardImages: '/svg/Featured icon (3).svg', title:'Discounted gift cards' , textCaption:'Use your Bitcoin to get big discounts on popular gift cards.'}, 
-        { cardImages: '/svg/Featured icon (4).svg', title:'Digital currencies' , textCaption:'Use Tether, Ethereum, Litecoin, and more to sell Bitcoin.'}, 
-        { cardImages: '/svg/Featured icon (5).svg', title:'Goods and services' , textCaption:'Use Bitcoin to pay for goods and services from around the world.'}, 
+        { cardImages: '/svg/Featured icon.svg', title:'Bank transfer', textCaption:'Our guided bank transfer trades make it even easier to sell Bitcoin and receive payment.', textCaption1:'Our guided bank transfer trades makes it even easier to Buy Bitcoin.'}, 
+        { cardImages: '/svg/Featured icon (1).svg', title:'Cash payment' , textCaption:'Happy to accept cash? Then you can do just that.', textCaption1:'Happy to accept cash? Then you can do just that.'}, 
+        { cardImages: '/svg/Featured icon (2).svg', title:'Online Wallets' , textCaption:'Receive payment through popular online wallets including MTN Mobile Money.', textCaption1:'Buy Bitcoin using a huge range of popular online wallets, including MTN Mobile Money.'}, 
+        { cardImages: '/svg/Featured icon (3).svg', title:'Discounted gift cards' , textCaption:'Use your Bitcoin to get big discounts on popular gift cards.', textCaption1:'Have a gift card you dont need? You can trade it for Bitcoin.'}, 
+        { cardImages: '/svg/Featured icon (4).svg', title:'Digital currencies' , textCaption:'Use Tether, Ethereum, Litecoin, and more to sell Bitcoin.', textCaption1:'Use Tether, Ethereum, Litecoin, and more to buy Bitcoin.'}, 
+        { cardImages: '/svg/Featured icon (5).svg', title:'Goods and services' , textCaption:'Use Bitcoin to pay for goods and services from around the world.', textCaption1:'Use Bitcoin to Buy  goods and services from around the world.'}, 
        
   ];
 
@@ -475,7 +488,7 @@ backdrop-filter: blur(25px);
 align-items: center;
 gap: 32px;
 width: 652px;
-
+/* overflow: hidden; */
 }
 .light-landing-page-form{
 border-radius: 15px;
@@ -1268,6 +1281,141 @@ line-height: 150% !important; /* 21px */
 .coin-bg1 {
 border-radius: 15px;
 background: #1B2537;
+}
+
+
+.top-grad{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 50%,
+    rgba(40, 115, 255, 1),
+    rgba(40, 115, 255, 0)
+  );
+}
+
+.bottom-grad{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(40, 115, 255, 1),
+    rgba(40, 115, 255, 0),
+    transparent 50%
+  );
+}
+
+.right-grad{
+  position: absolute;
+  right: 0;
+  z-index: 100;
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent 50%,
+    rgba(40, 115, 255, 1),
+    rgba(40, 115, 255, 0)
+  );
+}
+
+.left-grad{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2px;
+  height: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(40, 115, 255, 1),
+    rgba(40, 115, 255, 0),
+    transparent 70%
+  );
+}
+
+.top-grad{
+  animation: animateTop 6s ease-in-out infinite;
+}
+
+.bottom-grad{
+  animation: animateBottom 6s ease-in-out infinite;
+}
+
+.right-grad{
+  animation: animateRight 6s ease-in-out infinite;
+}
+
+.left-grad{
+  animation: animateLeft 6s ease-in-out infinite;
+}
+
+@keyframes animateTop {
+  25% {
+    width: 100%;
+    opacity: 1;
+  }
+
+  30%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animateBottom {
+  0%,
+  50% {
+    opacity: 0;
+    width: 0;
+  }
+
+  75% {
+    opacity: 1;
+    width: 100%;
+  }
+
+  76%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animateRight {
+  0%,
+  25% {
+    opacity: 0.4;
+    height: 0;
+  }
+
+  50% {
+    opacity: 1;
+    height: 100%;
+  }
+
+  55%,
+  100% {
+    height: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes animateLeft {
+  0%,
+  75% {
+    opacity: 0.4;
+    bottom: 0;
+    height: 0;
+  }
+
+  100% {
+    opacity: 1;
+    height: 100%;
+  }
 }
 ::-webkit-scrollbar{
   display: none;

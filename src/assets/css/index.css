@@ -627,7 +627,7 @@ line-height: 120%; /* 28.8px */
   }
   .coin-box1{
   margin-left: 15px !important;
-  gap: 15px !important;
+  /* gap: 15px !important; */
   
   }
   .coin-box3{
@@ -645,7 +645,7 @@ line-height: 120%; /* 28.8px */
     height: 65px !important;
   }
   .Demo-header{
-    font-size: 70px !important;
+    font-size: 19vw !important;
     position: absolute !important;
     width: fit-content !important;
     top: 142px  !important;

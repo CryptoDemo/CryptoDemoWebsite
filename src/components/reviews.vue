@@ -65,11 +65,11 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 
 const reviews = [
    {
-     img:'/svg/user-avatar.svg', name:'Franklin User', alt:'avatar', location: 'In Netherland', date:'4th, August', 
+     img:'/svg/user-avatar.svg', name:'Frank Tom', alt:'avatar', location: 'In Netherland', date:'4th, August', 
    } ,
 
    {
-     img:'/svg/user-avatar.svg', name:'Okoli Bonaventure', alt:'avatar', location: 'In Germany', date:'25th, December', textlines:'/svg/textLines.svg', textlines1:'/svg/linetext-light.svg',
+     img:'/svg/user-avatar.svg', name:'Okoli Bona', alt:'avatar', location: 'In Germany', date:'25th, December', textlines:'/svg/textLines.svg', textlines1:'/svg/linetext-light.svg',
    } 
 ];
 </script>
