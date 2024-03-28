@@ -634,6 +634,7 @@ line-height: 120%; /* 28.8px */
   /* padding-left: 5px !important; */
   gap: 35px !important;
   }
+  
   .right-vector1{
     right: 70% !important;
   }
@@ -641,8 +642,8 @@ line-height: 120%; /* 28.8px */
    left: 70% !important;
   }
   .coin-ani{
-    width: 65px !important;
-    height: 65px !important;
+    width: 55px !important;
+    height: 55px !important;
   }
   .Demo-header{
     font-size: 19vw !important;
