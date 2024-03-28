@@ -126,11 +126,10 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
 
-const drawer=ref(false)
+const drawer = ref(false)
 const ToggleMenu =() =>{
 drawer.value = !drawer.value
-console.log (drawer.value)
-}
+};
 
 const select =ref("NGN")
 
