@@ -9,212 +9,207 @@
         <Index-header title="Log in" link="/authentication/login" class="desktop-header"/>
         <Mobile-header class="mobile-header"/>
         <section class="position-relative">
-        <v-container class="position-relative">
-              <div class="position-absolute">    
-                <img src="/svg/Frame.svg" class="pink-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
-              </div>
-                <div>
-                  <div class="frame-1" :class="isDark ? 'frame-1':'frame-1-light'">
-                    <v-btn color="#2873FF" class="writing-btn">Writing</v-btn>
-                    <span class="writing-text" :class="isDark ? 'writing-text':'writing-text-light'">The number one trading platform in Europe</span>
-                    <img src="/svg/blue-arrow.svg"/>
-                  </div>
-                  
-
-                   <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000;">
-                         <span class="headertext1" :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
-                           <img src="/img/Frame.png" class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
-                    </div>
-
-
-
-                <div class="d-flex text-img position-relative" v-if="theme.global.current.value.dark">
-                  <span class="web webi" style="margin-right: 78px; z-index: 1000;">Demo Web</span>
-                  <img src="/svg/Frame 1305.svg" class="demo-star" style="position: absolute; margin-left: 375px ;top: -27px;  max-width: 100%; height: auto;" /> 
-                </div>
-                <div class="d-flex text-img" v-else>
-                  <span class="web">Demo Web✨️</span>
-                </div>
-                  <div class="position-relative">
-                    <img v-lazy="'/svg/Group 1318.svg'" class="position-absolute flex-lg-and-up hidden-sm-and-down" style="top: -76px; left: -4%;"/>
-                    <img v-lazy="'/svg/Group 1320.svg'" class="green-coin position-absolute flex-lg-and-up hidden-sm-and-down"/>
-                  </div>
-                  <div>
-                    <span class="subtitle-text">Join over 12 million people just like you on everyone's favorite peer-to-peer platform to buy and sell Bitcoin.</span>
-                  </div> 
-                <div class="form-wrap position-relative">
-                                  
-                  <img src="/svg/Ellipse.svg" class="blue-ellipse position-absolute"/>
-                
-                  <div class="landing-page-form" :class="isDark ? 'landing-page-form':'light-landing-page-form'" >
-                    <span class="top-grad border-span"></span>
-                    <span class="right-grad"></span>
-                    <span class="bottom-grad border-span"></span>
-                    <span class="left-grad"></span>
-                      <img src="/svg/bitcoin-star.svg" class="yellow-coin position-absolute"/>
-
-                      <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute"/>
-
-                    <div class="btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'">
-                      <v-btn  :class="`${transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction=true" > Buy </v-btn>
-                      <v-btn :class="`${!transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction=false" >Sell</v-btn>
-                    </div>
-
-                    <div style="margin-top: 24px;">
-                      <v-menu>
-                        <template v-slot:activator="{ props }">
-                          <v-btn :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" style="letter-spacing: 0px"
-                            v-bind="props">
-                            <v-img  width="25" class="me-3 select" :src="flag"/> 
-                            <div  class="py-3" style="display: grid; cursor: pointer;">
-                            <span class="me-2">{{select}}</span> 
-                            <span class="me-2 small-text">{{coin}}</span> 
-                            </div>
-                            <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon"></v-icon>
-                          </v-btn>
-                        </template>
-
-                        <v-list>
-                          <v-list-item class="coin-bg1">
-                            <div  @click.stop style="margin-top: 15px; margin-bottom: 15px;">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 35px; margin-left: 19px;">
-                                    <path d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z" stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                              </svg>
-                               <input type="text"  placeholder="Search for Coins..." v-model="input" style="outline: none; border:  1px solid #64748B; height: 48px; width: 100%; border-radius: 25px; padding-left: 60px;"/>
-                            </div>
-
-
-                            <div  v-for="(item, index) in filteredItems?.length ? filteredItems : location" :key="index" class="d-flex py-3" style="cursor: pointer">
-                              <v-list-item-title @click="select=item.title; coin=item.coinText; flag= item.image" class="d-flex">
-                              <v-img width="20" class="rounded-5 me-3" :src="item.image"/>    
-                              <span v-if="item.coinText"> {{ item.title }} </span>
-                              <p v-else>Coin Not Found</p>
-                            </v-list-item-title>
-                            </div>
-                          </v-list-item>
-                        </v-list>
-                      </v-menu> 
-                      <div style="margin-top:9px">  
-                        <span class="btc-ammt">40 BTC = <span class="btc-ammt1">40,144.86 USD</span></span>
-                      </div>
-                      <div style="margin-top: 30px;">
-                      <span :class="isDark ? 'pay-with':'pay-with-light'" > {{transaction? "Pay with" : "Get paid via" }}</span>
-                          <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
-                            <span class="text2" style="font-weight: 700; display: contents; font-family: Manrope;">Select payment method (20+)</span>
-                                <v-dialog width="600">
-                                  <template v-slot:activator="{ props }">
-                                    <v-btn v-bind="props" :class="isDark ? 'show-all':'show-all-light'" text="Show all"> </v-btn>
-                                  </template>
-
-                                  <template v-slot:default="{ isActive }">
-                                    <v-card title="More payment options...." class="dialog">
-                                      <v-card-text class="mt-5">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                      </v-card-text>
-
-                                      <v-card-actions>
-                                        <v-spacer></v-spacer>
-
-                                        <v-btn
-                                          text="Close Dialog"
-                                          @click="isActive.value = false"
-                                        ></v-btn>
-                                      </v-card-actions>
-                                    </v-card>
-                                  </template>
-                                </v-dialog>
-
-                          </div>
-                          <div class="payment-wrap" style="overflow: scroll;">
-                             <Transaction-btn buttonText="Bank Transfers" class="mt-4"/>
-                             <Transaction-btn buttonText="Paypal" class="mt-4"/>
-                             <Transaction-btn buttonText="Paystack" class="mt-4"/>
-                             <Transaction-btn buttonText="Flutterwave" class="mt-4"/>
-                             <Transaction-btn buttonText="Other bank transfer" class="mt-4"/>
-                          </div>
-                      </div>
-                      <div style="margin-top: 30px;">
-                        <span  :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to  spend" : "I want to  receive" }}</span>
-                        <div class="d-flex" style="margin-top:9px; position: relative;">
-                        <input type="text" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
-                                  
-                        placeholder="Enter Amount"/>
-                        <v-menu transition="scale-transition">
-                            <template v-slot:activator="{ props }">
-                              <v-btn v-bind="props" class="position-absolute" :class="isDark ? 'show-all':'show-all-light'" style="right: 10px;margin-top: 8px;font-weight: 700;">
-                                {{ selected }}
-                                <v-icon  icon="mdi-chevron-down notranslate"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
-                                <!-- <v-icon v-else icon="mdi-chevron-up"  color="#8E9BAE" style="margin-left: 6px "></v-icon> -->
-                            </v-btn>
-                            </template>
-
-                            <v-list>
-                              <v-list-item v-for="(item, i) in coinType" :key="i" style="cursor: pointer;">
-                                  <v-list-item-title @click="selected=item.title">{{ item.title }}</v-list-item-title>
-                              </v-list-item>
-                            </v-list>
-                        </v-menu>
-                        </div>
-                        <div style=" margin-top: 9px ;">
-                          <span class="hint-text">Mininum: 10 {{ selected }}</span>
-                        </div>
-                      </div>
-                      <v-btn class="exchange-btn" color=""> <span class="exchange-text">Exchange Now </span></v-btn>
-                    </div>
-                  </div>
-                </div>
-                </div>
-                
-              </v-container>
-            </section>
-
-
-
-      </div>
-          <v-container class=" position-relative">
-            <div class=""> 
-                      <img src="/svg/Ellipse 2813.svg"  class="position-absolute blue-ellipse1" style="right:0; bottom: 65%;"/>
-                <div class="section2i" :class="isDark ? 'section2':'section2-light'">
-                      <span class="section2-subtitle card-sub1">TRADE YOUR COIN LIKE A FOREX EXPERT</span>
-                      <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Over 350 ways to buy and sell Bitcoin.</span>
-                      <span class="explore-trade">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
-                        <div class="mx-auto btn-segment2" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
-
-                            <v-btn :class="`${transaction1 ? 'buy-btn btn-seg1': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction1=true" style="border-radius: 41px !important; height: 40px !important;">
-                              <span>{{transaction1 ?  'Sell✨' : 'Sell' }}</span>
-                            </v-btn>
-                            <v-btn :class="`${!transaction1 ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction1=false" style="border-radius: 41px !important; height: 40px !important;" >
-                            <span>{{transaction1 ?  'Buy' : 'Buy✨' }}</span>
-                              <!-- <span v-else>Buy✨</span> -->
-                            </v-btn>
-                        </div>
-                </div>
-            
-                <div class="card-layout1">
-                    <v-row align="center" justify="center">
-                      <v-col v-for="(variant, i) in variants"   sm="4" :key="i" cols="12">
-                        <v-card  :class="isDark ? 'card-layout':'card-layout-light'" bg-color="#10192D"  color="white" :variant="variant">
-                            <v-card-item style="padding: 0px !important">
-                                <div>
-                                    <div class="">
-                                      <img :src="variant.cardImages"/>
-                                    </div>
-                                    <div :class="isDark ? 'card-header':'card-header-light'">
-                                      {{ variant.title }}
-                                    </div>
-                                    <div  :class="isDark ? 'text-caption':'text-caption-light'">{{transaction1? variant.textCaption : variant.textCaption1}}</div>
-                                    <div style="margin-top: 18px; display: inline-flex;">
-                                      <NuxtLink to="#"><span class="sell-btc-text me-2" style="color: #2873FF !important">Sell your bitcoin</span></NuxtLink>   
-                                      <img src="/svg/blue-arrow.svg" class=""/>
-                                    </div>
-                                </div>
-                            </v-card-item>
-                        </v-card>
-                      </v-col>
-                    </v-row>
-                </div>
+          <v-container class="position-relative">
+            <div class="position-absolute">    
+              <img src="/svg/Frame.svg" class="pink-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
             </div>
+              <div>
+                <div class="frame-1" :class="isDark ? 'frame-1':'frame-1-light'">
+                  <v-btn color="#2873FF" class="writing-btn">Writing</v-btn>
+                  <span class="writing-text" :class="isDark ? 'writing-text':'writing-text-light'">The number one trading platform in Europe</span>
+                  <img src="/svg/blue-arrow.svg"/>
+                </div>
+                
+                  <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000;">
+                    <span class="headertext1" :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
+                    <img src="/img/Frame.png" class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
+                  </div>
+
+
+
+              <div class="d-flex text-img position-relative" v-if="theme.global.current.value.dark">
+                <span class="web webi" style="margin-right: 78px; z-index: 1000;">Demo Web</span>
+                <img src="/svg/Frame 1305.svg" class="demo-star" style="position: absolute; margin-left: 375px ;top: -27px;  max-width: 100%; height: auto;" /> 
+              </div>
+              <div class="d-flex text-img" v-else>
+                <span class="web">Demo Web✨️</span>
+              </div>
+                <div class="position-relative">
+                  <img v-lazy="'/svg/Group 1318.svg'" class="position-absolute flex-lg-and-up hidden-sm-and-down" style="top: -76px; left: -4%;"/>
+                  <img v-lazy="'/svg/Group 1320.svg'" class="green-coin position-absolute flex-lg-and-up hidden-sm-and-down"/>
+                </div>
+                <div>
+                  <span class="subtitle-text">Join over 12 million people just like you on everyone's favorite peer-to-peer platform to buy and sell Bitcoin.</span>
+                </div> 
+              <div class="form-wrap position-relative">
+                                
+                <img src="/svg/Ellipse.svg" class="blue-ellipse position-absolute"/>
+              
+                <div class="landing-page-form" :class="isDark ? 'landing-page-form':'light-landing-page-form'" >
+                  <span class="top-grad border-span"></span>
+                  <span class="right-grad"></span>
+                  <span class="bottom-grad border-span"></span>
+                  <span class="left-grad"></span>
+                    <img src="/svg/bitcoin-star.svg" class="yellow-coin position-absolute"/>
+
+                    <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute"/>
+
+                  <div class="btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                    <v-btn  :class="`${transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction=true" > Buy </v-btn>
+                    <v-btn :class="`${!transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction=false" >Sell</v-btn>
+                  </div>
+
+                  <div style="margin-top: 24px;">
+                    <v-menu>
+                      <template v-slot:activator="{ props }">
+                        <v-btn :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" style="letter-spacing: 0px"
+                          v-bind="props">
+                          <v-img  width="25" class="me-3 select" :src="flag"/> 
+                          <div  class="py-3" style="display: grid; cursor: pointer;">
+                          <span class="me-2">{{select}}</span> 
+                          <span class="me-2 small-text">{{coin}}</span> 
+                          </div>
+                          <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon"></v-icon>
+                        </v-btn>
+                      </template>
+
+                      <v-list>
+                        <v-list-item class="coin-bg1">
+                          <div  @click.stop style="margin-top: 15px; margin-bottom: 15px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 35px; margin-left: 19px;">
+                                  <path d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z" stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                              <input type="text"  placeholder="Search for Coins..." v-model="input" style="outline: none; border:  1px solid #64748B; height: 48px; width: 100%; border-radius: 25px; padding-left: 60px;"/>
+                          </div>
+
+
+                          <div  v-for="(item, index) in filteredItems?.length ? filteredItems : location" :key="index" class="d-flex py-3" style="cursor: pointer">
+                            <v-list-item-title @click="select=item.title; coin=item.coinText; flag= item.image" class="d-flex">
+                            <v-img width="20" class="rounded-5 me-3" :src="item.image"/>    
+                            <span v-if="item.coinText"> {{ item.title }} </span>
+                            <p v-else>Coin Not Found</p>
+                          </v-list-item-title>
+                          </div>
+                        </v-list-item>
+                      </v-list>
+                    </v-menu> 
+                    <div style="margin-top:9px">  
+                      <span class="btc-ammt">40 BTC = <span class="btc-ammt1">40,144.86 USD</span></span>
+                    </div>
+                    <div style="margin-top: 30px;">
+                    <span :class="isDark ? 'pay-with':'pay-with-light'" > {{transaction? "Pay with" : "Get paid via" }}</span>
+                        <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
+                          <span class="text2" style="font-weight: 700; display: contents; font-family: Manrope;">Select payment method (20+)</span>
+                              <v-dialog width="600">
+                                <template v-slot:activator="{ props }">
+                                  <v-btn v-bind="props" :class="isDark ? 'show-all':'show-all-light'" text="Show all"> </v-btn>
+                                </template>
+
+                                <template v-slot:default="{ isActive }">
+                                  <v-card title="More payment options...." class="dialog">
+                                    <v-card-text class="mt-5">
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </v-card-text>
+
+                                    <v-card-actions>
+                                      <v-spacer></v-spacer>
+
+                                      <v-btn
+                                        text="Close Dialog"
+                                        @click="isActive.value = false"
+                                      ></v-btn>
+                                    </v-card-actions>
+                                  </v-card>
+                                </template>
+                              </v-dialog>
+
+                        </div>
+                        <div class="payment-wrap" style="overflow: scroll;">
+                            <Transaction-btn buttonText="Bank Transfers" class="mt-4"/>
+                            <Transaction-btn buttonText="Paypal" class="mt-4"/>
+                            <Transaction-btn buttonText="Paystack" class="mt-4"/>
+                            <Transaction-btn buttonText="Flutterwave" class="mt-4"/>
+                            <Transaction-btn buttonText="Other bank transfer" class="mt-4"/>
+                        </div>
+                    </div>
+                    <div style="margin-top: 30px;">
+                      <span  :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to  spend" : "I want to  receive" }}</span>
+                      <div class="d-flex" style="margin-top:9px; position: relative;">
+                      <input type="text" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
+                                
+                      placeholder="Enter Amount"/>
+                      <v-menu transition="scale-transition">
+                          <template v-slot:activator="{ props }">
+                            <v-btn v-bind="props" class="position-absolute" :class="isDark ? 'show-all':'show-all-light'" style="right: 10px;margin-top: 8px;font-weight: 700;">
+                              {{ selected }}
+                              <v-icon  icon="mdi-chevron-down notranslate"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
+                              <!-- <v-icon v-else icon="mdi-chevron-up"  color="#8E9BAE" style="margin-left: 6px "></v-icon> -->
+                          </v-btn>
+                          </template>
+
+                          <v-list>
+                            <v-list-item v-for="(item, i) in coinType" :key="i" style="cursor: pointer;">
+                                <v-list-item-title @click="selected=item.title">{{ item.title }}</v-list-item-title>
+                            </v-list-item>
+                          </v-list>
+                      </v-menu>
+                      </div>
+                      <div style=" margin-top: 9px ;">
+                        <span class="hint-text">Mininum: 10 {{ selected }}</span>
+                      </div>
+                    </div>
+                    <v-btn class="exchange-btn" color=""> <span class="exchange-text">Exchange Now </span></v-btn>
+                  </div>
+                </div>
+              </div>
+              </div>                
           </v-container>
+        </section>
+      </div>
+
+      <v-container class=" position-relative">
+        <div class=""> 
+          <img src="/svg/Ellipse 2813.svg"  class="position-absolute blue-ellipse1" style="right:0; bottom: 65%;"/>
+            <div class="section2i" :class="isDark ? 'section2':'section2-light'">
+              <span class="section2-subtitle card-sub1">TRADE YOUR COIN LIKE A FOREX EXPERT</span>
+              <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Over 350 ways to buy and sell Bitcoin.</span>
+              <span class="explore-trade">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
+              <div class="mx-auto btn-segment2" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
+
+                <v-btn :class="`${transaction1 ? 'buy-btn btn-seg1': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction1=true" style="border-radius: 41px !important; height: 40px !important;">
+                  <span>{{transaction1 ?  'Sell✨' : 'Sell' }}</span>
+                </v-btn>
+                <v-btn :class="`${!transaction1 ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction1=false" style="border-radius: 41px !important; height: 40px !important;" >
+                <span>{{transaction1 ?  'Buy' : 'Buy✨' }}</span>
+                </v-btn>
+              </div>
+            </div>
+        
+            <div class="card-layout1">
+                <v-row align="center" justify="center">
+                  <v-col v-for="(variant, i) in variants"   sm="4" :key="i" cols="12">
+                    <v-card  :class="isDark ? 'card-layout':'card-layout-light'" bg-color="#10192D"  color="white" :variant="variant">
+                        <v-card-item style="padding: 0px !important">
+                            <div>
+                                <div class="">
+                                  <img :src="variant.cardImages"/>
+                                </div>
+                                <div :class="isDark ? 'card-header':'card-header-light'">
+                                  {{ variant.title }}
+                                </div>
+                                <div  :class="isDark ? 'text-caption':'text-caption-light'">{{transaction1? variant.textCaption : variant.textCaption1}}</div>
+                                <div style="margin-top: 18px; display: inline-flex;">
+                                  <NuxtLink to="#"><span class="sell-btc-text me-2" style="color: #2873FF !important">Sell your bitcoin</span></NuxtLink>   
+                                  <img src="/svg/blue-arrow.svg" class=""/>
+                                </div>
+                            </div>
+                        </v-card-item>
+                    </v-card>
+                  </v-col>
+                </v-row>
+            </div>
+        </div>
+      </v-container>
 
         <v-container class=" position-relative section2ii" >
               <img v-lazy="'/svg/Ellipse 2813.svg'" class="position-absolute blue-ellipse2" style="right:0; margin-top: 144px ;"/>
@@ -1328,7 +1323,7 @@ background: #1B2537;
     180deg,
     rgba(40, 115, 255, 1),
     rgba(40, 115, 255, 0),
-    transparent 70%
+    transparent 50%
   );
 }
 

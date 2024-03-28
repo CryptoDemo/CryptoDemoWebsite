@@ -658,7 +658,9 @@ line-height: 120%; /* 28.8px */
   .main1 {
     font-size: calc(10px + (220 - 50) * (95vw - 150px) / (2560 - 320)) !important;
   }
-  
+  .section2ii2{
+    height: fit-content !important;
+  }
 }
 
 

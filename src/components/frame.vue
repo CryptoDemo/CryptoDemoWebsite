@@ -31,7 +31,7 @@
             </v-col>
 
             <v-col>
-                <v-col class="second-col" style="padding: 8px; margin-bottom: 8px;">
+                <v-col class="second-col mt-2" style="padding: 8px; margin-bottom: 8px;">
                   <div class="frame-2"  :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 40px; width: 100%;">
                     <div>
                       <div class="position-relative">
