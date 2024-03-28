@@ -1,7 +1,7 @@
 <template>
   
-    <img src="/svg/Background pattern.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
-    <img src="/svg/Background pattern.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
+    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
+    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
        
     <div>
       <div>
@@ -50,7 +50,7 @@
                   <span class="right-grad"></span>
                   <span class="bottom-grad border-span"></span>
                   <span class="left-grad"></span>
-                    <img src="/svg/bitcoin-star.svg" class="yellow-coin position-absolute"/>
+                    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619519/bitcoin-star_h5jhpu.svg" class="yellow-coin position-absolute"/>
 
                     <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute"/>
 
@@ -158,7 +158,7 @@
                         <span class="hint-text">Mininum: 10 {{ selected }}</span>
                       </div>
                     </div>
-                    <v-btn class="exchange-btn" color=""> <span class="exchange-text">Exchange Now </span></v-btn>
+                    <v-btn class="exchange-btn" color="" style="letter-spacing: 0px !important;"> <span class="exchange-text">Exchange Now </span></v-btn>
                   </div>
                 </div>
               </div>
@@ -307,7 +307,7 @@
                   <div class="phone-rectangle" style="position: relative; top: -58px; display: flex; justify-content: center;">
                     <div v-if="theme.global.current.value.dark">
                       <img src="/svg/mobile-dark.svg" class="mobile-screen"/>
-                      <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
+                      <img src="" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                    </div>
                    <div v-else>
                     <img v-lazy="'/svg/mobile-light.svg'" class="mobile-screen"/>
@@ -840,6 +840,7 @@ font-size: 12.86px;
 font-style: normal;
 font-weight: 700;
 line-height: 150%; /* 19.289px */
+letter-spacing: 0px !important;
 }
 .section2{
 border-radius: 50px;
