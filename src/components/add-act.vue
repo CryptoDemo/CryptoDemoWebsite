@@ -10,7 +10,7 @@
       </v-btn>
 
 
-      <v-dialog v-model="dialog" width="647" >
+      <v-dialog v-model="dialog" width="647">
         <v-card style="border-radius: 32px; border: 1px solid var(--border, #303A46); background:#12181F; padding: 32px 72px; box-shadow: none">
           <v-card-title>
              <div class="d-flex">

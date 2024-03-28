@@ -2,9 +2,9 @@
   <div>
     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
     <v-container>
-          <div no-gutters  style="margin-top: 130px; display: flex;">
+          <div  style="margin-top: 110px; display: flex; justify-content: center;">
             <div class="me-5">
-              <div class="pa-5 ma-">
+              <div class="pa-5">
                   <Side-nav/>
               </div>
             </div>
@@ -12,19 +12,19 @@
             <div style="margin-bottom: 194px">
                 <div class="mt-5">
                     
-                    <div class="acct-settings" style="display: flex; justify-content: space-between; margin-bottom: 47px">    
+                    <div class="acct-settings" style="display: flex; justify-content: space-between; margin-bottom: 47px; width: 100%;">    
                         <span class="acct-text"> Payment methods</span>
                         <span class="mail-text">vaststudiosng@gmail.com</span>  
                     </div>
  
-                    <section >
+                    <section>
                        <div class="px-3"  style="margin-top: 35px; justify-content: space-between; display: flex;">
                           <span class="setup-text"> Add your bank account details below.</span>  
                           <Add-act/>  
                        </div>
 
-                      <div style="margin-top: 28px; border-radius: 24px; border: 1px solid var(--border, #303A46); padding: 16px 26px; width: fit-content;">
-                        <div >
+                      <div style="margin-top: 28px; border-radius: 24px; border: 1px solid var(--border, #303A46); padding: 12px 13px; width: fit-content;">
+                        <div>
                           <span class="setup-text d-flex">Personal</span>
                           <div class="d-flex" style="justify-content: space-between;">
                             <div style="display: flex; margin-top: 36px">
@@ -55,7 +55,7 @@
                           <Add-act/>  
                        </div>
 
-                      <div style="margin-top: 28px; border-radius: 24px; border: 1px solid var(--border, #303A46); padding: 16px 26px; width: fit-content;">
+                      <div style="margin-top: 28px; border-radius: 24px; border: 1px solid var(--border, #303A46); padding: 10px 10px; width: fit-content;">
                         <div >
                           <span class="setup-text d-flex">Personal</span>
                           <div class="d-flex" style="justify-content: space-between;">

@@ -140,7 +140,7 @@
                               </v-btn>
                             </template>
 
-                          <v-list>
+                          <v-list class="coin-card">
                             <v-list-item>
                               <div v-for="(item, index) in allCoins" class="d-flex py-3" style="cursor: pointer"
                                 :key="index" >
@@ -569,5 +569,12 @@ font-weight: 600;
 line-height: normal;
 text-transform: capitalize !important;
 letter-spacing: 0px;
+ }
+
+ .coin-card{
+background: #1B2537 !important; 
+cursor: pointer; 
+border: 0.5px solid #2f3946;
+  
  }
 </style>

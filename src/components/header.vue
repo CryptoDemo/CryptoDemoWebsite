@@ -4,17 +4,12 @@
     <v-app-bar :elevation="2" class="px-15 pt-3 py-15 pb-3 d-flex">
 
       <v-container style="display: flex; align-items: center;">
-        <template v-slot:prepend>
-          <v-app-bar-nav-icon>
-               <img src="/img/Logo.png"/>
-          </v-app-bar-nav-icon>
-        </template>
-      
+        
+        <img src="/svg/Logo.svg" class="me-3"/>
         <v-app-bar-title class="nav-title flex-lg-and-up hidden-sm-and-down">Demo </v-app-bar-title>
 
         <div style="position: relative;"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
        
-        <!-- <template v-slot:append > -->
           <span class="text1 flex-lg-and-up hidden-sm-and-down" style="align-items: center; display: flex;">{{props.text2}}</span>
           <NuxtLink :to="props.link">  <span class="text2">{{props.title}}</span></NuxtLink>
  
@@ -32,7 +27,7 @@
           <template v-slot:activator="{ props }">
             <v-btn class="dropdown-btn1i me-3" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px;">
               <v-img  width="24" class="me-3" :src="flag"/> 
-              <span class="me-2 flex-lg-and-up hidden-sm-and-down">{{select}}</span>
+              <span class="me-2 country-text flex-lg-and-up hidden-sm-and-down">{{select}}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                 <g clip-path="url(#clip0_7328_44812)">
                   <path d="M12.0007 13.7951L16.9507 8.74609L18.3647 10.1884L12.0007 16.6797L5.63672 10.1884L7.05072 8.74609L12.0007 13.7951Z" fill="white"/>
@@ -46,16 +41,14 @@
             </v-btn>
           </template>
 
-          <v-list>
+          <v-list style="background: #1B2537 !important; cursor: pointer; border: 0.5px solid #2f3946;">
             <v-list-item>
-              <v-row dense style="max-width: 290px;">
-              <v-col v-for="(item, index) in locations" class="" sm="4" 
-                :key="index" >
+              <v-row dense style="max-width: 250px;">
+              <v-col v-for="(item, index) in locations" class="" sm="12" :key="index" >
             
-                <!-- <v-col  v-for="item in locations" :key="item.title" sm="3"> -->
-                <v-list-item-title @click="select=item.title; flag= item.image" style="text-align: -webkit-center;">
-                 <v-img width="60" class="rounded-5" :src="item.image"></v-img>    
-                <span> {{ item.title }} </span>
+                <v-list-item-title @click="select=item.title; flag= item.image" style="display: flex; align-items: center;">
+                 <img width="30" class="me-3" :src="item.image" style="border-radius: 10px;"/>    
+                <span class="country-text"> {{ item.title }} </span>
               </v-list-item-title>
                 </v-col>
               </v-row>
@@ -88,8 +81,6 @@
       </div>
            
 
-        <!-- </template> -->
-
       </v-container>
       </v-app-bar>
   </div>
@@ -103,12 +94,14 @@ const select =ref("Spanish")
 const flag = ref("/img/china.png")
 
 const locations = [
-        { title: 'English', image:"/img/china.png" },
-        { title: 'Spanish',  image:"/img/china.png" },
-        { title: 'French',  image:"/img/china.png" },
-        { title: 'French',  image:"/img/china.png" },
-        { title: 'French',  image:"/img/china.png" },
-        { title: 'Igbo', image:"/img/china.png" },
+        { title: 'English', image:"/flags/aw.svg" },
+        { title: 'Spanish',  image:"/flags/ma.svg" },
+        { title: 'French',  image:"/flags/na.svg" },
+        { title: 'French',  image:"/flags/ph.svg" },
+        { title: 'French',  image:"/flags/um.svg" },
+        { title: 'Igbo', image:"/flags/zm.svg" },
+        { title: 'Igbo', image:"/flags/uz.svg" },
+        { title: 'Igbo', image:"/flags/vc.svg" },
       ];
 const props = defineProps(
   {
@@ -143,10 +136,11 @@ color: white!important;
 box-shadow: none!important;
 }
 .nav-title{
+font-family: Manrope;
 color: #FFF;
-font-size: 20px;
+font-size: 20px !important;
 font-style: normal;
-font-weight: 800;
+font-weight: 800 !important;
 line-height: 120%; /* 24px */
 }
 .text1{
@@ -227,6 +221,15 @@ justify-content: center;
 flex-shrink: 0;
 }
 
+.country-text{
+color: var(--Colors-Base-white, #FFF);
+text-align: center;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
 ::-webkit-input-placeholder {
 color: #92929D !important;
 font-family: Poppins !important;

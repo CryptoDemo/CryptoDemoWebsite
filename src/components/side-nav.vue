@@ -23,7 +23,7 @@
          <span style="color: #D8D8D8; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 800!important; line-height: 28px;">Install our mobile app to <br> receive push <br>notifications on your <br> device.</span>
        </div>
      </div>
-     <v-btn style="border-radius: 8px; background: #161D26; display: flex; padding: 6px 45px; letter-spacing: 0px; text-transform: unset; width: 100%; height: 40px!important;">Get app</v-btn>
+     <v-btn style="border-radius: 8px; background: #161D26; display: flex; padding: 6px 45px; letter-spacing: 0px; box-shadow: none; text-transform: unset; width: 100%; height: 40px!important;">Get app</v-btn>
    </div>
 
 
