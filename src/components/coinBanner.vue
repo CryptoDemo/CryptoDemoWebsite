@@ -96,6 +96,7 @@ position: relative;
 background: #165CDD;
 width: 100%;
 max-width: 100%;
+height: 100%;
 z-index: 1000;
 }
 .caption1i{

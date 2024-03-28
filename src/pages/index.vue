@@ -568,7 +568,7 @@ letter-spacing: 0px!important;
 .sell-btn{
 display: flex;
 border-radius: 12px;
-background: var(--Others-White, #FFF);
+background: inherit !important;
 border: unset;
 box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02) !important;
 justify-content: center;

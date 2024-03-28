@@ -8,8 +8,10 @@
             <v-toolbar-title class="header-title" :class="isDark ? 'header-title':'header-title-light'">Demo Web</v-toolbar-title>
            
                  <v-spacer></v-spacer>
+
+                 <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
   
-                 <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"   style="position: absolute; right: -10%;"/>
+                 <!-- <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"   style="position: absolute; right: -10%;"/> -->
         
           </div>
         </v-app-bar>
@@ -50,7 +52,7 @@
         <div style="margin-top: 25px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
         </div>
-        <v-list style="margin-bottom: 17px; margin-top: 17px;">
+        <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 17px; margin-top: 17px;">
           <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" >Wallet</v-btn>
         </v-list>
       
@@ -120,16 +122,14 @@ import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 
 
+const drawer = ref(false)
+// const ToggleMenu =() =>{
+// drawer.value = !drawer.value
+// };
 
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-
-
-const drawer = ref(false)
-const ToggleMenu =() =>{
-drawer.value = !drawer.value
-};
 
 const select =ref("NGN")
 
