@@ -42,17 +42,10 @@
                   <div>
                     <span class="subtitle-text">Join over 12 million people just like you on everyone's favorite peer-to-peer platform to buy and sell Bitcoin.</span>
                   </div> 
-                <div class="form-wrap position-relative" style="overflow: hidden;">
-                  <!-- <span class="top-grad border-span"></span> -->
-                  <!-- <span class="right-grad"></span>
-                  <span class="bottom-grad"></span>
-                  <span class="left-grad"></span> -->
-                  <!-- <img src="/img/Group 1302.png" class="top-ellipse"/> -->
-                  <!-- <img src="/img/Group 1301.png" class="side-ellipse"/>
+                <div class="form-wrap position-relative">
+                                  
                   <img src="/svg/Ellipse.svg" class="blue-ellipse position-absolute"/>
-                  <img src="/img/Group 1299.png" class="bottom-ellipse"/> -->
-
-
+                
                   <div class="landing-page-form" :class="isDark ? 'landing-page-form':'light-landing-page-form'" >
                     <span class="top-grad border-span"></span>
                     <span class="right-grad"></span>
@@ -225,7 +218,7 @@
 
         <v-container class=" position-relative section2ii" >
               <img v-lazy="'/svg/Ellipse 2813.svg'" class="position-absolute blue-ellipse2" style="right:0; margin-top: 144px ;"/>
-             <div  :class="isDark ? 'section2':'section2-light'">
+             <div class="section2ii2"  :class="isDark ? 'section2':'section2-light'">
                 <span class="section2-subtitle sub-text2" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features of The demo web</span>
                 <span class="section2-titleii" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-bottom: 88px;">Welcome to a financial system for the 100%.</span>
              </div>
@@ -1314,12 +1307,12 @@ background: #1B2537;
 .right-grad{
   position: absolute;
   right: 0;
-  z-index: 100;
+  top: 0;
   width: 2px;
-  height: 2px;
+  height: 0;
   background: linear-gradient(
     180deg,
-    transparent 50%,
+    transparent 10%,
     rgba(40, 115, 255, 1),
     rgba(40, 115, 255, 0)
   );
@@ -1388,7 +1381,7 @@ background: #1B2537;
 @keyframes animateRight {
   0%,
   25% {
-    opacity: 0.4;
+    opacity: 0.7;
     height: 0;
   }
 
