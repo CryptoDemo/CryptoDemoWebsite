@@ -307,7 +307,7 @@
                   <div class="phone-rectangle" style="position: relative; top: -58px; display: flex; justify-content: center;">
                     <div v-if="theme.global.current.value.dark">
                       <img src="/svg/mobile-dark.svg" class="mobile-screen"/>
-                      <img src="" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
+                      <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                    </div>
                    <div v-else>
                     <img v-lazy="'/svg/mobile-light.svg'" class="mobile-screen"/>

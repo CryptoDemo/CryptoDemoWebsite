@@ -21,7 +21,7 @@
                     <v-row>
                       <v-col>
                         <div :class="isDark ? 'avatar-bg':'avatar-bg-light'">
-                          <img src="/svg/hub.svg" style="display: flex; margin: auto;"/>
+                          <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619581/hub_l6s401.svg" style="display: flex; margin: auto;"/>
                         </div>
                       </v-col>
                       <v-col cols="7">
@@ -79,7 +79,7 @@
             
                 <v-list-item-title @click="select=item.title; flag= item.image" style="display: flex; align-items: center">
                  <img width="30" class="me-3" :src="item.image" style="border-radius: 10px;"/>    
-                <!-- <span class="country-name"> {{ item.title }} </span> -->
+               
                 <span class="country-name" :class="isDark ? 'country-name':'country-name-light'"> {{ item.countryname }} </span>
               </v-list-item-title>
                 </v-col>
