@@ -172,7 +172,7 @@ const items = [
 border-bottom: 1px solid #10192D;
 border-bottom: 1px solid #10192D;
 background: rgba(6, 10, 29, 0.60)!important;
-backdrop-filter: blur(50px);
+/* backdrop-filter: blur(50px); */
 display: flex !important;
 height: 80px;
 position: fixed;
