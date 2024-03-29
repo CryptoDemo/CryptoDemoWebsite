@@ -599,7 +599,7 @@ line-height: 120%; /* 28.8px */
   }
   .headline{
     font-size: 40px !important;
-    /* width: 151px !important; */
+    width: 340px !important;
     margin: auto !important;
     letter-spacing: -1.2px !important;
     margin-top: 24px !important;
@@ -612,9 +612,15 @@ line-height: 120%; /* 28.8px */
   .explore2i{
   font-size: 16px !important;
   color: #DBE8FF !important;
-  /* letter-spacing: 0.48px !important; */
-  width: fit-content !important;
+  letter-spacing: 0.48px !important;
+  width: 340px !important;
+  display: flex !important;
+  align-items: center !important;
   margin-top: 24px !important;
+  }
+
+  .marquee-container{
+    margin-top: 262px !important;
   }
   .explore-trade{
   font-size: 16px !important;
