@@ -634,11 +634,11 @@ line-height: 120%; /* 28.8px */
   gap: 25px !important;
   }
   .row1{
-    
+    padding-right: 10px !important;
   }
   .coin-box3{
   /* padding-left: 5px !important; */
-  gap: 35px !important;
+  /* gap: 35px !important; */
   }
   
   .coin-ani{

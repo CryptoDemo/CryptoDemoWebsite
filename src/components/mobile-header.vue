@@ -10,14 +10,14 @@
              
                 <v-spacer></v-spacer>
     
-                <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"   style="position: absolute; right: -10%;"/>
+                <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"   style="right: -10%;"/>
           
             </div>
           </v-app-bar>
 
 
-          <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 20px; height: fit-content; z-index: 10000;">
-            <v-menu>
+          <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 20px; height: fit-content; z-index: 10000 !important;">
+            <v-menu style="z-index: 100000 !important; position: relative !important;">
             <template v-slot:activator="{ props }">
               <v-btn  class="me-4" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
                 <img  width="32" class="me-3" :src="flag"/> 
@@ -223,6 +223,7 @@ height: fit-content !important;
 top: 0 !important;
 border-radius: 15px;
 background: #060A1D !important;
+box-sizing: border-box;
 }
 .v-navigation-drawer-light{
 /* z-index: 904; */
