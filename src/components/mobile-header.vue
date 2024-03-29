@@ -11,7 +11,7 @@
                 <!-- <v-spacer></v-spacer> -->
     
                 
-                <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"   style="right: -10%;"/>
+                <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"   style="position: absolute; right: -10%;"/>
             </div>
           </v-app-bar>
 
