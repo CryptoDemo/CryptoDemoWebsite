@@ -188,7 +188,7 @@
             <div class="card-layout1">
                 <v-row align="center" justify="center">
                   <v-col v-for="(variant, i) in variants"   sm="4" :key="i" cols="12">
-                    <v-card  :class="isDark ? 'card-layout':'card-layout-light'" bg-color="#10192D"  color="white" :variant="variant">
+                    <v-card  :class="isDark ? 'card-layout':'card-layout-light'" bg-color="#10192D"  color="white" variant="text">
                         <v-card-item style="padding: 0px !important">
                             <div>
                                 <div class="">
@@ -357,22 +357,21 @@ const coin = ref ("BTC")
 const flag = ref("/svg/bitcoin-btc-logo 1.svg")
 
 const variants = [
-        { cardImages: '/svg/Featured icon.svg', title:'Bank transfer', textCaption:'Our guided bank transfer trades make it even easier to sell Bitcoin and receive payment.', textCaption1:'Our guided bank transfer trades makes it even easier to Buy Bitcoin.'}, 
-        { cardImages: '/svg/Featured icon (1).svg', title:'Cash payment' , textCaption:'Happy to accept cash? Then you can do just that.', textCaption1:'Happy to accept cash? Then you can do just that.'}, 
-        { cardImages: '/svg/Featured icon (2).svg', title:'Online Wallets' , textCaption:'Receive payment through popular online wallets including MTN Mobile Money.', textCaption1:'Buy Bitcoin using a huge range of popular online wallets, including MTN Mobile Money.'}, 
-        { cardImages: '/svg/Featured icon (3).svg', title:'Discounted gift cards' , textCaption:'Use your Bitcoin to get big discounts on popular gift cards.', textCaption1:'Have a gift card you dont need? You can trade it for Bitcoin.'}, 
-        { cardImages: '/svg/Featured icon (4).svg', title:'Digital currencies' , textCaption:'Use Tether, Ethereum, Litecoin, and more to sell Bitcoin.', textCaption1:'Use Tether, Ethereum, Litecoin, and more to buy Bitcoin.'}, 
-        { cardImages: '/svg/Featured icon (5).svg', title:'Goods and services' , textCaption:'Use Bitcoin to pay for goods and services from around the world.', textCaption1:'Use Bitcoin to Buy  goods and services from around the world.'}, 
-       
-  ];
+  { cardImages: '/svg/Featured icon.svg', title:'Bank transfer', textCaption:'Our guided bank transfer trades make it even easier to sell Bitcoin and receive payment.', textCaption1:'Our guided bank transfer trades makes it even easier to Buy Bitcoin.'}, 
+  { cardImages: '/svg/Featured icon (1).svg', title:'Cash payment' , textCaption:'Happy to accept cash? Then you can do just that.', textCaption1:'Happy to accept cash? Then you can do just that.'}, 
+  { cardImages: '/svg/Featured icon (2).svg', title:'Online Wallets' , textCaption:'Receive payment through popular online wallets including MTN Mobile Money.', textCaption1:'Buy Bitcoin using a huge range of popular online wallets, including MTN Mobile Money.'}, 
+  { cardImages: '/svg/Featured icon (3).svg', title:'Discounted gift cards' , textCaption:'Use your Bitcoin to get big discounts on popular gift cards.', textCaption1:'Have a gift card you dont need? You can trade it for Bitcoin.'}, 
+  { cardImages: '/svg/Featured icon (4).svg', title:'Digital currencies' , textCaption:'Use Tether, Ethereum, Litecoin, and more to sell Bitcoin.', textCaption1:'Use Tether, Ethereum, Litecoin, and more to buy Bitcoin.'}, 
+  { cardImages: '/svg/Featured icon (5).svg', title:'Goods and services' , textCaption:'Use Bitcoin to pay for goods and services from around the world.', textCaption1:'Use Bitcoin to Buy  goods and services from around the world.'}, 
+];
 
 const selected =ref("USD")
 const coinType = [
-        { title: 'EUR' },
-        { title: 'AFN' },
-        { title: 'GBP' },
-        { title: 'AUD' },
-      ];
+  { title: 'EUR' },
+  { title: 'AFN' },
+  { title: 'GBP' },
+  { title: 'AUD' },
+];
 
 let input = ref("");
 
@@ -848,6 +847,7 @@ border-top: 1px solid #2873FF;
 background: rgba(6, 10, 29, 0.50);
 backdrop-filter: blur(44.04999923706055px);
 margin-top: 170px;
+height: fit-content !important;
 }
 .section2-light{
 border-radius: 50px;
