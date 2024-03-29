@@ -44,10 +44,10 @@
           </v-card>
       <div class="footer-icon"  :class="isDark ? 'footer-icon':'footer-icon-light'" style="margin-top: 50px">
             <v-container>
-              <v-row class="d-flex">
+              <v-row class="d-flex px-3">
                 <div>
                     <div class="d-flex">
-                      <img src="/svg/BTN 1.svg" class="social-icons me-4"/>
+                      <img src="/svg/BTN 1.svg" class="social-icons me-3"/>
                       <img src="/svg/BTN 2.svg" class="social-icons me-2"/>
                       <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
                       <span class="icon-text" style="color: #64748B; font-family: SF Pro Display; font-size: 16px;">Demo Web App now available for download</span>

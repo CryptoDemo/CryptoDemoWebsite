@@ -306,11 +306,11 @@
                 <div class="">
                   <div class="phone-rectangle" style="position: relative; top: -58px; display: flex; justify-content: center;">
                     <div v-if="theme.global.current.value.dark">
-                      <img src="/svg/mobile-dark.svg" class="mobile-screen"/>
+                      <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711723819/Frame-dark-2_u2mjh1.png" class="mobile-screen"/>
                       <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                    </div>
                    <div v-else>
-                    <img v-lazy="'/svg/mobile-light.svg'" class="mobile-screen"/>
+                    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711723726/Frame2-website-light_dq70gx.png" class="mobile-screen"/>
                     <img src="/img/light-phone.png" style="max-width: 100%; z-index: 1000;" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                   </div>
                   </div>
