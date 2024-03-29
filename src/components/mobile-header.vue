@@ -1,5 +1,5 @@
 <template>
-      <div>
+      <div style="position: absolute;">
         
         <ClientOnly>
           <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
@@ -171,12 +171,12 @@ const items = [
 .navbar-bg{
 border-bottom: 1px solid #10192D;
 /* display: flex !important; */
-height: 80px;
+/* height: 80px; */
 position: fixed;
 top: 0 !important;
 justify-content: center !important;
 position: relative;
-
+width: 100% !important;
 }
 .v-toolbar {
     align-items: center;
@@ -216,7 +216,7 @@ position: relative !important;
 display: flex;
 /* overflow: hidden !important; */
 /* left: 0px; */
-/* width: calc(100% + 0px); */
+width: calc(100% + 0px);
 height: fit-content !important;
 /* top: 0 !important; */
 border-radius: 15px;
