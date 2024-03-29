@@ -16,7 +16,7 @@
           </v-app-bar>
 
 
-          <v-navigation-drawer v-model="drawer" location="bottom" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 20px; height: fit-content;">
+          <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 20px; height: fit-content;">
             <v-menu style="z-index: 100000 !important; position: relative !important;">
             <template v-slot:activator="{ props }">
               <v-btn  class="me-4" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
@@ -122,7 +122,7 @@ import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 
 
-const drawer = ref(false)
+const drawer = ref(true)
 const ToggleMenu =() =>{
 drawer.value = !drawer.value
 };
@@ -170,8 +170,6 @@ const items = [
 <style scoped>
 .navbar-bg{
 border-bottom: 1px solid #10192D;
-/* background: rgba(6, 10, 29, 0.60)!important; */
-/* backdrop-filter: blur(50px); */
 display: flex !important;
 height: 80px;
 position: fixed;
