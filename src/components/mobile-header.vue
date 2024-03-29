@@ -8,10 +8,10 @@
               
               <v-toolbar-title class="header-title" :class="isDark ? 'header-title':'header-title-light'">Demo Web</v-toolbar-title>
              
-                <v-spacer></v-spacer>
+                <!-- <v-spacer></v-spacer> -->
     
+                
                 <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"   style="right: -10%;"/>
-          
             </div>
           </v-app-bar>
 
@@ -26,7 +26,7 @@
               </v-btn>
             </template>
   
-            <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; border: 0.5px solid #2f3946;">
+            <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; border: 0.5px solid #2f3946; z-index: 10000 !important;">
               <v-list-item>
                 <div @click.stop style="margin-top: 15px; margin-bottom: 15px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 35px; margin-left: 19px;">
