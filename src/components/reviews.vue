@@ -195,7 +195,7 @@ text-align: center;
 font-family: "SF Pro Display";
 font-size: 32px;
 font-style: normal;
-font-weight: 600;
+font-weight: 600 !important;
 line-height: 120%; /* 38.4px */
 display: flex;
 height: 38px;
