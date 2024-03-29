@@ -276,7 +276,7 @@ line-height: 120%; /* 28.8px */
   .subtitle-text{
   width: fit-content !important;
   font-size: 16px !important;
-  /* letter-spacing: 0.48px !important; */
+  letter-spacing: 0.48px !important;
   display: flex !important;
   line-height: 160% !important;
   margin-top: 16px !important;
@@ -309,7 +309,7 @@ line-height: 120%; /* 28.8px */
   }
   .card-sub1{
     margin-top: 82px !important;
-    /* letter-spacing: 0.6px !important; */
+    letter-spacing: 0.6px !important;
     font-size: 12px !important;
   }
   .section2i{
@@ -348,7 +348,7 @@ line-height: 120%; /* 28.8px */
     margin-top: 24px !important;
     margin-bottom: 48px !important;
     line-height: 120% !important; /* 48px */
-    /* letter-spacing: -1.2px !important; */
+    letter-spacing: -1.2px !important;
     width: 300px !important;
   }
   .section2-titlei2{
@@ -362,13 +362,13 @@ line-height: 120%; /* 28.8px */
   .caption2{
     width: fit-content !important;
     line-height: 160% !important; 
-    /* letter-spacing: 0.48px !important; */
+    letter-spacing: 0.48px !important;
     font-size: 16px !important;
   }
   .captionii{
     width: fit-content !important;
     line-height: 160% !important; 
-    /* letter-spacing: 0.48px !important; */
+    letter-spacing: 0.48px !important;
     font-size: 16px !important;
     margin-top: 24px !important;
   }
@@ -383,12 +383,12 @@ line-height: 120%; /* 28.8px */
   }
   .sub-text2{
     margin-top: 61px !important;
-    /* letter-spacing: 0.6px !important; */
+    letter-spacing: 0.6px !important;
     font-size: 12px !important;
   }
   .sub-text2i{
     margin-top: 61px !important;
-    /* letter-spacing: 0.6px !important; */
+    letter-spacing: 0.6px !important;
     font-size: 12px !important;
   }
   .svg-frame{
@@ -579,6 +579,10 @@ line-height: 120%; /* 28.8px */
   }
   .expansion-panel{
     padding: 0px !important;
+    /* height: 94px !important; */
+  }
+  .v-expansion-panel-title{
+     height: 94px !important;
   }
   .v-expansion-panel-title--active > .v-expansion-panel-title__overlay, .v-expansion-panel-title[aria-haspopup=menu][aria-expanded=true] > .v-expansion-panel-title__overlay {
     background: rgb(182, 190, 213) !important;
@@ -594,12 +598,12 @@ line-height: 120%; /* 28.8px */
     font-size: 40px !important;
     width: 151px !important;
     margin: auto !important;
-    /* letter-spacing: -1.2px !important; */
+    letter-spacing: -1.2px !important;
     margin-top: 24px !important;
   }
   .caption1i{
     font-size: 12px !important;
-    /* letter-spacing: 0.6px !important; */
+    letter-spacing: 0.6px !important;
  
   }
   .explore2i{
@@ -615,7 +619,7 @@ line-height: 120%; /* 28.8px */
   font-size: 16px !important;
   font-weight: 400 !important;
   line-height: 160% !important; /* 25.6px */
-  /* letter-spacing: 0.48px !important; */
+  letter-spacing: 0.48px !important;
   width: 350px !important;
   }
   .btn-segment2{
