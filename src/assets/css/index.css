@@ -562,6 +562,9 @@ line-height: 120%; /* 28.8px */
   .mobile-screen{
     margin-top: 72px !important;
   }
+  .desktop-social-icons{
+    display: none !important;
+  }
   .phone-section{
     padding-top: 80px !important;
     padding-bottom: 10px !important;
@@ -681,5 +684,8 @@ line-height: 120%; /* 28.8px */
   }
   .mobile-footer{
     display:none !important;
+  }
+  .mobile-social-icons{
+    display: none !important;
   }
 } 
