@@ -214,9 +214,10 @@ top: 0 !important;
 transform: translateY(0%);
 position: relative !important;
 display: flex;
+width: 100vw !important;
 /* overflow: hidden !important; */
 /* left: 0px; */
-width: calc(100% + 0px);
+/* width: calc(100% + 0px); */
 height: fit-content !important;
 /* top: 0 !important; */
 border-radius: 15px;
