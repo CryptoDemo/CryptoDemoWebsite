@@ -596,7 +596,7 @@ line-height: 120%; /* 28.8px */
   }
   .headline{
     font-size: 40px !important;
-    width: 151px !important;
+    /* width: 151px !important; */
     margin: auto !important;
     letter-spacing: -1.2px !important;
     margin-top: 24px !important;
@@ -640,10 +640,10 @@ line-height: 120%; /* 28.8px */
   }
   
   .right-vector1{
-    right: 70% !important;
+    right: 75% !important;
   }
   .left-vector1{
-   left: 70% !important;
+   left: 72% !important;
   }
   .coin-ani{
     width: 55px !important;
