@@ -171,7 +171,7 @@ const items = [
 .navbar-bg{
 border-bottom: 1px solid #10192D;
 background: rgba(6, 10, 29, 0.60)!important;
-backdrop-filter: blur(50px);
+/* backdrop-filter: blur(50px); */
 display: flex !important;
 height: 80px;
 position: fixed;
@@ -201,7 +201,7 @@ position: relative;
 .navbar-bg-light{
 border-bottom: 1px solid #E2E8F0;
 background: rgba(255, 255, 255, 0.60) !important;
-backdrop-filter: blur(50px);
+/* backdrop-filter: blur(50px); */
 box-shadow: none!important;
 display: flex;
 height: 80px;
