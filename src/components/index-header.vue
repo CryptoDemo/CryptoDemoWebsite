@@ -54,7 +54,7 @@
        
       
 
-          <v-btn class="header-link me-3 flex-lg-and-up hidden-sm-and-down">  <NuxtLink :to="props.link">  <span class="text2 d-flex" style="align-self: center; margin: auto;" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{props.title}}</span></NuxtLink> </v-btn>
+          <v-btn class="header-link me-3 flex-lg-and-up hidden-sm-and-down">  <NuxtLink :to="props.link"><span class="text2 d-flex" style="align-self: center; margin: auto;" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{props.title}}</span></NuxtLink> </v-btn>
 
           <NuxtLink to="/authentication/register">  
             <v-btn class="register me-3 flex-lg-and-up hidden-sm-and-down" style="border-radius: 10px !important;"> <span class="register-text" >Register </span></v-btn>

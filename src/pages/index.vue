@@ -147,7 +147,7 @@
                           </v-btn>
                           </template>
 
-                          <v-list>
+                          <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'">
                             <v-list-item v-for="(item, i) in coinType" :key="i" style="cursor: pointer;">
                                 <v-list-item-title @click="selected=item.title">{{ item.title }}</v-list-item-title>
                             </v-list-item>
@@ -1263,6 +1263,16 @@ margin-right: 28.5px;
   cursor: pointer;
 }
 
+.country-dropdown{
+border-radius: 15px;
+border: 0.5px solid #2f3946;
+background: #1B2537 !important;
+backdrop-filter: blur(50px) !important;
+}
+.country-dropdown-light{
+border-radius: 15px;
+background: #fff !important;
+}
 ::-webkit-input-placeholder {
 
 color: #8E9BAE !important;
