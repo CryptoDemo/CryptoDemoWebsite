@@ -25,7 +25,7 @@
                 </div>
  
 
-                <div class="coin-container coin-box2 marquee-A" style="padding-right: 52px; opacity: 0.5!important; margin-top: 24.01px; margin-bottom: 24.01px;">
+                <div class="coin-container coin-box2 marquee-A row1" style="padding-right: 52px; opacity: 0.5!important; margin-top: 24.01px; margin-bottom: 24.01px;">
                     <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins" class="d-flex coin-ani"/>
                 </div>
 

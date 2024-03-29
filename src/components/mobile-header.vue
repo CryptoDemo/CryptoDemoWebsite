@@ -2,7 +2,7 @@
       <div>
         
         <ClientOnly>
-          <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
+          <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'" style="z-index: 1000000;">
   
             <div style="display: flex; align-items: center; width: fit-content;">
               
@@ -16,7 +16,7 @@
           </v-app-bar>
 
 
-          <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 20px; height: fit-content;">
+          <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 20px; height: fit-content; z-index: 10000;">
             <v-menu>
             <template v-slot:activator="{ props }">
               <v-btn  class="me-4" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
