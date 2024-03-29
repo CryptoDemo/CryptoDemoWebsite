@@ -241,11 +241,11 @@ align-items: center;
 .feedback-subtitle{
 color: #64748B;
 font-family: "SF Pro Display";
-font-size: 16px;
+font-size: 16px !important;
 font-style: normal;
 font-weight: 400;
-line-height: 140%; /* 22.4px */
-letter-spacing: 0.32px;
+line-height: 140% !important; /* 22.4px */
+letter-spacing: 0.32px !important;
 width: 357px;
 }
 
