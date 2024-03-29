@@ -16,10 +16,10 @@
           </v-app-bar>
 
 
-          <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 20px;">
+          <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 15px;">
              <v-menu style="position: relative !important; height: auto; z-index: 1000000;">
             <template v-slot:activator="{ props }">
-              <v-btn  class="me-4" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
+              <v-btn  class="me-" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
                 <img  width="32" class="me-3" :src="flag"/> 
                 <span class="me-2" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{select}}</span>
                 <v-icon icon="mdi-chevron-down" style="color: #8E9BAE; position: absolute; right: 3%;"></v-icon>
@@ -47,7 +47,7 @@
               </v-list-item>
             </v-list>
            
-          </v-menu> 
+             </v-menu> 
         
           <div style="margin-top: 25px;">
             <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
@@ -57,13 +57,13 @@
           </v-list>
         
   
-              <v-menu>
+              <v-menu style="position: relative; z-index: 1000000;">
                     <template v-slot:activator="{ props }">
                         <v-btn v-bind="props" :class="isDark ? 'mobile-btn':'mobile-btn-light'">Gift Card Hub
                           <v-icon color="primary" class="mt-1"  icon="mdi-chevron-down"></v-icon>
                         </v-btn>
                     </template>
-                    <div style="display: flex; align-items: center;  justify-content: end;">
+                    <div style="display: flex; align-items: center;  justify-content: end; position: relative; z-index: 1000000;">
                     <v-list style="width: 100%; padding: 10px;" :class="isDark ? 'card-hub':'card-hub-light'">
                       <div>
                       
@@ -103,11 +103,11 @@
              <ToggleBtn class="me-3"/>
              <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
           </div>
-          <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px;">
-            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; height: 50px;">Log In</v-btn>
+          <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px; padding: 10px;">
+            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; height: 50px; border-radius: 10px !important;">Log In</v-btn>
           </v-list>
   
-          <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 31px; border-radius: 10px !important; background: #2873FF;">
+          <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 31px; border-radius: 10px !important; background: #2873FF; padding: 11px;">
             <v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; border-radius: 10px !important; height: 50px;">Register</v-btn>
           </v-list>
           </v-navigation-drawer>
@@ -265,7 +265,6 @@ align-items: center;
 align-self: stretch;
 letter-spacing: 0px !important;
 width: 100% !important;
-padding-left: 30px !important;
 margin-top: 90px;
 text-transform: capitalize;
 }
@@ -280,7 +279,6 @@ align-items: center;
 align-self: stretch;
 letter-spacing: 0px !important;
 width: 100% !important;
-padding-left: 30px !important;
 margin-top: 90px;
 text-transform: capitalize;
 box-shadow: none;
