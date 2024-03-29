@@ -17,7 +17,7 @@
 
 
           <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 20px; height: fit-content;">
-            <v-menu style="z-index: 100000 !important; position: relative !important;">
+            <!-- <v-menu style="z-index: 100000 !important; position: relative !important;">
             <template v-slot:activator="{ props }">
               <v-btn  class="me-4" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
                 <img  width="32" class="me-3" :src="flag"/> 
@@ -47,7 +47,7 @@
               </v-list-item>
             </v-list>
            
-          </v-menu>
+          </v-menu> -->
         
           <div style="margin-top: 25px;">
             <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
