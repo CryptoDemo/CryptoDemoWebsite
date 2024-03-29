@@ -1,5 +1,5 @@
 <template>
-      <div style="position: absolute;">
+      <div style="position: fixed; top: 0; z-index: 10000;">
         
         <ClientOnly>
           <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
@@ -16,8 +16,8 @@
           </v-app-bar>
 
 
-          <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 20px; height: fit-content;">
-             <v-menu style="z-index: 100000 !important; position: relative !important;">
+          <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 20px;">
+             <v-menu style="position: relative !important; height: auto; z-index: 1000000;">
             <template v-slot:activator="{ props }">
               <v-btn  class="me-4" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
                 <img  width="32" class="me-3" :src="flag"/> 
@@ -26,7 +26,7 @@
               </v-btn>
             </template>
   
-            <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; border: 0.5px solid #2f3946; z-index: 10000 !important; position: relative;">
+            <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; border: 0.5px solid #2f3946;">
               <v-list-item>
                 <div @click.stop style="margin-top: 15px; margin-bottom: 15px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 35px; margin-left: 19px;">
@@ -172,13 +172,13 @@ const items = [
 border-bottom: 1px solid #10192D;
 /* border-bottom: 1px solid #10192D; */
 background: rgba(6, 10, 29, 0.60)!important;
-/* backdrop-filter: blur(50px); */
+backdrop-filter: blur(50px);
 display: flex !important;
 height: 80px;
 position: fixed;
 top: 0 !important;
 justify-content: center !important;
-position: relative;
+/* position: relative; */
 width: 100% !important;
 }
 .v-toolbar {
@@ -202,7 +202,7 @@ width: 100% !important;
 .navbar-bg-light{
 border-bottom: 1px solid #E2E8F0;
 background: rgba(255, 255, 255, 0.60) !important;
-backdrop-filter: blur(50px);
+/* backdrop-filter: blur(50px); */
 box-shadow: none!important;
 display: flex;
 height: 80px;
@@ -214,14 +214,15 @@ position: fixed;
 top: 0 !important;
 }
 .v-navigation-drawer{
-transform: translateY(0%);
+/* transform: translateY(0%); */
 position: relative !important;
 display: flex;
 width: 100vw !important;
-/* overflow: hidden !important; */
+/* overflow: scroll !important; */
+/* z-index: 10000!important; */
 /* left: 0px; */
 /* width: calc(100% + 0px); */
-height: fit-content !important;
+height: 100% !important;
 top: 9% !important;
 border-radius: 15px;
 background: #060A1D !important;

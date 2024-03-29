@@ -227,7 +227,7 @@ cursor: pointer;
 
 .footer-body{
 background: rgba(6, 10, 29, 0.70) !important; 
-/* backdrop-filter: blur(25px); */
+backdrop-filter: blur(25px);
 box-shadow: none;
 }
 .footer-body-light{
