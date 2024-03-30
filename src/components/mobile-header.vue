@@ -54,9 +54,9 @@
           <div style="margin-top: 25px;">
             <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
           </div>
-          <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 17px; margin-top: 17px;">
+          <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 17px; margin-top: 17px;">
             <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" >Wallet</v-btn>
-          </v-list>
+          </div>
         
   
               <v-menu style="position: relative; z-index: 10000;">
@@ -97,17 +97,17 @@
                     </v-list>
                     </div>
               </v-menu>
-              <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
-            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Become a Vendor</v-btn>
-          </v-list>
+              <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
+                 <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Become a Vendor</v-btn>
+              </div>
   
           <div style="display: flex; justify-content: flex-start; margin-top: 25px; align-items: center; margin-left: 10px;">
              <ToggleBtn class="me-3"/>
              <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
           </div>
-          <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px; padding: 10px;">
+          <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px; padding: 10px;">
             <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; height: 50px; justify-content: center; border-radius: 10px !important;">Log In</v-btn>
-          </v-list>
+          </div>
   
           <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 31px; border-radius: 10px !important; background: #2873FF; padding: 11px;">
             <v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; justify-content: center; border-radius: 10px !important; height: 50px;">Register</v-btn>
@@ -306,6 +306,7 @@ font-style: normal;
 font-weight: 500;
 line-height: normal;
 letter-spacing: -0.14px;
+
 }
 .mobile-btn{
 background: #060A1D !important;
@@ -318,8 +319,10 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 width: 100%;
+height: 50px;
 display: flex;
 justify-content: left;
+border-radius: 10px
 }
 .mobile-btn-light{
 background: #fff !important;
@@ -331,6 +334,11 @@ font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+width: 100%;
+height: 50px;
+display: flex;
+justify-content: left;
+border-radius: 10px
 }
 
 .icon-text1{
