@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div style="position: absolute; top: 0; z-index:100000 ;">
+      <div style="position: absolu; top: 0; z-index:10000000; flex-wrap: wrap; display: flex;">
         
         <ClientOnly>
           <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
@@ -18,7 +18,7 @@
 
 
           <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 15px;">
-             <v-menu style="position: relative !important; height: auto; z-index: ;">
+             <v-menu style="position: relative !important; height: auto;">
             <template v-slot:activator="{ props }">
               <v-btn  class="me-" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
                 <img  width="32" class="me-3" :src="flag"/> 
@@ -171,15 +171,14 @@ const items = [
 <style scoped>
 .navbar-bg{
 border-bottom: 1px solid #10192D;
-/* border-bottom: 1px solid #10192D; */
 background: rgba(6, 10, 29, 0.60)!important;
 backdrop-filter: blur(50px);
 display: flex !important;
 height: 80px;
-position: fixed;
+position: fixed !important;
+z-index: 10000;
 top: 0 !important;
 justify-content: center !important;
-/* position: relative; */
 width: 100% !important;
 }
 .v-toolbar {

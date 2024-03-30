@@ -311,7 +311,7 @@
                 <div class="">
                   <div class="phone-rectangle" style="position: relative; top: -58px; display: flex; justify-content: center;">
                     <div v-if="theme.global.current.value.dark">
-                      <img src="/img/demo dark mode.png" class="mobile-screen" style="width: 500px;"/>
+                      <img src="/img/demo dark mode (1).png" class="mobile-screen" style="width: 500px;"/>
                      
                       <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                    </div>
