@@ -483,13 +483,22 @@ line-height: 120%; /* 28.8px */
   .reverse{
     height: 100% !important;
     padding: 20px !important;
+    position: relative !important;
+    width: fit-content !important;
+  }
+  .img-reviews{
+  width: 90% !important;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  right: -5% !important;
   }
   .review-cards{
   width: 65% !important;
-  margin-right: 10px !important;
   display: flex !important;
   margin-bottom: 20px !important;
   margin-top: 10px !important;
+
   }
   .review-name{
   font-size: 10.728px !important;
