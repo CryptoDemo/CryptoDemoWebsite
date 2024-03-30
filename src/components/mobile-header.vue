@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div style="position: absolu; top: 0; z-index:10000000; flex-wrap: wrap; display: flex;">
+      <div style="position: absolute; top: 0; flex-wrap: wrap; display: block;">
         
         <ClientOnly>
           <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
