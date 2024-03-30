@@ -17,11 +17,11 @@
                 </div>
             <div class="marquee-container" style="overflow: hidden; margin-top: 362px;">
                 <div class="coin-container coin-box1 marquee" style="padding-left: 52px; opacity: 0.5!important;">
-                    <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"   class="d-flex coin-ani"/>
+                    <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins" class="d-flex coin-ani1"/>
                 </div>
                 
                 <div class="coin-container coin-box1 marquee marquee2" style="padding-left: 52px; opacity: 0.5!important;">
-                    <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"   class="d-flex coin-ani"/>
+                    <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins" class="d-flex coin-ani1"/>
                 </div>
  
 
@@ -196,7 +196,7 @@ flex-shrink: 0;
 }
 
 .marquee {
-bottom: 25%;
+bottom: 23%;
 left: 100%;
 width: 100%;
 overflow: hidden;
@@ -234,7 +234,7 @@ animation: marquee 30s linear infinite;
 }
 
 .marquee-A{
-bottom: 7%;
+bottom: 6%;
 right: 100%;
 width: 100%;
 overflow: hidden;
