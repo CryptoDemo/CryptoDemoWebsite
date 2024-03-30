@@ -283,7 +283,7 @@ letter-spacing: 0.12px;
 }
 .footer-bg1{
 background: rgba(6, 10, 29, 0.70) !important; 
-/* backdrop-filter: blur(25px) !important;  */
+backdrop-filter: blur(25px) !important; 
 }
 .footer-bg1-light{
 background: #fff !important; 
