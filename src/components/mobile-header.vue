@@ -19,7 +19,7 @@
       
       <nav :class="navbarClass">
           <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 15px;">
-             <v-menu style="position: relative !important; height: auto;">
+             <v-menu style="position: relative !important; height: auto; z-index: 10000;">
             <template v-slot:activator="{ props }">
               <v-btn  class="me-" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
                 <img  width="32" class="me-3" :src="flag"/> 
@@ -59,7 +59,7 @@
           </v-list>
         
   
-              <v-menu style="position: relative;">
+              <v-menu style="position: relative; z-index: 10000;">
                     <template v-slot:activator="{ props }">
                         <v-btn v-bind="props" :class="isDark ? 'mobile-btn':'mobile-btn-light'">Gift Card Hub
                           <v-icon color="primary" class="mt-1"  icon="mdi-chevron-down"></v-icon>
