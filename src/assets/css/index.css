@@ -659,6 +659,8 @@ line-height: 120%; /* 28.8px */
 
   .coin-ani3{
     width: 20% !important;
+    height: fit-content;
+    padding-bottom: 0px;
   }
   .coin-ani{
   width: 19.9% !important;
