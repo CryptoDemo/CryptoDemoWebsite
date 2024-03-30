@@ -1,22 +1,23 @@
 <template>
-  <div>
-      <div style="position: absolute; top: 0; flex-wrap: wrap; display: block;">
-        
-        <ClientOnly>
-          <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
-  
-            <div style="display: flex; align-items: center; width: fit-content;">
-              
-              <v-toolbar-title class="header-title" :class="isDark ? 'header-title':'header-title-light'">Demo Web</v-toolbar-title>
-             
-                <v-spacer></v-spacer>
+  <div style="position:  relative;">
     
-                
-                <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"   style="position: absolute; right: -10%;"/>
-            </div>
-          </v-app-bar>
-
-
+    <div  style="position: fixed; top: 0; flex-wrap: wrap;  z-index: 10000;">
+    <ClientOnly>
+      <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
+        
+        <div style="display: flex; align-items: center; width: fit-content;">
+          
+          <v-toolbar-title class="header-title" :class="isDark ? 'header-title':'header-title-light'">Demo Web</v-toolbar-title>
+          
+          <v-spacer></v-spacer>
+         
+        
+          <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"  style="position: absolute; right: -10%;"/>
+        
+        </div>
+      </v-app-bar>
+      
+      <nav :class="navbarClass">
           <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 15px;">
              <v-menu style="position: relative !important; height: auto;">
             <template v-slot:activator="{ props }">
@@ -111,10 +112,12 @@
           <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 31px; border-radius: 10px !important; background: #2873FF; padding: 11px;">
             <v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; border-radius: 10px !important; height: 50px;">Register</v-btn>
           </v-list>
-          </v-navigation-drawer>
-
-        </ClientOnly>
+        </v-navigation-drawer>
+      </nav>
+      </ClientOnly>
     </div>
+  <!-- </nav> -->
+
    </div>
   </template>
 
@@ -124,8 +127,10 @@ import { useTheme } from 'vuetify';
 
 
 const drawer = ref(false)
+const navbarClass = ref('closed');
 const ToggleMenu =() =>{
 drawer.value = !drawer.value
+navbarClass.value = drawer.value ? 'open' : 'closed';
 };
 
 
@@ -175,8 +180,8 @@ background: rgba(6, 10, 29, 0.60)!important;
 backdrop-filter: blur(50px);
 display: flex !important;
 height: 80px;
-position: fixed !important;
-z-index: 10000;
+/* position: fixed !important; */
+/* z-index: 10000; */
 top: 0 !important;
 justify-content: center !important;
 width: 100% !important;
@@ -357,5 +362,16 @@ background: #060A1D;
 
 .card-hub-light{
 background: #fff !important;
+}
+
+nav.closed {
+  /* display: none; */
+  height: 0px !important;
+  z-index: 10 !important;
+}
+
+nav.open {
+  /* position: fixed; */
+ height: 100% !important;
 }
 </style>

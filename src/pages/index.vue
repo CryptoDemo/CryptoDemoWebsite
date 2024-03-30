@@ -7,7 +7,7 @@
       
       <Index-header title="Log in" link="/authentication/login" class="desktop-header"/>
       <Mobile-header class="mobile-header"/>
-      <div>
+      <div style="position: relative; z-index: ;">
         <section class="position-relative">
           <v-container class="position-relative">
             <div class="position-absolute">    
