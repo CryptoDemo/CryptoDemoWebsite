@@ -1,6 +1,6 @@
 <template>
-  <div style="position: ; z-index: ;">
-      <div style="position: absolute; top: 0; z-index:;">
+  <div>
+      <div style="position: absolute; top: 0; z-index:100000 ;">
         
         <ClientOnly>
           <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
@@ -9,7 +9,7 @@
               
               <v-toolbar-title class="header-title" :class="isDark ? 'header-title':'header-title-light'">Demo Web</v-toolbar-title>
              
-                <!-- <v-spacer></v-spacer> -->
+                <v-spacer></v-spacer>
     
                 
                 <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"   style="position: absolute; right: -10%;"/>
@@ -58,7 +58,7 @@
           </v-list>
         
   
-              <v-menu style="position: relative; z-index: ;">
+              <v-menu style="position: relative;">
                     <template v-slot:activator="{ props }">
                         <v-btn v-bind="props" :class="isDark ? 'mobile-btn':'mobile-btn-light'">Gift Card Hub
                           <v-icon color="primary" class="mt-1"  icon="mdi-chevron-down"></v-icon>
