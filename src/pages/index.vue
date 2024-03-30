@@ -4,10 +4,10 @@
     <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
        
     <div>
+      
+      <Index-header title="Log in" link="/authentication/login" class="desktop-header"/>
+      <Mobile-header class="mobile-header"/>
       <div>
-        
-        <Index-header title="Log in" link="/authentication/login" class="desktop-header"/>
-        <Mobile-header class="mobile-header"/>
         <section class="position-relative">
           <v-container class="position-relative">
             <div class="position-absolute">    

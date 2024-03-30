@@ -1,5 +1,6 @@
 <template>
-      <div style="position: fixed; top: 0; z-index: 10000;">
+  <div style="position: ; z-index: ;">
+      <div style="position: absolute; top: 0; z-index:;">
         
         <ClientOnly>
           <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
@@ -17,7 +18,7 @@
 
 
           <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 15px;">
-             <v-menu style="position: relative !important; height: auto; z-index: 1000000;">
+             <v-menu style="position: relative !important; height: auto; z-index: ;">
             <template v-slot:activator="{ props }">
               <v-btn  class="me-" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
                 <img  width="32" class="me-3" :src="flag"/> 
@@ -57,7 +58,7 @@
           </v-list>
         
   
-              <v-menu style="position: relative; z-index: 1000000;">
+              <v-menu style="position: relative; z-index: ;">
                     <template v-slot:activator="{ props }">
                         <v-btn v-bind="props" :class="isDark ? 'mobile-btn':'mobile-btn-light'">Gift Card Hub
                           <v-icon color="primary" class="mt-1"  icon="mdi-chevron-down"></v-icon>
@@ -114,7 +115,7 @@
 
         </ClientOnly>
     </div>
-   
+   </div>
   </template>
 
 <script setup>
