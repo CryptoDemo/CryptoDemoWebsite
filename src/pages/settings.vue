@@ -2,14 +2,14 @@
   <div>
     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
     <v-container style="display: flex;">
-          <v-row no-gutters style="margin-bottom: 113px; margin-top: 130px">
-            <v-col cols="2">
+          <v-row no-gutters style="margin-bottom: 113px; margin-top: 130px;display: flex;">
+            <div class="me-4">
               <div class="mt-3">
                 <Side-nav/>           
               </div>
-            </v-col>
+            </div>
 
-            <v-col>
+            <div cols="9">
               <div class="">
                   <div class="settings-header">
                     <span class="header-text1">Setting answers to your security questions is a requirement in the event that you need to reset or update your phone number. <span style="color: var(--Primary-100, #2873FF);">Set Answers!</span></span>
@@ -189,7 +189,7 @@
                 <DataTable/>
               
               </div>
-            </v-col>     
+            </div>     
           </v-row>
     </v-container>     
           <Footer/>
