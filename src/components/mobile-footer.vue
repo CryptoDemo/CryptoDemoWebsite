@@ -48,7 +48,7 @@
                 <div>
                     <div class="d-flex">
                       <img src="/svg/BTN 1.svg" class="social-icons me-3"/>
-                      <img src="/svg/BTN 2.svg" class="social-icons me-2"/>
+                      <img src="/svg/BTN 2.svg" class="social-icons me-3"/>
                       <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
                       <span class="icon-text" style="color: #64748B; font-family: SF Pro Display; font-size: 16px;">Demo Web App now available for download</span>
                     </div>

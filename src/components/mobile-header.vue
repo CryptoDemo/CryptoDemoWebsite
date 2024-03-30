@@ -106,11 +106,11 @@
              <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
           </div>
           <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px; padding: 10px;">
-            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; height: 50px; border-radius: 10px !important;">Log In</v-btn>
+            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; height: 50px; justify-content: center; border-radius: 10px !important;">Log In</v-btn>
           </v-list>
   
           <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 31px; border-radius: 10px !important; background: #2873FF; padding: 11px;">
-            <v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; border-radius: 10px !important; height: 50px;">Register</v-btn>
+            <v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; justify-content: center; border-radius: 10px !important; height: 50px;">Register</v-btn>
           </v-list>
         </v-navigation-drawer>
       </nav>
@@ -317,6 +317,9 @@ font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+width: 100%;
+display: flex;
+justify-content: left;
 }
 .mobile-btn-light{
 background: #fff !important;

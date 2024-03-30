@@ -298,7 +298,7 @@
                       <img src="/svg/playstore.svg" style="max-width: 100%;" class="social-icons me-2 desktop-social-icons"/>
 
                       <img src="/svg/BTN 1.svg" class="social-icons me-3 mobile-social-icons"/>
-                      <img src="/svg/BTN 2.svg" class="social-icons me-2 mobile-social-icons"/>
+                      <img src="/svg/BTN 2.svg" class="social-icons me-3 mobile-social-icons"/>
 
 
                       <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
