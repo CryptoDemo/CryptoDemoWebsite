@@ -157,11 +157,11 @@ text-transform: capitalize;
 .feedback{
 color: var(--Colors-Base-white, #FFF);
 text-align: center;
-font-family: "SF Pro Display";
-font-size: 14px;
+font-family: "SF Pro Display" !important;
+font-size: 14px !important;
 font-style: normal;
 font-weight: 600;
-line-height: 100%; /* 14px */
+line-height: 100% !important; /* 14px */
 letter-spacing: 0.14px;
 
 }
@@ -192,7 +192,7 @@ background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 text-align: center;
-font-family: "SF Pro Display";
+font-family: "SF Pro Display" !important;
 font-size: 32px;
 font-style: normal;
 font-weight: 600 !important;
@@ -208,7 +208,7 @@ background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 text-align: center;
-font-family: "SF Pro Display";
+font-family: "SF Pro Display" !important;
 font-size: 32px;
 font-style: normal;
 font-weight: 600;
@@ -240,13 +240,13 @@ align-items: center;
 }
 .feedback-subtitle{
 color: #64748B;
-font-family: "SF Pro Display";
+font-family: "SF Pro Display" !important;
 font-size: 16px !important;
 font-style: normal;
-font-weight: 400;
+font-weight: 400 !important;
 line-height: 140% !important; /* 22.4px */
 letter-spacing: 0.32px !important;
-width: 357px;
+/* width: 357px; */
 }
 
 
