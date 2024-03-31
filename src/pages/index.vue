@@ -848,6 +848,7 @@ line-height: 150%; /* 19.289px */
 letter-spacing: 0px !important;
 }
 .section2{
+
 border-radius: 50px;
 border-top: 1px solid #2873FF;
 background: rgba(6, 10, 29, 0.50);
@@ -1285,7 +1286,7 @@ line-height: 150% !important; /* 21px */
 }
 .coin-bg1 {
 border-radius: 15px;
-background: #1B2537;
+background: #1B2537 !important;
 width: 100%;
 /* display: flex; */
 /* justify-content: center; */

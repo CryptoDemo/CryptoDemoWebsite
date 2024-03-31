@@ -654,7 +654,7 @@ line-height: 120%; /* 28.8px */
     margin-top: 48px !important;
   }
   .coin-box2{
-  gap: 21px !important;
+  gap: 20px !important;
   padding-right: 5px !important;
   }
   .coin-box1{
@@ -665,17 +665,22 @@ line-height: 120%; /* 28.8px */
  
   .coin-box3{
   gap: 20px !important;
-  padding-left: 0px !important;
+  padding-left: 7px !important;
+  width: 100vw !important;
   }
-
+.section2{
+  border-radius: 0px !important;
+  border-top-left-radius: 50px !important;
+  border-top-right-radius: 50px !important;
+}
   .coin-ani3{
-    width: 20% !important;
+    width: 24% !important;
     height: fit-content;
-    padding-bottom: 0px;
+    /* padding-bottom: 0px; */
   }
   .coin-ani{
-  width: 19.9% !important;
-  height: 19.7% !important; 
+  width: 20% !important;
+  height: 20% !important; 
   }
 
   .coin-ani1{
