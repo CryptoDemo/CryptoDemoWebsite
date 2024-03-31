@@ -73,8 +73,8 @@
                         </v-btn>
                       </template>
 
-                      <v-list>
-                        <v-list-item class="coin-bg1">
+                      <v-list :class="isDark ? 'coin-bg1':'coin-bg1-light'">
+                        <v-list-item>
                           <div  @click.stop style="margin-top: 15px; margin-bottom: 15px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 35px; margin-left: 19px;">
                                   <path d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z" stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1286,13 +1286,22 @@ line-height: 150% !important; /* 21px */
 .coin-bg1 {
 border-radius: 15px;
 background: #1B2537;
+width: 100%;
+/* display: flex; */
+/* justify-content: center; */
+}
+.coin-bg1-light{
+border-radius: 15px;
+background: #fff !important;
+color: #060A1D;
+width: 100%;
 }
 
 
 .top-grad{
   position: absolute;
   top: 0;
-  left: 0;
+  left: 2%;
   width: 0;
   height: 2px;
   background: linear-gradient(
@@ -1319,7 +1328,7 @@ background: #1B2537;
 .right-grad{
   position: absolute;
   right: 0;
-  top: 0;
+  top: 2%;
   width: 2px;
   height: 0;
   background: linear-gradient(
@@ -1362,7 +1371,7 @@ background: #1B2537;
 
 @keyframes animateTop {
   25% {
-    width: 100%;
+    width: 98%;
     opacity: 1;
   }
 
@@ -1375,13 +1384,13 @@ background: #1B2537;
 @keyframes animateBottom {
   0%,
   50% {
-    opacity: 0;
+    opacity: 1;
     width: 0;
   }
 
   75% {
-    opacity: 1;
-    width: 100%;
+    opacity: 0.4;
+    width: 97%;
   }
 
   76%,
@@ -1412,14 +1421,14 @@ background: #1B2537;
 @keyframes animateLeft {
   0%,
   75% {
-    opacity: 0.4;
+    opacity: 1;
     bottom: 0;
     height: 0;
   }
 
   100% {
-    opacity: 1;
-    height: 100%;
+    opacity: 0.3;
+    height: 98%;
   }
 }
 ::-webkit-scrollbar{

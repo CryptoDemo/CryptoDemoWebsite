@@ -80,11 +80,11 @@
                                   <span class="icon-subtitle1 mt-1">{{ item.subtitle }}</span>
                                 </div>
                                   <div style="display: flex; align-items: center;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" style="position: absolute; right: 3%;" v-if="theme.global.current.value.dark">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" style="position: absolute; right: 1px;" v-if="theme.global.current.value.dark">
                                         <path d="M10.7988 7.5L15.7988 12.5L10.7988 17.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
   
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none"  style="position: absolute; right: 3%;" v-else>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none"  style="position: absolute; right: 1px;" v-else>
                                       <path d="M10 7.5L15 12.5L10 17.5" stroke="#10192D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                   </div>
@@ -105,13 +105,13 @@
              <ToggleBtn class="me-3"/>
              <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
           </div>
-          <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px; padding: 10px;">
-            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; height: 50px; justify-content: center; border-radius: 10px !important;">Log In</v-btn>
+          <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px; margin-bottom: 20px; padding: 10px;">
+            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; justify-content: center; border-radius: 10px !important;">Log In</v-btn>
           </div>
   
-          <v-list :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 31px; border-radius: 10px !important; background: #2873FF; padding: 11px;">
-            <v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; justify-content: center; border-radius: 10px !important; height: 50px;">Register</v-btn>
-          </v-list>
+          <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 30px; border-radius: 10px !important; background: #2873FF; padding: 11px;">
+            <v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; justify-content: center; border-radius: 10px !important;">Register</v-btn>
+          </div>
         </v-navigation-drawer>
       </nav>
       </ClientOnly>

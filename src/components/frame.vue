@@ -5,9 +5,9 @@
               <div class="first-col" style="margin-inline-end: 16px;">
                 <div class="position-relative" :class="isDark ? 'frame1':'frame1-light'">
                       <div class="first-col-wrap" style="display: flex; align-self: center; position: relative; margin-bottom: 30px;">
-                      <img v-lazy="'/svg/Framebtc1.svg'" style="max-width: 100%;" v-if="theme.global.current.value.dark"/>
-                      <img v-lazy="'/svg/Framelight.svg'" style="max-width: 100%;" height="94%" v-else/>
-                      <img v-lazy="'/svg/greencoin1.svg'" class="green-coin1" style="position: absolute; max-width: 100%; top: 0; bottom: -273px; display: flex; margin: auto; left: -11%;" v-if="theme.global.current.value.dark"/>
+                      <img src="/svg/Framebtc1.svg" style="max-width: 100%;" v-if="theme.global.current.value.dark"/>
+                      <img src="/svg/Framelight.svg" style="max-width: 100%;" height="94%" v-else/>
+                      <img src="/svg/greencoin1.svg" class="green-coin1" style="position: absolute; max-width: 100%; top: 0; bottom: -273px; display: flex; margin: auto; left: -11%;" v-if="theme.global.current.value.dark"/>
                       <img src="/svg/greencoin1.svg" style="position: absolute; top: 0; bottom: -273px; display: flex; margin: auto; left: -21%;" v-else/>
                       <img src="/svg/yellowCoin1.svg" class="yellow-coin1" style="position: absolute; margin-top: 121px; right: -20px;"/>
                       </div>
@@ -62,11 +62,23 @@
                     <div class="img-wrap1" style="display: flex; flex-direction: column; padding: 0 60px; position: relative; right: 10%; height: 205px;">
                       <div class="position-relative">
                         <div class="coin-wrap1i" :class="isDark ? 'coin-wrap1':'coin-wrap1-light'"></div>
-                          <img src="/svg/item1.svg" style="max-width: 100%;" v-if="theme.global.current.value.dark"/>
+
+                        <div v-if="theme.global.current.value.dark">
+                          <img src="/svg/item1.svg" class="desktop-screen" style="max-width: 100%;"/>
+                          <img src="/img/item.png" class="mobile-screen btc1i2" style="max-width: 100%;"/>
+                        </div>
                           <img src="/svg/item2-light.svg" style="max-width: 100%;" v-else/>
-                          <img src="/svg/item2.svg" class="card1i" style="max-width: 100%;" v-if="theme.global.current.value.dark"/>
-                          <img src="/svg/item3-light.svg" class="card1i" style="max-width: 100%;" v-else/>
-                          <img src="/svg/item3.svg" class="card1ii" style="max-width: 100%;" v-if="theme.global.current.value.dark" />   
+
+                        <div v-if="theme.global.current.value.dark">
+                          <img src="/svg/item2.svg" class="card1i desktop-screen" style="max-width: 100%;"/>
+                          <img src="/img/item (1).png" class="card1i2 mobile-screen" style="max-width: 100%;"/>
+                        </div>
+                        <img src="/svg/item3-light.svg" class="card1i" style="max-width: 100%;" v-else/>
+
+                        <div v-if="theme.global.current.value.dark">
+                          <img src="/svg/item3.svg" class="card1ii desktop-screen" style="max-width: 100%;"/>   
+                          <img src="/img/item (2).png" class="card1ii2 mobile-screen" style="max-width: 100%;"/>   
+                        </div>
                           <img src="/svg/item1-light.svg" class="card1ii" style="max-width: 100%;" v-else />   
                       </div>
                     </div>
@@ -213,7 +225,7 @@ width: 100%;
 border: 1px solid #DBE8FF !important;
 background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%)!important;
 padding: 40px;
-/* height: 372px; */
+height: 372px;
 border-radius: 15px;
 border: 0.5px solid #64748B;
 background: #10192D;
@@ -260,7 +272,7 @@ margin-left: 104px;
 .card1ii{
 position: absolute;
 left: 38px;
-margin-top: 88px;
+top: 64%;
 }  
 
 </style>
