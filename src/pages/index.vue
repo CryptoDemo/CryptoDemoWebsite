@@ -1321,7 +1321,7 @@ width: 100%;
     90deg,
     rgba(40, 115, 255, 1),
     rgba(40, 115, 255, 0),
-    transparent 50%
+    transparent 90%
   );
 }
 
@@ -1389,7 +1389,7 @@ width: 100%;
   }
 
   75% {
-    opacity: 0.4;
+    opacity: 0.6;
     width: 97%;
   }
 
@@ -1427,7 +1427,7 @@ width: 100%;
   }
 
   100% {
-    opacity: 0.3;
+    opacity: 0.8;
     height: 98%;
   }
 }
