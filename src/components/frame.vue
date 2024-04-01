@@ -37,7 +37,8 @@
                     <div>
                       <div class="position-relative">
                         <div class="coin-wrap1" :class="isDark ? 'coin-wrap1':'coin-wrap1-light'"></div>
-                          <img src="/svg/Frame 12.svg" class="btc-box1" style="max-width: 100%;" v-if="theme.global.current.value.dark"/>
+                          <img src="/img/frame2-dark.png" class="btc-box1" style="max-width: 100%; width: 75%;" v-if="theme.global.current.value.dark"/>
+                          <!-- <img src="/svg/Frame 12.svg" class="btc-box1" style="max-width: 100%;" v-if="theme.global.current.value.dark"/> -->
                           <img src="/svg/Frame 1light.svg" class="btc-box1" style="max-width: 100%;" v-else/>
                           <img src="/svg/pointer.svg" style="max-width: 100%; z-index: 1000;" class="cursor"/>
                       </div>
@@ -246,7 +247,7 @@ display: flex;
 flex-direction: column;
 border-radius: 15px;
 background: linear-gradient(rgba(16, 25, 45, 0) 65.19%, rgb(16, 25, 45) 100%);
-height: 208.961px;
+height: 209.961px;
 width: 100%;
 position: absolute;
 z-index: 1000;

@@ -74,7 +74,7 @@
                       </template>
 
                       <v-list :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 10px;">
-                        <v-list-item>
+                        <v-list-item style="width: -webkit-fill-available;">
                           <div  @click.stop style="margin-top: 8px; margin-bottom: 15px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 27px; margin-left: 19px;">
                                   <path d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z" stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
