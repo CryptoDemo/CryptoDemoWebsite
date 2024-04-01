@@ -401,6 +401,12 @@ line-height: 120%; /* 28.8px */
     left: -6% !important;
     bottom: -67% !important;
   }
+  .green-coin2{
+    width: 80px !important;
+    top: -3% !important;
+    left: -15% !important;
+    bottom: -67% !important;
+  }
   .first-col{
     margin-inline-end: unset !important;
     margin-top: 0 !important;
@@ -411,8 +417,15 @@ line-height: 120%; /* 28.8px */
     width: 100% !important;
   }
   .yellow-coin1{
-    margin-top: 95px !important;
+    margin-top: 90px !important;
     width: 75px !important;
+    right: -2% !important;
+  }
+
+  .yellow-coin2{
+    margin-top: 80px !important;
+    width: 75px !important;
+    right: -12% !important;
   }
   .first-col-wrap{
     margin-bottom: 0px !important;
@@ -440,9 +453,10 @@ line-height: 120%; /* 28.8px */
    margin-top: 13px !important;
   }
   .cursor{
-  width: 46%;
+  width: 46% !important;
   margin-left: 55% !important;
   top: 51% !important;
+  left: 0px !important;
   }
   .sell-col{
     padding: 0 20px !important;

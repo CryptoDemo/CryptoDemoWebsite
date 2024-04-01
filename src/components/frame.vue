@@ -8,9 +8,9 @@
                       <img src="/img/mobile-frame.png" class="mobile-frame" style="max-width: 100%; width: 85%; display: flex; margin: auto;" v-if="theme.global.current.value.dark"/>
                       <img src="/svg/Framelight.svg" style="max-width: 100%;" height="94%" v-else/>
                       <img src="/svg/greencoin1.svg" class="green-coin1" style="position: absolute; max-width: 100%; top: 0; bottom: -273px; display: flex; margin: auto;" v-if="theme.global.current.value.dark"/>
-                      <img src="/svg/greencoin1.svg" style="position: absolute; top: 0; bottom: -273px; display: flex; margin: auto; left: -21%;" v-else/>
+                      <img src="/svg/greencoin1.svg" class="green-coin2"  style="position: absolute; top: 0; bottom: -310px; display: flex; margin: auto; left: -17%;" v-else/>
                       <img src="/svg/yellowCoin1.svg" class="yellow-coin1" style="position: absolute; margin-top: 121px; right: 5%;" v-if="theme.global.current.value.dark"/>
-                      <img src="/svg/yellowCoin1.svg" class="yellow-coin1" style="position: absolute; margin-top: 121px; right: -8%;" v-else/>
+                      <img src="/svg/yellowCoin1.svg" class="yellow-coin2" style="position: absolute; margin-top: 121px; right: -8%;" v-else/>
                       </div>
 
                       <div class="svg-frame" :class="isDark ? 'svg-frame':'svg-frame-light'" style="position: absolute"></div>
@@ -38,9 +38,8 @@
                       <div class="position-relative">
                         <div class="coin-wrap1" :class="isDark ? 'coin-wrap1':'coin-wrap1-light'"></div>
                           <img src="/img/frame2-dark.png" class="btc-box1" style="max-width: 100%; width: 75%;" v-if="theme.global.current.value.dark"/>
-                          <!-- <img src="/svg/Frame 12.svg" class="btc-box1" style="max-width: 100%;" v-if="theme.global.current.value.dark"/> -->
                           <img src="/svg/Frame 1light.svg" class="btc-box1" style="max-width: 100%;" v-else/>
-                          <img src="/svg/pointer.svg" style="max-width: 100%; z-index: 1000;" class="cursor"/>
+                          <img src="/img/pointer-vector.png" style="max-width: 100%; width: 60%; left: 7px; z-index: 1000;" class="cursor"/>
                       </div>
                       <div class="sell-col sel-coli">
                         <v-btn @click.prevent="navigateTo('#')" style="border-radius: 100px; box-shadow: none; text-transform: capitalize; letter-spacing: 0px; display: flex; margin-top: 5px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; width: 72px; height: 36px; align-items: center;">
