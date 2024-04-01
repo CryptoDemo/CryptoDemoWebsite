@@ -28,7 +28,7 @@
               </v-btn>
             </template>
   
-            <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; border: 0.5px solid #2f3946;">
+            <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; border: 0.5px solid #2f3946; margin-top: 10px;">
               <v-list-item>
                 <div @click.stop style="margin-top: 15px; margin-bottom: 15px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 35px; margin-left: 19px;">
