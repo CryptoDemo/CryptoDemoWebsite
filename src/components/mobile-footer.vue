@@ -311,4 +311,10 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 }
+
+.v-icon--size-default {
+    font-size: calc(var(--v-icon-size-multiplier)* 1.5em);
+    color: white !important;
+    margin-left: 17px;
+}
 </style>

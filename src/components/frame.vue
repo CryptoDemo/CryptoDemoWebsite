@@ -5,11 +5,12 @@
               <div class="first-col" style="margin-inline-end: 16px;">
                 <div class="position-relative" :class="isDark ? 'frame1':'frame1-light'">
                       <div class="first-col-wrap" style="display: flex; align-self: center; position: relative; margin-bottom: 30px;">
-                      <img src="/svg/Framebtc1.svg" style="max-width: 100%;" v-if="theme.global.current.value.dark"/>
+                      <img src="/img/mobile-frame.png" class="mobile-frame" style="max-width: 100%; width: 85%; display: flex; margin: auto;" v-if="theme.global.current.value.dark"/>
                       <img src="/svg/Framelight.svg" style="max-width: 100%;" height="94%" v-else/>
-                      <img src="/svg/greencoin1.svg" class="green-coin1" style="position: absolute; max-width: 100%; top: 0; bottom: -273px; display: flex; margin: auto; left: -11%;" v-if="theme.global.current.value.dark"/>
+                      <img src="/svg/greencoin1.svg" class="green-coin1" style="position: absolute; max-width: 100%; top: 0; bottom: -273px; display: flex; margin: auto;" v-if="theme.global.current.value.dark"/>
                       <img src="/svg/greencoin1.svg" style="position: absolute; top: 0; bottom: -273px; display: flex; margin: auto; left: -21%;" v-else/>
-                      <img src="/svg/yellowCoin1.svg" class="yellow-coin1" style="position: absolute; margin-top: 121px; right: -20px;"/>
+                      <img src="/svg/yellowCoin1.svg" class="yellow-coin1" style="position: absolute; margin-top: 121px; right: 5%;" v-if="theme.global.current.value.dark"/>
+                      <img src="/svg/yellowCoin1.svg" class="yellow-coin1" style="position: absolute; margin-top: 121px; right: -8%;" v-else/>
                       </div>
 
                       <div class="svg-frame" :class="isDark ? 'svg-frame':'svg-frame-light'" style="position: absolute"></div>
