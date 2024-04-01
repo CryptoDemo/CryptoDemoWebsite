@@ -1287,8 +1287,9 @@ line-height: 150% !important; /* 21px */
 .coin-bg1 {
 border-radius: 15px;
 background: #1B2537 !important;
-width: 100%;
-/* display: flex; */
+width: 90%;
+display: flex;
+margin: auto;
 /* justify-content: center; */
 }
 .coin-bg1-light{
