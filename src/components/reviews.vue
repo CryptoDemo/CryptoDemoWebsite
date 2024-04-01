@@ -4,7 +4,7 @@
         <v-row no-gutters>
             <v-col cols="12" sm="6" md="6" class="order-last order-sm-first">
                 <div class="layouti">
-                    <v-btn class="wrapper" style="width: 106px; height: 36px;">
+                    <v-btn class="wrapper" style="width: 115px; height: 36px;">
                         <img src="/svg/comment-2-text.svg" class="me-2"/>
                         <span :class="isDark ? 'feedback':'feedback-light'">Feedback</span>
                     </v-btn>

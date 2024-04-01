@@ -11,8 +11,8 @@
                     <div class="d-flex">
                       <img src="/svg/Image (1).svg" class="me-3" alt="avatar" style="display: flex; align-self: flex-start;"/>
                         <div>
-                          <span class="profile-level" style="margin-bottom: 17.8px;">Unverified</span>
-                          <span class="username mt-3">UID : Ogadinma2024</span>
+                          <span class="profile-level" style="margin-bottom: 13.8px;">Unverified</span>
+                          <span class="username">UID : Ogadinma2024</span>
                         </div>
                     </div>
                     <span class="user-location" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
@@ -50,7 +50,7 @@
                     <div class="sd-nav1 position-relative">
                       <div style="border-bottom: 1px solid var(--border, #303A46); position: relative;top: 58px;"></div>
                         <div style="padding: 20px 24px;">
-                          <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
+                          <span style="color: #969696; text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
                           </div>
                           <div v-for="(item, i) in navigation" :key="i">
                             <div style="display: flex; justify-content: space-between;">
@@ -92,7 +92,7 @@
                                   <!-- <div> -->
                                       <span class="card-text">{{ variant.Title }}</span>
                                       <span class="card-text" style="color:#969696">{{ variant.Title1 }}</span>
-                                      <div class="textCaption" style="color: var(--Gray-Medium-dark, #646464);margin-top: 8px;">{{variant.textCaption}}</div>
+                                      <div class="textCaption" style="color: #646464; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; margin-top: 8px;">{{variant.textCaption}}</div>
                                   <!-- </div> -->
                                 </div>
                                 
@@ -288,7 +288,7 @@
        
             </div>
           
-          <!-- </div> -->
+         
                   </v-row>
                 </div>
               </v-container>
@@ -406,16 +406,7 @@ line-height: normal;
 .profile-cards{
 border-radius: 24px;
 background: var(--secondary-background, #12181F)!important;
-height: 180px;
-/* display: flex; */
-/* width: 50% !important; */
-/* max-height: 180px; */
-/* padding: 20px 20px 16px 20px; */
-/* flex-direction: column; */
-/* justify-content: center; */
-/* align-items: flex-end; */
-/* gap: 16px; */
-/* color: white; */
+height: fit-content;
 }
 .card-text{
 color: var(--Warm-Red, #E33E38);
