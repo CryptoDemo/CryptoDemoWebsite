@@ -514,6 +514,7 @@ line-height: 120%; /* 28.8px */
   .img-reviews{
   width: 90% !important;
   width: fit-content !important;
+  left: 12px;
   }
   .review-cards{
   width: 62% !important;
