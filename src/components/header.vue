@@ -25,7 +25,7 @@
      
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn class="dropdown-btn1i me-3" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px;">
+            <v-btn class="dropdown-btn1i me-3" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px; border-radius: 16px; border: 1px solid  #303A46; background: #161D26;">
               <v-img  width="24" class="me-3" :src="flag"/> 
               <span class="me-2 country-text flex-lg-and-up hidden-sm-and-down">{{select}}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -129,9 +129,8 @@ transition: inherit;
 width: 100%;
 padding: 32px;
 /* max-height: 83px !important; */
-background: rgba(18, 24, 31, 0.85) !important;
-backdrop-filter: blur(18.200000762939453px);
-backdrop-filter: blur(20px)!important;
+background: rgba(22, 29, 38, 0.60) !important;
+backdrop-filter: blur(20px) !important;
 color: white!important;
 box-shadow: none!important;
 }

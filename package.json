@@ -23,7 +23,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@sentry/vue": "^7.79.0",
     "pinia": "^2.1.7",
-    "vue3-carousel": "^0.3.1",
-    "vue-lazy-loading": "^1.0.3"
+    "vue-lazy-loading": "^1.0.3",
+    "vue3-carousel": "^0.3.1"
   }
 }

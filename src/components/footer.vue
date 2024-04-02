@@ -46,7 +46,7 @@
                 </div>
                   </v-col>
                   <v-col>
-                <div style="display: flex; gap: var(--spacing-3xl, 24px); justify-content: end">
+                <div style="display: flex; gap: var(--spacing-3xl, 24px); justify-content: end;">
                   <img src="/svg/Social icon.svg"  class="social-icons me-2" />
                   <img src="/svg/Social icon (1).svg" class="social-icons me-2"/>
                   <img src="/svg/Social icon (2).svg" class="social-icons me-2" />
@@ -212,6 +212,9 @@ font-size: 36px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
+}
+.social-icons{
+  cursor: pointer;
 }
 .demo-web1-light {
 color: #10192D;

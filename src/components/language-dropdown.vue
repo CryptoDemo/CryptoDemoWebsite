@@ -13,7 +13,7 @@
           </template>
 
           <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'">
-            <v-list-item>
+            <v-list-item style="padding: 5px !important;">
               <v-row dense style="display: contents;">
               <v-col v-for="(item, index) in locations" md="12" sm="12" :key="index" >
             
@@ -98,6 +98,7 @@ border-radius: 15px;
 border: 0.5px solid #2f3946;
 background: #1B2537 !important;
 backdrop-filter: blur(50px) !important;
+padding: 0px;
 }
 .country-dropdown-light{
 border-radius: 15px;

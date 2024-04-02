@@ -180,15 +180,8 @@ font-weight: 700 !important;
 line-height: normal;
 }
 .v-toolbar {
-    align-items: center;
-    display: flex;
-    flex: 0 0 auto;
-    position: relative;
-    transition: inherit;
-    width: 100%;
-    padding: 0px;
-   
-  }
+  padding: 0px; 
+}
 .text2{
 color: var(--Colors-Base-white, #FFF);
 font-family: "SF Pro Display";

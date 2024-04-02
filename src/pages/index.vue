@@ -35,8 +35,8 @@
                 <span class="web">Demo Web✨️</span>
               </div>
                 <div class="position-relative">
-                  <img v-lazy="'/svg/Group 1318.svg'" class="position-absolute flex-lg-and-up hidden-sm-and-down" style="top: -76px; left: -4%;"/>
-                  <img v-lazy="'/svg/Group 1320.svg'" class="green-coin position-absolute flex-lg-and-up hidden-sm-and-down"/>
+                  <img src="/svg/Group 1318.svg" class="position-absolute flex-lg-and-up hidden-sm-and-down" style="top: -76px; left: -4%;"/>
+                  <img src="/svg/Group 1320.svg" class="green-coin position-absolute flex-lg-and-up hidden-sm-and-down"/>
                 </div>
                 <div>
                   <span class="subtitle-text">Join over 12 million people just like you on everyone's favorite peer-to-peer platform to buy and sell Bitcoin.</span>
@@ -64,7 +64,7 @@
                       <template v-slot:activator="{ props }">
                         <v-btn :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" style="letter-spacing: 0px"
                           v-bind="props">
-                          <v-img  width="25" class="me-3 select" :src="flag"/> 
+                          <img  width="25" class="me-3 select" :src="icon"/> 
                           <div  class="py-3" style="display: grid; cursor: pointer;">
                           <span class="me-2">{{select}}</span> 
                           <span class="me-2 small-text">{{coin}}</span> 
@@ -83,11 +83,10 @@
                           </div>
 
 
-                          <div  v-for="(item, index) in filteredItems?.length ? filteredItems : location" :key="index" class="d-flex py-3" style="cursor: pointer">
-                            <v-list-item-title @click="select=item.title; coin=item.coinText; flag= item.image" class="d-flex">
-                            <v-img width="20" class="rounded-5 me-3" :src="item.image"/>    
-                            <span v-if="item.coinText"> {{ item.title }} </span>
-                            <p v-else>Coin Not Found</p>
+                          <div  v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-3" style="cursor: pointer">
+                            <v-list-item-title @click="select=item.name; coin=item.symbol; icon= item.icon" class="d-flex">
+                            <v-img width="25" class="rounded-5 me-3" :src="item.icon"/>    
+                            <span> {{ item.name }} </span>
                           </v-list-item-title>
                           </div>
                         </v-list-item>
@@ -311,7 +310,7 @@
                 <div class="">
                   <div class="phone-rectangle" style="position: relative; top: -58px; display: flex; justify-content: center;">
                     <div v-if="theme.global.current.value.dark">
-                      <img src="/img/demo dark mode (1).png" class="mobile-screen" style="width: 500px;"/>
+                      <img src="/img/demo-dark-mode(1).png" class="mobile-screen" style="width: 500px;"/>
                      
                       <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                    </div>
@@ -350,7 +349,50 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
+const pinia = useStore()
+const pageNumber = ref(1)
 
+
+try {
+        const data = await fetch(`${baseURL}token/all/${pageNumber.value}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': `${pinia.state.user?.token}`
+            }
+        }).then(res => res.json());
+    
+        console.log(data.success);
+    
+        if (data.success) {
+            const fetchedTokens = data.data.result;
+    
+            const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
+    
+    
+            // Check if there are any new items in the fetched data
+            const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
+    
+
+    
+            if (newItems.length > 0) {
+                console.log('fetching')
+                pinia.setTokenLists(fetchedTokens);
+            }
+        } else {
+            // toast.message(`${data.message}`, {
+            //     position: 'top',
+            //     timeout: 2000,
+            // });
+            console.log('failed')
+        }
+    } catch (error) {
+        console.log(error);
+        // toast.message(`${error}`, {
+        //     position: 'top',
+        //     timeout: 2000,
+        // });
+    };
 const transaction = ref(true);
 const transaction1 = ref(true);
 
@@ -360,7 +402,8 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 
 const select =ref("Bitcoin")
 const coin = ref ("BTC")
-const flag = ref("/svg/bitcoin-btc-logo 1.svg")
+const icon = ref(pinia.state.tokenLists[0].icon)
+
 
 const variants = [
   { cardImages: '/svg/Featured icon.svg', title:'Bank transfer', textCaption:'Our guided bank transfer trades make it even easier to sell Bitcoin and receive payment.', textCaption1:'Our guided bank transfer trades makes it even easier to Buy Bitcoin.'}, 
@@ -381,22 +424,15 @@ const coinType = [
 
 let input = ref("");
 
-const location = ref([
-  { title: 'Bitcoin', coinText:"Dai",  image:"/svg/bitcoin-btc-logo 1.svg" },
-  { title: 'Ethereum',  coinText:"ETH",  image:"/svg/bitcoin-btc-logo 1.svg" },
-  { title: 'Dodge',  coinText:"DOD",  image:"/svg/bitcoin-btc-logo 1.svg" },
-  { title: 'Bitcoin',  coinText:"BTC", image:"/svg/bitcoin-btc-logo 1.svg" },
-]);
-
-  const filteredItems = computed(() => {
-  const searchTerm = input.value.toLowerCase();
-  return location.value.filter((loc) => {
-  const lowerTitle = loc.title.toLowerCase();
-  const lowerCoinText = loc.coinText.toLowerCase();
-  return (
-    lowerTitle.includes(searchTerm) || lowerCoinText.includes(searchTerm)
-  );
-  });
+const filteredItems = computed(() => {
+const searchTerm = input.value.toLowerCase();
+return pinia.state.tokenLists.filter((loc) => {
+const lowerTitle = loc.name.toLowerCase();
+const lowerCoinText = loc.symbol.toLowerCase();
+return (
+  lowerTitle.includes(searchTerm) || lowerCoinText.includes(searchTerm)
+);
+});
 });
 
 const imageSrc=('/svg/applestore.svg')  // Replace with your image path
