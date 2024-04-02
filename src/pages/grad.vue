@@ -1,13 +1,24 @@
 <template>
- <v-btn variant="text" style="border-radius: 5.809px; border: 0.29px solid var(--neutral-shade-dark-0440, rgba(111, 118, 126, 0.40));background: #000;">
-  <img src="/img/google.png" width="15"/>
- </v-btn>
+<v-btn class="image-button" :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
+<v-btn class="image-button" :style="{ backgroundImage: `url(${imageSrc1})` }"></v-btn>
+<v-btn class="image-button" :style="{ backgroundImage: `url(${imageSrc2})` }"></v-btn>
 </template>
 
-<script>
+<script setup>
 
+const imageSrc=('/svg/applestore.svg')  // Replace with your image path
+const imageSrc1=('/svg/playstore.svg')  // Replace with your image path
+const imageSrc2=('/svg/BTN-two.svg')  // Replace with your image path
+    
 </script>
 
 <style>
-
+.image-button {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* Additional button styling (optional) */
+  /* color: white;  */
+  width: 115px;
+}
 </style>
