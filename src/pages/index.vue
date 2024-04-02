@@ -294,13 +294,12 @@
                   <span class="section2-titlei2" :class="isDark ? 'section2-title1':'section2-title1-light'" style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
                   <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
                    <div class="d-flex social-icons-div" style="margin-top: 88px; width: fit-content;">
-                    <v-btn class="image-button social-icons me-4 desktop-social-icons" :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
-                    <v-btn class="image-button social-icons me-4 desktop-social-icons" :style="{ backgroundImage: `url(${imageSrc1})` }"></v-btn>
-                      <!-- <img src="/svg/applestore.svg" style="max-width: 100%;" class="social-icons me-4 desktop-social-icons"/> -->
-                      <!-- <img src="/svg/playstore.svg" style="max-width: 100%;" class="social-icons me-2 desktop-social-icons"/> -->
+                    <v-btn class="image-button me-4 desktop-social-icons" :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
+                    <v-btn class="image-button me-4 desktop-social-icons" :style="{ backgroundImage: `url(${imageSrc1})` }"></v-btn>
+          
 
-                      <img src="/svg/BTN 1.svg" class="social-icons me-3 mobile-social-icons"/>
-                      <img src="/svg/BTN 2.svg" class="social-icons me-3 mobile-social-icons"/>
+                      <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc2})`}"></v-btn>
+                      <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
 
 
                       <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
@@ -402,7 +401,9 @@ const location = ref([
 });
 
 const imageSrc=('/svg/applestore.svg')  // Replace with your image path
-const imageSrc1=('/svg/playstore.svg')  // Replace with your image path
+const imageSrc1=('/svg/playstore.svg')  // Replace with your image path  // Replace with your image path
+const imageSrc2=('/svg/BTN-one.svg')  // Replace with your image path
+const imageSrc3=('/svg/BTN-two.svg')
 </script>
 
 <style scoped>
@@ -1264,10 +1265,6 @@ margin-left: 13px;
 margin-right: 28.5px;
 }
 
-.social-icons{
-  cursor: pointer;
-}
-
 .country-dropdown{
 border-radius: 15px;
 border: 0.5px solid #2f3946;
@@ -1301,7 +1298,20 @@ background: #fff !important;
 color: #060A1D;
 width: 100%;
 }
-
+.image-button {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 115px;
+}
+.image-button1{
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 102px;
+  position: relative;
+  z-index: 100;
+}
 
 .top-grad{
   position: absolute;

@@ -47,8 +47,8 @@
               <v-row class="d-flex px-3">
                 <div>
                     <div class="d-flex">
-                      <img src="/svg/BTN 1.svg" class="social-icons me-3"/>
-                      <img src="/svg/BTN 2.svg" class="social-icons me-3"/>
+                      <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc2})`}"></v-btn>
+                      <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
                       <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
                       <span class="icon-text" style="color: #64748B; font-family: SF Pro Display; font-size: 16px;">Demo Web App now available for download</span>
                     </div>
@@ -90,81 +90,83 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 
 const open = ref(['Users']);
 const footer = ref ([
-        {
-          title: 'Legal', 
-          items: [
-            {subtitle:'Vendor Reminder', link:'#'},
-            {subtitle:"Terms & Conditions", link:'#'},
-            {subtitle: 'AML Policy', link:'#'},
-            {subtitle: 'Stablecoin Terms Of Service', link:'#'},
-            {subtitle: 'Privacy Notice', link:'#'},
-            {subtitle: 'Cookie Policy', link:'#'},
-            {subtitle: 'Restricted Countries', link:'#'},
-            {subtitle: 'Bug Bounty Policy', link:'#'},
-          ]
+  {
+    title: 'Legal', 
+    items: [
+      {subtitle:'Vendor Reminder', link:'#'},
+      {subtitle:"Terms & Conditions", link:'#'},
+      {subtitle: 'AML Policy', link:'#'},
+      {subtitle: 'Stablecoin Terms Of Service', link:'#'},
+      {subtitle: 'Privacy Notice', link:'#'},
+      {subtitle: 'Cookie Policy', link:'#'},
+      {subtitle: 'Restricted Countries', link:'#'},
+      {subtitle: 'Bug Bounty Policy', link:'#'},
+    ]
 
-        },
+  },
 
-        {
-          title: 'For You', 
-          items: [
-            {subtitle:'Buy Bitcoin'},
-            {subtitle:'Buy Tether'},
-            {subtitle:'Sell Bitcoin'},
-            {subtitle:'Buy Bitcoin'},
-            {subtitle:'Demo web Wallet'},
-            {subtitle:'Become Vendor'},
-          ]
-        },
-        {
-          title: 'For Your Business', 
-          items: [
-            {subtitle:'Demo Web Pay'},
-            {subtitle:'Virtual Bitcoin Kiosk'},
-            {subtitle:'API Documentation'},
-          ]
-      
-        },
+  {
+    title: 'For You', 
+    items: [
+      {subtitle:'Buy Bitcoin'},
+      {subtitle:'Buy Tether'},
+      {subtitle:'Sell Bitcoin'},
+      {subtitle:'Buy Bitcoin'},
+      {subtitle:'Demo web Wallet'},
+      {subtitle:'Become Vendor'},
+    ]
+  },
+  {
+    title: 'For Your Business', 
+    items: [
+      {subtitle:'Demo Web Pay'},
+      {subtitle:'Virtual Bitcoin Kiosk'},
+      {subtitle:'API Documentation'},
+    ]
 
-        {
-          title: 'Growth', 
-          items: [
-            {subtitle:'Demo Web Rewards Program'},
-            {subtitle:'Demo Web Trader Program'},
-            {subtitle:'Demo Web Peer Program'},
-            {subtitle:'Community'},
-          ]
-        },
+  },
 
-        {
-          title: 'Buy Anywhere', 
-          items: [
-            {subtitle:'Buy Bitcoin in USA'},
-            {subtitle:'Buy Bitcoin in Nigeria'},
-            {subtitle:'Buy Bitcoin in India'},
-          ]
-        },
+  {
+    title: 'Growth', 
+    items: [
+      {subtitle:'Demo Web Rewards Program'},
+      {subtitle:'Demo Web Trader Program'},
+      {subtitle:'Demo Web Peer Program'},
+      {subtitle:'Community'},
+    ]
+  },
 
-        {
-          title: 'Useful Links', 
-          items: [
-            {subtitle:'Demo Web Status'},
-            {subtitle:'Bitcoin Calculator'},
-            {subtitle:'Peer-to-Peer Market Prices'},
-          ]
-        },
-        {
-          title: 'About Demo Web', 
-          items: [
-            {subtitle:'About Us'},
-            {subtitle:'Business Contacts'},
-            {subtitle:'Careers'},
-            {subtitle:'Demo Web Blog'},
-            {subtitle:'Demo Web Reviews'},
-          ]
-        },
-      ])
+  {
+    title: 'Buy Anywhere', 
+    items: [
+      {subtitle:'Buy Bitcoin in USA'},
+      {subtitle:'Buy Bitcoin in Nigeria'},
+      {subtitle:'Buy Bitcoin in India'},
+    ]
+  },
 
+  {
+    title: 'Useful Links', 
+    items: [
+      {subtitle:'Demo Web Status'},
+      {subtitle:'Bitcoin Calculator'},
+      {subtitle:'Peer-to-Peer Market Prices'},
+    ]
+  },
+  {
+    title: 'About Demo Web', 
+    items: [
+      {subtitle:'About Us'},
+      {subtitle:'Business Contacts'},
+      {subtitle:'Careers'},
+      {subtitle:'Demo Web Blog'},
+      {subtitle:'Demo Web Reviews'},
+    ]
+  },
+])
+
+const imageSrc2=('/svg/BTN-one.svg')  // Replace with your image path
+const imageSrc3=('/svg/BTN-two.svg')
 </script>
 
 <style scoped>
@@ -316,5 +318,14 @@ line-height: normal;
     font-size: calc(var(--v-icon-size-multiplier)* 1.5em);
     color: white !important;
     margin-left: 17px;
+}
+
+.image-button1{
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 102px;
+  position: relative;
+  z-index: 100;
 }
 </style>

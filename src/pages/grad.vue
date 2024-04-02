@@ -17,8 +17,6 @@ const imageSrc2=('/svg/BTN-two.svg')  // Replace with your image path
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  /* Additional button styling (optional) */
-  /* color: white;  */
   width: 115px;
 }
 </style>

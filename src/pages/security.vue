@@ -1,14 +1,16 @@
 <template>
   <div>
     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+      <v-container style="width: 100%;">
           <v-row no-gutters style="margin-top: 130px;">
-            <v-col cols="3">
+            <div style="display: flex;">
+            <div cols="4">
               <div class="pa-2 ma-2">
                   <Side-nav/>
               </div>
-            </v-col>
+            </div>
 
-            <v-col cols="9">
+            <div cols="8" style="width: 64% !important;">
               <div class="pa-2 ma-2">
                   
                   <div class="acct-settings" style="display: flex; justify-content: space-between">    
@@ -19,7 +21,7 @@
                   <div style="margin-top: 35px">
                     <span class="pswrd-mgt">Password Management</span>
                   </div>
-                  <section style="width: 938px;">
+                  <section>
                       <div style="margin-top:34px !important; display:flex; justify-content: space-between;">
                           <div class="d-flex">
                                 <img src="/svg/Item.svg" class="me-4" style="display: flex; align-self: start;"/>
@@ -78,7 +80,7 @@
                           </v-btn>
                       
                         </div>
-                    <div style="margin-top: 42px">
+                    <div style="margin-top: 42px;">
                         <span class="pswrd-mgt" style="font-weight: 700;">Change Password</span>
                         <div class="d-flex" style="align-items: center;">
                             <Password class=" me-4" placeholder="Enter current password"/>
@@ -99,9 +101,10 @@
 
                
 
-            </v-col>     
+            </div>     
+          </div>
           </v-row>
-          
+      </v-container>   
           <Footer/>
   </div>
 </template>

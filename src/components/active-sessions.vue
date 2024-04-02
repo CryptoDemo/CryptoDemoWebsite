@@ -226,7 +226,7 @@ const  UserActivity = [
 
 .v-table {
     background: inherit !important;
-    width: 940px;
+    /* width: 940px; */
   
 }
 .v-table--density-default > .v-table__wrapper > table > thead > tr > th, .v-table--density-default > .v-table__wrapper > table > tfoot > tr > th {
