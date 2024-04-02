@@ -439,7 +439,7 @@ line-height: 120%; /* 28.8px */
   padding: 0px !important;
   height: 60% !important;
   }
-  .frame-2{
+  .frame2{
   padding: 0  !important;
   margin: 0px !important;
   width: 100% !important;
@@ -552,6 +552,7 @@ line-height: 120%; /* 28.8px */
   .demo-div1{
     margin: 0px !important;
     margin-bottom: 26px !important;
+    /* height: 100%; */
   }
   .barcode-section{
     height: 100% !important;
@@ -560,6 +561,7 @@ line-height: 120%; /* 28.8px */
   margin-left: 26px !important;
   margin-bottom: 25px !important;
   margin-right: 26px !important;
+  /* margin-top: 0px !important; */
   }
   .text-demoi{
     text-decoration: none !important;

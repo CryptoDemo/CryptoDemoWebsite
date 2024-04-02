@@ -33,7 +33,7 @@
 
             <v-col>
                 <v-col class="second-col mt-2" style="padding: 8px; margin-bottom: 8px;">
-                  <div class="frame-2"  :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 40px; width: 100%;">
+                  <div class="frame2"  :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 40px; width: 100%;">
                     <div>
                       <div class="position-relative">
                         <div class="coin-wrap1" :class="isDark ? 'coin-wrap1':'coin-wrap1-light'"></div>
@@ -59,7 +59,7 @@
 
 
                 <v-col class="second-coli" style="padding: 8px; margin-bottom: 8px;">
-                  <div class="frame-2" :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 30px; position: relative;">
+                  <div class="frame2" :class="isDark ? 'frame2':'frame2-light'" style="padding: 0 30px; position: relative;">
                     <div class="img-wrap1" style="display: flex; flex-direction: column; padding: 0 60px; position: relative; right: 10%; height: 205px;">
                       <div class="position-relative">
                         <div class="coin-wrap1i" :class="isDark ? 'coin-wrap1':'coin-wrap1-light'"></div>

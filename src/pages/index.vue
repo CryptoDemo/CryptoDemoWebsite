@@ -170,7 +170,7 @@
       <v-container class=" position-relative">
         <div class=""> 
           <img src="/svg/Ellipse 2813.svg"  class="position-absolute blue-ellipse1" style="right:0; bottom: 65%;"/>
-            <div class="section2i" :class="isDark ? 'section2':'section2-light'">
+            <div class="section2i section2" :class="isDark ? 'section2':'section2-light'">
               <span class="section2-subtitle card-sub1">TRADE YOUR COIN LIKE A FOREX EXPERT</span>
               <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Over 350 ways to buy and sell Bitcoin.</span>
               <span class="explore-trade">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
@@ -213,7 +213,7 @@
 
         <v-container class=" position-relative section2ii" >
               <img v-lazy="'/svg/Ellipse 2813.svg'" class="position-absolute blue-ellipse2" style="right:0; margin-top: 144px ;"/>
-             <div class="section2ii2"  :class="isDark ? 'section2':'section2-light'">
+             <div class="section2ii2 section2"  :class="isDark ? 'section2':'section2-light'">
                 <span class="section2-subtitle sub-text2" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features of The demo web</span>
                 <span class="section2-titleii" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-bottom: 88px;">Welcome to a financial system for the 100%.</span>
              </div>
@@ -227,23 +227,22 @@
             <v-row no-gutters class="mt-7">
               <v-col cols="12" sm="6" md="6">
                 <div class="demo-div1" style="margin-inline-end: 28px;">
-                  <div class="barcode-section"  :class="isDark ? 'barcode-section':'barcode-section-light'">
+                  <div class="barcode-section" :class="isDark ? 'barcode-section':'barcode-section-light'">
                       <div class="rectangle" style="display: flex; justify-self: center;" >
-                          <img v-lazy="'/img/frame-3-dark.png'" style="display: flex; justify-self: center; width: 100%; margin: auto;" class=""  v-if="theme.global.current.value.dark"/>
-                          
-                          <div style=" background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);border-radius: 15px; width: 100%; height: 30px;"  v-else>
-                          <img v-lazy="'/svg/demo-light.svg'"  style="display: flex; justify-self: center; width: 90%; margin: auto;margin-top:27px; " class=""/>
-                          </div>
+                        <img v-lazy="'/img/frame-3-dark.png'" style="display: flex; justify-self: center; width: 100%; margin: auto;" class=""  v-if="theme.global.current.value.dark"/>   
+                        <div style=" background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);border-radius: 15px; width: 100%;"  v-else>
+                          <img v-lazy="'/svg/demo-light.svg'"  style="display: flex; align-self: center; justify-self: center; width: 90%; margin: auto; margin-top:27px;"/>
+                        </div>
                       </div> 
-                          <div class="wallet-div" style="display:grid;  margin-left: 36px; position: relative; top: 6px;">
+                      <div class="wallet-div" style="display:grid;  margin-left: 36px; position: relative; top: 6px;">
                     
-                                <v-btn class="wallet-frame" style="width: 88px;">
-                                  <img src="/svg/Wallet.svg" class="me-2">
-                                  <span  :class="isDark ? 'sell-btc-text':'sell-btc-text-light'" style="font-size: 14px !important;  font-weight: 600;">wallet</span>
-                                </v-btn>
-                                <div style="display: grid">
+                          <v-btn class="wallet-frame" style="width: 88px;">
+                            <img src="/svg/Wallet.svg" class="me-2">
+                            <span  :class="isDark ? 'sell-btc-text':'sell-btc-text-light'" style="font-size: 14px !important;  font-weight: 600;">wallet</span>
+                          </v-btn>
+                                <div style="display: grid; position: relative;">
                                   <span class="buy" :class="isDark ? 'free-demo':'free-demo-light'">Free Demo Web Wallet</span>
-                                  <span  style="margin-top: 8px; color: #8E9BAE;line-height: 140%; font-family: SF Pro Display ;">Get a free <NuxtLink to="#"><span class="text-demoi"  style="font-size: 16px;color: #2873FF;font-weight: 600; font-family: SF Pro Display; letter-spacing: 0.32px;">Demo Web</span></NuxtLink> 
+                                  <span  style="margin-top: 8px;  color: #8E9BAE;line-height: 140%; font-family: SF Pro Display ;">Get a free <NuxtLink to="#"><span class="text-demoi"  style="font-size: 16px;color: #2873FF;font-weight: 600; font-family: SF Pro Display; letter-spacing: 0.32px;">Demo Web</span></NuxtLink> 
                                   when you sign up to receive, send, and store your Bitcoin.</span>
                                 </div>
                         
@@ -254,7 +253,7 @@
               </v-col>
               <v-col cols="12" sm="6" md="6">
                 <div class="">
-                   <div class="barcode-section"   :class="isDark ? 'barcode-section':'barcode-section-light'">
+                   <div class="barcode-section" :class="isDark ? 'barcode-section':'barcode-section-light'">
                       <div class="rectangle">
                         <div style="padding-top: 28px;" v-if="theme.global.current.value.dark">
                           <img v-lazy="'/img/Frame 48090.png'"  style="display: flex; justify-self: center; margin: auto; width: 93%;"/>
@@ -852,7 +851,6 @@ line-height: 150%; /* 19.289px */
 letter-spacing: 0px !important;
 }
 .section2{
-
 border-radius: 50px;
 border-top: 1px solid #2873FF;
 background: rgba(6, 10, 29, 0.50);
