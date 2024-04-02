@@ -37,10 +37,9 @@
           <v-row class="d-flex">
             <v-col>
                 <div class="d-flex">
-                  <v-btn class="image-button social-icons me-3" variant="text" :style="{ backgroundImage: `url(${imageSrc2})`}"></v-btn>
-                  <v-btn class="image-button social-icons me-3"  variant="text" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
-                  <!-- <img src="/svg/BTN 1.svg" class="social-icons me-4"/>
-                  <img src="/svg/BTN 2.svg" class="social-icons me-2"/> -->
+                  <v-btn class="image-button social-icons me-4" variant="text" :style="{ backgroundImage: `url(${imageSrc2})`}"></v-btn>
+                  <v-btn class="image-button social-icons me-2"  variant="text" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
+                 
                   <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
                   <span class="icon-text" style="color: #64748B; font-family: SF Pro Display; font-size: 16px;">Demo Web App now available for download</span>
                 </div>
