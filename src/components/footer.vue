@@ -38,10 +38,11 @@
             <v-col>
                 <div class="d-flex">
                   <v-btn class="image-button social-icons me-4" variant="text" :style="{ backgroundImage: `url(${imageSrc2})`}"></v-btn>
-                  <v-btn class="image-button social-icons me-2"  variant="text" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
+                  <v-btn class="image-button social-icons me-4"  variant="text" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
                  
-                  <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
-                  <span class="icon-text" style="color: #64748B; font-family: SF Pro Display; font-size: 16px;">Demo Web App now available for download</span>
+                  <div style="border-left: 1px solid #8E9BAE; height: 1%; padding-left: 13px; width: 200px;">
+                    <span class="icon-text" style="color: #8E9BAE;font-family: SF Pro Display; font-weight: 500; font-size: 16px;">Demo Web App now  available for download</span>
+                  </div>
                 </div>
                   </v-col>
                   <v-col>
@@ -289,15 +290,7 @@ width: 186px;
 justify-content: center;
 align-items: center;
 }
-.border-line{
-border-left: 1px solid #8E9BAE;
-gap: 10px;
-margin-left: 13px;
-margin-right: 28.5px;
-}
-.social-icons{
-  cursor: pointer;
-}
+
 .footer-container{
 display: flex;
 padding: var(--spacing-3xl, 24px) 10px;

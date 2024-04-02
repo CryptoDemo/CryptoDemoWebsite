@@ -293,7 +293,7 @@
                   <span class="section2-subtitlei1 sub-text2i" style="justify-content: flex-start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
                   <span class="section2-titlei2" :class="isDark ? 'section2-title1':'section2-title1-light'" style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
                   <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
-                   <div class="d-flex social-icons-div" style="margin-top: 88px; width: fit-content;">
+                   <div class="d-flex social-icons-div" style="margin-top: 88px; width: fit-content; align-items: center">
                     <v-btn class="image-button me-4 desktop-social-icons" :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
                     <v-btn class="image-button me-4 desktop-social-icons" :style="{ backgroundImage: `url(${imageSrc1})` }"></v-btn>
           
@@ -301,9 +301,9 @@
                       <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc2})`}"></v-btn>
                       <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
 
-
-                      <div class="border-line flex-lg-and-up hidden-sm-and-down"></div>
-                      <span class="icon-text" style="color: #8E9BAE;font-family: SF Pro Display; font-weight: 500; font-size: 16px;width: 155px;">Demo Web App now  available for download</span>
+                      <div style="border-left: 1px solid #8E9BAE; height: 1%; padding-left: 13px; width: 200px;">
+                        <span class="icon-text" style="color: #8E9BAE;font-family: SF Pro Display; font-weight: 500; font-size: 16px;">Demo Web App now  available for download</span>
+                      </div>
                     </div>
                 </div>
 
@@ -1256,13 +1256,6 @@ display: flex;
 justify-content: center;
 text-align: center;
 margin: auto;
-}
-
-.border-line{
-border-left: 1px solid #8E9BAE;
-gap: 10px;
-margin-left: 13px;
-margin-right: 28.5px;
 }
 
 .country-dropdown{
