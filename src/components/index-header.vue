@@ -387,7 +387,7 @@ border-radius: 15px;
 background: #fff !important;
 }
 .country-name{
-color: var(--Colors-Base-white, #FFF);
+color: var(--Colors-Base-white, #FFF) !important;
 font-family: "SF Pro Display";
 font-size: 14px;
 font-style: normal;
@@ -396,7 +396,7 @@ line-height: normal;
 letter-spacing: -0.14px;
 }
 .country-name-light{
-color: #10192D;
+color: #10192D !important;
 font-family: "SF Pro Display";
 font-size: 14px;
 font-style: normal;
