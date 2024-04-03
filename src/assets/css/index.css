@@ -657,7 +657,7 @@ line-height: 120%; /* 28.8px */
   }
 
   .marquee-container{
-    margin-top: 262px !important;
+    margin-top: 282px !important;
     /* width: fit-content !important; */
   }
   .explore-trade{
@@ -708,9 +708,9 @@ line-height: 120%; /* 28.8px */
   .coin-ani3{
     width: 23% !important;
     height: 95%;
-    /* padding-left: 9px !important; */
+    padding-left: 9px !important;
     /* padding: 2px !important; */
-    margin-inline-end: 18px !important;
+    margin-inline-end: 17px !important;
   }
   .section2{
     border-radius: 0px !important;
