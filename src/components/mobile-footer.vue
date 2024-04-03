@@ -169,7 +169,7 @@ const imageSrc2=('/svg/BTN-one.svg')  // Replace with your image path
 const imageSrc3=('/svg/BTN-two.svg')
 </script>
 
-<style scoped>
+<style>
 @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 .mobile-footer{
 color: #8E9BAE;
@@ -216,16 +216,7 @@ font-style: normal;
 font-weight: 700;
 line-height: normal;
 }
-.FAQ-text{
-color: #8E9BAE;
-font-family: "SF Pro Display";
-font-size: 16px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-text-decoration-line: underline; 
-cursor: pointer;
-}
+
 
 .footer-body{
 background: rgba(6, 10, 29, 0.70) !important; 
@@ -314,11 +305,7 @@ font-weight: 600;
 line-height: normal;
 }
 
-.v-icon--size-default {
-    font-size: calc(var(--v-icon-size-multiplier)* 1.5em);
-    color: white !important;
-    margin-left: 17px;
-}
+
 
 .image-button1{
   background-size: cover;
