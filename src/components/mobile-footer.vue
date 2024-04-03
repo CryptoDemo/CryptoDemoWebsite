@@ -332,6 +332,6 @@ line-height: normal;
 .v-list-item__content {
     align-self: center;
     grid-area: content;
-    overflow: visible;
+    overflow: visible !important;
 }
 </style>
