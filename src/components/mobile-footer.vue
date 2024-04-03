@@ -14,7 +14,7 @@
 
               <v-list-group v-for="(links, i) in footer" :key="i" :class="isDark ? 'border-dark':'border-light'">
                 <template v-slot:activator="{ props }">
-                  <v-list-item v-bind="props" class="py-6 pb-2">
+                  <v-list-item v-bind="props" class="py-6 pb-">
                   <span class="pb-3" :class="isDark ? 'mobile-title':'mobile-title-light'">{{ links.title }}</span>
                   </v-list-item>
                 </template>
