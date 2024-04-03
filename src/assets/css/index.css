@@ -686,7 +686,7 @@ line-height: 120%; /* 28.8px */
  
   .coin-box3{
   /* gap: 20px !important; */
-  /* padding-left: 42px !important; */
+  /* padding-left: 6px !important; */
   width: 100vw !important;
   }
 
@@ -706,9 +706,9 @@ line-height: 120%; /* 28.8px */
   }
 
   .coin-ani3{
-    width: 23% !important;
+    width: 28% !important;
     height: 95%;
-    padding-left: 6px !important;
+    padding-left: -7px !important;
     /* padding: 2px !important; */
     margin-inline-end: 10px !important;
   }
