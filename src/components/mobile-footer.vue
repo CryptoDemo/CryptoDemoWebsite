@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div  :class="isDark ? 'footer-bg1':'footer-bg1-light'">
+    <div class="footer-links"  :class="isDark ? 'footer-bg2':'footer-bg2-light'">
       <v-container>
        <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
           <span :class="isDark ? 'demo-web1':'demo-web1-light'">Demo Web</span>
@@ -73,8 +73,8 @@
             </span>
         </v-container>
         </div>
-      </div>
     </div>
+  </div>
 </template>
 
 <script setup>
@@ -169,7 +169,7 @@ const imageSrc2=('/svg/BTN-one.svg')  // Replace with your image path
 const imageSrc3=('/svg/BTN-two.svg')
 </script>
 
-<style>
+<style scoped>
 @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 .mobile-footer{
 color: #8E9BAE;
@@ -274,11 +274,11 @@ font-weight: 400;
 line-height: 200%; /* 24px */
 letter-spacing: 0.12px;
 }
-.footer-bg1{
+.footer-bg2{
 background: rgba(6, 10, 29, 0.70) !important; 
 backdrop-filter: blur(25px) !important; 
 }
-.footer-bg1-light{
+.footer-bg2-light{
 background: #fff !important; 
 backdrop-filter: blur(25px) !important; 
 }
@@ -316,9 +316,9 @@ line-height: normal;
   z-index: 100;
 }
 
-.v-list-item__content {
-    align-self: center;
-    grid-area: content;
-    overflow: visible !important;
+.footer-links :deep(.v-list-item__content) {
+  align-self: center;
+  grid-area: content;
+  overflow: visible !important;
 }
 </style>

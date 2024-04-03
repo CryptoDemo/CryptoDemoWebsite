@@ -710,7 +710,7 @@ line-height: 120%; /* 28.8px */
     height: 95%;
     /* padding-left: 9px !important; */
     /* padding: 2px !important; */
-    margin-inline-end: 14px !important;
+    margin-inline-end: 18px !important;
   }
   .section2{
     border-radius: 0px !important;
@@ -746,6 +746,15 @@ line-height: 120%; /* 28.8px */
   }
   .dialogue{
     width: 100% !important;
+    padding: 0 !important;
+    margin-top: 80px !important;
+    height: 100%;
+    overflow: scroll !important;
+  }
+  .dialog{
+    padding: 20px !important;
+    height: 100%;
+    overflow: scroll !important;
   }
   .pay-options{
     width: max-content !important;
