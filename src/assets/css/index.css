@@ -658,6 +658,7 @@ line-height: 120%; /* 28.8px */
 
   .marquee-container{
     margin-top: 262px !important;
+    width: fit-content !important;
   }
   .explore-trade{
   font-size: 16px !important;
@@ -672,12 +673,12 @@ line-height: 120%; /* 28.8px */
     margin-top: 48px !important;
   }
   .coin-box2{
-  gap: 20px !important;
+  /* gap: 20px !important; */
   padding-right: 2px !important;
   }
   .coin-box1{
-  padding-left: -12px !important;
-  gap: 20px !important;
+  /* padding-right: -224px !important; */
+  gap: 0px !important;
   flex-wrap: nowrap !important;
   }
  
@@ -698,13 +699,17 @@ line-height: 120%; /* 28.8px */
   border-top-right-radius: 50px !important;
 }
   .coin-ani{
-  width: 20% !important;
+  width: 60px !important;
   height: 20% !important; 
+  margin-inline-end: 25px !important;
+  padding-left: 4px !important;
   }
 
   .coin-ani1{
-    width: 20% !important;
+    width: 58px !important;
     height: 20% !important;
+    margin-inline-end: 20px !important;
+    padding-left: 4px;
   }
 
   .right-vector1{
