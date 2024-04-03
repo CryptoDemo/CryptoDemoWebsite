@@ -38,7 +38,7 @@
                       <div class="position-relative">
                         <div class="coin-wrap1" :class="isDark ? 'coin-wrap1':'coin-wrap1-light'"></div>
                           <img src="/img/frame2-dark.png" class="btc-box1" style="max-width: 100%; width: 75%;" v-if="theme.global.current.value.dark"/>
-                          <img src="/svg/Frame 1light.svg" class="btc-box1" style="max-width: 100%;" v-else/>
+                          <img src="/img/light-mode-img.png" class="btc-box1" width="75%" style="max-width: 100%;" v-else/>
                           <img src="/img/pointer-vector.png" style="max-width: 100%; width: 60%; left: 7px; z-index: 1000;" class="cursor"/>
                       </div>
                       <div class="sell-col sel-coli">
