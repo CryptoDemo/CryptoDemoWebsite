@@ -698,10 +698,10 @@ line-height: 120%; /* 28.8px */
   }
   
   .coin-ani1{
-    width: 26% !important;
+    width: 23% !important;
     height: 20% !important;
     /* gap: 20px !important; */
-    margin-inline-end: 20px !important;
+    margin-inline-end: 8px !important;
     padding-left: 6px !important;
   }
 

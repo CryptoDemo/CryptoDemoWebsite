@@ -192,7 +192,8 @@ flex-shrink: 0;
 }
 
 .marquee-container {
-  overflow: hidden;
+  /* overflow: hidden; */
+  width: 100vw !important;
 }
 
 .marquee {
