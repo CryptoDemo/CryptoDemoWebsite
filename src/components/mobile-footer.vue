@@ -328,4 +328,10 @@ line-height: normal;
   position: relative;
   z-index: 100;
 }
+
+.v-list-item__content {
+    align-self: center;
+    grid-area: content;
+    overflow: visible;
+}
 </style>
