@@ -39,14 +39,14 @@
 
               <div class="mt-12">
                 <span class="popular">Popular in Nigeria</span>
-                <v-row style="margin-top: 10px;">
-                  <v-col v-for="(items, index) in filteredItems?. length ? filteredItems :popularOptions" :key="index" md="4" sm="12" @click="Paymentmethod1=items.Options1; isActive.value = false">
+                <v-list style="margin-top: 10px; border-radius: 0px !important; background: inherit !important;">
+                  <div v-for="(items, index) in filteredItems?. length ? filteredItems :popularOptions" :key="index"  @click="Paymentmethod1=items.Options1; isActive.value = false">
                     <v-btn  style="background: inherit; color: white; letter-spacing: 0px; text-transform: capitalize; width: 100%; height: 50px; display: flex;justify-content: flex-start; border-bottom: 0.5px solid #2f3946 !important; box-shadow: none;">
                       <img :src="items.image" width="30" class="me-3"/>
                       <span class="mb-2" :class="isDark ? 'btn-payment-choices':'btn-payment-choices-light'">{{ items.Options1 }}</span>
                     </v-btn>
-                </v-col>
-                </v-row>
+                  </div>
+                </v-list>
               </div>
 
            
