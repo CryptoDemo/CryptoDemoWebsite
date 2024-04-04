@@ -40,9 +40,8 @@
                 <v-row dense style="max-width: auto; flex-direction: column;">
                 <v-col v-for="(item, index) in filteredItems?.length ? filteredItems : locations" :key="index" class="">
                 
-                  <v-list-item-title class="py-3" @click="select=item.countryName; emoji= item.emoji" style="display:flex;">
-                    <h1 class="me-2">{{ item.emoji }}</h1>
-                   <!-- <img width="32" class="rounded-5 me-2" :src="item.image" style="border-radius: 5px;"/>     -->
+                  <v-list-item-title class="py-1" @click="select=item.countryName; emoji= item.emoji" style="display:flex;">
+                    <h1 class="me-2 text-h4">{{ item.emoji }}</h1>
                    <span class="country-name" style="display: flex; align-items: center;"> {{ item.countryName }} </span>
                 </v-list-item-title>
                   </v-col>
