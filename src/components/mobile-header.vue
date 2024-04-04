@@ -22,7 +22,7 @@
              <v-menu style="position: relative !important; height: auto; z-index: 10000;">
             <template v-slot:activator="{ props }">
               <v-btn  class="me-" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
-                <h1 class="me-1">{{emoji }}</h1>
+                <h1 class="me-1">{{ emoji }}</h1>
                 <span class="me-2" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{select}}</span>
                 <v-icon icon="mdi-chevron-down" style="color: #8E9BAE; position: absolute; right: 3%;"></v-icon>
               </v-btn>

@@ -106,15 +106,15 @@ import { useTheme } from 'vuetify';
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
-const select =ref("NGN")
+const select =ref("USA")
 
 const emoji = ref("🇬🇧")
 
 const locations = [
         { title: 'USA', countryname:'United State', emoji:"🇬🇧"},
-        { title: 'KW',countryname:'Kuwait',  emoji:"🇳🇬" },
+        { title: 'KW',countryname:'Kuwait',  emoji:"🇬🇸" },
         { title: 'ALG', countryname:'Australia', emoji:"🇻🇪" },
-        { title: 'NI', countryname:'Nigeria',  emoji:"🇬🇸" },
+        { title: 'NI', countryname:'Nigeria',  emoji:"🇳🇬 " },
         { title: 'NIG', countryname:'Niger', emoji:"🇵🇰" },
         { title: 'NU', countryname:'Niue', emoji:"🇱🇮" },
         { title: 'SX', countryname:'Sint Maarten', emoji:"🇸🇩"},
