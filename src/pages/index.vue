@@ -115,7 +115,7 @@
                     <span  :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to  spend" : "I want to  receive" }}</span>
                     <div class="d-flex" style="margin-top:9px; position: relative;">
                     <input type="number" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
-                      @input="setInputValue" placeholder="Enter Amount"/>
+                       placeholder="Enter Amount"/>
                     <v-menu transition="scale-transition">
                         <template v-slot:activator="{ props }">
                           <v-btn v-bind="props" class="position-absolute" :class="isDark ? 'show-all':'show-all-light'" style="right: 10px;margin-top: 8px;font-weight: 700;">
@@ -1292,6 +1292,7 @@ backdrop-filter: blur(50px) !important;
 .country-dropdown-light{
 border-radius: 15px;
 background: #fff !important;
+color: #060A1D;
 }
 ::-webkit-input-placeholder {
 
