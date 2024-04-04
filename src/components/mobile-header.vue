@@ -147,7 +147,7 @@ const locations = ref([
   { countryName: 'Oman', emoji:"🇻🇪" },
   { countryName: 'Argentina', emoji:"🇱🇮"},
   { countryName: 'France', emoji:"🇸🇩"},
-  { countryName: 'Nigeria', emoji:"🇹🇳"},
+  { countryName: 'Saudi Arabia', emoji:"🇹🇳"},
   ]);
 
 
