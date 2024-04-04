@@ -111,15 +111,15 @@ const select =ref("USA")
 const emoji = ref("🇬🇧")
 
 const locations = [
-        { title: 'USA', countryname:'United State', emoji:"🇬🇧"},
-        { title: 'KW',countryname:'Kuwait',  emoji:"🇬🇸" },
-        { title: 'ALG', countryname:'Australia', emoji:"🇻🇪" },
-        { title: 'NI', countryname:'Nigeria',  emoji:"🇳🇬 " },
-        { title: 'NIG', countryname:'Niger', emoji:"🇵🇰" },
-        { title: 'NU', countryname:'Niue', emoji:"🇱🇮" },
-        { title: 'SX', countryname:'Sint Maarten', emoji:"🇸🇩"},
-        { title: 'BA', countryname:'Bosnia and Herzegovina', emoji:"🇰🇿" },
-        { title: 'SVK', countryname:'Slovakia', emoji:"🇹🇳"},
+  { title: 'ALG', countryname:'Australia', emoji:"🇻🇪" },
+  { title: 'BA', countryname:'Bosnia and Herzegovina', emoji:"🇰🇿" },
+  { title: 'KW',countryname:'Kuwait',  emoji:"🇬🇸" },
+  { title: 'USA', countryname:'United State', emoji:"🇬🇧"},
+  { title: 'SX', countryname:'Sint Maarten', emoji:"🇸🇩"},
+  { title: 'SVK', countryname:'Slovakia', emoji:"🇹🇳"},
+  { title: 'NI', countryname:'Nigeria',  emoji:"🇳🇬 " },
+  { title: 'NIG', countryname:'Niger', emoji:"🇵🇰" },
+  { title: 'NU', countryname:'Niue', emoji:"🇱🇮" },
       ];
 const props = defineProps(
   {

@@ -142,12 +142,12 @@ const select =ref("USA")
 const emoji = ref("🇬🇧")
 
 const locations = ref([
-  { countryName: 'Russia',  emoji:"🇵🇰" },
-  { countryName: 'United States',  emoji:"🇬🇧"},
-  { countryName: 'Oman', emoji:"🇻🇪" },
   { countryName: 'Argentina', emoji:"🇱🇮"},
   { countryName: 'France', emoji:"🇸🇩"},
+  { countryName: 'Oman', emoji:"🇻🇪" },
+  { countryName: 'Russia',  emoji:"🇵🇰" },
   { countryName: 'Saudi Arabia', emoji:"🇹🇳"},
+  { countryName: 'United States',  emoji:"🇬🇧"},
   ]);
 
 
