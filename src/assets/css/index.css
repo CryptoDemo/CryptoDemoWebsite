@@ -767,9 +767,9 @@ line-height: 120%; /* 28.8px */
   .search-icon{
   top: 75px !important;
   }
-  .coin-bg1{
-    /* width: 93% !important; */
-    /* margin-left: 6px !important; */
+  .coin-overlay{
+    gap: 50px !important;
+
   }
   .btc-light-img{
     width: 100% !important;

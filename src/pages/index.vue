@@ -73,8 +73,8 @@
                       </v-btn>
                     </template>
 
-                    <div class="px-2">
-                    <v-list class="coin-bg1"  :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 10px; margin-top: 10px;">
+                    <div class="coin-overlay px-3">
+                    <v-list  :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 10px; margin-top: 10px;">
                       <v-list-item style="width: -webkit-fill-available;">
                         <div  @click.stop style="margin-top: 8px; margin-bottom: 15px;">
                           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 31px; margin-left: 19px;">
