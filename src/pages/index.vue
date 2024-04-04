@@ -1305,7 +1305,7 @@ border-radius: 15px;
 background: #1B2537 !important;
 width: 100%;
 display: flex;
-/* margin: auto; */
+margin: auto;
 justify-content: center;
 border: 0.5px solid #2f3946;
 }
