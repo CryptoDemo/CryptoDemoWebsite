@@ -752,6 +752,7 @@ line-height: 120%; /* 28.8px */
     padding: 20px !important;
     height: 100%;
     overflow: hidden !important;
+    overflow-y: scroll !important;
   }
   .pay-options{
     width: max-content !important;
