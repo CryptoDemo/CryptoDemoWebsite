@@ -281,7 +281,7 @@
                     <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc2})`}"></v-btn>
                     <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
 
-                    <span class="icon-text" style="color: #64748B; font-family: SF Pro Display; font-size: 16px;">Demo Web App now available for download</span>
+                    <span class="icon-text" style="color: #64748B; font-family: SF Pro Display; font-size: 16px; width: 180px;">Demo Web App now available for download</span>
                   </div>
               </div>
 
@@ -1302,6 +1302,11 @@ font-size: 14px !important;
 font-style: normal;
 font-weight: 700 !important;
 line-height: 150% !important; /* 21px */
+}
+
+.icon-text{
+  border-left: 0.875px solid #8E9BAE !important;
+  padding-left: 8px !important;
 }
 .coin-bg1 {
 border-radius: 15px;
