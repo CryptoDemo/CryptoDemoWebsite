@@ -757,6 +757,9 @@ line-height: 120%; /* 28.8px */
   .pay-options{
     width: max-content !important;
   }
+  .search-icon{
+  top: 84px !important;
+  }
 }
 
 
