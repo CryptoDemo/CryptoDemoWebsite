@@ -22,7 +22,7 @@
              <v-menu style="position: relative !important; height: auto; z-index: 10000;">
             <template v-slot:activator="{ props }">
               <v-btn  class="me-" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
-                <h1 class="me-1">{{ emoji }}</h1>
+                <h1 class="me-1 d-flex text-h4">{{ emoji }}</h1>
                 <span class="me-2" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{select}}</span>
                 <v-icon icon="mdi-chevron-down" style="color: #8E9BAE; position: absolute; right: 3%;"></v-icon>
               </v-btn>
@@ -40,7 +40,7 @@
                 <v-row dense style="max-width: auto; flex-direction: column;">
                 <v-col v-for="(item, index) in filteredItems?.length ? filteredItems : locations" :key="index" class="">
                 
-                  <v-list-item-title class="py-3" @click="select=item.countryName; flag= item.image" style="display:flex;">
+                  <v-list-item-title class="py-3" @click="select=item.countryName; emoji= item.emoji" style="display:flex;">
                     <h1 class="me-2">{{ item.emoji }}</h1>
                    <!-- <img width="32" class="rounded-5 me-2" :src="item.image" style="border-radius: 5px;"/>     -->
                    <span class="country-name" style="display: flex; align-items: center;"> {{ item.countryName }} </span>
