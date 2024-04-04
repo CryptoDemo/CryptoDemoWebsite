@@ -207,7 +207,7 @@
               <div class="demo-div1" style="margin-inline-end: 28px;">
                 <div class="barcode-section" :class="isDark ? 'barcode-section':'barcode-section-light'">
                     <div class="rectangle" style="display: flex; justify-self: center;" >
-                      <img v-lazy="'/img/frame-3-dark.png'" style="display: flex; justify-self: center; width: 100%; margin: auto;" class=""  v-if="theme.global.current.value.dark"/>   
+                      <img v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228018/frame-3-dark_cyersc.png'" style="display: flex; justify-self: center; width: 100%; margin: auto;" class=""  v-if="theme.global.current.value.dark"/>   
                       <div style=" background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);border-radius: 15px; width: 100%;"  v-else>
                         <img v-lazy="'/svg/demo-light.svg'"  style="display: flex; align-self: center; justify-self: center; width: 90%; margin: auto; margin-top:27px;"/>
                       </div>
@@ -290,13 +290,13 @@
               <div class="">
                 <div class="phone-rectangle" style="position: relative; top: -58px; display: flex; justify-content: center;">
                   <div v-if="theme.global.current.value.dark">
-                    <img src="/img/demo-dark-mode(1).png" class="mobile-screen" style="width: 500px;"/>
+                    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1712227730/demo-dark-mode_1_elqrup.png" class="mobile-screen" style="width: 500px;"/>
                    
                     <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                  </div>
                  <div v-else>
-                  <img src="/img/new-demolight.png" class="mobile-screen" style="width: 500px;"/>
-                  <img src="/img/light-phone.png" style="max-width: 100%; z-index: 1000;" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
+                  <img v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228232/new-demolight_rub0cb.png'" class="mobile-screen" style="width: 500px;"/>
+                  <img v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228578/new-desktop-light_tj7bjj.png'" style="max-width: 100%; z-index: 1000;" class="desktop-screen flex-lg-and-up hidden-sm-and-down"/>
                 </div>
                 </div>
               </div>
