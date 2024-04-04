@@ -15,7 +15,7 @@
                 <path d="M14.83 14.8299L9.17001 9.16992" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>   
             </div>
-            <div @click.stop style="background: #10192D; border-radius: 29px;">
+            <div @click.stop  :class="isDark ? 'searchbar':'searchbar-light'" style="border-radius: 29px;">
 
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="search-icon" style="position: absolute; top: 97px; margin-left: 19px;">
                 <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#4263EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -221,15 +221,14 @@ text-transform: unset !important;
 }
 
 .dialogue :deep(.v-overlay__scrim){
-    pointer-events: auto;
-    background: rgb(0 2 21) !important;
-    border-radius: inherit;
-    bottom: 0;
-    left: 0;
-    opacity: 0.32;
-    position: fixed;
-    right: 0;
-    top: 0;
+  background: rgb(0 2 21) !important;
+}
+
+.searchbar{
+background: #10192D;
+}
+.searchbar-light{
+background: #E9F1FF;
 }
 ::-webkit-scrollbar{
 display: none;
