@@ -236,7 +236,6 @@ border-radius: 0px !important;
 .footer-list-light{
 background: #fff !important;
 backdrop-filter: blur(25px) !important;
-/* color: #10192D !important; */
 }
 .faq-text{
 color: #64748B;

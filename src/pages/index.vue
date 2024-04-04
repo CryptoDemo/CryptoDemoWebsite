@@ -281,9 +281,7 @@
                     <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc2})`}"></v-btn>
                     <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
 
-                    <div style="border-left: 1px solid #8E9BAE;  padding-left: 13px; width: 140px;">
-                      <span class="" style="color: #8E9BAE;font-family: SF Pro Display; font-weight: 500; font-size: 11px;">Demo Web App now  available for download</span>
-                    </div>
+                    <span class="icon-text" style="color: #64748B; font-family: SF Pro Display; font-size: 16px;">Demo Web App now available for download</span>
                   </div>
               </div>
 
