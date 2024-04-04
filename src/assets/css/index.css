@@ -746,12 +746,12 @@ line-height: 120%; /* 28.8px */
     padding: 0 !important;
     margin-top: 80px !important;
     height: auto !important;
-    /* overflow: scroll !important; */
+    overflow: hidden !important;
   }
   .dialog{
     padding: 20px !important;
     height: 100%;
-    overflow: scroll !important;
+    overflow: hidden !important;
   }
   .pay-options{
     width: max-content !important;
