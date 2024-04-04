@@ -217,4 +217,7 @@ text-transform: unset !important;
   height: fit-content;
   border-radius: 5px;
 }
+::-webkit-scrollbar{
+display: none;
+}
 </style>
