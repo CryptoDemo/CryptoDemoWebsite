@@ -39,7 +39,7 @@
                     <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins" class="coin-ani3  d-flex animated-coins" />
                 </div>
                 <div class="coin-container coin-box3 marquee2b marquee2" style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
-                    <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins" width="20%" class="coin-ani3 d-flex animated-coins" />
+                    <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins" class="coin-ani3 d-flex animated-coins" />
                 </div>
           
             </div>
