@@ -220,7 +220,6 @@ line-height: normal;
 
 .footer-body{
 background: rgba(6, 10, 29, 0.70) !important; 
-/* backdrop-filter: blur(25px); */
 box-shadow: none;
 }
 .footer-body-light{
@@ -275,11 +274,9 @@ line-height: 200%; /* 24px */
 letter-spacing: 0.12px;
 }
 .footer-bg2{
-/* background: rgba(6, 10, 29, 0.70) !important;  */
 backdrop-filter: blur(25px) !important; 
 }
 .footer-bg2-light{
-/* background: #fff !important;  */
 backdrop-filter: blur(25px) !important; 
 }
 .border-dark{
@@ -304,8 +301,6 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 }
-
-
 
 .image-button1{
   background-size: cover;
