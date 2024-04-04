@@ -66,7 +66,7 @@
                         </v-btn>
                     </template>
                     <div style="display: flex; align-items: center;  justify-content: end; position: relative; z-index: 1000000;">
-                    <v-list style="width: 100%; padding: 10px;" :class="isDark ? 'card-hub':'card-hub-light'">
+                    <v-list style="width: 100%;" :class="isDark ? 'card-hub':'card-hub-light'">
                       <div>
                       
                         <div>
@@ -368,7 +368,7 @@ font-weight: 400;
 line-height: normal;
 }
 .card-hub{
-background: #060A1D;
+background: #060A1D !important;
 }
 
 .card-hub-light{

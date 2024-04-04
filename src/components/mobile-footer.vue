@@ -19,10 +19,10 @@
                   </v-list-item>
                 </template>
 
-                <v-list-group>
+                <v-list-group class="pb-5">
                   <template v-slot:activator="{props}">   
                     <div>
-                      <v-list-item  v-bind="props" :append-icon="null" v-for="(item,i) in links.items" :key="i">
+                      <v-list-item   v-bind="props" :append-icon="null" v-for="(item,i) in links.items" :key="i">
                         <NuxtLink :to="item.link"><span class="mobile-footer">{{ item.subtitle }}</span></NuxtLink>
                       </v-list-item>
                   </div>

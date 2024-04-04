@@ -745,7 +745,7 @@ line-height: 120%; /* 28.8px */
     width: 100% !important;
     padding: 0 !important;
     margin-top: 80px !important;
-    height: 100%;
+    height: auto !important;
     overflow: scroll !important;
   }
   .dialog{

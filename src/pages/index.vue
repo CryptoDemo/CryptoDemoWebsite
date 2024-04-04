@@ -282,8 +282,8 @@
                     <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc2})`}"></v-btn>
                     <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
 
-                    <div style="border-left: 1px solid #8E9BAE; height: 1%; padding-left: 13px; width: 200px;">
-                      <span class="icon-text" style="color: #8E9BAE;font-family: SF Pro Display; font-weight: 500; font-size: 16px;">Demo Web App now  available for download</span>
+                    <div style="border-left: 1px solid #8E9BAE;  padding-left: 13px; width: 140px;">
+                      <span class="" style="color: #8E9BAE;font-family: SF Pro Display; font-weight: 500; font-size: 11px;">Demo Web App now  available for download</span>
                     </div>
                   </div>
               </div>
@@ -1303,7 +1303,7 @@ line-height: 150% !important; /* 21px */
 .coin-bg1 {
 border-radius: 15px;
 background: #1B2537 !important;
-width: 90%;
+width: 100%;
 display: flex;
 margin: auto;
 border: 0.5px solid #2f3946;
