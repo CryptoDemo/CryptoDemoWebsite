@@ -73,6 +73,7 @@
                       </v-btn>
                     </template>
 
+                    <div class="px-2">
                     <v-list class="coin-bg1"  :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 10px; margin-top: 10px;">
                       <v-list-item style="width: -webkit-fill-available;">
                         <div  @click.stop style="margin-top: 8px; margin-bottom: 15px;">
@@ -82,8 +83,8 @@
                           <v-textarea clearable variant="text" rows="1" no-resize  placeholder="Search for Coins..." v-model="input" style=" border: 1px solid #64748B; height: 55px;  border-radius: 30px; padding-left: 30px; align-items: center; width: 100%;"></v-textarea>
                         </div>
 
-
-                        <div  v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-3" style="cursor: pointer">
+                      
+                        <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-3" style="cursor: pointer">
                           <v-list-item-title @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
                           <img width="25" class="rounded-5 me-3" :src="item.icon"/>    
                           <div>
@@ -92,8 +93,12 @@
                         </div>
                         </v-list-item-title>
                         </div>
+
+
                       </v-list-item>
                     </v-list>
+                  </div>
+
                   </v-menu> 
                   <div style="margin-top:9px">  
                     <span class="btc-ammt">40 BTC = <span class="btc-ammt1">40,144.86 USD</span></span>

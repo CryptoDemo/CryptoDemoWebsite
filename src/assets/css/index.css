@@ -703,6 +703,12 @@ line-height: 120%; /* 28.8px */
     padding-left: 0px !important;
   }
 
+  /* .coin-ani3{
+    width: 27% !important;
+    height: 95%;
+    padding-left: -25px !important;
+    margin-inline-end: 20px !important;
+  } */
   .coin-ani3{
     width: 27% !important;
     height: 95%;
@@ -762,8 +768,8 @@ line-height: 120%; /* 28.8px */
   top: 75px !important;
   }
   .coin-bg1{
-    width: 93% !important;
-    margin-left: 6px !important;
+    /* width: 93% !important; */
+    /* margin-left: 6px !important; */
   }
   .btc-light-img{
     width: 100% !important;
