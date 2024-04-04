@@ -68,19 +68,19 @@
                           <img src="/svg/item1.svg" class="desktop-screen" style="max-width: 100%;"/>
                           <img src="/img/item.png" class="mobile-screen btc1i2" style="max-width: 100%;"/>
                         </div>
-                          <img src="/svg/item2-light.svg" style="max-width: 100%;" v-else/>
+                          <img src="/img/item (1btc).png" class="btc-light-img" width="90%" style="max-width: 100%;" v-else/>
 
                         <div v-if="theme.global.current.value.dark">
                           <img src="/svg/item2.svg" class="card1i desktop-screen" style="max-width: 100%;"/>
                           <img src="/img/item (1).png" class="card1i2 mobile-screen" style="max-width: 100%;"/>
                         </div>
-                        <img src="/svg/item3-light.svg" class="card1i" style="max-width: 100%;" v-else/>
+                        <img src="/img/item (3usd).png" class="card1i btc-light-img"  width="90%" style="max-width: 100%;" v-else/>
 
                         <div v-if="theme.global.current.value.dark">
                           <img src="/svg/item3.svg" class="card1ii desktop-screen" style="max-width: 100%;"/>   
                           <img src="/img/item (2).png" class="card1ii2 mobile-screen" style="max-width: 100%;"/>   
                         </div>
-                          <img src="/svg/item1-light.svg" class="card1ii" style="max-width: 100%;" v-else />   
+                          <img src="/img/item (4).png" class="card1ii btc-light-img" width="90%" style="max-width: 100%;" v-else />   
                       </div>
                     </div>
                     <div class="position-relative sell-col  security-btn mb-5">
