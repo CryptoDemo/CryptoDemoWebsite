@@ -1305,8 +1305,11 @@ line-height: 150% !important; /* 21px */
 }
 
 .icon-text{
-  border-left: 0.875px solid #8E9BAE !important;
-  padding-left: 8px !important;
+border-left: 0.875px solid #8E9BAE !important;
+padding-left: 8px !important;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
 }
 .coin-bg1 {
 border-radius: 15px;
