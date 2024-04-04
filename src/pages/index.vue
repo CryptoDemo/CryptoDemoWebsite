@@ -73,7 +73,7 @@
                       </v-btn>
                     </template>
 
-                    <v-list  :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 10px; margin-top: 10px;">
+                    <v-list class="coin-bg1"  :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 10px; margin-top: 10px;">
                       <v-list-item style="width: -webkit-fill-available;">
                         <div  @click.stop style="margin-top: 8px; margin-bottom: 15px;">
                           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 27px; margin-left: 19px;">
@@ -1303,7 +1303,7 @@ line-height: 150% !important; /* 21px */
 .coin-bg1 {
 border-radius: 15px;
 background: #1B2537 !important;
-width: 92%;
+width: 95%;
 display: flex;
 margin: auto;
 border: 0.5px solid #2f3946;
