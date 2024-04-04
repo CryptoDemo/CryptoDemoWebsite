@@ -25,10 +25,10 @@
               </div>
 
               <v-row style="display: flex;">
-              <div style="display: flex; justify-content: space-between; overflow: scroll; margin-top: 20px; width: 100vw;">
+              <div style="display: flex; justify-content: space-between; overflow: scroll; margin-top: 30px; width: 100vw;">
                 
                 <v-col :class="isDark ? 'payment-div':'payment-div-light'" v-for="(item, index) in paymentOptions" :key="index" lg="2" md="4" sm="3" style="width: 100%;">
-                  <div class="pay-options" style="display: flex; flex-direction: column; align-items: center; cursor: pointer;  overflow: scroll;">
+                  <div class="pay-options" style="display: flex; flex-direction: column; align-items: center; cursor: pointer; overflow: scroll;">
                     <img :src="item.image" width="40"/>
                     <span class="payment-options">{{ item.Options }}</span>
                     <span class="payment-choices">{{ item.choice }}</span>
@@ -70,21 +70,21 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const Paymentmethod1= ref('Select Payment method');
 
 const paymentOptions = [
-  {image:'/svg/bank.svg', Options:'Bank transfers', choice:'Choices : 61'},
-  {image:'/svg/bank.svg', Options:'Online Wallets', choice:'Choices : 29'},
-  {image:'/svg/bank.svg', Options:'Debit/Credit Cards', choice:'Choices : 98'},
-  {image:'/svg/bank.svg', Options:'Gift Cards', choice:'Choices : 133'},
-  {image:'/svg/bank.svg', Options:'Digital Currencies', choice:'Choices : 34'},
-  {image:'/svg/bank.svg', Options:'Cash Payments', choice:'Choices: 27'},
+  {Options:'Bank transfers', choice:'Choices : 61'},
+  {Options:'Online Wallets', choice:'Choices : 29'},
+  {Options:'Debit/Credit Cards', choice:'Choices : 98'},
+  {Options:'Gift Cards', choice:'Choices : 133'},
+  {Options:'Digital Currencies', choice:'Choices : 34'},
+  {Options:'Cash Payments', choice:'Choices: 27'},
   
 ]
 const popularOptions = ref([
-  {image:'/svg/bag.svg', Options1:'Bank transfers'},
-  {image:'/svg/gift.svg', Options1:'MTN Mobile Money'},
-  {image:'/svg/gift.svg', Options1:'Cash Deposit to Bank'},
+  {image:'/svg/bank-transfer.svg', Options1:'Bank transfers'},
+  {image:'/svg/money.svg', Options1:'MTN Mobile Money'},
+  {image:'/svg/bank-transfer.svg', Options1:'Cash Deposit to Bank'},
   {image:'/svg/bag.svg', Options1:'Paypal'},
-  {image:'/svg/gift.svg', Options1:'Chipper Cash'},
-  {image:'/svg/bag.svg', Options1:'Perfect Money'},
+  {image:'/svg/exchange.svg', Options1:'Chipper Cash'},
+  {image:'/svg/gift.svg', Options1:'Perfect Money'},
   
 ]);
 
