@@ -22,7 +22,7 @@
              <v-menu style="position: relative !important; height: auto; z-index: 10000;">
             <template v-slot:activator="{ props }">
               <v-btn  class="me-" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
-                <img  width="32" class="me-3" :src="flag" style="border-radius: 5px;"/> 
+                <h1 class="me-1">{{emoji }}</h1>
                 <span class="me-2" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{select}}</span>
                 <v-icon icon="mdi-chevron-down" style="color: #8E9BAE; position: absolute; right: 3%;"></v-icon>
               </v-btn>
@@ -41,8 +41,8 @@
                 <v-col v-for="(item, index) in filteredItems?.length ? filteredItems : locations" :key="index" class="">
                 
                   <v-list-item-title class="py-3" @click="select=item.countryName; flag= item.image" style="display:flex;">
-                    
-                   <img width="32" class="rounded-5 me-2" :src="item.image" style="border-radius: 5px;"/>    
+                    <h1 class="me-2">{{ item.emoji }}</h1>
+                   <!-- <img width="32" class="rounded-5 me-2" :src="item.image" style="border-radius: 5px;"/>     -->
                    <span class="country-name" style="display: flex; align-items: center;"> {{ item.countryName }} </span>
                 </v-list-item-title>
                   </v-col>
@@ -138,17 +138,17 @@ navbarClass.value = drawer.value ? 'open' : 'closed';
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
-const select =ref("NGN")
+const select =ref("USA")
 
-const flag = ref("/flags/ng.svg")
+const emoji = ref("🇬🇧")
 
 const locations = ref([
-  { countryName: 'Russia',  image:"/flags/rs.svg" },
-  { countryName: 'United States',  image:"/flags/us.svg" },
-  { countryName: 'Oman',  image:"/flags/om.svg" },
-  { countryName: 'Argentina',  image:"/flags/ag.svg" },
-  { countryName: 'France',  image:"/flags/fr.svg" },
-  { countryName: 'Nigeria', image:"/flags/ng.svg" },
+  { countryName: 'Russia',  emoji:"🇵🇰" },
+  { countryName: 'United States',  emoji:"🇬🇧"},
+  { countryName: 'Oman', emoji:"🇻🇪" },
+  { countryName: 'Argentina', emoji:"🇱🇮"},
+  { countryName: 'France', emoji:"🇸🇩"},
+  { countryName: 'Nigeria', emoji:"🇹🇳"},
   ]);
 
 

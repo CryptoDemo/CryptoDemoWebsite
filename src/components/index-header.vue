@@ -5,6 +5,7 @@
         <v-container style="display: flex; align-items: center;">
       
         <v-app-bar-title  :class="isDark ? 'nav-title':'nav-title-light'" >Demo Web</v-app-bar-title>
+
  
           <div class="d-flex" style="position: absolute; margin-left: 150px;">
              <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Create an offer</span> </NuxtLink></v-btn>
@@ -64,9 +65,10 @@
       
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn  class="me-4 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"  style="letter-spacing: 0px;"        
+            <v-btn  class="me-4 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"  style="letter-spacing: 0px; display: flex;"        
               v-bind="props">
-              <img  width="30" class="me-3" :src="flag" style="border-radius: 8px;"/> 
+              <h1 class="me-1">{{emoji }}</h1>
+      
               <span class="me-2" :class="isDark ? 'nav-subtitle1':'nav-subtitle1-light'">{{select}}</span>
               <v-icon icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
             </v-btn>
@@ -77,9 +79,8 @@
               <v-row dense style="width: 240px;">
               <v-col v-for="(item, index) in locations" class="" sm="12" :key="index">
             
-                <v-list-item-title @click="select=item.title; flag= item.image" style="display: flex; align-items: center">
-                 <img width="30" class="me-3" :src="item.image" style="border-radius: 8px;"/>    
-               
+                <v-list-item-title @click="select=item.title; emoji= item.emoji" style="display: flex;">
+                 <h1 class="me-2" style="height: 30px; align-items: center">{{ item.emoji }}</h1>
                 <span class="country-name" :class="isDark ? 'country-name':'country-name-light'"> {{ item.countryname }} </span>
               </v-list-item-title>
                 </v-col>
@@ -107,18 +108,18 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 
 const select =ref("NGN")
 
-const flag = ref("/flags/ng.svg")
+const emoji = ref("🇬🇧")
 
 const locations = [
-        { title: 'USA', countryname:'United State', image:"/flags/us.svg" },
-        { title: 'KW',countryname:'Kuwait',  image:"/flags/kw.svg" },
-        { title: 'ALG', countryname:'Australia',  image:"/flags/au.svg" },
-        { title: 'NI', countryname:'Nigeria',  image:"/flags/ni.svg" },
-        { title: 'NIG', countryname:'Niger', image:"/flags/ng.svg" },
-        { title: 'NU', countryname:'Niue', image:"/flags/nu.svg" },
-        { title: 'SX', countryname:'Sint Maarten', image:"/flags/sx.svg" },
-        { title: 'BA', countryname:'Bosnia and Herzegovina', image:"/flags/ba.svg" },
-        { title: 'SVK', countryname:'Slovakia', image:"/flags/sk.svg" },
+        { title: 'USA', countryname:'United State', emoji:"🇬🇧"},
+        { title: 'KW',countryname:'Kuwait',  emoji:"🇳🇬" },
+        { title: 'ALG', countryname:'Australia', emoji:"🇻🇪" },
+        { title: 'NI', countryname:'Nigeria',  emoji:"🇬🇸" },
+        { title: 'NIG', countryname:'Niger', emoji:"🇵🇰" },
+        { title: 'NU', countryname:'Niue', emoji:"🇱🇮" },
+        { title: 'SX', countryname:'Sint Maarten', emoji:"🇸🇩"},
+        { title: 'BA', countryname:'Bosnia and Herzegovina', emoji:"🇰🇿" },
+        { title: 'SVK', countryname:'Slovakia', emoji:"🇹🇳"},
       ];
 const props = defineProps(
   {
