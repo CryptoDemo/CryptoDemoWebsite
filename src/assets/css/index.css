@@ -761,7 +761,8 @@ line-height: 120%; /* 28.8px */
   top: 84px !important;
   }
   .coin-bg1{
-    width: 90% !important;
+    width: 93% !important;
+    margin-left: 5px !important;
   }
 }
 
