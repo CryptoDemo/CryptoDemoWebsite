@@ -14,7 +14,7 @@
 
               <v-list-group v-for="(links, i) in footer" :key="i" :class="isDark ? 'border-dark':'border-light'">
                 <template v-slot:activator="{ props }">
-                  <v-list-item v-bind="props" class="py-6 pb-">
+                  <v-list-item v-bind="props" class="py-6">
                   <span class="pb-3" :class="isDark ? 'mobile-title':'mobile-title-light'">{{ links.title }}</span>
                   </v-list-item>
                 </template>
@@ -22,7 +22,7 @@
                 <v-list-group class="pb-5">
                   <template v-slot:activator="{props}">   
                     <div>
-                      <v-list-item   v-bind="props" :append-icon="null" v-for="(item,i) in links.items" :key="i">
+                      <v-list-item v-bind="props" :append-icon="null" v-for="(item,i) in links.items" :key="i">
                         <NuxtLink :to="item.link"><span class="mobile-footer">{{ item.subtitle }}</span></NuxtLink>
                       </v-list-item>
                   </div>
@@ -231,6 +231,7 @@ box-shadow: none;
 .footer-list{
 background: rgba(6, 10, 29, 0.70) !important; 
 backdrop-filter: blur(25px) !important;
+border-radius: 0px !important;
 }
 .footer-list-light{
 background: #fff !important;
@@ -275,11 +276,11 @@ line-height: 200%; /* 24px */
 letter-spacing: 0.12px;
 }
 .footer-bg2{
-background: rgba(6, 10, 29, 0.70) !important; 
+/* background: rgba(6, 10, 29, 0.70) !important;  */
 backdrop-filter: blur(25px) !important; 
 }
 .footer-bg2-light{
-background: #fff !important; 
+/* background: #fff !important;  */
 backdrop-filter: blur(25px) !important; 
 }
 .border-dark{
