@@ -16,10 +16,12 @@
               </svg>   
             </div>
             <div @click.stop style="background: #10192D; border-radius: 29px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" class="search-icon" style="position: absolute; top: 97px; margin-left: 19px;">
-                      <path d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z" stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <v-textarea clearable variant="text" rows="1" no-resize  placeholder="Search..." v-model="input" style="  height: 55px;  border-radius: 30px; padding-left: 30px; align-items: center; width: 100%;"></v-textarea>
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="search-icon" style="position: absolute; top: 97px; margin-left: 19px;">
+                <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#4263EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22 22L20 20" stroke="#4263EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>   
+                <v-textarea clearable variant="text" rows="1" no-resize  placeholder="Search..." v-model="input" style="  height: 55px;  border-radius: 30px; padding-left: 45px; align-items: center; width: 100%;"></v-textarea>
               </div>
 
               <v-row style="display: flex;">
@@ -39,7 +41,7 @@
                 <span class="popular">Popular in Nigeria</span>
                 <v-row style="margin-top: 10px;">
                   <v-col v-for="(items, index) in filteredItems?. length ? filteredItems :popularOptions" :key="index" md="4" sm="12" @click="Paymentmethod1=items.Options1; isActive.value = false">
-                    <v-btn  style="background: inherit; color: white; letter-spacing: 0px; text-transform: capitalize; width: 100%; height: 50px; display: flex;justify-content: flex-start; border-: 0.5px solid #2f3946 !important; box-shadow: none;">
+                    <v-btn  style="background: inherit; color: white; letter-spacing: 0px; text-transform: capitalize; width: 100%; height: 50px; display: flex;justify-content: flex-start; border-bottom: 0.5px solid #2f3946 !important; box-shadow: none;">
                       <img :src="items.image" width="30" class="me-3"/>
                       <span class="mb-2" :class="isDark ? 'btn-payment-choices':'btn-payment-choices-light'">{{ items.Options1 }}</span>
                     </v-btn>
