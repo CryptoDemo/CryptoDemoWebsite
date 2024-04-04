@@ -22,7 +22,7 @@
              <v-menu style="position: relative !important; height: auto; z-index: 10000;">
             <template v-slot:activator="{ props }">
               <v-btn  class="me-" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
-                <img  width="32" class="me-3" :src="flag"/> 
+                <img  width="32" class="me-3" :src="flag" style="border-radius: 10px;"/> 
                 <span class="me-2" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{select}}</span>
                 <v-icon icon="mdi-chevron-down" style="color: #8E9BAE; position: absolute; right: 3%;"></v-icon>
               </v-btn>
@@ -31,17 +31,18 @@
             <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; border: 0.5px solid #2f3946; margin-top: 10px;">
               <v-list-item>
                 <div @click.stop style="margin-top: 7px; margin-bottom: 15px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 25px; margin-left: 19px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 29px; margin-left: 19px;">
                       <path d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z" stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <input type="text"  placeholder="Search for Country" v-model="input" style="outline: none; border:  1px solid #64748B; height: 48px; width: 100%; border-radius: 25px; padding-left: 60px;"/>
+                    <v-textarea clearable variant="text" rows="1" no-resize  placeholder="Search for Country" v-model="input" style=" border: 1px solid #64748B; height: 55px;  border-radius: 30px; padding-left: 30px; align-items: center; width: 100%;"></v-textarea>
+                   
                 </div>
                 <v-row dense style="max-width: auto; flex-direction: column;">
                 <v-col v-for="(item, index) in filteredItems?.length ? filteredItems : locations" :key="index" class="">
                 
                   <v-list-item-title class="py-3" @click="select=item.countryName; flag= item.image" style="display:flex;">
                     
-                   <img width="32" class="rounded-5 me-2" :src="item.image" style="border-radius: 12px;"/>    
+                   <img width="32" class="rounded-5 me-2" :src="item.image" style="border-radius: 10px;"/>    
                    <span class="country-name" style="display: flex; align-items: center;"> {{ item.countryName }} </span>
                 </v-list-item-title>
                   </v-col>
@@ -139,7 +140,7 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 
 const select =ref("NGN")
 
-const flag = ref("/svg/nigeria-flag.svg")
+const flag = ref("/flags/ng.svg")
 
 const locations = ref([
   { countryName: 'Russia',  image:"/flags/rs.svg" },

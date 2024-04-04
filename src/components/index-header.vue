@@ -66,7 +66,7 @@
           <template v-slot:activator="{ props }">
             <v-btn  class="me-4 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"  style="letter-spacing: 0px;"        
               v-bind="props">
-              <img  width="30" class="me-3" :src="flag" style="height: fit-content; object-fit: cover !important; border-radius: 50% !important;"/> 
+              <img  width="30" class="me-3" :src="flag" style="border-radius: 8px;"/> 
               <span class="me-2" :class="isDark ? 'nav-subtitle1':'nav-subtitle1-light'">{{select}}</span>
               <v-icon icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
             </v-btn>
@@ -78,7 +78,7 @@
               <v-col v-for="(item, index) in locations" class="" sm="12" :key="index">
             
                 <v-list-item-title @click="select=item.title; flag= item.image" style="display: flex; align-items: center">
-                 <img width="30" class="me-3" :src="item.image" style="border-radius: 10px;"/>    
+                 <img width="30" class="me-3" :src="item.image" style="border-radius: 8px;"/>    
                
                 <span class="country-name" :class="isDark ? 'country-name':'country-name-light'"> {{ item.countryname }} </span>
               </v-list-item-title>

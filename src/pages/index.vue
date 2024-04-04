@@ -76,10 +76,10 @@
                     <v-list class="coin-bg1"  :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 10px; margin-top: 10px;">
                       <v-list-item style="width: -webkit-fill-available;">
                         <div  @click.stop style="margin-top: 8px; margin-bottom: 15px;">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 27px; margin-left: 19px;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 31px; margin-left: 19px;">
                                 <path d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z" stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                           </svg>
-                            <input type="text"  placeholder="Search for Coins..." v-model="input" style="outline: none; border:  1px solid #64748B; height: 48px; width: 100%; border-radius: 25px; padding-left: 60px;"/>
+                          <v-textarea clearable variant="text" rows="1" no-resize  placeholder="Search for Country" v-model="input" style=" border: 1px solid #64748B; height: 55px;  border-radius: 30px; padding-left: 30px; align-items: center; width: 100%;"></v-textarea>
                         </div>
 
 
@@ -115,8 +115,7 @@
                     <span  :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to  spend" : "I want to  receive" }}</span>
                     <div class="d-flex" style="margin-top:9px; position: relative;">
                     <input type="text" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
-                              
-                    placeholder="Enter Amount"/>
+                      @input="setInputValue" placeholder="Enter Amount"/>
                     <v-menu transition="scale-transition">
                         <template v-slot:activator="{ props }">
                           <v-btn v-bind="props" class="position-absolute" :class="isDark ? 'show-all':'show-all-light'" style="right: 10px;margin-top: 8px;font-weight: 700;">
@@ -332,6 +331,10 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
+
+
+
+
 const pinia = useStore()
 const pageNumber = ref(1)
 
@@ -428,6 +431,13 @@ const imageSrc=('/svg/applestore.svg') ; // Replace with your image path
 const imageSrc1=('/svg/playstore.svg') ; 
 const imageSrc2=('/svg/BTN-one.svg');  
 const imageSrc3=('/svg/BTN-two.svg');
+
+
+const setInputValue =(event) =>{
+  const Valueinput = event.target.value;
+  const numericInput = Valueinput.replace(/\D/g, ''); // Remove non-numeric characters
+  event.target.value = numericInput; // Update the input field with the modified value
+}
 </script>
 
 <style scoped>
