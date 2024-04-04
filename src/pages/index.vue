@@ -114,7 +114,7 @@
                   <div style="margin-top: 30px;">
                     <span  :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to  spend" : "I want to  receive" }}</span>
                     <div class="d-flex" style="margin-top:9px; position: relative;">
-                    <input type="text" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
+                    <input type="number" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
                       @input="setInputValue" placeholder="Enter Amount"/>
                     <v-menu transition="scale-transition">
                         <template v-slot:activator="{ props }">
@@ -430,12 +430,6 @@ const imageSrc1=('/svg/playstore.svg') ;
 const imageSrc2=('/svg/BTN-one.svg');  
 const imageSrc3=('/svg/BTN-two.svg');
 
-
-const setInputValue =(event) =>{
-  const Valueinput = event.target.value;
-  const numericInput = Valueinput.replace(/\D/g, ''); // Remove non-numeric characters
-  event.target.value = numericInput; // Update the input field with the modified value
-}
 </script>
 
 <style scoped>
