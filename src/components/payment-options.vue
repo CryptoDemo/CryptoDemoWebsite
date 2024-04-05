@@ -8,45 +8,44 @@
 
         <template v-slot:default="{ isActive }">
           <v-card class="dialog" :class="isDark ? 'dialog':'dialog-light'">
-            <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+            <!-- <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"  @click="isActive.value = false" style="cursor: pointer;">
                 <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M9.17001 14.8299L14.83 9.16992" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M14.83 14.8299L9.17001 9.16992" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>   
-            </div>
+            </div> -->
             <div @click.stop  :class="isDark ? 'searchbar':'searchbar-light'" style="border-radius: 29px;">
 
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="search-icon" style="position: absolute; top: 97px; margin-left: 19px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="search-icon" style="position: absolute; top: 55px; margin-left: 19px;">
                 <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#4263EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M22 22L20 20" stroke="#4263EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>   
                 <v-textarea clearable variant="text" rows="1" no-resize  placeholder="Search..." v-model="input" style="  height: 55px;  border-radius: 30px; padding-left: 45px; align-items: center; width: 100%;"></v-textarea>
               </div>
 
-              <v-row style="display: flex;">
-              <div style="display: flex; justify-content: space-between; overflow: scroll; margin-top: 30px; width: 100vw;">
+              <div style="display: flex; justify-content: space-between; margin-top: 30px; height: fit-content;">
+                <v-row>
                 
-                <v-col :class="isDark ? 'payment-div':'payment-div-light'" v-for="(item, index) in paymentOptions" :key="index" lg="2" md="4" sm="3" style="width: 100%;">
-                  <div class="pay-options" style="display: flex; flex-direction: column; align-items: center; cursor: pointer; overflow: scroll;">
-                    <img :src="item.image" width="40"/>
-                    <span class="payment-options">{{ item.Options }}</span>
-                    <span class="payment-choices">{{ item.choice }}</span>
+                <v-col cols="12" sm="4" :class="isDark ? 'payment-div':'payment-div-light'" v-for="(item, index) in paymentOptions" :key="index">
+                  <div class="pay-options" style="display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <span class="payment-options me-2">{{ item.Options }}</span>
+                    <span class="payment-choices mt-2">{{ [item.choice] }}</span>
                   </div>
                 </v-col>
+              </v-row>
               </div>
-            </v-row>
 
               <div class="mt-12">
                 <span class="popular">Popular in Nigeria</span>
-                <v-list style="margin-top: 10px; border-radius: 0px !important; background: inherit !important;">
-                  <div v-for="(items, index) in filteredItems?. length ? filteredItems :popularOptions" :key="index"  @click="Paymentmethod1=items.Options1; isActive.value = false">
-                    <v-btn  style="background: inherit; color: white; letter-spacing: 0px; text-transform: capitalize; width: 100%; height: 50px; display: flex;justify-content: flex-start; border-bottom: 0.5px solid #2f3946 !important; box-shadow: none;">
+                <div style="margin-top: 10px; border-radius: 0px !important;">
+                  <v-list-item v-for="(items, index) in filteredItems?. length ? filteredItems :popularOptions" :key="index"  @click="Paymentmethod1=items.Options1; isActive.value = false" style=" border-bottom: 0.5px solid #2f3946 !important;">
+                    <v-list  style="display: flex;justify-content: flex-start; border-radius: 0px !important; background: inherit !important;">
                       <img :src="items.image" width="30" class="me-3"/>
                       <span class="mb-2" :class="isDark ? 'btn-payment-choices':'btn-payment-choices-light'">{{ items.Options1 }}</span>
-                    </v-btn>
-                  </div>
-                </v-list>
+                    </v-list>
+                  </v-list-item>
+                </div>
               </div>
 
            
@@ -70,12 +69,13 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const Paymentmethod1= ref('Select Payment method');
 
 const paymentOptions = [
-  {Options:'Bank transfers', choice:'Choices : 61'},
-  {Options:'Online Wallets', choice:'Choices : 29'},
-  {Options:'Debit/Credit Cards', choice:'Choices : 98'},
-  {Options:'Gift Cards', choice:'Choices : 133'},
-  {Options:'Digital Currencies', choice:'Choices : 34'},
-  {Options:'Cash Payments', choice:'Choices: 27'},
+  {Options:'Bank transfers', choice: 33,},
+  {Options:'Online Wallets', choice:29},
+  {Options:'Debit/Credit Cards', choice: 98},
+  {Options:'Gift Cards', choice:133},
+  {Options:'Digital Currencies', choice:34},
+  {Options:'Cash Payments', choice: 27},
+  // {Options:'Goods and services', choice:'Choices: 27'},
   
 ]
 const popularOptions = ref([
@@ -109,6 +109,7 @@ background: #1B2537 !important;
 cursor: pointer;
 border: 0.5px solid #2f3946;
 padding: 40px;
+width: 100%;
 }
 .dialog-light{
 border-radius: 100px;
