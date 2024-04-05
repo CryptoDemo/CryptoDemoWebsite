@@ -114,8 +114,8 @@
                           <Transaction-btn buttonText="Bank Transfers" class="mt-4" @click="Paymentmethod1='Bank Transfers'"/>
                           <Transaction-btn buttonText="Paypal" class="mt-4"  @click="Paymentmethod1='Paypal'"/>
                           <Transaction-btn buttonText="Mtn Mobile Money" class="mt-4"  @click="Paymentmethod1='Mtn Mobile Money'"/>
-                          <Transaction-btn buttonText="Flutterwave" class="mt-4"/>
-                          <Transaction-btn buttonText="Chipper Cash" class="mt-4"/>
+                          <Transaction-btn buttonText="Flutterwave" class="mt-4" @click="Paymentmethod1='Flutterwave'"/>
+                          <Transaction-btn buttonText="Chipper Cash" class="mt-4"  @click="Paymentmethod1='Chipper Cash'"/>
                       </div>
                   </div>
                   <div style="margin-top: 30px;">

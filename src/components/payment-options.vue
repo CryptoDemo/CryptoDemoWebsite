@@ -1,6 +1,5 @@
 <template>
-   <!-- < <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;"> -->
-      <span class="text2" style="font-weight: 700; display: contents; font-family: Manrope; color: #64748B; line-height: 150%; font-size: 14px;">{{ selectedOption }}</span> 
+    <span class="text2" style="font-weight: 700; display: contents; font-family: Manrope; color: #64748B; line-height: 150%; font-size: 14px;">{{ selectedOption }}</span> 
     <v-dialog class="dialogue" style="display: flex;  width: 75%;">
         <template v-slot:activator="{ props }">
           <v-btn v-bind="props" :class="isDark ? 'show-all':'show-all-light'" text="Show all"> </v-btn>
