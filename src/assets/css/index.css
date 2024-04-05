@@ -703,16 +703,11 @@ line-height: 120%; /* 28.8px */
     padding-left: 0px !important;
   }
 
-  /* .coin-ani3{
-    width: 27% !important;
-    height: 95%;
-    padding-left: -25px !important;
-    margin-inline-end: 20px !important;
-  } */
+ 
   .coin-ani3{
     width: auto !important;
     height: 100%;
-    padding-left: -25px !important;
+    padding-left: -27px !important;
     /* padding: 5px !important; */
     margin-inline-end: 17px !important;
   }
