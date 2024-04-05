@@ -27,13 +27,12 @@
             </div>
             </div>
 
-              <div style="display: flex; justify-content: space-between; margin-top: 30px; height: fit-content;">
+              <div class="payment-cart" style="display: flex; justify-content: center; margin: auto; margin-top: 30px; width: 80%;">
                 <v-row>
                 
-                <v-col cols="12" sm="4" :class="isDark ? 'payment-div':'payment-div-light'" v-for="(item, index) in paymentOptions" :key="index">
+                <v-col  sm="4" :class="isDark ? 'payment-div':'payment-div-light'" v-for="(item, index) in paymentOptions" :key="index">
                   <div class="pay-options" style="display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                    <span class="payment-options me-2">{{ item.Options }}</span>
-                    <span class="payment-choices mt-2">{{ [item.choice] }}</span>
+                    <span class="payment-options me-2">{{ item.Options }}<span class="payment-choices mt-2 ml-2">({{ item.choice }})</span></span>
                   </div>
                 </v-col>
               </v-row>
@@ -67,8 +66,8 @@
 import { useTheme } from 'vuetify';
 
 const paymentOptions = [
-  {Options:'Bank transfers', choice: 33,},
-  {Options:'Online Wallets', choice:29},
+  {Options:'Bank transfers', choice: 33},
+  {Options:'Online Wallets', choice: 29 },
   {Options:'Debit/Credit Cards', choice: 98},
   {Options:'Gift Cards', choice:133},
   {Options:'Digital Currencies', choice:34},
@@ -146,7 +145,6 @@ margin-top: 10px;
 font-size: 14px;
 font-family: SF Pro Display;
 color: #8E9BAE;
-font-family: "SF Pro Display";
 font-size: 14px;
 font-style: normal;
 line-height: normal;

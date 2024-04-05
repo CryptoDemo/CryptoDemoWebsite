@@ -708,7 +708,6 @@ line-height: 120%; /* 28.8px */
     width: auto !important;
     height: 100%;
     padding-left: -27px !important;
-    /* padding: 5px !important; */
     margin-inline-end: 17px !important;
   }
   .section2{
@@ -767,6 +766,16 @@ line-height: 120%; /* 28.8px */
     margin: auto !important;
   }
   .btc-light-img{
+    width: 100% !important;
+  }
+  .payment-options{
+    font-size: 12px !important;
+  }
+  .payment-choices{
+    font-size: 10px !important;
+    font-weight: 500 !important;
+  }
+  .payment-cart{
     width: 100% !important;
   }
 }

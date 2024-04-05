@@ -73,7 +73,7 @@
                       </v-btn>
                     </template>
 
-                    <div class="coin-overlay px-3">
+                    <div class="coin-overlay">
                     <v-list  :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 10px; margin-top: 10px;">
                       <v-list-item style="width: -webkit-fill-available;">
                         <div  @click.stop style="margin-top: 8px; margin-bottom: 15px;">
