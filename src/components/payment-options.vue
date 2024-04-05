@@ -30,9 +30,9 @@
               <div class="payment-cart" style="display: flex; justify-content: center; margin: auto; margin-top: 30px; width: 80%;">
                 <v-row>
                 
-                <v-col  sm="4" :class="isDark ? 'payment-div':'payment-div-light'" v-for="(item, index) in paymentOptions" :key="index">
-                  <div class="pay-options" style="display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                    <span class="payment-options me-2">{{ item.Options }}<span class="payment-choices mt-2 ml-2">({{ item.choice }})</span></span>
+                <v-col sm="4" md="4" v-for="(item, index) in paymentOptions" :key="index">
+                  <div class="pay-options">
+                    <v-btn variant="text" class="payment-options"><span class="me-2">{{ item.Options }}</span><span class="payment-choices" style="display: contents;">({{ item.choice }})</span></v-btn>
                   </div>
                 </v-col>
               </v-row>
@@ -131,7 +131,12 @@ font-size: 16px;
 font-family: SF Pro Display;
 line-height: normal;
 font-weight: 500;
-margin-top: 10px;
+text-transform: capitalize;
+letter-spacing: 0px;
+height: 50px;
+width: 100%;
+display: flex;
+align-items: center;
 }
 
 .popular{
@@ -161,6 +166,8 @@ font-style: normal;
 line-height: normal;
 margin-top: 5px;
 font-weight: 600;
+display: flex;
+/* align-items: ; */
 }
 .btn-payment-choices-light{
 font-size: 14px;
@@ -214,19 +221,6 @@ box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02);
 text-transform: unset !important;
 }
 
-.payment-div:hover {
-  background-color: #202b41;
-  color: white;
-  height: fit-content;
-  border-radius: 5px;
-  width: fit-content;
-}
-.payment-div-light:hover {
-  background: #E9F1FF;
-  color: #10192D;
-  height: fit-content;
-  border-radius: 5px;
-}
 
 .dialogue :deep(.v-overlay__scrim){
   background: rgb(0, 0, 0) !important;
