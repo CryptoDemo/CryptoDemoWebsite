@@ -7,21 +7,25 @@
 
         <template v-slot:default="{ isActive }">
           <v-card class="dialog" :class="isDark ? 'dialog':'dialog-light'">
-            <!-- <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"  @click="isActive.value = false" style="cursor: pointer;">
-                <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9.17001 14.8299L14.83 9.16992" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M14.83 14.8299L9.17001 9.16992" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>   
-            </div> -->
-            <div @click.stop  :class="isDark ? 'searchbar':'searchbar-light'" style="border-radius: 29px;">
-
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="search-icon" style="position: absolute; top: 55px; margin-left: 19px;">
-                <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#4263EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M22 22L20 20" stroke="#4263EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>   
+            <div style="display: flex;">
+                
+              <div @click.stop  class="me-5" :class="isDark ? 'searchbar':'searchbar-light'" style="border-radius: 29px; width: 100%; align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="search-icon" style="position: absolute; top: 55px; margin-left: 19px;">
+                  <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#4263EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M22 22L20 20" stroke="#4263EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>   
                 <v-textarea clearable variant="text" rows="1" no-resize  placeholder="Search..." v-model="input" style="  height: 55px;  border-radius: 30px; padding-left: 45px; align-items: center; width: 100%;"></v-textarea>
               </div>
+
+              <div style="display: flex; flex-direction: column; align-items: center; margin-top: 4px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"  @click="isActive.value = false" style="cursor: pointer;">
+                <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="#4263EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.17001 14.8299L14.83 9.16992" stroke="#4263EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14.83 14.8299L9.17001 9.16992" stroke="#4263EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg> 
+              <h5 style="letter-spacing: 0.72px; color: #8E9BAE;">CLOSE</h5>
+            </div>
+            </div>
 
               <div style="display: flex; justify-content: space-between; margin-top: 30px; height: fit-content;">
                 <v-row>
