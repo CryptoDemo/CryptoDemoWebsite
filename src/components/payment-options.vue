@@ -231,7 +231,7 @@ text-transform: unset !important;
 }
 
 .dialogue :deep(.v-overlay__scrim){
-  background: rgb(0 2 21) !important;
+  background: rgb(0, 0, 0) !important;
 }
 
 .searchbar{
