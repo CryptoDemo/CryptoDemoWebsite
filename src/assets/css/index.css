@@ -768,9 +768,10 @@ line-height: 120%; /* 28.8px */
   .btc-light-img{
     width: 100% !important;
   }
-  .payment-options{
-    font-size: 12px !important;
-  }
+  /* .payment-options{
+    font-size: 13px !important;
+    display: grid !important;
+  } */
   .payment-choices{
     font-size: 10px !important;
     font-weight: 500 !important;

@@ -23,7 +23,7 @@
                 <path d="M9.17001 14.8299L14.83 9.16992" stroke="#4263EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M14.83 14.8299L9.17001 9.16992" stroke="#4263EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg> 
-              <h5 style="letter-spacing: 0.72px; color: #8E9BAE;">CLOSE</h5>
+              <h5 style="letter-spacing: 0.72px; color: #10192D;">CLOSE</h5>
             </div>
             </div>
 
