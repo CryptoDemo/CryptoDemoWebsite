@@ -1,6 +1,6 @@
 <template>
-   <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
-      <span class="text2" style="font-weight: 700; display: contents; font-family: Manrope; color: #64748B; line-height: 150%; font-size: 14px;">{{ Paymentmethod1 }}</span>
+   <!-- < <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;"> -->
+      <span class="text2" style="font-weight: 700; display: contents; font-family: Manrope; color: #64748B; line-height: 150%; font-size: 14px;">{{ selectedOption }}</span> 
     <v-dialog class="dialogue" style="display: flex;  width: 75%;">
         <template v-slot:activator="{ props }">
           <v-btn v-bind="props" :class="isDark ? 'show-all':'show-all-light'" text="Show all"> </v-btn>
@@ -39,7 +39,7 @@
               <div class="mt-12">
                 <span class="popular">Popular in Nigeria</span>
                 <div style="margin-top: 10px; border-radius: 0px !important;">
-                  <v-list-item v-for="(items, index) in filteredItems?. length ? filteredItems :popularOptions" :key="index"  @click="Paymentmethod1=items.Options1; isActive.value = false" style=" border-bottom: 0.5px solid #2f3946 !important;">
+                  <v-list-item v-for="(items, index) in filteredItems?. length ? filteredItems :popularOptions" :key="index"  @click="selectedOption=items.Options1; isActive.value = false" style=" border-bottom: 0.5px solid #2f3946 !important;">
                     <v-list  style="display: flex;justify-content: flex-start; border-radius: 0px !important; background: inherit !important;">
                       <img :src="items.image" width="30" class="me-3"/>
                       <span class="mb-2" :class="isDark ? 'btn-payment-choices':'btn-payment-choices-light'">{{ items.Options1 }}</span>
@@ -57,16 +57,11 @@
           
         </template>
     </v-dialog>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script setup>
 import { useTheme } from 'vuetify';
-
-const theme = useTheme()
-const isDark = computed(() =>  theme.global.current.value.dark);
-
-const Paymentmethod1= ref('Select Payment method');
 
 const paymentOptions = [
   {Options:'Bank transfers', choice: 33,},
@@ -75,9 +70,20 @@ const paymentOptions = [
   {Options:'Gift Cards', choice:133},
   {Options:'Digital Currencies', choice:34},
   {Options:'Cash Payments', choice: 27},
-  // {Options:'Goods and services', choice:'Choices: 27'},
-  
+  // {Options:'Goods and services', choice:'Choices: 27'}, 
 ]
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
+const selectedOption = ref(paymentOptions[0].Options);
+
+const props = defineProps({
+  selectedPaymentOption: String,
+});
+
+watch(()=>props.selectedPaymentOption,(newVal)=>selectedOption.value = newVal);
+
+
 const popularOptions = ref([
   {image:'/svg/bank-transfer.svg', Options1:'Bank transfers'},
   {image:'/svg/money.svg', Options1:'MTN Mobile Money'},

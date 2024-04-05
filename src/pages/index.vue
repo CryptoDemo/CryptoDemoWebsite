@@ -105,15 +105,17 @@
                   </div>
                   <div style="margin-top: 30px;">
                     <span :class="isDark ? 'pay-with':'pay-with-light'" > {{transaction? "Pay with" : "Get paid via" }}</span>
-                     
-                      <Payment-options/>
 
+
+                  <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
+                      <Payment-options :selectedPaymentOption="Paymentmethod1"/>
+                    </div>
                       <div class="payment-wrap" style="overflow: scroll;">
-                          <Transaction-btn buttonText="Bank Transfers" class="mt-4"/>
-                          <Transaction-btn buttonText="Paypal" class="mt-4"/>
-                          <Transaction-btn buttonText="Paystack" class="mt-4"/>
+                          <Transaction-btn buttonText="Bank Transfers" class="mt-4" @click="Paymentmethod1='Bank Transfers'"/>
+                          <Transaction-btn buttonText="Paypal" class="mt-4"  @click="Paymentmethod1='Paypal'"/>
+                          <Transaction-btn buttonText="Mtn Mobile Money" class="mt-4"  @click="Paymentmethod1='Mtn Mobile Money'"/>
                           <Transaction-btn buttonText="Flutterwave" class="mt-4"/>
-                          <Transaction-btn buttonText="Other bank transfer" class="mt-4"/>
+                          <Transaction-btn buttonText="Chipper Cash" class="mt-4"/>
                       </div>
                   </div>
                   <div style="margin-top: 30px;">
@@ -340,7 +342,7 @@ import { useTheme } from 'vuetify';
 
 const pinia = useStore()
 const pageNumber = ref(1)
-
+const Paymentmethod1= ref('Select Payment method');
 
 try {
   const data = await fetch(`${baseURL}token/all/${pageNumber.value}`, {
