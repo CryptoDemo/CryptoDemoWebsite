@@ -27,10 +27,10 @@
             </div>
             </div>
 
-              <div class="payment-cart" style="display: flex; justify-content: center; margin: auto; margin-top: 30px; width: 80%;">
+              <div class="payment-cart" style="display: flex;  margin-top: 30px; width: 100%;">
                 <v-row>
                 
-                <v-col sm="4" md="4" v-for="(item, index) in paymentOptions" :key="index">
+                <v-col sm="4" md="3" v-for="(item, index) in paymentOptions" :key="index">
                   <div class="pay-options">
                     <v-btn variant="text" class="payment-options"><span class="me-2">{{ item.Options }}</span><span class="payment-choices" style="display: contents;">({{ item.choice }})</span></v-btn>
                   </div>
@@ -72,7 +72,8 @@ const paymentOptions = [
   {Options:'Gift Cards', choice:133},
   {Options:'Digital Currencies', choice:34},
   {Options:'Cash Payments', choice: 27},
-  // {Options:'Goods and services', choice:'Choices: 27'}, 
+  {Options:'Goods and services', choice: 27}, 
+  {Options:'All payment options', choice: 134}, 
 ]
 
 const theme = useTheme()
