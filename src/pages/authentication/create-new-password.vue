@@ -9,28 +9,31 @@
           <span class="card-title">Create new password</span>
             <span class="password-subtitle" style="margin-bottom:39px;">Choose a strong password that meets all requirements.</span>
          
-                 <div class="position-relative">
-              <v-text-field class="input-styling" style="margin-top:20.81px;" :type="isToggled ? 'text' : 'password'"
+              <div class="position-relative" style="margin-top: 27px;">
+                <span style="color: #C3CDDB;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 700; line-height: 150%;">New Password </span>
+              <v-text-field class="input-styling" style="margin-top:8px;" :type="isToggled ? 'text' : 'password'"
                 placeholder="Password"
-                v-model.trim="password"
-                variant="">
-                 <v-icon class="prepend-inner-icon">
-               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                v-model.trim="password" variant="text"  persistent-hint :rules="Passwordrules">
+
+                
+                <v-icon class="prepend-inner-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                     <g clip-path="url(#clip0_649_13096)">
-                    <path d="M14.6836 22.9448C9.1606 22.9448 4.6836 18.4678 4.6836 12.9448C4.6836 7.42182 9.1606 2.94482 14.6836 2.94482C20.2066 2.94482 24.6836 7.42182 24.6836 12.9448C24.6836 18.4678 20.2066 22.9448 14.6836 22.9448ZM14.6836 20.9448C16.8053 20.9448 18.8402 20.102 20.3405 18.6017C21.8407 17.1014 22.6836 15.0666 22.6836 12.9448C22.6836 10.8231 21.8407 8.78826 20.3405 7.28797C18.8402 5.78768 16.8053 4.94482 14.6836 4.94482C12.5619 4.94482 10.527 5.78768 9.02675 7.28797C7.52646 8.78826 6.6836 10.8231 6.6836 12.9448C6.6836 15.0666 7.52646 17.1014 9.02675 18.6017C10.527 20.102 12.5619 20.9448 14.6836 20.9448ZM13.6836 13.7368C13.1572 13.5071 12.726 13.1031 12.4624 12.5928C12.1988 12.0825 12.119 11.497 12.2363 10.9348C12.3537 10.3725 12.661 9.86784 13.1067 9.50557C13.5524 9.1433 14.1093 8.94554 14.6836 8.94554C15.258 8.94554 15.8148 9.1433 16.2605 9.50557C16.7062 9.86784 17.0135 10.3725 17.1309 10.9348C17.2482 11.497 17.1684 12.0825 16.9048 12.5928C16.6412 13.1031 16.21 13.5071 15.6836 13.7368V16.9448H13.6836V13.7368Z" fill="#C4C4C4"/>
+                      <path d="M14.6836 22.9448C9.1606 22.9448 4.6836 18.4678 4.6836 12.9448C4.6836 7.42182 9.1606 2.94482 14.6836 2.94482C20.2066 2.94482 24.6836 7.42182 24.6836 12.9448C24.6836 18.4678 20.2066 22.9448 14.6836 22.9448ZM14.6836 20.9448C16.8053 20.9448 18.8402 20.102 20.3405 18.6017C21.8407 17.1014 22.6836 15.0666 22.6836 12.9448C22.6836 10.8231 21.8407 8.78826 20.3405 7.28797C18.8402 5.78768 16.8053 4.94482 14.6836 4.94482C12.5619 4.94482 10.527 5.78768 9.02675 7.28797C7.52646 8.78826 6.6836 10.8231 6.6836 12.9448C6.6836 15.0666 7.52646 17.1014 9.02675 18.6017C10.527 20.102 12.5619 20.9448 14.6836 20.9448ZM13.6836 13.7368C13.1572 13.5071 12.726 13.1031 12.4624 12.5928C12.1988 12.0825 12.119 11.497 12.2363 10.9348C12.3537 10.3725 12.661 9.86784 13.1067 9.50557C13.5524 9.1433 14.1093 8.94554 14.6836 8.94554C15.258 8.94554 15.8148 9.1433 16.2605 9.50557C16.7062 9.86784 17.0135 10.3725 17.1309 10.9348C17.2482 11.497 17.1684 12.0825 16.9048 12.5928C16.6412 13.1031 16.21 13.5071 15.6836 13.7368V16.9448H13.6836V13.7368Z" fill="#C4C4C4"/>
                     </g>
                     <defs>
-                        <clipPath id="clip0_649_13096">
+                      <clipPath id="clip0_649_13096">
                         <rect width="23.5355" height="24" fill="white" transform="translate(0.613289 0.944824)"/>
-                        </clipPath>
+                      </clipPath>
                     </defs>
-                </svg>
+                  </svg>
                 </v-icon>
                 <v-icon class="prepend-inner-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="2" height="15" viewBox="0 0 2 15" fill="none">
-                    <path opacity="0.4" d="M1.06026 1.31102V14.311" stroke="#C3CDDB" stroke-linecap="round"/>
+                  <path opacity="0.4" d="M1.06026 1.31102V14.311" stroke="#C3CDDB" stroke-linecap="round"/>
                 </svg>
-                </v-icon>
+              </v-icon>
+              <!-- <div class="password-hint" hint="passwordHint"></div> -->
             </v-text-field> 
             <div  class="position-relative">
 
@@ -68,10 +71,8 @@
           <Carousel />
         </div>
       </v-col>
-      <!-- <v-responsive width="100%"></v-responsive> -->
     </v-row>
   </v-container>
-<!-- </v-container> -->
 </div>   
 </template>
 <script setup>
@@ -85,12 +86,38 @@ const togglePassword = () => {
 
 
 const password = ref('');
+const isPasswordValid = ref(false);
 
-const isFormValid = computed(() => password.value.length >0 );
+// const passwordRule = computed(() => (value) => {
+//   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{6,}$/;
+//   isPasswordValid.value = regex.test(value);
+//   return isPasswordValid.value || 'Password does not meet the criteria';
+// });
 
-const login =  () => {
+const Passwordrules = [
+(v) => !!v || 'Password is required',
+  (v) => v.length >= 6 || 'Password must be at least 6 characters',
+  (v) => /[A-Z]+/.test(v) || 'One uppercase letter',
+  (v) => /[a-z]+/.test(v) || 'One lowercase letter',
+  (v) => /[0-9]+/.test(v) || 'One Numeral',
+  (v) => /[^a-zA-Z0-9]+/.test(v) || 'One Special Character',
+  ];
+// const passwordHint = computed(() => {
+//       let hint = 'Password must contain:';
+//       hint += isPasswordValid.value ? '' : '<br>- At least one uppercase letter';
+//       hint += isPasswordValid.value ? '' : '<br>- At least one lowercase letter';
+//       hint += isPasswordValid.value ? '' : '<br>- At least one digit';
+//       hint += isPasswordValid.value ? '' : '<br>- At least one special character';
+//       hint += isPasswordValid.value ? '' : '<br>- At least 6 characters';
+//       return hint;
+//     });
+
+
+// const isFormValid = computed(() => password.value.length >0 );
+
+// const login =  () => {
  
-};
+// };
 </script>
 <style scoped>
 .carousel-styling{
@@ -104,5 +131,13 @@ bottom: 16px;
 right: 22% ;
 cursor: pointer;
 position: absolute;
-}    
+}   
+
+.password-hint {
+  color: red;
+}
+
+.password-hint span {
+  color: green;
+}
 </style>

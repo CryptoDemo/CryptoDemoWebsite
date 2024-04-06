@@ -11,7 +11,7 @@
           <div class="card-subtitle">Setting up an account takes less than 1 minute.</div>
           
             <div class="position-relative">
-            <v-text-field placeholder="Email Address" class="input-styling"  v-model="email" :rules="Emailrules"
+            <v-text-field placeholder="Email Address" class="input-styling"  v-model="email" :rules="Emailrules" style="font-size: 12px !important;"
                 variant="text">
              <v-icon class="prepend-inner-icon">
                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 25 24" fill="none">
@@ -98,7 +98,7 @@
                 </v-icon>
             </v-text-field>
                <NuxtLink to="/authentication/sign-up-email-verification">  
-                <Button buttonText="Continue"  @click.prevent="isFormValid ? register() : null" class="mt-4"/>
+                <Button buttonText="Continue"  @click.prevent="register()" class="mt-4"/>
                </NuxtLink>
               <NuxtLink to="/authentication/register-phone-number">  
                 <v-btn variant="outlined"  color="blue-darken-4" class="btn-outlined" style="color: var(--Primary-100, #2873FF)!important; margin-top:15.33px;">Create account with phone number</v-btn>
@@ -126,7 +126,6 @@
           <Carousel />
         </div>
       </v-col>
-      <!-- <v-responsive width="100%"></v-responsive> -->
     </v-row>
   </v-container>
 <!-- </v-container> -->
@@ -166,7 +165,15 @@ const Passwordrules = [
 // const isFormValid = computed(() => password.value.length && validateEmail(email.value));
 
 const register =  () => {
- 
+  if (!email.value || !password.value) return
+
+  // Handle form submission logic here (e.g., API call)
+  // Replace with your actual authentication or registration process
+  // console.log('Form submitted:', { email: email.value, password: password.value })
+
+  // After successful authentication or registration, redirect or navigate
+  navigateTo('/authentication/sign-up-email-verification')
+
 };
 </script>
 <style scoped>

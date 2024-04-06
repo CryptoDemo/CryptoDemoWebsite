@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Carousel ref="carousel" :autoplay="2000"  :transition="1300"  :wrap-around="true" v-model="currentSlide" :snapAlign="center" :items-to-show="1" style="max-height:570px; padding-top: 4rem;">
+    <Carousel ref="carousel" :autoplay="2000"  :transition="1300"  :wrap-around="true" v-model="currentSlide" :items-to-show="1" style="max-height:570px; padding-top: 4rem;">
      <Slide  class="">
        <div class="position-relative" >
             <img src="/svg/QR-Code-Scan.svg" alt="QR-code" class=" qr-code"/>

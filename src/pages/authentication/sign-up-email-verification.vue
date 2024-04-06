@@ -12,7 +12,7 @@
               <span class="text-primary" style="cursor: pointer;">Change email</span> 
             </div>
           <span class="otp-text">Enter code</span>
-          <v-otp-input :length="4" :loading="loading"  v-model="otp" :disabled="validating" variant=""></v-otp-input>
+          <v-otp-input :length="4" :loading="loading"  v-model="otp" :disabled="validating" variant="text"></v-otp-input>
           <div class="code-validation-text">
             <span>Code valid for 30 minutes</span>
           </div>

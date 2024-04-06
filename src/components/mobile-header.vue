@@ -103,7 +103,7 @@
   
           <div style="display: flex; justify-content: flex-start; margin-top: 25px; align-items: center; margin-left: 10px;">
              <ToggleBtn class="me-3"/>
-             <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
+             <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> theme</span>
           </div>
           <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px; margin-bottom: 20px; padding: 10px;">
             <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; justify-content: center; border-radius: 10px !important;">Log In</v-btn>
@@ -126,16 +126,15 @@ import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 
 
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
+
 const drawer = ref(false)
 const navbarClass = ref('closed');
 const ToggleMenu =() =>{
 drawer.value = !drawer.value
 navbarClass.value = drawer.value ? 'open' : 'closed';
 };
-
-
-const theme = useTheme()
-const isDark = computed(() =>  theme.global.current.value.dark);
 
 const select =ref("USA")
 

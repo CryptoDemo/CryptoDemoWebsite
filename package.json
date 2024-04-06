@@ -22,6 +22,7 @@
     "@mdi/font": "^7.4.47",
     "@pinia/nuxt": "^0.5.1",
     "@sentry/vue": "^7.79.0",
+    "notivue": "^2.2.1",
     "pinia": "^2.1.7",
     "vue-lazy-loading": "^1.0.3",
     "vue3-carousel": "^0.3.1"

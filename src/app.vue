@@ -8,7 +8,7 @@
 </template>
 <script setup>
 import { useTheme } from 'vuetify'
-
+import { Notivue, Notification, push } from 'notivue'
 
 </script>
 

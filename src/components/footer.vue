@@ -24,7 +24,7 @@
         <div class="d-flex" style="justify-content: space-between; margin-top: 64px; display: flex">
           <div style="display: flex; align-items: center">
             <ToggleBtn  class="me-3" />
-            <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
+            <span :class="isDark ? 'Switch-text':'Switch-text-light'">{{ isDark? 'Switch to light theme' : 'Switch to dark theme' }}</span>
           </div>
           <div class="d-flex" style="margin-top: 16px">
             <v-icon icon="mdi-information me-2" color="#165CDD"></v-icon>
@@ -47,7 +47,7 @@
                   </v-col>
                   <v-col>
                 <div style="display: flex; gap: var(--spacing-3xl, 24px); justify-content: end;">
-                  <img src="/svg/Social icon.svg"  class="social-icons me-2" />
+                  <img src="/svg/Social icon.svg"  class="social-icons me-2"/>
                   <img src="/svg/Social icon (1).svg" class="social-icons me-2"/>
                   <img src="/svg/Social icon (2).svg" class="social-icons me-2" />
                   <img src="/svg/Social icon (3).svg" class="social-icons me-2"/>
@@ -70,14 +70,14 @@
 
 <script setup>
 import { ref } from 'vue';
-
 import { useTheme } from 'vuetify';
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-const toggleTheme = () =>{
-  theme.global.name.value = theme.global.current.value.dark ? 'LightThemeConfig' : 'DarkThemeConfig'
-}
+
+// const toggleTheme = () =>{
+//   theme.global.name.value = theme.global.current.value.dark ? 'LightThemeConfig' : 'DarkThemeConfig'
+// }
 
 const footer = ref ([
   {

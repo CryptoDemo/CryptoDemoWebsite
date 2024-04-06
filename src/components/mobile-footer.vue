@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <div class="footer-links"  :class="isDark ? 'footer-bg2':'footer-bg2-light'">
       <v-container>
        <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
@@ -36,7 +37,7 @@
 
               <div style="display: flex; justify-content: flex-start; flex-direction: column; margin-top: 72px; align-items: center; margin-left: 10px;">
               <ToggleBtn class="me-3" style="margin-bottom: 13px"/>
-              <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class=".switch-hint" style="margin-top: 13px;">light</span> Mode</span>
+              <span :class="isDark ? 'Switch-text':'Switch-text-light'">{{ isDark? 'Switch to light theme' : 'Switch to dark theme' }}</span>
             </div>
 
             </v-list>

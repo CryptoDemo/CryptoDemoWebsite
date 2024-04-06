@@ -9,7 +9,7 @@
           <span class="card-title">Reset Your Password</span>
             <span class="password-subtitle" style="margin-bottom:39px;">Verification code sent to +2349038565023. Please enter the code below:</span>
           <span class="otp-text">Enter code</span>
-          <v-otp-input :length="4" :loading="loading"  v-model="otp" :disabled="validating" variant=""></v-otp-input>
+          <v-otp-input :length="4" :loading="loading"  v-model="otp" :disabled="validating" variant="text"></v-otp-input>
           <div class="code-validation-text">
             <span>Code valid for 30 minutes</span>
           </div>

@@ -1,14 +1,21 @@
 <template>
-<v-btn class="image-button" :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
-<v-btn class="image-button" :style="{ backgroundImage: `url(${imageSrc1})` }"></v-btn>
-<v-btn class="image-button" :style="{ backgroundImage: `url(${imageSrc2})` }"></v-btn>
+<button @click="push.success('Something good has been pushed!')">Push</button>
+
+<Notivue v-slot="item">
+  <Notification :item="item" />
+</Notivue>
+
+<div style="display: flex; justify-content: flex-start; margin-top: 25px; align-items: center; margin-left: 10px;">
+             <ToggleBtn class="me-3"/>
+             <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
+          </div>
 </template>
 
 <script setup>
+import { useTheme } from 'vuetify';
 
-const imageSrc=('/svg/applestore.svg')  // Replace with your image path
-const imageSrc1=('/svg/playstore.svg')  // Replace with your image path
-const imageSrc2=('/svg/BTN-two.svg')  // Replace with your image path
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
     
 </script>
 

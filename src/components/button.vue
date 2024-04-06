@@ -41,6 +41,6 @@ right: 18px!important;
 .btn:disabled {
     box-shadow: none;
     opacity: 1;
-    background: #969696!important;
+    background: #575757!important;
 }
 </style>

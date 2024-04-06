@@ -9,10 +9,13 @@ export default defineNuxtConfig ({
   },
   css: [
       "@/assets/css/index.css",
+      'notivue/notifications.css', // Only needed if using built-in notifications
+      'notivue/animations.css' 
   ],
   modules: [
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
+    'notivue/nuxt',
     async(options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', config => {
         // @ts-expect-error
