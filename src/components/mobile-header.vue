@@ -5,14 +5,10 @@
     <ClientOnly>
       <v-app-bar :class="isDark ? 'navbar-bg':'navbar-bg-light'">
         
-        <div style="display: flex; align-items: center; width: fit-content;">
+        <div style="display: flex; align-items: center; justify-content: space-between; width: fit-content;">
           
           <v-toolbar-title class="header-title" :class="isDark ? 'header-title':'header-title-light'">Demo Web</v-toolbar-title>
-          
-          <v-spacer></v-spacer>
-         
-        
-          <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"  style="position: absolute; right: -10%;"/>
+          <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"  style="position: absolute; right: 0; width: 32px"/>
         
         </div>
       </v-app-bar>
@@ -40,10 +36,10 @@
                 <v-row dense style="max-width: auto; flex-direction: column;">
                 <v-col v-for="(item, index) in filteredItems?.length ? filteredItems : locations" :key="index" class="">
                 
-                  <v-list-item-title class="py-1" @click="select=item.countryName; emoji= item.emoji" style="display:flex;">
-                    <h1 class="me-2 text-h4">{{ item.emoji }}</h1>
-                   <span class="country-name" style="display: flex; align-items: center;"> {{ item.countryName }} </span>
-                </v-list-item-title>
+                    <v-list-item-title class="py-1" @click="select=item.countryName; emoji= item.emoji" style="display:flex;">
+                      <h1 class="me-2 text-h4">{{ item.emoji }}</h1>
+                      <span class="country-name" style="display: flex; align-items: center;"> {{ item.countryName }} </span>
+                    </v-list-item-title>
                   </v-col>
                 </v-row>
               </v-list-item>
