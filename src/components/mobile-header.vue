@@ -1,5 +1,5 @@
 <template>
-  <div style="position:  relative;">
+  <div style="position: relative;">
     
     <div  style="position: fixed; top: 0; flex-wrap: wrap;  z-index: 10000;">
     <ClientOnly>

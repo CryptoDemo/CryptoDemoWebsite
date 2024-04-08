@@ -1,7 +1,7 @@
 <template>
   <div class="head">
 
-    <v-app-bar :elevation="2" class="px-15 pt-3 py-15 pb-3 d-flex">
+    <v-app-bar :elevation="2" class="pt-3 py-15 pb-3 d-flex">
 
       <v-container style="display: flex; align-items: center;">
         

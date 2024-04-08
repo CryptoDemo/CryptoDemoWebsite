@@ -113,15 +113,6 @@ background: #161D26;
   margin-top: 33.72px;
 }
 
-.facebook-icon{
-height: 42px;
-width: 42px ;
-border-radius: 17px;
-padding: 9px;
-margin-right: 10px!important;
-cursor: pointer;
-background: #161D26;
-}
 
 .otp-text{
 color: var(--Basic-White, #FFF);
@@ -784,6 +775,10 @@ line-height: 120%; /* 28.8px */
   }
   .payment-cart{
     width: 100% !important;
+  }
+  .form-layout{
+    background:  #12181F;
+    border-radius: 0px;
   }
 }
 
