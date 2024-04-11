@@ -5,8 +5,8 @@
     <v-row no-gutters  class="">
 
       <v-col dense cols="md-5" class="form" style="padding: 0px 70px;">
-        <div class="" style="margin-top:55.88px; margin-bottom:55.88px;">
-        <span class="card-title">Reset Your Password</span>
+        <div>
+        <div style="margin-top: 125px;"><span class="card-title">Reset Your Password</span></div>
           <div class="password-subtitle" >Enter your email address to reset your password.</div>
 
           <!-- <div class="rounded-5  btn-box ">

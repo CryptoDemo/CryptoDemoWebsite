@@ -27,6 +27,7 @@ font-size: 14px !important;
 font-weight: 400 !important;  
 text-decoration: none;
 letter-spacing: unset !important;
+box-shadow: none !important;
 }
 .mdi-arrow-right{
 border-radius: 12px;

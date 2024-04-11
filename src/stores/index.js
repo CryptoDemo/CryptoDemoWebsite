@@ -19,7 +19,6 @@ export const useStore = defineStore('app',()=> {
       code: false,
       codeInput:'',
       isPinSet: false,
-      isFingerprintSet: false,
       isTwoFactorSet: false,
       loading: false,
       email:null,

@@ -1,18 +1,18 @@
 
 <template src="./index.html"></template>
 <script setup>
-import { useTheme } from 'vuetify';
+  import { useTheme } from 'vuetify';
 
-const theme = useTheme();
+  const theme = useTheme();
+  const currentTheme = ref(theme.global.name);
 
- const changeTheme =(e) =>{
-  theme.global.name.value = e.target.checked ? 'LightThemeConfig' : 'DarkThemeConfig';
-  document.querySelectorAll(".switch__input").forEach((el)=>{
-    el.checked = e.target.checked;
-  });
-  document.querySelector(".switch-hint").innerHTML = e.target.checked ? 'dark' : 'light';
- }
-
-
+  const changeTheme =(e) =>{
+    theme.global.name.value = e.target.checked ? 'LightThemeConfig' : 'DarkThemeConfig';
+    document.querySelectorAll(".switch__input").forEach((el)=>{
+      el.checked = e.target.checked;
+    });
+    currentTheme.value = theme.global.name.value;
+    document.querySelector(".switch-hint").innerHTML = e.target.checked ? 'dark' : 'light';
+  }
 </script>
 <style src="./style.css"></style>

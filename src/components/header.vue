@@ -1,17 +1,17 @@
 <template>
-  <div class="head">
+  <div>
 
-    <v-app-bar :elevation="2" class="pt-3 py-15 pb-3 d-flex">
+    <v-app-bar :elevation="2" class="py-5"  :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'">
 
       <v-container style="display: flex; align-items: center;">
         
         <img src="/svg/Logo.svg" class="me-3"/>
-        <v-app-bar-title class="nav-title flex-lg-and-up hidden-sm-and-down">Demo </v-app-bar-title>
+        <v-app-bar-title class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-title':'nav-title-light'">Demo </v-app-bar-title>
 
-        <div style="position: relative;"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
+        <div style="position: relative"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
        
-          <span class="text1 flex-lg-and-up hidden-sm-and-down" style="align-items: center; display: flex;">{{props.text2}}</span>
-          <NuxtLink :to="props.link">  <span class="text2">{{props.title}}</span></NuxtLink>
+          <span class="flex-lg-and-up hidden-sm-and-down mt-4" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
+          <NuxtLink :to="props.link" class="mt-4"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
  
 
        <div  v-if="hide"   style="width: 400px; height: 61px ; flex-shrink: 0; border-radius: 20px; background: #161D26; display: flex;position: absolute; right: 54%">
@@ -25,9 +25,9 @@
      
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn class="dropdown-btn1i me-3" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px; border-radius: 16px; border: 1px solid  #303A46; background: #161D26;">
+            <v-btn class="me-3" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px; border-radius: 16px;">
               <v-img  width="24" class="me-3" :src="flag"/> 
-              <span class="me-2 country-text flex-lg-and-up hidden-sm-and-down">{{select}}</span>
+              <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{select}}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                 <g clip-path="url(#clip0_7328_44812)">
                   <path d="M12.0007 13.7951L16.9507 8.74609L18.3647 10.1884L12.0007 16.6797L5.63672 10.1884L7.05072 8.74609L12.0007 13.7951Z" fill="white"/>
@@ -89,6 +89,11 @@
 <script setup>
 import { ref } from 'vue'
 
+import { useTheme } from 'vuetify';
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
+
 const select =ref("Spanish")
 
 const flag = ref("/img/china.png")
@@ -119,8 +124,20 @@ const props = defineProps(
 )   
 </script>
 
-<style>
-.v-toolbar{
+<style scoped>
+.Dashboard-navbar{
+background-color: rgba(22, 29, 38, 0.60)  !important;
+backdrop-filter: blur(20px);
+align-items: center;
+display: flex;
+flex: 0 0 auto;
+position: relative;
+width: 100%;
+/* padding: 30px; */
+color: white!important;
+box-shadow: none!important;
+}
+.Dashboard-navbar-light {
 align-items: center;
 display: flex;
 flex: 0 0 auto;
@@ -128,9 +145,8 @@ position: relative;
 transition: inherit;
 width: 100%;
 padding: 32px;
-/* max-height: 83px !important; */
-background: rgba(22, 29, 38, 0.60) !important;
-backdrop-filter: blur(20px) !important;
+background: rgba(255, 255, 255, 0.60);
+backdrop-filter: blur(20px);
 color: white!important;
 box-shadow: none!important;
 }
@@ -142,6 +158,14 @@ font-style: normal;
 font-weight: 800 !important;
 line-height: 120%; /* 24px */
 }
+.nav-title-light{
+color: var(--Black-80, #1B2537);
+font-family: Manrope;
+font-size: 20px;
+font-style: normal;
+font-weight: 800;
+line-height: 120%; /* 24px */
+}
 .text1{
 color: var(--Basic-White, #FFF);
 text-align: center;
@@ -151,8 +175,27 @@ font-weight: 400;
 line-height: normal;
 margin-right: 15px;
 }
+.text1-light{
+color: #000;
+text-align: center;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin-right: 15px;
+}
 .text2{
-color: var(--Basic-White, #FFF);
+color: #FFF;
+text-align: center;
+font-size: 16px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+margin-right: 15px ;
+cursor: pointer;
+}
+.text2-light{
+color: #000;
 text-align: center;
 font-size: 16px;
 font-style: normal;
@@ -162,14 +205,25 @@ margin-right: 15px ;
 cursor: pointer;
 }
 .dropdown-btn1i{
-width: fit-content !important;
+width: 142px !important;
 height: 58px !important;
 flex-shrink: 0;
 border-radius: 20px !important;
-/* border: 1px solid var(--border, #303A46) !important; */
-background-color: #161D26 !important;
+border: 1px solid var(--border, #303A46) !important;
+background-color: #161D26;
 text-transform: unset !important;
-color: white !important;
+color: white;
+letter-spacing: 0px;
+}
+.dropdown-btn1i-light{
+width: 142px !important;
+height: 58px !important;
+flex-shrink: 0;
+border-radius: 20px !important;
+border: 1px solid var(--border, #303A46) !important;
+background-color: #fff;
+text-transform: unset !important;
+color: #161D26 !important;
 letter-spacing: 0px;
 }
 .v-list {
@@ -179,7 +233,7 @@ color: white;
 margin-top: 15px;
 }
 .nav-icon-text{
-color: var(--Gray-Medium-light, #969696);
+color: #969696;
 text-align: center;
 font-family: Poppins;
 font-size: 12px;
@@ -205,20 +259,6 @@ line-height: 120% !important; /* 24px */
     width: 100%;
     height: 83px !important;
 }
-::-webkit-input-placeholder {
-color: #92929D;
-font-family: Poppins;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-display: flex;
-width: 156px !important;
-height: 21.42px;
-flex-direction: column;
-justify-content: center;
-flex-shrink: 0;
-}
 
 .country-text{
 color: var(--Colors-Base-white, #FFF);
@@ -226,7 +266,16 @@ text-align: center;
 font-family: Poppins;
 font-size: 14px;
 font-style: normal;
-font-weight: 400;
+font-weight: 500;
+line-height: normal;
+}
+.country-text-light{
+color: var(--Black-100, #060A1D);
+text-align: center;
+font-family: Manrope;
+font-size: 14px !important;
+font-style: normal;
+font-weight: 500 !important;
 line-height: normal;
 }
 ::-webkit-input-placeholder {

@@ -9,20 +9,20 @@
                 <img src="/svg/Balance.svg" class="balance-img"/>
                 <img src="/svg/Frame 41545.svg" class="mx-auto position-relative exchange-img" style="height:12rem"/>
               </div>
-             <div class="carousel-group-text" style="display: grid; margin-top:2rem;">
-              <span class="text-center header-text">P2P Crypto exchange</span>
-              <span class="text-center carousel-text">Experience peer-to-peer crypto transactions at vendor's price,<br> With diverse  payment options.</span>
+             <div class="carousel-group-text" style="display: grid; margin-top:28px;">
+              <span class="text-center" :class="isDark ? 'header-text':'header-text-light'">P2P Crypto exchange</span>
+              <span class="text-center carousel-text">Experience peer-to-peer cryptocurrency <br> transactions at vendor's price, With diverse <br>  payment options.</span>
             </div>
        </div>
     </Slide>
 
     <Slide class="">
       <div class="position-relative" >
-        <img src="/svg/Group1325.svg" style="position: relative; top: 54px;"/>
-        <img src="/svg/Group1323.svg" style="position: relative; top: 14px;"/>
-        <img src="/svg/Group1324.svg" style="position: relative; top: -25px;"/>
-          <div class="carousel-group-text" style="display: grid; position: relative;top: -33px ">
-              <span class="text-center header-text">Free and Secure Wallet</span>
+        <img src="/svg/Group1325.svg" style="position: relative; top: 34px;"/>
+        <img src="/svg/Group1323.svg" style="position: relative; top: -4px;"/>
+        <img src="/svg/Group1324.svg" style="position: relative; top: -39px;"/>
+          <div class="carousel-group-text" style="display: grid; position: relative;top: -50px ">
+              <span class="text-center" :class="isDark ? 'header-text':'header-text-light'">Free and Secure Wallet</span>
               <span class="text-center carousel-text">Save or spend using our secure and free wallet.</span>
             </div>
       </div>
@@ -33,8 +33,8 @@
             <div>
             <img src="/svg/character.svg" class=""/>
             </div>
-            <div class="carousel-group-text" style="display: grid; margin-top:2rem;">
-              <span class="text-center header-text">Buy and Sell Crypto</span>
+            <div class="carousel-group-text" style="display: grid; margin-top:28px;">
+              <span class="text-center" :class="isDark ? 'header-text':'header-text-light'">Buy and Sell Crypto</span>
               <span class="text-center carousel-text">Buy and sell digital assets from anywhere,<br/> using diverse payment methods.</span>
             </div>
         </div>
@@ -50,8 +50,8 @@
               <img src="/svg/Rectangle 912.svg" class="img-fluid position absolute" style="position:absolute; left: 8%; bottom: 43%;">
               <img src="/svg/Rectangle 911.svg" class="img-fluid position absolute star-btm">
           </div>
-              <div class="carousel-group-text" style="display: grid; ">
-              <span class="text-center d-grid header-text">Secure Escrow Hub</span>
+              <div class="carousel-group-text" style="display: grid; position: relative; top: -28px;">
+              <span class="text-center d-grid" :class="isDark ? 'header-text':'header-text-light'">Secure Escrow Hub</span>
               <span class="text-center carousel-text">Secure transactions – your funds are held safely <br> until your deal is done</span>
             </div>
         </div>
@@ -73,8 +73,13 @@
 <script setup>
 import { ref } from "vue";
 import 'vue3-carousel/dist/carousel.css';
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+import { useTheme } from 'vuetify';
 
+
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
 defineComponent({
   Carousel,
   Slide,
@@ -84,48 +89,49 @@ defineComponent({
 
 const currentSlide = ref(0)
 </script>
+
 <style>
 .exchange-img {
-  left: 0;
-  right: 0;
-  margin: auto;
-  display: block;
+left: 0;
+right: 0;
+margin: auto;
+display: block;
 }
 .balance-img {
-    right: 0;
-    position: absolute;
-    left: 57%;
-    z-index: 9;
-    top: 21%;;
+right: 0;
+position: absolute;
+left: 57%;
+z-index: 9;
+top: 21%;;
 }
 .bitcoin-img {
-  position: absolute;
-    left: -2%;
-    right: 0;
-    display: block;
-    top: 60%;
+position: absolute;
+left: -2%;
+right: 0;
+display: block;
+top: 60%;
 }
  .qr-code{
- z-index: 10;
- position: absolute;
-  top: 22%;
-  right: 63%;
-  padding: 5px;
-  margin: auto;
-  display: flex;
-  background: #1A232D;
-  border-radius: 1rem;
+z-index: 10;
+position: absolute;
+top: 22%;
+right: 63%;
+padding: 5px;
+margin: auto;
+display: flex;
+background: #1A232D;
+border-radius: 1rem;
 }
 .bg-crypto{
-  border-radius: 0.625rem;
-  background: #FFF;
-  box-shadow: 0px 27px 20px 0px rgba(0, 0, 0, 0.02);
-  width: 20.91569rem;
-  height: 4.31069rem;
-  flex-shrink: 0;
-  display: flex;
-  margin: auto;
-  color: #1A2B41;
+border-radius: 0.625rem;
+background: #FFF;
+box-shadow: 0px 27px 20px 0px rgba(0, 0, 0, 0.02);
+width: 20.91569rem;
+height: 4.31069rem;
+flex-shrink: 0;
+display: flex;
+margin: auto;
+color: #1A2B41;
 }
 .coin-styling{
   height: 3rem;
@@ -144,6 +150,19 @@ margin-bottom: 44px;
 }
 .header-text{
 color: #F8FAFC;
+text-align: center;
+font-family: Manrope;
+font-size: 1.5rem;
+font-style: normal;
+font-weight: 800 !important;
+line-height: 120%; /* 1.8rem */
+/* margin-top: 51px; */
+margin-bottom: 16px;
+}
+.header-text-light{
+background-image: linear-gradient(180deg, #2873FF, #0B6B96); 
+background-clip: text;  
+-webkit-text-fill-color: transparent ; 
 text-align: center;
 font-family: Manrope;
 font-size: 1.5rem;
@@ -171,7 +190,7 @@ margin-bottom: 16px;
    transition: all;
    transition-duration: 300;
    position: relative;
-   top: 32px ;
+   /* top: 26px ; */
  }
 .slider-btn{
   height: 10px;

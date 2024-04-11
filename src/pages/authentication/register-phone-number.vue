@@ -12,10 +12,10 @@
             
            <div class="position-relative input-styling d-flex" >
             <v-text-field placeholder="Phone number"  style="width: 124px!important; position:relative; left: -21px !important;"
-                variant="">
+                variant="text">
                <template v-slot:prepend>
                     <v-select class="form-select mt-1"  style="position: relative; padding-left: 4px!important;" 
-                        variant="" v-model="selected" 
+                        variant="text" v-model="selected" 
                         :items="['+00', '+98', '+07', '+90', '+08', '+29']">
                     </v-select>
                 </template>
@@ -35,7 +35,7 @@
             <div class="position-relative">
               <v-text-field class="input-styling" style="margin-top:20.81px;" :type="isToggled ? 'text' : 'password'"
                 placeholder="Password"
-                variant="">
+                variant="text">
                  <v-icon class="prepend-inner-icon">
                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                     <g clip-path="url(#clip0_649_13096)">
@@ -74,7 +74,7 @@
             </div>
             </div>
             <v-text-field placeholder="Referral code (Optional)" class="input-styling" style="margin-top:20.81px;"
-                variant="">
+                variant="text">
                 <v-icon class="prepend-inner-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                 <g clip-path="url(#clip0_649_13091)">

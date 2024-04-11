@@ -340,48 +340,40 @@ import { useTheme } from 'vuetify';
 
 
 
+import {getTokens} from "@/composables/requests/tokens";
+
 const pinia = useStore()
 const pageNumber = ref(1)
 const Paymentmethod1= ref('Select Payment method');
 
-try {
-  const data = await fetch(`${baseURL}token/all/${pageNumber.value}`, {
-  method: 'GET',
-  headers: {
-      'Content-Type': 'application/json',
-      'x-access-token': `${pinia.state.user?.token}`
-  }
-}).then(res => res.json());
+  try {
+    const data = await getTokens(pageNumber.value);
+    if(data.success) {
+      const fetchedTokens = data.data.result;
 
-console.log(data.success);
+      const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
 
-if (data.success) {
-    const fetchedTokens = data.data.result;
+      // Check if there are any new items in the fetched data
+      const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
 
-    const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
-
-    // Check if there are any new items in the fetched data
-    const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
-
-
-    if (newItems.length > 0) {
+      if (newItems.length > 0) {
         console.log('fetching')
         pinia.setTokenLists(fetchedTokens);
-    }
-  } else {
+      }
+    } else {
       // toast.message(`${data.message}`, {
       //     position: 'top',
       //     timeout: 2000,
       // });
       console.log('Unavailable')
-  }
-} catch (error) {
-  console.log(error);
-  // toast.message(`${error}`, {
-  //     position: 'top',
-  //     timeout: 2000,
-  // });
-};
+    }
+  } catch (error) {
+    console.log(error);
+    // toast.message(`${error}`, {
+    //     position: 'top',
+    //     timeout: 2000,
+    // });
+  };
 const transaction = ref(true);
 const transaction1 = ref(true);
 

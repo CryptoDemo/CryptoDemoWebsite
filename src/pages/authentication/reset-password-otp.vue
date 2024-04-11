@@ -4,12 +4,12 @@
   <v-container class="form-layout overflow-hidden">
     <v-row no-gutters  class="">
 
-      <v-col dense cols="md-5" class="form" style="padding: 0px 70px;">
-        <div class="" style="margin-top:55.88px; margin-bottom:55.88px;">
+      <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
+        <div style="margin-top: 125px;">
           <span class="card-title">Reset Your Password</span>
-            <span class="password-subtitle" style="margin-bottom:39px;">Verification code sent to +2349038565023. Please enter the code below:</span>
+            <span class="password-subtitle" style="margin-bottom:39px;">Verification code sent to User@gmail.com. Please enter the code below:</span>
           <span class="otp-text">Enter code</span>
-          <v-otp-input :length="4" :loading="loading"  v-model="otp" :disabled="validating" variant="text"></v-otp-input>
+          <v-otp-input :length="4" :loading="loading" v-model="otp" :disabled="validating" variant="text"></v-otp-input>
           <div class="code-validation-text">
             <span>Code valid for 30 minutes</span>
           </div>
@@ -43,18 +43,42 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import { useTheme } from 'vuetify';
 
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
 const  otp = ref ('');
 const validating = ref (false);
 
 </script>
 <style scoped>
 .carousel-styling{
-  max-height: 550px;
-    position: relative;
-    top: 8%;
-    bottom: 0
+max-height: 550px;
+position: relative;
+top: 8%;
+bottom: 0
 } 
-
-
+.form :deep(.v-otp-input .v-field){
+height: 56px !important;
+width: 56px !important;
+justify-content: flex-start!important;
+margin-top: 12px;
+border-radius: 15px;
+border: 1px solid #303A46;
+background: #12181F!important;
+border-radius: 15px;
+}
+.form-light :deep(.v-otp-input .v-field){
+height: 56px !important;
+width: 56px !important;
+justify-content: flex-start!important;
+margin-top: 12px;
+border-radius: 10px;
+background: white !important;
+border: 1px solid #969696;
+border-radius: 15px;
+}
+.v-otp-input__content{
+  margin-right: 20px;
+}
 </style>

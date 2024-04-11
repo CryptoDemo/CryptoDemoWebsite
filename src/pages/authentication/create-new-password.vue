@@ -4,8 +4,8 @@
   <v-container class="form-layout overflow-hidden">
     <v-row no-gutters  class="">
 
-      <v-col dense cols="md-5" class="form" style="padding: 0px 70px;">
-        <div class="" style="margin-top:55.88px; margin-bottom:55.88px;">
+      <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
+        <div style="margin-top: 150px;">
           <span class="card-title">Create new password</span>
             <span class="password-subtitle" style="margin-bottom:39px;">Choose a strong password that meets all requirements.</span>
          
@@ -33,6 +33,11 @@
                   <path opacity="0.4" d="M1.06026 1.31102V14.311" stroke="#C3CDDB" stroke-linecap="round"/>
                 </svg>
               </v-icon>
+              <!-- <ul>
+                <li v-for="(rule, index) in Passwordrules" :key="index" :class="{ 'text--red': !rule.valid, 'text--green': rule.valid }">
+                  <v-icon>{{ rule.valid ? 'mdi-check' : 'mdi-close' }}</v-icon> {{ rule.text }}
+                </li>
+              </ul> -->
               <!-- <div class="password-hint" hint="passwordHint"></div> -->
             </v-text-field> 
             <div  class="position-relative">
@@ -78,53 +83,46 @@
 <script setup>
 import { ref } from 'vue'
 
+import { useTheme } from 'vuetify';
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
 
 const isToggled = ref(true);
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };
 
-
 const password = ref('');
-const isPasswordValid = ref(false);
-
-// const passwordRule = computed(() => (value) => {
-//   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{6,}$/;
-//   isPasswordValid.value = regex.test(value);
-//   return isPasswordValid.value || 'Password does not meet the criteria';
-// });
+const isFormValid = ref(false);
 
 const Passwordrules = [
-(v) => !!v || 'Password is required',
+  (v) => !!v || 'Password is required',
   (v) => v.length >= 6 || 'Password must be at least 6 characters',
   (v) => /[A-Z]+/.test(v) || 'One uppercase letter',
   (v) => /[a-z]+/.test(v) || 'One lowercase letter',
   (v) => /[0-9]+/.test(v) || 'One Numeral',
-  (v) => /[^a-zA-Z0-9]+/.test(v) || 'One Special Character',
-  ];
-// const passwordHint = computed(() => {
-//       let hint = 'Password must contain:';
-//       hint += isPasswordValid.value ? '' : '<br>- At least one uppercase letter';
-//       hint += isPasswordValid.value ? '' : '<br>- At least one lowercase letter';
-//       hint += isPasswordValid.value ? '' : '<br>- At least one digit';
-//       hint += isPasswordValid.value ? '' : '<br>- At least one special character';
-//       hint += isPasswordValid.value ? '' : '<br>- At least 6 characters';
-//       return hint;
-//     });
+  (v) => /[^a-zA-Z0-9]+/.test(v) || 'One Special Character'
+];
 
+ const login =  () => {
+  if (!isFormValid.value) {
+    // Show an error message or highlight invalid fields (optional)
+    return; // Prevent login if password is invalid
 
-// const isFormValid = computed(() => password.value.length >0 );
-
-// const login =  () => {
- 
-// };
+    
+  }
+};
+watch(password, (newValue) => {
+  isFormValid.value = Passwordrules.every(rule => rule(newValue) === true);
+});
 </script>
 <style scoped>
 .carousel-styling{
-  max-height: 550px;
-    position: relative;
-    top: 8%;
-    bottom: 0
+max-height: 550px;
+position: relative;
+top: 8%;
+bottom: 0
 } 
 .eye-icon{
 bottom: 16px; 
