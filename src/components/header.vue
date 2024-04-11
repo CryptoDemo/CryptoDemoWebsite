@@ -9,23 +9,23 @@
         <v-app-bar-title class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-title':'nav-title-light'">Demo </v-app-bar-title>
 
         <div style="position: relative"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
-       
+        
           <span class="flex-lg-and-up hidden-sm-and-down mt-4" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
-          <NuxtLink :to="props.link" class="mt-4"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
+          <NuxtLink :to="props.link" class="mt-4 text2"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
  
 
           <div v-if="hide"   style="width: 400px; height: 61px ; flex-shrink: 0; border-radius: 20px; background: #161D26; display: flex;position: absolute; right: 54%">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px ">
-                    <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <v-text-field  hide-details placeholder="Search in dashboard..." variant="text" style="width: fit-content;"> </v-text-field>
-            </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px ">
+                <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <v-text-field  hide-details placeholder="Search in dashboard..." variant="text" style="width: fit-content;"> </v-text-field>
+          </div>
 
      
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn class="me-3" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px; border-radius: 16px;">
+            <v-btn class="me-3 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px; border-radius: 16px;">
               <h1 class="me-1 mt-1">{{emoji }}</h1>
               <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{select}}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -44,7 +44,7 @@
           <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'">
             <v-list-item>
               <v-row dense style="max-width: 250px;">
-              <v-col v-for="(item, index) in locations" class="" sm="12" :key="index" >
+              <v-col v-for="(item, index) in locations" cols sm="12" :key="index" >
             
                 <v-list-item-title @click="select=item.title; emoji= item.emoji" style="display: flex; cursor: pointer;">
                  <h1 class="me-2" style="height: 30px; align-items: center">{{ item.emoji }}</h1>  
@@ -208,22 +208,22 @@ margin-right: 15px ;
 cursor: pointer;
 }
 .dropdown-btn1i{
-width: 142px !important;
-height: 58px !important;
+width: 142px;
+height: 58px;
 flex-shrink: 0;
-border-radius: 20px !important;
-border: 1px solid var(--border, #303A46) !important;
+border-radius: 20px;
+border: 1px solid var(--border, #303A46) ;
 background-color: #161D26;
 text-transform: unset !important;
 color: white;
 letter-spacing: 0px;
 }
 .dropdown-btn1i-light{
-width: 142px !important;
-height: 58px !important;
+width: 142px;
+height: 58px;
 flex-shrink: 0;
-border-radius: 20px !important;
-border: 1px solid var(--border, #303A46) !important;
+border-radius: 20px;
+border: 1px solid var(--border, #303A46);
 background-color: #fff;
 text-transform: unset !important;
 color: #161D26 !important;
