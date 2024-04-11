@@ -1,7 +1,7 @@
 <template>
 <div class="section">
   <Header/>
-  <v-container class="form-layout overflow-hidden">
+  <v-container class="form-layout overflow-hidden mt-7">
     <v-row no-gutters  class="">
 
       <v-col dense cols="md-5" class="form" style="padding: 0px 70px;">

@@ -753,8 +753,6 @@ line-height: 120%; /* 28.8px */
     margin-inline-end: 17px !important;
     padding-left: 0px !important;
   }
-
- 
   .coin-ani3{
     width: auto !important;
     height: 100%;
@@ -836,13 +834,15 @@ line-height: 120%; /* 28.8px */
   .payment-cart{
     width: 100% !important;
   }
-  /* .form-layout{
-    background:  #12181F;
+  .form-layout{
+    background: #12181F !important;
     border-radius: 0px;
-  } */
+    margin-top: -40px !important;
+  }
   .Dashboard-navbar{
     background:  #12181F !important;
     border-radius: 0px;
+   
   }
 }
 

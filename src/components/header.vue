@@ -1,8 +1,8 @@
 <template>
   <div>
 
-    <v-app-bar :elevation="2" class="py-5"  :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'">
-
+    <div :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'">
+ 
       <v-container style="display: flex; align-items: center;">
         
         <img src="/svg/Logo.svg" class="me-3"/>
@@ -14,19 +14,19 @@
           <NuxtLink :to="props.link" class="mt-4"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
  
 
-       <div  v-if="hide"   style="width: 400px; height: 61px ; flex-shrink: 0; border-radius: 20px; background: #161D26; display: flex;position: absolute; right: 54%">
-              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px ">
-                <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <v-text-field  hide-details placeholder="Search in dashboard..." variant="none" style="width: fit-content;"> </v-text-field>
-        </div>
+          <div v-if="hide"   style="width: 400px; height: 61px ; flex-shrink: 0; border-radius: 20px; background: #161D26; display: flex;position: absolute; right: 54%">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px ">
+                    <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <v-text-field  hide-details placeholder="Search in dashboard..." variant="text" style="width: fit-content;"> </v-text-field>
+            </div>
 
      
         <v-menu>
           <template v-slot:activator="{ props }">
             <v-btn class="me-3" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px; border-radius: 16px;">
-              <v-img  width="24" class="me-3" :src="flag"/> 
+              <h1 class="me-1 mt-1">{{emoji }}</h1>
               <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{select}}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                 <g clip-path="url(#clip0_7328_44812)">
@@ -41,14 +41,14 @@
             </v-btn>
           </template>
 
-          <v-list style="background: #1B2537 !important; cursor: pointer; border: 0.5px solid #2f3946;">
+          <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'">
             <v-list-item>
               <v-row dense style="max-width: 250px;">
               <v-col v-for="(item, index) in locations" class="" sm="12" :key="index" >
             
-                <v-list-item-title @click="select=item.title; flag= item.image" style="display: flex; align-items: center;">
-                 <img width="30" class="me-3" :src="item.image" style="border-radius: 10px;"/>    
-                <span class="country-text"> {{ item.title }} </span>
+                <v-list-item-title @click="select=item.title; emoji= item.emoji" style="display: flex; cursor: pointer;">
+                 <h1 class="me-2" style="height: 30px; align-items: center">{{ item.emoji }}</h1>  
+                <span :class="isDark ? 'country-text':'country-text-light'"> {{ item.countryname }} </span>
               </v-list-item-title>
                 </v-col>
               </v-row>
@@ -82,7 +82,8 @@
            
 
       </v-container>
-      </v-app-bar>
+ 
+  </div>
   </div>
 </template>
 
@@ -96,17 +97,18 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 
 const select =ref("Spanish")
 
-const flag = ref("/img/china.png")
+const emoji = ref("🇱🇮")
 
 const locations = [
-        { title: 'English', image:"/flags/aw.svg" },
-        { title: 'Spanish',  image:"/flags/ma.svg" },
-        { title: 'French',  image:"/flags/na.svg" },
-        { title: 'French',  image:"/flags/ph.svg" },
-        { title: 'French',  image:"/flags/um.svg" },
-        { title: 'Igbo', image:"/flags/zm.svg" },
-        { title: 'Igbo', image:"/flags/uz.svg" },
-        { title: 'Igbo', image:"/flags/vc.svg" },
+  { title: 'ALG', countryname:'Australia', emoji:"🇻🇪" },
+  { title: 'BA', countryname:'Bosnia and Herzegovina', emoji:"🇰🇿" },
+  { title: 'KW',countryname:'Kuwait',  emoji:"🇬🇸" },
+  { title: 'USA', countryname:'United State', emoji:"🇬🇧"},
+  { title: 'SX', countryname:'Sint Maarten', emoji:"🇸🇩"},
+  { title: 'SVK', countryname:'Slovakia', emoji:"🇹🇳"},
+  { title: 'NIG', countryname:'Nigeria',  emoji:"🇳🇬 " },
+  { title: 'NI', countryname:'Niger', emoji:"🇵🇰" },
+  { title: 'NU', countryname:'Niue', emoji:"🇱🇮" },
       ];
 const props = defineProps(
   {
@@ -126,14 +128,15 @@ const props = defineProps(
 
 <style scoped>
 .Dashboard-navbar{
-background-color: rgba(22, 29, 38, 0.60)  !important;
+background-color: rgba(22, 29, 38, 0.60)  ;
 backdrop-filter: blur(20px);
 align-items: center;
 display: flex;
 flex: 0 0 auto;
-position: relative;
+position: fixed;
+top: 0;
 width: 100%;
-/* padding: 30px; */
+z-index: 100;
 color: white!important;
 box-shadow: none!important;
 }
@@ -141,10 +144,10 @@ box-shadow: none!important;
 align-items: center;
 display: flex;
 flex: 0 0 auto;
-position: relative;
-transition: inherit;
+position: fixed;
+top: 0;
+z-index: 100;
 width: 100%;
-padding: 32px;
 background: rgba(255, 255, 255, 0.60);
 backdrop-filter: blur(20px);
 color: white!important;
@@ -225,13 +228,9 @@ background-color: #fff;
 text-transform: unset !important;
 color: #161D26 !important;
 letter-spacing: 0px;
+box-shadow: none;
 }
-.v-list {
-background: #12181F!important;
-border-radius: 20px !important;
-color: white;
-margin-top: 15px;
-}
+
 .nav-icon-text{
 color: #969696;
 text-align: center;
@@ -259,31 +258,48 @@ line-height: 120% !important; /* 24px */
     width: 100%;
     height: 83px !important;
 }
-
 .country-text{
 color: var(--Colors-Base-white, #FFF);
 text-align: center;
 font-family: Poppins;
 font-size: 14px;
 font-style: normal;
-font-weight: 500;
+font-weight: 400;
 line-height: normal;
 }
 .country-text-light{
 color: var(--Black-100, #060A1D);
 text-align: center;
-font-family: Manrope;
-font-size: 14px !important;
+font-family: Poppins;
+font-size: 14px;
 font-style: normal;
-font-weight: 500 !important;
+font-weight: 400;
 line-height: normal;
 }
-::-webkit-input-placeholder {
-color: #92929D !important;
-font-family: Poppins !important;
-font-size: 14px !important;
-font-style: normal;
-font-weight: 400 !important;
-line-height: normal;
-  }
+.country-dropdown{
+border-radius: 15px;
+border: 0.5px solid #2f3946;
+background: #141B23 !important;
+backdrop-filter: blur(50px) !important;
+border-radius: 20px !important;
+color: white;
+margin-top: 15px;
+left: 70px;
+}
+
+.country-dropdown-light{
+border-radius: 15px;
+background: #fff !important;
+border-radius: 20px !important;
+color: black;
+margin-top: 15px;
+left: 70px;
+}
+.Dashboard-navbar :deep(.v-list){
+display: flex;
+flex-direction: column;
+border-radius: 20px !important;
+color: white;
+margin-top: 15px;
+}
 </style>

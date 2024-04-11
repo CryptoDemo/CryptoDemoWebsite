@@ -65,10 +65,8 @@
       
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn  class="me-4 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"  style="letter-spacing: 0px; display: flex;"        
-              v-bind="props">
-              <h1 class="me-1">{{emoji }}</h1>
-      
+            <v-btn  class="me-4 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"  style="letter-spacing: 0px; display: flex;" v-bind="props">
+              <h1 class="me-1 mt-2">{{emoji }}</h1>
               <span class="me-2" :class="isDark ? 'nav-subtitle1':'nav-subtitle1-light'">{{select}}</span>
               <v-icon icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
             </v-btn>
