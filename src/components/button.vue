@@ -38,10 +38,24 @@ flex-shrink: 0;
 position: absolute!important;
 right: 18px!important;
 }
-
 .btn:disabled {
     box-shadow: none;
     opacity: 1;
     background: #575757!important;
+}
+.mdi-arrow-right{
+  animation: slide1 2s ease-in-out infinite;
+  margin-left: 9px;
+}
+
+@keyframes slide1 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(10px, 0);
+  }
 }
 </style>
