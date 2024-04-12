@@ -859,6 +859,9 @@ line-height: 120%; /* 28.8px */
     border-radius: 0px !important;
     margin-inline: auto;
   }
+  .country-dropdown{
+    left: 0 !important;
+  }
 }
 
 
