@@ -51,7 +51,7 @@ cursor: pointer;
 position: absolute;
 } 
 .password-styling{
-width: 364px;
+width: 295px;
 height: 64px; 
 align-self: flex-end;
 border-radius: 16px;

@@ -2,7 +2,7 @@
   <div>
     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
       <v-container style="width: 100%;">
-          <v-row no-gutters style="margin-top: 130px;">
+          <v-row no-gutters style="margin-top: 90px;">
             <div style="display: flex;">
             <div cols="4">
               <div class="pa-2 ma-2">
@@ -10,7 +10,7 @@
               </div>
             </div>
 
-            <div cols="8" style="width: 64% !important;">
+            <div cols="8" style="width: 74%">
               <div class="pa-2 ma-2">
                   
                   <div class="acct-settings" style="display: flex; justify-content: space-between">    
