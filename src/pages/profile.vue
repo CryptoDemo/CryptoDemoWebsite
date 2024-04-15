@@ -2,16 +2,15 @@
   <div>
      <Header hide=true icon1=true icon3=true  icon2=true />
      <v-container>
-        <div style="margin-top: 120px; min-height: 100%;">
+        <div style="margin-top: 90px; min-height: 100%;">
             <v-row no-gutters>
-              <v-col cols="8" class="">
-                <div class="profile" style="padding: 30px 0px">
-
+              <v-col cols="8">
+                <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 0px">
                   <div class="d-flex" style="justify-content: space-around; align-items: center;">
                     <div class="d-flex">
                       <img src="/svg/Image (1).svg" class="me-3" alt="avatar" style="display: flex; align-self: flex-start;"/>
                         <div>
-                          <span class="profile-level" style="margin-bottom: 13.8px;">Unverified</span>
+                          <v-chip class="profile-level" color="#FB774A" style="margin-bottom: 13.8px;">Unverified</v-chip>
                           <span class="username">UID : Ogadinma2024</span>
                         </div>
                     </div>
@@ -75,7 +74,7 @@
                             <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
                             </div>
                           </div>
-                      <!-- </div> -->
+                
                     </div>
                   </div>
              
@@ -127,9 +126,9 @@
                       <div style="display: flex; margin-inline-start: auto;">
                         <v-menu>
                             <template v-slot:activator="{ props }">
-                              <v-btn class="mx-auto active-offers" style="letter-spacing: 0px"
+                              <v-btn class="mx-auto active-offers" style="letter-spacing: 0px; box-shadow: none;"
                                 v-bind="props">
-                                <img  width="25" class="me-2" :src="flag" style="margin-left: -60px "/> 
+                                <img  width="25" class="me-2" :src="icon" style="position: absolute; left: 7%;"/> 
                                 <div style="display: grid; cursor: pointer;">
                                 <span class="slt">{{select}}</span> 
                                 <span class="small-text">{{coin}}</span> 
@@ -142,13 +141,14 @@
 
                           <v-list class="coin-card">
                             <v-list-item>
-                              <div v-for="(item, index) in allCoins" class="d-flex py-3" style="cursor: pointer"
-                                :key="index" >
-                            
-                                <v-list-item-title @click="select=item.title; coin=item.coinText; flag= item.image" class="d-flex">
-                                <v-img width="20" class="rounded-5 me-3" :src="item.image"/>    
-                                <span> {{ item.title }} </span>
-                              </v-list-item-title>
+                              <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-3" style="cursor: pointer">
+                                <v-list-item-title @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
+                                  <img width="25" class="rounded-5 me-3" :src="item.icon"/>    
+                                  <div style="display: flex; flex-direction: column;">
+                                    <span style="font-family: Manrope;font-size: 14px; font-style: normal; font-weight: 700; line-height: 140%;"> {{ item.name }} </span>
+                                    <span class="small-text">{{ item.symbol }}</span>
+                                  </div>
+                                </v-list-item-title>
                               </div>
                             </v-list-item>
                           </v-list>
@@ -225,18 +225,18 @@
                 <div style="justify-content: space-between; display: flex;"> 
 
 
-                <div class="d-flex">
-                    <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
-                        <div>
-                            <div style="padding-top: 35px;">
-                            <span class="username" style="font-size: 16px;">UID : <span class="grad-text">Ogadinma2024</span></span>
-                            <div style="display: grid">
-                                <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
-                                <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
-                            </div>
-                            </div>
-                        </div>
-                </div> 
+                    <div class="d-flex">
+                      <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
+                          <div>
+                              <div style="padding-top: 35px;">
+                                <span class="username" style="font-size: 16px;">UID : <span class="grad-text">Ogadinma2024</span></span>
+                                <div style="display: grid">
+                                    <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
+                                    <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
+                                </div>
+                              </div>
+                          </div>
+                    </div> 
 
                     <div style="margin-top: 35px">
                         <span class="me-5" style="color: #969696; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
@@ -257,18 +257,18 @@
                 <div style="justify-content: space-between; display: flex; margin-bottom: 191px"> 
 
 
-                <div class="d-flex">
-                    <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
-                        <div>
-                            <div style="padding-top: 35px;">
-                            <span class="username" style="font-size: 16px;">UID : <span class="grad-text">Ogadinma2024</span></span>
-                            <div style="display: grid">
-                                <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
-                                <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
+                    <div class="d-flex">
+                        <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
+                            <div>
+                                <div style="padding-top: 35px;">
+                                <span class="username" style="font-size: 16px;">UID : <span class="grad-text">Ogadinma2024</span></span>
+                                <div style="display: grid">
+                                    <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
+                                    <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
+                                </div>
+                                </div>
                             </div>
-                            </div>
-                        </div>
-                </div> 
+                    </div> 
 
                     <div style="margin-top: 35px">
                         <span class="me-5" style="color: #969696; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
@@ -283,7 +283,7 @@
                       <span class="grad-text">View Offer</span>
                     </div>
                   </div>
-                </div>
+            </div>
               
        
             </div>
@@ -302,29 +302,47 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import { useTheme } from 'vuetify';
+import {getTokens} from "@/composables/requests/tokens";
 
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
 
 const PurchaseCrypto = ref(true);
 
 const profileCards = [
-    {image:'/svg/call.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number', status:'Verify now'},
-    {image:'/svg/sms.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.',  status1:'Verified' },
-    {image:'/svg/login.svg', Title: '2FA not enabled', textCaption: 'Enabling 2FA is a great way to secure',  status:'Verify now'}, 
-    {image:'/svg/profile-circle.svg', Title:'I.D. not verified', textCaption: 'Take a minute to verify your phone I.D.',  status:'Verify now'}, 
-    {image:'/svg/location.svg', Title: 'Address not verified', textCaption:'Take a minute to verify your address',  status:'Verify now'},
+  {image:'/svg/call.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number', status:'Verify now'},
+  {image:'/svg/sms.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.',  status1:'Verified' },
+  {image:'/svg/login.svg', Title: '2FA not enabled', textCaption: 'Enabling 2FA is a great way to secure',  status:'Verify now'}, 
+  {image:'/svg/profile-circle.svg', Title:'I.D. not verified', textCaption: 'Take a minute to verify your phone I.D.',  status:'Verify now'}, 
+  {image:'/svg/location.svg', Title: 'Address not verified', textCaption:'Take a minute to verify your address',  status:'Verify now'},
 ];
 
-const select =ref("All Cryptocurrency")
+ const select =ref("All Cryptocurrency")
 
+const pinia = useStore()
+const pageNumber = ref(1)
 
-const allCoins = [
-        { title: 'Bitcoin', coinText:"Dai",  image:"/svg/btc.svg" },
-        { title: 'Bitcoin', coinText:"BTC", image:"/svg/btc.svg" },
-        { title: 'Bitcoin',  coinText:"BTC", image:"/svg/btc.svg"},
-        { title: 'Ethereum',  coinText:"ETH", image:"/svg/btc.svg"},
-        { title: 'Dodge',  coinText:"DOD",  image:"/svg/btc.svg"},
-        { title: 'Bitcoin',  coinText:"BTC", image:"/svg/btc.svg"},
-      ];
+  try {
+    const data = await getTokens(pageNumber.value);
+    if(data.success) {
+      const fetchedTokens = data.data.result;
+
+      const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
+
+      // Check if there are any new items in the fetched data
+      const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
+
+      if (newItems.length > 0) {
+        console.log('fetching')
+        pinia.setTokenLists(fetchedTokens);
+      }
+    } else {
+      console.log('Unavailable')
+    }
+  } catch (error) {
+    console.log(error);
+  };
 const navigation = [
   {icon:'/svg/grad-location.svg', title: 'location', link:'/profile', flag:'/flags/ag.svg', country:'Argentina'},
   {icon:'/svg/globe.svg', title: 'Languages:', link:'/payment', type:'English'},
@@ -341,6 +359,12 @@ const navigation = [
 .profile{
 border-radius: 20px;
 background: var(--secondary-background, #12181F);
+height: 130px;
+flex-shrink: 0;
+}
+.profile-light{
+border-radius: 20px;
+background: #D9E0E9;
 height: 130px;
 flex-shrink: 0;
 }
@@ -367,9 +391,7 @@ background: rgba(247, 147, 26, 0.15);
 display: flex;
 width: 101.521px;
 padding: 7px 13px;
-align-items: flex-start;
-gap: 10px;
-color: #FB774A;
+align-items: center;
 font-family: Poppins;
 font-size: 14px;
 font-style: normal;
@@ -478,6 +500,7 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+box-shadow: none;
 }
 .active-btn{
 border-radius: 20px;
@@ -493,6 +516,7 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal; 
+box-shadow: none;
 }
 
 .smaller-btn{
@@ -524,8 +548,6 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 display: flex;
-width: 134.577px;
-height: 27px;
 flex-direction: column;
 justify-content: center;
 flex-shrink: 0;
@@ -561,11 +583,19 @@ line-height: normal;
 text-transform: capitalize !important;
 letter-spacing: 0px;
  }
-
  .coin-card{
 background: #1B2537 !important; 
 cursor: pointer; 
 border: 0.5px solid #2f3946;
-  
+border-radius: 20px !important;
+margin-top: 10px;
+ }
+ .small-text{
+color: var(--Main-Greyscale-20, #E2E8F0);
+font-family: Manrope;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%; /* 18px */
  }
 </style>

@@ -3,7 +3,7 @@
       <div class="text-center">
       <v-menu open-on-hover>
         <template v-slot:activator="{ props }">
-          <v-btn v-bind="props" class="dashboard-menu" style="width: fit-content; height: 130px;">
+          <v-btn v-bind="props" class="dashboard-menu" style="width: fit-content; height: 130px; box-shadow: none;">
             <div class="d-flex" style="padding: 35px"> 
                         <img src="/svg/Dashboard.svg" class="me-10" alt="dashboard-icon">
                         <div style="display: grid;">
@@ -27,7 +27,7 @@
           </v-btn>
         </template>
   
-        <v-list style="border-radius: 24px; border: 1px solid #303A46; background: #12181F; width: 231px; padding: 22px; position: relative;">
+        <v-list style="border-radius: 24px; border: 1px solid #303A46; background: #12181F; width: 231px; padding: 22px; position: relative; margin-left: 170px;">
           <div class="d-flex">
             <div  class="me-5" style="position: relative; padding-top: 22px;">
             <img src="/svg/bluelevel-star.svg" class="position-absolute" style="top: 0; left: -10px;"/>
@@ -92,13 +92,7 @@
   </template>
   
   <script setup>
-  // const items = [
-  //         { title: 'Click Me' },
-  //         { title: 'Click Me' },
-  //         { title: 'Click Me' },
-  //         { title: 'Click Me 2' },
-  //       ];
-  
+
   </script>
   
   <style scoped>

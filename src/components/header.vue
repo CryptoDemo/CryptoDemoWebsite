@@ -25,7 +25,7 @@
      
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn class="me-3 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px; border-radius: 16px;">
+            <v-btn class="me-5 mt-5 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px; border-radius: 16px; box-shadow: none;">
               <h1 class="me-1 mt-1">{{emoji }}</h1>
               <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{country.slice(0,9)}}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -58,10 +58,10 @@
         </v-menu> 
       
       <div v-if="icon1" style="display: grid; margin-top: 10px;">
-            <v-btn  @click.prevent="navigateTo('/trade/wallet')" class="me-" style="border-radius: 20px; background: #161D26; min-width: 60px!important; height: 61.2px; flex-shrink: 0;">         
-                <img src="/svg/white-wallet.svg"/> 
-            </v-btn>
-            <span  class="nav-icon-text" style="margin-left: 3px;">Wallet</span>     
+        <v-btn  @click.prevent="navigateTo('/trade/wallet')" class="nav-btn">         
+            <img src="/svg/white-wallet.svg"/> 
+        </v-btn>
+        <span  class="nav-icon-text" style="margin-left: 3px;">Wallet</span>     
       </div>
 
       <div v-if="icon2" style="display: flex; flex-direction: column; margin-top: 10px;">
@@ -70,7 +70,7 @@
       </div>
 
        <div v-if="icon3"  style="display: grid; position: relative; margin-top: 10px;">
-          <v-btn @click.prevent="navigateTo('/profile')" class="me-5" style="border-radius: 20px; position: relative; background: #161D26; min-width: 60px !important; height: 61.2px; flex-shrink: 0;">         
+          <v-btn @click.prevent="navigateTo('/profile')" class="me-5 nav-btn" style="border-radius: 20px;">         
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
               <path d="M20.12 14.49L19.12 12.83C18.91 12.46 18.72 11.76 18.72 11.35V8.82C18.72 6.47 17.34 4.44 15.35 3.49C14.83 2.57 13.87 2 12.77 2C11.68 2 10.7 2.59 10.18 3.52C8.23003 4.49 6.88003 6.5 6.88003 8.82V11.35C6.88003 11.76 6.69003 12.46 6.48003 12.82L5.47003 14.49C5.07003 15.16 4.98003 15.9 5.23003 16.58C5.47003 17.25 6.04003 17.77 6.78003 18.02C8.72003 18.68 10.76 19 12.8 19C14.84 19 16.88 18.68 18.82 18.03C19.52 17.8 20.06 17.27 20.32 16.58C20.58 15.89 20.51 15.13 20.12 14.49Z" fill="#FAFAFA"/>
               <path d="M15.61 20.01C15.19 21.17 14.08 22 12.78 22C11.99 22 11.21 21.68 10.66 21.11C10.34 20.81 10.1 20.41 9.96002 20C10.09 20.02 10.22 20.03 10.36 20.05C10.59 20.08 10.83 20.11 11.07 20.13C11.64 20.18 12.22 20.21 12.8 20.21C13.37 20.21 13.94 20.18 14.5 20.13C14.71 20.11 14.92 20.1 15.12 20.07C15.28 20.05 15.44 20.03 15.61 20.01Z" fill="#FAFAFA"/>
@@ -138,6 +138,7 @@ flex: 0 0 auto;
 position: fixed;
 top: 0;
 width: 100%;
+height: 80px;
 z-index: 100;
 color: white!important;
 box-shadow: none!important;
@@ -211,7 +212,7 @@ cursor: pointer;
 }
 .dropdown-btn1i{
 width: 142px;
-height: 58px;
+height: 55px;
 flex-shrink: 0;
 border-radius: 20px;
 border: 1px solid var(--border, #303A46) ;
@@ -288,7 +289,6 @@ color: white;
 margin-top: 15px;
 left: 70px;
 }
-
 .country-dropdown-light{
 border-radius: 15px;
 background: #fff !important;
@@ -303,5 +303,13 @@ flex-direction: column;
 border-radius: 20px !important;
 color: white;
 margin-top: 15px;
+}
+.nav-btn {
+border-radius: 20px; 
+background: #12181F; 
+min-width: 56px!important;
+height: 53.2px;
+flex-shrink: 0;
+box-shadow: none;
 }
 </style>

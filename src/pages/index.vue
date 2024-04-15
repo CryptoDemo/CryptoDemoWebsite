@@ -87,11 +87,11 @@
                         <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-3" style="cursor: pointer">
                           <v-list-item-title @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
                           <img width="25" class="rounded-5 me-3" :src="item.icon"/>    
-                          <div>
-                          <span> {{ item.name }} </span>
-                          <span class="small-text">{{ item.symbol }}</span>
-                        </div>
-                        </v-list-item-title>
+                            <div>
+                              <span> {{ item.name }} </span>
+                              <span class="small-text">{{ item.symbol }}</span>
+                            </div>
+                          </v-list-item-title>
                         </div>
 
 
@@ -336,10 +336,6 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-
-
-
-
 import {getTokens} from "@/composables/requests/tokens";
 
 const pinia = useStore()
@@ -361,18 +357,10 @@ const Paymentmethod1= ref('Select Payment method');
         pinia.setTokenLists(fetchedTokens);
       }
     } else {
-      // toast.message(`${data.message}`, {
-      //     position: 'top',
-      //     timeout: 2000,
-      // });
       console.log('Unavailable')
     }
   } catch (error) {
     console.log(error);
-    // toast.message(`${error}`, {
-    //     position: 'top',
-    //     timeout: 2000,
-    // });
   };
 const transaction = ref(true);
 const transaction1 = ref(true);
