@@ -84,7 +84,7 @@
               <div class="pa-2 ma-2">
                   <v-row align="center" justify="start" style="gap: 16px; margin-bottom: 32px !important">
                     <v-col v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="auto">
-                        <v-card class="mx-auto" max-width="301" height="140px" :variant="variant" >
+                        <v-card class="mx-auto" max-width="301" height="140px" variant="text" >
                             <v-card-item>
                               <div>
                                 <div class="d-flex">

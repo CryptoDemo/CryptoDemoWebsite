@@ -121,7 +121,7 @@
                     </div>
                     <span style="color: #D8D8D8; text-align: justify; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Leave a comment about this trade partner</span>
                     <div style="border-radius: 16px; margin-top: 12px;">
-                        <v-textarea variant=""  rows="7" row-height="10" auto-grow placeholder="I love the speed" style="background: #12181F;"></v-textarea>
+                        <v-textarea variant="text"  rows="7" row-height="10" auto-grow placeholder="I love the speed" style="background: #12181F;"></v-textarea>
                     </div>
 
                     <div style="display: flex; justify-content: end; margin-top: 12px; margin-bottom: 157px; ">

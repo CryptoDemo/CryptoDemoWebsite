@@ -8,23 +8,23 @@
       <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
         <div style="margin-top:17px;">
           <span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Verify Your Email</span>
-            <div class="card-subtitle" :class="isDark ? 'card-subtitle':'card-subtitle-light'" style="margin-top:20px;">Enter the code we've sent to <span><b> User@gmail.com.</b></span> Didn't receiver the code? 
+            <div class="card-subtitle" :class="isDark ? 'card-subtitle':'card-subtitle-light'" style="margin-top:20px;">Enter the code we've sent to <span><b> {{ pinia.state.email }}</b></span> Didn't receive the code? 
               <span class="text-primary" style="cursor: pointer;">Change email</span> 
             </div>
           <span :class="isDark ? 'otp-text':'otp-text-light'">Enter code</span>
           
-          <v-otp-input :length="4" :loading="loading"  v-model="otp" :disabled="validating" variant="text"></v-otp-input>
+          <v-otp-input :length="4"  v-model="otp" variant="plain"></v-otp-input>
           <div class="code-validation-text">
-            <span>Code valid for 30 minutes</span>
+            <span>Code valid for {{ OtpCountdown }} seconds</span>
           </div>
           <div style="margin-top:23px;">
-          <span class="resend-code">Resend code</span>
+          <span class="resend-code" @click.prevent="resendCode()">Resend code</span>
           </div>
           <div style="margin-top:48px;">
             <span class="resend-code">Verify Later</span>
           </div>
           <div style="margin-top:89px;">
-            <NuxtLink to="/authentication/login">  <Button buttonText="Continue" :loading="validating" @click="onClick" /></NuxtLink>
+            <NuxtLink to="/authentication/login">  <Button buttonText="Continue" /></NuxtLink>
           </div>
              
         </div>
@@ -44,11 +44,44 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
+import { verifyOtp } from "@/composables/requests/auth";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-const  otp = ref ('');
-const validating = ref (false);
+const otp = ref ('');
+const pinia = useStore();
+const OtpCountdown = ref(60);
+const decreaseTimer = () => {
+  if (OtpCountdown.value > 0) {
+    OtpCountdown.value--;
+  }
+};
+onMounted(() => {
+  const intervalId = setInterval(decreaseTimer, 1000);
+
+  // Clear interval when component is unmounted
+  return () => clearInterval(intervalId);
+});
+
+const resendCode = async() => {
+  const Otpmsg = {
+    email: pinia.state.email
+  }
+
+try {
+  const data = await verifyOtp(Otpmsg);
+  if (data.success) {
+    // navigateTo('/authentication/login')
+  } else{
+    
+    // OtpCountdown.value = 60
+    console.error('failed to send OTP');
+  }
+} catch(e){
+  console.log(e)
+};
+ 
+};
 
 </script>
 <style scoped>

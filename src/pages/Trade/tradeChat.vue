@@ -166,7 +166,7 @@
                           </svg>
                        </v-btn>
 
-                      <v-textarea variant=""  rows="1" row-height="10" auto-grow placeholder="Your text here..." style="background: inherit"></v-textarea>
+                      <v-textarea variant="text"  rows="1" row-height="10" auto-grow placeholder="Your text here..." style="background: inherit"></v-textarea>
 
                         <v-btn style="border-radius: 17px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); backdrop-filter: blur(10.5px); width: 48.08px; height: 48px">
                           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">

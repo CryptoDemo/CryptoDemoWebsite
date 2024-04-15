@@ -19,7 +19,7 @@
                 <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <v-text-field  hide-details placeholder="Search in dashboard..." variant="text" style="width: fit-content;"> </v-text-field>
+              <v-text-field  hide-details placeholder="Search in dashboard..." variant="plain" style="width: fit-content;"> </v-text-field>
           </div>
 
      
@@ -27,7 +27,7 @@
           <template v-slot:activator="{ props }">
             <v-btn class="me-3 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px; border-radius: 16px;">
               <h1 class="me-1 mt-1">{{emoji }}</h1>
-              <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{select}}</span>
+              <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{country.slice(0,9)}}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                 <g clip-path="url(#clip0_7328_44812)">
                   <path d="M12.0007 13.7951L16.9507 8.74609L18.3647 10.1884L12.0007 16.6797L5.63672 10.1884L7.05072 8.74609L12.0007 13.7951Z" fill="white"/>
@@ -46,7 +46,7 @@
               <v-row dense style="max-width: 250px;">
               <v-col v-for="(item, index) in locations" cols sm="12" :key="index" >
             
-                <v-list-item-title @click="select=item.title; emoji= item.emoji" style="display: flex; cursor: pointer;">
+                <v-list-item-title @click="emit('country',item.countryname); country = item.countryname; emoji= item.emoji" style="display: flex; cursor: pointer;">
                  <h1 class="me-2" style="height: 30px; align-items: center">{{ item.emoji }}</h1>  
                 <span :class="isDark ? 'country-text':'country-text-light'"> {{ item.countryname }} </span>
               </v-list-item-title>
@@ -95,7 +95,9 @@ import { useTheme } from 'vuetify';
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
-const select =ref("Spanish")
+const emit = defineEmits(['country'])
+
+const country =ref("Spanish")
 
 const emoji = ref("🇱🇮")
 

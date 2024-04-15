@@ -1,6 +1,6 @@
 <template>
   <div>
-     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+     <Header hide=true icon1=true icon3=true  icon2=true />
      <v-container>
         <div style="margin-top: 120px; min-height: 100%;">
             <v-row no-gutters>
@@ -82,7 +82,7 @@
                   <v-row style=" min-width: 90%; height: fit-content; margin-top: 1px; gap: 16px;">
                     <v-col
                         v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="3" style="display: flex;">
-                        <v-card class="mx-auto"  :variant="variant">
+                        <v-card class="mx-auto"  variant="text">
                             <v-card-item>
                               <div style="display: flex;">
                                 <div>
@@ -125,7 +125,7 @@
                 
 
                       <div style="display: flex; margin-inline-start: auto;">
-                        <v-menu :location="location">
+                        <v-menu>
                             <template v-slot:activator="{ props }">
                               <v-btn class="mx-auto active-offers" style="letter-spacing: 0px"
                                 v-bind="props">

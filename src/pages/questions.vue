@@ -17,7 +17,7 @@
                     </div>
                     <span style="color: #969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: 28px;">Please keep these answers in mind as they will assist us in verifying your identity.</span>
                     <section style="width: 938px; margin-top: 34px;">
-                         <v-expansion-panels variant="popout" style="display: contents !important; ">
+                         <v-expansion-panels variant="text" style="display: contents !important; ">
                                 <div v-for=" (FAQs, i ) in FAQ" :key="i" >
                                         <v-expansion-panel  :class="isDark ? 'expansion-panel1':'expansion-panel1-light'"  >
                                             <v-expansion-panel-title>

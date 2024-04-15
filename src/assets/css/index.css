@@ -38,7 +38,7 @@ background: var(--secondary-background, #12181F);
 display: flex;
 justify-content: center;
 align-items: center;
-height: 683px;
+height: 680px;
 }
 .form-light{
 flex-shrink: 0; 
@@ -224,17 +224,7 @@ cursor: pointer;
   font-weight: 400;
   line-height: 28px; /* 175% */
 }
-/* .v-otp-input__field {
-  font-size: 1.25rem;
-  height: 100%;
-  outline: none;
-  text-align: center;
-  width: 100%;
-  background: #12181F!important;
-  border-radius: 10px;
-  border: 2px solid var(--border, #303A46);
-  color: white!important;
-} */
+
 .main{
 /* background: radial-gradient(52.19% 100% at 50% 0%, #000 0%, rgba(0, 0, 0, 0.00) 95.31%); */
 backdrop-filter: blur(44.04999923706055px);
@@ -864,6 +854,9 @@ line-height: 120%; /* 28.8px */
   .country-dropdown{
     left: 0 !important;
   }
+  /* .form-layout :deep (.grey-line){
+    margin-left: -1px !important;
+  } */
 }
 
 

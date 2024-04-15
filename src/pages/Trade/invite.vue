@@ -25,7 +25,7 @@
                         <span class="share-link">Share the link, referral code for registration, or scan barcode</span>
 
                         <div style="display: flex; justify-content: center;">
-                          <div class="copy-link-box px-4"  variant="" style="align-content: baseline;">
+                          <div class="copy-link-box px-4"  variant="text" style="align-content: baseline;">
                             <span class="referral-link">https://demo.com/register?r=nxYXDm8</span>
                             <v-btn @click="copyURL" style=" background: inherit !important; width: 10px; box-shadow: none;"><img src="/svg/copy.svg" style="position: relative;"/></v-btn>
                           </div>

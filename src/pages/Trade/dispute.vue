@@ -141,7 +141,7 @@
                     </div>
                     <span style="color: #969696; text-align: justify; font-family: manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Describe the trade dispute</span>
                     <div style="border-radius: 16px; margin-top: 12px;">
-                        <v-textarea variant="" clearable auto-grow placeholder="I love the speed" style="background: #12181F; height: 170px;"></v-textarea>
+                        <v-textarea variant="text" clearable auto-grow placeholder="I love the speed" style="background: #12181F; height: 170px;"></v-textarea>
                     </div>
 
 

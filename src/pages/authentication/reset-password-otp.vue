@@ -1,15 +1,15 @@
 <template>
 <div class="section">
   <Header/>
-  <v-container class="form-layout overflow-hidden mt-7">
+  <v-container class="form-layout overflow-hidden">
     <v-row no-gutters  class="">
 
-      <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
-        <div style="margin-top: 125px;">
+      <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 90px;">
+        <div style="margin-top: 145px;">
           <span class="card-title">Reset Your Password</span>
-            <span class="password-subtitle" style="margin-bottom:39px;">Verification code sent to User@gmail.com. Please enter the code below:</span>
+            <span class="password-subtitle" style="margin-bottom:39px;">Verification code sent to {{ pinia.state.email }}. Please enter the code below:</span>
           <span class="otp-text">Enter code</span>
-          <v-otp-input :length="4" :loading="loading" v-model="otp" :disabled="validating" variant="text"></v-otp-input>
+          <v-otp-input :length="4"  v-model="otp" :disabled="validating" variant="plain"></v-otp-input>
           <div class="code-validation-text">
             <span>Code valid for 30 minutes</span>
           </div>
@@ -19,7 +19,7 @@
             <span class="resend-code">Verify Later</span>
           </div>
           <div style="margin-top:65px;">
-            <NuxtLink to="/authentication/create-new-password">  <Button buttonText="Request New Password" :loading="validating" @click="onClick"  /></NuxtLink>
+            <NuxtLink to="/authentication/create-new-password">  <Button buttonText="Request New Password" :loading="validating" @click=""  /></NuxtLink>
           </div>
          <div class="d-flex" style="margin-top:43px; margin-bottom: 137px">
           <img src="/svg/arrow-left.svg" class="me-3" />
@@ -49,13 +49,14 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const  otp = ref ('');
 const validating = ref (false);
+const pinia = useStore();
 
 </script>
 <style scoped>
 .carousel-styling{
 max-height: 550px;
 position: relative;
-top: 8%;
+top: 3%;
 bottom: 0
 } 
 .form :deep(.v-otp-input .v-field){
