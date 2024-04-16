@@ -287,7 +287,7 @@ backdrop-filter: blur(50px) !important;
 border-radius: 20px !important;
 color: white;
 margin-top: 15px;
-left: 70px;
+/* left: 70px; */
 }
 .country-dropdown-light{
 border-radius: 15px;
@@ -295,7 +295,8 @@ background: #fff !important;
 border-radius: 20px !important;
 color: black;
 margin-top: 15px;
-left: 70px;
+box-shadow: none;
+/* left: 70px; */
 }
 .Dashboard-navbar :deep(.v-list){
 display: flex;

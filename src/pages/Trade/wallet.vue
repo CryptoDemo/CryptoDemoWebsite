@@ -2,21 +2,21 @@
     <div>
        <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
        <v-container>
-            <v-row style="margin-top: 130px; display: flex; gap: 16px;">
-               <v-col cols="3">
-                  <div class="ma-2 me-4 mt-5">
+            <div style="margin-top: 90px; display: flex; gap: 16px;">
+               <div>
+                  <div class="ma-2 mt-5">
                     <Wallet-nav/>
                    </div>
-              </v-col>
+               </div>
   
-              <v-col>
-                <div class="pa-2 ma-2" style="width: 100%;">
-                   <span style="color: #FFF;font-family: Poppins; font-size: 32px;  font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
+              <div>
+                <div class="pa-2 ma-2" style="width: 81%;">
+                  <span style="color: #FFF;font-family: Poppins; font-size: 32px;  font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
                     
                    <div style="border-radius: 24px; border: 1px solid  #303A46; width: 98%; padding: 30px; margin-top: 28px;">
                     <v-table style="display: grid! important; background: inherit; min-width: 100%;">
                       <thead>
-                        <tr style="display: flex; margin-bottom: 30px;">
+                        <tr style="display: flex; margin-bottom: 8px;">
                         
 
                           <th class="me-2" style="display: flex; align-items: center; align-self: center;">
@@ -25,7 +25,7 @@
                             </div>
                           </th>
 
-                          <th style="display: flex; align-items: center; align-self: center; margin-right: 25px">
+                          <th style="display: flex; align-items: center; align-self: center; margin-right: 28px">
                             <div class="d-flex" >
                               <span class="table-header-text">Coin</span>
                             </div>
@@ -125,8 +125,8 @@
                 </div>
                 
                 
-              </v-col>
-            </v-row>
+              </div>
+            </div>
         </v-container>   
         <Footer/>
     </div>

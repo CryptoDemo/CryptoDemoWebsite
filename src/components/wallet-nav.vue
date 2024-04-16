@@ -1,10 +1,10 @@
 <template>
     <div class="wallet-nav">
       <span class="sm-num" style="font-size: 16px; font-style: normal;font-weight: 600;">Balance</span>
-          <div style="margin-top: 51px; position: relative;">
+          <div style="margin-top: 51px; position: relative; display: flex; justify-content: center;">
             <img src="/svg/coin-range.svg" style="position: relative;"/>
-            <img src="/svg/range1.svg" style="position: absolute; left: 33px; margin-top: 31px; right: 0; justify-content: center;"/>
-            <div style="display: flex; flex-direction: column; position: absolute; left: 46px; top: 57px;">
+            <img src="/svg/range1.svg" style="position: absolute; left: 0;right: 0; margin: auto; top: 17%;"/>
+            <div style="display: flex; flex-direction: column; position: absolute; left: 0; right: 0; top: 57px;">
               <span class="lg-num">$69300</span>
               <span class="sm-num">0.0140 BTC</span>
             </div>

@@ -55,8 +55,8 @@
         <td><span class="browser-txt">{{item.Browser}}</span></td>
         <td><span class="browser-txt">{{item.IPAddress}}</span></td>
         <td><span class="browser-txt">{{item.Location}}</span></td>
-        <td><v-btn class="actv-btn"  style="width: 70px; height: 40px ">{{item.Status}}</v-btn></td>
-        <td><v-btn class="delete-btn position-relative" style="width: 96px; height: 40px;">
+        <td><v-btn class="actv-btn"  style="width: 70px; height: 40px">{{item.Status}}</v-btn></td>
+        <td><v-btn class="delete-btn position-relative" style="width: 96px; height: 40px; box-shadow: none;">
           <img src="/svg/close-circle.svg" style="margin-right: 3px !important"/>
           {{item.Delete}} 
           </v-btn>
@@ -139,7 +139,7 @@
         <div style="margin-top: 188px; margin-bottom: 115px">
 
             <v-dialog width="647px">
-                <template v-slot:activator="{ props }"><v-btn v-bind="props" width="152px" class="primary-btn1" style="border-radius: 16px; background: var(--Warm-Red, #E33E38) !important;"> Delete Account</v-btn></template>
+                <template v-slot:activator="{ props }"><v-btn v-bind="props" width="152px" class="primary-btn1" style="border-radius: 16px; box-shadow: none; background: var(--Warm-Red, #E33E38) !important;"> Delete Account</v-btn></template>
 
                     <template v-slot:default="{ isActive }">
                           <v-card style="background: var(--secondary-background, #12181F);border-radius: 32px; border: 1px solid var(--border, #303A46)!important;  padding: 40px ">
@@ -155,7 +155,7 @@
 
                             <v-card-actions style="justify-content: space-around; margin-top: 35px;">
                               <!-- <v-spacer></v-spacer> -->
-                                <v-btn style="border-radius: 16px; border: 1px solid var(--border, #303A46); background: var(--Black-20, #E2E8F0); display: flex;width: 230px; height: 63px; color: var(--Gray-Dark, #323232);text-align: center; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; text-transform: unset; letter-spacing: 0px">
+                                <v-btn style="border-radius: 16px; border: 1px solid var(--border, #303A46); background: #E2E8F0; display: flex;width: 230px; height: 63px; color: var(--Gray-Dark, #323232);text-align: center; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; text-transform: unset; letter-spacing: 0px">
                                       Delete account
                                 </v-btn>
                               <v-btn class="primarybtn" style="display: flex; width: 230px; height: 64px; font-weight: 600;"
@@ -277,6 +277,7 @@ font-size: 12px !important;
 font-style: normal;
 font-weight: 400 !important;
 line-height: 24px !important; /* 200% */
+box-shadow: none;
 }
 .delete-btn{
 border-radius: 12px !important;

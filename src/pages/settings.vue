@@ -183,7 +183,7 @@
                </v-row>
 
                 <div class="pa-2 ma-2">
-                  <Biography/>
+            
                 </div>
               <div class="pa-2 ma-2" style="flex-shrink: 0;">
                 <DataTable/>
@@ -278,7 +278,7 @@ const navigation = [
 border-radius: 16px;
 background: rgba(245, 249, 253, 0.54);
 padding: 27px 16px;
-/* width: 940px; */
+width: 100%;
 /* margin-top: 30px; */
 }
 .header-text1{
@@ -295,7 +295,7 @@ justify-content: center;
 border-radius: 16px;
 background: var(--secondary-background, #12181F);
 display: flex;
-/* width: 940px; */
+width: 100%;
 padding: 21px var(--spacing-3xl, 24px);
 justify-content: space-between;
 align-items: center;

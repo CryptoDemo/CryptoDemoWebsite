@@ -1,10 +1,11 @@
 <template>
   <div>
     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
-        <v-row no-gutters style="margin-top: 130px;">
+      <v-container>
+        <v-row no-gutters style="margin-top: 90px;">
             <v-col cols="8">
               <div class="pa-1 ma-1">
-                <div class="profile" style="padding: 30px 0px ">
+                <div class="profile" style="padding: 30px 0px">
 
                   <div class="d-flex" style="justify-content: space-around;">
                     <div class="d-flex">
@@ -41,12 +42,13 @@
                 </div>
               </div>
             </v-col>
-          </v-row>
-
+        </v-row>
+      </v-container>
         
-          <v-row no-gutters style="margin-top: 32px;">
-            <v-col cols="3">
-              <div class="pa-2">
+      <v-container>
+          <div style="display: flex; width: 100%; margin-top: -15px;">
+            <div>
+              <div class="pa-2 me-3">
                 <div class="sd-nav1">
                   <div style="border-bottom: 1px solid var(--border, #303A46);">
                     <div style="padding: 20px 24px;">
@@ -58,16 +60,12 @@
                             <v-btn class="nav-options"> 
                               <img :src="item.icon" class="me-3"/>
                               {{ item.title }}
-
                               <div style="align-items: center; display: flex; position: absolute; right: 20px;">
-                                
                                 <img :src="item.flag" width="25" class="me-3" style="border-radius: 9px;"/>
                                 <span >{{ item.country }}</span>
                                 <span>{{ item.type }}</span>
-                                <span>{{ item.number }}</span>
-                                
+                                <span>{{ item.number }}</span> 
                               </div>
-
                             </v-btn>
                         </div>
                       </div>
@@ -78,22 +76,23 @@
                       </div>
                   </div>
               </div>
-            </v-col>
+            </div>
 
-            <v-col>
+          <div>
               <div class="pa-2 ma-2">
                   <v-row align="center" justify="start" style="gap: 16px; margin-bottom: 32px !important">
-                    <v-col v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="auto">
+                    <div v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="auto">
                         <v-card class="mx-auto" max-width="301" height="140px" variant="text" >
                             <v-card-item>
-                              <div>
-                                <div class="d-flex">
-                                  <img :src="variant.image" class="me-3"/>
-                                  <span class="card-text">{{ variant.Title }}</span>
-                                  <span class="card-text">{{ variant.Title1 }}</span>
+                              <div style="display: flex;">
+                                <div>
+                                <img :src="variant.image" class="me-3 mt-1"/>
                                 </div>
-                                
-                                <div class="textCaption" style="color: var(--Gray-Medium-dark, #646464);margin-top: 8px; font-size: 14px;">{{variant.textCaption}}</div>
+                                <div class="d-flex" style="flex-direction: column;">
+                                  <span class="card-text">{{ variant.Title }}</span>
+                                  <span class="card-text" style="color:#969696">{{ variant.Title1 }}</span>
+                                  <div class="textCaption" style="color: #646464; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; margin-top: 8px;">{{variant.textCaption}}</div>
+                                </div> 
                               </div>
                             </v-card-item>
                                 
@@ -103,60 +102,61 @@
                               </span></NuxtLink>
                             </v-card-actions>
                         </v-card>
-                   </v-col>
+                   </div>
                    
                   </v-row>
-
 
                   <span class="user-location " >Active offers</span>
         
                 <div class="mt-5">
-                      <v-row>
+                  <div style="margin-top: 32px;">
+                    <v-row class="px-3">
                         <v-btn class=" me-4 mb-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
                             <span style="position: relative; left: -18px">Crypto purchased</span>
                           <span style="position: relative; right: -18px; font-weight: 800;">0</span>
-                         </v-btn>
+                        </v-btn>
                         <v-btn  :class="PurchaseCrypto ? 'inactive-btn': 'active-btn'"  @click.prevent="PurchaseCrypto=false">
-                             <span style="position: relative; left:-37px">Crypto sold </span>
-                             <span style="position: relative; right: -32px; font-weight: 800;">0</span>
+                            <span style="position: relative; left:-37px">Crypto sold </span>
+                            <span style="position: relative; right: -32px; font-weight: 800;">0</span>
                         </v-btn>
                   
+                        <div style="display: flex; margin-inline-start: auto;">
+                          <v-menu>
+                              <template v-slot:activator="{ props }">
+                                <v-btn class="mx-auto active-offers" style="letter-spacing: 0px; box-shadow: none;"
+                                  v-bind="props">
+                                  <img  width="25" class="me-2" :src="icon" style="position: absolute; left: 7%;"/> 
+                                  <div style="display: grid; cursor: pointer;">
+                                  <span class="slt">{{select}}</span> 
+                                  <!-- <span class="small-text">{{coin}}</span>  -->
+                                  </div>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;">
+                                      <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" fill="#E0E4F5"/>
+                                  </svg>
+                                </v-btn>
+                              </template>
+
+                            <v-list class="coin-card">
+                              <v-list-item>
+                                <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-3" style="cursor: pointer">
+                                  <v-list-item-title @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
+                                    <img width="25" class="rounded-5 me-3" :src="item.icon"/>    
+                                    <div style="display: flex; flex-direction: column;">
+                                      <span style="font-family: Manrope;font-size: 14px; font-style: normal; font-weight: 700; line-height: 140%;"> {{ item.name }} </span>
+                                      <span class="small-text">{{ item.symbol }}</span>
+                                    </div>
+                                  </v-list-item-title>
+                                </div>
+                              </v-list-item>
+                            </v-list>
+                          </v-menu> 
+                        </div>
+                    </v-row>
+                  </div>
 
 
-                     <v-menu :location="location">
-                          <template v-slot:activator="{ props }">
-                            <v-btn class="mx-auto active-offers" style="letter-spacing: 0px; position: absolute; right: 60px;"
-                              v-bind="props">
-                              <img  width="25" class="me-2" :src="flag" style="margin-left: -60px "/> 
-                              <div style="display: grid; cursor: pointer;">
-                              <span >{{select}}</span> 
-                              <span class="me- small-text">{{coin}}</span> 
-                              </div>
-
-                              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;">
-                                  <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" fill="#E0E4F5"/>
-                              </svg>
-                            </v-btn>
-                          </template>
-
-                        <v-list style="background:#161D26; border-radius: 15px;">
-                          <v-list-item>
-                            <div v-for="(item, index) in allCoins" class="d-flex py-3" style="cursor: pointer"
-                              :key="index" >
-                          
-                              <v-list-item-title @click="select=item.title; coin=item.coinText; flag= item.image" class="d-flex">
-                              <v-img width="20" class="rounded-5 me-3" :src="item.image"/>    
-                              <span> {{ item.title }} </span>
-                            </v-list-item-title>
-                            </div>
-                          </v-list-item>
-                        </v-list>
-                      </v-menu> 
-                     
-                      </v-row>
-
-                        <div style="height: 1px; width: 930px; background: #303A46; margin-top:16px"></div>
-                    <div style="display: flex; justify-content: space-between;  width: 930px;">
+                  <div style="height: 1px;  background: #303A46; margin-top:16px"></div>
+                    <div style="display: flex; justify-content: space-between;">
                         <div style="margin-top: 32px;">
                             <div style="display: flex; margin-bottom: 14px">
                                  <span class="me-3">Esewa</span>
@@ -197,8 +197,8 @@
                         </div>
                     </div>
 
-                        <div style="height: 1px; width: 930px; background: #303A46; margin-top:16px"></div>
-                    <div style="display: flex; justify-content: space-between;  width: 920px;">
+                    <div style="height: 1px; background: #303A46; margin-top:16px"></div>
+                    <div style="display: flex; justify-content: space-between;">
                         <div style="margin-top: 32px;">
                             <div style="display: flex; margin-bottom: 14px">
                                  <span class="me-3">Esewa</span>
@@ -244,7 +244,7 @@
                      <span class="user-location">Feedback</span>
                     </div>
 
-                    <div class="mt-5" style="width: 930px;"> 
+                    <div class="mt-5"> 
                         <v-btn class=" me-4 inactive-btn"> 
                             <span style="position: relative; left: -18px">From buyers</span>
                           <span style="position: relative; right: -18px; font-weight: 800;">0</span>
@@ -319,16 +319,16 @@
                         </div>
 
                     </div>
-              </div>
+                </div>
 
               </div>
                         
                 
-            </v-col>
-          </v-row>
-          
-        </div>
-        <Footer/>
+          </div>
+          </div>
+      </v-container>  
+    <Footer/>
+  </div>
 </template>
 <script setup>
 import { ref } from 'vue'
@@ -343,14 +343,29 @@ const profileCards = [
 
 const select =ref("All Cryptocurrency")
 
+const pinia = useStore()
+const pageNumber = ref(1)
 
-const allCoins = [
-    { title: 'Tron', coinText:"TRX",  image:"/svg/tron.svg" },
-    { title: 'Tether', coinText:"USDT", image:"/svg/tether.svg" },
-    { title: 'Binance',  coinText:"BNN", image:"/svg/binance.svg"},
-    { title: 'Ethereum',  coinText:"ETH", image:"/svg/btc.svg"},
-        
-  ];
+  try {
+    const data = await getTokens(pageNumber.value);
+    if(data.success) {
+      const fetchedTokens = data.data.result;
+
+      const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
+
+      // Check if there are any new items in the fetched data
+      const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
+
+      if (newItems.length > 0) {
+        console.log('fetching')
+        pinia.setTokenLists(fetchedTokens);
+      }
+    } else {
+      console.log('Unavailable')
+    }
+  } catch (error) {
+    console.log(error);
+  };
 
   const navigation = [
   {icon:'/svg/grad-location.svg', title: 'location', link:'/profile', flag:'/flags/ag.svg', country:'Argentina'},
@@ -366,7 +381,6 @@ const allCoins = [
     
 </script>
 <style scoped>
-
 .profile{
 border-radius: 20px;
 background: var(--secondary-background, #12181F);
@@ -397,7 +411,7 @@ line-height: normal;
 .username{
 color: var(--Gray-Medium-light, #969696);
 font-family: Poppins;
-font-size: 16px;
+font-size: 18px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
@@ -425,7 +439,7 @@ line-height: normal;
 border-radius: 24px;
 background: var(--secondary-background, #12181F)!important;
 display: flex;
-width: 302px;
+width: 262px;
 min-height: 140px;
 padding: 20px 20px 16px 20px;
 flex-direction: column;
@@ -463,6 +477,7 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+box-shadow: none;
 }
 .offers-text{
 color: #C2C2C2;
@@ -501,6 +516,7 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+box-shadow: none;
 }
 .active-btn{
 border-radius: 20px;
@@ -516,6 +532,7 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal; 
+box-shadow: none;
 }
 .smaller-btn{
 border-radius: 8px;
@@ -533,6 +550,7 @@ font-weight: 400;
 line-height: normal;
 text-transform: unset;
 letter-spacing:0px;
+box-shadow: none;
 }
 
 .sd-nav1{
@@ -542,7 +560,6 @@ gap: 10px;
 border-radius: 24px;
 background: var(--secondary-background, #12181F);
  }  
- 
  .nav-options{
 display: flex;
 width: 305px;
@@ -573,4 +590,22 @@ letter-spacing: 0px;
   font-weight: 600; 
   line-height: normal;
 }
+
+.coin-card{
+background: #1B2537 !important; 
+cursor: pointer; 
+border: 0.5px solid #2f3946;
+border-radius: 20px !important;
+margin-top: 10px;
+box-shadow: none !important;
+ }
+
+ .small-text{
+color: var(--Main-Greyscale-20, #E2E8F0);
+font-family: Manrope;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%; /* 18px */
+ }
 </style>
