@@ -135,8 +135,8 @@ backdrop-filter: blur(20px);
 align-items: center;
 display: flex;
 flex: 0 0 auto;
-position: fixed;
-top: 0;
+/* position: fixed; */
+/* top: 0; */
 width: 100%;
 height: 80px;
 z-index: 100;
