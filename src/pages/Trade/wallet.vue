@@ -25,7 +25,7 @@
                             </div>
                           </th>
 
-                          <th style="display: flex; align-items: center; align-self: center; margin-right: 28px">
+                          <th style="display: flex; align-items: center; align-self: center; margin-right: 20px">
                             <div class="d-flex" >
                               <span class="table-header-text">Coin</span>
                             </div>
