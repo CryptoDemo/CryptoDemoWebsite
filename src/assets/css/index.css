@@ -841,16 +841,16 @@ line-height: 120%; /* 28.8px */
   margin-bottom: 6%;
   width: max-content;
   } */
-  .dropdown-btn1i{
+  /* .dropdown-btn1i{
     border: none !important;
     box-shadow: none !important;
     background:  #12181F !important;
     width: 20px !important;
-    /* height: 40px !important; */
+    height: 40px !important;
     border-left: 1px solid #303A46 !important;
     border-radius: 0px !important;
     margin-inline: auto;
-  }
+  } */
  
   /* .form-layout :deep (.grey-line){
     margin-left: -1px !important;
