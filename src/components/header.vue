@@ -135,8 +135,8 @@ backdrop-filter: blur(20px);
 align-items: center;
 display: flex;
 flex: 0 0 auto;
-/* position: fixed; */
-/* top: 0; */
+position: fixed;
+top: 0;
 width: 100%;
 height: 80px;
 z-index: 100;
@@ -212,7 +212,7 @@ cursor: pointer;
 }
 .dropdown-btn1i{
 width: 142px;
-height: 55px;
+height: 55px !important;
 flex-shrink: 0;
 border-radius: 20px;
 border: 1px solid var(--border, #303A46) ;
@@ -223,7 +223,7 @@ letter-spacing: 0px;
 }
 .dropdown-btn1i-light{
 width: 142px;
-height: 58px;
+height: 55px !important;
 flex-shrink: 0;
 border-radius: 20px;
 border: 1px solid var(--border, #303A46);
