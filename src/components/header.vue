@@ -132,8 +132,8 @@ const props = defineProps(
 .Dashboard-navbar{
 background-color: rgba(22, 29, 38, 0.60)  ;
 backdrop-filter: blur(20px);
-align-items: center;
-display: flex;
+display: flex !important;
+align-items: center !important;
 flex: 0 0 auto;
 position: fixed;
 top: 0;
@@ -243,7 +243,6 @@ font-style: normal;
 font-weight: 300;
 line-height: normal;
 }
-
 .nav-title{
 color: var(--Colors-Base-white, #FFF);
 font-family: Manrope !important;
@@ -253,13 +252,13 @@ font-weight: 800!important;
 line-height: 120% !important; /* 24px */
 }
 .v-toolbar__content, .v-toolbar__extension {
-    align-items: center;
-    display: flex;
-    flex: 0 0 auto;
-    position: relative;
-    transition: inherit;
-    width: 100%;
-    height: 83px !important;
+align-items: center;
+display: flex;
+flex: 0 0 auto;
+position: relative;
+transition: inherit;
+width: 100%;
+height: 83px !important;
 }
 .country-text{
 color: var(--Colors-Base-white, #FFF);
@@ -287,6 +286,7 @@ backdrop-filter: blur(50px) !important;
 border-radius: 20px !important;
 color: white;
 margin-top: 15px;
+box-shadow: none  !important;
 /* left: 70px; */
 }
 .country-dropdown-light{
@@ -295,7 +295,7 @@ background: #fff !important;
 border-radius: 20px !important;
 color: black;
 margin-top: 15px;
-box-shadow: none;
+box-shadow: none  !important;
 /* left: 70px; */
 }
 .Dashboard-navbar :deep(.v-list){
