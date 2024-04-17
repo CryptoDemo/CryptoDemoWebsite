@@ -846,7 +846,7 @@ line-height: 120%; /* 28.8px */
     box-shadow: none !important;
     background:  #12181F !important;
     width: 20px !important;
-    height: 40px !important;
+    /* height: 40px !important; */
     border-left: 1px solid #303A46 !important;
     border-radius: 0px !important;
     margin-inline: auto;
