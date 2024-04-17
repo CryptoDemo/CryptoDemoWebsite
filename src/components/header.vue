@@ -10,6 +10,7 @@
 
         <div style="position: relative"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
         
+        <div style="display: flex;">
           <span class="flex-lg-and-up hidden-sm-and-down mt-4" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
           <NuxtLink :to="props.link" class="mt-4 text2"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
  
@@ -79,7 +80,7 @@
           </v-btn>
           <span class="nav-icon-text" style="margin-right: 13px ">Notification</span>     
       </div>
-           
+    </div>   
 
       </v-container>
  
