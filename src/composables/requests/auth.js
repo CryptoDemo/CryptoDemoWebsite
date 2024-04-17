@@ -45,3 +45,15 @@ export const signUp = async(userLogin)=>{
     }).then(res => res.json());
     return data;
 };
+
+export const newpassword = async(changePassword)=>{
+    const data = await fetch(`${baseURL}auth/change-password`,{ 
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(changePassword)
+
+    }).then(res => res.json());
+    return data;
+};
