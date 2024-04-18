@@ -2,19 +2,19 @@
     <div>
        <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
        <v-container>
-            <div style="margin-top: 90px; display: flex; gap: 16px;">
+            <div style="margin-top: 90px; display: flex; gap: 16px; width: 100% !important;">
                <div>
                   <div class="ma-2 mt-5">
                     <Wallet-nav/>
                    </div>
                </div>
   
-              <div>
-                <div class="pa-2 ma-2" style="width: 81%;">
+              <div style="width: -webkit-fill-available">
+                <div>
                   <span style="color: #FFF;font-family: Poppins; font-size: 32px;  font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
                     
-                   <div style="border-radius: 24px; border: 1px solid  #303A46; width: 98%; padding: 30px; margin-top: 28px;">
-                    <v-table style="display: grid! important; background: inherit; min-width: 100%;">
+                   <div style="border-radius: 24px; border: 1px solid  #303A46; width: 100%; padding: 30px; margin-top: 28px;">
+                    <v-table style="display: grid! important; background: inherit; width: 100%;">
                       <thead>
                         <tr style="display: flex; margin-bottom: 8px;">
                         

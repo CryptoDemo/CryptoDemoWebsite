@@ -104,10 +104,6 @@
 import { ref } from 'vue'
 import {accountRecovery} from "@/composables/requests/auth";
 
-// const isToggled = ref(true);
-// const togglePassword = () => {
-//   isToggled.value = !isToggled.value;
-// };
 
 const email = ref('')
 const pinia = useStore();
@@ -123,7 +119,7 @@ const accountrec = {
 try {
   const data = await accountRecovery(accountrec);
   if (data.success) {
-    navigateTo('/authentication/login')
+    navigateTo('/authentication/reset-password-otp')
   } else{
     
     console.error('failed to send OTP');

@@ -68,4 +68,5 @@ height: 53.2px !important;
 flex-shrink: 0;
 box-shadow: none;
 }
+
 </style>

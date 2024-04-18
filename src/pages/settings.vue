@@ -144,41 +144,7 @@
                       </div>
                     </v-col>
 
-                    <v-col>
-                      <div class="pa-2 ma-2" style="display: grid;  margin-top: 0!important;">
-                        <span class="number-caption" style="line-height: 28px; font-family: manrope; font-weight: 600; font-size: 16px;">Preferred coin</span>
-                         <v-menu :coin="coin">
-                            <template v-slot:activator="{ props }">
-                              <v-btn
-                                class="input-styling1" style="text-transform: capitalize;" width="456px"
-                                
-                                v-bind="props">
-                                <div  class="py-3" style="display: flex; cursor: pointer; position: absolute; left: 37px; align-items: center;">
-                  
-                                    <img :src="coinIcon" class="me-4"/>
-                                    <span class="mt-" style="font-weight: 700; color: var(--Gray-Medium-light, #969696);">{{selectedCoin}}</span> 
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none" style="position: absolute; right: 45px; bottom: 27px;">
-                                  <path d="M5.05508 5.99413C5.19232 5.99415 5.32822 5.96714 5.45502 5.91463C5.58182 5.86213 5.69705 5.78516 5.7941 5.68813L9.69409 1.78814C9.88995 1.59227 10 1.32663 10 1.04964C10 0.772651 9.88995 0.50701 9.69409 0.311147C9.49823 0.115285 9.23259 0.00523901 8.9556 0.00523901C8.67861 0.00523901 8.41296 0.115285 8.2171 0.311147L5.0531 2.71114L1.8891 0.311147C1.69324 0.115285 1.4276 0.00523901 1.1506 0.00523901C0.873613 0.00523901 0.607941 0.115285 0.412079 0.311147C0.216217 0.50701 0.106201 0.772651 0.106201 1.04964C0.106201 1.32663 0.216217 1.59227 0.412079 1.78814L4.3121 5.68813C4.4096 5.78569 4.52546 5.86297 4.65298 5.91549C4.78051 5.96801 4.91716 5.99473 5.05508 5.99413Z" fill="#E0E4F5"/>
-                                </svg>
-                              </v-btn>
-                            </template>
-
-                            <v-list style="background: #161D26; border-radius: 15px;">
-                              <v-list-item>
-                                <div v-for="(coin, index) in coin" class="d-flex py-3" style="cursor: pointer" :key="index" >
-                              
-                                  <v-list-item-title @click="selectedCoin=coin.title; coinIcon= coin.icon"  class="d-flex">
-                                     <img  :src="coin.icon" class="me-3"/>  
-                                    <span style="display: flex; align-items: center;"> {{ coin.title }} </span>
-                                  </v-list-item-title>
-                                </div>
-                              </v-list-item>
-                            </v-list>
-                          </v-menu> 
-                          <span class="number-caption"> Choose the coin for your wallet.</span>
-                      </div>
-                    </v-col>
+                   
 
                </v-row>
 

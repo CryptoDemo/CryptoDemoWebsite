@@ -127,10 +127,10 @@ const login = async () => {
     password: password.value,
     device_info: JSON.stringify(device)
   }
-  // if (!email.value && !password.value ) 
-    // Correct credentials
-    // alert.value = false;
-    try {
+   if (!email.value && !password.value ) 
+     alert.value = false;
+
+  try {
   const data = await signUp(userLogin);
   if (data.success) {
     navigateTo('/authentication/login')

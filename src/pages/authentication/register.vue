@@ -202,7 +202,7 @@ device_info: JSON.stringify(device)
 }
 
 try {
-  const data = await register_(registerInfo);
+  const data = await register_(changePassword);
   if (data.success) {
     pinia.setEmail(email.value)
     navigateTo('/authentication/sign-up-email-verification')
@@ -252,28 +252,8 @@ right: 10% ;
 cursor: pointer;
 position: absolute;
 }  
- /* .form-layout :deep(.v-btn--size-default) {
-    --v-btn-height: 50px !important;
-    min-width: 50px !important;
-    padding: 0 9px;
-    border-radius: 20px;
-    background: #161D26;
-    box-shadow: none !important;
-    margin-right: 10px;
-} */
-/* .form-layout-light :deep(.v-btn--size-default) {
-    --v-btn-height: 50px !important;
-    min-width: 50px !important;
-    padding: 0 9px;
-    border-radius: 20px;
-    background: #fff;
-    box-shadow: none !important;
-    margin-right: 10px;
-} */
 .form-layout :deep(.v-input--plain-underlined.v-text-field .v-input__details){
   margin-top: 10px;
 }
-/* #socialButton:hover {
-  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF)!important;
-}  */
+
 </style>

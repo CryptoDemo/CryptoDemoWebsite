@@ -9,17 +9,19 @@
           <span class="card-title">Reset Your Password</span>
             <span class="password-subtitle" style="margin-bottom:39px;">Verification code sent to {{ pinia.state.email }}. Please enter the code below:</span>
           <span class="otp-text">Enter code</span>
-          <v-otp-input :length="4"  v-model="otp" :disabled="validating" variant="plain"></v-otp-input>
+          <v-otp-input :length="4"  v-model="otp"  variant="plain"></v-otp-input>
+          
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
           <div class="code-validation-text">
-            <span>Code valid for 30 minutes</span>
+            <span>Valid for {{ OtpCountdown }} seconds</span>
           </div>
           <div class="d-flex" style="margin-top:23px;">
-            <span class="resend-code me-2">Resend code</span> 
-                <span class="me-2" style="color:white">or</span>
-            <span class="resend-code">Verify Later</span>
+            <span class="resend-code me-2">Resend code</span>    
           </div>
+        </div>
+
           <div style="margin-top:65px;">
-            <NuxtLink to="/authentication/create-new-password">  <Button buttonText="Request New Password" :loading="validating" @click=""  /></NuxtLink>
+            <Button buttonText="Request New Password" @click="continueToSetPassword()"/>
           </div>
          <div class="d-flex" style="margin-top:43px; margin-bottom: 137px">
           <img src="/svg/arrow-left.svg" class="me-3" />
@@ -35,7 +37,6 @@
           <Carousel />
         </div>
       </v-col>
-      <!-- <v-responsive width="100%"></v-responsive> -->
     </v-row>
   </v-container>
 <!-- </v-container> -->
@@ -48,8 +49,25 @@ import { useTheme } from 'vuetify';
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const  otp = ref ('');
-const validating = ref (false);
 const pinia = useStore();
+const router = useRouter();
+const OtpCountdown = ref(60);
+const decreaseTimer = () => {
+  if (OtpCountdown.value > 0) {
+    OtpCountdown.value--;
+  }
+};
+onMounted(() => {
+  const intervalId = setInterval(decreaseTimer, 1000);
+
+  // Clear interval when component is unmounted
+  return () => clearInterval(intervalId);
+});
+
+const continueToSetPassword = ()=>{
+console.log(otp.value)
+  router.push(`/authentication/create-new-password?code=${otp.value}`);
+  }
 
 </script>
 <style scoped>

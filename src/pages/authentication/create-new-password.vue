@@ -39,7 +39,7 @@
                 </li>
               </ul> -->
               <!-- <div class="password-hint" hint="passwordHint"></div> -->
-            </v-text-field> 
+              </v-text-field> 
             <div  class="position-relative">
 
               <span  v-if="isToggled"  @click="togglePassword()"  class="eye-icon">
@@ -60,7 +60,7 @@
             </div>
             </div>
           <div style="margin-top:65px;">
-          <NuxtLink to="/authentication/login"> <Button buttonText="Continue"  :disabled="!isFormValid" @click.prevent="isFormValid ? login() : null"  /></NuxtLink>
+          <NuxtLink to="/authentication/login"> <Button buttonText="Continue"  :disabled="!isFormValid" @click.prevent="isFormValid ? login() : null"/></NuxtLink>
           </div> 
             <div class="d-flex" style="margin-top:43px; margin-bottom: 287px">
               <img src="/svg/arrow-left.svg" class="me-3" />
@@ -82,18 +82,20 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-
 import { useTheme } from 'vuetify';
+import {newpassword} from "@/composables/requests/auth";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
+const pinia = useStore();
+const {code} = useRoute().query;
 
+const password = ref('');
 const isToggled = ref(true);
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };
 
-const password = ref('');
 const isFormValid = ref(false);
 
 const Passwordrules = [
@@ -105,13 +107,28 @@ const Passwordrules = [
   (v) => /[^a-zA-Z0-9]+/.test(v) || 'One Special Character'
 ];
 
- const login =  () => {
-  if (!isFormValid.value) {
-    // Show an error message or highlight invalid fields (optional)
-    return; // Prevent login if password is invalid
-
-    
+ const login = async () => {
+  const changePassword = {
+    email: pinia.state.email,
+    code: code,
+    password: password.value,
   }
+  if (!isFormValid.value) {
+
+  }
+    try {
+  const data = await newpassword (changePassword);
+  if (data.success) {
+    pinia.setEmail(email.value)
+    navigateTo('/authentication/login')
+  } else{
+    
+    console.error('registration failed');
+  }
+}catch(e){
+  console.log(e)
+}
+    
 };
 watch(password, (newValue) => {
   isFormValid.value = Passwordrules.every(rule => rule(newValue) === true);
