@@ -2,23 +2,23 @@
   <div>
     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
     <v-container style="display: flex;">
-          <v-row no-gutters style="margin-bottom: 113px; margin-top: 130px;display: flex;">
+          <div style="margin-bottom: 113px; margin-top: 110px;display: flex;">
             <div class="me-4">
               <div class="mt-3">
                 <Side-nav/>           
               </div>
             </div>
 
-            <div cols="9">
+            <div>
               <div class="">
-                  <div class="settings-header">
+                  <div class="settings-header ml-4 mt-4" style="width: 96%;">
                     <span class="header-text1">Setting answers to your security questions is a requirement in the event that you need to reset or update your phone number. <span style="color: var(--Primary-100, #2873FF);">Set Answers!</span></span>
                   </div>
 
-                  <div class="acct-settings" style="display: flex; justify-content: space-between; margin-top: 32px">
+                  <div class="acct-settings ml-4" style="display: flex;width: 96%; justify-content: space-between; margin-top: 32px">
                      
                         <span class="acct-text" v-if="phoneVerificationStep!=3"> Account Settings</span>
-                        <span class="mail-text" v-if="phoneVerificationStep!=3">vaststudiosng@gmail.com</span>
+                        <span class="mail-text" v-if="phoneVerificationStep!=3"> {{ pinia.state.email }}</span>
 
                       <div class="verified" id="verified" v-if="phoneVerificationStep==3" style="display: flex; margin: auto; align-items: center; ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none" class="me-10">
@@ -32,7 +32,7 @@
 
                <v-row no-gutters >
                     <v-col class="d-md-flex me-5" style=" flex-grow: 0 !important;">
-                      <div class="d-flex">
+                      <div class="d-flex" >
                           <div class="pa-2 ma-2" style="margin-top: 0px!important;">
                           
                             <div style="display: grid; width: 100%;">
@@ -70,8 +70,8 @@
                             </div> 
                           
                           </div>
-                          <v-btn v-if="phoneVerificationStep==1"  @click="sendOTP" class="mt-4 update-btn" style="border-radius: 16px; height: 63px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
-                          <v-btn v-if="phoneVerificationStep==2" @click="verifyOTP" class="mt-4 update-btn" style="border-radius: 16px; height: 63px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
+                          <v-btn v-if="phoneVerificationStep==1"  @click="sendOTP" class="mt-4 update-btn" style="border-radius: 16px; height: 60px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
+                          <v-btn v-if="phoneVerificationStep==2" @click="verifyOTP" class="mt-4 update-btn" style="border-radius: 16px; height: 60px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
                       </div>
                     </v-col>
 
@@ -156,7 +156,7 @@
               
               </div>
             </div>     
-          </v-row>
+          </div>
     </v-container>     
           <Footer/>
   </div>
@@ -164,7 +164,7 @@
 <script setup>
 import { ref } from 'vue'
 
-
+const pinia = useStore();
 const phoneVerificationStep = ref(1);
 
 
@@ -253,6 +253,7 @@ font-feature-settings: 'clig' off, 'liga' off;
 font-size: 12px;
 font-style: normal;
 font-weight: 400;
+font-family: Manrope;
 line-height: normal;
 display: flex;
 justify-content: center;

@@ -27,8 +27,8 @@
         <v-menu>
           <template v-slot:activator="{ props }">
             <v-btn class="me-5 mt-5 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; margin-top: 10px; border-radius: 16px; box-shadow: none;">
-              <h1 class="me-1 mt-1">{{emoji }}</h1>
-              <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{country.slice(0,9)}}</span>
+              <img :src="flag" class="me-2" width="32" height="32" style="object-fit: cover;border-radius: 30px"/>
+              <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{country}}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                 <g clip-path="url(#clip0_7328_44812)">
                   <path d="M12.0007 13.7951L16.9507 8.74609L18.3647 10.1884L12.0007 16.6797L5.63672 10.1884L7.05072 8.74609L12.0007 13.7951Z" fill="white"/>
@@ -43,15 +43,16 @@
           </template>
 
           <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'">
-            <v-list-item>
+            <v-list-item style="display: contents">
               <v-row dense style="max-width: 250px;">
-              <v-col v-for="(item, index) in locations" cols sm="12" :key="index" >
-            
-                <v-list-item-title @click="emit('country',item.countryname); country = item.countryname; emoji= item.emoji" style="display: flex; cursor: pointer;">
-                 <h1 class="me-2" style="height: 30px; align-items: center">{{ item.emoji }}</h1>  
-                <span :class="isDark ? 'country-text':'country-text-light'"> {{ item.countryname }} </span>
-              </v-list-item-title>
-                </v-col>
+                <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" :key="index">
+                <v-list-item @click="country=item.country_code; name=item.country_name; flag= item.flag_url" style="display: flex;">
+                  <div style="display: flex; align-items: center; ">
+                    <img width="35" height="35" class="me-3" :src="item.flag_url" style="object-fit: cover;border-radius: 30px"/> 
+                    <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.country_name }}</span>
+                </div>
+                </v-list-item>
+              </v-col>
               </v-row>
             </v-list-item>
           </v-list>
@@ -90,29 +91,42 @@
 
 <script setup>
 import { ref } from 'vue'
-
 import { useTheme } from 'vuetify';
+import { getcountries } from "@/composables/requests/admin";
+
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
+const pinia = useStore()
 
 const emit = defineEmits(['country'])
 
-const country =ref("Spanish")
+const pageNumber = ref(1)
+const country =ref('Au')
+const flag = ref('')
 
-const emoji = ref("🇱🇮")
+try {
+  const data = await getcountries(pageNumber.value);
+  if (data.success) {
+    const fetchedcountries = data.data.result;
 
-const locations = [
-  { title: 'ALG', countryname:'Australia', emoji:"🇻🇪" },
-  { title: 'BA', countryname:'Bosnia and Herzegovina', emoji:"🇰🇿" },
-  { title: 'KW',countryname:'Kuwait',  emoji:"🇬🇸" },
-  { title: 'USA', countryname:'United State', emoji:"🇬🇧"},
-  { title: 'SX', countryname:'Sint Maarten', emoji:"🇸🇩"},
-  { title: 'SVK', countryname:'Slovakia', emoji:"🇹🇳"},
-  { title: 'NIG', countryname:'Nigeria',  emoji:"🇳🇬 " },
-  { title: 'NI', countryname:'Niger', emoji:"🇵🇰" },
-  { title: 'NU', countryname:'Niue', emoji:"🇱🇮" },
-      ];
+    const storedcountriesids = pinia.state.allcountries.map(item => item.id);
+    // Check if there are any new items in the fetched data
+    const newItems = fetchedcountries.filter(item => !storedcountriesids.includes(item.id));
+
+    if (newItems.length > 0) {
+      console.log('fetching')
+      pinia.setallcountries([...pinia.state.allcountries,...newItems]);
+      flag.value = pinia.state?.allcountries[0].flag_url;
+    }
+  } else {
+    console.error('Unavailable')
+  }
+} catch (error) {
+  console.log(error);
+};
+
+
 const props = defineProps(
   {
     title:String,
@@ -288,7 +302,7 @@ border-radius: 20px !important;
 color: white;
 margin-top: 15px;
 box-shadow: none  !important;
-/* left: 70px; */
+height: 320px !important;
 }
 .country-dropdown-light{
 border-radius: 15px;
@@ -297,7 +311,7 @@ border-radius: 20px !important;
 color: black;
 margin-top: 15px;
 box-shadow: none  !important;
-/* left: 70px; */
+height: 320px !important;
 }
 .Dashboard-navbar :deep(.v-list){
 display: flex;
@@ -313,5 +327,9 @@ min-width: 56px!important;
 height: 53.2px;
 flex-shrink: 0;
 box-shadow: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 </style>

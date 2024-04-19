@@ -31,6 +31,7 @@ export const useStore = defineStore('app',()=> {
       tokenLists:[],
       tokenPrices:[],
       tokenBalance:null,
+      allcountries: [],
       selectedToken: 'USDT',
 
     });
@@ -74,6 +75,11 @@ export const useStore = defineStore('app',()=> {
       state.tokenBalance = payload;
       
   };
+
+  const setallcountries = (payload) => {
+    state.allcountries = payload;
+    
+};
   const setActivityLogs = (payload) => {
       state.activityLogs = payload;
       state.activityLogs.reverse(state.activityLogs);
@@ -134,6 +140,7 @@ export const useStore = defineStore('app',()=> {
       setTokenLists,
       setTokenPrices,
       setTokenBalance,
+      setallcountries
     }
 },
   {persist: {

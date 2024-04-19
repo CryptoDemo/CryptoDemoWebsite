@@ -66,22 +66,23 @@
         <v-menu>
           <template v-slot:activator="{ props }">
             <v-btn  class="me-4 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"  style="letter-spacing: 0px; display: flex;" v-bind="props">
-              <h1 class="me-1 mt-2">{{emoji }}</h1>
+              <img :src="flag" class="me-2" width="32" height="32" style="object-fit: cover;border-radius: 30px"/>
               <span class="me-2" :class="isDark ? 'nav-subtitle1':'nav-subtitle1-light'">{{select}}</span>
               <v-icon icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
             </v-btn>
           </template>
 
           <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'">
-            <v-list-item>
+            <v-list-item style="display: contents">
               <v-row dense style="width: 240px;">
-              <v-col v-for="(item, index) in locations" class="" sm="12" :key="index">
-            
-                <v-list-item-title @click="select=item.title; emoji= item.emoji" style="display: flex;">
-                 <h1 class="me-2" style="height: 30px; align-items: center">{{ item.emoji }}</h1>
-                <span class="country-name" :class="isDark ? 'country-name':'country-name-light'"> {{ item.countryname }} </span>
-              </v-list-item-title>
-                </v-col>
+              <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" :key="index">
+                <v-list-item @click="select=item.country_code; name=item.country_name; flag= item.flag_url" style="display: flex;">
+                  <div style="display: flex; align-items: center; ">
+                    <img width="35" height="35" class="me-3" :src="item.flag_url" style="object-fit: cover;border-radius: 30px"/> 
+                    <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.country_name }}</span>
+                </div>
+                </v-list-item>
+              </v-col>
               </v-row>
             </v-list-item>
           </v-list>
@@ -98,27 +99,40 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
+import { getcountries } from "@/composables/requests/admin";
 
 
-
+const pinia = useStore()
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
-const select =ref("USA")
 
-const emoji = ref("🇬🇧")
+const pageNumber = ref(1)
+const select =ref('Au')
+const flag = ref('')
 
-const locations = [
-  { title: 'ALG', countryname:'Australia', emoji:"🇻🇪" },
-  { title: 'BA', countryname:'Bosnia and Herzegovina', emoji:"🇰🇿" },
-  { title: 'KW',countryname:'Kuwait',  emoji:"🇬🇸" },
-  { title: 'USA', countryname:'United State', emoji:"🇬🇧"},
-  { title: 'SX', countryname:'Sint Maarten', emoji:"🇸🇩"},
-  { title: 'SVK', countryname:'Slovakia', emoji:"🇹🇳"},
-  { title: 'NI', countryname:'Nigeria',  emoji:"🇳🇬 " },
-  { title: 'NIG', countryname:'Niger', emoji:"🇵🇰" },
-  { title: 'NU', countryname:'Niue', emoji:"🇱🇮" },
-      ];
+try {
+  const data = await getcountries(pageNumber.value);
+  if (data.success) {
+    const fetchedcountries = data.data.result;
+
+    const storedcountriesids = pinia.state.allcountries.map(item => item.id);
+    // Check if there are any new items in the fetched data
+    const newItems = fetchedcountries.filter(item => !storedcountriesids.includes(item.id));
+
+    if (newItems.length > 0) {
+      console.log('fetching')
+      pinia.setallcountries([...pinia.state.allcountries,...newItems]);
+      flag.value = pinia.state?.allcountries[0].flag_url;
+    }
+  } else {
+    console.error('Unavailable')
+  }
+} catch (error) {
+  console.log(error);
+};
+ 
+
 const props = defineProps(
   {
     title:String,
@@ -128,11 +142,11 @@ const props = defineProps(
 )
 
 const items = [
-        {icon1:'/svg/bitcoin-hub.svg', icon2:'/svg/btc-logo-light1.svg', title: 'Buy with bitcoin', subtitle:'Search for offers to buy gift cards with Bitcoin.'},
-        {icon1:'/svg/btc-logolight.svg', icon2:'/svg/tether-light.svg', title: 'Buy with Tether', subtitle:'Search for offers to buy gift cards with Tether.'},
-        {icon1:'/svg/btc-logodark.svg', icon2:'/svg/binance-lightlogo.svg', title: 'Buy with Binance Coin', subtitle:'Search for offers to buy gift cards with Binance Coin.'},
-        
-      ];
+  {icon1:'/svg/bitcoin-hub.svg', icon2:'/svg/btc-logo-light1.svg', title: 'Buy with bitcoin', subtitle:'Search for offers to buy gift cards with Bitcoin.'},
+  {icon1:'/svg/btc-logolight.svg', icon2:'/svg/tether-light.svg', title: 'Buy with Tether', subtitle:'Search for offers to buy gift cards with Tether.'},
+  {icon1:'/svg/btc-logodark.svg', icon2:'/svg/binance-lightlogo.svg', title: 'Buy with Binance Coin', subtitle:'Search for offers to buy gift cards with Binance Coin.'},
+  
+];
   
 </script>
 
@@ -380,10 +394,12 @@ border-radius: 15px;
 border: 0.5px solid #2f3946;
 background: #1B2537 !important;
 backdrop-filter: blur(50px) !important;
+height: 320px !important;
 }
 .country-dropdown-light{
 border-radius: 15px;
 background: #fff !important;
+height: 320px !important;
 }
 .country-name{
 color: var(--Colors-Base-white, #FFF) !important;
@@ -403,4 +419,9 @@ font-weight: 500;
 line-height: normal;
 letter-spacing: -0.14px;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 </style>

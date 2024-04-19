@@ -5,9 +5,12 @@
     <v-row no-gutters  class="">
 
       <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 90px;">
-        <div style="margin-top: 145px;">
-          <span class="card-title">Reset Your Password</span>
-            <span class="password-subtitle" style="margin-bottom:39px;">Verification code sent to {{ pinia.state.email }}. Please enter the code below:</span>
+        <div style="margin-top: 95px;">
+        
+          <span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Reset Your Password</span>
+            <div class="card-subtitle" :class="isDark ? 'card-subtitle':'card-subtitle-light'" style="margin-top:20px;">Enter the code we've sent to <span><b> 
+              {{ pinia.state.email }}</b></span> Didn't receive the code? 
+            </div>
           <span class="otp-text">Enter code</span>
           <v-otp-input :length="4"  v-model="otp"  variant="plain"></v-otp-input>
           
@@ -16,7 +19,7 @@
             <span>Valid for {{ OtpCountdown }} seconds</span>
           </div>
           <div class="d-flex" style="margin-top:23px;">
-            <span class="resend-code me-2">Resend code</span>    
+            <span class="resend-code-btn me-2" @click="resendCode()">Resend code</span>    
           </div>
         </div>
 
@@ -45,6 +48,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
+import { verifyOtp } from "@/composables/requests/auth";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -68,6 +72,26 @@ const continueToSetPassword = ()=>{
 console.log(otp.value)
   router.push(`/authentication/create-new-password?code=${otp.value}`);
   }
+
+const resendCode = async() => {
+const Otpmsg = {
+  email: pinia.state.email
+}
+
+try {
+  const data = await verifyOtp(Otpmsg);
+  if (data.success) {
+    // navigateTo('/authentication/login')
+  } else{
+    
+    // OtpCountdown.value = 60
+    console.error('failed to send OTP');
+  }
+} catch(e){
+  console.log(e)
+};
+ 
+}
 
 </script>
 <style scoped>
@@ -96,6 +120,22 @@ border-radius: 10px;
 background: white !important;
 border: 1px solid #969696;
 border-radius: 15px;
+}
+.card-subtitle{
+color: var(--Basic-White, #FFF);
+font-family: Manrope;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%; /* 24px */
+}
+.card-subtitle-light{
+color: var(--Black-80, #1B2537) !important;
+font-family: Manrope;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%; /* 24px */
 }
 .v-otp-input__content{
   margin-right: 20px;

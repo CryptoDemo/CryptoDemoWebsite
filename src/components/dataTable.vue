@@ -40,37 +40,49 @@
 
 const  infos = [
           {
-            name: 'Sellect All',
+            name: 'Transactions',
             Web: "",
             App: "",
           
           },
           {
-            name: 'Cryptocurrency deposit confirmed',
+            name: 'Confirm deposit',
             Web: "",
             App: "",
           
           },
           {
-            name: 'Cryptocurrency purchased',
+            name: 'Deposit pending',
             Web: "",
             App: "",
           
           },
           {
-            name: 'Cryptocurrency sent',
+            name: 'Crypto purchased',
             Web: "",
             App: "",
           
           },
           {
-            name: 'Imcoming Trade',
+            name: 'Crypto sold',
             Web: "",
             App: "",
           
           },
           {
             name: 'Incoming trade',
+            Web: "",
+            App: "",
+          
+          },
+          {
+            name: 'Someone viewed my profile',
+            Web: "",
+            App: "",
+          
+          },
+          {
+            name: 'Trade cancelled/expired',
             Web: "",
             App: "",
           
@@ -88,19 +100,13 @@ const  infos = [
           
           },
           {
-            name: 'Someone viewed my profile',
+            name: 'Moderator messgae',
             Web: "",
             App: "",
           
           },
           {
-            name: 'Tether price change',
-            Web: "",
-            App: "",
-          
-          },
-          {
-            name: 'Trade cancelled/expired',
+            name: 'Notify me on new login',
             Web: "",
             App: "",
           

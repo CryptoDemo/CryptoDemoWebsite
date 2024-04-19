@@ -6,25 +6,25 @@
     <v-row no-gutters  class="">
 
       <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
-        <div style="margin-top:17px;">
+        <div style="margin-top: -95px;">
           <span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Verify Your Email</span>
-            <div class="card-subtitle" :class="isDark ? 'card-subtitle':'card-subtitle-light'" style="margin-top:20px;">Enter the code we've sent to <span><b> {{ pinia.state.email }}</b></span> Didn't receive the code? 
-              <span class="text-primary" style="cursor: pointer;">Change email</span> 
+            <div class="card-subtitle" :class="isDark ? 'card-subtitle':'card-subtitle-light'" style="margin-top:20px;">Enter the code we've sent to <span><b> 
+              {{ pinia.state.email }}</b></span> Didn't receive the code? 
             </div>
           <span :class="isDark ? 'otp-text':'otp-text-light'">Enter code</span>
           
-          <v-otp-input :length="4"  v-model="otp" variant="plain"></v-otp-input>
-          <div class="code-validation-text">
-            <span>Code valid for {{ OtpCountdown }} seconds</span>
-          </div>
-          <div style="margin-top:23px;">
-          <span class="resend-code" @click.prevent="resendCode()">Resend code</span>
-          </div>
-          <div style="margin-top:48px;">
-            <span class="resend-code">Verify Later</span>
+          <v-otp-input :length="4"  required v-model="otp" variant="plain"></v-otp-input>
+
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div class="code-validation-text">
+              <span>Valid for {{ OtpCountdown }} seconds</span>
+            </div>
+            <div style="margin-top:23px;">
+            <v-btn class="resend-code-btn" variant="plain"  :disabled="!timerFinished" @click.prevent="resendCode()">Resend code</v-btn>
+            </div>
           </div>
           <div style="margin-top:89px;">
-            <NuxtLink to="/authentication/login">  <Button buttonText="Continue" /></NuxtLink>
+            <NuxtLink to="/authentication/login">  <Button buttonText="Continue"/></NuxtLink>
           </div>
              
         </div>
@@ -50,20 +50,25 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const otp = ref ('');
 const pinia = useStore();
+const timerFinished = ref(true);
 const OtpCountdown = ref(60);
+
 const decreaseTimer = () => {
   if (OtpCountdown.value > 0) {
     OtpCountdown.value--;
-  }
+  } else {
+        timerFinished.value = true; // Timer finished
+    }
 };
 onMounted(() => {
   const intervalId = setInterval(decreaseTimer, 1000);
 
-  // Clear interval when component is unmounted
   return () => clearInterval(intervalId);
 });
 
 const resendCode = async() => {
+  OtpCountdown.value = 60
+  timerFinished.value = false;
   const Otpmsg = {
     email: pinia.state.email
   }
@@ -73,8 +78,7 @@ try {
   if (data.success) {
     // navigateTo('/authentication/login')
   } else{
-    
-    // OtpCountdown.value = 60
+  
     console.error('failed to send OTP');
   }
 } catch(e){
@@ -130,4 +134,5 @@ font-style: normal;
 font-weight: 400;
 line-height: 150%; /* 24px */
 }
+
 </style>

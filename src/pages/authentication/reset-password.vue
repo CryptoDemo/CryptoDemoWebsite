@@ -79,9 +79,9 @@
               
           </div>
 
-      <NuxtLink to="#">  
+      
       <Button buttonText="Request New Password" :Otp="isFormValid" @click="recoverPassword()"/>
-      </NuxtLink>
+      
         <div class="d-flex" style="margin-top:51px; margin-bottom: 224px">
           <img src="/svg/arrow-left.svg" class="me-3"/>
           <small><NuxtLink to="/authentication/login"><span class="login-text">Back to login</span></NuxtLink></small>
@@ -127,8 +127,9 @@ try {
 }catch(e){
   console.log(e)
 };
- 
 };
+
+
 
 
 // const handleClick =() =>{

@@ -1,29 +1,43 @@
 <template>
-<button @click="push.success('Something good has been pushed!')">Push</button>
-
-<Notivue v-slot="item">
-  <Notification :item="item" />
-</Notivue>
-
-<div style="display: flex; justify-content: flex-start; margin-top: 25px; align-items: center; margin-left: 10px;">
-             <ToggleBtn class="me-3"/>
-             <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> Mode</span>
-          </div>
+  <div>
+    <h1>Countdown: {{ seconds }}</h1>
+    <v-btn @click="resendCode" :disabled="!timerFinished">Resend Code</v-btn>
+  </div>
 </template>
 
-<script setup>
-import { useTheme } from 'vuetify';
+<script>
+import { ref, computed, onMounted } from 'vue';
 
-const theme = useTheme()
-const isDark = computed(() =>  theme.global.current.value.dark);
-    
+export default {
+  setup() {
+    const seconds = ref(60);
+    const timerFinished = ref(true);
+
+    const decreaseTimer = () => {
+      if (seconds.value > 0) {
+        seconds.value--;
+      } else {
+        timerFinished.value = true; // Timer finished
+      }
+    };
+
+    const resendCode = () => {
+      // Reset the timer and set the timerFinished to false to enable the button
+      seconds.value = 60;
+      timerFinished.value = false;
+    };
+
+    onMounted(() => {
+      const intervalId = setInterval(decreaseTimer, 1000);
+
+      // Clear interval when component is unmounted
+      return () => clearInterval(intervalId);
+    });
+
+    // Compute the button's disabled state based on the timerFinished value
+    const isResendDisabled = computed(() => !timerFinished.value);
+
+    return { seconds, timerFinished, resendCode, isResendDisabled };
+  },
+};
 </script>
-
-<style>
-.image-button {
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  width: 115px;
-}
-</style>

@@ -338,9 +338,9 @@ import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 import {getTokens} from "@/composables/requests/tokens";
 
+const Paymentmethod1= ref('Select Payment method');
 const pinia = useStore()
 const pageNumber = ref(1)
-const Paymentmethod1= ref('Select Payment method');
 
   try {
     const data = await getTokens(pageNumber.value);

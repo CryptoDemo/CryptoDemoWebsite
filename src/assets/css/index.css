@@ -215,6 +215,18 @@ font-weight: 700;
 line-height: 150%; /* 24px */
 cursor: pointer;
 }
+.resend-code-btn{
+color:  #2873FF !important; 
+/* background-clip: text;   */
+/* -webkit-text-fill-color: transparent ;  */
+font-family: Manrope;
+font-size: 16px !important;
+font-style: normal;
+font-weight: 700 !important;
+line-height: 150%; /* 24px */
+letter-spacing: 0px !important;
+text-transform: unset !important;
+}
 
 .login-text{
   color: #FFF;
@@ -846,7 +858,7 @@ line-height: 120%; /* 28.8px */
     box-shadow: none !important;
     background:  #12181F !important;
     width: 20px !important;
-    height: 40px;
+    height: 40px !important;
     border-left: 1px solid #303A46 !important;
     border-radius: 0px !important;
     margin-inline: auto;
