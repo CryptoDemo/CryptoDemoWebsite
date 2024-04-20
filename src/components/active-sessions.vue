@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div style="margin-bottom: 13px!important">
+    <!-- <div style="margin-bottom: 13px!important">
       <span class="pswrd-mgt" style="font-weight: 700;">Active sessions</span>
-    </div>
-       <v-table style="display: grid! important; margin-bottom: 32px">
+    </div> -->
+       <!-- <v-table style="display: grid! important; margin-bottom: 32px">
         <thead>
           <tr style="border-radius: 24px !important; height: 74px;  background: var(--secondary-background, #12181F); display: flex; justify-content: space-between  ">
           
@@ -65,12 +65,12 @@
       
               </tr>
             </tbody>
-        </v-table>
+      </v-table> -->
 
 
-              <div class="mt-5">
+              <!-- <div class="mt-5">
                   <v-btn class="primary-btn1" width="152px">End all sessions</v-btn>
-              </div>
+              </div> -->
 
             <div style="margin-bottom: 13px!important; margin-top:48px">
                 <span class="pswrd-mgt" style="font-weight: 700;">Activity</span>

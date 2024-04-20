@@ -46,20 +46,20 @@
                                       </v-btn>
                                     </template>
 
-                                    <v-list style="background: #161D26; border-radius: 15px;">
-                                      <v-list-item>m 
-                                        <v-row dense>
-                                        <v-col v-for="(item, index) in locations" class="" sm="6"  :key="index">
-                                      
-                                          <v-list-item-title @click="select=item.title; flag= item.image" style="text-align: -webkit-center;">
-                                          <v-img width="30" class="rounded-5" :src="item.image"></v-img>    
-                                          <span> {{ item.title }} </span>
-                                        </v-list-item-title>
-                                          </v-col>
+                                    <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'">
+                                      <v-list-item style="display: contents">
+                                        <v-row dense style="max-width: 250px;">
+                                          <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" :key="index">
+                                          <v-list-item @click="country=item.country_code; name=item.country_name; flag= item.flag_url" style="display: flex;">
+                                            <div style="display: flex; align-items: center; ">
+                                              <img width="35" height="35" class="me-3" :src="item.flag_url" style="object-fit: cover;border-radius: 30px"/> 
+                                              <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.country_name }}</span>
+                                          </div>
+                                          </v-list-item>
+                                        </v-col>
                                         </v-row>
                                       </v-list-item>
                                     </v-list>
-                    
                                 </v-menu>
 
                                 <input type="text" v-if="phoneVerificationStep==2" style="font-size: 14px; font-weight: 700; outline: none; padding: 25px; color: #D8D8D8;" placeholder="6-4-0-1" class="input-styling1 position-relative"/>
@@ -77,12 +77,11 @@
 
                     <v-col>
                       <div class="pa-2 ma-2 d-flex" style="margin-top: 0px!important;">
-                        <div>
-    
- 
-                        <input type="image" src="/svg/Camera.svg" accept="image/png, image/jpeg, image/bmp" style="position: absolute; margin-left: 17px; margin-top: 17px;"/>
-                        <input type="image" src="/svg/Image-grad.svg" class="me-4" style="align-self: start;"/>
+                        <div @click="$refs.imageSelector.click()">
+                          <input type="image" src="/svg/Camera.svg" accept="image/png, image/jpeg, image/bmp" style="position: absolute; margin-left: 17px; margin-top: 17px;"/>
+                          <input type="image" :src="selectedImageFile || '/svg/Image-grad.svg'" class="me-4" style="align-self: start;height: 71px;width: 76px;border-radius: 25px;"/>
                         </div>
+                        <input ref="imageSelector" @input="setSelectedFile" type="file" accept="image/*" style="display:none"/>
                         <div>
                          <v-text-field placeholder="Email Address" class="input-styling1" variant="text" style="color: #fff;text-align: justify; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400;">
                             <v-icon class="prepend-inner-icon">
@@ -129,8 +128,7 @@
 
                             <v-list>
                               <v-list-item>
-                                <div v-for="(currency, index) in currencies" class="d-flex py-3" style="cursor: pointer"
-                                  :key="index" >
+                                <div v-for="(currency, index) in currencies" class="d-flex py-3" :key="index">
                               
                                   <v-list-item-title @click="selected=currency.title;" class="d-flex">
                                     <span>{{currency.icon}}</span> 
@@ -163,9 +161,31 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import { useTheme } from 'vuetify';
+import { getcountries } from "@/composables/requests/admin";
+import {FiveMB} from "@/composables/configs";
 
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
 const phoneVerificationStep = ref(1);
+const selectedImageFile = ref(null);
+
+const setSelectedFile = (event)=>{
+  const file = event.target.files[0];
+  console.log(file)
+
+  if(file.size>FiveMB) {
+    // TODO: show error pop notification that the file size is greater than 2MB
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    selectedImageFile.value = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
 
 
 const sendOTP = ()=>{
@@ -180,18 +200,42 @@ const verifyOTP = ()=>{
   phoneVerificationStep.value = 3;
 }
 
-const select = ref("+90");
+const pageNumber = ref(1)
+const country =ref('Au')
+const flag = ref('')
 
-const flag = ref("/svg/nigeria-flag.svg")
+try {
+  const data = await getcountries(pageNumber.value);
+  if (data.success) {
+    const fetchedcountries = data.data.result;
 
-const locations = [
-        { title: '+09', image:"/img/china.png" },
-        { title: '+54',  image:"/img/china.png" },
-        { title: '+21',  image:"/img/china.png" },
-        { title: '+07',  image:"/img/china.png" },
-        { title: '+23',  image:"/img/china.png" },
-        { title: '+01', image:"/img/china.png" },
-      ];
+    const storedcountriesids = pinia.state.allcountries.map(item => item.id);
+    // Check if there are any new items in the fetched data
+    const newItems = fetchedcountries.filter(item => !storedcountriesids.includes(item.id));
+
+    if (newItems.length > 0) {
+      console.log('fetching')
+      pinia.setallcountries([...pinia.state.allcountries,...newItems]);
+      flag.value = pinia.state?.allcountries[0].flag_url;
+    }
+  } else {
+    console.error('Unavailable')
+  }
+} catch (error) {
+  console.log(error);
+};
+// const select = ref("+90");
+
+// const flag = ref("/svg/nigeria-flag.svg")
+
+// const locations = [
+//         { title: '+09', image:"/img/china.png" },
+//         { title: '+54',  image:"/img/china.png" },
+//         { title: '+21',  image:"/img/china.png" },
+//         { title: '+07',  image:"/img/china.png" },
+//         { title: '+23',  image:"/img/china.png" },
+//         { title: '+01', image:"/img/china.png" },
+//       ];
 
 const selected  = ref ('US Dollar USD') 
 const currencyIcon = ref ('$')
@@ -339,23 +383,46 @@ text-transform: unset!important;
 }
 
 .v-switch__track ::before {
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.5rem;
-    padding: 0 5px;
-    background-color: #12181F !important;
-    border-radius: 9999px;
-    height: 14px;
-    opacity: 0.6;
-    min-width: 36px;
-    cursor: pointer;
-    transition: 0.2s background-color cubic-bezier(0.4, 0, 0.2, 1);
+display: inline-flex;
+align-items: center;
+font-size: 0.5rem;
+padding: 0 5px;
+background-color: #12181F !important;
+border-radius: 9999px;
+height: 14px;
+opacity: 0.6;
+min-width: 36px;
+cursor: pointer;
+transition: 0.2s background-color cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-.v-textarea .v-field {
-    --v-textarea-control-height: var(--v-input-control-height);
-    border-radius: 32px;
-    height: 356px!important
+.country-dropdown{
+border-radius: 15px;
+border: 0.5px solid #2f3946;
+background: #141B23 !important;
+backdrop-filter: blur(50px) !important;
+border-radius: 20px !important;
+color: white;
+margin-top: 15px;
+box-shadow: none  !important;
+height: 320px !important;
 }
-
+.country-dropdown-light{
+border-radius: 15px;
+background: #fff !important;
+border-radius: 20px !important;
+color: black;
+margin-top: 15px;
+box-shadow: none  !important;
+height: 320px !important;
+}
+.country-name{
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+::-webkit-scrollbar {
+  display: none;
+}
 </style>

@@ -30,7 +30,8 @@
 
             </tr>
           </tbody>
-      </v-table>
+        </v-table>
+        <Timezone class="ml-11"/>
      
 
   </div>

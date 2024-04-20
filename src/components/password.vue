@@ -1,8 +1,8 @@
 <template>
     <div class="position-relative" style="margin-top:24px">
-              <v-text-field class="password-styling"  :type="isToggled ? 'text' : 'password'"
+              <v-text-field class="password-styling pl-4"  :type="isToggled ? 'text' : 'password'"
                 :placeholder="placeholder"
-                variant="">
+                variant="plain">
                
             <div  class="eye-icon">
         
