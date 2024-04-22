@@ -4,8 +4,9 @@
       </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 import ApexCharts from 'apexcharts'
+// import VueApexCharts from 'vue-apexcharts'
 
 const series = ref([
   {

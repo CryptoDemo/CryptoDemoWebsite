@@ -46,7 +46,7 @@
             <v-list-item style="display: contents">
               <v-row dense style="max-width: 250px;">
                 <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" :key="index">
-                <v-list-item @click="country=item.country_code; name=item.country_name; flag= item.flag_url" style="display: flex;">
+                <v-list-item @click="country=item.country_code; name=item.country_name; flag= item.flag_url;" style="display: flex;">
                   <div style="display: flex; align-items: center; ">
                     <img width="35" height="35" class="me-3" :src="item.flag_url" style="object-fit: cover;border-radius: 30px"/> 
                     <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.country_name }}</span>
@@ -116,7 +116,7 @@ try {
 
     if (newItems.length > 0) {
       console.log('fetching')
-      pinia.setallcountries([...pinia.state.allcountries,...newItems]);
+      pinia.setallcountries([...pinia.state.allcountries, ...newItems]);
       flag.value = pinia.state?.allcountries[0].flag_url;
     }
   } else {
@@ -129,17 +129,16 @@ try {
 
 const props = defineProps(
   {
-    title:String,
-    text2:String,
-    link:String,
-    icon:String,
-    Menuicon:String,
-    icon1:Boolean,
-    icon2:Boolean,
-    icon3:Boolean,
-    hide: Boolean,
-  }
-  
+  title:String,
+  text2:String,
+  link:String,
+  icon:String,
+  Menuicon:String,
+  icon1:Boolean,
+  icon2:Boolean,
+  icon3:Boolean,
+  hide: Boolean,
+  }  
 )   
 </script>
 

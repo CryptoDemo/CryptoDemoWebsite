@@ -90,6 +90,7 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
 const {code} = useRoute().query;
 
+const email= ref('');
 const password = ref('');
 const isToggled = ref(true);
 const togglePassword = () => {
@@ -119,7 +120,7 @@ const Passwordrules = [
     try {
   const data = await newpassword (changePassword);
   if (data.success) {
-    pinia.setEmail(email.value)
+    // pinia.setEmail(email.value)
     navigateTo('/authentication/login')
   } else{
     

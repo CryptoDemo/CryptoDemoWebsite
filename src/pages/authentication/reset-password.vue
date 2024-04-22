@@ -113,12 +113,13 @@ const isFormValid = computed(() => validateEmail(email.value));
 
 const recoverPassword = async() => {
 const accountrec = {
-  email: pinia.state.email,
+  email: email.value,
 }
 
 try {
   const data = await accountRecovery(accountrec);
   if (data.success) {
+    pinia.setEmail(email.value)
     navigateTo('/authentication/reset-password-otp')
   } else{
     

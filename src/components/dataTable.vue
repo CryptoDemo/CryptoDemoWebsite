@@ -4,117 +4,180 @@
           <thead>
             <tr style="padding-top: 68px">
               <th class="text-left"></th>
-              <th class="text-left">
+              <!-- <th class="text-left">
                 <div style="display: grid; margin-left: 8px;">
                     <img src="/svg/global.svg" style="position: relative; left: 5px "/>
                     <span>Web</span>
                 </div>
-              </th>
-              <th class="text-left">
+              </th> -->
+              <!-- <th class="text-left">
                 <div style="display: grid; margin-left: 10px;">
                   <img src="/svg/mobile.svg"/>
                   <span>APP</span>
                 </div>
-              </th>
-             
+              </th>     -->
             </tr>
           </thead>
           <tbody>
             <tr
               v-for="item in infos"
-              :key="item.name"
-            >
+              :key="item.name">
               <td>{{ item.name }}</td>
-                <td><v-switch  inset color="#2873FF"></v-switch></td>
-                <td><v-switch inset color="#2873FF"></v-switch></td>
-
+              <td><v-switch @click="toggle_notification(item.value,item.status)"    inset color="#2873FF"></v-switch></td>
             </tr>
           </tbody>
         </v-table>
-        <Timezone class="ml-11"/>
+      
      
 
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
+const pinia = useStore();
+
+const isToggled = ref(false)
+
+const status = ref(null);
+status.value = pinia.state.user?.settings.notifications;
 
 const  infos = [
-          {
-            name: 'Transactions',
-            Web: "",
-            App: "",
-          
-          },
-          {
-            name: 'Confirm deposit',
-            Web: "",
-            App: "",
-          
-          },
-          {
-            name: 'Deposit pending',
-            Web: "",
-            App: "",
-          
-          },
-          {
-            name: 'Crypto purchased',
-            Web: "",
-            App: "",
-          
-          },
-          {
-            name: 'Crypto sold',
-            Web: "",
-            App: "",
-          
-          },
-          {
-            name: 'Incoming trade',
-            Web: "",
-            App: "",
-          
-          },
-          {
-            name: 'Someone viewed my profile',
-            Web: "",
-            App: "",
-          
-          },
-          {
-            name: 'Trade cancelled/expired',
-            Web: "",
-            App: "",
-          
-          },
-          {
-            name: 'New chat message',
-            Web: "",
-            App: "",
-          
-          },
-          {
-            name: 'Partner paid for trade',
-            Web: "",
-            App: "",
-          
-          },
-          {
-            name: 'Moderator messgae',
-            Web: "",
-            App: "",
-          
-          },
-          {
-            name: 'Notify me on new login',
-            Web: "",
-            App: "",
-          
-          },
-        ];
+      {
+        name: 'Transactions',
+        value: "notify_me_on_transactions",
+        status: false,
       
-// const notification = ref (true)
+      },
+      {
+        name: 'Confirm deposit',
+        value: "notify_me_on_deposit_confirmed",
+        status: true,
+      
+      },
+      {
+        name: 'Deposit pending',
+        value: "notify_me_on_deposit_pending",
+        status: false,
+      },
+      {
+        name: 'Crypto purchased',
+        value: "notify_me_on_crypto_purchased",
+        status: true,
+      },
+      {
+        name: 'Crypto sold',
+        value: "notify_me_on_crypto_sold",
+        status: true,
+      
+      },
+      {
+        name: 'Incoming trade',
+        value: "notify_me_on_incoming_trade",
+        status: false,
+      
+      },
+      {
+        name: 'Someone viewed my profile',
+        value: "notify_me_on_profile_view",
+        status: false,
+      
+      },
+      {
+        name: 'Trade cancelled/expired',
+        value: "notify_me_on_trade_canceled_or_expired",
+        status: false,
+      
+      },
+      {
+        name: 'New chat message',
+        value: "notify_me_on_chat_message",
+        status: false,
+      },
+    
+      {
+        name: 'Moderator messgae',
+        value: "notify_me_on_moderator_message",
+        status: false,
+      
+      },
+      {
+        name: 'Notify me on new login',
+        value: "notify_me_on_new_login",
+        status: false,
+      },
+    ];
+
+
+
+  const toggle_notification = async (value, status) => {
+    console.log(value,status)
+    
+     
+
+   
+
+    // const settings = pinia.state.user?.settings.notifications
+
+
+    // const setting_to_update = { [`${value}`]: `${status}` === 'true' ? true : false}
+
+    // console.log(setting_to_update)
+
+    // const all_settings = {...settings, ...setting_to_update}
+
+    // const setting_add_to_info = {settings:{
+    //         notifications:{
+    //             ...all_settings
+    //         }
+    //     }
+    // }
+    
+    // const userToken = `${pinia.state.user.token}`;
+    // const info = { ...pinia.state.user, ...setting_add_to_info };
+    // delete info.token;
+    
+    // console.log(info)
+
+    // try {
+
+    //     const data = await fetch(`${baseURL}user`, {
+    //         method: 'PATCH',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'x-access-token': `${pinia.state.user?.token}`
+    //         },
+    //         body: JSON.stringify(info)
+
+    //     }).then(res => res.json());
+
+    //     if (data.success) {
+    //         const user = { ...info, token: userToken };
+
+    //         console.log(user)
+    //         pinia.setUser(user);
+
+    //         // Update the notification status in the local state
+    //         // const  apiFetchedNofyVal = data.settings.notifications
+    //         // const index = apiFetchedNofyVal.findIndex(item => item === value);
+
+    //         // console.log(index)
+    //         // // if (index !== -1) {
+    //         //     notification_settings[index].status = status;
+    //         // // }
+
+
+    //     } else {
+    //         // Handle error response
+    //         console.error('Failed to update notification settings:', data.message);
+          
+    //     }
+    // } catch (error) {
+    //     console.error('Error updating notification settings:', error);
+      
+    // }
+}
 </script>
 
 <style>

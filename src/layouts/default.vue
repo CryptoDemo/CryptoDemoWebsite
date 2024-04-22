@@ -19,11 +19,14 @@
             // case when the page loads for the first time
             if(!invalidPathBGs.value.includes(path)){
                 changeToDashboardBG();
+                // changeFooterBG();
             }else{
                 removeDashboardBG();
+                // removeFooterBG()
             }
         }else{
             removeDashboardBG();
+            // removeFooterBG();
         }
     }
     
@@ -33,6 +36,7 @@
                 changeBG();
             }else{
                 removeDashboardBG();
+                removeFooterBG();
             }
         });
 

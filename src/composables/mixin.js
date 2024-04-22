@@ -12,3 +12,10 @@ export const changeToDashboardBG = ()=>{
 export const removeDashboardBG = ()=>{
   document.querySelector("body > #__nuxt > div > div").style.backgroundColor = '';
 }
+
+// export const changeFooterBG = ()=>{
+//   document.querySelector("footer > #__nuxt > div > div").style.backgroundColor = '#12181F'
+// };
+// export const removeFooterBG = ()=>{
+//   document.querySelector("footer > #__nuxt > div > div").style.backgroundColor = '';
+// }

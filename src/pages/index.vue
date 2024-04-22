@@ -20,12 +20,10 @@
                 <img src="/svg/blue-arrow.svg"/>
               </div>
               
-                <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000;">
-                  <span class="headertext1" :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
-                  <img src="/img/Frame.png" class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
-                </div>
-
-
+              <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000;">
+                <span class="headertext1" :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
+                <img src="/img/Frame.png" class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
+              </div>
 
             <div class="d-flex text-img position-relative" v-if="theme.global.current.value.dark">
               <span class="web webi" style="margin-right: 78px; z-index: 1000;">Demo Web</span>
@@ -62,10 +60,10 @@
                 <div style="margin-top: 24px;">
                   <v-menu>
                     <template v-slot:activator="{ props }">
-                      <v-btn :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" style="letter-spacing: 0px"
+                      <v-btn :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" style="letter-spacing: 0px; box-shadow: none"
                         v-bind="props">
                         <img  width="25" class="me-3 select" :src="icon"/> 
-                        <div  class="py-3" style="display: grid; cursor: pointer;">
+                        <div class="py-3" style="display: grid; cursor: pointer;">
                         <span class="me-2">{{select}}</span> 
                         <span class="me-2 small-text">{{coin}}</span> 
                         </div>
@@ -77,23 +75,24 @@
                     <v-list  :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 10px; margin-top: 10px;">
                       <v-list-item style="width: -webkit-fill-available;">
                         <div  @click.stop style="margin-top: 8px; margin-bottom: 15px;">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 31px; margin-left: 19px;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 30px; margin-left: 45px;">
                                 <path d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z" stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                           </svg>
-                          <v-textarea clearable variant="text" rows="1" no-resize  placeholder="Search for Coins..." v-model="input" style=" border: 1px solid #64748B; height: 55px;  border-radius: 30px; padding-left: 30px; align-items: center; width: 100%;"></v-textarea>
+                          <v-textarea clearable variant="text" rows="1" no-resize  placeholder="Search for Coins..." v-model="input" style=" border: 1px solid #64748B; height: 55px; margin: auto;  border-radius: 30px; padding-left: 30px; align-items: center; width: 90%;"></v-textarea>
                         </div>
 
                       
-                        <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-3" style="cursor: pointer">
-                          <v-list-item-title @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
-                          <img width="25" class="rounded-5 me-3" :src="item.icon"/>    
-                            <div>
+                        <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-2">
+                          <v-list-item @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
+                          <div class="ml-7" style="display: flex">
+                            <img width="25" class="rounded-5 me-3" :src="item.icon"/>    
+                            <div>                  
                               <span> {{ item.name }} </span>
                               <span class="small-text">{{ item.symbol }}</span>
                             </div>
-                          </v-list-item-title>
+                          </div>
+                          </v-list-item>
                         </div>
-
 
                       </v-list-item>
                     </v-list>
@@ -107,9 +106,9 @@
                     <span :class="isDark ? 'pay-with':'pay-with-light'" > {{transaction? "Pay with" : "Get paid via" }}</span>
 
 
-                  <div  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
+                  <div :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
                       <Payment-options :selectedPaymentOption="Paymentmethod1"/>
-                    </div>
+                  </div>
                       <div class="payment-wrap" style="overflow: scroll;">
                           <Transaction-btn buttonText="Bank Transfers" class="mt-4" @click="Paymentmethod1='Bank Transfers'"/>
                           <Transaction-btn buttonText="Paypal" class="mt-4"  @click="Paymentmethod1='Paypal'"/>
@@ -126,21 +125,25 @@
                     <v-menu transition="scale-transition">
                         <template v-slot:activator="{ props }">
                           <v-btn v-bind="props" class="position-absolute" :class="isDark ? 'show-all':'show-all-light'" style="right: 10px;margin-top: 8px;font-weight: 700;">
-                            {{ selected }}
+                            {{ Selectedcurrency }}
                             <v-icon  icon="mdi-chevron-down notranslate"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
                             <!-- <v-icon v-else icon="mdi-chevron-up"  color="#8E9BAE" style="margin-left: 6px "></v-icon> -->
                         </v-btn>
                         </template>
 
-                        <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'">
-                          <v-list-item v-for="(item, i) in coinType" :key="i" style="cursor: pointer;">
-                              <v-list-item-title @click="selected=item.title">{{ item.title }}</v-list-item-title>
+                        <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="height: 160px !important; width: 130px !important; ">
+                          <v-list-item v-for="(currency, i) in pinia.state.allcountries" :key="i">
+                            <div>
+                              <v-list-item @click="Selectedcurrency=currency.currency_name">
+                                <span class="ml-4">{{ currency.currency_name  }} </span>
+                              </v-list-item>
+                            </div>
                           </v-list-item>
-                        </v-list>
+                        </v-list>  
                     </v-menu>
                     </div>
                     <div style=" margin-top: 9px ;">
-                      <span class="hint-text">Mininum: 10 {{ selected }}</span>
+                      <span class="hint-text">Mininum: 10 {{ Selectedcurrency }}</span>
                     </div>
                   </div>
                   <v-btn class="exchange-btn" color="" style="letter-spacing: 0px !important;"> <span class="exchange-text">Exchange Now </span></v-btn>
@@ -391,13 +394,7 @@ const variants = [
 { cardImages: '/svg/Featured icon (5).svg', title:'Goods and services' , textCaption:'Use Bitcoin to pay for goods and services from around the world.', textCaption1:'Use Bitcoin to Buy  goods and services from around the world.'}, 
 ];
 
-const selected =ref("USD")
-const coinType = [
-{ title: 'EUR' },
-{ title: 'AFN' },
-{ title: 'GBP' },
-{ title: 'AUD' },
-];
+const Selectedcurrency =ref("USD")
 
 let input = ref("");
 
@@ -1328,6 +1325,10 @@ position: relative;
 z-index: 100;
 }
 
+.v-list-item--density-default:not(.v-list-item--nav).v-list-item--one-line {
+padding-inline: 0px;
+width: 100%; 
+}
 .top-grad{
 position: absolute;
 top: 0;

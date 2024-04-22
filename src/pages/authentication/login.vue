@@ -123,17 +123,19 @@ const pinia = useStore();
 
 const login = async () => {
   const userLogin = {
-    email: pinia.state.email,
+    email: email.value,
     password: password.value,
     device_info: JSON.stringify(device)
   }
-   if (!email.value && !password.value ) 
-     alert.value = false;
+  //  if (!email.value && !password.value ) 
+  //    alert.value = false;
 
   try {
   const data = await signUp(userLogin);
   if (data.success) {
-    navigateTo('/authentication/login')
+    pinia.state.isAuthenticated = true
+    pinia.setUser(data)
+    navigateTo('/authentication/profile')
   } else{
     
     console.error('unauthorized user');
