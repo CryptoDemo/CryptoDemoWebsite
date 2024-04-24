@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="d-flex" style="flex-direction: column;">
                                   <span class="card-text">{{ variant.Title }}</span>
-                                  <span class="card-text" style="color:#fff">{{ variant.Title1 }}</span>
+                                  <span class="card-text" :class="isDark ? 'text-dark':'text-light'">{{ variant.Title1 }}</span>
                                   <div class="textCaption" :class="isDark ? 'text-dark':'text-light'" style="font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; margin-top: 8px;">{{variant.textCaption}}</div>
                                 </div> 
                               </div>

@@ -136,10 +136,10 @@ font-family: Poppins;
   background: #D9E0E9 !important;
 } 
 .text-dark{
-  color: #FFF;
+  color: #FFF !important;
 } 
 .text-light{
-  background: #646464 !important;
+  color: #646464 !important;
 } 
 .toggle-btn-dark{
   background-image: linear-gradient(360deg, #2873FF, #0B6B96);
