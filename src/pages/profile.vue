@@ -130,13 +130,17 @@
 
                           <v-list class="coin-card">
                             <v-list-item>
-                              <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-3" style="cursor: pointer">
-                                <v-list-item-title @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
-                                  <img width="25" class="rounded-5 me-3" :src="item.icon"/>    
-                                  <div style="display: flex; flex-direction: column;">
+                              <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-2">
+                                <v-list-item-title style="width: 100%;">  
+                                <v-list-item @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center;">
+                                <div style="display: flex;">
+                                  <img  width="25" class="rounded-5 me-3 ml-3" :src="item.icon"/>  
+                                  <div  style="display: flex; flex-direction: column;">
                                     <span style="font-family: Manrope;font-size: 14px; font-style: normal; font-weight: 700; line-height: 140%;"> {{ item.name }} </span>
                                     <span class="small-text">{{ item.symbol }}</span>
                                   </div>
+                                </div> 
+                                </v-list-item>
                                 </v-list-item-title>
                               </div>
                             </v-list-item>
@@ -158,8 +162,8 @@
                               <span class="mb-3" :class="isDark ? 'transfer-dark':'transfer-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">Bank Transfer</span>
                               <span class="mb-3" :class="isDark ? 'transfer-dark':'transfer-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">First Bank only</span>
                           <div style="display:flex">
-                              <v-btn class="smaller-btn me-4">Guided Trade</v-btn>
-                              <v-btn class="smaller-btn">Receipt required</v-btn>
+                              <v-btn class="smaller-btn me-4" :class="isDark ? 'toggle-btn-dark':'toggle-btn-light'">Guided Trade</v-btn>
+                              <v-btn class="smaller-btn" :class="isDark ? 'toggle-btn-dark':'toggle-btn-light'">Receipt required</v-btn>
                           </div>
                           </div>
                       </div>
@@ -200,11 +204,11 @@
             </div>
 
             <div class="mt-5"> 
-                <v-btn class=" me-4 inactive-btn"> 
+                <v-btn class=" me-4 inactive-btn" :class="isDark ? 'toggle-btn-dark':'toggle-btn-light'"> 
                     <span style="position: relative; left: -18px">From buyers</span>
                   <span style="position: relative; right: -18px; font-weight: 800;">0</span>
                  </v-btn>
-                <v-btn class=" me-4 inactive-btn"> 
+                <v-btn class=" me-4 inactive-btn" :class="isDark ? 'toggle-btn-dark':'toggle-btn-light'"> 
                     <span style="position: relative; left: -18px">From sellers</span>
                   <span style="position: relative; right: -18px; font-weight: 800;">0</span>
                  </v-btn>
@@ -539,7 +543,7 @@ padding: 6px 16px;
 justify-content: center;
 align-items: center;
 gap: 10px;
-color: #646464;
+color: #C2C2C2;
 font-family: Manrope;
 font-size: 14px;
 font-style: normal;
