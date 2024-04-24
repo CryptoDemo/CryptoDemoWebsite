@@ -6,12 +6,12 @@ export const validateEmail = (email) => {
       );
 };
 
-export const changeToDashboardBG = ()=>{
-  document.querySelector("body > #__nuxt > div > div").style.backgroundColor = '#161D26';
-}
-export const removeDashboardBG = ()=>{
-  document.querySelector("body > #__nuxt > div > div").style.backgroundColor = '';
-}
+// export const changeToDashboardBG = ()=>{
+//   document.querySelector("body > #__nuxt > div > div").style.backgroundColor = '#161D26';
+// }
+// export const removeDashboardBG = ()=>{
+//   document.querySelector("body > #__nuxt > div > div").style.backgroundColor = '';
+// }
 
 // export const changeFooterBG = ()=>{
 //   document.querySelector("footer > #__nuxt > div > div").style.backgroundColor = '#12181F'

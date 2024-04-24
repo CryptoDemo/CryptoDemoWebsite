@@ -49,7 +49,6 @@
                 <span class="bottom-grad border-span"></span>
                 <span class="left-grad"></span>
                   <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619519/bitcoin-star_h5jhpu.svg" class="yellow-coin position-absolute"/>
-
                   <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute"/>
 
                 <div class="btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'">
@@ -80,8 +79,7 @@
                           </svg>
                           <v-textarea clearable variant="text" rows="1" no-resize  placeholder="Search for Coins..." v-model="input" style=" border: 1px solid #64748B; height: 55px; margin: auto;  border-radius: 30px; padding-left: 30px; align-items: center; width: 90%;"></v-textarea>
                         </div>
-
-                      
+  
                         <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-2">
                           <v-list-item @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
                           <div class="ml-7" style="display: flex">
@@ -93,19 +91,15 @@
                           </div>
                           </v-list-item>
                         </div>
-
                       </v-list-item>
                     </v-list>
                   </div>
-
                   </v-menu> 
                   <div style="margin-top:9px">  
                     <span class="btc-ammt">40 BTC = <span class="btc-ammt1">40,144.86 USD</span></span>
                   </div>
                   <div style="margin-top: 30px;">
                     <span :class="isDark ? 'pay-with':'pay-with-light'" > {{transaction? "Pay with" : "Get paid via" }}</span>
-
-
                   <div :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
                       <Payment-options :selectedPaymentOption="Paymentmethod1"/>
                   </div>

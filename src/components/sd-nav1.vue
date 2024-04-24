@@ -71,7 +71,7 @@
   
   .nav-options2:focus {
   background:#2873FF !important;  
-  border-radius: 30px;
+  border-radius: 22px;
   width: 199px;
   color: var(--Gray-Light, #D8D8D8);
   font-family: Poppins;

@@ -40,7 +40,7 @@ const items = [
        {icon:'/svg/logout.svg', title: 'Log Out', link:''},
      ];
 </script>
-<style>
+<style scoped>
 .profile-btn{
 display: flex;
 width: 247px !important;
@@ -62,11 +62,11 @@ line-height: 28px !important; /* 200% */
 
 .nav-btn{
 border-radius: 20px !important; 
-background: #12181F !important; 
-min-width: 56px!important;
+background: #10192D !important; 
+min-width: 52px!important;
 height: 53.2px !important;
 flex-shrink: 0;
-box-shadow: none;
+box-shadow: none !important;
 }
 
 </style>

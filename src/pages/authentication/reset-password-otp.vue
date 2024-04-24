@@ -1,4 +1,6 @@
 <template>
+  <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0; height: 90%;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
+  <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
 <div class="section">
   <Header/>
   <v-container class="form-layout overflow-hidden">
@@ -19,7 +21,7 @@
             <span>Valid for {{ OtpCountdown }} seconds</span>
           </div>
           <div class="d-flex" style="margin-top:23px;">
-            <span class="resend-code-btn me-2" @click="resendCode()">Resend code</span>    
+            <v-btn class="resend-code-btn" variant="plain"  :disabled="!timerFinished" @click.prevent="resendCode()">Resend code</v-btn>
           </div>
         </div>
 
@@ -52,21 +54,24 @@ import { verifyOtp } from "@/composables/requests/auth";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-const  otp = ref ('');
+const otp = ref ('');
 const pinia = useStore();
 const router = useRouter();
 const OtpCountdown = ref(60);
+const timerFinished = ref(true);
 const decreaseTimer = () => {
   if (OtpCountdown.value > 0) {
     OtpCountdown.value--;
-  }
+  } else {
+        timerFinished.value = true; // Timer finished
+    }
 };
 onMounted(() => {
   const intervalId = setInterval(decreaseTimer, 1000);
 
-  // Clear interval when component is unmounted
   return () => clearInterval(intervalId);
 });
+
 
 const continueToSetPassword = ()=>{
 console.log(otp.value)
@@ -74,9 +79,11 @@ console.log(otp.value)
   }
 
 const resendCode = async() => {
-const Otpmsg = {
-  email: pinia.state.email
-}
+  OtpCountdown.value = 60
+  timerFinished.value = false;
+  const Otpmsg = {
+    email: pinia.state.email
+  }
 
 try {
   const data = await verifyOtp(Otpmsg);
@@ -108,7 +115,7 @@ justify-content: flex-start!important;
 margin-top: 12px;
 border-radius: 15px;
 border: 1px solid #303A46;
-background: #12181F!important;
+background: inherit!important;
 border-radius: 15px;
 }
 .form-light :deep(.v-otp-input .v-field){

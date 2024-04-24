@@ -1,4 +1,6 @@
 <template>
+  <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0; height: 90%;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
+  <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
 <div class="section">
   <Header/>
   <v-container class="form-layout overflow-hidden">
@@ -80,7 +82,7 @@
           </div>
 
       
-      <Button buttonText="Request New Password" :Otp="isFormValid" @click="recoverPassword()"/>
+      <Button buttonText="Request New Password" :Otp="isFormValid" :loading="loading" @click="recoverPassword()"/>
       
         <div class="d-flex" style="margin-top:51px; margin-bottom: 224px">
           <img src="/svg/arrow-left.svg" class="me-3"/>
@@ -102,16 +104,20 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import { useTheme } from 'vuetify';
 import {accountRecovery} from "@/composables/requests/auth";
 
-
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
 const email = ref('')
 const pinia = useStore();
+const loading = ref(false);
 // const alert =ref(false)
  
 const isFormValid = computed(() => validateEmail(email.value));
 
 const recoverPassword = async() => {
+  loading.value = true;
 const accountrec = {
   email: email.value,
 }

@@ -2,7 +2,7 @@
   <div>
      <Header hide=true icon1=true icon3=true  icon2=true />
      <v-container>
-        <div style="margin-top: 90px; min-height: 100%;">
+        <div style="margin-top: 100px; min-height: 100%;">
             <v-row no-gutters>
               <v-col cols="8">
                 <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 0px">
@@ -20,17 +20,14 @@
                           <img src="/svg/heart-tick.svg" alt="icon">
                             <span class="user-location">0</span>
                       </div>
-
                       <div class="d-flex" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
                       <img src="/svg/heart-remove.svg" alt="icon">
                       <span class="user-location">0</span>
-                      </div>
+                    </div>
                   </div>
-
                 </div>
               </v-col>
-          
-           
+      
               <v-col  class="">
                 <div>
                   <Acct-level/>
@@ -46,7 +43,7 @@
               <v-container style="display: flex; flex-direction: column;">
                 <div style="display: flex; position: relative;">
                   <div  class="me-9">
-                    <div class="sd-nav1 position-relative">
+                    <div class="sd-nav1 position-relative" :class="isDark ? 'sd-nav1-dark':'sd-nav1-light'">
                       <div style="border-bottom: 1px solid var(--border, #303A46); position: relative;top: 58px;"></div>
                         <div style="padding: 20px 24px;">
                           <span style="color: #969696; text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
@@ -56,14 +53,12 @@
                                 <v-btn class="nav-options"> 
                                   <img :src="item.icon" class="me-3"/>
                                   {{ item.title }}
-
                                   <div style="align-items: center; display: flex; position: absolute; right: 20px;"> 
                                     <img :src="item.flag" width="25" class="me-3" style="border-radius: 9px;"/>
                                     <span >{{ item.country }}</span>
                                     <span>{{ item.type }}</span>
                                     <span>{{ item.number }}</span>
                                   </div>
-
                                 </v-btn>
                             </div>
                           </div>
@@ -78,7 +73,7 @@
              
                   <v-row style=" min-width: 90%; height: fit-content; margin-top: 1px; gap: 16px;">
                     <v-col
-                        v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="3" style="display: flex;">
+                        v-for="(variant, i) in profileCards" class="profile-cards" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :key="i" cols="3" style="display: flex;">
                         <v-card class="mx-auto"  variant="text">
                             <v-card-item>
                               <div style="display: flex;">
@@ -112,7 +107,7 @@
                           <span style="position: relative; left: -18px">Crypto purchased</span>
                         <span style="position: relative; right: -18px; font-weight: 800;">0</span>
                       </v-btn>
-                      <v-btn  :class="PurchaseCrypto ? 'inactive-btn': 'active-btn'"  @click.prevent="PurchaseCrypto=false">
+                      <v-btn :class="`${PurchaseCrypto ? 'inactive-btn': 'active-btn'} ${isDark ? 'toggle-btn-dark':'toggle-btn-light'}`" @click.prevent="PurchaseCrypto=false">
                           <span style="position: relative; left:-37px">Crypto sold </span>
                           <span style="position: relative; right: -32px; font-weight: 800;">0</span>
                       </v-btn>
@@ -121,7 +116,7 @@
                       <div style="display: flex; margin-inline-start: auto;">
                         <v-menu>
                             <template v-slot:activator="{ props }">
-                              <v-btn class="mx-auto active-offers" style="letter-spacing: 0px; box-shadow: none;"
+                              <v-btn class="mx-auto active-offers" :class="isDark ? 'active-offers-dark':'active-offers-light'" style="letter-spacing: 0px; box-shadow: none;"
                                 v-bind="props">
                                 <img  width="25" class="me-2" :src="icon" style="position: absolute; left: 7%;"/> 
                                 <div style="display: grid; cursor: pointer;">
@@ -352,7 +347,7 @@ const navigation = [
 <style scoped>
 .profile{
 border-radius: 20px;
-background: var(--secondary-background, #12181F);
+background: var(--secondary-background, #10192D);
 height: 130px;
 flex-shrink: 0;
 }
@@ -377,7 +372,7 @@ flex-shrink: 0;
 height: 130px;
 flex-shrink: 0;
 border-radius: 20px;
-background: var(--secondary-background, #12181F);
+background: var(--secondary-background, #10192D);
 }
 .profile-level{
 border-radius: 12px;
@@ -393,7 +388,7 @@ font-weight: 400;
 line-height: normal;
 }
 .username{
-color: var(--Gray-Medium-light, #969696);
+color: #646464;
 font-family: Poppins;
 font-size: 18px;
 font-style: normal;
@@ -401,7 +396,7 @@ font-weight: 600;
 line-height: normal;
 }
 .user-location{
-color: var(--Gray-Medium-light, #969696);
+color: #646464;
 font-family: Poppins;
 font-size: 16px;
 font-style: normal;
@@ -421,7 +416,16 @@ line-height: normal;
 }
 .profile-cards{
 border-radius: 24px;
-background: var(--secondary-background, #12181F)!important;
+height: fit-content;
+}
+.profile-cards-dark{
+border-radius: 24px;
+background:  #10192D!important;
+height: fit-content;
+}
+.profile-cards-light{
+border-radius: 24px;
+background:#D9E0E9!important;
 height: fit-content;
 }
 .card-text{
@@ -442,7 +446,6 @@ height: 50px!important;
 flex-shrink: 0;
 border-radius: 20px;
 border-radius: 20px;
-background: var(--secondary-background, #12181F);
 letter-spacing: unset!important;
 text-transform: unset !important;
 overflow: hidden;
@@ -454,6 +457,12 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+}
+.active-offers-dark{
+  background: var(--secondary-background, #1B2537);
+}
+.active-offers-light{
+  background: var(--secondary-background, #D9E0E9);
 }
 .offers-text{
 color: #C2C2C2;
@@ -482,7 +491,7 @@ right: 0;
 
 .inactive-btn {
 border-radius: 20px;
-background: var(--secondary-background, #12181F);
+background: var(--secondary-background, #1B2537);
 text-transform: unset;
 letter-spacing: 0px;
 width: 231.714px;
@@ -515,7 +524,7 @@ box-shadow: none;
 
 .smaller-btn{
 border-radius: 8px;
-background: var(--secondary-background, #12181F);
+background: var(--secondary-background, #1B2537);
 display: flex;
 padding: 6px 16px;
 justify-content: center;
@@ -529,6 +538,7 @@ font-weight: 400;
 line-height: normal;
 text-transform: unset;
 letter-spacing:0px;
+box-shadow: none;
 }
 
 .slt{
@@ -548,16 +558,12 @@ flex-shrink: 0;
 }
 
 .sd-nav1{
-/* display: flex; */
 width: 305px;
-/* padding: 20px 28px; */
 align-items: center;
 gap: 10px;
 border-radius: 24px;
-/* border-bottom: 1px solid var(--border, #303A46); */
-background: var(--secondary-background, #12181F);
- }  
- 
+ } 
+
  .nav-options{
 display: flex;
 width: 305px;

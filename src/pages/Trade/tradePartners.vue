@@ -77,7 +77,7 @@
                     </div>
                             </tr>
                           </tbody>
-                      </v-table>
+                    </v-table>
 
                 </div>
               </div>

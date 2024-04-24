@@ -79,7 +79,6 @@ height: 100%;
 max-width: 100%;
 z-index: 1000;
 }
-
 .border-div{
 background: linear-gradient(120deg,#060A1D, #060A1D) padding-box,
               linear-gradient(120deg, #fff, #10192D, #10192D, #fff ) border-box !important; 
@@ -89,7 +88,6 @@ border: 0.2px solid transparent;
 content: "";
 overflow: hidden;
 }
-
 .coin-banner-light{
 border-radius: 15px;
 position: relative;
@@ -192,7 +190,6 @@ flex-shrink: 0;
 }
 
 .marquee-container {
-  /* overflow: hidden; */
   width: 100vw !important;
 }
 

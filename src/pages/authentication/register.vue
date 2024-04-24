@@ -1,9 +1,10 @@
 <template>
-<div class="section">
+  <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0; height: 90%;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
+  <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
+  <div class="section">
   <Header @country="v => country = v" text2="Already have an account," title="Login" link="/authentication/login"/> 
     <v-container class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
       <v-row no-gutters>
-
         <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
           <div class="" style="margin-top:40px; margin-bottom:55.88px;">
           <span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Create Your Account</span>
@@ -101,30 +102,9 @@
               </v-text-field> 
               
                 <NuxtLink to="/authentication/sign-up-email-verification">  
-                  <Button buttonText="Continue"  @click.prevent="register()" class="mt-4"/>
+                  <Button buttonText="Continue" :loading="loading"  @click.prevent="register()" class="mt-4"/>
                 </NuxtLink>
               
-                  <!-- <div class="d-flex b-styling">
-                  <div class="border"></div> <span class="cnt-text" :class="isDark ? 'cnt-text':'cnt-text-light'">Or Continue with</span> <div class="border"></div>
-                </div> -->
-
-                <!-- <div class="d-flex justify-center mt-4">
-                <div>
-                <v-btn id="socialButton"><img src="/svg/facebook.svg" alt="facebook-logo" /></v-btn>
-                </div>
-                <div>
-                  <v-btn id="socialButton"><img src="/svg/apple.svg" alt="facebook-logo" v-if="theme.global.current.value.dark"/>
-              
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none" v-else>
-                      <path d="M16.3634 6.68054C14.4734 6.68054 13.6747 7.58242 12.3584 7.58242C11.0089 7.58242 9.97952 6.6871 8.34171 6.6871C6.73858 6.6871 5.02905 7.66585 3.94343 9.3332C2.41905 11.6844 2.6778 16.1127 5.14671 19.8852C6.02983 21.2357 7.20921 22.7502 8.75608 22.7666H8.78421C10.1286 22.7666 10.528 21.8863 12.3781 21.876H12.4062C14.2287 21.876 14.5944 22.7615 15.9331 22.7615H15.9612C17.5081 22.7451 18.7508 21.0669 19.6339 19.7216C20.2695 18.7541 20.5058 18.2685 20.9933 17.174C17.4219 15.8184 16.8481 10.7554 20.3801 8.81429C19.302 7.46429 17.787 6.68242 16.3587 6.68242L16.3634 6.68054Z" fill="#10192D"/>
-                      <path d="M15.9466 1.76782C14.8216 1.84423 13.5091 2.56048 12.7404 3.49563C12.0429 4.34313 11.4691 5.60032 11.6941 6.81954H11.7841C12.9823 6.81954 14.2085 6.09813 14.9248 5.17376C15.6148 4.29392 16.1379 3.04704 15.9466 1.76782Z" fill="#10192D"/>
-                    </svg>
-                  </v-btn>
-                </div>
-                <div>
-                  <v-btn id="socialButton"> <img src="/img/google-logo.png" alt="google-logo" width="24"/> </v-btn>
-                </div>
-                </div> -->
           </div>
         </v-col>
       
@@ -153,6 +133,7 @@ const email=ref("");
 const password =ref("");
 const referralcode =ref("");
 const country = ref("")
+const loading = ref(false);
 
 const isToggled = ref(true);
 const togglePassword = () => {
@@ -204,6 +185,7 @@ device_info: JSON.stringify(device)
 try {
   const data = await register_(changePassword);
   if (data.success) {
+    // loading.value = true;
     pinia.setEmail(email.value)
     navigateTo('/authentication/sign-up-email-verification')
   } else{
