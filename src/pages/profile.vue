@@ -174,7 +174,7 @@
                               <span :class="isDark ? 'transfer-dark':'transfer-light'" style="font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">Limit 15,000 - 100,000 NGN</span>
                           </div>
                           <div style="display: grid">
-                              <span class="mb-3" style="color: #fff;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal; text-align-last: right;">62,797,850.5 NGN</span>
+                              <span :class="isDark ? 'price-dark':'price-light'" class="mb-3" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal; text-align-last: right;">62,797,850.5 NGN</span>
                               <div class="d-flex mb-3" style="justify-content: end;">
                                   <img src="/svg/btc.svg" class="me-3" width="20px"/> 
                                   <span class="me-1" style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600; line-height: 150%;">BTC</span>
@@ -460,6 +460,12 @@ line-height: normal;
 }
 .transfer-light{
   color: #646464;
+}
+.price-dark{
+  color: #fff;
+}
+.price-light{
+  color: #0D0D0D;
 }
 .active-offers-dark{
   background: var(--secondary-background, #1B2537);
