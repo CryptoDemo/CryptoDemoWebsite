@@ -128,7 +128,7 @@
                               </v-btn>
                             </template>
 
-                          <v-list class="coin-card">
+                          <v-list :class="isDark ? 'coin-bg1':'coin-bg1-light'">
                             <v-list-item>
                               <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-2">
                                 <v-list-item-title style="width: 100%;">  
@@ -458,6 +458,26 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+}
+
+.coin-bg1 {
+border-radius: 15px !important;
+background: #1B2537 !important;
+width: 100%;
+display: flex;
+margin: auto;
+justify-content: center;
+margin-top: 10px;
+border: 0.5px solid #2f3946;
+}
+.coin-bg1-light{
+border-radius: 15px !important;
+border: 1px solid #DBE8FF !important;
+color: #060A1D;
+width: 100%;
+margin-top: 10px;
+border: 0.5px solid #2f3946;
+box-shadow: none !important;
 }
 .transfer-dark{
   color: #969696;
