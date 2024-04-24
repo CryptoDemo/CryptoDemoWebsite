@@ -71,7 +71,7 @@
                     </div>
                   </div>
              
-                  <v-row style=" min-width: 90%; height: fit-content; margin-top: 1px; gap: 16px;">
+                <v-row style=" min-width: 90%; height: fit-content; margin-top: 1px; gap: 16px;">
                     <v-col
                         v-for="(variant, i) in profileCards" class="profile-cards" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :key="i" cols="3" style="display: flex;">
                         <v-card class="mx-auto"  variant="text">
@@ -155,8 +155,8 @@
                               <img src="/flags/do.svg" width="25px"/>
                           </div>
                           <div style="display: grid">
-                              <span class="mb-3" style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">Bank Transfer</span>
-                              <span class="mb-3" style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">First Bank only</span>
+                              <span class="mb-3" :class="isDark ? 'transfer-dark':'transfer-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">Bank Transfer</span>
+                              <span class="mb-3" :class="isDark ? 'transfer-dark':'transfer-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">First Bank only</span>
                           <div style="display:flex">
                               <v-btn class="smaller-btn me-4">Guided Trade</v-btn>
                               <v-btn class="smaller-btn">Receipt required</v-btn>
@@ -166,12 +166,12 @@
                       
                       <div class="" style="display: flex; align-items: center;">
                           <img src="/svg/star.svg" class="me-2 mb-2"/>
-                          <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
+                          <span :class="isDark ? 'transfer-dark':'transfer-light'" style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
                       </div>
 
                       <div style="margin-top: 32px; margin-block-start: auto;">
                           <div style="display: flex; margin-bottom: 14px">
-                              <span style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">Limit 15,000 - 100,000 NGN</span>
+                              <span :class="isDark ? 'transfer-dark':'transfer-light'" style="font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">Limit 15,000 - 100,000 NGN</span>
                           </div>
                           <div style="display: grid">
                               <span class="mb-3" style="color: #fff;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal; text-align-last: right;">62,797,850.5 NGN</span>
@@ -272,15 +272,15 @@
                       <span class="grad-text">View Offer</span>
                     </div>
                   </div>
-            </div>
+               </div>
               
        
-            </div>
+              </div>
           
          
-                  </v-row>
-                </div>
-              </v-container>
+                </v-row>
+              </div>
+            </v-container>
           </div>
 
 
@@ -437,7 +437,6 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 }
-
 .active-offers{
 width: 202.371px !important;
 height: 50px!important;
@@ -455,6 +454,12 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+}
+.transfer-dark{
+  color: #969696;
+}
+.transfer-light{
+  color: #646464;
 }
 .active-offers-dark{
   background: var(--secondary-background, #1B2537);
