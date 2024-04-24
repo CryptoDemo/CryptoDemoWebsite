@@ -46,7 +46,7 @@
                     <div class="sd-nav1 position-relative" :class="isDark ? 'sd-nav1-dark':'sd-nav1-light'">
                       <div style="border-bottom: 1px solid var(--border, #303A46); position: relative;top: 58px;"></div>
                         <div style="padding: 20px 24px;">
-                          <span style="color: #969696; text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
+                          <span style="color: #646464; text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
                           </div>
                           <div v-for="(item, i) in navigation" :key="i">
                             <div style="display: flex; justify-content: space-between;">
@@ -64,7 +64,7 @@
                           </div>
                           <div style="border-top: 1px solid var(--border, #303A46);">
                             <div style="padding: 20px 24px;">
-                            <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
+                            <span style="color: #646464;text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
                             </div>
                           </div>
                 
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="d-flex" style="flex-direction: column;">
                                   <span class="card-text">{{ variant.Title }}</span>
-                                  <span class="card-text" style="color:#969696">{{ variant.Title1 }}</span>
+                                  <span class="card-text" style="color:#646464">{{ variant.Title1 }}</span>
                                   <div class="textCaption" style="color: #646464; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; margin-top: 8px;">{{variant.textCaption}}</div>
                                 </div> 
                               </div>
@@ -530,7 +530,7 @@ padding: 6px 16px;
 justify-content: center;
 align-items: center;
 gap: 10px;
-color: var(--Gray-Medium-light, #969696);
+color: #646464;
 font-family: Manrope;
 font-size: 14px;
 font-style: normal;
@@ -573,7 +573,7 @@ justify-content: flex-start!important;
 align-items: center;
 background: inherit !important;
 box-shadow: none !important;
-color: var(--Gray-Medium-light, #969696)!important;
+color: #646464!important;
 text-align: center;
 font-family: Manrope;
 font-size: 14px;
