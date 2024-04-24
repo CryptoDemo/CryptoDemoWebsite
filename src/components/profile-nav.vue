@@ -6,7 +6,7 @@
         <div height="200px">
             <v-spacer></v-spacer>
             <v-menu> <template v-slot:activator="{ props }">
-                <v-btn v-bind="props" class="nav-btn">
+                <v-btn v-bind="props" class="nav-btn" :class="isDark ? 'nav-btn-dark':'nav-btn-light'">
                   <img src="/svg/profile-icon.svg"/>
                 </v-btn>
               </template>
@@ -29,7 +29,11 @@
   </div>
 </template>
 <script setup>
+import { useTheme } from 'vuetify';
 
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
 const items = [
        {icon:'/svg/profile1.svg', title: 'My profile', link:'/profile'},
        {icon:'/svg/payment.svg', title: 'Payment Method', link:'/payment'},
@@ -59,14 +63,17 @@ font-style: normal;
 font-weight: 600 !important;
 line-height: 28px !important; /* 200% */
 }     
-
 .nav-btn{
 border-radius: 20px !important; 
-background: #10192D !important; 
 min-width: 52px!important;
 height: 53.2px !important;
 flex-shrink: 0;
 box-shadow: none !important;
 }
-
+.nav-btn-dark{
+background: #10192D !important; 
+}
+.nav-btn-light {
+background: #D9E0E9 !important; 
+}
 </style>
