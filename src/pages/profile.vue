@@ -11,10 +11,10 @@
                       <img src="/svg/Image (1).svg" class="me-3" alt="avatar" style="display: flex; align-self: flex-start;"/>
                         <div>
                           <v-chip class="profile-level" color="#FB774A" style="margin-bottom: 13.8px;">Unverified</v-chip>
-                          <span class="username">UID : Ogadinma2024</span>
+                          <span class="username" :class="isDark ? 'text-dark':'text-light'">UID : Ogadinma2024</span>
                         </div>
                     </div>
-                    <span class="user-location" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
+                    <span class="user-location" :class="isDark ? 'text-dark':'text-light'" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
                     
                       <div class="d-flex" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
                           <img src="/svg/heart-tick.svg" alt="icon">
@@ -46,11 +46,11 @@
                     <div class="sd-nav1 position-relative" :class="isDark ? 'sd-nav1-dark':'sd-nav1-light'">
                       <div style="border-bottom: 1px solid var(--border, #303A46); position: relative;top: 58px;"></div>
                         <div style="padding: 20px 24px;">
-                          <span style="color: #646464; text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
+                          <span :class="isDark ? 'text-dark':'text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
                           </div>
                           <div v-for="(item, i) in navigation" :key="i">
                             <div style="display: flex; justify-content: space-between;">
-                                <v-btn class="nav-options"> 
+                                <v-btn class="nav-options" :class="isDark ? 'text-dark':'text-light'"> 
                                   <img :src="item.icon" class="me-3"/>
                                   {{ item.title }}
                                   <div style="align-items: center; display: flex; position: absolute; right: 20px;"> 
@@ -64,7 +64,7 @@
                           </div>
                           <div style="border-top: 1px solid var(--border, #303A46);">
                             <div style="padding: 20px 24px;">
-                            <span style="color: #646464;text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
+                            <span :class="isDark ? 'text-dark':'text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
                             </div>
                           </div>
                 
@@ -82,8 +82,8 @@
                                 </div>
                                 <div class="d-flex" style="flex-direction: column;">
                                   <span class="card-text">{{ variant.Title }}</span>
-                                  <span class="card-text" style="color:#646464">{{ variant.Title1 }}</span>
-                                  <div class="textCaption" style="color: #646464; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; margin-top: 8px;">{{variant.textCaption}}</div>
+                                  <span class="card-text" style="color:#fff">{{ variant.Title1 }}</span>
+                                  <div class="textCaption" :class="isDark ? 'text-dark':'text-light'" style="font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; margin-top: 8px;">{{variant.textCaption}}</div>
                                 </div> 
                               </div>
                             </v-card-item>
@@ -388,7 +388,6 @@ font-weight: 400;
 line-height: normal;
 }
 .username{
-color: #646464;
 font-family: Poppins;
 font-size: 18px;
 font-style: normal;
@@ -396,7 +395,6 @@ font-weight: 600;
 line-height: normal;
 }
 .user-location{
-color: #646464;
 font-family: Poppins;
 font-size: 16px;
 font-style: normal;
@@ -573,7 +571,6 @@ justify-content: flex-start!important;
 align-items: center;
 background: inherit !important;
 box-shadow: none !important;
-color: #646464!important;
 text-align: center;
 font-family: Manrope;
 font-size: 14px;
