@@ -249,7 +249,7 @@ width: 142px;
 height: 55px !important;
 flex-shrink: 0;
 border-radius: 20px;
-background-color: #D9E0E9;
+background-color: #F8FAFC;
 text-transform: unset !important;
 color: #161D26 !important;
 letter-spacing: 0px;
@@ -341,7 +341,7 @@ box-shadow: none;
 background: #10192D !important; 
 }
 .nav-btn-light {
-background: #D9E0E9 !important; 
+background: #F8FAFC !important; 
 }
 .v-btn--size-default{
   min-width: 0px !important;

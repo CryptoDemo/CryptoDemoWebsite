@@ -178,6 +178,7 @@ border: 0.5px solid #2f3946;
 .coin-bg1-light{
 border-radius: 15px !important;
 border: 1px solid #DBE8FF !important;
+background: #F8FAFC !important;
 color: #060A1D;
 width: 100%;
 margin-top: 10px;

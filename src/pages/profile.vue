@@ -28,7 +28,7 @@
                 </div>
               </v-col>
       
-              <v-col  class="">
+              <v-col class="flex-lg-and-up hidden-sm-and-down">
                 <div>
                   <Acct-level/>
                 </div>
@@ -43,7 +43,7 @@
               <v-container style="display: flex; flex-direction: column;">
                 <div style="display: flex; position: relative;">
                   <div  class="me-9">
-                    <div class="sd-nav1 position-relative" :class="isDark ? 'sd-nav1-dark':'sd-nav1-light'">
+                    <div class="sd-nav1 position-relative flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'sd-nav1-dark':'sd-nav1-light'">
                       <div style="border-bottom: 1px solid var(--border, #303A46); position: relative;top: 58px;"></div>
                         <div style="padding: 20px 24px;">
                           <span :class="isDark ? 'text-dark':'text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
@@ -71,9 +71,8 @@
                     </div>
                   </div>
              
-                <v-row style=" min-width: 90%; height: fit-content; margin-top: 1px; gap: 16px;">
-                    <v-col
-                        v-for="(variant, i) in profileCards" class="profile-cards" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :key="i" cols="3" style="display: flex;">
+                <v-row style="min-width: 90%; height: fit-content; margin-top: 1px; gap: 16px;">
+                    <v-col v-for="(variant, i) in profileCards" class="profile-cards" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :key="i" cols="3" style="display: flex;">
                         <v-card class="mx-auto"  variant="text">
                             <v-card-item>
                               <div style="display: flex;">
@@ -311,7 +310,7 @@ const PurchaseCrypto = ref(true);
 const profileCards = [
   {image:'/svg/call.svg', image1:'/svg/call-light.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number', status:'Verify now'},
   {image:'/svg/sms.svg', image1:'/svg/msg-light.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.',  status1:'Verified' },
-  {image:'/svg/login.svg', image1:'/svg/login-light.svg', Title: '2FA not enabled', textCaption: 'Enabling 2FA is a great way to secure',  status:'Verify now'}, 
+  {image:'/svg/login.svg', image1:'/svg/login-light.svg', Title: '2FA not enabled', textCaption: 'Enabling 2FA is a great way to secure your account',  status:'Verify now'}, 
   {image:'/svg/profile-circle.svg', image1:'/svg/profile-light.svg', Title:'I.D. not verified', textCaption: 'Take a minute to verify your phone I.D.',  status:'Verify now'}, 
   {image:'/svg/location.svg', image1:'/svg/location-light.svg', Title: 'Address not verified', textCaption:'Take a minute to verify your address',  status:'Verify now'},
 ];
@@ -362,7 +361,7 @@ flex-shrink: 0;
 }
 .profile-light{
 border-radius: 20px;
-background: #D9E0E9;
+background: #F8FAFC;
 height: 130px;
 flex-shrink: 0;
 }
@@ -376,6 +375,12 @@ flex-shrink: 0;
   font-style: normal; 
   font-weight: 600; 
   line-height: normal;
+}
+
+.v-card-item {
+padding: 0 !important;
+padding-top: 5px !important;
+padding-left: 5px !important;
 }
 .acct-level{
 height: 130px;
@@ -432,7 +437,7 @@ height: fit-content;
 }
 .profile-cards-light{
 border-radius: 24px;
-background:#D9E0E9!important;
+background:#F8FAFC!important;
 height: fit-content;
 }
 .card-text{

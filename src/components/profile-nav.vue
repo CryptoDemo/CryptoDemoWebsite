@@ -78,6 +78,6 @@ box-shadow: none !important;
 background: #10192D !important; 
 }
 .nav-btn-light {
-background: #D9E0E9 !important; 
+background: #F8FAFC !important; 
 }
 </style>
