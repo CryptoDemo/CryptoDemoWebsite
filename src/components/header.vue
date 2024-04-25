@@ -12,10 +12,11 @@
  
 
           <div v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'"  style="width: 380px; height: 58px ; flex-shrink: 0; border-radius: 20px; display: flex;position: absolute; right: 54%; margin-top: 25px">
-              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px; margin-right: 10px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px; margin-right: 10px;" v-if="theme.global.current.value.dark">
                 <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
+              <img src="/svg/search-dark.svg" class="ml-3 me-3" width="20" v-else/>
               <v-text-field clearable  hide-details placeholder="Search in dashboard..." variant="plain" style="width: fit-content;"> </v-text-field>
           </div>
 
@@ -25,16 +26,8 @@
             <v-btn class="me-4 mt-9 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none;">
               <img :src="flag" class="me-2" width="32" height="32" style="object-fit: cover;border-radius: 30px"/>
               <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{country}}</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                <g clip-path="url(#clip0_7328_44812)">
-                  <path d="M12.0007 13.7951L16.9507 8.74609L18.3647 10.1884L12.0007 16.6797L5.63672 10.1884L7.05072 8.74609L12.0007 13.7951Z" fill="white"/>
-                </g>
-                <defs>
-                  <clipPath id="clip0_7328_44812">
-                    <rect width="24" height="24.48" fill="white" transform="translate(0 0.359375)"/>
-                  </clipPath>
-                </defs>
-              </svg>
+              <img src="/svg/chevron-light.svg" v-if="theme.global.current.value.dark"/>
+              <img src="/svg/chevron-dark.svg" v-else/>
             </v-btn>
           </template>
 
@@ -175,8 +168,7 @@ height: 90px;
 border-bottom: 1px solid #E2E8F0;
 background: rgba(255, 255, 255, 0.60) !important;
 backdrop-filter: blur(50px);
-backdrop-filter: blur(20px);
-color: white!important;
+color: black!important;
 box-shadow: none!important;
 }
 .nav-title{
@@ -245,8 +237,8 @@ letter-spacing: 0px;
 margin-top: 28px !important;
 }
 .dropdown-btn1i-light{
-width: 142px;
-height: 55px !important;
+width: 135px;
+height: 50px !important;
 flex-shrink: 0;
 border-radius: 20px;
 background-color: #F8FAFC;

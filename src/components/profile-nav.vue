@@ -57,7 +57,7 @@ justify-content: flex-start !important;
 align-items: center;
 flex-shrink: 0;
 border-radius: 16px !important;
-background: var(--BUTTON-SECONDARY-DEFAULT, #0F141A) !important;
+background: #0F141A !important;
 letter-spacing: 0px !important;
 text-transform: unset !important;
 color: var(--Gray-Medium-light, #969696) !important;
