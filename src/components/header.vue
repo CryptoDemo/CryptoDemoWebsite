@@ -343,6 +343,9 @@ background: #10192D !important;
 .nav-btn-light {
 background: #D9E0E9 !important; 
 }
+.v-btn--size-default{
+  min-width: 0px !important;
+}
 .country-name{
 font-family: Poppins;
 font-size: 14px;
