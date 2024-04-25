@@ -27,7 +27,7 @@
           </v-btn>
         </template>
   
-        <v-list style="border-radius: 24px; border: 1px solid #303A46; background: #12181F; width: 231px; padding: 22px; position: relative; margin-left: 170px;">
+        <v-list :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 24px; border: 1px solid #303A46; width: 231px; padding: 22px; position: relative; margin-left: 170px;">
           <div class="d-flex">
             <div  class="me-5" style="position: relative; padding-top: 22px;">
             <img src="/svg/bluelevel-star.svg" class="position-absolute" style="top: 0; left: -10px;"/>
@@ -164,4 +164,24 @@ const isDark = computed(() =>  theme.global.current.value.dark);
   font-weight: 400;
   line-height: normal;
   }
+
+  .coin-bg1 {
+border-radius: 15px !important;
+background: #1B2537 !important;
+width: 100%;
+display: flex;
+margin: auto;
+justify-content: center;
+margin-top: 10px;
+border: 0.5px solid #2f3946;
+}
+.coin-bg1-light{
+border-radius: 15px !important;
+border: 1px solid #DBE8FF !important;
+color: #060A1D;
+width: 100%;
+margin-top: 10px;
+border: 0.5px solid #2f3946;
+box-shadow: none !important;
+}
   </style>
