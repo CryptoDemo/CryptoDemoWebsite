@@ -78,7 +78,8 @@
                             <v-card-item>
                               <div style="display: flex;">
                                 <div>
-                                <img :src="variant.image" class="me-3 mt-1"/>
+                                <img :src="variant.image" class="me-3 mt-1" v-if="theme.global.current.value.dark"/>
+                                <img :src="variant.image1" class="me-3 mt-1" v-else/>
                                 </div>
                                 <div class="d-flex" style="flex-direction: column;">
                                   <span class="card-text">{{ variant.Title }}</span>
@@ -122,25 +123,29 @@
                                 <div style="display: grid; cursor: pointer;">
                                 <span class="slt">{{select}}</span> 
                                 </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;" v-if="theme.global.current.value.dark">
                                     <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" fill="#E0E4F5"/>
+                                </svg>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;" v-else>
+                                  <path d="M5.61594 5.99999C5.75481 6.00001 5.89231 5.973 6.02062 5.92049C6.14892 5.86799 6.26551 5.79102 6.36372 5.69399L10.3099 1.794C10.5081 1.59813 10.6195 1.33249 10.6195 1.0555C10.6195 0.77851 10.5081 0.512869 10.3099 0.317007C10.1118 0.121144 9.84296 0.0110984 9.56269 0.0110984C9.28242 0.0110984 9.01363 0.121144 8.81544 0.317007L5.61394 2.717L2.41243 0.317007C2.21425 0.121144 1.94546 0.0110984 1.66518 0.0110984C1.38491 0.0110984 1.11609 0.121144 0.917902 0.317007C0.719718 0.512869 0.608398 0.77851 0.608398 1.0555C0.608398 1.33249 0.719718 1.59813 0.917902 1.794L4.86415 5.69399C4.9628 5.79155 5.08004 5.86882 5.20908 5.92135C5.33812 5.97387 5.47639 6.00059 5.61594 5.99999Z" fill="#101632"/>
                                 </svg>
                               </v-btn>
                             </template>
 
                           <v-list :class="isDark ? 'coin-bg1':'coin-bg1-light'">
-                            <v-list-item>
+                            <v-list-item style="width: 100%;">
                               <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-2">
                                 <v-list-item-title style="width: 100%;">  
-                                <v-list-item @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center;">
-                                <div style="display: flex;">
-                                  <img  width="25" class="rounded-5 me-3 ml-3" :src="item.icon"/>  
-                                  <div  style="display: flex; flex-direction: column;">
-                                    <span style="font-family: Manrope;font-size: 14px; font-style: normal; font-weight: 700; line-height: 140%;"> {{ item.name }} </span>
-                                    <span class="small-text">{{ item.symbol }}</span>
-                                  </div>
-                                </div> 
-                                </v-list-item>
+                                  <v-list-item @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center;">
+                                    <div style="display: flex;">
+                                      <img  width="25" class="rounded-5 me-3" :src="item.icon"/>  
+                                        <div  style="display: flex; flex-direction: column;">
+                                          <span style="font-family: Manrope;font-size: 14px; font-style: normal; font-weight: 700; line-height: 140%;"> {{ item.name }} </span>
+                                          <span class="small-text">{{ item.symbol }}</span>
+                                        </div>
+                                    </div> 
+                                  </v-list-item>
                                 </v-list-item-title>
                               </div>
                             </v-list-item>
@@ -304,11 +309,11 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const PurchaseCrypto = ref(true);
 
 const profileCards = [
-  {image:'/svg/call.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number', status:'Verify now'},
-  {image:'/svg/sms.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.',  status1:'Verified' },
-  {image:'/svg/login.svg', Title: '2FA not enabled', textCaption: 'Enabling 2FA is a great way to secure',  status:'Verify now'}, 
-  {image:'/svg/profile-circle.svg', Title:'I.D. not verified', textCaption: 'Take a minute to verify your phone I.D.',  status:'Verify now'}, 
-  {image:'/svg/location.svg', Title: 'Address not verified', textCaption:'Take a minute to verify your address',  status:'Verify now'},
+  {image:'/svg/call.svg', image1:'/svg/call-light.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number', status:'Verify now'},
+  {image:'/svg/sms.svg', image1:'/svg/msg-light.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.',  status1:'Verified' },
+  {image:'/svg/login.svg', image1:'/svg/login-light.svg', Title: '2FA not enabled', textCaption: 'Enabling 2FA is a great way to secure',  status:'Verify now'}, 
+  {image:'/svg/profile-circle.svg', image1:'/svg/profile-light.svg', Title:'I.D. not verified', textCaption: 'Take a minute to verify your phone I.D.',  status:'Verify now'}, 
+  {image:'/svg/location.svg', image1:'/svg/location-light.svg', Title: 'Address not verified', textCaption:'Take a minute to verify your address',  status:'Verify now'},
 ];
 
 const select =ref("All Cryptocurrency")

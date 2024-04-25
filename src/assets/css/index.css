@@ -154,6 +154,7 @@ font-family: Poppins;
 } 
 .toggle-btn-light{
   background: #D9E0E9 !important;
+  color: var(--Gray-Medium-dark, #646464) !important;
 } 
 .v-input--density-default .v-field--no-label {
  --v-field-padding-bottom: 5px!important; 
