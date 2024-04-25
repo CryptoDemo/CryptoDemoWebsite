@@ -310,7 +310,7 @@ const PurchaseCrypto = ref(true);
 const profileCards = [
   {image:'/svg/call.svg', image1:'/svg/call-light.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number', status:'Verify now'},
   {image:'/svg/sms.svg', image1:'/svg/msg-light.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.',  status1:'Verified' },
-  {image:'/svg/login.svg', image1:'/svg/login-light.svg', Title: '2FA not enabled', textCaption: 'Enabling 2FA is a great way to secure your account',  status:'Verify now'}, 
+  {image:'/svg/login.svg', image1:'/svg/login-light.svg', Title: '2FA not enabled', textCaption: 'Enabling 2FA is a great way to secure your',  status:'Verify now'}, 
   {image:'/svg/profile-circle.svg', image1:'/svg/profile-light.svg', Title:'I.D. not verified', textCaption: 'Take a minute to verify your phone I.D.',  status:'Verify now'}, 
   {image:'/svg/location.svg', image1:'/svg/location-light.svg', Title: 'Address not verified', textCaption:'Take a minute to verify your address',  status:'Verify now'},
 ];
@@ -361,7 +361,8 @@ flex-shrink: 0;
 }
 .profile-light{
 border-radius: 20px;
-background: #F8FAFC;
+background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 65.19%, #F8FAFC 100%) !important;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 height: 130px;
 flex-shrink: 0;
 }
@@ -434,11 +435,15 @@ height: fit-content;
 border-radius: 24px;
 background:  #10192D!important;
 height: fit-content;
+/* border: 0.5px solid #2f3946; */
 }
 .profile-cards-light{
 border-radius: 24px;
-background:#F8FAFC!important;
+background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 65.19%, #F8FAFC 100%) !important;
+/* border: 1px solid #DBE8FF; */
+/* background:#fff!important; */
 height: fit-content;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 .card-text{
 color: var(--Warm-Red, #E33E38);

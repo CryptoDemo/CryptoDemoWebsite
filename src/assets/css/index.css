@@ -131,9 +131,12 @@ font-family: Poppins;
 }
 .sd-nav1-dark{
   background: #10192D;
+  /* border: 0.5px solid #2f3946; */
 } 
 .sd-nav1-light{
-  background: #F8FAFC !important;
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 65.19%, #F8FAFC 100%) !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+  /* border: 1px solid #DBE8FF; */
 } 
 .text-dark{
   color: #FFF !important;
@@ -146,7 +149,7 @@ font-family: Poppins;
   color:#D8D8D8 !important;
 } 
 .card-text-light{
-  color: #646464 !important;
+  color: #10192D !important;
 } 
 
 .toggle-btn-dark{

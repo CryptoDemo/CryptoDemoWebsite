@@ -26,7 +26,7 @@
         </div>
 
           <div style="margin-top:65px;">
-            <Button buttonText="Request New Password" @click="continueToSetPassword()"/>
+            <Button buttonText="Request New Password" :loading ="!loading" @click="continueToSetPassword()"/>
           </div>
          <div class="d-flex" style="margin-top:43px; margin-bottom: 137px">
           <img src="/svg/arrow-left.svg" class="me-3" />
@@ -56,6 +56,7 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const otp = ref ('');
 const pinia = useStore();
+const loading= ref(false);
 const router = useRouter();
 const OtpCountdown = ref(60);
 const timerFinished = ref(true);
