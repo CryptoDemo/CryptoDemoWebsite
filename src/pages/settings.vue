@@ -96,7 +96,7 @@
                             </v-icon>
 
                           </v-text-field>
-                          <span class="number-caption">This username is auto-generated and can be changed only once.</span>
+                          <span class="number-caption" :class="isDark ? 'text-dark':'text-light'">This username is auto-generated and can be changed only once.</span>
                         </div>
 
 
