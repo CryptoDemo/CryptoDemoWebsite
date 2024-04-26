@@ -7,8 +7,8 @@
         <div style="position: relative"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
         
         <div style="display: flex;margin-inline-start: auto;">
-          <span class="flex-lg-and-up hidden-sm-and-down mt-4" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
-          <NuxtLink :to="props.link" class="mt-4 d-flex text2" style="align-self: center"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
+          <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
+          <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
  
 
           <div v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'"  style="width: 380px; height: 58px ; flex-shrink: 0; border-radius: 20px; display: flex;position: absolute; right: 54%; margin-top: 25px">
