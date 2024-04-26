@@ -469,7 +469,7 @@ box-shadow: none !important;
   color: #8E9BAE !important;
 }
 .active-offers-light{
-  background: var(--secondary-background, #D9E0E9);
+  background: var(--secondary-background, #F8FAFC);
   color: #646464 !important;
 }
 .offers-text{
