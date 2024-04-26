@@ -1,170 +1,91 @@
 <template>
-  <div>
-    <!-- <div style="margin-bottom: 13px!important">
-      <span class="pswrd-mgt" style="font-weight: 700;">Active sessions</span>
-    </div> -->
-       <!-- <v-table style="display: grid! important; margin-bottom: 32px">
-        <thead>
-          <tr style="border-radius: 24px !important; height: 74px;  background: var(--secondary-background, #12181F); display: flex; justify-content: space-between  ">
-          
+  <div class="ml-2">
+    <div style="margin-bottom: 13px!important; margin-top:48px">
+        <span class="pswrd-mgt" :class="isDark ? 'card-text-dark':'card-text-light'" style="font-weight: 700;">Activity</span>
+      </div>
+        <v-table  class="mt-5" style="display: grid! important; margin-bottom: 32px" >
+          <thead>
+            <tr :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px !important; height: 74px;  display: flex; justify-content: space-between ">
+            
 
-            <th style="display: flex; align-items: center; align-self: center;">
-              <div class="d-flex">
-                  <span>S.N.</span>
+              <th style="display: flex; align-items: center; align-self: center;">
+                <div class="d-inline-flex">
+                    <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">S.N.</span>
+                    <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
+                </div>
+              </th>
+
+            <th style="display: flex; align-items: center; align-self: center; position: relative; right: 36px ">
+                <div class="d-flex">
+                  <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Actions</span>
                   <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
-              </div>
-            </th>
+                </div>
+              </th>
 
-            <th style="display: flex; align-items: center; align-self: center; position: relative;right: 47px">
-              <div class="d-flex">
-                <span>Signed in</span>
+                <th style="display: flex; align-items: center; align-self: center; position: relative; right: 15px;">
+                <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Browser</span>
                 <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
-              </div>
-            </th>
+              </th>
 
-             <th style="display: flex; align-items: center; align-self: center; position: relative;right: 51px">
-              <span >Browser</span>
-              <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
-            </th>
+              <th style="display: flex; align-items: center; align-self: center; position: relative;right: -10px">
+                <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">IP Address</span>
+                <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
+              </th>
 
-             <th style="display: flex; align-items: center; align-self: center; position: relative;right: 35px">
-              <span>IP Address</span>
-              <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
-            </th>
+              <th style="display: flex; align-items: center; align-self: center; position: relative;right: 0px"> 
+                <span class="activity-header" :class="isDark ? 'text-dark':'text-light'"> Location</span>
+                  <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon> 
+              </th>
 
-            <th style="display: flex; align-items: center; align-self: center; position: relative;right: 61px">
-              <span> Location</span>
-                <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon> 
-            </th>
-
-            <th style="display: flex; align-items: center; align-self: center; position: relative;right: 72px">
-              <span>Status</span>
-              <v-icon size="large"  color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
-            </th>
-            <th class=""> 
+              <th style="display: flex; align-items: center; align-self: center; position: relative;right: 0px">
+                <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Signed In</span>
+                <v-icon size="large"  color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
+              </th>
               
-            </th>
-          </tr>
-        </thead>
-      
-    <tbody>
-      <tr v-for="item in UserActivity" :key="item.name" style="display: flex; border-bottom: 1px solid #242D39 !important; justify-content: space-between; align-items: baseline; margin-top: 10px">
-  
-        <td><span class="browser-txt" style="margin-left: 10px" >{{item.serialNumber}}</span></td>
-        <td><span class="browser-txt" style="margin-left: 4px ">{{item.SignedIn}}</span></td>
-        <td><span class="browser-txt">{{item.Browser}}</span></td>
-        <td><span class="browser-txt">{{item.IPAddress}}</span></td>
-        <td><span class="browser-txt">{{item.Location}}</span></td>
-        <td><v-btn class="actv-btn"  style="width: 70px; height: 40px">{{item.Status}}</v-btn></td>
-        <td><v-btn class="delete-btn position-relative" style="width: 96px; height: 40px; box-shadow: none;">
-          <img src="/svg/close-circle.svg" style="margin-right: 3px !important"/>
-          {{item.Delete}} 
-          </v-btn>
-         </td>
+            </tr>
+          </thead>
         
-      
+            <tbody>
+              <tr v-for="item in secondTable" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5);justify-content: space-between; align-items: baseline; margin-top: 10px">
+          
+                <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'"  style="margin-left: 10px">{{item.serialNumber}}</span></td>
+                <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Actions}}</span></td>
+                <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Browser}}</span></td>
+                <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.IPAddress}}</span></td>
+                <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Location}}</span></td>
+                <td><v-btn class="" style="width: 91px; height: 40px; border-radius: 12px; background: var(--Primary-60, #89B2FF);color: #165CDD; font-weight: 700; font-family: manrope;font-size: 12px; text-transform: unset; box-shadow: none !important;" >{{item.SignedIn}}</v-btn></td>
+              
               </tr>
             </tbody>
-      </v-table> -->
-
-
-              <!-- <div class="mt-5">
-                  <v-btn class="primary-btn1" width="152px">End all sessions</v-btn>
-              </div> -->
-
-            <div style="margin-bottom: 13px!important; margin-top:48px">
-                <span class="pswrd-mgt" :class="isDark ? 'card-text-dark':'card-text-light'" style="font-weight: 700;">Activity</span>
-             </div>
-              <v-table  class="mt-5" style="display: grid! important; margin-bottom: 32px" >
-                <thead>
-                  <tr :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px !important; height: 74px;  display: flex; justify-content: space-between ">
-                  
-
-                    <th style="display: flex; align-items: center; align-self: center;">
-                      <div class="d-inline-flex">
-                          <span>S.N.</span>
-                          <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
-                      </div>
-                    </th>
-
-                  <th style="display: flex; align-items: center; align-self: center; position: relative; right: 36px ">
-                      <div class="d-flex">
-                        <span>Actions</span>
-                        <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
-                      </div>
-                    </th>
-
-                      <th style="display: flex; align-items: center; align-self: center; position: relative; right: 15px;">
-                      <span style="">Browser</span>
-                      <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
-                    </th>
-
-                    <th style="display: flex; align-items: center; align-self: center; position: relative;right: -10px">
-                      <span>IP Address</span>
-                      <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
-                    </th>
-
-                    <th style="display: flex; align-items: center; align-self: center; position: relative;right: 0px"> 
-                      <span> Location</span>
-                        <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon> 
-                    </th>
-
-                    <th style="display: flex; align-items: center; align-self: center; position: relative;right: 0px">
-                      <span>Signed In</span>
-                      <v-icon size="large"  color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
-                    </th>
-                    
-                  </tr>
-                </thead>
-              
-                  <tbody>
-                    <tr v-for="item in secondTable" :key="item.name" style="display: flex; border-bottom: 1px solid #242D39 !important; justify-content: space-between; align-items: baseline; margin-top: 10px">
-                
-                      <td><span class="browser-txt"  style="margin-left: 10px">{{item.serialNumber}}</span></td>
-                      <td><span class="browser-txt">{{item.Actions}}</span></td>
-                      <td><span class="browser-txt">{{item.Browser}}</span></td>
-                      <td><span class="browser-txt">{{item.IPAddress}}</span></td>
-                      <td><span class="browser-txt">{{item.Location}}</span></td>
-                      <td><v-btn class="" style="width: 91px; height: 40px; border-radius: 12px; background: var(--Primary-60, #89B2FF);color: #165CDD; font-weight: 700; font-family: manrope;font-size: 12px; text-transform: unset" >{{item.SignedIn}}</v-btn></td>
-                    <!-- <td></td> -->
-                      
-                    
-                    </tr>
-                  </tbody>
-              </v-table>
-              <v-btn class="primary-btn1" width="152px"> Clear sessions</v-btn>
-
-
+        </v-table>
+        <v-btn class="primary-btn1" width="152px"> Clear sessions</v-btn>
 
         <div style="margin-top: 188px; margin-bottom: 115px">
+          <v-dialog width="647px">
+            <template v-slot:activator="{ props }"><v-btn v-bind="props" width="152px" class="primary-btn1" style="border-radius: 16px; box-shadow: none; background: var(--Warm-Red, #E33E38) !important;"> Delete Account</v-btn></template>
+              <template v-slot:default="{ isActive }">
+                <v-card style="background: #12181F; border-radius: 32px; border: 1px solid var(--border, #303A46)!important;  padding: 40px ">
+                  <v-card-text>
+                    <div style="margin-bottom: 20px;">
+                      <img src="/svg/delete-icon.svg"/>
+                    </div>
+                    <span style="font-size: 20px;color: #D8D8D8; font-family: Manrope; font-weight: 600;line-height: normal;">Are you sure you want to delete your <br> account permanently?</span>
+                    <div style="margin-top: 20px">
+                        <span style="color:#969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Press “Delete account” to remove it permanently, you’ll receive a confirmation link via email and a moderator will process your request or “Cancel” if you want to keep your benefits. </span>
+                    </div>
+                  </v-card-text>
 
-            <v-dialog width="647px">
-                <template v-slot:activator="{ props }"><v-btn v-bind="props" width="152px" class="primary-btn1" style="border-radius: 16px; box-shadow: none; background: var(--Warm-Red, #E33E38) !important;"> Delete Account</v-btn></template>
-
-                    <template v-slot:default="{ isActive }">
-                          <v-card style="background: var(--secondary-background, #12181F);border-radius: 32px; border: 1px solid var(--border, #303A46)!important;  padding: 40px ">
-                            <v-card-text>
-                              <div style="margin-bottom: 20px;">
-                               <img src="/svg/delete-icon.svg"/>
-                              </div>
-                            <span style="font-size: 20px;color: #D8D8D8; font-family: Manrope; font-weight: 600;line-height: normal;">Are you sure you want to delete your <br> account permanently?</span>
-                            <div style="margin-top: 20px">
-                                <span style="color:#969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Press “Delete account” to remove it permanently, you’ll receive a confirmation link via email and a moderator will process your request or “Cancel” if you want to keep your benefits. </span>
-                            </div>
-                            </v-card-text>
-
-                            <v-card-actions style="justify-content: space-around; margin-top: 35px;">
-                              <!-- <v-spacer></v-spacer> -->
-                                <v-btn style="border-radius: 16px; border: 1px solid var(--border, #303A46); background: #E2E8F0; display: flex;width: 230px; height: 63px; color: var(--Gray-Dark, #323232);text-align: center; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; text-transform: unset; letter-spacing: 0px">
-                                      Delete account
-                                </v-btn>
-                              <v-btn class="primarybtn" style="display: flex; width: 230px; height: 64px; font-weight: 600;"
-                                text="Cancel"
-                                @click="isActive.value = false"
-                              ></v-btn>
-                            </v-card-actions>
-                          </v-card>
-                    </template>
+                  <v-card-actions style="justify-content: space-around; margin-top: 35px;">
+                      <v-btn style="border-radius: 16px; border: 1px solid var(--border, #303A46); background: #E2E8F0; display: flex;width: 230px; height: 63px; color: var(--Gray-Dark, #323232);text-align: center; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; text-transform: unset; letter-spacing: 0px">
+                            Delete account
+                      </v-btn>
+                    <v-btn class="primarybtn" style="display: flex; width: 230px; height: 64px; font-weight: 600;"
+                      text="Cancel"
+                      @click="isActive.value = false"
+                    ></v-btn>
+                  </v-card-actions>
+                </v-card>
+              </template>
             </v-dialog>
         
         </div>
@@ -208,8 +129,6 @@ const  UserActivity = [
             Status: "Active",
             Delete: "Delete",
           },
-       
-        
         ];
       
 // const notification = ref (true)
@@ -295,7 +214,6 @@ line-height: 24px !important; /* 200% */
 }
 
 .browser-txt{
-color: var(--Colors-Base-white, #FFF);
 font-feature-settings: 'clig' off, 'liga' off;
 font-family: Manrope;
 font-size: 14px;
@@ -331,6 +249,13 @@ height: fit-content;
 .profile-cards-light{
 background: #F8FAFC!important;
 height: fit-content;
+}
 
+.activity-header{
+font-family: Manrope;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 160%;
 }
 </style>

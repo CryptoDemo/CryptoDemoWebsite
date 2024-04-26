@@ -1,49 +1,35 @@
 <template>
-  <div style=" border: 1px solid var(--border, #303A46);  border-radius: 24px !important;">
-       <v-table style=" padding-left: 50px !important;  padding-top: 50px; padding-bottom: 20px;">
+  <div style=" border: 1px solid rgba(142,155,174,.5);  border-radius: 24px !important;">
+       <v-table style=" padding-left: 50px !important;  margin-top: -25px; padding-bottom: 20px;">
+        <!-- <h3 :class="isDark ? 'card-text-dark':'card-text-light'" class="notify-me">Notification Settings</h3> -->
           <thead>
-            <tr style="padding-top: 68px">
+            <tr>
               <th class="text-left"></th>
-              <!-- <th class="text-left">
-                <div style="display: grid; margin-left: 8px;">
-                    <img src="/svg/global.svg" style="position: relative; left: 5px "/>
-                    <span>Web</span>
-                </div>
-              </th> -->
-              <!-- <th class="text-left">
-                <div style="display: grid; margin-left: 10px;">
-                  <img src="/svg/mobile.svg"/>
-                  <span>APP</span>
-                </div>
-              </th>     -->
             </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="item in infos"
-              :key="item.name">
-              <td>{{ item.name }}</td>
-              <td><v-switch @click="toggle_notification(item.value,item.status)"    inset color="#2873FF"></v-switch></td>
+            <tr v-for="item in NotificationInfo" :key="item.name">
+              <td class="notification-text" :class="isDark ? 'text-dark':'text-light'">{{ item.name }}</td>
+              <td><v-switch @click="toggle_notification(item.value,item.status)" inset color="#2873FF" style="display: flex; justify-content: center;"></v-switch></td>
             </tr>
           </tbody>
         </v-table>
-      
-     
-
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useTheme } from 'vuetify';
 
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
 
-const isToggled = ref(false)
 
 const status = ref(null);
-status.value = pinia.state.user?.settings.notifications;
+// status.value = pinia.state.user?.settings.notifications;
 
-const  infos = [
+const  NotificationInfo = [
       {
         name: 'Transactions',
         value: "notify_me_on_transactions",
@@ -182,14 +168,14 @@ const  infos = [
 
 <style>
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
-    border: none !important;
-    color: var(--Gray-Medium-light, #969696);
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Poppins;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 160%;
+  border: none !important;
+  color: var(--Gray-Medium-light, #969696);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
 }
 
 .v-table {
@@ -202,13 +188,13 @@ const  infos = [
  color: var(--Gray-Medium-light, #969696) !important;
 }
 .v-table {
-    --v-table-header-height: 56px;
-    border-radius: inherit;
-    line-height: 1.5;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    color: var(--Gray-Medium-light, #969696) !important;
+  --v-table-header-height: 56px;
+  border-radius: inherit;
+  line-height: 1.5;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--Gray-Medium-light, #969696) !important;
 }
 .header{
 color: var(--Gray-Medium-light, #969696);
@@ -219,28 +205,28 @@ font-style: normal;
 font-weight: 400;
 line-height: 160%; /* 22.4px */
 }
-
-
-.time-box{
-width: 48px !important;
-height: 40px !important;
-border-radius: 12px;
-background: var(--secondary-background, #12181F);
-display: flex;
-justify-content: center;
-text-align: center;
-}
-
 .v-switch--inset .v-switch__track {
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    height: 32px;
-    min-width: 52px;
-    background: #12181F;
+border-radius: 9999px;
+font-size: 0.75rem;
+height: 32px;
+min-width: 52px;
+background: #10192D;
+opacity: 1;
 }
-.mdi-checkbox-blank-outline::before {
-    content: "\F0131";
-    background: white !important;
-    border-radius: 8px;
+.notification-text{
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 160%; /* 22.4px */
 }
+.notify-me{
+font-family: Manrope;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: 28px; 
+}
+
 </style>

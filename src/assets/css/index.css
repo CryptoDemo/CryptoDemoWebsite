@@ -143,18 +143,38 @@ font-family: Poppins;
 .text-light{
   color: #646464 !important;
 } 
-
+.country-dropdown1{
+  border-radius: 15px;
+  border: 0.5px solid #2f3946;
+  background: #1B2537 !important;
+  backdrop-filter: blur(50px) !important;
+  height: 320px !important;
+  border-radius: 20px !important;
+  color: white;
+  margin-top: 15px;
+  box-shadow: none  !important;
+  height: 320px !important;
+  }
+  .country-dropdown1-light{
+  border-radius: 15px;
+  background: #fff !important;
+  border-radius: 20px !important;
+  color: black;
+  margin-top: 15px;
+  box-shadow: none  !important;
+  height: 320px !important;
+  }
 .card-text-dark{
-background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%) !important;
+background-clip: text !important;
+-webkit-background-clip: text !important;
+-webkit-text-fill-color: transparent !important;
 } 
 .card-text-light{
-background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.50) 97.69%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.50) 97.69%)!important;
+background-clip: text !important;
+-webkit-background-clip: text !important;
+-webkit-text-fill-color: transparent !important;
 } 
 
 .toggle-btn-dark{

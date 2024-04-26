@@ -6,6 +6,7 @@
     <v-container class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
       <v-row no-gutters>
         <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
+          <v-form @click.prevent> 
           <div class="" style="margin-top:40px; margin-bottom:55.88px;">
           <span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Create Your Account</span>
             <div class="card-subtitle" :class="isDark ? 'card-subtitle':'card-subtitle-light'">Setting up an account takes less than 1 minute.</div>
@@ -103,9 +104,9 @@
               
                 <NuxtLink to="/authentication/sign-up-email-verification">  
                   <Button buttonText="Continue" :loading="loading"  @click.prevent="register()" class="mt-4"/>
-                </NuxtLink>
-              
-          </div>
+                </NuxtLink>   
+              </div>
+          </v-form>
         </v-col>
       
         <v-col md="7" class="flex-lg-and-up hidden-sm-and-down">
