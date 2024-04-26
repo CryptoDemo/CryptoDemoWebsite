@@ -118,9 +118,9 @@ const isFormValid = computed(() => validateEmail(email.value));
 
 const recoverPassword = async() => {
   loading.value = true;
-const accountrec = {
-  email: email.value,
-}
+  const accountrec = {
+    email: email.value,
+  }
 
 try {
   const data = await accountRecovery(accountrec);

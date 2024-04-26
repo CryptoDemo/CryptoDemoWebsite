@@ -10,8 +10,20 @@ export const register_ = async(registerInfo)=>{
     return data;
 };
 
-export const verifyOtp = async(Otpmsg)=>{
+export const Resend_Code = async(codeMsg)=>{
     const data = await fetch(`${baseURL}auth/resend-email-code`,{ 
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(codeMsg)
+
+    }).then(res => res.json());
+    return data;
+};
+
+export const VerifyOtp = async(Otpmsg)=>{
+    const data = await fetch(`${baseURL}auth/verify-account`,{ 
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',

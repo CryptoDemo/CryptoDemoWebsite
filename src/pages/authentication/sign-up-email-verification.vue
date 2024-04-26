@@ -25,7 +25,7 @@
             </div>
           </div>
           <div style="margin-top:89px;">
-            <NuxtLink to="/authentication/login">  <Button buttonText="Continue"/></NuxtLink>
+            <Button buttonText="Continue" :loading="loading" @click.prevent="VerifyEmail()"/>
           </div>
              
         </div>
@@ -43,12 +43,14 @@
 </div>   
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-import { verifyOtp } from "@/composables/requests/auth";
+import { Resend_Code, VerifyOtp } from "@/composables/requests/auth";
+import { push } from 'notivue';
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
+const loading = ref(false);
 const otp = ref ('');
 const pinia = useStore();
 const timerFinished = ref(true);
@@ -63,28 +65,46 @@ const decreaseTimer = () => {
 };
 onMounted(() => {
   const intervalId = setInterval(decreaseTimer, 1000);
-
   return () => clearInterval(intervalId);
 });
+
+const VerifyEmail = async () => {
+  loading.value = true;
+  const Otpmsg = {
+  email: pinia.state.email,
+  code: otp.value
+  };
+  console.log('Otpmsg:', Otpmsg); 
+try {
+  const data = await VerifyOtp(Otpmsg);
+  if (data.success) {
+    navigateTo('/authentication/login')
+  } else {
+    loading.value = false 
+    push.error(data.message, { timeout: 90000 })
+  }
+}catch(e){
+  console.log(e)
+  push.error(`${e}`)
+  loading.value = false;
+}
+};
 
 const resendCode = async() => {
   OtpCountdown.value = 60
   timerFinished.value = false;
-  const Otpmsg = {
+  const codeMsg = {
    email: pinia.state.email,
-   code: pinia.state.code
   }
 
 try {
-  const data = await verifyOtp(Otpmsg);
+  const data = await Resend_Code(codeMsg);
   if (data.success) {
-    // navigateTo('/authentication/login')
   } else{
-  
-    console.error('failed to send OTP');
+    push.error(data.message, { timeout: 90000 })
   }
 } catch(e){
-  console.log(e)
+  push.error(`${e}`)
 };
  
 };

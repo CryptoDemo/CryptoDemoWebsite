@@ -75,50 +75,45 @@ onMounted(() => {
 });
 
 
-const continueToSetPassword = async()=>{
-  loading.value = true 
-  const Otpmsg = {
-   email: pinia.state.email,
-   code: pinia.state.code
-  }
-  try {
-  const data = await verifyOtp(Otpmsg);
-  if (data.success) {
-    router.push(`/authentication/create-new-password?code=${otp.value}`);
-  } else{
-    push.error(data.message, { timeout: 90000000 })
-  }
-}catch(e){
-  console.log(e)
-  push.error(`${e}`)
-}
+// const continueToSetPassword = async()=>{
+//   loading.value = true 
+//   const Otpmsg = {
+//    email: pinia.state.email,
+//    code: otp.value
+//   }
+//   try {
+//   const data = await verifyOtp(Otpmsg);
+//   if (data.success) {
+//     router.push(`/authentication/create-new-password?code=${otp.value}`);
+//   } else{
+//     push.error(data.message, { timeout: 90000000 })
+//   }
+// }catch(e){
+//   console.log(e)
+//   push.error(`${e}`)
+// }
  
-};
+// };
   
 
-const resendCode = async() => {
-  OtpCountdown.value = 60
-  timerFinished.value = false;
-  const Otpmsg = {
-    email: pinia.state.email
-  }
+// const resendCode = async() => {
+//   OtpCountdown.value = 60
+//   timerFinished.value = false;
+//   const Otpmsg = {
+//     email: pinia.state.email
+//   }
 
-try {
-  const data = await verifyOtp(Otpmsg);
-  if (data.success) {
-    // navigateTo('/authentication/login')
-  } else{
-    
-    // OtpCountdown.value = 60
-    console.error('failed to send OTP');
-  }
-  // isloading.value = false 
-} catch(e){
-  console.log(e)
-  isloading.value = false 
-};
- 
-}
+// try {
+//   const data = await verifyOtp(Otpmsg);
+//   if (data.success) {
+//   } else{
+//     loading.value = false 
+//     console.error('failed to send OTP');
+//   }
+// } catch(e){
+//   console.log(e)
+// };
+// }
 
 </script>
 <style scoped>

@@ -174,6 +174,7 @@ const pinia = useStore();
 console.log(device)
 
 const register = async () => {
+loading.value = true 
 const registerInfo = {
 name: name.value,
 email: email.value,
@@ -186,11 +187,11 @@ device_info: JSON.stringify(device)
 try {
   const data = await register_(registerInfo);
   if (data.success) {
-    // loading.value = true;
     pinia.setEmail(email.value)
     navigateTo('/authentication/sign-up-email-verification')
   } else{
-    push.error(data.message, { timeout: 90000000 })
+    loading.value = false 
+    push.error(data.message, { timeout: 90000 })
   }
 }catch(e){
   console.log(e)

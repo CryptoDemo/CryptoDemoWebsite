@@ -88,7 +88,7 @@
               </div>
               </div>
               <NuxtLink to="/authentication/reset-password"><span class="resend-code d-flex" style="margin-top:21px; justify-content: end;">Forgot Password?</span></NuxtLink>
-              <Button :disabled="!isFormValid" @click.prevent="isFormValid ? login() : null" buttonText="Continue" class="" style="margin-top: 47px; margin-bottom:206px"/>
+              <Button :disabled="!isFormValid" :loading="loading" @click.prevent="isFormValid ? login() : null" buttonText="Continue" class="" style="margin-top: 47px; margin-bottom:206px"/>
               
           </div>
         </v-col>
@@ -121,9 +121,10 @@ const alert = ref(false);
 const isFormValid = computed(() => password.value.length && validateEmail(email.value));
 const device = useDevice();
 const pinia = useStore();
-
+const loading= ref(false);
 
 const login = async () => {
+  loading.value = true 
   const userLogin = {
     email: email.value,
     password: password.value,
@@ -137,11 +138,12 @@ const login = async () => {
     pinia.setUser(data)
     navigateTo('/profile')
   } else{
-    push.error(data.message, { timeout: 90000000 })
+    loading.value = false 
+    push.error(data.message, { timeout: 2000 })
   }
 }catch(e){
   console.log(e)
-  push.error(`${e}`)
+  push.error(`${e}`);
 }
  
 };

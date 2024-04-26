@@ -126,13 +126,14 @@ const Passwordrules = [
     // pinia.setEmail(email.value)
     navigateTo('/authentication/login')
   } else{
-    
-    console.error('registration failed');
+    loading.value = false 
+    push.error(data.message, { timeout: 90000 })
   }
 }catch(e){
   console.log(e)
+  push.error(`${e}`)
 }
-    
+ 
 };
 watch(password, (newValue) => {
   isFormValid.value = Passwordrules.every(rule => rule(newValue) === true);
