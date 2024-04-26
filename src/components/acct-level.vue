@@ -41,11 +41,11 @@
   
           <div style="display: flex; flex-direction: column;">
             <div style="display: flex; flex-direction: column;">
-              <span class="lvl-1">Level 1</span>
-              <v-btn style="border-radius: 4px; border: 1px solid #303A46; background: #10192D; width: 130px;">
-                <img src="/svg/bluephone.svg" class="me-2"/>
-                <span class="phone-text1">Phone Verified</span>
-              </v-btn>
+              <span class="lvl-1" :class="isDark ? 'card-text-dark':'card-text-light'">Level 1</span>
+                <v-btn :class="isDark ? 'toggle-btn-dark':'toggle-btn-light'" style="border-radius: 4px; width: 130px; ">
+                  <img src="/svg/grad-msg.svg" class="me-2"/>
+                  <span class="phone-text1">Email Verified</span>
+                </v-btn>
   
               <div style="display: flex; align-items: center; margin-top: 12px; margin-bottom: 38px;">
                 <img src="/svg/bluecheck.svg" class="me-2"/>
@@ -55,14 +55,19 @@
             </div>
   
             <div style="display:flex;flex-direction: column; margin-top: 7px; margin-bottom: 29px;">
-              <span class="lvl-1">Level 2</span>
-              <v-btn style="border-radius: 4px; border: 1px solid #303A46; background: #10192D; width: 130px; ">
-                <img src="/svg/grad-msg.svg" class="me-2"/>
-                <span class="phone-text1">Email Verified</span>
+              <span class="lvl-1" :class="isDark ? 'card-text-dark':'card-text-light'">Level 2</span>
+
+              <v-btn :class="isDark ? 'toggle-btn-dark':'toggle-btn-light'" style="border-radius: 4px; width: 130px;">
+                <img src="/svg/bluephone.svg" class="me-2"/>
+                <span class="phone-text1">Phone Verified</span>
               </v-btn>
   
-              <v-btn style="border-radius: 4px; border: 1px solid #303A46; background: #12181F; margin-top: 9px; width: 130px;">
-                <img src="/svg/profile-circle.svg" class="me-2"/>
+              <v-btn :class="isDark ? 'unverified-dark':'unverified-light'" style="border-radius: 4px; margin-top: 9px; width: 130px;">
+                <img src="/svg/profile-circle.svg" class="me-2" v-if="theme.global.current.value.dark"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" class="me-2" v-else>
+                  <path d="M16.5 9C16.5 4.8675 13.1325 1.5 9 1.5C4.8675 1.5 1.5 4.8675 1.5 9C1.5 11.175 2.4375 13.1325 3.9225 14.505C3.9225 14.5125 3.9225 14.5125 3.915 14.52C3.99 14.595 4.08 14.655 4.155 14.7225C4.2 14.76 4.2375 14.7975 4.2825 14.8275C4.4175 14.94 4.5675 15.045 4.71 15.15C4.7625 15.1875 4.8075 15.2175 4.86 15.255C5.0025 15.3525 5.1525 15.4425 5.31 15.525C5.3625 15.555 5.4225 15.5925 5.475 15.6225C5.625 15.705 5.7825 15.78 5.9475 15.8475C6.0075 15.8775 6.0675 15.9075 6.1275 15.93C6.2925 15.9975 6.4575 16.0575 6.6225 16.11C6.6825 16.1325 6.7425 16.155 6.8025 16.17C6.9825 16.2225 7.1625 16.2675 7.3425 16.3125C7.395 16.3275 7.4475 16.3425 7.5075 16.35C7.7175 16.395 7.9275 16.425 8.145 16.4475C8.175 16.4475 8.205 16.455 8.235 16.4625C8.49 16.485 8.745 16.5 9 16.5C9.255 16.5 9.51 16.485 9.7575 16.4625C9.7875 16.4625 9.8175 16.455 9.8475 16.4475C10.065 16.425 10.275 16.395 10.485 16.35C10.5375 16.3425 10.59 16.32 10.65 16.3125C10.83 16.2675 11.0175 16.23 11.19 16.17C11.25 16.1475 11.31 16.125 11.37 16.11C11.535 16.05 11.7075 15.9975 11.865 15.93C11.925 15.9075 11.985 15.8775 12.045 15.8475C12.2025 15.78 12.36 15.705 12.5175 15.6225C12.5775 15.5925 12.63 15.555 12.6825 15.525C12.8325 15.435 12.9825 15.3525 13.1325 15.255C13.185 15.225 13.23 15.1875 13.2825 15.15C13.4325 15.045 13.575 14.94 13.71 14.8275C13.755 14.79 13.7925 14.7525 13.8375 14.7225C13.92 14.655 14.0025 14.5875 14.0775 14.52C14.0775 14.5125 14.0775 14.5125 14.07 14.505C15.5625 13.1325 16.5 11.175 16.5 9ZM12.705 12.7275C10.6725 11.3625 7.3425 11.3625 5.295 12.7275C4.965 12.945 4.695 13.2 4.47 13.4775C3.33 12.3225 2.625 10.74 2.625 9C2.625 5.4825 5.4825 2.625 9 2.625C12.5175 2.625 15.375 5.4825 15.375 9C15.375 10.74 14.67 12.3225 13.53 13.4775C13.3125 13.2 13.035 12.945 12.705 12.7275Z" fill="#8E9BAE"/>
+                  <path d="M9 5.19727C7.4475 5.19727 6.1875 6.45727 6.1875 8.00977C6.1875 9.53227 7.38 10.7698 8.9625 10.8148C8.985 10.8148 9.015 10.8148 9.03 10.8148C9.045 10.8148 9.0675 10.8148 9.0825 10.8148C9.09 10.8148 9.0975 10.8148 9.0975 10.8148C10.6125 10.7623 11.805 9.53227 11.8125 8.00977C11.8125 6.45727 10.5525 5.19727 9 5.19727Z" fill="#8E9BAE"/>
+                </svg>
                 <span class="phone-text1">ID Verification</span>
               </v-btn>
               <div>
@@ -72,14 +77,14 @@
               </div>
             </div>
   
-            <div style="margin-top: 10px;">
-              <span class="lvl-1">Level 3</span>
+            <!-- <div style="margin-top: 10px;">
+              <span class="lvl-1" :class="isDark ? 'text-dark':'text-light'">Level 3</span>
               <v-btn style="border-radius: 4px; border: 1px solid #303A46; background: #12181F; margin-top: 24px; width: 150px;">
                 <img src="/svg/location.svg" class="me-2"/>
                 <span class="phone-text1">Address Verification</span>
               </v-btn>
               <span class="menu-text mt-3">Unlimited trades and send outs</span>
-            </div>
+            </div> -->
           </div>
         </div>
   
@@ -95,9 +100,9 @@
     import { ref } from 'vue'
     import { useTheme } from 'vuetify';
 
-
-    const theme = useTheme()
-    const isDark = computed(() =>  theme.global.current.value.dark);
+  const theme = useTheme()
+  const isDark = computed(() =>  theme.global.current.value.dark);
+  
   </script>
   
   <style scoped>
@@ -121,9 +126,8 @@
   line-height: normal;
   text-align: left;
   }
-  
   .phone-text1{
-  color: var(--Gray-Medium-light, #969696);
+  /* color: var(--Gray-Medium-light, #969696); */
   font-family: Manrope;
   font-size: 10px !important;
   font-style: normal;
@@ -134,7 +138,7 @@
   }
   
   .lvl-1{
-  color: var(--Colors-Base-white, #FFF);
+  /* color: var(--Colors-Base-white, #FFF); */
   font-family: Manrope;
   font-size: 14px;
   font-style: normal;
@@ -164,8 +168,7 @@
   font-weight: 400;
   line-height: normal;
   }
-
-  .coin-bg1 {
+.coin-bg1 {
 border-radius: 15px !important;
 background: #1B2537 !important;
 width: 100%;
@@ -185,4 +188,27 @@ margin-top: 10px;
 border: 0.5px solid #2f3946;
 box-shadow: none !important;
 }
+
+.toggle-btn-dark{
+background: #303A46 !important;
+border: 1px solid #303A46;
+box-shadow: none;
+} 
+.toggle-btn-light{
+border-radius: 4px;
+border: 1px solid var(--Primary-60, #89B2FF);
+background: #D2DBEF;
+box-shadow: none;
+} 
+.unverified-dark{
+background: #12181F !important;
+border: 1px solid #303A46 !important;
+box-shadow: none;
+} 
+.unverified-light{
+border-radius: 4px;
+border: 1px solid var(--Gray-Light, #D8D8D8);
+background: #FFF;
+box-shadow: none;
+} 
   </style>
