@@ -11,10 +11,10 @@
                       <img src="/svg/Image (1).svg" class="me-3" alt="avatar" style="display: flex; align-self: flex-start;"/>
                         <div>
                           <v-chip class="profile-level" color="#FB774A" style="margin-bottom: 13.8px;">Unverified</v-chip>
-                          <span class="username" :class="isDark ? 'text-dark':'text-light'">UID : Ogadinma2024</span>
+                          <span class="username" :class="isDark ? 'card-text-dark':'card-text-light'">UID : Ogadinma2024</span>
                         </div>
                     </div>
-                    <span class="user-location" :class="isDark ? 'text-dark':'text-light'" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
+                    <span class="user-location" :class="isDark ? 'card-text-dark':'card-text-light'" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
                     
                       <div class="d-flex" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
                           <img src="/svg/heart-tick.svg" alt="icon">
@@ -46,7 +46,7 @@
                     <div class="sd-nav1 position-relative flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
                       <div style="border-bottom: 1px solid var(--border, #303A46); position: relative;top: 58px;"></div>
                         <div style="padding: 20px 24px;">
-                          <span :class="isDark ? 'text-dark':'text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
+                          <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
                           </div>
                           <div v-for="(item, i) in navigation" :key="i">
                             <div style="display: flex; justify-content: space-between;">
@@ -64,7 +64,7 @@
                           </div>
                           <div style="border-top: 1px solid var(--border, #303A46);">
                             <div style="padding: 20px 24px;">
-                            <span :class="isDark ? 'text-dark':'text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
+                            <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
                             </div>
                           </div>
                 
@@ -82,8 +82,8 @@
                                 </div>
                                 <div class="d-flex" style="flex-direction: column;">
                                   <span class="card-text">{{ variant.Title }}</span>
-                                  <span class="card-text" :class="isDark ? 'text-dark':'text-light'">{{ variant.Title1 }}</span>
-                                  <div :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; margin-top: 8px;">{{variant.textCaption}}</div>
+                                  <span class="card-text" :class="isDark ? 'card-text-dark':'card-text-light'">{{ variant.Title1 }}</span>
+                                  <div :class="isDark ? 'text-dark':'text-light'" style="font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; margin-top: 8px;">{{variant.textCaption}}</div>
                                 </div> 
                               </div>
                             </v-card-item>
@@ -174,7 +174,7 @@
                       
                       <div class="" style="display: flex; align-items: center;">
                           <img src="/svg/star.svg" class="me-2 mb-2"/>
-                          <span :class="isDark ? 'transfer-dark':'transfer-light'" style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
+                          <span :class="isDark ? 'text-dark':'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
                       </div>
 
                       <div style="margin-top: 32px; margin-block-start: auto;">
@@ -182,7 +182,7 @@
                               <span :class="isDark ? 'transfer-dark':'transfer-light'" style="font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">Limit 15,000 - 100,000 NGN</span>
                           </div>
                           <div style="display: grid">
-                              <span :class="isDark ? 'price-dark':'price-light'" class="mb-3" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal; text-align-last: right;">62,797,850.5 NGN</span>
+                              <span :class="isDark ? 'text-dark':'text-light'" class="mb-3" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal; text-align-last: right;">62,797,850.5 NGN</span>
                               <div class="d-flex mb-3" style="justify-content: end;">
                                   <img src="/svg/btc.svg" class="me-3" width="20px"/> 
                                   <span class="me-1" style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600; line-height: 150%;">BTC</span>
@@ -236,11 +236,11 @@
                     </div> 
 
                     <div style="margin-top: 35px">
-                        <span class="me-5" style="color: #969696; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
+                        <span :class="isDark ? 'card-text-dark':'card-text-light'" class="me-5" style="font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
                         <span class="me-5" style="color: #119254; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">NGN</span>
                         <span style="color: #FACC15; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Low Ammount</span>
                         <div>
-                            <span style="color: #D8D8D8; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">Very Fast</span>
+                            <span :class="isDark ? 'text-dark':'text-light'" style=";font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">Very Fast</span>
                         </div>
                     </div>
 
@@ -499,7 +499,7 @@ box-shadow: none !important;
   color: #969696;
 }
 .transfer-light{
-  color: #646464;
+  color: #10192D;
 }
 .price-dark{
   color: #fff;

@@ -138,17 +138,23 @@ font-family: Poppins;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px !important;
 } 
 .text-dark{
-  color: #FFF !important;
+  color: #8E9BAE !important;
 } 
 .text-light{
   color: #646464 !important;
 } 
 
 .card-text-dark{
-  color:#D8D8D8 !important;
+background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 } 
 .card-text-light{
-  color: #10192D !important;
+background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.50) 97.69%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 } 
 
 .toggle-btn-dark{
