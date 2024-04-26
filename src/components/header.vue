@@ -57,7 +57,7 @@
               <path d="M14.9899 3.9801C15.2499 4.2501 15.0199 4.6501 14.6399 4.6501H6.80994C5.71994 4.6501 4.69994 4.9701 3.84994 5.5201C3.45994 5.7701 2.92994 5.5001 3.11994 5.0701C3.67994 3.7601 4.98994 2.8501 6.49994 2.8501H12.1199C13.2799 2.8501 14.3099 3.2601 14.9899 3.9801Z" fill="#111111"/>
             </svg>
         </v-btn>
-        <span  class="nav-icon-text mb-3" style="margin-left: 3px; margin-top: -6px;">Wallet</span>     
+        <span  class="nav-icon-text mb-3"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: 3px; margin-top: -6px;">Wallet</span>     
       </div>
 
       <div v-if="icon2" style="display: flex; flex-direction: column; margin-top: 25px;">
@@ -77,7 +77,7 @@
             </svg>  
             <span style="position: absolute; background: #FF3E46; width: 18px; height: 18px;  border-radius: 6px; right: 9px; top: 8px; font-family: manrope;">8</span>
           </v-btn>
-          <span class="nav-icon-text mb-3" style="margin-right: 13px; margin-top: -8px;">Notification</span>     
+          <span class="nav-icon-text mb-3" :class="isDark ? 'text-dark':'text-light'" style="margin-right: 13px; margin-top: -8px;">Notification</span>     
       </div>
     </div>   
     </v-container>

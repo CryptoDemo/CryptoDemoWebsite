@@ -44,7 +44,7 @@
                 <div style="display: flex; position: relative;">
                   <div  class="me-9">
                     <div class="sd-nav1 position-relative flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-                      <div style="border-bottom: 1px solid var(--border, #303A46); position: relative;top: 58px;"></div>
+                      <div style="border-bottom: 1px solid var(--border, rgba(142,155,174,.5));  position: relative;top: 58px;"></div>
                         <div style="padding: 20px 24px;">
                           <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
                           </div>
@@ -62,7 +62,7 @@
                                 </v-btn>
                             </div>
                           </div>
-                          <div style="border-top: 1px solid var(--border, #303A46);">
+                          <div style="border-top:.5px solid rgba(142,155,174,.5);">
                             <div style="padding: 20px 24px;">
                             <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
                             </div>
@@ -154,7 +154,7 @@
                   </v-row>
                   </div>
 
-                <div style="height: 1px; background: #303A46; margin-top:16px"></div>
+                <div style="border-top: 0.5px solid rgba(142,155,174,.5); margin-top:16px"></div>
                 <div v-for="n in 2" :key="n" >
                   <div style="display: flex; justify-content: space-between;">
                       <div style="margin-top: 32px;">
@@ -163,8 +163,8 @@
                               <img src="/flags/do.svg" width="25px"/>
                           </div>
                           <div style="display: grid">
-                              <span class="mb-3" :class="isDark ? 'transfer-dark':'transfer-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">Bank Transfer</span>
-                              <span class="mb-3" :class="isDark ? 'transfer-dark':'transfer-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">First Bank only</span>
+                              <span class="mb-3" :class="isDark ? 'text-dark':'text-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">Bank Transfer</span>
+                              <span class="mb-3" :class="isDark ? 'text-dark':'text-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">First Bank only</span>
                           <div style="display:flex">
                               <v-btn class="smaller-btn me-4" :class="isDark ? 'toggle-btn-dark':'toggle-btn-light'">Guided Trade</v-btn>
                               <v-btn class="smaller-btn" :class="isDark ? 'toggle-btn-dark':'toggle-btn-light'">Receipt required</v-btn>
@@ -198,7 +198,7 @@
                     
                   </div>
 
-                  <div style="height: 1px; background: #303A46; margin-top:16px"></div>
+                  <div style="border-bottom: 0.5px solid rgba(142,155,174,.5); margin-top:16px"></div>
                 </div>
                
 
@@ -216,7 +216,7 @@
                     <span style="position: relative; left: -18px">From sellers</span>
                   <span style="position: relative; right: -18px; font-weight: 800;">0</span>
                  </v-btn>
-                <div style="height: 1px; background: #303A46; margin-top:16px"></div> 
+                <div style="border-top: 0.5px solid rgba(142,155,174,.5); margin-top:16px"></div> 
 
 
                 <div style="justify-content: space-between; display: flex;"> 
@@ -249,36 +249,11 @@
                     </div>
                 </div>
 
-                    <div style="height: 1px; background: #303A46; margin-top:16px"></div>
+                    <div style="border-bottom: 0.5px solid rgba(142,155,174,.5); margin-top:16px"></div>
 
                 <div style="justify-content: space-between; display: flex; margin-bottom: 191px"> 
 
-
-                    <div class="d-flex">
-                        <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
-                            <div>
-                                <div style="padding-top: 35px;">
-                                <span class="username" style="font-size: 16px;">UID : <span class="grad-text">Ogadinma2024</span></span>
-                                <div style="display: grid">
-                                    <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
-                                    <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
-                                </div>
-                                </div>
-                            </div>
-                    </div> 
-
-                    <div style="margin-top: 35px">
-                        <span class="me-5" style="color: #969696; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
-                        <span class="me-5" style="color: #119254; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">NGN</span>
-                        <span style="color: #FACC15; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Low Ammount</span>
-                        <div>
-                            <span style="color: #D8D8D8; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">Very Fast</span>
-                        </div>
-                    </div>
-
-                    <div  style="margin-top: 35px">
-                      <span class="grad-text">View Offer</span>
-                    </div>
+                    
                   </div>
                </div>
               
