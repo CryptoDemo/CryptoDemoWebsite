@@ -1,14 +1,13 @@
 <template>
 <div>
-    <v-btn append-icon="mdi-arrow-right" class="btn" :disabled="disabled">
+    <v-btn append-icon="mdi-arrow-right" class="btn" :disabled="disabled" :loading="loading">
   {{buttonText}}
 </v-btn>
 </div>
 </template>
-<script>
-export default {
-    props: ["buttonText","disabled"]
-}
+<script setup>
+const props = defineProps(["buttonText","disabled", "loading"])
+
 </script>
 <style>
 .btn{

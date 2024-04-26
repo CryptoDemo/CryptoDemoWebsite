@@ -43,7 +43,7 @@
               <v-container style="display: flex; flex-direction: column;">
                 <div style="display: flex; position: relative;">
                   <div  class="me-9">
-                    <div class="sd-nav1 position-relative flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'sd-nav1-dark':'sd-nav1-light'">
+                    <div class="sd-nav1 position-relative flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
                       <div style="border-bottom: 1px solid var(--border, #303A46); position: relative;top: 58px;"></div>
                         <div style="padding: 20px 24px;">
                           <span :class="isDark ? 'text-dark':'text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
@@ -362,7 +362,7 @@ flex-shrink: 0;
 .profile-light{
 border-radius: 20px;
 background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 65.19%, #F8FAFC 100%) !important;
-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px;
 height: 130px;
 flex-shrink: 0;
 }
@@ -434,16 +434,17 @@ height: fit-content;
 .profile-cards-dark{
 border-radius: 24px;
 background:  #10192D!important;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
 height: fit-content;
 /* border: 0.5px solid #2f3946; */
 }
 .profile-cards-light{
 border-radius: 24px;
-background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 65.19%, #F8FAFC 100%) !important;
+
 /* border: 1px solid #DBE8FF; */
-/* background:#fff!important; */
+background: #F8FAFC!important;
 height: fit-content;
-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+/* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
 }
 .card-text{
 color: var(--Warm-Red, #E33E38);
@@ -561,7 +562,7 @@ letter-spacing: 0px;
 width: 231.714px;
 height: 50px!important;
 flex-shrink: 0;
-color: var(--Gray-Light, #D8D8D8);
+color: var(--Gray-Light, #fff);
 font-family: Poppins;
 font-size: 14px;
 font-style: normal;

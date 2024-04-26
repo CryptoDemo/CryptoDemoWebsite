@@ -122,6 +122,7 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import {register_} from "@/composables/requests/auth";
+import { Notification ,push} from 'notivue';
 
 
 const theme = useTheme()
@@ -183,23 +184,26 @@ device_info: JSON.stringify(device)
 }
 
 try {
-  const data = await register_(changePassword);
+  const data = await register_(registerInfo);
   if (data.success) {
     // loading.value = true;
     pinia.setEmail(email.value)
     navigateTo('/authentication/sign-up-email-verification')
   } else{
-    
-    console.error('registration failed');
+    push.error(data.message, { timeout: 90000000 })
   }
 }catch(e){
   console.log(e)
+  push.error(`${e}`)
 }
  
 };
 </script>
 <style scoped>
-
+.form-layout :deep(.Notivue__notification *) {
+    box-sizing: border-box;
+    background: red !important;
+}
 .v-btn__content {
   grid-area: content;
   justify-content: center;

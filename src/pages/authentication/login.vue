@@ -129,22 +129,20 @@ const login = async () => {
     password: password.value,
     device_info: JSON.stringify(device)
   }
-  //  if (!email.value && !password.value ) 
-  //    alert.value = false;
 
   try {
   const data = await signUp(userLogin);
   if (data.success) {
     pinia.state.isAuthenticated = true
     pinia.setUser(data)
-    navigateTo('/authentication/profile')
+    navigateTo('/profile')
   } else{
-    
-    console.error('unauthorized user');
+    push.error(data.message, { timeout: 90000000 })
   }
 }catch(e){
   console.log(e)
-};
+  push.error(`${e}`)
+}
  
 };
 

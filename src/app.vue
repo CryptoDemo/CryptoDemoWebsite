@@ -1,6 +1,9 @@
 <template>
   <v-app>
     <div>
+      <Notivue v-slot="item">
+         <Notification :item="item" />
+       </Notivue>
       <NuxtPage />
     </div>
   </v-app>

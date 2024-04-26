@@ -71,7 +71,8 @@ const resendCode = async() => {
   OtpCountdown.value = 60
   timerFinished.value = false;
   const Otpmsg = {
-    email: pinia.state.email
+   email: pinia.state.email,
+   code: pinia.state.code
   }
 
 try {

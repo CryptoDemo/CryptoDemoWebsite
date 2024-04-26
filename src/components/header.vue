@@ -23,7 +23,7 @@
      
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn class="me-4 mt-9 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none;">
+            <v-btn @click.prevent="emit('country',country)" class="me-4 mt-9 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none;">
               <img :src="flag" class="me-2" width="32" height="32" style="object-fit: cover;border-radius: 30px"/>
               <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{country}}</span>
               <img src="/svg/chevron-light.svg" v-if="theme.global.current.value.dark"/>
@@ -35,7 +35,7 @@
             <v-list-item style="display: contents">
               <v-row dense style="max-width: 250px;">
                 <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" :key="index">
-                <v-list-item @click="country=item.country_code; name=item.country_name; flag= item.flag_url;" style="display: flex;">
+                <v-list-item @click="Countryname=item.country_code; country=item.country_name; flag= item.flag_url;" style="display: flex;">
                   <div style="display: flex; align-items: center; ">
                     <img width="35" height="35" class="me-3" :src="item.flag_url" style="object-fit: cover;border-radius: 30px"/> 
                     <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.country_name }}</span>
@@ -80,8 +80,7 @@
           <span class="nav-icon-text mb-3" style="margin-right: 13px; margin-top: -8px;">Notification</span>     
       </div>
     </div>   
-
-      </v-container>
+    </v-container>
  
   </div>
   </div>
@@ -98,9 +97,8 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
 
 const emit = defineEmits(['country'])
-
 const pageNumber = ref(1)
-const country =ref('Au')
+const country=ref('Brazil')
 const flag = ref('')
 
 try {
@@ -118,10 +116,10 @@ try {
       flag.value = pinia.state?.allcountries[0].flag_url;
     }
   } else {
-    console.error('Unavailable')
+    
   }
 } catch (error) {
-  console.log(error);
+  
 };
 
 

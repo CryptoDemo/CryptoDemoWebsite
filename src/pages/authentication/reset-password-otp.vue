@@ -26,7 +26,7 @@
         </div>
 
           <div style="margin-top:65px;">
-            <Button buttonText="Request New Password" :loading ="!loading" @click="continueToSetPassword()"/>
+            <Button buttonText="Request New Password"  :loading="loading" @click="continueToSetPassword()"/>
           </div>
          <div class="d-flex" style="margin-top:43px; margin-bottom: 137px">
           <img src="/svg/arrow-left.svg" class="me-3" />
@@ -57,9 +57,10 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const otp = ref ('');
 const pinia = useStore();
 const loading= ref(false);
+
 const router = useRouter();
 const OtpCountdown = ref(60);
-const timerFinished = ref(true);
+const timerFinished = ref(false);
 const decreaseTimer = () => {
   if (OtpCountdown.value > 0) {
     OtpCountdown.value--;
@@ -74,10 +75,26 @@ onMounted(() => {
 });
 
 
-const continueToSetPassword = ()=>{
-console.log(otp.value)
-  router.push(`/authentication/create-new-password?code=${otp.value}`);
+const continueToSetPassword = async()=>{
+  loading.value = true 
+  const Otpmsg = {
+   email: pinia.state.email,
+   code: pinia.state.code
   }
+  try {
+  const data = await verifyOtp(Otpmsg);
+  if (data.success) {
+    router.push(`/authentication/create-new-password?code=${otp.value}`);
+  } else{
+    push.error(data.message, { timeout: 90000000 })
+  }
+}catch(e){
+  console.log(e)
+  push.error(`${e}`)
+}
+ 
+};
+  
 
 const resendCode = async() => {
   OtpCountdown.value = 60
@@ -95,8 +112,10 @@ try {
     // OtpCountdown.value = 60
     console.error('failed to send OTP');
   }
+  // isloading.value = false 
 } catch(e){
   console.log(e)
+  isloading.value = false 
 };
  
 }
