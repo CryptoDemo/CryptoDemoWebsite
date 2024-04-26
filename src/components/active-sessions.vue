@@ -77,7 +77,7 @@
              </div>
               <v-table  class="mt-5" style="display: grid! important; margin-bottom: 32px" >
                 <thead>
-                  <tr style="border-radius: 24px !important; height: 74px;  background: var(--secondary-background, #12181F); display: flex; justify-content: space-between ">
+                  <tr :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px !important; height: 74px;  display: flex; justify-content: space-between ">
                   
 
                     <th style="display: flex; align-items: center; align-self: center;">
@@ -172,7 +172,10 @@
 </template>
 
 <script setup>
+import { useTheme } from 'vuetify';
 
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
 const secondTable = [
           {
             serialNumber: '1',
@@ -226,8 +229,6 @@ const  UserActivity = [
 
 .v-table {
     background: inherit !important;
-    /* width: 940px; */
-  
 }
 .v-table--density-default > .v-table__wrapper > table > thead > tr > th, .v-table--density-default > .v-table__wrapper > table > tfoot > tr > th {
     border: none !important;
@@ -317,10 +318,19 @@ font-style: normal !important;
 font-weight: 400;
 line-height: normal !important;
 }
-
 .v-table > .v-table__wrapper > table {
     width: 100%;
     border-spacing: 0;
     display: grid;
+}
+.profile-cards-dark{
+background:  #10192D!important;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+height: fit-content;
+}
+.profile-cards-light{
+background: #F8FAFC!important;
+height: fit-content;
+
 }
 </style>
