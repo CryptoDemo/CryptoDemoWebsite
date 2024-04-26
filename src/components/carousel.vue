@@ -176,13 +176,13 @@ margin-bottom: 16px;
 .right-elipse{
   width: 354px;
   height: 199px;
-  top: 16%;
+  top: 15.2%;
   right: 1%;
 }
 .left-elipse{
-  height: 81.3px;
-  top: 23%;
-  right: 13%;
+  height: 81.9px;
+  top: 22.4%;
+  right: 13.1%;
 }
  .slide-transition{
    display: flex;
