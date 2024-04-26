@@ -46,10 +46,10 @@
                               <Password class="me-5" placeholder="Enter new password"/>  <Password class="me-7" placeholder="confirm new password"/>
                               <v-btn class="primarybtn mt-5" style=" align-self: center;">Change Password</v-btn>
                           </div>
-                        <div  style="display: inline-flex;">
+                        <!-- <div  style="display: inline-flex;">
                             <v-checkbox base-color="#fff" color="white" ></v-checkbox>
                             <span style="align-self: flex-start; margin-top: 16px; font-weight: 400;color: var(--Gray-Light, #D8D8D8); font-family: Poppins; font-size: 14px;">Log out of all active sessions</span>
-                        </div>
+                        </div> -->
                       </div>
                     </section>
                   <Active-sessions/>

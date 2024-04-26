@@ -73,7 +73,7 @@
               </div> -->
 
             <div style="margin-bottom: 13px!important; margin-top:48px">
-                <span class="pswrd-mgt" style="font-weight: 700;">Activity</span>
+                <span class="pswrd-mgt" :class="isDark ? 'card-text-dark':'card-text-light'" style="font-weight: 700;">Activity</span>
              </div>
               <v-table  class="mt-5" style="display: grid! important; margin-bottom: 32px" >
                 <thead>
