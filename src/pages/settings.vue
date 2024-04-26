@@ -231,7 +231,7 @@ const flag = ref('');
 const selectedTimezone  = ref ('Africa, Lagos') 
 
 </script>
-<style>
+<style scoped>
 .settings-header {
 border-radius: 16px;
 padding: 27px 16px;
