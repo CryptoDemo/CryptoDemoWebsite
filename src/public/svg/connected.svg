@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-  <path d="M7.79999 13.9998V9.7998" stroke="#969696" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M7.95001 18.1998C9.02697 18.1998 9.90002 17.3267 9.90002 16.2498C9.90002 15.1728 9.02697 14.2998 7.95001 14.2998C6.87306 14.2998 6 15.1728 6 16.2498C6 17.3267 6.87306 18.1998 7.95001 18.1998Z" stroke="#969696" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M7.79999 9.8002C8.7941 9.8002 9.59998 8.9943 9.59998 8.00018C9.59998 7.00607 8.7941 6.2002 7.79999 6.2002C6.80588 6.2002 6 7.00607 6 8.00018C6 8.9943 6.80588 9.8002 7.79999 9.8002Z" stroke="#969696" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M16.2 9.8002C17.1941 9.8002 18 8.9943 18 8.00018C18 7.00607 17.1941 6.2002 16.2 6.2002C15.2059 6.2002 14.4 7.00607 14.4 8.00018C14.4 8.9943 15.2059 9.8002 16.2 9.8002Z" stroke="#969696" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M7.88 14.0003C8.15 12.9503 9.10999 12.1703 10.24 12.1803L12.3 12.1903C13.87 12.2003 15.21 11.1903 15.7 9.78027" stroke="#969696" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M9 2.2002H15C20 2.2002 22 4.2002 22 9.2002V15.2002C22 20.2002 20 22.2002 15 22.2002H9C4 22.2002 2 20.2002 2 15.2002V9.2002C2 4.2002 4 2.2002 9 2.2002Z" stroke="#969696" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7.79999 13.9998V9.7998" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7.95001 18.1998C9.02697 18.1998 9.90002 17.3267 9.90002 16.2498C9.90002 15.1728 9.02697 14.2998 7.95001 14.2998C6.87306 14.2998 6 15.1728 6 16.2498C6 17.3267 6.87306 18.1998 7.95001 18.1998Z" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7.79999 9.8002C8.7941 9.8002 9.59998 8.9943 9.59998 8.00018C9.59998 7.00607 8.7941 6.2002 7.79999 6.2002C6.80588 6.2002 6 7.00607 6 8.00018C6 8.9943 6.80588 9.8002 7.79999 9.8002Z" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16.2 9.8002C17.1941 9.8002 18 8.9943 18 8.00018C18 7.00607 17.1941 6.2002 16.2 6.2002C15.2059 6.2002 14.4 7.00607 14.4 8.00018C14.4 8.9943 15.2059 9.8002 16.2 9.8002Z" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7.88 14.0003C8.15 12.9503 9.10999 12.1703 10.24 12.1803L12.3 12.1903C13.87 12.2003 15.21 11.1903 15.7 9.78027" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M9 2.2002H15C20 2.2002 22 4.2002 22 9.2002V15.2002C22 20.2002 20 22.2002 15 22.2002H9C4 22.2002 2 20.2002 2 15.2002V9.2002C2 4.2002 4 2.2002 9 2.2002Z" stroke="#D8D8D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

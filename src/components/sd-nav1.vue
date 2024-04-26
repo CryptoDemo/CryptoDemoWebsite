@@ -37,7 +37,7 @@
   .sd-nav3{
   width: 305px;
   border-radius: 24px;
-  background: var(--secondary-background, #12181F);
+  background: var(--secondary-background, #10192D);
   padding: 31px 53px;
   }
   

@@ -1,6 +1,5 @@
 <template>
-  <div>
-    
+  <div>    
     <v-row>
       <v-col cols="12" offset-sm="3" sm="6">
         <div height="200px">
