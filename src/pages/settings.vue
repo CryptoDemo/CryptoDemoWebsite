@@ -188,7 +188,6 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import { getcountries } from "@/composables/requests/admin";
 import {FiveMB} from "@/composables/configs";
 
 const theme = useTheme()

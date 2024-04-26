@@ -120,7 +120,7 @@
                                 v-bind="props">
                                 <img  width="25" class="me-2" :src="icon" style="position: absolute; left: 7%;"/> 
                                 <div style="display: grid; cursor: pointer;">
-                                <span class="slt">{{select}}</span> 
+                                <span class="slt" >{{select}}</span> 
                                 </div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;" v-if="theme.global.current.value.dark">
                                     <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" fill="#E0E4F5"/>
@@ -352,7 +352,6 @@ flex-shrink: 0;
   font-weight: 600; 
   line-height: normal;
 }
-
 .v-card-item {
 padding: 0 !important;
 padding-top: 5px !important;
@@ -411,15 +410,11 @@ border-radius: 24px;
 background:  #10192D!important;
 box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
 height: fit-content;
-/* border: 0.5px solid #2f3946; */
 }
 .profile-cards-light{
 border-radius: 24px;
-
-/* border: 1px solid #DBE8FF; */
 background: #F8FAFC!important;
 height: fit-content;
-/* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
 }
 .card-text{
 color: var(--Warm-Red, #E33E38);
@@ -450,7 +445,6 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
-
 .coin-bg1 {
 border-radius: 15px !important;
 background: #1B2537 !important;
@@ -470,26 +464,15 @@ margin-top: 10px;
 border: 0.5px solid #2f3946;
 box-shadow: none !important;
 }
-.transfer-dark{
-  color: #969696;
-}
-.transfer-light{
-  color: #10192D;
-}
-.price-dark{
-  color: #fff;
-}
-.price-light{
-  color: #0D0D0D;
-}
 .active-offers-dark{
   background: var(--secondary-background, #1B2537);
+  color: #8E9BAE !important;
 }
 .active-offers-light{
   background: var(--secondary-background, #D9E0E9);
+  color: #646464 !important;
 }
 .offers-text{
-color: #C2C2C2;
 font-family: Poppins;
 font-size: 14px;
 font-style: normal;
@@ -567,7 +550,6 @@ box-shadow: none;
 
 .slt{
 overflow: hidden;
-color: #C2C2C2;
 text-overflow: ellipsis;
 white-space: nowrap;
 font-family: Poppins;
