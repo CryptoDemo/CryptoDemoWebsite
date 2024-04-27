@@ -18,9 +18,12 @@
     </div>
   </template>
   
-  <script setup>
-  import { ref } from 'vue'
-  
+<script setup>
+import { ref } from 'vue'
+import { useTheme } from 'vuetify';
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
   
   const isSelected = ref(false);
   const navigation = [
@@ -58,9 +61,7 @@
   line-height: normal;
   border-radius: 30px;
   }
-  
   .status1{
-  color: #C2C2C2;
   text-align: center;
   font-family: Poppins;
   font-size: 14px;
@@ -68,7 +69,6 @@
   font-weight: 400;
   line-height: normal;
   }
-  
   .nav-options2:focus {
   background:#2873FF !important;  
   border-radius: 22px;
