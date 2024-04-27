@@ -199,7 +199,9 @@
                             <span style="color: #969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">5 min (Avg)</span>
                           </div>
                             <div class="" style="display: flex; align-items: center;">
-                              <img src="/svg/star.svg" class="me-2"/>
+                              <v-rating class=" mb-1"
+                                v-model="rating" clearable length="1">       
+                              </v-rating>
 
                                 <span style="color:#969696; font-family: Manrope; margin-bottom: 3px; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
                             </div>
