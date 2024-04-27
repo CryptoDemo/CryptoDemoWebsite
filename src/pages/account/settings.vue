@@ -14,11 +14,9 @@
                   <div class="settings-header ml-4 mt-4" style="width: 96%;">
                     <span class="header-text1">Setting answers to your security questions is a requirement in the event that you need to reset or update your phone number. <span style="color: var(--Primary-100, #2873FF);">Set Answers!</span></span>
                   </div>
-
                   <div class="acct-settings ml-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex;width: 96%; justify-content: space-between; margin-top: 32px">
-                     
-                        <span class="acct-text" v-if="phoneVerificationStep!=3"> Account Settings</span>
-                        <span class="mail-text" :class="isDark ? 'text-dark':'text-light'" v-if="phoneVerificationStep!=3"> {{ pinia.state.email }}</span>
+                    <span class="acct-text" v-if="phoneVerificationStep!=3"> Account Settings</span>
+                    <span class="mail-text" :class="isDark ? 'text-dark':'text-light'" v-if="phoneVerificationStep!=3"> {{ pinia.state.email }}</span>
 
                       <div class="verified" id="verified" v-if="phoneVerificationStep==3" style="display: flex; margin: auto; align-items: center; ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none" class="me-10">
@@ -277,18 +275,14 @@ margin-top: 10px;
 margin-left: 9px;
 }
 .profile-cards-dark{
-border-radius: 24px;
 background:  #10192D!important;
 box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
-height: fit-content;
 }
 .profile-cards-light{
-border-radius: 24px;
 background: #F8FAFC!important;
-height: fit-content;
 }
 .mail-text{
-  color: var(--Gray-Medium-light, #969696);
+color: var(--Gray-Medium-light, #969696);
 font-family: Manrope;
 font-size: 16px;
 font-style: normal;

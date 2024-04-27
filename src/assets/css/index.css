@@ -338,10 +338,8 @@ line-height: 28px;
 }
 .acct-settings{
 border-radius: 16px;
-/* backdrop-filter: blur(50px); */
 display: flex;
 padding: 16px var(--spacing-3xl, 24px);
-/* width: 940px; */
 justify-content: space-between;
 align-items: center;
 margin-bottom: 16px;
