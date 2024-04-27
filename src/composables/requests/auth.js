@@ -58,6 +58,18 @@ export const signUp = async(userLogin)=>{
     return data;
 };
 
+export const GoogleAuth = async(authentication)=>{
+    const data = await fetch(`${baseURL}auth/sign-in`,{ 
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(authentication)
+
+    }).then(res => res.json());
+    return data;
+};
+
 export const newpassword = async(changePassword)=>{
     const data = await fetch(`${baseURL}auth/change-password`,{ 
     method: 'POST',

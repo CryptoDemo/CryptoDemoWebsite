@@ -63,11 +63,22 @@
                     
                             </tr>
                           </tbody>
+
+                          <div>
+                            <td>
+                              
+                            </td>
+                          </div>
                     </v-table>
+    <v-rating
+      v-model="rating" clearable length="1">       
+    </v-rating>
     </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+const rating = ref(1);
 const  Tradepartners = [
           {
             serialNumber: '1',

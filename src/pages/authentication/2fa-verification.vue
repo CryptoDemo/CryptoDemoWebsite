@@ -2,60 +2,64 @@
   <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0; height: 90%;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
   <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
 <div class="section">
-  <Header text2="Already have an account," title="Login"/>
-  <v-container class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
+  <Header/>
+  <v-container class="form-layout overflow-hidden">
     <v-row no-gutters  class="">
 
       <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
-        <div style="margin-top: -95px;">
-          <span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Verify Your Email</span>
-            <div class="card-subtitle" :class="isDark ? 'card-subtitle':'card-subtitle-light'" style="margin-top:20px;">Enter the code we've sent to <span><b> 
-              {{ pinia.state.email }}</b></span> Didn't receive the code? 
+        <div style="margin-top: 95px;">
+        
+          <span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Enable 2FA Verification</span>
+            <div class="card-subtitle" :class="isDark ? 'card-subtitle':'card-subtitle-light'" style="margin-top:20px;">
+              The Login 2step Verification adds an extra layer of security to your account. 
             </div>
-          <span :class="isDark ? 'otp-text':'otp-text-light'">Enter code</span>
+          <span class="otp-text">Enter code</span>
+          <v-otp-input :length="6"  v-model="otp"  variant="plain"></v-otp-input>
           
-          <v-otp-input :length="4"  required v-model="otp" variant="plain"></v-otp-input>
-
           <div style="display: flex; justify-content: space-between; align-items: baseline;">
-            <div class="code-validation-text">
-              <span>Valid for {{ OtpCountdown }} seconds</span>
-            </div>
-            <div style="margin-top:23px;">
+          <div class="code-validation-text">
+            <span>Valid for {{ OtpCountdown }} seconds</span>
+          </div>
+          <div class="d-flex" style="margin-top:23px;">
             <v-btn class="resend-code-btn" variant="plain"  :disabled="!timerFinished" @click.prevent="resendCode()">Resend code</v-btn>
-            </div>
           </div>
-          <div style="margin-top:89px;">
-            <Button buttonText="Continue" :loading="loading" @click.prevent="VerifyEmail()"/>
+        </div>
+
+          <div style="margin-top:65px;">
+            <Button buttonText="Enable authentication"  :loading="loading" @click="Enable2fa()"/>
           </div>
+         <div class="d-flex" style="margin-top:43px; margin-bottom: 137px">
+          <img src="/svg/arrow-left.svg" class="me-3" />
+          <small><NuxtLink to="/authentication/login"><span class="login-text">Back to login</span></NuxtLink></small>
+        </div>
+
              
         </div>
       </v-col>
      
-       <v-col cols="7" class="flex-lg-and-up hidden-sm-and-down">
+      <v-col cols="7" class="flex-lg-and-up hidden-sm-and-down">
           <div class="ma-8  carousel-styling">
           <Carousel />
         </div>
       </v-col>
-
     </v-row>
   </v-container>
 <!-- </v-container> -->
 </div>   
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import { Resend_Code, VerifyOtp } from "@/composables/requests/auth";
-import { push } from 'notivue';
+import {  GoogleAuth } from "@/composables/requests/auth";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-const loading = ref(false);
 const otp = ref ('');
+const device = useDevice();
 const pinia = useStore();
-const timerFinished = ref(true);
+const loading= ref(false);
 const OtpCountdown = ref(60);
-
+const timerFinished = ref(false);
 const decreaseTimer = () => {
   if (OtpCountdown.value > 0) {
     OtpCountdown.value--;
@@ -65,37 +69,38 @@ const decreaseTimer = () => {
 };
 onMounted(() => {
   const intervalId = setInterval(decreaseTimer, 1000);
+
   return () => clearInterval(intervalId);
 });
 
-const VerifyEmail = async () => {
-  loading.value = true;
-  const Otpmsg = {
+
+const Enable2fa = async()=>{
+  loading.value = true 
+  const authentication = {
   email: pinia.state.email,
-  code: otp.value
-  };
-  console.log('Otpmsg:', Otpmsg); 
-try {
-  const data = await VerifyOtp(Otpmsg);
+  password: otp.value,
+  device_info: JSON.stringify(device)
+  }
+  try {
+  const data = await  GoogleAuth(authentication);
   if (data.success) {
-    pinia.setUser(data.data);
-    navigateTo('/account/dashboard')
-  } else {
+    pinia.state.code
+  } else{
     loading.value = false 
-    push.error(data.message, { timeout: 90000 })
+    push.error(data.message, { timeout: 900000 })
   }
 }catch(e){
   console.log(e)
   push.error(`${e}`)
-  loading.value = false;
 }
+ 
 };
-
+  
 const resendCode = async() => {
   OtpCountdown.value = 60
   timerFinished.value = false;
   const codeMsg = {
-   email: pinia.state.email,
+  email: pinia.state.email,
   }
 
 try {
@@ -112,15 +117,15 @@ try {
 
 </script>
 <style scoped>
- .carousel-styling{
-  max-height: 550px;
-  position: relative;
-  top: 8%;
-  bottom: 0
-}  
+.carousel-styling{
+max-height: 550px;
+position: relative;
+top: 3%;
+bottom: 0
+} 
 .form :deep(.v-otp-input .v-field){
-height: 56px !important;
-width: 56px !important;
+height: 50px !important;
+width: 51px !important;
 justify-content: flex-start!important;
 margin-top: 12px;
 border-radius: 15px;
@@ -138,9 +143,6 @@ background: white !important;
 border: 1px solid #969696;
 border-radius: 15px;
 }
-.v-otp-input__content{
-  margin-right: 20px;
-}
 .card-subtitle{
 color: var(--Basic-White, #FFF);
 font-family: Manrope;
@@ -157,5 +159,7 @@ font-style: normal;
 font-weight: 400;
 line-height: 150%; /* 24px */
 }
-
+.v-otp-input__content{
+  margin-right: 20px;
+}
 </style>

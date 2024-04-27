@@ -26,14 +26,12 @@
         </div>
 
           <div style="margin-top:65px;">
-            <Button buttonText="Request New Password"  :loading="loading" @click="continueToSetPassword()"/>
+            <Button buttonText="Request New Password"  :loading="loading" @click="VerifyEmail()"/>
           </div>
          <div class="d-flex" style="margin-top:43px; margin-bottom: 137px">
           <img src="/svg/arrow-left.svg" class="me-3" />
           <small><NuxtLink to="/authentication/login"><span class="login-text">Back to login</span></NuxtLink></small>
-        </div>
-
-             
+        </div>      
         </div>
       </v-col>
      
@@ -50,14 +48,13 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import { verifyOtp } from "@/composables/requests/auth";
+import { Resend_Code, VerifyOtp } from "@/composables/requests/auth";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const otp = ref ('');
 const pinia = useStore();
 const loading= ref(false);
-
 const router = useRouter();
 const OtpCountdown = ref(60);
 const timerFinished = ref(false);
@@ -75,45 +72,47 @@ onMounted(() => {
 });
 
 
-// const continueToSetPassword = async()=>{
-//   loading.value = true 
-//   const Otpmsg = {
-//    email: pinia.state.email,
-//    code: otp.value
-//   }
-//   try {
-//   const data = await verifyOtp(Otpmsg);
-//   if (data.success) {
-//     router.push(`/authentication/create-new-password?code=${otp.value}`);
-//   } else{
-//     push.error(data.message, { timeout: 90000000 })
-//   }
-// }catch(e){
-//   console.log(e)
-//   push.error(`${e}`)
-// }
+const VerifyEmail = async()=>{
+  loading.value = true 
+  const Otpmsg = {
+   email: pinia.state.email,
+   code: otp.value
+  }
+  try {
+  const data = await VerifyOtp(Otpmsg);
+  if (data.success) {
+    pinia.setCode(otp.value)
+    navigateTo('/authentication/create-new-password')
+    // router.push(`/authentication/create-new-password?code=${otp.value}`);
+  } else{
+    loading.value = false 
+    push.error(data.message, { timeout: 90000000 })
+  }
+}catch(e){
+  console.log(e)
+  push.error(`${e}`)
+}
  
-// };
+};
   
+const resendCode = async() => {
+  OtpCountdown.value = 60
+  timerFinished.value = false;
+  const codeMsg = {
+   email: pinia.state.email,
+  }
 
-// const resendCode = async() => {
-//   OtpCountdown.value = 60
-//   timerFinished.value = false;
-//   const Otpmsg = {
-//     email: pinia.state.email
-//   }
-
-// try {
-//   const data = await verifyOtp(Otpmsg);
-//   if (data.success) {
-//   } else{
-//     loading.value = false 
-//     console.error('failed to send OTP');
-//   }
-// } catch(e){
-//   console.log(e)
-// };
-// }
+try {
+  const data = await Resend_Code(codeMsg);
+  if (data.success) {
+  } else{
+    push.error(data.message, { timeout: 90000 })
+  }
+} catch(e){
+  push.error(`${e}`)
+};
+ 
+};
 
 </script>
 <style scoped>

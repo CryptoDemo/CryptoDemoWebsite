@@ -2,16 +2,15 @@
   <div>
     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
       <v-container>
-        <v-row no-gutters style="margin-top: 90px;">
+        <v-row no-gutters style="margin-top: 90px; width: 98%;">
             <v-col cols="8">
               <div class="pa-1 ma-1">
-                <div class="profile" style="padding: 30px 0px">
-
+                <div class="profile" :class="isDark ? 'profile-dark':'profile-light'"  style="padding: 30px 0px">
                   <div class="d-flex" style="justify-content: space-around;">
                     <div class="d-flex">
                       <img src="/svg/Image (1).svg" class="me-3" alt="avatar"/>
                         <div>
-                          <span class="username mt-5 d-flex">UID : Ogadinma2024</span>
+                          <span class="username mt-5 d-flex" :class="isDark ? 'card-text-dark':'card-text-light'">UID : Ogadinma2024</span>
                         </div>
                     </div>
                     <div class="d-flex">
@@ -28,16 +27,15 @@
                       <span class="user-location">0</span>
                     </v-btn>
                   </div>
-
                 </div>
               </div>
             </v-col>
             <v-col>
               <div class="pa-1 ma-1">
-                <div class="acct-level">
+                <div class="acct-level" :class="isDark ? 'profile-dark':'profile-light'"  >
                   <div class="d-flex" style="padding: 45px; justify-content: center"> 
                       <img src="/svg/btc.svg" class="me-3" alt="dashboard-icon"> 
-                      <span class="acct-level-text">Send Bitcoin</span>
+                      <span class="acct-level-text" :class="isDark ? 'card-text-dark':'card-text-light'">Send Bitcoin</span>
                   </div>
                 </div>
               </div>
@@ -49,50 +47,51 @@
           <div style="display: flex; width: 100%; margin-top: -15px;">
             <div>
               <div class="pa-2 me-3">
-                <div class="sd-nav1">
+                <div class="sd-nav1" :class="isDark ? 'profile-dark':'profile-light'">
                   <div style="border-bottom: 1px solid var(--border, #303A46);">
                     <div style="padding: 20px 24px;">
-                      <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
-                      </div>
-                      </div>
-                      <div v-for="(item, i) in navigation" :key="i">
-                        <div style="display: flex; justify-content: space-between;">
-                            <v-btn class="nav-options"> 
-                              <img :src="item.icon" class="me-3"/>
-                              {{ item.title }}
-                              <div style="align-items: center; display: flex; position: absolute; right: 20px;">
-                                <img :src="item.flag" width="25" class="me-3" style="border-radius: 9px;"/>
-                                <span >{{ item.country }}</span>
-                                <span>{{ item.type }}</span>
-                                <span>{{ item.number }}</span> 
-                              </div>
-                            </v-btn>
-                        </div>
-                      </div>
-                      <div style="border-top: 1px solid var(--border, #303A46);">
-                        <div style="padding: 20px 24px;">
-                        <span style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
-                        </div>
-                      </div>
+                      <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
+                    </div>
                   </div>
+                  <div v-for="(item, i) in navigation" :key="i">
+                    <div style="display: flex; justify-content: space-between;">
+                      <v-btn class="nav-options" :class="isDark ? 'text-dark':'text-light'"> 
+                        <img :src="item.icon" class="me-3"/>
+                        {{ item.title }}
+                        <div style="align-items: center; display: flex; position: absolute; right: 20px;">
+                          <img :src="item.flag" width="25" class="me-3" style="border-radius: 9px;"/>
+                          <span >{{ item.country }}</span>
+                          <span>{{ item.type }}</span>
+                          <span>{{ item.number }}</span> 
+                        </div>
+                      </v-btn>
+                    </div>
+                  </div>
+                  <div style="border-top: 1px solid var(--border, #303A46);">
+                    <div style="padding: 20px 24px;">
+                    <span :class="isDark ? 'card-text-dark':'card-text-light'" style="color: var(--Gray-Medium-light, #969696);text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
           <div>
               <div class="pa-2 ma-2">
-                  <v-row align="center" justify="start" style="gap: 16px; margin-bottom: 32px !important">
-                    <div v-for="(variant, i) in profileCards" class="profile-cards" :key="i" cols="auto">
-                        <v-card class="mx-auto" max-width="301" height="140px" variant="text" >
+                  <v-row align="center"  style="gap: 16px; margin-bottom: 32px !important">
+                    <v-col v-for="(variant, i) in profileCards" class="profile-cards d-flex" cols="3" :key="i" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+                        <v-card class="mx-auto" variant="text">
                             <v-card-item>
                               <div style="display: flex;">
-                                <div>
-                                <img :src="variant.image" class="me-3 mt-1"/>
-                                </div>
-                                <div class="d-flex" style="flex-direction: column;">
-                                  <span class="card-text">{{ variant.Title }}</span>
-                                  <span class="card-text" style="color:#969696">{{ variant.Title1 }}</span>
-                                  <div class="textCaption" style="color: #646464; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; margin-top: 8px;">{{variant.textCaption}}</div>
-                                </div> 
+                              <div>
+                                <img :src="variant.image" class="me-3" v-if="theme.global.current.value.dark"/>
+                                <img :src="variant.image1" class="me-3" v-else/>
+                              </div>
+                              <div class="d-flex" style="flex-direction: column;">
+                                <span class="card-text" :class="isDark ? 'card-text-dark':'card-text-light'">{{ variant.Title }}</span>
+                                <span class="card-text" style="color: #F65556">{{ variant.Title1 }}</span>
+                                <div class="textCaption" style="font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; margin-top: 8px;">{{variant.textCaption}}</div>
+                              </div> 
                               </div>
                             </v-card-item>
                                 
@@ -102,7 +101,7 @@
                               </span></NuxtLink>
                             </v-card-actions>
                         </v-card>
-                   </div>
+                   </v-col>
                    
                   </v-row>
 
@@ -111,46 +110,52 @@
                 <div class="mt-5">
                   <div style="margin-top: 32px;">
                     <v-row class="px-3">
-                        <v-btn class=" me-4 mb-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
-                            <span style="position: relative; left: -18px">Crypto purchased</span>
-                          <span style="position: relative; right: -18px; font-weight: 800;">0</span>
-                        </v-btn>
-                        <v-btn  :class="PurchaseCrypto ? 'inactive-btn': 'active-btn'"  @click.prevent="PurchaseCrypto=false">
-                            <span style="position: relative; left:-37px">Crypto sold </span>
-                            <span style="position: relative; right: -32px; font-weight: 800;">0</span>
-                        </v-btn>
-                  
-                        <div style="display: flex; margin-inline-start: auto;">
-                          <v-menu>
-                              <template v-slot:activator="{ props }">
-                                <v-btn class="mx-auto active-offers" style="letter-spacing: 0px; box-shadow: none;"
-                                  v-bind="props">
-                                  <img  width="25" class="me-2" :src="icon" style="position: absolute; left: 7%;"/> 
-                                  <div style="display: grid; cursor: pointer;">
-                                  <span class="slt">{{select}}</span> 
-                                  <!-- <span class="small-text">{{coin}}</span>  -->
-                                  </div>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;">
-                                      <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" fill="#E0E4F5"/>
-                                  </svg>
-                                </v-btn>
-                              </template>
+                      <v-btn class=" me-4 mb-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
+                          <span style="position: relative; left: -18px">Crypto purchased</span>
+                        <span style="position: relative; right: -18px; font-weight: 800;">0</span>
+                      </v-btn>
+                      <v-btn :class="`${PurchaseCrypto ? 'inactive-btn': 'active-btn'} ${isDark ? 'toggle-btn-dark':'toggle-btn-light'}`" @click.prevent="PurchaseCrypto=false">
+                          <span style="position: relative; left:-37px">Crypto sold </span>
+                          <span style="position: relative; right: -32px; font-weight: 800;">0</span>
+                      </v-btn>
 
-                            <v-list class="coin-card">
-                              <v-list-item>
-                                <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-3" style="cursor: pointer">
-                                  <v-list-item-title @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
-                                    <img width="25" class="rounded-5 me-3" :src="item.icon"/>    
-                                    <div style="display: flex; flex-direction: column;">
-                                      <span style="font-family: Manrope;font-size: 14px; font-style: normal; font-weight: 700; line-height: 140%;"> {{ item.name }} </span>
-                                      <span class="small-text">{{ item.symbol }}</span>
-                                    </div>
-                                  </v-list-item-title>
-                                </div>
-                              </v-list-item>
-                            </v-list>
-                          </v-menu> 
-                        </div>
+                      <div style="display: flex; margin-inline-start: auto;">
+                        <v-menu>
+                          <template v-slot:activator="{ props }">
+                            <v-btn class="mx-auto active-offers" :class="isDark ? 'active-offers-dark':'active-offers-light'" style="letter-spacing: 0px; box-shadow: none;"
+                              v-bind="props">
+                              <img  width="25" class="me-2" :src="icon" style="position: absolute; left: 7%;"/> 
+                              <div style="display: grid; cursor: pointer;">
+                              <span class="slt" >{{select}}</span> 
+                              </div>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;" v-if="theme.global.current.value.dark">
+                                  <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" fill="#E0E4F5"/>
+                              </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;" v-else>
+                                <path d="M5.61594 5.99999C5.75481 6.00001 5.89231 5.973 6.02062 5.92049C6.14892 5.86799 6.26551 5.79102 6.36372 5.69399L10.3099 1.794C10.5081 1.59813 10.6195 1.33249 10.6195 1.0555C10.6195 0.77851 10.5081 0.512869 10.3099 0.317007C10.1118 0.121144 9.84296 0.0110984 9.56269 0.0110984C9.28242 0.0110984 9.01363 0.121144 8.81544 0.317007L5.61394 2.717L2.41243 0.317007C2.21425 0.121144 1.94546 0.0110984 1.66518 0.0110984C1.38491 0.0110984 1.11609 0.121144 0.917902 0.317007C0.719718 0.512869 0.608398 0.77851 0.608398 1.0555C0.608398 1.33249 0.719718 1.59813 0.917902 1.794L4.86415 5.69399C4.9628 5.79155 5.08004 5.86882 5.20908 5.92135C5.33812 5.97387 5.47639 6.00059 5.61594 5.99999Z" fill="#101632"/>
+                              </svg>
+                            </v-btn>
+                          </template>
+
+                          <v-list :class="isDark ? 'coin-bg1':'coin-bg1-light'">
+                            <v-list-item style="width: 100%;">
+                              <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-2">
+                                <v-list-item-title style="width: 100%;">  
+                                  <v-list-item @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center;">
+                                    <div style="display: flex;">
+                                      <img  width="25" class="rounded-5 me-3" :src="item.icon"/>  
+                                        <div  style="display: flex; flex-direction: column;">
+                                          <span style="font-family: Manrope;font-size: 14px; font-style: normal; font-weight: 700; line-height: 140%;"> {{ item.name }} </span>
+                                          <span class="small-text">{{ item.symbol }}</span>
+                                        </div>
+                                    </div> 
+                                  </v-list-item>
+                                </v-list-item-title>
+                              </div>
+                            </v-list-item>
+                          </v-list>
+                        </v-menu> 
+                      </div>
                     </v-row>
                   </div>
 
@@ -173,7 +178,9 @@
                         </div>
                         
                         <div class="" style="display: flex; align-items: center;">
-                            <img src="/svg/star.svg" class="me-2 mb-2"/>
+                          <v-rating class=" mb-1"
+                              v-model="rating" clearable length="1">       
+                          </v-rating>
                             <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
                         </div>
 
@@ -215,7 +222,9 @@
                         </div>
                         
                         <div class="" style="display: flex; align-items: center;">
-                            <img src="/svg/star.svg" class="me-2 mb-2"/>
+                          <v-rating class=" mb-1"
+                            v-model="rating" clearable length="1">       
+                          </v-rating>
                             <span style="color: var(--Gray-Medium-light, #969696);font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
                         </div>
 
@@ -332,12 +341,16 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import { useTheme } from 'vuetify';
 
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
 const PurchaseCrypto = ref(true);
 const profileCards = [
-    {image:'/svg/call.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number' },
-    {image:'/svg/sms.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.' }, 
-    {image:'/svg/profile-circle.svg', Title:'I.D. not verified', textCaption: 'You have verified your phone I.D.'}, 
+    {image:'/svg/call.svg', image1:'/svg/call-light.svg', Title1: 'Phone not verified', textCaption: 'Take a minute to verify your phone number' },
+    {image:'/svg/sms.svg', image1:'/svg/msg-light.svg',  Title: 'Email verified', textCaption: 'You have verified your phone number.' }, 
+    {image:'/svg/profile-circle.svg', image1:'/svg/profile-light.svg', Title:'I.D verified', textCaption: 'You have verified your phone I.D.'}, 
                         
 ];
 
@@ -383,15 +396,28 @@ const pageNumber = ref(1)
 <style scoped>
 .profile{
 border-radius: 20px;
-background: var(--secondary-background, #12181F);
 height: 130px;
 flex-shrink: 0;
+}
+.profile-dark{
+background: var(--secondary-background, #10192D) !important;
+}
+.profile-light{
+background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 65.19%, #F8FAFC 100%) !important;
+box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px !important;
 }
 .acct-level{
 height: 130px;
 flex-shrink: 0;
 border-radius: 20px;
-background: var(--secondary-background, #12181F);
+}
+.user-location{
+color: #FFF;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
 }
 .profile-level{
 border-radius: 12px;
@@ -426,7 +452,6 @@ line-height: normal;
 }
 .acct-level-text{
 overflow: hidden;
-color: var(--White, var(--Colors-Base-white, #FFF));
 text-overflow: ellipsis;
 white-space: nowrap;
 font-family: Manrope;
@@ -437,19 +462,16 @@ line-height: normal;
 }
 .profile-cards{
 border-radius: 24px;
-background: var(--secondary-background, #12181F)!important;
-display: flex;
-width: 262px;
+display: flex !important;
+min-width: 255px !important;
 min-height: 140px;
-padding: 20px 20px 16px 20px;
+/* padding: 10px; */
 flex-direction: column;
 justify-content: center;
 align-items: flex-end;
-gap: 16px;
-color: white;
+/* gap: 16px; */
 }
 .card-text{
-color: var(--Warm-Red, #969696);
 font-family: Poppins;
 font-size: 16px;
 font-style: normal;
@@ -469,7 +491,6 @@ background: var(--secondary-background, #12181F);
 letter-spacing: unset!important;
 text-transform: unset !important;
 overflow: hidden;
-color: #C2C2C2;
 text-overflow: ellipsis;
 white-space: nowrap;
 font-family: Poppins;
@@ -480,7 +501,6 @@ line-height: normal;
 box-shadow: none;
 }
 .offers-text{
-color: #C2C2C2;
 font-family: Poppins;
 font-size: 14px;
 font-style: normal;
@@ -490,7 +510,6 @@ justify-content: center;
 
 }
 .verify-text{
-color: #646464;
 font-feature-settings: 'clig' off, 'liga' off;
 font-family: Poppins;
 font-size: 16px;
@@ -504,13 +523,11 @@ bottom: 3px ;
 }
 .inactive-btn {
 border-radius: 20px;
-background: var(--secondary-background, #12181F);
 text-transform: unset;
 letter-spacing: 0px;
 width: 231.714px;
 height: 50px;
 flex-shrink: 0;
-color: #C2C2C2;
 font-family: Poppins;
 font-size: 14px;
 font-style: normal;
@@ -526,7 +543,6 @@ letter-spacing: 0px;
 width: 231.714px;
 height: 50px;
 flex-shrink: 0;
-color: var(--Gray-Light, #D8D8D8);
 font-family: Poppins;
 font-size: 14px;
 font-style: normal;
@@ -536,13 +552,11 @@ box-shadow: none;
 }
 .smaller-btn{
 border-radius: 8px;
-background: var(--secondary-background, #12181F);
 display: flex;
 padding: 6px 16px;
 justify-content: center;
 align-items: center;
 gap: 10px;
-color: var(--Gray-Medium-light, #969696);
 font-family: Manrope;
 font-size: 14px;
 font-style: normal;
@@ -552,13 +566,11 @@ text-transform: unset;
 letter-spacing:0px;
 box-shadow: none;
 }
-
 .sd-nav1{
 width: 305px;
 align-items: center;
 gap: 10px;
 border-radius: 24px;
-background: var(--secondary-background, #12181F);
  }  
  .nav-options{
 display: flex;
@@ -569,7 +581,6 @@ justify-content: flex-start!important;
 align-items: center;
 background: inherit !important;
 box-shadow: none !important;
-color: var(--Gray-Medium-light, #969696)!important;
 text-align: center;
 font-family: Manrope;
 font-size: 14px;
@@ -590,7 +601,6 @@ letter-spacing: 0px;
   font-weight: 600; 
   line-height: normal;
 }
-
 .coin-card{
 background: #1B2537 !important; 
 cursor: pointer; 
@@ -599,7 +609,6 @@ border-radius: 20px !important;
 margin-top: 10px;
 box-shadow: none !important;
  }
-
  .small-text{
 color: var(--Main-Greyscale-20, #E2E8F0);
 font-family: Manrope;
@@ -608,4 +617,9 @@ font-style: normal;
 font-weight: 400;
 line-height: 150%; /* 18px */
  }
+ .v-card-item {
+  padding: 0 !important;
+  padding-top: 10px !important;
+  padding-left: 5px !important;
+}
 </style>

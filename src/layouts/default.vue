@@ -1,51 +1,18 @@
-<template></template>
-<!-- <template>
-    <NuxtPage>
-        <slot />
-    </NuxtPage>
+<template>
+
 </template>
 
 <script setup>
-    import { onMounted, watch } from 'vue';
-    import { useRoute } from 'vue-router';
-    import { useTheme } from 'vuetify';
+import {useStore}  from "@/stores/index";
+const store = useStore()
+const router = useRouter();
+// check if the user is logged in
 
-    const invalidPathBGs = ref(["/"]);
-    
-    const theme = useTheme()
-    const isDark = computed(() =>  theme.global.current.value.dark);
-
-    const changeBG = (path=window.location.pathname)=>{
-        if(isDark.value){
-            // case when the page loads for the first time
-            if(!invalidPathBGs.value.includes(path)){
-                changeToDashboardBG();
-              
-            }else{
-                removeDashboardBG();
-              
-            }
-        }else{
-            removeDashboardBG();
-          
-        }
-    }
-    
-    onMounted(()=>{
-        watch(()=>isDark.value,(newVal)=>{
-            if(newVal){
-                changeBG();
-            }else{
-                removeDashboardBG();
-            }
-        });
-
-        changeBG();
-
-        // case when the user starts navigating
-        const route = useRoute();
-        watch(()=>route.path,(newPath)=>{
-            changeBG(newPath)
-        });
-    });
-</script> -->
+// if the user is logged in, and they are on the authentication, take them to the dashboard
+const blackListedRoutesWhenLoggedIn = ["authentication/register","/authentication/login","/authentication/reset-Password","/authentication/reset-Password-otp", "/authentication/create-new-Password"];
+const currentPath = router.currentRoute.value.path;
+if(store?.user?.id && blackListedRoutesWhenLoggedIn.includes(currentPath)){
+router.push("/account/dashboard")
+}
+  
+</script>

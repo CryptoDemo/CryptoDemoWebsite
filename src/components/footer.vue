@@ -1,11 +1,11 @@
 <template>
-<section class="footer-wrapper" :class="isDark ? props.customClass || 'footer-wrapper': 'footer-wrapper-light'">
+<section class="footer-wrapper" :class="isDark ? 'footer-wrapper': 'footer-wrapper-light'">
     <v-container>
         <div class="d-flex mt-5" style="justify-content: space-between;">
           <span  :class="isDark ?  'demo-web1':'demo-web1-light'" >Demo Web</span>
           <Language-dropdown/>
         </div>
-      <div class="footer-bg" :class="isDark ? props.customClass || 'footer-bg-dark':'footer-bg-light'">
+      <div class="footer-bg" :class="isDark ? 'footer-bg-dark':'footer-bg-light'">
         <v-row  no-gutters style="justify-content: space-between;" sm="4" >
           <div v-for="(links, i) in footer" :key="i" variant="plain"
             class="mx-2" :class="isDark ? 'footer-text':'footer-text-light'"
@@ -30,7 +30,7 @@
           </div>
         </div>
     </v-container>
-      <div class="footer-icon"  :class="isDark ? props.socialSection || 'footer-icon-dark':'footer-icon-light'" style="margin-top: 50px">
+      <div class="footer-icon"  :class="isDark ? 'footer-icon-dark':'footer-icon-light'" style="margin-top: 50px">
         <v-container>
           <v-row class="d-flex">
             <v-col>
@@ -72,10 +72,7 @@ import { useTheme } from 'vuetify';
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-const props = defineProps({
-  customClass: "bg-color",
-  socialSection: "band-color"
-});
+
 
 // const toggleTheme = () =>{
 //   theme.global.name.value = theme.global.current.value.dark ? 'LightThemeConfig' : 'DarkThemeConfig'

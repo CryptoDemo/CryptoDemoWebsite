@@ -134,9 +134,16 @@ const login = async () => {
   try {
   const data = await signUp(userLogin);
   if (data.success) {
-    pinia.state.isAuthenticated = true
-    pinia.setUser(data)
-    navigateTo('/profile')
+    if (data.message=="Please verify your email to continue") {
+      navigateTo('/authentication/sign-up-email-verification')
+    } else if (data.message=="Please provide your 2FA code to continue") {
+      navigateTo('/authentication/2fa-verification')
+    } else{
+      pinia.state.isAuthenticated = true
+      pinia.setUser(data)
+      navigateTo('/account/dashboard')
+    }  
+
   } else{
     loading.value = false 
     push.error(data.message, { timeout: 2000 })
