@@ -97,5 +97,15 @@ gap: 23px 179px;
 flex-wrap: wrap;
 border-radius: 16px;
 }
-
+.profile-cards-dark{
+border-radius: 24px;
+background:  #10192D!important;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+height: fit-content;
+}
+.profile-cards-light{
+border-radius: 24px;
+background: #F8FAFC!important;
+height: fit-content;
+}
 </style>

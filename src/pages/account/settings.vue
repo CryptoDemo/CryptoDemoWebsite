@@ -251,7 +251,6 @@ justify-content: center;
 }
 .acct-settings{
 border-radius: 16px;
-background: var(--secondary-background, #12181F);
 display: flex;
 width: 100%;
 padding: 21px var(--spacing-3xl, 24px);
@@ -277,7 +276,17 @@ position: absolute;
 margin-top: 10px;
 margin-left: 9px;
 }
-
+.profile-cards-dark{
+border-radius: 24px;
+background:  #10192D!important;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+height: fit-content;
+}
+.profile-cards-light{
+border-radius: 24px;
+background: #F8FAFC!important;
+height: fit-content;
+}
 .mail-text{
   color: var(--Gray-Medium-light, #969696);
 font-family: Manrope;
