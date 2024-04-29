@@ -1,9 +1,9 @@
 <template>
   <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0; height: 90%;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
   <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
-<div class="section">
   <Header/>
   <v-container class="form-layout overflow-hidden">
+    <div class="section">
     <v-row no-gutters  class="">
 
       <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 90px;">
@@ -41,9 +41,8 @@
         </div>
       </v-col>
     </v-row>
+  </div>   
   </v-container>
-<!-- </v-container> -->
-</div>   
 </template>
 <script setup>
 import { ref } from 'vue'

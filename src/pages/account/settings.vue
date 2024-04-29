@@ -3,7 +3,7 @@
     <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
     <v-container style="display: flex;">
           <div style="margin-bottom: 113px; margin-top: 110px;display: flex;">
-            <div class="me-4">
+            <div class="me-4 flex-lg-and-up hidden-sm-and-down">
               <div class="mt-3">
                 <Side-nav/>           
               </div>
