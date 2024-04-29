@@ -11,14 +11,14 @@
                       <img src="/svg/Image (1).svg" class="me-3" alt="avatar" style="display: flex; align-self: flex-start;"/>
                         <div>
                           <v-chip class="profile-level" color="#FB774A" style="margin-bottom: 13.8px;">Unverified</v-chip>
-                          <span class="username" :class="isDark ? 'card-text-dark':'card-text-light'">UID : Ogadinma2024</span>
+                          <span class="username" :class="isDark ? 'card-text-dark':'card-text-light'">UID :{{pinia.state.user?.data.username}} </span>
                         </div>
                     </div>
                     <span class="user-location" :class="isDark ? 'card-text-dark':'card-text-light'" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
                     
                       <div class="d-flex" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
                           <img src="/svg/heart-tick.svg" alt="icon">
-                            <span class="user-location">0</span>
+                          <span class="user-location">0</span>
                       </div>
                       <div class="d-flex" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
                       <img src="/svg/heart-remove.svg" alt="icon">
@@ -265,7 +265,7 @@ import {getTokens} from "@/composables/requests/tokens";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-
+const pinia = useStore();
 const PurchaseCrypto = ref(true);
 const rating = ref();
 const profileCards = [
@@ -278,7 +278,7 @@ const profileCards = [
 
 const select =ref("All Cryptocurrency")
 
-const pinia = useStore()
+
 const pageNumber = ref(1)
 
   try {

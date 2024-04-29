@@ -903,10 +903,13 @@ line-height: 120%; /* 28.8px */
     width: 100% !important;
   }
   .form-layout{
-    background: #12181F !important;
+    background: #070B1F !important;
     border-radius: 0px;
     position: absolute !important;
     margin-top: 50px !important;
+  }
+  .form{
+    background: #070B1F !important;
   }
   .Dashboard-navbar{
     background:  #12181F !important;

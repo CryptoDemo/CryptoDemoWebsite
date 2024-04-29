@@ -20,7 +20,6 @@ export const useStore = defineStore('app',()=> {
       codeInput:'',
       isPinSet: false,
       isTwoFactorSet: false,
-      loading: false,
       email:null,
       phone:null,
       country:null,
