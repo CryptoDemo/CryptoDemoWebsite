@@ -140,7 +140,7 @@ const login = async () => {
     } else{
       pinia.state.isAuthenticated = true
       pinia.setUser(data)
-      navigateTo('/account/dashboard')
+      navigateTo('/account/profile')
     }  
 
   } else{

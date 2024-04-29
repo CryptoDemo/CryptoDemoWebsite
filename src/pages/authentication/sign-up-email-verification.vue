@@ -78,7 +78,7 @@ try {
   const data = await VerifyOtp(Otpmsg);
   if (data.success) {
     pinia.setUser(data.data);
-    navigateTo('/account/dashboard')
+    navigateTo('/account/profile')
   } else {
     loading.value = false 
     push.error(data.message, { timeout: 90000 })

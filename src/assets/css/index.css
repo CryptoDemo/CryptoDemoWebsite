@@ -2,6 +2,7 @@ body{
 font-family: 'Poppins', manrope;                                            
 padding: 0;
 overflow-x: hidden;
+height: 100vh;
 }
 ::-webkit-input-placeholder {
 color: #808195!important;
