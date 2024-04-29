@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <div>
-      <Notivue v-slot="item">
-         <Notification :item="item" />
-       </Notivue>
+    <nuxt-layout>
       <NuxtPage />
-    </div>
+        <Notivue v-slot="item">
+          <Notification :item="item" />
+        </Notivue>
+  </nuxt-layout>
   </v-app>
 </template>
 
