@@ -25,7 +25,7 @@
           <template v-slot:activator="{ props }">
             <v-btn @click.prevent="emit('country',country)" class="me-4 mt-9 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; height: 50px;">
               <img :src="flag" class="me-2" width="32" height="32" style="object-fit: cover;border-radius: 30px"/>
-              <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{country}}</span>
+              <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{country.slice(0, 5)}}</span>
               <img src="/svg/chevron-light.svg" v-if="theme.global.current.value.dark"/>
               <img src="/svg/chevron-dark.svg" v-else/>
             </v-btn>
