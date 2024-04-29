@@ -924,10 +924,9 @@ line-height: 120%; /* 28.8px */
   .dropdown-btn1i{
     border: none !important;
     box-shadow: none !important;
-    background:  #12181F !important;
-    width: 20px !important;
-    height: 40px !important;
-    border-left: 1px solid #303A46 !important;
+    background:  none !important;
+    width: 0px !important;
+    height: 0px !important;
     border-radius: 0px !important;
     margin-inline: auto;
   }

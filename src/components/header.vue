@@ -225,7 +225,7 @@ cursor: pointer;
 }
 .dropdown-btn1i{
 width: 135px;
-height: 50px !important;
+height: 50px;
 flex-shrink: 0;
 border-radius: 20px;
 background: #10192D;
