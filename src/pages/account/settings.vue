@@ -76,9 +76,9 @@
                       <div class="pa-2 ma-2 d-flex" style="margin-top: 0px!important;">
                         <div @click="$refs.imageSelector.click()">
                           <input type="image" src="/svg/Camera.svg" accept="image/png, image/jpeg, image/bmp" style="position: absolute; margin-left: 17px; margin-top: 17px;"/>
-                          <input type="image" :src="selectedImageFile || '/svg/Image-grad.svg'" class="me-4" style="align-self: start;height: 65px;width: 72px;border-radius: 25px;"/>
+                          <input type="image" ref="profileImg" :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" class="me-4" style="align-self: start;height: 65px;width: 72px;border-radius: 25px;"/>
                         </div>
-                        <input ref="imageSelector" @input="setSelectedFile" type="file" accept="image/*" style="display:none"/>
+                        <input ref="imageSelector" @input="handleImgChange" type="file" accept="image/*" style="display:none"/>
                         <div>
                          <v-text-field placeholder="Email Address" class="input-styling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" variant="plain" style="text-align: justify; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400;">
                             <v-icon class="prepend-inner-icon ml-3">
@@ -185,29 +185,45 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import {FiveMB} from "@/composables/configs";
+import { compressImage } from "@/composables/mixin";
+import {uploadUserFile} from "@/composables/requests/file";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
 const phoneVerificationStep = ref(1);
-const selectedImageFile = ref(null);
+const profileImg = ref(null)
+const selectedImage = ref(null)
 
-const setSelectedFile = (event)=>{
-  const file = event.target.files[0];
-  console.log(file)
+const handleImgChange = async(event)=> await handleFileChange(event,selectedImage,profileImg.value);
 
-  if(file.size>FiveMB) {
-    // TODO: show error pop notification that the file size is greater than 2MB
-    return;
-  }
 
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    selectedImageFile.value = e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
+watch(()=> selectedImage.value,async(newval)=>{
+  console.log(newval);
+  const compressedImg = await compressImage(newval);
+  console.log(compressedImg);
+  if(Array.isArray(compressedImg)) return push.error(compressedImg[1], { timeout: 2000 });
+  
+  var formdata = new FormData();
+  formdata.append("file",compressedImg);
+  const data = await uploadUserFile(formdata,pinia.state.token);
 
+  try {  
+      
+      if (data.success) {
+        const user = { ...pinia.state.user, profile_image: data.data[0] };
+        pinia.setUser(user);
+
+      } else {
+        // Display error message
+        push.error(data.message, { timeout: 2000 })
+
+      }
+    } catch (error) {
+      // Display error message
+      push.error(data.message, { timeout: 2000 })
+    }
+});
 
 const sendOTP = ()=>{
   // write logic for sending otp to user's phone

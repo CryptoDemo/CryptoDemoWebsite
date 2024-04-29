@@ -1,3 +1,5 @@
+import imageCompression from 'browser-image-compression';
+
 export const validateEmail = (email) => {
     return String(email)
       .toLowerCase()
@@ -6,16 +8,35 @@ export const validateEmail = (email) => {
       );
 };
 
-// export const changeToDashboardBG = ()=>{
-//   document.querySelector("body > #__nuxt > div > div").style.backgroundColor = '#161D26';
-// }
-// export const removeDashboardBG = ()=>{
-//   document.querySelector("body > #__nuxt > div > div").style.backgroundColor = '';
-// }
+export const compressImage = async (file) => {
+  const options = {
+    maxSizeMB: 2,
+    maxWidthOrHeight: 1920,
+    useWebWorker: true,
+  };
 
-// export const changeFooterBG = ()=>{
-//   document.querySelector("footer > #__nuxt > div > div").style.backgroundColor = '#12181F'
-// };
-// export const removeFooterBG = ()=>{
-//   document.querySelector("footer > #__nuxt > div > div").style.backgroundColor = '';
-// }
+  // if (psgFunc) {
+  //   options.onProgress = psgFunc;
+  // }
+
+  try {
+    return await imageCompression(file, options);
+  } catch (error) {
+    return ["error", error?.message];
+  }
+};
+
+export const handleFileChange = async (event, selectedFile, profileImg = null) => {
+  const file = event.target.files[0];
+  if (!file) return;
+  selectedFile.value = file;
+
+  // Check if profileImg is defined and if file type is an image
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      // Set the src of profileImg to the data URL of the uploaded image
+      profileImg.src = event.target.result;
+    };
+    
+    reader.readAsDataURL(file);
+  }

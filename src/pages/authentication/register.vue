@@ -128,15 +128,14 @@ import { Notification ,push} from 'notivue';
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-
-
 const name=ref("");
 const email=ref("");
 const password =ref("");
 const referralcode =ref("");
 const country = ref("")
 const loading = ref(false);
-
+const device = useDevice();
+const pinia = useStore();
 const isToggled = ref(true);
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
@@ -169,9 +168,6 @@ const passwordrules = [
   (v) => /[^a-zA-Z0-9]+/.test(v) || 'One Special Character',
   ];
 
-const device = useDevice();
-
-const pinia = useStore();
 console.log(device)
 
 const register = async () => {
