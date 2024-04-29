@@ -77,7 +77,7 @@
                               <v-btn  class="edit-btn  position-relative" style="width: 96px; height: 40px; letter-spacing: 0px; font-family: Manrope;line-height: 140%;">
                                   <img src="/svg/magicpen.svg" style="margin-right: 3px !important"/>
                                   Edit
-                                </v-btn>
+                              </v-btn>
                             </div>
                         </div>
                         </div>

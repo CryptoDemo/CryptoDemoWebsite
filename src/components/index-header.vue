@@ -107,7 +107,6 @@ const pinia = useStore()
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
-
 const pageNumber = ref(1)
 const select =ref('Au')
 const flag = ref('')

@@ -16,6 +16,7 @@ line-height: normal;
 border-radius: 2.3125rem;
 opacity: 0.8;
 background: #070B1F;
+opacity: 1;
 height: 100%;
 position: relative;
 margin-bottom: 70px;
@@ -24,12 +25,14 @@ padding: 20px !important;
 }
 .form-layout-light{
 border-radius: 37px;
-background: #F5F9FF;
+background: #Fff;
+backdrop-filter: blur(50px) !important;
 box-shadow: 15px 20px 51.2px 0px rgba(0, 0, 0, 0.08);
 position: relative;
 margin-bottom: 40px;
 margin-top: 110px;
 padding: 20px !important;
+opacity: 1;
 }
 .form {
 flex-shrink: 0; 
@@ -44,7 +47,8 @@ height: 680px;
 flex-shrink: 0; 
 border-radius: 2.3125rem;
 border-radius: 37px;
-background: #E2E8F0;
+background: #F8FAFC;
+/* background: #E2E8F0; */
 display: flex;
 justify-content: center;
 align-items: center;
@@ -135,7 +139,7 @@ font-family: Poppins;
 width: 298.116px;
 height: 64px!important;
 border-radius: 64px;
-border: 1px solid var(--Gray-Medium-light, #969696);
+border: 1px solid #DBE8FF;
 background: var(--Basic-White, #FFF) !important;
 color: #0B0E13;
 font-size: 12px;

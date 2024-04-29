@@ -1,8 +1,8 @@
 <template>
   <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0; height: 90%;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
-  <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
+  <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0; height: 90%; right: 0; display: flex; margin: auto" v-else/>
   <Header @country="v => country = v" text2="Already have an account," title="Login" link="/authentication/login"/> 
-    <v-container class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
+    <v-container  class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
       <div class="section">
       <v-row no-gutters>
         <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
@@ -103,19 +103,20 @@
               </v-text-field> 
               
                 <NuxtLink to="/authentication/sign-up-email-verification">  
-                  <Button buttonText="Continue" :loading="loading"  @click.prevent="register()" class="mt-4"/>
+                  <Button buttonText="Continue" :loading="loading"  @click.prevent="register()" class="mt-7"/>
                 </NuxtLink>   
               </div>
           </v-form>
         </v-col>
       
-        <v-col md="7" class="flex-lg-and-up hidden-sm-and-down">
+        <v-col md="7" class="flex-lg-and-up hidden-sm-and-down" style="opacity: 1;">
             <div class="ma-8 carousel-styling" >
             <Carousel />
           </div>
         </v-col>
       </v-row>
-    </div>   
+     </div> 
+    <!-- </div>   -->
     </v-container>
 </template>
 

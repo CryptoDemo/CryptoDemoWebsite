@@ -100,7 +100,7 @@ const emit = defineEmits(['country'])
 const pageNumber = ref(1)
 const country=ref('Brazil')
 const flag = ref('')
-
+console.log(flag)
 try {
   const data = await getcountries(pageNumber.value);
   if (data.success) {
@@ -113,7 +113,7 @@ try {
     if (newItems.length > 0) {
       console.log('fetching')
       pinia.setallcountries([...pinia.state.allcountries, ...newItems]);
-      flag.value = pinia.state?.allcountries[0].flag_url;
+      // flag.value = pinia.state?.allcountries[0].flag_url;
     }
   } else {
     
@@ -122,6 +122,9 @@ try {
   
 };
 
+onMounted(()=>{{
+  flag.value = pinia.state?.allcountries[0].flag_url
+}})
 
 const props = defineProps(
   {
@@ -297,6 +300,8 @@ background: #1B2537 !important;
 backdrop-filter: blur(50px) !important;
 height: 320px !important;
 border-radius: 20px !important;
+border-radius: 15px;
+border: 0.5px solid #354356;
 color: white;
 margin-top: 15px;
 box-shadow: none  !important;
@@ -305,6 +310,7 @@ height: 320px !important;
 .country-dropdown-light{
 border-radius: 15px;
 background: #fff !important;
+border: 1px solid #DBE8FF !important;
 border-radius: 20px !important;
 color: black;
 margin-top: 15px;
@@ -342,6 +348,7 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
+
 ::-webkit-scrollbar {
   display: none;
 }
