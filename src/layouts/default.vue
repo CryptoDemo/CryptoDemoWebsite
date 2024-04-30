@@ -9,10 +9,10 @@ const router = useRouter();
 // check if the user is logged in
 
 // if the user is logged in, and they are on the authentication, take them to the dashboard
-const blackListedRoutesWhenLoggedIn = ["/authentication/register/","/authentication/login/","/authentication/reset-Password/","/authentication/reset-Password-otp/", "/authentication/create-new-Password/"];
+const blackListedRoutesWhenLoggedIn = ["/authentication/register","/authentication/login","/authentication/reset-Password","/authentication/reset-Password-otp", "/authentication/create-new-Password"];
 const currentPath = router.currentRoute.value.path;
 
-console.log(blackListedRoutesWhenLoggedIn.includes(currentPath))
+console.log(currentPath)
 
 if(store?.state.isAuthenticated && blackListedRoutesWhenLoggedIn.includes(currentPath)){
 router.push("/account/profile")
