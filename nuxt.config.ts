@@ -10,7 +10,8 @@ export default defineNuxtConfig ({
   css: [
       "@/assets/css/index.css",
       'notivue/notifications.css', // Only needed if using built-in notifications
-      'notivue/animations.css' 
+      'notivue/animations.css',
+     
   ],
   modules: [
     "@pinia/nuxt",

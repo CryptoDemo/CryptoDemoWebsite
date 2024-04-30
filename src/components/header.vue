@@ -100,7 +100,6 @@ const emit = defineEmits(['country'])
 const pageNumber = ref(1)
 const country=ref('Brazil')
 const flag = ref('')
-console.log(flag)
 try {
   const data = await getcountries(pageNumber.value);
   if (data.success) {

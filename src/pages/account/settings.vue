@@ -167,13 +167,10 @@
                     </v-col>
                   </div>
                </v-row>
-
-                <div class="pa-2 ma-2">
-            
+                <div class="pa-2 ma-2">   
                 </div>
               <div class="pa-2 ma-2" style="flex-shrink: 0;">
                 <DataTable/>
-              
               </div>
             </div>     
           </div>

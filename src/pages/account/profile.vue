@@ -40,8 +40,8 @@
       <div>      
           <v-container style="display: flex; flex-direction: column;">
             <div style="display: flex; position: relative;">
-              <div  class="me-9">
-                <div class="sd-nav1 position-relative flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+              <div  class="me-9 flex-lg-and-up hidden-sm-and-down">
+                <div class="sd-nav1 position-relative" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
                   <div style="border-bottom: 1px solid var(--border, rgba(142,155,174,.5));  position: relative;top: 58px;"></div>
                     <div style="padding: 20px 24px;">
                       <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
@@ -70,7 +70,7 @@
               </div>
           
             <v-row style="min-width: 90%; height: fit-content; margin-top: 1px; gap: 16px;">
-                <v-col v-for="(variant, i) in profileCards" class="profile-cards" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :key="i" cols="3" style="display: flex;">
+                <v-col v-for="(variant, i) in profileCards" class="profile-cards" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :key="i" sm="3" cols="12" style="display: flex;">
                     <v-card class="mx-auto" variant="text">
                         <v-card-item>
                           <div style="display: flex;">

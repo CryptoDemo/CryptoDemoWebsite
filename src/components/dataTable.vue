@@ -1,7 +1,7 @@
 <template>
   <div style=" border: 1px solid rgba(142,155,174,.5);  border-radius: 24px !important;">
+    <h3 class="notify-me text-center my-7">Notification Settings</h3>
        <v-table style=" padding-left: 50px !important;  margin-top: -25px; padding-bottom: 20px;">
-        <!-- <h3 :class="isDark ? 'card-text-dark':'card-text-light'" class="notify-me">Notification Settings</h3> -->
           <thead>
             <tr>
               <th class="text-left"></th>
@@ -100,25 +100,22 @@ const  NotificationInfo = [
   const toggle_notification = async (value, status) => {
     console.log(value,status)
     
-     
 
-   
-
-    // const settings = pinia.state.user?.settings.notifications
+     const settings = pinia.state.user?.settings.notifications
 
 
-    // const setting_to_update = { [`${value}`]: `${status}` === 'true' ? true : false}
+     const setting_to_update = { [`${value}`]: `${status}` === 'true' ? true : false}
 
-    // console.log(setting_to_update)
+    console.log(setting_to_update)
 
-    // const all_settings = {...settings, ...setting_to_update}
+    const all_settings = {...settings, ...setting_to_update}
 
-    // const setting_add_to_info = {settings:{
-    //         notifications:{
-    //             ...all_settings
-    //         }
-    //     }
-    // }
+    const setting_add_to_info = {settings:{
+            notifications:{
+                 ...all_settings
+             }
+        }
+     }
     
     // const userToken = `${pinia.state.user.token}`;
     // const info = { ...pinia.state.user, ...setting_add_to_info };
@@ -227,6 +224,7 @@ font-size: 20px;
 font-style: normal;
 font-weight: 600;
 line-height: 28px; 
+color: #5892FF;
 }
 
 </style>
