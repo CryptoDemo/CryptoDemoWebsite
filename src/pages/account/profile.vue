@@ -11,7 +11,7 @@
                       <img src="/svg/Image (1).svg" class="me-3" alt="avatar" style="display: flex; align-self: flex-start;"/>
                         <div>
                           <v-chip class="profile-level" color="#FB774A" style="margin-bottom: 13.8px;">Unverified</v-chip>
-                          <span class="username" :class="isDark ? 'card-text-dark':'card-text-light'">UID :{{pinia.state.user?.data.username}} </span>
+                          <span class="username" :class="isDark ? 'card-text-dark':'card-text-light'">UID :{{ pinia.state.user?.username}} </span>
                         </div>
                     </div>
                     <span class="user-location" :class="isDark ? 'card-text-dark':'card-text-light'" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
@@ -255,7 +255,8 @@
     </div>
     </v-container>
     </div>
-    <Footer/>
+    <Footer class="desktop-footer"/>
+    <Mobile-footer class="mobile-footer"/>
   </div>
 </template>
 <script setup>

@@ -936,10 +936,11 @@ line-height: 120%; /* 28.8px */
     border-radius: 0px !important;
     margin-inline: auto;
   }
- 
-  /* .form-layout :deep (.grey-line){
-    margin-left: -1px !important;
-  } */
+  .username{
+    font-size: 14px !important;
+    font-style: normal;
+    font-weight: 600;
+  }
 }
 
 

@@ -145,7 +145,7 @@ const login = async () => {
 
   } else{
     loading.value = false 
-    push.error(data.message, { timeout: 2000 })
+    push.error(data.message, { duration: 2000 })
   }
 }catch(e){
   console.log(e)

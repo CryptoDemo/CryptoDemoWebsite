@@ -122,7 +122,7 @@ try {
 };
 
 onMounted(()=>{{
-  flag.value = pinia.state?.allcountries[0].flag_url
+  flag.value = pinia.state?.allcountries[0]?.flag_url
 }})
 
 const props = defineProps(
