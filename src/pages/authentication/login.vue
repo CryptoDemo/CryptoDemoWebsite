@@ -108,7 +108,7 @@ import { useTheme } from 'vuetify';
 import { signUp } from "@/composables/requests/auth";
 
 const theme = useTheme()
-const isDark = computed(() =>  theme.global.current.value.dark);
+const isDark = computed(() =>  theme?.global?.current.value?.dark);
 const isToggled = ref(true);
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
@@ -123,7 +123,6 @@ const loading= ref(false);
 
 const login = async () => {
   const device = useDevice();
-  
   loading.value = true 
   const userLogin = {
     email: email.value,
@@ -140,7 +139,7 @@ const login = async () => {
       navigateTo('/authentication/2fa-verification')
     } else{
       pinia.state.isAuthenticated = true
-      pinia.setUser(data)
+      pinia.setUser(data.data)
       navigateTo('/account/profile')
     }  
 
