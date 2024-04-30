@@ -13,13 +13,17 @@
     
     const handleRouting = ()=>{
         const currentPath = router.currentRoute.value.path;
-        if(currentPath.includes("/account") && !store?.state.isAuthenticated){
-            router.push("/authentication/login")
-        }else{
-            if(store?.state.isAuthenticated && blackListedRoutesWhenLoggedIn.includes(currentPath)){
-                router.push("/account/profile")
-            } else {
+        if(currentPath!="/"){
+            if(currentPath.includes("/account") && !store?.state.isAuthenticated){
                 router.push("/authentication/login")
+            }else{
+                if(store?.state.isAuthenticated && blackListedRoutesWhenLoggedIn.includes(currentPath)){
+                    router.push("/account/profile")
+                } else {
+                    if(!blackListedRoutesWhenLoggedIn.includes(currentPath)){
+                        router.push("/authentication/login")
+                    }
+                }
             }
         }
     }
