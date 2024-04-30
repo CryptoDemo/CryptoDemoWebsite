@@ -99,7 +99,7 @@ const pinia = useStore()
 const emit = defineEmits(['country'])
 const pageNumber = ref(1)
 const country=ref('Brazil')
-const flag = ref('')
+const flag = ref('');
 try {
   const data = await getcountries(pageNumber.value);
   if (data.success) {

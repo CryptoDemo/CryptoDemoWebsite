@@ -135,7 +135,6 @@ const password =ref("");
 const referralcode =ref("");
 const country = ref("")
 const loading = ref(false);
-const device = useDevice();
 const pinia = useStore();
 const isToggled = ref(true);
 const togglePassword = () => {
@@ -169,18 +168,19 @@ const passwordrules = [
   (v) => /[^a-zA-Z0-9]+/.test(v) || 'One Special Character',
   ];
 
-console.log(device)
-
 const register = async () => {
-loading.value = true 
-const registerInfo = {
-name: name.value,
-email: email.value,
-password: password.value,
-referralcode: referralcode.value,
-country: country.value,
-device_info: JSON.stringify(device)
-}
+  loading.value = true;
+
+  const device = useDevice();
+
+  const registerInfo = {
+    name: name.value,
+    email: email.value,
+    password: password.value,
+    referralcode: referralcode.value,
+    country: country.value,
+    device_info: JSON.stringify(device)
+  }
 
 try {
   const data = await register_(registerInfo);

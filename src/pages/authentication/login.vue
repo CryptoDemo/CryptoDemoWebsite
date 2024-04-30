@@ -118,11 +118,12 @@ const email = ref('');
 const password = ref('');
 const alert = ref(false);
 const isFormValid = computed(() => password.value.length && validateEmail(email.value));
-const device = useDevice();
 const pinia = useStore();
 const loading= ref(false);
 
 const login = async () => {
+  const device = useDevice();
+  
   loading.value = true 
   const userLogin = {
     email: email.value,
