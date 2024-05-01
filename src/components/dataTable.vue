@@ -1,16 +1,16 @@
 <template>
   <div style=" border: 1px solid rgba(142,155,174,.5);  border-radius: 24px !important;">
     <h3 class="notify-me text-center my-7">Notification Settings</h3>
-       <v-table style=" padding-left: 50px !important;  margin-top: -25px; padding-bottom: 20px;">
+       <v-table class="notification-table" style=" padding-left: 50px;  margin-top: -25px; padding-bottom: 20px;">
           <thead>
             <tr>
               <th class="text-left"></th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in NotificationInfo" :key="item.name">
-              <td class="notification-text" :class="isDark ? 'text-dark':'text-light'">{{ item.name }}</td>
-              <td><v-switch @click="toggle_notification(item.value,item.status)" inset color="#2873FF" style="display: flex; justify-content: center;"></v-switch></td>
+            <tr v-for="(v,k) in notificationSettings" :key="k">
+              <td class="notification-text capitalize" :class="isDark ? 'text-dark':'text-light'">{{ k?.split("_")?.join(" ")?.replace("notify me on ","") }}</td>
+              <td><v-switch v-model="notificationSettings[k]" @input="toggleNotification(k,v)" inset color="#2873FF" style="display: flex; justify-content: center;"></v-switch></td>
             </tr>
           </tbody>
         </v-table>
@@ -26,99 +26,13 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
 
 
-const status = ref(null);
-// status.value = pinia.state.user?.settings.notifications;
+const notificationSettings = ref({...pinia.state.user?.settings.notifications})
 
-const  NotificationInfo = [
-      {
-        name: 'Transactions',
-        value: "notify_me_on_transactions",
-        status: false,
-      
-      },
-      {
-        name: 'Confirm deposit',
-        value: "notify_me_on_deposit_confirmed",
-        status: true,
-      
-      },
-      {
-        name: 'Deposit pending',
-        value: "notify_me_on_deposit_pending",
-        status: false,
-      },
-      {
-        name: 'Crypto purchased',
-        value: "notify_me_on_crypto_purchased",
-        status: true,
-      },
-      {
-        name: 'Crypto sold',
-        value: "notify_me_on_crypto_sold",
-        status: true,
-      
-      },
-      {
-        name: 'Incoming trade',
-        value: "notify_me_on_incoming_trade",
-        status: false,
-      
-      },
-      {
-        name: 'Someone viewed my profile',
-        value: "notify_me_on_profile_view",
-        status: false,
-      
-      },
-      {
-        name: 'Trade cancelled/expired',
-        value: "notify_me_on_trade_canceled_or_expired",
-        status: false,
-      
-      },
-      {
-        name: 'New chat message',
-        value: "notify_me_on_chat_message",
-        status: false,
-      },
-    
-      {
-        name: 'Moderator messgae',
-        value: "notify_me_on_moderator_message",
-        status: false,
-      
-      },
-      {
-        name: 'Notify me on new login',
-        value: "notify_me_on_new_login",
-        status: false,
-      },
-    ];
+const toggleNotification = async (key, value) => {
+  pinia.updateNotificationSettings({key,value});
 
-
-
-  const toggle_notification = async (value, status) => {
-    console.log(value,status)
-    
-
-     const settings = pinia.state.user?.settings.notifications
-
-
-     const setting_to_update = { [`${value}`]: `${status}` === 'true' ? true : false}
-
-    console.log(setting_to_update)
-
-    const all_settings = {...settings, ...setting_to_update}
-
-    const setting_add_to_info = {settings:{
-            notifications:{
-                 ...all_settings
-             }
-        }
-     }
-    
     // const userToken = `${pinia.state.user.token}`;
-    // const info = { ...pinia.state.user, ...setting_add_to_info };
+    // const info = { ...pinia.state.user};
     // delete info.token;
     
     // console.log(info)
@@ -227,4 +141,9 @@ line-height: 28px;
 color: #5892FF;
 }
 
+@media screen and (max-width: 600px) {
+  .notification-table{
+    padding: 0px !important;
+  }
+}
 </style>

@@ -237,7 +237,6 @@ margin-top: 28px !important;
 }
 .dropdown-btn1i-light{
 width: 135px;
-height: 50px !important;
 flex-shrink: 0;
 border-radius: 20px;
 background-color: #F8FAFC;

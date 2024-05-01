@@ -40,6 +40,16 @@ export const useStore = defineStore('app',()=> {
       state.user = payload;
       state.isAuthenticated = true;
   };
+    const updateNotificationSettings = (payload) => {
+        const {key, value} = payload;
+        // if not an object
+        console.log(key,value)
+        if(!Object.keys(state.user.settings.notifications[key]).length){
+            state.user.settings.notifications[key] = value;
+        }else{ // if an object
+            state.user.settings.notifications[key].is_enabled = value;
+        }
+    };
 
   const setToken = (payload) => {
       state.token = payload;
@@ -139,7 +149,8 @@ export const useStore = defineStore('app',()=> {
       setTokenLists,
       setTokenPrices,
       setTokenBalance,
-      setallcountries
+      setallcountries,
+      updateNotificationSettings
     }
 },
   {persist: {

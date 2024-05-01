@@ -914,8 +914,17 @@ line-height: 120%; /* 28.8px */
     position: absolute !important;
     margin-top: 50px !important;
   }
+  .form-layout-light{
+    background: #fff !important;
+    border-radius: 0px;
+    position: absolute !important;
+    margin-top: 50px !important;
+  }
   .form{
     background: #070B1F !important;
+  }
+  .form-light{
+    background: #F8FAFC !important;
   }
   .Dashboard-navbar{
     background:  #12181F !important;
@@ -936,10 +945,34 @@ line-height: 120%; /* 28.8px */
     border-radius: 0px !important;
     margin-inline: auto;
   }
+  .dropdown-btn1i-light{
+    border: none !important;
+    box-shadow: none !important;
+    background:  none !important;
+    width: 0px !important;
+    height: 0px !important;
+    margin-inline: auto;
+  }
   .username{
     font-size: 14px !important;
     font-style: normal;
     font-weight: 600;
+  }
+  .avatar{
+    width: 40px;
+    height: 40px;
+  }
+  .settings-header, .acct-settings{
+    width: 100% !important;
+    margin-left: 0px !important;
+  }
+  .acct-text{
+    font-size: 14px !important;
+    font-weight: 600;
+  }
+  .mail-text{
+    font-size: 12px !important;
+    font-weight: 500 !important;
   }
 }
 
@@ -957,4 +990,8 @@ line-height: 120%; /* 28.8px */
   .mobile-social-icons{
     display: none !important;
   }
+}
+
+.capitalize{
+  text-transform: capitalize;
 }

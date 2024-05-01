@@ -11,12 +11,12 @@
 
             <div>
               <div class="settings-body">
-                  <div class="settings-header ml-4 mt-4" style="width: 96%;">
-                    <span class="header-text1">Setting answers to your security questions is a requirement in the event that you need to reset or update your phone number. <span style="color: var(--Primary-100, #2873FF);">Set Answers!</span></span>
+                  <div class="settings-header d-md-flex mt-4" style="width: 99%; margin-left: 16px;">
+                    <span class="header-text1">Setting answers to your security questions is a requirement in the event that you need to reset or update your phone number. <span style="color: #2873FF; display: contents;">Set Answers!</span></span>
                   </div>
-                  <div class="acct-settings ml-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex;width: 96%; justify-content: space-between; margin-top: 32px">
+                  <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex;width: 99%; margin-left: 16px; justify-content: space-between; margin-top: 32px">
                     <span class="acct-text" v-if="phoneVerificationStep!=3"> Account Settings</span>
-                    <span class="mail-text" :class="isDark ? 'text-dark':'text-light'" v-if="phoneVerificationStep!=3"> {{ pinia.state.email }}</span>
+                    <span class="mail-text" :class="isDark ? 'text-dark':'text-light'" v-if="phoneVerificationStep!=3"> {{ pinia.state.user?.email }}</span>
 
                       <div class="verified" id="verified" v-if="phoneVerificationStep==3" style="display: flex; margin: auto; align-items: center; ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none" class="me-10">
@@ -28,12 +28,12 @@
                   </div>
               </div>
 
-               <v-row no-gutters >
-                    <v-col class="d-md-flex me-5" style=" flex-grow: 0 !important;">
+               <v-row no-gutters style="margin-top: 32px; width: 101%;">
+                    <!-- <v-col class="d-md-flex me-5" style=" flex-grow: 0 !important;">
                       <div class="d-flex" >
-                          <div class="pa-2 ma-2" style="margin-top: 0px!important;">
+                          <div class="input-wrap" style="margin-top: 0px!important; margin-left: 16px;">
                             <div style="display: grid; width: 100%;">
-                              <input type="text" v-if="phoneVerificationStep==1 || phoneVerificationStep==3" class="input-styling1 position-relative" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" placeholder="002-002-003" style="outline: none; padding-left: 140px; font-size: 14px; font-weight: 400;"/>
+                              <input type="text" v-if="phoneVerificationStep==1 || phoneVerificationStep==3" class="input-styling1 position-relative" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" placeholder="002-002-003" style="outline: none; padding-left: 140px; font-size: 14px; font-weight: 400; margin-top: 8px;"/>
                                 <v-menu>
                                     <template v-slot:activator="{ props }">
                                       <v-btn class="area-num" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props">
@@ -67,13 +67,13 @@
                             </div> 
                           
                           </div>
-                          <v-btn v-if="phoneVerificationStep==1"  @click="sendOTP" class="update-btn" style="border-radius: 16px; height: 59px !important; width: 94px; letter-spacing: 0px; margin-top: 10px; box-shadow: none;">Confirm</v-btn>
+                          <v-btn v-if="phoneVerificationStep==1"  @click="sendOTP" class="update-btn" style="border-radius: 16px; height: 59px !important; width: 94px; letter-spacing: 0px; box-shadow: none; margin-left: 10px; margin-top: 11px;">Confirm</v-btn>
                           <v-btn v-if="phoneVerificationStep==2" @click="verifyOTP" class="mt-2 update-btn" style="border-radius: 16px; height: 59px !important; width: 94px; letter-spacing: 0px ">Confirm</v-btn>
                       </div>
-                    </v-col>
+                    </v-col> -->
 
-                    <v-col>
-                      <div class="pa-2 ma-2 d-flex" style="margin-top: 0px!important;">
+                    <v-col class="username-col" style="margin-inline-end: 18px;">
+                      <div class="d-flex img-col" style="margin-top: 0px!important; margin-left: 16px;">
                         <div @click="$refs.imageSelector.click()">
                           <input type="image" src="/svg/Camera.svg" accept="image/png, image/jpeg, image/bmp" style="position: absolute; margin-left: 17px; margin-top: 17px;"/>
                           <input type="image" ref="profileImg" :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" class="me-4" style="align-self: start;height: 65px;width: 72px;border-radius: 25px;"/>
@@ -91,23 +91,23 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="2" height="15" viewBox="0 0 2 15" fill="none">
                                 <path opacity="0.4" d="M1.06026 1.31102V14.311" stroke="#C3CDDB" stroke-linecap="round"/>
                             </svg>
-                            </v-icon>
+                          </v-icon>
 
                           </v-text-field>
-                          <span class="number-caption" :class="isDark ? 'text-dark':'text-light'">This username is auto-generated and can be changed only once.</span>
+                          <div class="text-div" style="width: 300px;">
+                             <span class="number-caption" :class="isDark ? 'text-dark':'text-light'">This username is auto-generated and can be changed only once.</span>
+                          </div>
                         </div>
-
-
                       </div>
                     </v-col>
 
-                  <div class="d-md-flex">
-                    <v-col style="flex-grow: 0 !important;">
-                      <div class="me-4" style="display: grid; margin-top: 0!important;">
-                        <span class="number-caption ml-1" :class="isDark ? 'text-dark':'text-light'" style="line-height: 28px; font-family: manrope; font-weight: 600; font-size: 16px;">Preferred currency</span>
+               
+                    <v-col class="currency-div">
+                      <div  style="display: grid; margin-top: 0!important;">
+                        <!-- <span class="number-caption ml-1" :class="isDark ? 'text-dark':'text-light'" style="line-height: 28px; font-family: manrope; font-weight: 600; font-size: 16px;">Preferred currency</span> -->
                         <v-menu>
                             <template v-slot:activator="{ props }">
-                              <v-btn class="input-styling1 ml-1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" width="385px" v-bind="props" style="box-shadow: none;">
+                              <v-btn class="input-styling1 currency-card ml-1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props" style="box-shadow: none;">
                                 <div  class="py-3" style="display: flex; cursor: pointer; position: absolute; left: 37px; align-items: center;">
                                   <span :class="isDark ? 'text-dark':'text-light'" class="me-2" style="font-weight: 700; font-size: 16px;">{{Selectedcurrency_code}}</span>
                                   <span :class="isDark ? 'text-dark':'text-light'" class="mt-" style="font-weight: 700;">{{Selectedcurrency}}</span> 
@@ -133,49 +133,16 @@
                           <span class="number-caption ml-1" :class="isDark ? 'text-dark':'text-light'">Choose the currency for your wallet.</span>
                       </div>
                     </v-col>  
-                    
-                    <v-col>
-                      <div style="flex-grow: 0 !important;">
-                        <div style="display: grid;">
-                          <span class="number-caption ml-1" :class="isDark ? 'text-dark':'text-light'" style="line-height: 28px; font-family: manrope; font-weight: 600; font-size: 16px;">Set your time zone</span>
-                          <v-menu>
-                              <template v-slot:activator="{ props }">
-                                <v-btn class="input-styling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  width="385px" v-bind="props">
-                                  <div  class="py-3" style="display: flex; cursor: pointer; position: absolute; left: 15px; align-items: center;">
-                                      <span class="dropdown-text" :class="isDark ? 'text-dark':'text-light'">{{selectedTimezone}}</span> 
-                                  </div>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none" style="position: absolute; right: 30px; bottom: 27px;" :class="isDark ? 'svg-dark':'svg-light'">
-                                    <path d="M5.05508 5.99413C5.19232 5.99415 5.32822 5.96714 5.45502 5.91463C5.58182 5.86213 5.69705 5.78516 5.7941 5.68813L9.69409 1.78814C9.88995 1.59227 10 1.32663 10 1.04964C10 0.772651 9.88995 0.50701 9.69409 0.311147C9.49823 0.115285 9.23259 0.00523901 8.9556 0.00523901C8.67861 0.00523901 8.41296 0.115285 8.2171 0.311147L5.0531 2.71114L1.8891 0.311147C1.69324 0.115285 1.4276 0.00523901 1.1506 0.00523901C0.873613 0.00523901 0.607941 0.115285 0.412079 0.311147C0.216217 0.50701 0.106201 0.772651 0.106201 1.04964C0.106201 1.32663 0.216217 1.59227 0.412079 1.78814L4.3121 5.68813C4.4096 5.78569 4.52546 5.86297 4.65298 5.91549C4.78051 5.96801 4.91716 5.99473 5.05508 5.99413Z"/>
-                                  </svg>
-                                </v-btn>
-                              </template>
-
-                              <v-list :class="isDark ? 'country-dropdown1':'country-dropdown1-light'">
-                                <v-list-item>
-                                  <div v-for="(zone, index) in pinia.state.allcountries" :key="index" class="d-flex py-1">
-                                    <v-list-item @click="selectedTimezone=zone.timezone;" class="d-flex"> 
-                                    <div class="ml-3">
-                                      <span :class="isDark ? 'country-name' : 'country-name-light'"> {{ zone.timezone }} </span>
-                                    </div>
-                                    </v-list-item>
-                                  </div>
-                                </v-list-item>
-                              </v-list>
-                          </v-menu>    
-                        </div>
-                      </div>
-                    </v-col>
-                  </div>
                </v-row>
-                <div class="pa-2 ma-2">   
-                </div>
-              <div class="pa-2 ma-2" style="flex-shrink: 0;">
+               
+              <div class="table-div" style="margin-left: 16px; width: 99%; margin-top: 32px !important">
                 <DataTable/>
               </div>
             </div>     
           </div>
     </v-container>     
-          <Footer/>
+    <Footer class="desktop-footer"/>
+    <Mobile-footer class="mobile-footer"/>
   </div>
 </template>
 <script setup>
@@ -239,18 +206,18 @@ const Selectedcurrency_code = ref ('$');
 const pageNumber = ref(1);
 const phoneCode = ref('+61');
 const flag = ref('');
-const selectedTimezone  = ref ('Africa, Lagos') 
+
 
 </script>
 <style scoped>
 .settings-header {
 border-radius: 16px;
-padding: 27px 16px;
+padding: 25px 10px;
 width: 100%;
 background: #ECECEC;
 }
 .header-text1{
-color: var(--Gray-Dark, #323232);
+color: #0D0D0D;
 font-feature-settings: 'clig' off, 'liga' off;
 font-size: 12px;
 font-style: normal;
@@ -303,7 +270,7 @@ font-weight: 500;
 line-height: 28px; 
 }
 .input-styling1{
-width: 289px;
+/* width: 320px; */
 height: 64px !important;
 border-radius: 15px ;
 letter-spacing: 0px;
@@ -313,6 +280,12 @@ font-style: normal;
 font-weight: 700;
 line-height: normal;
 box-shadow: none;
+}
+.country-dropdown1{
+border: 0.5px solid #354356;
+}
+.country-dropdown1-light{
+border: 1px solid #DBE8FF !important;
 }
 .number-caption{
 font-feature-settings: 'clig' off, 'liga' off;
@@ -384,4 +357,29 @@ box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
 background: #F8FAFC!important;
 }
 
+
+@media screen and (max-width: 600px) {
+  .input-styling1{
+    width: 251px !important;
+  }
+  .username-col, .img-col{
+    margin-inline-end: 0px !important;
+    margin-left: 0px !important;
+  }
+  .text-div{
+    width: 230px !important;
+  }
+  .currency-div{
+    margin-top: 20px;
+  }
+  .table-div{
+    margin-left: 0px !important;
+  }
+  .currency-card{
+    width: 333px !important;
+  }
+  .settings-header{
+    padding: 15px 10px;
+  }
+}
 </style>

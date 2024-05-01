@@ -1,6 +1,6 @@
 <template>
   <div>
-     <Header hide=true icon1=true icon3=true  icon2=true />
+     <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" />
      <v-container>
         <div style="margin-top: 100px; min-height: 100%;">
             <v-row no-gutters>
@@ -8,7 +8,7 @@
                 <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 0px">
                   <div class="d-flex" style="justify-content: space-around; align-items: center;">
                     <div class="d-flex">
-                      <img src="/svg/Image (1).svg" class="me-3" alt="avatar" style="display: flex; align-self: flex-start;"/>
+                      <img src="/svg/Image (1).svg" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start;"/>
                         <div>
                           <v-chip class="profile-level" color="#FB774A" style="margin-bottom: 13.8px;">Unverified</v-chip>
                           <span class="username" :class="isDark ? 'card-text-dark':'card-text-light'">UID :{{ pinia.state.user?.username}} </span>
