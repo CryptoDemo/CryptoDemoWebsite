@@ -136,12 +136,12 @@
                </v-row>
                
               <div class="table-div" style="margin-left: 16px; width: 99%; margin-top: 32px !important">
-                <DataTable/>
+                <NotificationSettings />
               </div>
             </div>     
           </div>
     </v-container>     
-    <Footer class="desktop-footer"/>
+    <Footer class="desktop-footer" />
     <Mobile-footer class="mobile-footer"/>
   </div>
 </template>

@@ -8,9 +8,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(v,k) in notificationSettings" :key="k">
+            <tr v-for="(v,k) in notifSettings" :key="k">
               <td class="notification-text capitalize" :class="isDark ? 'text-dark':'text-light'">{{ k?.split("_")?.join(" ")?.replace("notify me on ","") }}</td>
-              <td><v-switch v-model="notificationSettings[k]" @input="toggleNotification(k,v)" inset color="#2873FF" style="display: flex; justify-content: center;"></v-switch></td>
+              <td><v-switch v-model="notifSettings[k]" @input="toggleNotification(k,v)" inset color="#2873FF" style="display: flex; justify-content: center;"></v-switch></td>
             </tr>
           </tbody>
         </v-table>
@@ -24,9 +24,27 @@ import { useTheme } from 'vuetify';
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
+const notificationSettings = computed(()=> pinia.state.user?.settings?.notifications);
+const notifSettings = ref({});
 
 
-const notificationSettings = ref({...pinia.state.user?.settings.notifications})
+// if(notificationSettings.length && new Date()<expiration){
+//   // fetch from local storage/pinia
+//   faqs.value = notificationSettings;
+// }else{
+//   // fetch from api
+// }
+
+const setupNotificationSettings = ()=>{
+  for(const key in notificationSettings.value){
+    const value = notificationSettings.value[key];
+    if(Object.keys(value).length){
+      notifSettings.value[key] = value.is_enabled;
+    }else{
+      notifSettings.value[key] = value;
+    }
+  }
+}
 
 const toggleNotification = async (key, value) => {
   pinia.updateNotificationSettings({key,value});
@@ -74,7 +92,11 @@ const toggleNotification = async (key, value) => {
     //     console.error('Error updating notification settings:', error);
       
     // }
-}
+  }
+
+  onBeforeMount(()=>{
+    setupNotificationSettings();
+  });
 </script>
 
 <style>
