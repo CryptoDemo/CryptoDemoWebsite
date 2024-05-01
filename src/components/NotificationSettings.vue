@@ -37,14 +37,11 @@ const notifSettings = ref({});
 
 const setupNotificationSettings = ()=>{
   for(const key in notificationSettings.value){
-    console.log('here....1')
     const value = notificationSettings.value[key];
     if(Object.keys(value).length){
-      console.log('here....2')
       notifSettings.value[key] = value.is_enabled;
     }else{
       notifSettings.value[key] = value;
-      console.log('here....3')
     }
   }
 }
@@ -55,8 +52,6 @@ const toggleNotification = async (key, value) => {
     // const userToken = `${pinia.state.user.token}`;
     // const info = { ...pinia.state.user};
     // delete info.token;
-    
-    // console.log(info)
 
     // try {
 

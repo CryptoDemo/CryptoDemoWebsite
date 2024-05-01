@@ -43,7 +43,6 @@ export const useStore = defineStore('app',()=> {
     const updateNotificationSettings = (payload) => {
         const {key, value} = payload;
         // if not an object
-        console.log(key,value)
         if(!Object.keys(state.user.settings.notifications[key]).length){
             state.user.settings.notifications[key] = value;
         }else{ // if an object
