@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+    <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true"/>
     <v-container style="display: flex;">
           <div style="margin-bottom: 113px; margin-top: 110px;display: flex;">
             <div class="me-4 flex-lg-and-up hidden-sm-and-down">

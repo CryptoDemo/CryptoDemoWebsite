@@ -1,7 +1,7 @@
 <template>
   <div style=" border: 1px solid rgba(142,155,174,.5);  border-radius: 24px !important;">
+    <h3 class="notify-me text-center my-7">Notification Settings</h3>
     <v-table class="notification-table" style=" padding-left: 50px;  margin-top: -25px; padding-bottom: 20px;">
-      <h3 class="notify-me text-center my-7">Notification Settings</h3>
           <thead>
             <tr>
               <th class="text-left"></th>
