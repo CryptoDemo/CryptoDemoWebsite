@@ -12,6 +12,7 @@
   </v-app>
 </template>
 <script setup>
+import { useStore } from '@/stores/index'
 import { Notification ,push,  pastelTheme} from 'notivue';
 
 // const theme: NotivueTheme = {
