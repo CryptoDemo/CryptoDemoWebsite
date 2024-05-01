@@ -155,12 +155,12 @@ font-weight: 400;
 line-height: 160%; /* 22.4px */
 }
 .notify-me{
+color: var(--Primary-80, #5892FF);
 font-family: Manrope;
-font-size: 20px;
+font-size: 24px;
 font-style: normal;
 font-weight: 600;
-line-height: 28px; 
-color: #5892FF;
+line-height: 28px; /* 116.667% */
 }
 
 @media screen and (max-width: 600px) {

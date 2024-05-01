@@ -72,14 +72,14 @@
                       </div>
                     </v-col> -->
 
-                    <v-col class="username-col" style="margin-inline-end: 18px;">
+                    <v-col md="" sm="5" class="username-col" style="margin-inline-end: 18px;">
                       <div class="d-flex img-col" style="margin-top: 0px!important; margin-left: 16px;">
                         <div @click="$refs.imageSelector.click()">
                           <input type="image" src="/svg/Camera.svg" accept="image/png, image/jpeg, image/bmp" style="position: absolute; margin-left: 17px; margin-top: 17px;"/>
-                          <input type="image" ref="profileImg" :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" class="me-4" style="align-self: start;height: 65px;width: 72px;border-radius: 25px;"/>
+                          <img ref="profileImg" :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" class="me-4" style="align-self: start;height: 65px;width: 72px;border-radius: 25px;"/>
                         </div>
                         <input ref="imageSelector" @input="handleImgChange" type="file" accept="image/*" style="display:none"/>
-                        <div>
+                        <div class="email-div">
                          <v-text-field placeholder="Email Address" class="input-styling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" variant="plain" style="text-align: justify; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400;">
                             <v-icon class="prepend-inner-icon ml-3">
                               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 25 24" fill="none">
@@ -102,12 +102,12 @@
                     </v-col>
 
                
-                    <v-col class="currency-div">
+                    <v-col class="currency-div" md=""  sm="5" cols="12">
                       <div  style="display: grid; margin-top: 0!important;">
                         <!-- <span class="number-caption ml-1" :class="isDark ? 'text-dark':'text-light'" style="line-height: 28px; font-family: manrope; font-weight: 600; font-size: 16px;">Preferred currency</span> -->
                         <v-menu>
                             <template v-slot:activator="{ props }">
-                              <v-btn class="input-styling1 currency-card ml-1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props" style="box-shadow: none;">
+                              <v-btn class="input-styling1 ml-1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props" style="box-shadow: none;">
                                 <div  class="py-3" style="display: flex; cursor: pointer; position: absolute; left: 37px; align-items: center;">
                                   <span :class="isDark ? 'text-dark':'text-light'" class="me-2" style="font-weight: 700; font-size: 16px;">{{Selectedcurrency_code}}</span>
                                   <span :class="isDark ? 'text-dark':'text-light'" class="mt-" style="font-weight: 700;">{{Selectedcurrency}}</span> 
@@ -166,28 +166,43 @@ watch(()=> selectedImage.value,async(newval)=>{
   console.log(newval);
   const compressedImg = await compressImage(newval);
   console.log(compressedImg);
-  if(Array.isArray(compressedImg)) return push.error(compressedImg[1], { timeout: 2000 });
+  if(Array.isArray(compressedImg)) return push.error(compressedImg[1], { duration: 2000 });
   
   var formdata = new FormData();
   formdata.append("file",compressedImg);
-  const data = await uploadUserFile(formdata,pinia.state.token);
+  const imgUrl = await uploadUserFile(formdata);
 
-  try {  
-      
-      if (data.success) {
-        const user = { ...pinia.state.user, profile_image: data.data[0] };
-        pinia.setUser(user);
+  const profile_image = {profile_image: imgUrl.uploaded_file_urls[0]}
+  const userToken = `${pinia.state.user.token}`;
+  const info = { ...pinia.state.user, ...profile_image };
+  delete info.token;
 
-      } else {
-        // Display error message
-        push.error(data.message, { timeout: 2000 })
+  try {   
+  const data = await fetch(`${baseURL}user`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token' : `${pinia.state.user?.token}`
+    },
+    body: JSON.stringify(info)
+  }).then(res => res.json());
 
-      }
-    } catch (error) {
-      // Display error message
-      push.error(data.message, { timeout: 2000 })
-    }
+  
+  if (data.success) {
+    const user = { ...info, token: userToken };
+      pinia.setUser(user);
+
+  } else {
+    // Display error message
+    push.error(data.message, { timeout: 2000 })
+
+  }
+} catch (error) {
+  // Display error message
+  push.error(data.message, { timeout: 2000 })
+}
 });
+
 
 const sendOTP = ()=>{
   // write logic for sending otp to user's phone
@@ -206,7 +221,6 @@ const Selectedcurrency_code = ref ('$');
 const pageNumber = ref(1);
 const phoneCode = ref('+61');
 const flag = ref('');
-
 
 </script>
 <style scoped>
@@ -359,8 +373,8 @@ background: #F8FAFC!important;
 
 
 @media screen and (max-width: 600px) {
-  .input-styling1{
-    width: 251px !important;
+  .email-div{
+    width: 83% !important;
   }
   .username-col, .img-col{
     margin-inline-end: 0px !important;
@@ -375,11 +389,12 @@ background: #F8FAFC!important;
   .table-div{
     margin-left: 0px !important;
   }
-  .currency-card{
-    width: 333px !important;
-  }
+
   .settings-header{
     padding: 15px 10px;
+  }
+  .acct-settings{
+    margin-top: 24px !important;
   }
 }
 </style>
