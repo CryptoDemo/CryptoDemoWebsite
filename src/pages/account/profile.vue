@@ -4,26 +4,25 @@
      <v-container>
         <div style="margin-top: 100px; min-height: 100%;">
             <v-row no-gutters>
-              <v-col cols="8">
+              <v-col class="profile-section" cols="8">
                 <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 0px">
                   <div class="d-flex" style="justify-content: space-around; align-items: center;">
                     <div class="d-flex">
-                      <img src="/svg/Image (1).svg" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start;"/>
-                        <div>
+                      <img :src="pinia.state?.user?.profile_image" width="70" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start;"/>
+                        <div class="unverified-div">
                           <v-chip class="profile-level" color="#FB774A" style="margin-bottom: 13.8px;">Unverified</v-chip>
                           <span class="username" :class="isDark ? 'card-text-dark':'card-text-light'">UID :{{ pinia.state.user?.username}} </span>
                         </div>
                     </div>
                     <span class="user-location" :class="isDark ? 'card-text-dark':'card-text-light'" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
-                    
                       <div class="d-flex" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
-                          <img src="/svg/heart-tick.svg" alt="icon">
-                          <span class="user-location">0</span>
+                          <img src="/svg/heart-tick.svg" class="hrt-icon" alt="icon">
+                          <span class="user-location" :class="isDark ? 'text-dark':'text-light'">0</span>
                       </div>
                       <div class="d-flex" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
-                      <img src="/svg/heart-remove.svg" alt="icon">
-                      <span class="user-location">0</span>
-                    </div>
+                        <img src="/svg/heart-remove.svg" class="hrt-icon" alt="icon">
+                        <span class="user-location" :class="isDark ? 'text-dark':'text-light'">0</span>
+                      </div>
                   </div>
                 </div>
               </v-col>
@@ -53,7 +52,7 @@
                               {{ item.title }}
                               <div style="align-items: center; display: flex; position: absolute; right: 20px;"> 
                                 <img :src="item.flag" width="25" class="me-3" style="border-radius: 9px;"/>
-                                <span >{{ item.country }}</span>
+                                <span >{{item.country }}</span>
                                 <span>{{ item.type }}</span>
                                 <span>{{ item.number }}</span>
                               </div>
@@ -69,7 +68,7 @@
                 </div>
               </div>
           
-            <v-row style="min-width: 90%; height: fit-content; margin-top: 1px; gap: 16px;">
+            <v-row class="card-wrap" style="min-width: 90%; height: fit-content; margin-top: 1px; gap: 16px;">
                 <v-col v-for="(variant, i) in profileCards" class="profile-cards" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :key="i" sm="3" cols="12" style="display: flex;">
                     <v-card class="mx-auto" variant="text">
                         <v-card-item>
@@ -251,8 +250,8 @@
 
       </div>
   
-      </v-row>
-    </div>
+            </v-row>
+        </div>
     </v-container>
     </div>
     <Footer class="desktop-footer"/>
@@ -303,7 +302,7 @@ const pageNumber = ref(1)
     console.log(error);
   };
 const navigation = [
-  {icon:'/svg/grad-location.svg', title: 'location', link:'/profile', flag:'/flags/ag.svg', country:'Argentina'},
+  {icon:'/svg/grad-location.svg', title: 'location', link:'/profile', flag:'/flags/ag.svg',},
   {icon:'/svg/globe.svg', title: 'Languages:', link:'/payment', type:'English'},
   {icon:'/svg/partners.svg', title: 'Trade partners:', link:'', number:0},
   {icon:'/svg/trade1.svg', title: 'Trades', link:'/history'},
@@ -587,5 +586,29 @@ font-size: 12px;
 font-style: normal;
 font-weight: 400;
 line-height: 150%; /* 18px */
+ }
+
+ @media screen and (max-width: 600px) {
+  .card-wrap {
+    width: 92%;
+    display: flex;
+    margin: auto;
+  }
+  .avatar{
+    width: 40px !important;
+  }
+  .profile-section{
+    min-width: 100% !important;
+  }
+  .hrt-icon{
+    width: 20px !important;
+  }
+  .user-location{
+    font-size: 14px !important;
+  }
+  .unverified-div{
+    display: flex;
+  }
+  
  }
 </style>

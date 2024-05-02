@@ -10,7 +10,7 @@
     // check if the user is logged in
 
     // if the user is logged in, and they are on the authentication, take them to the dashboard
-    const blackListedRoutesWhenLoggedIn = ["/authentication/register","/authentication/login","/authentication/reset-Password","/authentication/reset-Password-otp", "/authentication/create-new-Password"];
+    // const blackListedRoutesWhenLoggedIn = ["/authentication/register","/authentication/login","/authentication/reset-Password","/authentication/reset-Password-otp", "/authentication/create-new-Password"];
     
     // const handleRouting = ()=>{
     //     const currentPath = router.currentRoute.value.path;
@@ -34,4 +34,28 @@
     // });
 
     // onBeforeMount(()=>handleRouting());
+
+
+// import { useRouter } from 'vue-router';
+
+
+// const blackListedRoutesWhenLoggedIn = ["/authentication/register","/authentication/login","/authentication/reset-Password","/authentication/reset-Password-otp", "/authentication/create-new-Password"];
+
+// const handleRouting = () => {
+//     const currentPath = router.currentRoute.value.path;
+//     const isLoggedIn = !!store.state.user?.token;
+
+//     if (isLoggedIn && blackListedRoutesWhenLoggedIn.includes(currentPath)) {
+//         router.push("/account/profile");
+//     } else if (currentPath.startsWith("/account") && !isLoggedIn) {
+//         router.push("/authentication/login");
+//     } else if (!isLoggedIn && !blackListedRoutesWhenLoggedIn.includes(currentPath)) {
+//         router.push("/authentication/login");
+//     }
+// };
+
+// watch(() => router.currentRoute.value.path, handleRouting);
+// // or
+// onMounted(handleRouting);
+
 </script>
