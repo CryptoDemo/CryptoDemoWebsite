@@ -48,8 +48,8 @@
             <tbody>
               <tr v-for="item in secondTable" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5);justify-content: space-between; align-items: baseline; margin-top: 10px">
           
-                <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'"  style="margin-left: 10px">{{item.serialNumber}}</span></td>
-                <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Actions}}</span></td>
+                <td ><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'"  style="margin-left: 10px">{{item.serialNumber}}</span></td>
+                <td class="logCaptions"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Actions}}</span></td>
                 <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Browser}}</span></td>
                 <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.IPAddress}}</span></td>
                 <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Location}}</span></td>
@@ -98,71 +98,70 @@ import { useTheme } from 'vuetify';
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const secondTable = [
-          {
-            serialNumber: '1',
-            Actions: "User Login",
-            Browser: "Chrome (Windows 10)",
-            IPAddress: "102.215.57.47",
-            Location: "Nigeria, Lagos",
-            SignedIn: "8 hours ago",
-           
-          },
-          {
-            serialNumber: '2',
-            Actions: "User Login",
-            Browser: "Chrome (Windows 10)",
-            IPAddress: "102.215.57.47",
-            Location: "Nigeria, Lagos",
-            SignedIn: "8 hours ago",
-           
-          },
-             
+      {
+        serialNumber: '1',
+        Actions: "User Login",
+        Browser: "Chrome (Windows 10)",
+        IPAddress: "102.215.57.47",
+        Location: "Nigeria, Lagos",
+        SignedIn: "8 hours ago",
         
-        ];
+      },
+      {
+        serialNumber: '2',
+        Actions: "User Login",
+        Browser: "Chrome (Windows 10)",
+        IPAddress: "102.215.57.47",
+        Location: "Nigeria, Lagos",
+        SignedIn: "8 hours ago",
+        
+      },
+          
+    
+    ];
 const  UserActivity = [
-          {
-            serialNumber: '1',
-            SignedIn: "4 hours ago",
-            Browser: "Chrome (Windows 11)",
-            IPAddress: "102.215.57.47",
-            Location: "Nigeria, Lagos",
-            Status: "Active",
-            Delete: "Delete",
-          },
-        ];
+      {
+        serialNumber: '1',
+        SignedIn: "4 hours ago",
+        Browser: "Chrome (Windows 11)",
+        IPAddress: "102.215.57.47",
+        Location: "Nigeria, Lagos",
+        Status: "Active",
+        Delete: "Delete",
+      },
+    ];
       
 // const notification = ref (true)
 </script>
 
 <style  scoped>
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
-    border: none !important;
-    color: var(--Gray-Medium-light, #969696);
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Poppins;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 160%;
+  border: none !important;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
 }
 
 .v-table {
-    background: inherit !important;
+  background: inherit !important;
 }
 .v-table--density-default > .v-table__wrapper > table > thead > tr > th, .v-table--density-default > .v-table__wrapper > table > tfoot > tr > th {
-    border: none !important;
+  border: none !important;
 }
 .v-table__wrapper > table > tfoot > tr > td, .v-table > .v-table__wrapper > table > tfoot > tr > th {
  color: var(--Gray-Medium-light, #969696) !important;
 }
 .v-table {
-    --v-table-header-height: 56px;
-    border-radius: inherit;
-    line-height: 1.5;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    color: var(--Gray-Medium-light, #969696) !important;
+--v-table-header-height: 56px;
+border-radius: inherit;
+line-height: 1.5;
+max-width: 100%;
+display: flex;
+flex-direction: column;
+color: var(--Gray-Medium-light, #969696) !important;
 }
 .header{
 color: var(--Gray-Medium-light, #969696);
@@ -212,7 +211,6 @@ font-style: normal;
 font-weight: 400 !important;
 line-height: 24px !important; /* 200% */
 }
-
 .browser-txt{
 font-feature-settings: 'clig' off, 'liga' off;
 font-family: Manrope;
@@ -250,12 +248,30 @@ height: fit-content;
 background: #F8FAFC!important;
 height: fit-content;
 }
-
 .activity-header{
 font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 700;
-line-height: 160%;
+line-height: 160%; 
+}
+@media screen and (max-width: 600px) {
+  .activity-header {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  }
+  .browser-txt{
+  font-size: 12px;
+  display: -webkit-box !important; 
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 1 !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  }
+  .logCaptions{
+ 
+  width: 83px !important;
+  }
 }
 </style>

@@ -50,7 +50,7 @@
             </div> 
 
                <div class="position-relative">
-                <v-text-field class="input-styling" :class="isDark ? 'input-styling':'input-styling-light'" style="margin-top:20.81px;" :type="isToggled ? 'text' : 'password'" v-model="password" :rules="passwordrules" placeholder="Password" variant="plain">
+                <v-text-field class="input-styling" :class="isDark ? 'input-styling':'input-styling-light'" style="margin-top:20.81px;" :type="isToggled ? 'text' : 'password'" v-model.trim="password" :rules="passwordrules" placeholder="Password" variant="plain">
                   <v-icon class="prepend-inner-icon ml-3">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                       <g clip-path="url(#clip0_649_13096)">
@@ -170,9 +170,7 @@ const passwordrules = [
 
 const register = async () => {
   loading.value = true;
-
   const device = useDevice();
-
   const registerInfo = {
     name: name.value,
     email: email.value,

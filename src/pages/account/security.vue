@@ -1,61 +1,69 @@
 <template>
   <div>
-    <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+    <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true"/>
       <v-container style="width: 100%;">
-          <v-row no-gutters style="margin-top: 90px;">
-            <div style="display: flex;">
-              <div cols="4">
-                <div class="pa-2 ma-2">
+
+          <div  style="margin-top: 110px; display: flex;">
+              <div class="flex-lg-and-up hidden-sm-and-down">
+                <div class="">
                     <Side-nav/>
                 </div>
               </div>
 
-              <div cols="8" style="width: 74%">
-                <div class="pa-2 ma-2">
+              <div class="mobile-col" style="width: 70%">
+                <div class="security-col" style="margin-left: 28px;">
                     <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; justify-content: space-between">    
                         <span class="acct-text"> Security</span>
-                        <span class="mail-text" :class="isDark ? 'text-dark':'text-light'">{{ pinia.state.email }}</span>  
+                        <span class="mail-text" :class="isDark ? 'text-dark':'text-light'">{{ pinia.state.user?.email }}</span>  
                     </div>
                     <span class="setup-text ml-2" :class="isDark ? 'card-text-dark':'card-text-light'">Setup your 2FA and make your account more secure</span>
                     <section>
                       
                         <div style="margin-top:35px !important; display:flex; justify-content: space-between;">
                             <div class="d-flex">
-                                  <img src="/svg/lock-circle (1).svg" class="me-4" style="display: flex; align-self: start;"/>
+                                  <img src="/svg/lock-circle (1).svg" class="me-3" style="display: flex; align-self: start;"/>
                                 <div style="display: grid;">
                                   <span class="pswrd-mgt" :class="isDark ? 'text-dark':'text-light'">Login 2-Step Verification</span>
                                   <span class="second-text" :class="isDark ? 'text-dark':'text-light'" style="margin-top: 4px;">The Login 2step Verification adds an extra layer of security to your account. </span>
                                 </div>
                             </div>
 
-                            <v-btn :class="{'primarybtn': Authy === 'initial2', 'toggled': Authy === 'toggled'}"
-                            @click="toggleState3" width="100px"> {{ Authy === 'initial2' ? 'Enable' : 'Disable' }}
+                            <v-btn :class="{ 'primary-btn1': isEnabled, 'toggled': !isEnabled }" class="tggle-btn" @click="toggleButton" style="width: 100px; height: 60px;">
+                              {{ isEnabled ? 'Enable' : 'Disable' }}
                             </v-btn>
-                          
-                          
                         </div>
                         
                       <div class="ml-2" style="margin-top: 42px;">
-                          <span class="pswrd-mgt" :class="isDark ? 'card-text-dark':'card-text-light'" style="font-weight: 700;" @click="userPassword()">Change Password</span>
-                          <div class="d-flex" style="align-items: center;">
-                              <Password class=" me-4" placeholder="Enter current password"/>
-                              <NuxtLink to="#"><span class="second-text d-flex" style="color: #2873FF; padding-top: 30px;">Forgot password</span></NuxtLink>
+                          <span class="pswrd-mgt" :class="isDark ? 'card-text-dark':'card-text-light'" style="font-weight: 700;">Change Password</span>
+                          <div class="d-md-flex">
+                            <v-text-field class="password-styling firstPassword pl-4 me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="Enter current password" v-model="OldPassword" variant="plain">   
+                              <div  class="eye-icon">
+                                <span  v-if="isToggled"  @click="togglePassword()" >
+                                  <img src="/svg/invisible.svg">
+                                </span>
+                                <span v-else @click="togglePassword()">
+                                  <img src="/svg/visible.svg">
+                                </span>
+                              </div>
+                            </v-text-field> 
+                            <v-text-field class="password-styling pl-4 me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="confirm new password" v-model="ConfirmNewPassword" variant="plain">   
+                              <div  class="eye-icon">
+                                <span  v-if="isToggled"  @click="togglePassword()" >
+                                  <img src="/svg/invisible.svg">
+                                </span>
+                                <span v-else @click="togglePassword()">
+                                  <img src="/svg/visible.svg">
+                                </span>
+                              </div>
+                            </v-text-field>  
+                            <v-btn  @click="UserPasswordUpdate()" :loading="loading" class="primary-btn1 mt-5" style=" align-self: center; height: 60px;">Change Password</v-btn>
                           </div>
-                          <div class="d-flex">
-                              <Password class="me-5" placeholder="Enter new password"/>  <Password class="me-7" placeholder="confirm new password"/>
-                              <v-btn class="primarybtn mt-5" style=" align-self: center;">Change Password</v-btn>
-                          </div>
-                        <!-- <div  style="display: inline-flex;">
-                            <v-checkbox base-color="#fff" color="white" ></v-checkbox>
-                            <span style="align-self: flex-start; margin-top: 16px; font-weight: 400;color: var(--Gray-Light, #D8D8D8); font-family: Poppins; font-size: 14px;">Log out of all active sessions</span>
-                        </div> -->
                       </div>
                     </section>
-                  <Active-sessions/>
+                  <ActivityLog/>
                 </div>
               </div>     
-            </div>
-          </v-row>
+          </div>
       </v-container>   
           <Footer/>
   </div>
@@ -63,35 +71,93 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import { passwordUpdate } from "@/composables/requests/users";
+import { passwordUpdate, } from "@/composables/requests/users";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
-const login = ref('initial1'); // Initial state for button
+const loading = ref(false);
+const OldPassword= ref('');
+const ConfirmNewPassword= ref('');
+const isToggled = ref(true);
+const togglePassword = () => {
+  isToggled.value = !isToggled.value;
+};
+const isEnabled= ref(false)
+const toggleButton = () => {
+  isEnabled.value = !isEnabled.value;
 
-const Authy = ref('toggled');
-const toggleState3 = () => {
-Authy.value = Authy.value === 'initial2' ? 'toggled' : 'initial2';
 };
 
-const userPassword = async () => {
-  const updatePassword = {
-    old_password: "",
-    new_password: "",
+onBeforeMount(async()=>{
+
+if(pinia.state.twoFactor !== null){
+
+  two_factor_val.value = pinia.state.twoFactor[0]
+  code_input.value = two_factor_val.value.code
+  selected_code.value = two_factor_val.value.code
+  pinia.state.isTwoFactorSet = true
+
+}else{
+
+  try{
+    const data = await fetch(`${baseURL}user/init-2fa`,{
+  method: 'GET',
+  headers: {
+      'Content-Type': 'application/json',
+      'x-access-token' : `${pinia.state.user?.token}`
   }
-  
-  try {
-  const data = await userPassword(updatePassword);
-  if (data.success) {
-    console.log('password changed succesfully')
-  } else{
-    
-    console.error('unauthorized user');
+  })
+  .then(res=>res.json());
+
+  if(data.success){
+
+  pinia.state.isTwoFactorSet = true
+
+  loading.value = false
+  const two_factor = [...data.data]
+
+  two_factor.map((item,index)=>{
+        if(item.code==two_factor_val.value.code){
+          two_factor[index] = two_factor_val.value;
+        }
+  });
+
+  pinia.setTwoFactor(two_factor)
+    }else{
+    loading.value = false 
+    push.error(data.message, { duration: 2000 })
   }
 }catch(e){
   console.log(e)
-};
+  push.error(`${e}`)
+}
+  }
+})
+
+const UserPasswordUpdate = async () => {
+  loading.value = true;
+  const updatePassword = {
+    old_password: OldPassword.value ,
+    new_password: ConfirmNewPassword.value,
+  }
+  console.log(updatePassword)
+  try {
+  const data = await passwordUpdate(updatePassword);
+  if (data.success) {
+    // pinia.setUser(user)
+    push.success('password changed succesfully')
+    OldPassword.value = '';
+    ConfirmNewPassword.value = '';
+    loading.value = false 
+  } else{
+    loading.value = false 
+    push.error(data.message, { duration: 900 })
+  }
+}catch(e){
+  console.log(e)
+  push.error(`${e}`)
+}
  
 };
 </script>
@@ -114,11 +180,7 @@ letter-spacing: 0px;
 box-shadow: none !important;
 color: white;
 }
-.input-styling{
-width: 350px;
-height: 64px !important;
-border-radius: 15px ;
-}
+
 .second-text{
 font-family: Poppins;
 font-size: 14px;
@@ -128,7 +190,7 @@ line-height: normal;
 }
 
 .update-btn{
-color: var(--Gray-Light, #D8D8D8);
+color: white;
 font-family: Manrope;
 font-size: 16px;
 font-style: normal;
@@ -161,29 +223,21 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 }
-.primarybtn{
-/* width: 100px; */
-height: 60px!important;
-flex-shrink: 0;
+
+.eye-icon{
+bottom: 5%; 
+right: 18px ;
+cursor: pointer;
+position: absolute;
+} 
+
+.password-styling{
+width: 295px;
+height: 64px !important; 
+align-self: flex-end;
 border-radius: 16px;
-background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF)!important;
-color: var(--White, var(--Colors-Base-white, #FFF));
-text-align: center;
-font-family: Poppins;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-text-transform: unset !important;
-letter-spacing: 0px;
-box-shadow: none;
-}
-.mdi-checkbox-blank-outline::before {
-    content: "\F0131" !important;
-    background: white !important;
-    border-radius: 8px !important;
-    fill: white;
-}
+} 
+
 
 ::-webkit-input-placeholder {
 color: #808195!important;
@@ -203,6 +257,41 @@ height: fit-content;
 .profile-cards-light{
 background: #F8FAFC!important;
 height: fit-content;
+}
 
+
+@media screen and (max-width: 600px) {
+  .security-col {
+   margin-left: 0px !important;
+  }
+  .mobile-col{
+    width: 100% !important;
+  }
+  .setup-text{
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  }
+  .pswrd-mgt {
+    font-size: 14px;
+    font-weight: 600;
+ }
+ .second-text {
+  font-size: 12px;
+ }
+ .tggle-btn{
+  height: 45px !important;
+ }
+ .firstPassword{
+  margin-top: 16px !important;
+}
+ .password-styling {
+    width: 100%;
+    margin-top: 28px;
+ }
+ .primary-btn1{
+  height: 50px !important;
+  margin-top: 28px !important;
+ }
 }
 </style>

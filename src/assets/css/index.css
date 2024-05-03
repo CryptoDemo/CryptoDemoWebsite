@@ -320,7 +320,7 @@ overflow-x: hidden;
 }
 .primary-btn1{
   display: flex !important;
-  min-height: 64px;
+  height: 64px;
   align-items: center !important;
   border-radius: 16px !important;
   background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF) !important;
