@@ -15,29 +15,29 @@
                 </div>
               </th>
 
-            <th style="display: flex; align-items: center; align-self: center; position: relative; right: 36px ">
+            <th class="actions" style="display: flex; align-items: center; align-self: center; position: relative; right: 36px ">
                 <div class="d-flex">
                   <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Actions</span>
                   <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
                 </div>
               </th>
 
-                <th style="display: flex; align-items: center; align-self: center; position: relative; right: 15px;">
+                <th class="browser" style="display: flex; align-items: center; align-self: center; position: relative; right: 15px;">
                 <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Browser</span>
                 <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
               </th>
 
-              <th style="display: flex; align-items: center; align-self: center; position: relative;right: -10px">
+              <th class="ipAddress" style="display: flex; align-items: center; align-self: center; position: relative;right: -10px">
                 <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">IP Address</span>
                 <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
               </th>
 
-              <th style="display: flex; align-items: center; align-self: center; position: relative;right: 0px"> 
+              <th class="location1" style="display: flex; align-items: center; align-self: center; position: relative;right: 0px"> 
                 <span class="activity-header" :class="isDark ? 'text-dark':'text-light'"> Location</span>
                   <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon> 
               </th>
 
-              <th style="display: flex; align-items: center; align-self: center; position: relative;right: 0px">
+              <th class="signedIn" style="display: flex; align-items: center; align-self: center; position: relative;right: 0px">
                 <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Signed In</span>
                 <v-icon size="large"  color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
               </th>
@@ -47,13 +47,12 @@
         
             <tbody>
               <tr v-for="item in secondTable" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5);justify-content: space-between; align-items: baseline; margin-top: 10px">
-          
-                <td ><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'"  style="margin-left: 10px">{{item.serialNumber}}</span></td>
-                <td class="logCaptions"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Actions}}</span></td>
-                <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Browser}}</span></td>
-                <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.IPAddress}}</span></td>
-                <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Location}}</span></td>
-                <td><v-btn class="" style="width: 91px; height: 40px; border-radius: 12px; background: var(--Primary-60, #89B2FF);color: #165CDD; font-weight: 700; font-family: manrope;font-size: 12px; text-transform: unset; box-shadow: none !important;" >{{item.SignedIn}}</v-btn></td>
+              <td ><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'"  style="margin-left: 10px">{{item.serialNumber}}</span></td>
+              <td class="logCaptions"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Actions}}</span></td>
+              <td class="logCaptions1"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Browser}}</span></td>
+              <td class="logCaptions2"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.IPAddress}}</span></td>
+              <td class="logCaptions3"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Location}}</span></td>
+              <td><v-btn class="" style="width: 91px; height: 40px; border-radius: 12px; background: var(--Primary-60, #89B2FF);color: #165CDD; font-weight: 700; font-family: manrope;font-size: 12px; text-transform: unset; box-shadow: none !important;" >{{item.SignedIn}}</v-btn></td>
               
               </tr>
             </tbody>
@@ -256,22 +255,54 @@ font-weight: 700;
 line-height: 160%; 
 }
 @media screen and (max-width: 600px) {
-  .activity-header {
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  }
-  .browser-txt{
-  font-size: 12px;
-  display: -webkit-box !important; 
-  -webkit-box-orient: vertical !important;
-  -webkit-line-clamp: 1 !important;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  }
-  .logCaptions{
- 
-  width: 83px !important;
-  }
+.activity-header {
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+}
+.browser-txt{
+font-size: 12px;
+display: -webkit-box !important; 
+-webkit-box-orient: vertical !important;
+-webkit-line-clamp: 1 !important;
+text-overflow: ellipsis;
+overflow: hidden;
+}
+.logCaptions{
+width: 90px !important;
+position: relative !important;
+right: -9px !important;
+}
+.logCaptions1{
+width: 90px !important;
+margin-left: -15px;
+}
+.logCaptions2{
+  width: 90px !important;
+  right: 13px;
+  position: relative;
+}
+.logCaptions3{
+  width: 90px !important;
+  position: relative;
+  right: 2px;
+}
+.actions{
+  margin-left: 28px !important;
+}
+.browser{
+right: 28px  !important;
+}
+.ipAddress{
+  right: 29px !important;
+  width: 129px !important;
+}
+.location1{
+  right: 34px !important;
+}
+.signedIn{
+  display: flex;
+  width: max-content;
+}
 }
 </style>

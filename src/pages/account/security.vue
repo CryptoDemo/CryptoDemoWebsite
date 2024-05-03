@@ -65,7 +65,8 @@
               </div>     
           </div>
       </v-container>   
-          <Footer/>
+    <Footer class="desktop-footer"/>
+    <Mobile-footer class="mobile-footer"/>  <Footer/>
   </div>
 </template>
 <script setup>
