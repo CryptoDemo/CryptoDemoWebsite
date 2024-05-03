@@ -60,7 +60,7 @@
         <v-btn class="primary-btn1" width="152px"> Clear sessions</v-btn>
 
         <div style="margin-top: 188px; margin-bottom: 115px">
-          <v-dialog width="647px">
+          <!-- <v-dialog width="647px">
             <template v-slot:activator="{ props }"><v-btn v-bind="props" width="152px" class="primary-btn1" style="border-radius: 16px; box-shadow: none; background: var(--Warm-Red, #E33E38) !important;"> Delete Account</v-btn></template>
               <template v-slot:default="{ isActive }">
                 <v-card style="background: #12181F; border-radius: 32px; border: 1px solid var(--border, #303A46)!important;  padding: 40px ">
@@ -85,7 +85,7 @@
                   </v-card-actions>
                 </v-card>
               </template>
-            </v-dialog>
+            </v-dialog> -->
         
         </div>
   </div>
@@ -171,7 +171,6 @@ font-style: normal;
 font-weight: 400;
 line-height: 160%; /* 22.4px */
 }
-
 .v-table--density-default > .v-table__wrapper > table > tbody > tr > td, .v-table--density-default > .v-table__wrapper > table > thead > tr > td, .v-table--density-default > .v-table__wrapper > table > tfoot > tr > td {
     height: calc(var(--v-table-row-height, 52px) + 0px);
 }
@@ -180,7 +179,6 @@ line-height: 160%; /* 22.4px */
     overflow: auto;
     flex: 1 1 auto;
 }
-
 .actv-btn{
 border-radius: 12px !important;
 background: #1F2F2F !important;
@@ -197,7 +195,7 @@ font-weight: 400 !important;
 line-height: 24px !important; /* 200% */
 box-shadow: none;
 }
-.delete-btn{
+/* .delete-btn{
 border-radius: 12px !important;
 background: rgba(246, 85, 86, 0.12) !important;
 align-items: center !important;
@@ -208,8 +206,8 @@ font-family: Manrope;
 font-size: 12px !important;
 font-style: normal;
 font-weight: 400 !important;
-line-height: 24px !important; /* 200% */
-}
+line-height: 24px !important; 
+} */
 .browser-txt{
 font-feature-settings: 'clig' off, 'liga' off;
 font-family: Manrope;
@@ -220,7 +218,7 @@ line-height: 160%; /* 22.4px */
 }
 .primary-btn1{
 display: flex !important;
-min-height: 64px;
+height: 64px;
 align-items: center !important;
 border-radius: 16px !important;
 background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF) !important;
@@ -254,6 +252,7 @@ font-style: normal;
 font-weight: 700;
 line-height: 160%; 
 }
+
 @media screen and (max-width: 600px) {
 .activity-header {
 font-size: 12px;
@@ -304,5 +303,9 @@ right: 28px  !important;
   display: flex;
   width: max-content;
 }
+.primary-btn1{
+  height: 50px !important;
+  margin-top: 28px !important;
+ }
 }
 </style>

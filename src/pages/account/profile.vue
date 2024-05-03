@@ -6,16 +6,18 @@
             <v-row no-gutters>
               <v-col class="profile-section" cols="8">
                 <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 0px">
-                  <div class="d-flex" style="justify-content: space-around; align-items: center;">
+                  <div class="d-md-flex" style="justify-content: space-around; align-items: center;">
                     <div class="d-flex">
                       <img :src="pinia.state?.user?.profile_image" width="70" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start;"/>
                         <div class="unverified-div">
                           <v-chip class="profile-level" color="#FB774A" style="margin-bottom: 13.8px;">Unverified</v-chip>
-                         <div> <span class="username" :class="isDark ? 'card-text-dark':'card-text-light'">UID :{{ pinia.state.user?.username}} </span> </div>
+                         <div class="div-username1"> <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'">UID : {{ pinia.state.user?.username}} </span> </div>
                         </div>
                     </div>
-                    <span class="user-location" :class="isDark ? 'card-text-dark':'card-text-light'" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
-                      <div class="d-flex" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
+
+                    <div class="d-flex">
+                     <span class="user-location me-4" :class="isDark ? 'card-text-dark':'card-text-light'" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
+                      <div class="d-flex me-4" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
                           <img src="/svg/heart-tick.svg" class="hrt-icon" alt="icon">
                           <span class="user-location" :class="isDark ? 'text-dark':'text-light'">0</span>
                       </div>
@@ -23,6 +25,7 @@
                         <img src="/svg/heart-remove.svg" class="hrt-icon" alt="icon">
                         <span class="user-location" :class="isDark ? 'text-dark':'text-light'">0</span>
                       </div>
+                    </div>
                   </div>
                 </div>
               </v-col>
@@ -215,10 +218,10 @@
 
 
                 <div class="d-flex">
-                  <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
+                  <img src="/svg/Image (1).svg" width="70px" class="me-3 avatar" alt="avatar"/>
                       <div>
                           <div style="padding-top: 35px;">
-                            <span class="username" style="font-size: 16px;">UID : <span class="grad-text">Ogadinma2024</span></span>
+                            <span class="username" style="font-size: 16px;">UID : <span class="grad-text"> {{ pinia.state.user?.username}} </span></span>
                             <div style="display: grid">
                                 <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
                                 <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
@@ -228,16 +231,16 @@
                 </div> 
 
                 <div style="margin-top: 35px">
-                    <span :class="isDark ? 'card-text-dark':'card-text-light'" class="me-5" style="font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
-                    <span class="me-5" style="color: #119254; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">NGN</span>
-                    <span style="color: #FACC15; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Low Ammount</span>
+                    <span :class="isDark ? 'card-text-dark':'card-text-light'" class="me-5 bank-trf" style="font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
+                    <span class="me-5 bank-trf" style="color: #119254; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">NGN</span>
+                    <span class="bank-trf" style="color: #FACC15; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Low Ammount</span>
                     <div>
-                        <span :class="isDark ? 'text-dark':'text-light'" style=";font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">Very Fast</span>
+                        <span class="bank-trf" :class="isDark ? 'text-dark':'text-light'" style=";font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">Very Fast</span>
                     </div>
                 </div>
 
                 <div  style="margin-top: 35px">
-                    <span class="grad-text">View Offer</span>
+                    <span class="grad-text bank-trf">View Offer</span>
                 </div>
             </div>
 
@@ -329,14 +332,14 @@ flex-shrink: 0;
 }
 
 .grad-text{
-  background-image: linear-gradient(360deg, #2873FF, #0B6B96); 
-  background-clip: text;  
-  -webkit-text-fill-color: transparent ; 
-  font-family: Poppins; 
-  font-size: 16px; 
-  font-style: normal; 
-  font-weight: 600; 
-  line-height: normal;
+background-image: linear-gradient(360deg, #2873FF, #0B6B96); 
+background-clip: text;  
+-webkit-text-fill-color: transparent ; 
+font-family: Poppins; 
+font-size: 16px; 
+font-style: normal; 
+font-weight: 600; 
+line-height: normal;
 }
 .v-card-item {
 padding: 0 !important;
@@ -596,6 +599,7 @@ line-height: 150%; /* 18px */
   }
   .avatar{
     width: 40px !important;
+    margin-left: 15px;
   }
   .profile-section{
     min-width: 100% !important;
@@ -608,6 +612,35 @@ line-height: 150%; /* 18px */
   }
   .unverified-div{
     display: flex;
+  }
+  .username1{
+  width: 230px !important;
+  display: -webkit-box !important; 
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 1 !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  }
+  .div-username1{
+    width: 110px !important;
+    overflow: hidden !important;
+  }
+  .username{
+    display: flex;
+  }
+  .grad-text{
+  display: -webkit-box;
+  width: 90px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 14px;
+  }
+  .bank-trf{
+  font-size: 12px !important;
+  font-style: normal;
+  font-weight: 700;
   }
   
  }

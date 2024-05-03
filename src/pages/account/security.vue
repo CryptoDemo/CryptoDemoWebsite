@@ -56,7 +56,7 @@
                                 </span>
                               </div>
                             </v-text-field>  
-                            <v-btn  @click="UserPasswordUpdate()" :loading="loading" class="primary-btn1 mt-5" style=" align-self: center; height: 60px;">Change Password</v-btn>
+                            <v-btn  @click="UserPasswordUpdate()" :loading="loading" class="primary-btn1 mt-5" style=" align-self: center; height: 60px; color: #fff;">Change Password</v-btn>
                           </div>
                       </div>
                     </section>
@@ -66,7 +66,7 @@
           </div>
       </v-container>   
     <Footer class="desktop-footer"/>
-    <Mobile-footer class="mobile-footer"/>  <Footer/>
+    <Mobile-footer class="mobile-footer"/>  
   </div>
 </template>
 <script setup>
