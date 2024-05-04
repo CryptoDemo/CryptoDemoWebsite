@@ -1,29 +1,21 @@
 <template>
     <div>
-       <Header hide="true" icon1="/svg/profile-icon.svg" icon3="/svg/profile-icon.svg"  icon2="/svg/Notification.svg"/>
+       <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true"/>
        <v-container>
-            <div style="margin-top: 90px; display: flex; gap: 16px; width: 100% !important;">
+            <div style="margin-top: 90px; display: flex; width: 100% !important;">
                <div>
-                  <div class="ma-2 mt-5">
+                  <div class="ma-2 mt-5 me-6">
                     <Wallet-nav/>
                    </div>
                </div>
   
               <div style="width: -webkit-fill-available">
                 <div>
-                  <span style="color: #FFF;font-family: Poppins; font-size: 32px;  font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
-                    
-                   <div style="border-radius: 24px; border: 1px solid  #303A46; width: 100%; padding: 30px; margin-top: 28px;">
-                    <v-table style="display: grid! important; background: inherit; width: 100%;">
+                  <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 32px;  font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
+                   <div :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 30px; margin-top: 28px;">
+                    <v-table  style="display: grid! important; background: inherit; width: 100%;">
                       <thead>
                         <tr style="display: flex; margin-bottom: 8px;">
-                        
-
-                          <th class="me-2" style="display: flex; align-items: center; align-self: center;">
-                            <div class="d-flex">
-                                <span class="table-header-text me-9" style="margin-left: 5px"></span>
-                            </div>
-                          </th>
 
                           <th style="display: flex; align-items: center; align-self: center; margin-right: 20px">
                             <div class="d-flex" >
@@ -32,15 +24,11 @@
                           </th>
 
                           <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px">
-                            <span class="table-header-text me-1" style="margin-left: ">Price</span>
+                            <span class="table-header-text me-1" style="margin-left: ">Price (USD)</span>
                           </th>
 
                           <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 21px">
                             <span class="table-header-text" style="margin-left: ">Balance</span>
-                          </th>
-
-                          <th style="display: flex; align-items: center; align-self: center; position: relative; left: -16px ">
-                            <span class="table-header-text" style="margin-left:  ">USD Eqv</span>
                           </th>
 
                           <th style="display: flex; align-items: center; align-self: center; position: relative;">
@@ -60,20 +48,23 @@
                       </thead>
                     
                   <tbody>
-                    <tr v-for="item in Tradepartners" :key="item.name" style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                
-                      <td style="display: flex; align-items: end;"><span class="sml-text">{{ item.serialNumber }} </span></td>
+                    <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" style="display: flex; justify-content: space-between;">
+
                       <td style="display: contents;">
                           <div class="d-flex" style="align-items: center;">
-                              <img :src="item.image" class="me-3"/>
+                              <img :src="item.icon" width="30" class="me-3"/>
                                 <div style="flex-direction:row">
-                                  <span style="color:#FFF; font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{item.Coin}}</span>
-                                  <span class="sml-text d-flex">{{ item.Subtitle }}</span>
+                                  <span style="color:#FFF; font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
+                                  <span class="sml-text d-flex">{{ item.symbol }}</span>
                                 </div>
                             </div>
                       </td>
 
-                      <td style="display: flex;align-items: end;"><span class="browser-txt" > {{item.Price}}</span></td>
+                      <td style="display: flex;align-items: end;">
+                        <span class="browser-txt" > 
+                          <TokenBalance :symbol="item.symbol"/> 
+                        </span>
+                      </td>
 
                       <td style="display: flex;align-items: end;"><span class="browser-txt">{{item.Balance}}</span></td>
 
@@ -82,18 +73,18 @@
                       <div class="d-flex" > 
                         <td style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
                         <td class="me-4" style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
-                        <td style="display: flex; align-items: center;"><div><v-btn class="swap">
+                        <td style="display: flex; align-items: center;"><div><v-btn :class="isDark ? 'active-offers-dark':'active-offers-light'" class="swap">
                           <img src="/svg/arrow-swap.svg"/>
                           Swap</v-btn></div> 
                         </td>
                     </div>
-                            </tr>
-                          </tbody>
-                    </v-table>
-                  </div>
+                    </tr>
+                  </tbody>
+              </v-table>
+            </div>
 
                   <div style="margin-top: 63px; margin-bottom: 94px;">
-                      <span style="color: #D8D8D8; font-family: Poppins; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Latest transactions</span>
+                      <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Latest transactions</span>
                   </div>
 
                   <div style="display: flex; justify-content: space-between;  margin-bottom: 284px;">
@@ -132,71 +123,82 @@
     </div>
   </template>
 <script setup>
+import { ref } from 'vue';
+import { useTheme } from 'vuetify';
+import {getTokens, getTokenBalance} from "@/composables/requests/tokens";
 
-const  Tradepartners = [
-          {
-            serialNumber: '1',
-            image:'/svg/tether.svg',
-            Coin: "Tether",
-            Subtitle:'USDT',
-            Price: "$38,755",
-            Balance: "2.8236",
-            USDEqv:'2.83',
-            Status: "Block",
-            Get: "",
-            View: "View",
-          },
-        
-          {
-            serialNumber: '2 ',
-            image:'/svg/btc.svg',
-            Coin: "Bitcoin ",
-            Subtitle:'BTC',
-            Price: "$1.0964",
-            Balance: "9.0549",
-            USDEqv:'1.009',
-            Status: "Block",
-            Get: "",
-            View: "View",
-          },
-        
-        
-        
-          {
-            serialNumber: '3',
-            image:'/svg/btc.svg',
-            Coin: "Bitcoin ",
-            Subtitle:'BTC',
-            Price: "$1.0964",
-            Balance: "9.0549",
-            USDEqv:'1.009',
-            Status: "Block",
-            Get: "View",
-            View: "View",
-          },
-        
-          {
-            serialNumber: '4',
-            image:'/svg/btc.svg',
-            Coin: "Bitcoin ",
-            Subtitle:'BTC',
-            Price: "$1.0964",
-            Balance: "9.0549",
-            USDEqv:'1.009',
-            Status: "Block",
-            Get: "View",
-            View: "View",
-          },
-        
-       
-        
-        ];
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
+const pinia = useStore()
+const pageNumber = ref(1)
+
+  try {
+    const data = await getTokens(pageNumber.value);
+    if(data.success) {
+      const fetchedTokens = data.data.result;
+
+      const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
+
+      // Check if there are any new items in the fetched data
+      const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
+
+      if (newItems.length > 0) {
+        console.log('fetching')
+        pinia.setTokenLists(fetchedTokens);
+      }
+    } else {
+      console.log('Unavailable')
+    }
+  } catch (error) {
+    console.log(error);
+  };
+
+
+const fetchSymbolPrice = async(symbol) =>{
+
+try{
+    error.value = null;
+    
+    const worker = new Worker('/worker/index.js');
+    worker.postMessage({ symbol}); // Replace 'BTCUSDT' with your desired symbol
+    
+    worker.onmessage = (event) => {
+    if (event.data.error) {
+        error.value = event.data.error;
+
+    } else {
+        symbolPrice.value = {...event.data, time: addMinutes(10)};
+        console.log(symbolPrice.value)
+        // pinia.setTokenPrices(symbolPrice.value)
+    }
+
+    worker.terminate();
+    };
+
+}catch(e){
+    console.log(e)
+
+}
+}
+onMounted (async() => {{
+  let symbol = pinia.state?.tokenLists.map(coin => coin.symbol + 'USDT');
+    symbol = symbol.filter(s => s != 'USDTUSDT' );
+
+    if(pinia.state.tokenPrices && pinia.state.tokenPrices.time != Date()){
+
+        return pinia.state.tokenPrices
+
+    }else{
+
+      
+    }
+  await fetchSymbolPrice(JSON.stringify(symbol))
+}})
+
 </script>
 <style scoped>
 .swap{
 border-radius: 16px;
-border: 1px solid var(--border, #303A46);
-background: var(--dark-bg, #10192D);
 box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
 display: flex;
 width: 86.333px;
@@ -211,18 +213,18 @@ text-transform: unset;
 align-content: center;
 }
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
-    border: none !important;
-    color: var(--Gray-Medium-light, #969696);
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Poppins;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 160%;
+  border: none !important;
+  color: var(--Gray-Medium-light, #969696);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
 }
 
 .v-table--density-default > .v-table__wrapper > table > thead > tr > th, .v-table--density-default > .v-table__wrapper > table > tfoot > tr > th {
-    border: none !important;
+  border: none !important;
 }
 
 .browser-txt{
@@ -233,7 +235,6 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
-
 .sml-text{
 color: var(--Second-Text, #A4A8AB);
 font-family: Poppins;
@@ -242,7 +243,6 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
-
 .table-header-text{
 color: var(--Gray-Medium-light, #969696);
 font-family: Manrope;
@@ -250,6 +250,20 @@ font-size: 16px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
+}
+.active-offers-dark{
+  background: var(--secondary-background, #1B2537);
+
+}
+.active-offers-light{
+  background: var(--secondary-background, #F8FAFC);
+}
+.wallet-border{
+  border: 0.5px solid rgba(142, 155, 174, 0.5);
+  padding: 10px;
+}
+.wallet-border-light{
+  border: 1px solid #DBE8FF;
 }
 </style>
   

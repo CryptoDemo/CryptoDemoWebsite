@@ -413,8 +413,6 @@ const imageSrc3=('/svg/BTN-two.svg');
 <style scoped>
 @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 @import url('https://fonts.googleapis.com/css2?family=Manrope&family=Poppins&display=swap');
-
-
 .header-text1{
 text-align: center;
 font-family: "SF Pro Display" !important;

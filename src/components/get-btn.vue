@@ -3,14 +3,14 @@
   
         <v-dialog max-width="500">
           <template v-slot:activator="{ props: activatorProps }">
-            <v-btn v-bind="activatorProps" variant="flat" class="get-btn">
+            <v-btn v-bind="activatorProps" :class="isDark ? 'active-offers-dark':'active-offers-light'" variant="flat" class="get-btn">
               <img src="/svg/get.svg" class="me-2"/>
               <span>Get</span>
             </v-btn>
           </template>
   
           <template v-slot:default="{ isActive }">
-            <v-card style="border-radius: 24px; border: 2px solid #303A46; padding: 29px ; background: #12181F; box-shadow: none; width: 479px; height: 580px;">
+            <v-card style="border-radius: 24px; padding: 29px ; box-shadow: none; width: 479px; height: 580px;">
               <v-card-text>
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                  <span class="snd-crypto">Receive Crypto</span>
@@ -81,8 +81,12 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue'
-  
+import { ref } from 'vue'
+import { useTheme } from 'vuetify';
+
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
   
   const coinIcon = ref ('/svg/btc.svg')
    const selectedCoin  = ref ('Bitcoin')
@@ -108,8 +112,6 @@
   <style scoped>
   .get-btn{
   border-radius: 16px;
-  border: 1px solid var(--border, #303A46);
-  background: var(--dark-bg, #10192D);
   box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
   letter-spacing: 0px;
   text-transform: capitalize;
@@ -122,5 +124,23 @@
   gap: 8px; 
   flex-shrink: 0;
   }
+
+
+ .profile{
+background: #10192D !important;
+border: 1px solid #1B2537 !important;
+}
+.profile-light{
+background: #F8FAFC!important;
+border: 1px solid #DBE8FF !important;
+}
+
+.active-offers-dark{
+  background: var(--secondary-background, #1B2537);
+
+}
+.active-offers-light{
+  background: var(--secondary-background, #F8FAFC);
+}
   </style>
   

@@ -35,8 +35,8 @@
                 </div> 
               </div>
 
-                <div style="border-radius: 24px; border: 1px solid #303A46; height: auto; margin-top: 30px;">
-
+                <div>
+                  <Coins/>
                 </div>
               </div>
             </div>

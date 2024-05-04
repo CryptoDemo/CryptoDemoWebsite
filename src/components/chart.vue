@@ -248,4 +248,11 @@
     border: 1px solid #e3e3e3;
     background: #12181F;
 }
+
+.chart :deep(.apexcharts-grid-borders){
+  display: none !important;
+}
+/* .chart :deep(.apexcharts-gridlines-horizontal){
+  stroke-width: 0.5px solid red !important;
+} */
 </style>

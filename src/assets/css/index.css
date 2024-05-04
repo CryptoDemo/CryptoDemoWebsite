@@ -195,7 +195,7 @@ background-clip: text !important;
 } 
 
 .toggle-btn-dark{
-  background: linear-gradient(360deg, #2873FF, #0B6B96) !;
+  background: linear-gradient(360deg, #2873FF, #0B6B96) ;
   color: #8E9BAE  !important;
 } 
 .toggle-btn-light{
@@ -300,7 +300,12 @@ line-height: 150%; /* 24px */
 letter-spacing: 0px !important;
 text-transform: unset !important;
 }
-
+.nav-btn-dark{
+  background: #10192D !important; 
+  }
+  .nav-btn-light {
+  background: #F8FAFC !important; 
+  }
 .login-text{
   color: #FFF;
   font-family: Manrope;

@@ -1,5 +1,5 @@
 <template>
-    <div class="wallet-nav">
+    <div :class="isDark ? 'profile':'profile-light'" class="wallet-nav">
       <span class="sm-num" style="font-size: 16px; font-style: normal;font-weight: 600;">Balance</span>
           <div style="margin-top: 51px; position: relative; display: flex; justify-content: center;">
             <img src="/svg/coin-range.svg" style="position: relative;"/>
@@ -69,26 +69,40 @@
     </div>
   </template>
   
-  <script>
-  
-  </script>
+<script setup>
+import { ref } from 'vue'
+import { useTheme } from 'vuetify';
+
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
+</script>
   
   <style scoped>
-  .wallet-nav{
-  background: var(--secondary-background, #12181F);
-  padding: 31px;
-  width: 286px;
-  border-radius: 15px;
-  }
-  .lg-num{
-  color: var(--White, var(--Colors-Base-white, #FFF));
-  text-align: center;
-  font-family: Poppins;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  }
+.wallet-nav{
+background: var(--secondary-background, #12181F);
+padding: 31px;
+width: 286px;
+border-radius: 15px;
+}
+
+.profile{
+background: var(--secondary-background, #10192D);
+}
+.profile-light{
+background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 65.19%, #F8FAFC 100%) !important;
+box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px;
+border: 1px solid #DBE8FF;
+}
+.lg-num{
+color: var(--White, var(--Colors-Base-white, #FFF));
+text-align: center;
+font-family: Poppins;
+font-size: 24px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
   
   .sm-num{
     color: var(--White, var(--Colors-Base-white, #FFF));

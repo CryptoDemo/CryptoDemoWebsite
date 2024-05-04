@@ -1,12 +1,12 @@
 <template>
     <div class="pa-4 text-center">
-     <v-btn @click="dialog = true" class="send-btn">
+     <v-btn @click="dialog = true" :class="isDark ? 'active-offers-dark':'active-offers-light'" class="send-btn">
        <img src="/svg/send-arrow.svg"/>
-       <span class="send-txt">Send</span>
+       <span>Send</span>
      </v-btn>
  
      <v-dialog v-model="dialog" max-width="479">
-       <v-card style="border-radius: 24px; border: 2px solid #303A46; padding: 29px ; background: #12181F; box-shadow: none; width: 479px; height: 580px;">
+       <v-card :class="isDark ? 'profile':'profile-light'" style="border-radius: 24px; padding: 29px ; box-shadow: none; width: 479px; height: 580px;">
          <template v-slot:text>
              <div style="display: flex; justify-content: space-between; align-items: center;">
                <span class="snd-crypto">Send Crypto</span>
@@ -106,7 +106,12 @@
  </template>
  
  <script setup>
- import { ref } from 'vue'
+import { ref } from 'vue'
+import { useTheme } from 'vuetify';
+
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
  
  const dialog =  ref(false);
  const dialog2 = ref(false);
@@ -134,11 +139,9 @@
  ];
  </script>
  
- <style >
+ <style scoped>
  .send-btn{
 border-radius: 16px;
-border: 1px solid var(--border, #303A46);
-background: var(--dark-bg, #10192D);
 box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
 display: flex;
 max-width: 86.333px !important;
@@ -151,9 +154,13 @@ flex-shrink: 0;
 letter-spacing: 0px;
 text-transform: unset;
 align-content: center;
-
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+line-height: 140%;
  }
- 
+
  .success-txt{
  color: #8E9BAE;
  font-family: Manrope;
@@ -196,7 +203,6 @@ align-content: center;
  margin-left: 10px;
  }
  .send-txt{
- color: var(--Gray-Light, #D8D8D8);
  font-family: Manrope;
  font-size: 14px;
  font-style: normal;
@@ -214,27 +220,28 @@ align-content: center;
  box-shadow: none!important;
  letter-spacing: 0px;
  }
- 
- ::-webkit-input-placeholder {
-  overflow: hidden;
- color: var(--Gray-Medium-light, #969696);
- text-overflow: ellipsis;
- font-family: Poppins;
- font-size: 16px;
- font-style: normal;
- font-weight: 600;
- line-height: normal;
- display: -webkit-box;
- width: 142px;
- -webkit-box-orient: vertical;
- -webkit-line-clamp: 1;
-   }
+ .profile{
+background: #10192D !important;
+border: 1px solid #1B2537 !important;
+}
+.profile-light{
+background: #F8FAFC!important;
+border: 1px solid #DBE8FF !important;
+}
 
-   .v-btn--size-default {
-    --v-btn-size: 0.875rem;
-    --v-btn-height: 36px;
-    font-size: var(--v-btn-size);
-    min-width: 45px !important;
-    padding: 0 16px;
+.active-offers-dark{
+  background: var(--secondary-background, #1B2537);
+
+}
+.active-offers-light{
+  background: var(--secondary-background, #F8FAFC);
+}
+
+.v-btn--size-default {
+--v-btn-size: 0.875rem;
+--v-btn-height: 36px;
+font-size: var(--v-btn-size);
+min-width: 45px !important;
+padding: 0 16px;
 }
  </style>
