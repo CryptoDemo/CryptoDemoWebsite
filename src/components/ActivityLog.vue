@@ -17,28 +17,18 @@
 
             <th class="actions" style="display: flex; align-items: center; align-self: center; position: relative; right: 36px ">
                 <div class="d-flex">
-                  <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Actions</span>
+                  <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Action</span>
                   <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
                 </div>
               </th>
 
                 <th class="browser" style="display: flex; align-items: center; align-self: center; position: relative; right: 15px;">
-                <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Browser</span>
+                <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Description</span>
                 <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
-              </th>
-
-              <th class="ipAddress" style="display: flex; align-items: center; align-self: center; position: relative;right: -10px">
-                <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">IP Address</span>
-                <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
-              </th>
-
-              <th class="location1" style="display: flex; align-items: center; align-self: center; position: relative;right: 0px"> 
-                <span class="activity-header" :class="isDark ? 'text-dark':'text-light'"> Location</span>
-                  <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon> 
               </th>
 
               <th class="signedIn" style="display: flex; align-items: center; align-self: center; position: relative;right: 0px">
-                <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Signed In</span>
+                <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Date</span>
                 <v-icon size="large"  color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
               </th>
               
@@ -46,91 +36,80 @@
           </thead>
         
             <tbody>
-              <tr v-for="item in secondTable" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5);justify-content: space-between; align-items: baseline; margin-top: 10px">
-              <td ><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'"  style="margin-left: 10px">{{item.serialNumber}}</span></td>
-              <td class="logCaptions"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Actions}}</span></td>
-              <td class="logCaptions1"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Browser}}</span></td>
-              <td class="logCaptions2"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.IPAddress}}</span></td>
-              <td class="logCaptions3"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.Location}}</span></td>
-              <td><v-btn class="" style="width: 91px; height: 40px; border-radius: 12px; background: var(--Primary-60, #89B2FF);color: #165CDD; font-weight: 700; font-family: manrope;font-size: 12px; text-transform: unset; box-shadow: none !important;" >{{item.SignedIn}}</v-btn></td>
-              
+              <tr v-for="(item,i) in activityLogs" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5);justify-content: space-between; align-items: baseline; margin-top: 10px">
+                <td ><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'"  style="margin-left: 10px">{{i+1}}</span></td>
+                <td class="logCaptions"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.title}}</span></td>
+                <td class="logCaptions1"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.description}}</span></td>
+                <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{formatDate(item.timestamp)}}</span></td>
+              </tr>
+
+              <tr v-if="isLoading">
+                <td class="d-flex justify-content-center align-items-center">
+                  <v-progress-circular
+                    :width="3"
+                    indeterminate
+                  ></v-progress-circular>
+                </td>
+              </tr>
+
+              <tr v-if="!isLoading && !activityLogs?.length">
+                <td><span class="d-flex justify-content-center align-items-center">No records found</span></td>
               </tr>
             </tbody>
         </v-table>
-        <v-btn class="primary-btn1" width="152px"> Clear sessions</v-btn>
 
-        <div style="margin-top: 188px; margin-bottom: 115px">
-          <!-- <v-dialog width="647px">
-            <template v-slot:activator="{ props }"><v-btn v-bind="props" width="152px" class="primary-btn1" style="border-radius: 16px; box-shadow: none; background: var(--Warm-Red, #E33E38) !important;"> Delete Account</v-btn></template>
-              <template v-slot:default="{ isActive }">
-                <v-card style="background: #12181F; border-radius: 32px; border: 1px solid var(--border, #303A46)!important;  padding: 40px ">
-                  <v-card-text>
-                    <div style="margin-bottom: 20px;">
-                      <img src="/svg/delete-icon.svg"/>
-                    </div>
-                    <span style="font-size: 20px;color: #D8D8D8; font-family: Manrope; font-weight: 600;line-height: normal;">Are you sure you want to delete your <br> account permanently?</span>
-                    <div style="margin-top: 20px">
-                        <span style="color:#969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Press “Delete account” to remove it permanently, you’ll receive a confirmation link via email and a moderator will process your request or “Cancel” if you want to keep your benefits. </span>
-                    </div>
-                  </v-card-text>
-
-                  <v-card-actions style="justify-content: space-around; margin-top: 35px;">
-                      <v-btn style="border-radius: 16px; border: 1px solid var(--border, #303A46); background: #E2E8F0; display: flex;width: 230px; height: 63px; color: var(--Gray-Dark, #323232);text-align: center; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; text-transform: unset; letter-spacing: 0px">
-                            Delete account
-                      </v-btn>
-                    <v-btn class="primarybtn" style="display: flex; width: 230px; height: 64px; font-weight: 600;"
-                      text="Cancel"
-                      @click="isActive.value = false"
-                    ></v-btn>
-                  </v-card-actions>
-                </v-card>
-              </template>
-            </v-dialog> -->
-        
-        </div>
+        <v-btn :disabled="isLoading" :loading="isLoading" v-if="(!isLoading && activityLogs?.length) && (currentPageNumber!=totalPages)" class="primary-btn1" width="152px" @click.prevent="fetchMore()"> Fetch More</v-btn>
   </div>
 </template>
 
 <script setup>
 import { useTheme } from 'vuetify';
+import {getActivityLogs} from "@/composables/requests/users";
+import {filterByKey,formatDate} from "@/composables/mixin";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-const secondTable = [
-      {
-        serialNumber: '1',
-        Actions: "User Login",
-        Browser: "Chrome (Windows 10)",
-        IPAddress: "102.215.57.47",
-        Location: "Nigeria, Lagos",
-        SignedIn: "8 hours ago",
-        
-      },
-      {
-        serialNumber: '2',
-        Actions: "User Login",
-        Browser: "Chrome (Windows 10)",
-        IPAddress: "102.215.57.47",
-        Location: "Nigeria, Lagos",
-        SignedIn: "8 hours ago",
-        
-      },
-          
-    
-    ];
-const  UserActivity = [
-      {
-        serialNumber: '1',
-        SignedIn: "4 hours ago",
-        Browser: "Chrome (Windows 11)",
-        IPAddress: "102.215.57.47",
-        Location: "Nigeria, Lagos",
-        Status: "Active",
-        Delete: "Delete",
-      },
-    ];
-      
-// const notification = ref (true)
+const currentPageNumber = ref(1);
+const totalPages = ref(2);
+const isLoading = ref(false);
+const pinia = useStore();
+
+const activityLogs = ref([{
+    "id": "x483...",
+    "title": "New wallet created", // current page number
+    "description": "A new bep20 wallet address was created on your account",
+    "timestamp": "2024-02-02T20:46:44.098Z"
+}] || pinia.state.activityLogs || []);
+
+const fetchMore = async()=>{
+  // increment the pageNumber
+  currentPageNumber.value += 1;
+
+  // fetch the new page record
+  fetchActivityLogs();
+}
+
+const fetchActivityLogs = async()=>{
+  try{
+    isLoading.value = true;
+    const result = await getActivityLogs(currentPageNumber.value);
+    isLoading.value = false;
+  
+    totalPages.value = result?.data?.total_pages || totalPages.value;
+  
+    if(result?.data?.result?.length){
+      activityLogs.value = filterByKey("id",[...activityLogs.value,...result?.data?.result]);
+      pinia.setActivityLogs(activityLogs.value);
+    }
+  }catch(e){
+    isLoading.value = false;
+    push.error(`Error: ${e.message}`);
+  };
+}
+
+onMounted(()=>{
+  fetchActivityLogs();
+});
 </script>
 
 <style  scoped>

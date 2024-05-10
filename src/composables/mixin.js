@@ -40,3 +40,28 @@ export const handleFileChange = async (event, selectedFile, profileImg = null) =
     
     reader.readAsDataURL(file);
   }
+
+export const filterByKey = (key,arr) =>{
+  return arr.filter((arr,index,self)=>index===self.findIndex((t)=> (t[key]===arr[key])))
+}
+
+export const formatDate = (dateString) =>{
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}.${month}.${year}`;
+}
+
+// or debounce mixins.   let debounce_timeout;
+
+export const debounce = (fn,value)=>{
+  // clear old timeout
+  if(debounce_timeout) clearTimeout(debounce_timeout);
+
+  // set new timeout
+  debounce_timeout = setTimeout(() => {
+    // execute the function after the timeout period
+    fn(value);
+  }, 1000);
+}

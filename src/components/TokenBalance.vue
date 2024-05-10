@@ -4,7 +4,7 @@
             <div v-if="token.symbol === symbol">{{ formatBalance(token.balance) }}</div>
         </div>
       <div v-else>
-          <LoaderLight v-if="token.symbol === symbol"/>
+          <!-- <LoaderLight v-if="token.symbol === symbol"/> -->
       </div>
     </div>
   </template>
@@ -15,11 +15,10 @@
   
   const pinia = useStore()
 
-
   const coinbal = ref(null)
-  const isLoading = ref(false)
   
-  const tokens = pinia.state.tokenLists
+  const tokens = pinia.state.tokenLists;
+  const isLoading = ref(false);
 
   const { symbol } = defineProps({ symbol: String })
   
@@ -29,6 +28,7 @@
     if (pinia.state.isAuthenticated) {
 
       try {
+        console.log(pinia.state.selectedNetwork.toLowerCase())
         const data = await getTokenBalance(pinia.state.selectedNetwork.toLowerCase(), symbol)
 
         
@@ -39,7 +39,6 @@
           return token
         })
 
-        isLoading.value = false
         coinbal.value = updatedTokens
         // console.log('b',updatedTokens)
         pinia.setTokenLists(updatedTokens)
@@ -51,8 +50,6 @@
 
     }
   }
-  
-  
   
 //   const checkedbal = pinia.state.tokenLists.some(item => item.balance == undefined || item.balance == null );
   onBeforeMount(async () => {

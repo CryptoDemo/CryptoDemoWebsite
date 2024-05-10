@@ -9,37 +9,32 @@
                 <img src="/svg/reload.svg" class="icon1"/>
             </div>
 
-            <div class="d-flex" style="justify-content: space-between; background: #060A1D; position: relative;">
-                <div style="border-radius: 20px; background: #12181F; width: 47%; display: flex;  padding: 19px 20px; justify-content: space-between;">
+            <div class="d-md-flex" style="justify-content: space-between; position: relative;">
+                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
               
                      <div class="d-flex">   
                       <div class="me-13" style="display: flex; flex-direction: column;">
                         <span class="have">I have :</span>
-                        <v-menu :coin="coin">
+                          <v-menu>
                               <template v-slot:activator="{ props }">
-                                <v-btn class="inputstyling2" v-bind="props" style=" height: fit-content; width: fit-content;">
-  
+                                <v-btn class="inputstyling2" v-bind="props" style="height: fit-content; width: fit-content; box-shadow: none;">
                                     <div  class="py-3" style="display: flex; padding-left: 12px; align-items: center;  border-radius: 17px; background: inherit;">
-                                        <img :src="coinIcon" class="me-2"/>
-                                        <span  class="me-3" style="font-weight: 600; color:  #fff; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{selectedCoin}}</span> 
+                                      <img :src="icon" width="30" class="me-2"/>
                                     </div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none">
                                         <path d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z" fill="#E0E4F5"/>
                                     </svg>
-
-                              
                                 </v-btn>
                               </template>
   
-                                <v-list style="background: #12181F; border-radius: 16px;">
+                                <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 16px;">
                                   <v-list-item>
-                                    <div v-for="(coin, index) in coin" class="d-flex py-3" style="cursor: pointer;" :key="index" >
-                                  
-                                      <v-list-item-title @click="selectedCoin=coin.title; coinIcon= coin.icon;"  class="d-flex">
-                                          <img  :src="coin.icon" class="me-3"/>  
-                                        <span class="me-3" style="align-items: center;"> {{ coin.title }} </span>
+                                    <v-list-item v-for="(item, index) in pinia.state.tokenLists" :key="index">
+                                      <v-list-item-title @click="select=item.name; icon =item.icon"  class="d-flex">
+                                        <img :src="item.icon" width="30" class="me-3"/>  
+                                        <span class="me-3" style="align-items: center;"> {{item.name}} </span>
                                       </v-list-item-title>
-                                    </div>
+                                    </v-list-item>
                                   </v-list-item>
                                 </v-list>
                     
@@ -47,22 +42,25 @@
                       </div>
 
                       <div style="display: flex; justify-content: center; align-self: center ; margin-top: 17px; border-radius: 4px; width: 48px; height: 26px; position: relative ; z-index: 1000;">
-                        <v-btn @click="increaseCounter" class="me-4" style=" border: 1px solid #303A46; height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit;"><span class="min">Min</span></v-btn>    
-                        <v-btn style=" border: 1px solid #303A46; letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit;"><span class="min">Max</span></v-btn>
+                        <v-btn @click="increaseCounter" class="me-4" style="border: 1px solid #303A46; height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit;"><span class="min">Min</span></v-btn>    
+                        <v-btn class="me-3" style=" border: 1px solid #303A46; letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit;"><span class="min">Max</span></v-btn>
+                    
                       </div>
-                     </div>
-                     <div style="display: flex; flex-direction: column;">
-                      <span class="have" style="color: #fff; font-size: 12px;">0.12000 BTC</span>
-                      <span class="have" style="color: #fff;  font-family: Poppins; font-size: 18px; margin-top: 15px; font-style: normal; font-weight: 700; line-height: normal; display: flex; justify-content: end;">{{ counter }}</span>
-                     </div>
+
+                    </div>
+                    <div class="number-input" style="display: flex; flex-direction: column;">
+                      <span class="have" style="color: #fff; font-size: 12px;">25,000 USDT</span>
+                      <v-number-input append-icon="" prepend-icon="" variant="plain" style="width:70px; height: 10px; z-index: 10000; border: 1px solid #303A46;"></v-number-input>
+                      
+                    </div>
                 
                 </div>
 
                 
-                  <div style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 11px; "><img src="/svg/swap.svg" width="8%"/></div> 
+                <div style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 11px; "><img src="/svg/swap.svg" width="8%"/></div> 
               
 
-                <div style="border-radius: 20px; background: #12181F; display: flex; width: 47%;  padding: 19px 20px; justify-content: space-between;">
+                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
                   <div class="d-flex">   
                       <div class="me-13" style="display: flex; flex-direction: column;">
                         <span class="have">I want :</span>
@@ -82,15 +80,14 @@
                                 </v-btn>
                               </template>
   
-                                <v-list style="background: #12181F; border-radius: 16px;">
+                              <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 16px;">
                                   <v-list-item>
-                                    <div v-for="(coin, index) in coin" class="d-flex py-3" style="cursor: pointer;" :key="index" >
-                                  
-                                      <v-list-item-title @click="selectedCoin1=coin.title; coinIcon1= coin.icon;"  class="d-flex">
-                                          <img  :src="coin.icon" class="me-3"/>  
-                                        <span class="me-3" style="align-items: center;"> {{ coin.title }} </span>
+                                    <v-list-item v-for="(item, index) in pinia.state.tokenLists" :key="index">
+                                      <v-list-item-title @click="select=item.name; icon =item.icon"  class="d-flex">
+                                        <img :src="item.icon" width="30" class="me-3"/>  
+                                        <span class="me-3" style="align-items: center;"> {{item.name}} </span>
                                       </v-list-item-title>
-                                    </div>
+                                    </v-list-item>
                                   </v-list-item>
                                 </v-list>
                     
@@ -128,16 +125,18 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useTheme } from 'vuetify';
 
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
+const pinia = useStore();
 const showOptions = ref(false);
 const toggleButtons = () => {
       showOptions.value = !showOptions.value;
     };
 
-const counter = ref(0.01)
-const increaseCounter = () => {
-  counter.value += 0.01;
-};
+
 
 const countDownTimer = ref(60); 
 
@@ -154,42 +153,33 @@ onMounted(() => {
 
 
 
-const coinIcon = ref ('/svg/btc.svg')
-const selectedCoin  = ref ('BTC')
+const icon = ref ('/svg/btc.svg')
+const select  = ref ('Bitcoin USD')
 
- 
- const coin = [
-                   {
-                     icon:'/svg/tether.svg', title:"USDT", 
-                   },
-                   {
-                     icon:'/svg/btc.svg', title:"BTC", 
-                   },
-                   {
-                     icon:'/svg/btc.svg', title:"USDT", 
-                   },
-                   {
-                     icon:'/svg/tether.svg', title:"BTC", 
-                   }
- ];
+try {
+    const data = await getTokens(pageNumber.value);
+    if(data.success) {
+      const fetchedTokens = data.data.result;
+
+      const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
+
+      // Check if there are any new items in the fetched data
+      const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
+
+      if (newItems.length > 0) {
+        console.log('fetching')
+        pinia.setTokenLists(fetchedTokens);
+      }
+    } else {
+      console.log('Unavailable')
+    }
+  } catch (error) {
+    console.log(error);
+  };
 const coinIcon1 = ref ('/svg/tether.svg')
 const selectedCoin1  = ref ('USDT')
 
- 
- const coin1 = [
-                   {
-                     icon:'/svg/tether.svg', title:"USDT", 
-                   },
-                   {
-                     icon:'/svg/btc.svg', title:"BTC", 
-                   },
-                   {
-                     icon:'/svg/btc.svg', title:"USDT", 
-                   },
-                   {
-                     icon:'/svg/tether.svg', title:"BTC", 
-                   }
- ];
+
 </script>
 
 <style>
@@ -255,20 +245,20 @@ line-height: normal;
 }
 
 .inputstyling2{
-border-radius: 20px;
+/* border-radius: 20px; */
 background: inherit;
-color: var(--White, var(--Colors-Base-white, #FFF));
+/* color: var(--White, var(--Colors-Base-white, #FFF)); */
 font-family: Poppins;
 font-size: 16px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
 box-shadow: none;
-width: 110px;
-height: 55px;
+/* width: 110px; */
+/* height: 55px; */
 letter-spacing: 0px;
 position: relative;
-right: 19px;
+/* right: 28px; */
 z-index: 10000;
 }
 
@@ -305,5 +295,36 @@ height: 33.527px!important;
 flex-shrink: 0;
 position: absolute!important;
 right: 18px!important;
+}
+.number-input :deep(.v-number-input__control){
+display: none !important;
+}
+.v-number-input__control{
+  display: none !important;
+}
+
+.country-dropdown{
+border-radius: 15px;
+border: 0.5px solid #2f3946;
+background: #1B2537 !important;
+backdrop-filter: blur(50px) !important;
+height: 320px !important;
+border-radius: 20px !important;
+border-radius: 15px;
+border: 0.5px solid #354356;
+color: white;
+margin-top: 15px;
+box-shadow: none  !important;
+height: 170px !important;
+}
+.country-dropdown-light{
+border-radius: 15px;
+background: #fff !important;
+border: 1px solid #DBE8FF !important;
+border-radius: 20px !important;
+color: black;
+margin-top: 15px;
+box-shadow: none  !important;
+height: 170px !important;
 }
 </style>

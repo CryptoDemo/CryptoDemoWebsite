@@ -6,7 +6,7 @@ self.addEventListener('message', async (event) => {
     console.log(symbol)
     
     try {
-      const destination = encodeURI(`https://api.binance.com/api/v3/ticker/24hr?symbols=${symbol}`);
+      const destination = `https://api.binance.com/api/v3/ticker/24hr?symbols=${symbol}`;
       console.log(destination)
       const response = await fetch(`https://reverseproxy-pid1.onrender.com/proxy?destination=${destination}`, {
         headers: { 'Accept': 'application/json' }

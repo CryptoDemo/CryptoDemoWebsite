@@ -2,7 +2,7 @@
     <div>
        <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true"/>
        <v-container>
-            <div style="margin-top: 90px; display: flex; width: 100% !important;">
+            <div style="margin-top: 110px; display: flex; width: 100% !important;">
                <div>
                   <div class="ma-2 mt-5 me-6">
                     <Wallet-nav/>
@@ -12,27 +12,23 @@
               <div style="width: -webkit-fill-available">
                 <div>
                   <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 32px;  font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
-                   <div :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 30px; margin-top: 28px;">
+                   <div :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 30px; margin-top: 28px; width: 96%">
                     <v-table  style="display: grid! important; background: inherit; width: 100%;">
                       <thead>
                         <tr style="display: flex; margin-bottom: 8px;">
 
                           <th style="display: flex; align-items: center; align-self: center; margin-right: 20px">
                             <div class="d-flex" >
-                              <span class="table-header-text">Coin</span>
+                              <span class="table-header-text"  :class="isDark ? 'text-dark':'text-light'">Coin</span>
                             </div>
                           </th>
 
                           <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px">
-                            <span class="table-header-text me-1" style="margin-left: ">Price (USD)</span>
+                            <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Price (USD)</span>
                           </th>
 
                           <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 21px">
-                            <span class="table-header-text" style="margin-left: ">Balance</span>
-                          </th>
-
-                          <th style="display: flex; align-items: center; align-self: center; position: relative;">
-                            <span></span> 
+                            <span class="table-header-text"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Balance</span>
                           </th>
 
                           <th style="display: flex; align-items: center; align-self: center; position: relative;right: 72px">
@@ -41,21 +37,19 @@
                           <th style="display: flex; align-items: center; align-self: center; position: relative;right: 72px">
                             <span></span>
                           </th>
-                          <th class=""> 
-                            
-                          </th>
+                        
                         </tr>
                       </thead>
                     
                   <tbody>
-                    <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" style="display: flex; justify-content: space-between;">
+                    <tr v-for="(item, index) in pinia.state.tokenLists" :key="index" style="display: flex; justify-content: space-between;">
 
                       <td style="display: contents;">
                           <div class="d-flex" style="align-items: center;">
                               <img :src="item.icon" width="30" class="me-3"/>
                                 <div style="flex-direction:row">
-                                  <span style="color:#FFF; font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
-                                  <span class="sml-text d-flex">{{ item.symbol }}</span>
+                                  <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
+                                  <span class="sml-text d-flex" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
                                 </div>
                             </div>
                       </td>
@@ -73,9 +67,11 @@
                       <div class="d-flex" > 
                         <td style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
                         <td class="me-4" style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
-                        <td style="display: flex; align-items: center;"><div><v-btn :class="isDark ? 'active-offers-dark':'active-offers-light'" class="swap">
+                        <td style="display: flex; align-items: center; color: white;"><div><nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'active-offers-dark':'active-offers-light'" class="swap">
                           <img src="/svg/arrow-swap.svg"/>
-                          Swap</v-btn></div> 
+                          Swap</v-btn>
+                        </nuxt-link>
+                      </div> 
                         </td>
                     </div>
                     </tr>
@@ -92,13 +88,12 @@
                       <div style="display: flex;">
                         <img src="/svg/btc.svg" class="me-3"/>
                         <div style="display: flex; flex-direction: column;">
-                          <span class="browser-txt" style="font-weight: 600;">Bitcoin</span>
-                          <span class="sml-text">BTC</span>
+                          <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600;">Bitcoin</span>
+                          <span class="sml-text" :class="isDark ? 'coin-name':'coin-name-light'">BTC</span>
                         </div>
                       </div>
-
                       <div>
-                        <span class="browser-txt">Jan 17, 4:33 PM</span>
+                        <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">Jan 17, 4:33 PM</span>
                       </div>
 
                       <div>
@@ -106,16 +101,10 @@
                       </div>
 
                       <div>
-                        <span class="browser-txt" style="font-weight: 600;">+2.820436 USDT</span>
-                      </div>
-
-                      <div>
-                        <span class="browser-txt" style="font-weight: 600;">+2.82 USD</span>
+                        <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600;">+2.820436 USDT</span>
                       </div>
                   </div>
                 </div>
-                
-                
               </div>
             </div>
         </v-container>   
@@ -125,13 +114,14 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-import {getTokens, getTokenBalance} from "@/composables/requests/tokens";
+import {getTokens, getTokenBalance, addMinutes} from "@/composables/requests/tokens";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
 const pageNumber = ref(1)
-
+const symbolPrice= ref()
+const error = ref()
   try {
     const data = await getTokens(pageNumber.value);
     if(data.success) {
@@ -164,12 +154,12 @@ try{
     
     worker.onmessage = (event) => {
     if (event.data.error) {
-        error.value = event.data.error;
+      error.value = event.data.error;
 
     } else {
-        symbolPrice.value = {...event.data, time: addMinutes(10)};
-        console.log(symbolPrice.value)
-        // pinia.setTokenPrices(symbolPrice.value)
+      symbolPrice.value = {...event.data, time: addMinutes(20)};
+      console.log(symbolPrice.value)
+      pinia.setTokenPrices(symbolPrice.value)
     }
 
     worker.terminate();
@@ -184,16 +174,36 @@ onMounted (async() => {{
   let symbol = pinia.state?.tokenLists.map(coin => coin.symbol + 'USDT');
     symbol = symbol.filter(s => s != 'USDTUSDT' );
 
-    if(pinia.state.tokenPrices && pinia.state.tokenPrices.time != Date()){
+    if(pinia.state.tokenPrices && pinia.state.tokenPrices.time < Date()){
 
         return pinia.state.tokenPrices
 
     }else{
 
+      await fetchSymbolPrice(JSON.stringify(symbol))
       
     }
-  await fetchSymbolPrice(JSON.stringify(symbol))
+
+  // Assuming pinia.state.tokenLists contains tokens and pinia.state.tokenPrices contains prices and percentages
+  const tokens = pinia.state.tokenLists;
+  const prices = pinia.state.tokenPrices;
+             
+  // Combine tokens and prices
+  const combineTokenPrices = tokens.map(token => {
+      const priceInfo = prices.find(price => price.symbol === token.symbol + 'USDT');
+      return {
+          ...token,
+          ...priceInfo
+      };
+  });
+  pinia.setCombinedTokensWithPrices(combineTokenPrices)
+
+  if(Date() < pinia.state.tokenPrices.time){
+      return pinia.state.tokenPrices = []
+  }
 }})
+
+
 
 </script>
 <style scoped>
@@ -236,7 +246,6 @@ font-weight: 400;
 line-height: normal;
 }
 .sml-text{
-color: var(--Second-Text, #A4A8AB);
 font-family: Poppins;
 font-size: 12px;
 font-style: normal;
@@ -264,6 +273,13 @@ line-height: normal;
 }
 .wallet-border-light{
   border: 1px solid #DBE8FF;
+}
+
+.coin-name{
+color: white !important;
+}
+.coin-name-light{
+color: #10192D;
 }
 </style>
   

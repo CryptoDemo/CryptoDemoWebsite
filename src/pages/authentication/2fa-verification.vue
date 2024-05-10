@@ -26,7 +26,7 @@
         </div>
 
           <div style="margin-top:65px;">
-            <Button buttonText="Enable authentication"  :loading="loading" @click="Enable2fa()"/>
+            <Button buttonText="Enable authentication"  :loading="loading" @click="verify2FA_()"/>
           </div>
          <div class="d-flex" style="margin-top:43px; margin-bottom: 137px">
           <img src="/svg/arrow-left.svg" class="me-3" />
@@ -49,7 +49,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import {  GoogleAuth } from "@/composables/requests/auth";
+import { Verify2FA } from "@/composables/requests/auth";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -73,47 +73,27 @@ onMounted(() => {
 });
 
 
-const Enable2fa = async()=>{
+const verify2FA_ = async()=>{
   loading.value = true 
   const authentication = {
-  email: pinia.state.email,
-  password: otp.value,
-  device_info: JSON.stringify(device)
-  }
+    email: pinia.state.email,
+    password: otp.value,
+  };
+
   try {
-  const data = await  GoogleAuth(authentication);
-  if (data.success) {
-    pinia.state.code
-  } else{
+    const data = await Verify2FA(authentication);
+    if(data.success) {
+      pinia.setUser(data.data)
+      navigateTo('/account/dashboard')
+    } else{
+      push.error(data.message)
+    }
+  }catch(e){
     loading.value = false 
-    push.error(data.message, { timeout: 900000 })
+    console.log(e)
+    push.error(`${e}`)
   }
-}catch(e){
-  console.log(e)
-  push.error(`${e}`)
-}
- 
 };
-  
-const resendCode = async() => {
-  OtpCountdown.value = 60
-  timerFinished.value = false;
-  const codeMsg = {
-  email: pinia.state.email,
-  }
-
-try {
-  const data = await Resend_Code(codeMsg);
-  if (data.success) {
-  } else{
-    push.error(data.message, { timeout: 90000 })
-  }
-} catch(e){
-  push.error(`${e}`)
-};
- 
-};
-
 </script>
 <style scoped>
 .carousel-styling{

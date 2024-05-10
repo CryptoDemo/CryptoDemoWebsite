@@ -46,7 +46,7 @@ export const accountRecovery = async(accountrec)=>{
     return data;
 };
 
-export const signUp = async(userLogin)=>{
+export const signIn = async(userLogin)=>{
     const data = await fetch(`${baseURL}auth/sign-in`,{ 
     method: 'POST',
     headers: {
@@ -58,8 +58,8 @@ export const signUp = async(userLogin)=>{
     return data;
 };
 
-export const GoogleAuth = async(authentication)=>{
-    const data = await fetch(`${baseURL}auth/sign-in`,{ 
+export const Verify2FA = async(authentication)=>{
+    const data = await fetch(`${baseURL}user/verify-2fa`,{ 
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',

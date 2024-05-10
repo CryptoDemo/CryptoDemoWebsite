@@ -126,7 +126,7 @@ display: flex;
 align-items: center;
 }
 .input-styling{
-width: 298.116px;
+width: 298.116px !important;
 height: 64px!important;
 border-radius: 64px;
 background: inherit !important;
@@ -193,6 +193,12 @@ background-clip: text !important;
 -webkit-background-clip: text !important;
 -webkit-text-fill-color: transparent !important;
 } 
+.show-all-light{
+background: #F8FAFC !important;
+}
+.show-all-dark{
+background: #10192D;
+}
 
 .toggle-btn-dark{
   background: linear-gradient(360deg, #2873FF, #0B6B96) ;
@@ -1002,4 +1008,10 @@ line-height: 120%; /* 28.8px */
 
 .capitalize{
   text-transform: capitalize;
+}
+.justify-content-center{
+  justify-content: center!important;
+} 
+.align-items-center{
+  align-items: center!important;
 }

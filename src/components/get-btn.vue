@@ -1,132 +1,191 @@
 <template>
-    <div>
-  
-        <v-dialog max-width="500">
-          <template v-slot:activator="{ props: activatorProps }">
-            <v-btn v-bind="activatorProps" :class="isDark ? 'active-offers-dark':'active-offers-light'" variant="flat" class="get-btn">
-              <img src="/svg/get.svg" class="me-2"/>
-              <span>Get</span>
-            </v-btn>
-          </template>
-  
-          <template v-slot:default="{ isActive }">
-            <v-card style="border-radius: 24px; padding: 29px ; box-shadow: none; width: 479px; height: 580px;">
-              <v-card-text>
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                 <span class="snd-crypto">Receive Crypto</span>
-                 <v-btn variant="text"  @click="isActive.value = false" style="max-width: 45px !important; height: 45px; border-radius: 14px; background: #10192D;">
-                   <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-                     <path d="M17.5 16.0868L21.0355 12.5513C21.4261 12.1608 22.0592 12.1608 22.4497 12.5513C22.8403 12.9418 22.8403 13.575 22.4497 13.9655L18.9142 17.5011L22.4497 21.0366C22.8403 21.4271 22.8403 22.0603 22.4497 22.4508C22.0592 22.8413 21.4261 22.8413 21.0355 22.4508L17.5 18.9153L13.9645 22.4508C13.5739 22.8413 12.9408 22.8413 12.5503 22.4508C12.1597 22.0603 12.1597 21.4271 12.5503 21.0366L16.0858 17.5011L12.5503 13.9655C12.1597 13.575 12.1597 12.9418 12.5503 12.5513C12.9408 12.1608 13.5739 12.1608 13.9645 12.5513L17.5 16.0868Z" fill="white"/>
-                   </svg>
-                 </v-btn>
-               </div>
-  
-               <span style="color: #A4A8AB; margin-left: 10px; font-family: Poppins; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;"> Coin:</span>
-                 <div style="margin-top: 16px; margin-bottom: 8px;">
-                   <v-menu :coin="coin">
-                         <template v-slot:activator="{ props }">
-                           <v-btn class="inputstyling1" v-bind="props">
-   
-                             <div  class="py-3" style="display: flex; padding-left: 12px; align-items: center; position: absolute; left: 15px; border-radius: 17px; background: #161D26; width: 135px; height: 44px;">
-                                 <img :src="coinIcon" class="me-3" width="30"/>
-                                 <span style="font-weight: 600; color:  #fff; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{selectedCoin}}</span> 
-                             </div>
-                               <span class="me-5" style="color: #A4A8AB; font-family: Poppins; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ caption }}</span>
-                             
-                               <v-btn style="position: absolute; right: 15px; min-width: 44px !important; height: 44px; border-radius: 17px; box-shadow: none; background: #161D26;">
-                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                   <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" fill="white"/>
-                               </svg>
-                             </v-btn>
-   
-                           </v-btn>
-                         </template>
-   
-                         <v-list style="background: #12181F; border-radius: 15px;">
-                           <v-list-item>
-                             <div v-for="(coin, index) in coin" class="d-flex py-3" style="cursor: pointer" :key="index" >
-                           
-                               <v-list-item-title @click="selectedCoin=coin.title; coinIcon= coin.icon; caption = coin.caption"  class="d-flex">
-                                   <img  :src="coin.icon" class="me-3" width="30"/>  
-                                 <span style="display: flex; align-items: center;"> {{ coin.title }} </span>
-                                 <span style="color: #A4A8AB; font-family: Poppins; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ coin.caption }}</span>
-                               </v-list-item-title>
-                             </div>
-                           </v-list-item>
-                         </v-list>
-                     </v-menu> 
-                   </div>
-  
-                   <span style="color: #FFF; margin-left: 10px; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : <span style="color: #FFF; font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">0.0121285425 BTC</span></span>
-           
-                    <div style="margin-top: 18px;">  
-                      <span style="color: #A4A8AB; font-family: Poppins; margin-left: 10px; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">BTC Address</span>
-                    </div>
-                    <div class="px-4" style="border-radius: 25px; margin-top: 16px; margin-bottom: 36px; align-items:  center; height: 64px;border: 1px solid  #303A46; background:  #12181F; display: flex; justify-content: space-between; ">
-                      <span class="ref-code">bc1qXY2kGdygjrsqtzE2n0yrf2XY3</span>
-                      <v-btn style="letter-spacing: 0px; width: 98px; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; text-transform: capitalize;border-radius: 17px; display: flex;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Copy
-                        <img src="/svg/copy1.svg" style="margin-left: 10px;"/>
-                      </v-btn>
-                    </div>
-                    <div style="display: flex; justify-content: center;">
-                        <img src="/svg/barcode1.svg"/>
-                    </div>
-              </v-card-text>
-  
-              
-            </v-card>
-          </template>
-        </v-dialog>
-  </div>
-  </template>
-  
-  <script setup>
+  <div class="pa-4 text-center">
+   <v-btn @click="dialog = true" :class="isDark ? 'active-offers-dark':'active-offers-light'" class="send-btn">
+     <img src="/svg/get.svg"/>
+     <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
+   </v-btn>
+
+   <v-dialog v-model="dialog" max-width="479">
+     <v-card :class="isDark ? 'profile':'profile-light'" style="border-radius: 24px; padding: 29px ; box-shadow: none; width: 479px; height: 580px;">
+       <template v-slot:text>
+           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px">
+             <span class="snd-crypto" :class="isDark ? 'coin-name':'coin-name-light'">Receive Crypto</span>
+             <v-btn variant="plain" :class="isDark ? 'nav-btn':'nav-btn-light'" @click="dialog = false" style="max-width: 45px !important; height: 45px; border-radius: 14px;">
+               <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                 <path d="M17.5 16.0868L21.0355 12.5513C21.4261 12.1608 22.0592 12.1608 22.4497 12.5513C22.8403 12.9418 22.8403 13.575 22.4497 13.9655L18.9142 17.5011L22.4497 21.0366C22.8403 21.4271 22.8403 22.0603 22.4497 22.4508C22.0592 22.8413 21.4261 22.8413 21.0355 22.4508L17.5 18.9153L13.9645 22.4508C13.5739 22.8413 12.9408 22.8413 12.5503 22.4508C12.1597 22.0603 12.1597 21.4271 12.5503 21.0366L16.0858 17.5011L12.5503 13.9655C12.1597 13.575 12.1597 12.9418 12.5503 12.5513C12.9408 12.1608 13.5739 12.1608 13.9645 12.5513L17.5 16.0868Z" fill="white"/>
+               </svg>
+             </v-btn>
+           </div>
+
+           <span style="margin-left: 10px; font-family: Poppins; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;"> Coin:</span>
+             <div style="margin-top: 8px; margin-bottom: 8px;">
+               <v-menu>
+                     <template v-slot:activator="{ props }">
+                       <v-btn class="inputstyling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props">
+                         <div class="py-3 me-5" style="display: flex; padding-left: 12px; align-items: center; border-radius: 17px; position: absolute; left: 0;">
+                             <img :src="icon"  width="30" class="me-3"/>
+                             <span style="font-weight: 600; color:  #fff; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{select}}</span> 
+                         </div>
+                           <div style="position: absolute; right: 15px; box-shadow: none; background: inherit;">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" fill="white"/>
+                           </svg>
+                         </div>
+                       </v-btn>
+                     </template>
+
+                     <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 15px;">
+                       <v-list-item>
+                         <div  v-for="(item, index) in pinia.state.tokenLists" :key="index" class="d-flex py-3">
+                           <v-list-item-title @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex">
+                            <img  :src="item.icon" class="me-3" width="30"/>  
+                            <div class="d-flex" style="flex-direction: column;">
+                              <span :class="isDark ? 'coin-name':'coin-name-light'" style="display: flex; align-items: center;"> {{ item.name }} </span>
+                              <span style="font-family: Poppins; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ item.symbol }}</span>
+                            </div>
+                           </v-list-item-title>
+                         </div>
+                       </v-list-item>
+                     </v-list>
+                 
+               </v-menu> 
+             </div>
+             <span style="color: #FFF; margin-left: 10px; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : <span style="color: #FFF; font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">0.0121285425 BTC</span></span>
+       
+             <div style="margin-top: 18px;">  
+               <span style=" font-family: Poppins; margin-left: 10px; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">BTC Address</span>
+             </div>
+             <div class="position-relative">
+              <input class="px-4" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; margin-bottom: 36px; align-items:  center; height: 60px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
+              <v-btn style="letter-spacing: 0px; width: 98px; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 14%;right: 2%; position: absolute; display: flex;box-shadow: none;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">
+                Copy
+                <img src="/svg/copy1.svg" style="margin-left: 10px;"/>
+              </v-btn>
+            </div>
+            
+           </template>
+     </v-card>
+   </v-dialog>
+ </div>
+</template>
+
+<script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-
+import {getTokens} from "@/composables/requests/tokens";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-  
-  const coinIcon = ref ('/svg/btc.svg')
-   const selectedCoin  = ref ('Bitcoin')
-   const caption =  ref('BTC')
-   
-   const coin = [
-                   {
-                     icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
-                   },
-                   {
-                     icon:'/svg/tron.svg', title:"Tron", caption:'TRX'
-                   },
-                   {
-                     icon:'/svg/binance.svg', title:"Binance", caption:'BTC'
-                   },
-                   {
-                     icon:'/svg/tether.svg', title:"Tether", caption:'USDT'
-                   }
-                     
-   ];
-  </script>
-  
-  <style scoped>
-  .get-btn{
-  border-radius: 16px;
-  box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
-  letter-spacing: 0px;
-  text-transform: capitalize;
-  display: flex;
-  width: 86.333px;
-  height: 48px;
-  padding: 12px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px; 
-  flex-shrink: 0;
+const pinia = useStore()
+const dialog =  ref(false);
+const dialog2 = ref(false);
+const dialog3 = ref(false);
+const pageNumber = ref(1);
+
+
+const icon = ref ('/svg/btc.svg')
+const select  = ref ('Bitcoin')
+const coin =  ref('BTC')
+
+try {
+  const data = await getTokens(pageNumber.value);
+  if(data.success) {
+    const fetchedTokens = data.data.result;
+
+    const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
+
+    // Check if there are any new items in the fetched data
+    const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
+
+    if (newItems.length > 0) {
+      console.log('fetching')
+      pinia.setTokenLists(fetchedTokens);
+    }
+  } else {
+    console.log('Unavailable')
   }
+} catch (error) {
+  console.log(error);
+};
+</script>
 
+<style scoped>
+.send-btn{
+border-radius: 16px;
+display: flex;
+max-width: 86.333px !important;
+height: 48px !important;
+padding: 12px 16px;
+box-shadow: none;
+justify-content: center;
+align-items: center;
+gap: 8px;
+flex-shrink: 0;
+letter-spacing: 0px;
+text-transform: unset;
+align-content: center;
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+line-height: 140%;
+}
+.success-txt{
+color: #8E9BAE;
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+}
 
- .profile{
+.confirmation-text{
+color: #E2E8F0;
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+}
+
+.ref-code{
+overflow: hidden;
+color: var(--White, var(--Colors-Base-white, #FFF));
+text-overflow: ellipsis;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+display: -webkit-box;
+width: 171px;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 1;
+}
+.snd-crypto{
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+margin-left: 10px;
+}
+.send-txt{
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+line-height: 140%; /* 19.6px */
+}
+.inputstyling1{
+stroke-width: 1px;
+border-radius: 26px !important;
+width: 426px !important;
+height: 60px !important;
+box-shadow: none!important;
+letter-spacing: 0px;
+}
+.profile{
 background: #10192D !important;
 border: 1px solid #1B2537 !important;
 }
@@ -136,11 +195,59 @@ border: 1px solid #DBE8FF !important;
 }
 
 .active-offers-dark{
-  background: var(--secondary-background, #1B2537);
-
+background: var(--secondary-background, #1B2537);
 }
 .active-offers-light{
-  background: var(--secondary-background, #F8FAFC);
+background: var(--secondary-background, #F8FAFC);
 }
-  </style>
-  
+.v-btn--size-default {
+--v-btn-size: 0.875rem;
+--v-btn-height: 36px;
+font-size: var(--v-btn-size);
+min-width: 45px !important;
+padding: 0 16px;
+}
+
+.country-dropdown{
+border-radius: 15px;
+border: 0.5px solid #2f3946;
+background: #1B2537 !important;
+backdrop-filter: blur(50px) !important;
+height: 320px !important;
+border-radius: 20px !important;
+border-radius: 15px;
+border: 0.5px solid #354356;
+color: white;
+margin-top: 15px;
+box-shadow: none  !important;
+height: 320px !important;
+}
+.country-dropdown-light{
+border-radius: 15px;
+background: #fff !important;
+border: 1px solid #DBE8FF !important;
+border-radius: 20px !important;
+color: black;
+margin-top: 15px;
+box-shadow: none  !important;
+height: 320px !important;
+}
+
+.profile-cards-dark{
+border: 1px solid rgba(142, 155, 174, 0.5);
+background: inherit;
+}
+.profile-cards-light{
+border: #DBE8FF !important;
+background: inherit;
+}
+::-webkit-scrollbar{
+display: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+</style>
+

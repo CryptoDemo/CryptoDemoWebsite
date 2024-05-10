@@ -21,7 +21,7 @@
             </v-alert>
             <div class="position-relative" style="margin-top: 134px">
               
-              <v-text-field placeholder="Email Address" class="input-styling" v-model.trim="email" :class="isDark ? 'input-styling':'input-styling-light'"
+              <v-text-field placeholder="Email Address" class="input-styling pr-14" v-model.trim="email" :class="isDark ? 'input-styling':'input-styling-light'"
                   variant="plain">
               <v-icon class="prepend-inner-icon ml-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 25 24" fill="none">
@@ -46,7 +46,7 @@
             </div>
               
             <div class="position-relative">
-                <v-text-field class="input-styling" style="margin-top:20.81px;" :type="isToggled ? 'text' : 'password'" :class="isDark ? 'input-styling':'input-styling-light'"
+                <v-text-field class="input-styling pr-14" style="margin-top:20.81px;" :type="isToggled ? 'text' : 'password'" :class="isDark ? 'input-styling':'input-styling-light'"
                   placeholder="Password"
                   v-model.trim="password"
                   variant="plain">
@@ -105,7 +105,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-import { signUp } from "@/composables/requests/auth";
+import { signIn } from "@/composables/requests/auth";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme?.global?.current.value?.dark);
@@ -131,11 +131,13 @@ const login = async () => {
   }
 
   try {
-  const data = await signUp(userLogin);
+  const data = await signIn(userLogin);
   if (data.success) {
+    console.log(data.data);
     if (data.message=="Please verify your email to continue") {
       navigateTo('/authentication/sign-up-email-verification')
-    } else if (data.message=="Please provide your 2FA code to continue") {
+    } 
+    else if (data.message=="Please provide your 2FA code to continue") {
       navigateTo('/authentication/2fa-verification')
     } else{
       pinia.state.isAuthenticated = true
@@ -153,30 +155,27 @@ const login = async () => {
 }
  
 };
-
-
 </script>
 <style scoped>
 
 .v-btn__content {
-  grid-area: content;
-  justify-content: center;
-  white-space: nowrap;
-  width: 275.885px!important;
-  font-size: 12px!important;
-  font-weight: 400;
-  line-height: normal;
+grid-area: content;
+justify-content: center;
+white-space: nowrap;
+width: 275.885px!important;
+font-size: 12px!important;
+font-weight: 400;
+line-height: normal;
 }
-
 .carousel-styling{
-  max-height: 550px;
-  position: relative;
-  top: 3%;
-  bottom: 0
+max-height: 550px;
+position: relative;
+top: 3%;
+bottom: 0
 } 
 .tick-icon{
-  top: 44%;
-  right: 8%;
+top: 42%;
+right: 8%;
 }  
 .eye-icon{
 bottom: 14px; 
@@ -190,5 +189,28 @@ background: #161D26;
 .alert-box-light{
 background: #fff;
 }
-
+.input-styling{
+width: 298.116px !important;
+height: 64px!important;
+border-radius: 64px;
+background: inherit !important;
+border: 1px solid #1B2537;
+color: white;
+font-size: 12px;
+font-family: Poppins;
+padding-left: 20px;
+padding-right: 20px;
+}
+.input-styling-light{
+width: 298.116px;
+height: 64px!important;
+border-radius: 64px;
+border: 1px solid #DBE8FF;
+background: var(--Basic-White, #FFF) !important;
+color: #0B0E13;
+font-size: 12px;
+font-family: Poppins;
+padding-left: 20px;
+padding-right: 20px;
+}
 </style>

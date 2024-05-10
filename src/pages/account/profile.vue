@@ -3,12 +3,12 @@
      <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" />
      <v-container>
         <div style="margin-top: 100px; min-height: 100%;">
-            <v-row no-gutters>
-              <v-col class="profile-section" cols="8">
-                <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 0px">
-                  <div class="d-md-flex" style="justify-content: space-around; align-items: center;">
+            <div no-gutters style="display: flex">
+              <div class="profile-section me-4">
+                <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 15px">
+                  <div class="d-sm-flex" style="justify-content: space-around; align-items: center;">
                     <div class="d-flex">
-                      <img :src="pinia.state?.user?.profile_image" width="70" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start;"/>
+                      <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="70" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start;"/>
                         <div class="unverified-div">
                           <v-chip class="profile-level" color="#FB774A" style="margin-bottom: 13.8px;">Unverified</v-chip>
                          <div class="div-username1"> <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'">UID : {{ pinia.state.user?.username}} </span> </div>
@@ -28,15 +28,15 @@
                     </div>
                   </div>
                 </div>
-              </v-col>
+              </div>
       
-              <v-col class="flex-lg-and-up hidden-sm-and-down">
+              <div sm="4" md="4" class="flex-lg-and-up hidden-md-and-down">
                 <div>
                   <Acct-level/>
                 </div>
-              </v-col>
+              </div>
            
-          </v-row>
+            </div>
         </div>
      </v-container>
       <div>      
@@ -393,6 +393,7 @@ line-height: normal;
 .profile-cards{
 border-radius: 24px;
 height: fit-content;
+width: 100%;
 }
 .profile-cards-dark{
 border-radius: 24px;

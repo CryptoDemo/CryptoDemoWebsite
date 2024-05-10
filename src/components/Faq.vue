@@ -5,14 +5,14 @@
         <span  class="section2-titlei2" :class="isDark ? 'section2-titlei':'section2-titlei-light'" >We know you have some questions for us.</span>
      </div>    
     <v-expansion-panels variant="popout" style="display: contents !important;">
-             <div v-for=" (FAQs, i ) in FAQ" :key="i" >
+             <div  v-for="(item, index) in UserFaqs" :key="index"> 
                 <v-expansion-panel class="expansion-panel" :class="isDark ? 'expansion-panel':'expansion-panel-light'"  >
                     <v-expansion-panel-title expand-icon="mdi-plus" collapse-icon="mdi-close">
                         <img src="/svg/paper-fold.svg" class="me-4"/>
-                       <span :class="isDark ? 'title-text':'title-text-light'"> {{FAQs.question}} </span>
+                       <span :class="isDark ? 'title-text':'title-text-light'"> {{item.question}} </span>
                     </v-expansion-panel-title>
                     <v-expansion-panel-text>
-                        <span class="answer-text">{{FAQs.answer}}</span>
+                        <span class="answer-text">{{item.answer}}</span>
                     </v-expansion-panel-text>
                 </v-expansion-panel>
                 </div>
@@ -22,26 +22,43 @@
 </div>
 </template>
 <script setup>
-
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-
-const transaction = ref(true);
+import { getFAQs } from "@/composables/requests/admin";
+import {filterByKey,formatDate} from "@/composables/mixin";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
+const pinia = useStore()
+const pageNumber = ref(1)
+const currentPageNumber = ref(1);
+const totalPages = ref(2);
 
+const UserFaqs = ref([{
+        "id": "8272...",
+        "question": "what is...",
+        "answer": "Crypto demo is..."
+}] || pinia.state.UserFaqs || []);
 
-const FAQ = [
-    {question: 'What is Demo Web and how does it work?', answer:'To start trading on Demo Web, simply sign up for an account on our platform. Once your account is verified, you can browse listings of Bitcoin offers from other users and initiate a trade by selecting an offer that suits your requirements.'},
-    {question:'How can I start trading on Demo Web?', answer:'To start trading on Demo Web, simply sign up for an account on our platform. Once your account is verified, you can browse listings of Bitcoin offers from other users and initiate a trade by selecting an offer that suits your requirements.'},
-    {question:'Which cryptocurrencies are available for trading on Demo Web?', answer:'Currently, Demo Web primarily focuses on facilitating trades in Bitcoin (BTC). However, we may introduce support for additional cryptocurrencies in the future based on user demand and market trends.'},
-    {question:'How secure is Demo Web for trading?', answer:' At Demo Web, we prioritize the security of our users funds and personal information. We employ robust encryption protocols, two-factor authentication, and cold storage solutions to ensure the safety of transactions and user data on our platform. '},
-    {question:'What are the trading fees on Demo Web?', answer:' Demo Web charges a nominal fee for facilitating trades on our platform. This fee is typically calculated as a percentage of the transaction amount and is transparently displayed to users before they finalize their trades.'},
-    {question:'How quickly are deposits and withdrawals processed?', answer:' Deposits and withdrawals on Demo Web are processed promptly, depending on blockchain confirmation times and other factors. We strive to ensure swift and efficient processing to minimize any inconvenience to our users. '},
-    {question:'Does Demo Web offer customer support?', answer:'Yes, Demo Web provides customer support to assist users with any inquiries or issues they may encounter while using our platform. Our dedicated support team  and our help  center  is available during specified hours to address user concerns promptly.'},
+const fetchFaqs = async()=>{
+  try{
+    isLoading.value = true;
+    const result = await getFAQs (currentPageNumber.value);
+  
+    totalPages.value = result?.data?.total_pages || totalPages.value;
+  
+    if(result?.data?.result?.length){
+      UserFaqs.value = filterByKey("id",[...UserFaqs.value,...result?.data?.result]);
+      pinia.setFAQs(UserFaqs.value);
+    }
+  }catch(e){
+    push.error(`Error: ${e.message}`);
+  };
+}
 
-]
+onMounted(()=>{
+  fetchFaqs();
+});
 
 </script>
 <style>

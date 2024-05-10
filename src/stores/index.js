@@ -3,7 +3,6 @@
 
 import { defineStore } from 'pinia'
 
-
 export const useStore = defineStore('app',()=> {
     const currentNavMenu = ref("home")
     const  currentAccMenu = ref("spot")
@@ -27,19 +26,22 @@ export const useStore = defineStore('app',()=> {
       activityLogs:[],
       notificationLogs:null,
       tokenNetworks:[],
+      selectedNetwork: "bep20",
       tokenLists:[],
       tokenPrices:[],
       tokenBalance:null,
       allcountries: [],
       selectedToken: 'USDT',
-
+      combineTokenPrices: [],
+      UserFaqs:[],
     });
   
   
   const setUser = (payload) => {
       state.user = payload;
       state.isAuthenticated = true;
-  };
+
+    };
     const updateNotificationSettings = (payload) => {
         const {key, value} = payload;
         // if not an object
@@ -61,6 +63,14 @@ export const useStore = defineStore('app',()=> {
   
   const setPhone = (payload) => {
       state.phone = payload;
+      
+  };
+  const setCombinedTokensWithPrices = (payload) => {
+      state.combineTokenPrices = payload;
+      
+  };
+  const setFAQs = (payload) => {
+      state.UserFaqs = payload;
       
   };
   const setTwoFactor = (payload) => {
@@ -90,7 +100,7 @@ export const useStore = defineStore('app',()=> {
 };
   const setActivityLogs = (payload) => {
       state.activityLogs = payload;
-      state.activityLogs.reverse(state.activityLogs);
+    //   state.activityLogs.reverse(state.activityLogs);
       
   };
   const setNotificationLogs = (payload) => {
@@ -115,16 +125,16 @@ export const useStore = defineStore('app',()=> {
   };
 
   
-  const clearUser = () => {
-      state.user = null;
-      state.isAuthenticated = false;
-      state.email = null,
-      state.phone = null,
-      state.activityLogs = [],
-      state.notificationLogs = [],
-      state.tokenNetworks = [],
-      state.tokenLists = [],
-      navigateTo('/login')
+  const logout = () => {
+    state.user = null;
+    state.isAuthenticated = false;
+    state.email = null,
+    state.phone = null,
+    state.activityLogs = [],
+    state.notificationLogs = [],
+    state.tokenNetworks = [],
+    state.tokenLists = [],
+    navigateTo('/login')
   }
 
     return {
@@ -137,7 +147,7 @@ export const useStore = defineStore('app',()=> {
       setEmail,
       setUser,
       setToken,
-      clearUser,
+      logout,
       setCountry,
       setCode,
       setTwoFactor,
@@ -149,7 +159,8 @@ export const useStore = defineStore('app',()=> {
       setTokenPrices,
       setTokenBalance,
       setallcountries,
-      updateNotificationSettings
+      updateNotificationSettings,
+      setCombinedTokensWithPrices
     }
 },
   {persist: {

@@ -124,7 +124,7 @@ if(pinia.state.twoFactor !== null){
         }
   });
 
-  pinia.setTwoFactor(two_factor)
+  // pinia.setTwoFactor(two_factor)
     }else{
     loading.value = false 
     push.error(data.message, { duration: 2000 })

@@ -2,11 +2,13 @@
   <div class="sd-nav1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
     <div v-for="(item, i) in navigation" :key="i">
      <div style="display: flex; justify-content: space-between;">
-     <v-btn class="nav-options1" :class="isDark ? 'nav-options1-dark':'nav-options1-light'"> 
-       <img :src="item.icon" width="24" class="me-3" v-if="theme.global.current.value.dark"/>
-       <img :src="item.icon1" width="24" class="me-3" v-else/>
-       {{ item.title }}
-     </v-btn>
+      <nuxt-link :to="item.link">
+        <v-btn class="nav-options1" :class="isDark ? 'nav-options1-dark':'nav-options1-light'"> 
+          <img :src="item.icon" width="24" class="me-3" v-if="theme.global.current.value.dark"/>
+          <img :src="item.icon1" width="24" class="me-3" v-else/>
+          {{ item.title }}
+        </v-btn>
+    </nuxt-link>
      </div>
    </div>
    </div>
@@ -25,25 +27,60 @@
      <v-btn  style="border-radius: 8px; display: flex;  background: linear-gradient(360deg, #2873FF, #0B6B96); padding: 6px 45px; color: white; letter-spacing: 0px; box-shadow: none; text-transform: unset; width: 100%; height: 40px!important;">Get app</v-btn>
    </div>
 
+   <v-dialog width="647px">
+      <template v-slot:activator="{ props }"><v-btn v-bind="props" width="152px" class="primary-btn1" style="border-radius: 16px; background: #E33E38 !important;"> Delete Account</v-btn></template>
 
+      <template v-slot:default="{ isActive }">
+            <v-card style="background: #12181F;border-radius: 32px; border: 1px solid var(--border, #303A46)!important;  padding: 40px ">
+              <v-card-text>
+                <div style="margin-bottom: 20px;">
+                  <img src="/svg/delete-icon.svg"/>
+                </div>
+              <span style="font-size: 20px;color: #D8D8D8; font-family: Manrope; font-weight: 600;line-height: normal;">Are you sure you want to Logout?</span>
+              <div style="margin-top: 20px">
+                  <span style="color:#969696; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Click “Proceed” to Logout</span>
+              </div>
+              </v-card-text>
+
+              <v-card-actions style="justify-content: space-around; margin-top: 35px;">
+
+                  <v-btn @click="logout()" :loading="loading" style="border-radius: 16px; border: 1px solid #303A46; background:  #E2E8F0; display: flex;width: 230px; height: 63px; color:  #323232;text-align: center; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; text-transform: unset; letter-spacing: 0px">
+                      Proceed
+                  </v-btn>
+
+                <v-btn class="primarybtn" style="display: flex; width: 230px; height: 64px; font-weight: 600;"
+                  text="Cancel"
+                  @click="isActive.value = false"
+                ></v-btn>
+              </v-card-actions>
+            </v-card>
+      </template>
+    </v-dialog>
 </template>
 <script setup>
 import { useTheme } from 'vuetify';
-
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-
+const pinia = useStore();
+const loading= ref(false);
 const navigation = [
-     {icon:'/svg/profile1.svg', icon1:'/svg/profile1-dark.svg', title: 'profile', link:'/profile', },
-     {icon:'/svg/settings.svg', icon1:'/svg/security-dark.svg', title: 'Security', link:'/settings',},
-     {icon:'/svg/payment1.svg', icon1:'/svg/payment-dark.svg', title: 'payment methods', link:'/payment', },
-     {icon:'/svg/connected.svg',icon1:'/svg/security-dark.svg', title: 'Connected Apps and Websites', link:'/connected-apps',},
-     {icon:'/svg/Item.svg',     icon1:'/svg/security-dark.svg', title: 'Security Questions ', link:'/Questions'},
-     
-   ];
+  {icon:'/svg/profile1.svg', icon1:'/svg/profile1-dark.svg', title: 'profile', link:'account/profile', },
+  {icon:'/svg/settings.svg', icon1:'/svg/security-dark.svg', title: 'Security', link:'/account/settings',},
+  {icon:'/svg/payment1.svg', icon1:'/svg/payment-dark.svg', title: 'payment methods', link:'/account/payment', },
+  {icon:'/svg/Item.svg',     icon1:'/svg/security-dark.svg', title: 'Security Questions ', link:'/account/Questions'},
+  {icon:'/svg/delete-icon.svg',icon1:'/svg/security-dark.svg', title: 'Logout'},
+  
+];
+
+const logout =  () => {
+  loading.value = true 
+  pinia.state.isAuthenticated = false
+  // pinia.state.logout()
+  navigateTo('/authentication/login')
+}  
+
 </script>
 <style scoped>
-
 .sd-nav1{
 border-radius: 24px;
 display: inline-flex;

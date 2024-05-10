@@ -49,47 +49,6 @@ const setupNotificationSettings = ()=>{
 const toggleNotification = async (key, value) => {
   pinia.updateNotificationSettings({key,value});
 
-    // const userToken = `${pinia.state.user.token}`;
-    // const info = { ...pinia.state.user};
-    // delete info.token;
-
-    // try {
-
-    //     const data = await fetch(`${baseURL}user`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'x-access-token': `${pinia.state.user?.token}`
-    //         },
-    //         body: JSON.stringify(info)
-
-    //     }).then(res => res.json());
-
-    //     if (data.success) {
-    //         const user = { ...info, token: userToken };
-
-    //         console.log(user)
-    //         pinia.setUser(user);
-
-    //         // Update the notification status in the local state
-    //         // const  apiFetchedNofyVal = data.settings.notifications
-    //         // const index = apiFetchedNofyVal.findIndex(item => item === value);
-
-    //         // console.log(index)
-    //         // // if (index !== -1) {
-    //         //     notification_settings[index].status = status;
-    //         // // }
-
-
-    //     } else {
-    //         // Handle error response
-    //         console.error('Failed to update notification settings:', data.message);
-          
-    //     }
-    // } catch (error) {
-    //     console.error('Error updating notification settings:', error);
-      
-    // }
   }
 
   onBeforeMount(()=>{

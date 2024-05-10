@@ -16,12 +16,12 @@
             <div>
               <div class="frame-1" :class="isDark ? 'frame-1':'frame-1-light'">
                 <v-btn color="#2873FF" class="writing-btn">Writing</v-btn>
-                <span class="writing-text" :class="isDark ? 'writing-text':'writing-text-light'">The number one trading platform in Europe</span>
+                <span class="writing-text" :class="isDark ? 'writing-text-dark':'writing-text-light'">The number one trading platform in Europe</span>
                 <img src="/svg/blue-arrow.svg"/>
               </div>
               
               <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000;">
-                <span class="headertext1" :class="isDark ? 'header-text1':'header-text1-light'">Trade Bitcoin on</span>
+                <span class="headertext1 header-text1" :class="isDark ? 'header-text1-dark':'header-text1-light'">Trade Bitcoin on</span>
                 <img src="/img/Frame.png" class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down"/> 
               </div>
 
@@ -71,7 +71,7 @@
                     </template>
 
                     <div class="coin-overlay">
-                    <v-list  :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 10px; margin-top: 10px;">
+                    <v-list :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 10px; margin-top: 10px;">
                       <v-list-item style="width: -webkit-fill-available;">
                         <div  @click.stop style="margin-top: 8px; margin-bottom: 15px;">
                           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 30px; margin-left: 45px;">
@@ -96,13 +96,13 @@
                   </div>
                   </v-menu> 
                   <div style="margin-top:9px">  
-                    <span class="btc-ammt">40 BTC = <span class="btc-ammt1">40,144.86 USD</span></span>
+                    <span class="btc-ammt">40 BTC = <span class="btc-ammt1" style="color: #2873FF; font-family: Manrope;">40,144.86 USD</span></span>
                   </div>
                   <div style="margin-top: 30px;">
                     <span :class="isDark ? 'pay-with':'pay-with-light'" > {{transaction? "Pay with" : "Get paid via" }}</span>
-                  <div :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
-                      <Payment-options :selectedPaymentOption="Paymentmethod1"/>
-                  </div>
+                      <div :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
+                          <Payment-options :selectedPaymentOption="Paymentmethod1"/>
+                      </div>
                       <div class="payment-wrap" style="overflow: scroll;">
                           <Transaction-btn buttonText="Bank Transfers" class="mt-4" @click="Paymentmethod1='Bank Transfers'"/>
                           <Transaction-btn buttonText="Paypal" class="mt-4"  @click="Paymentmethod1='Paypal'"/>
@@ -112,20 +112,20 @@
                       </div>
                   </div>
                   <div style="margin-top: 30px;">
-                    <span  :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to  spend" : "I want to  receive" }}</span>
+                    <span :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to  spend" : "I want to  receive" }}</span>
                     <div class="d-flex" style="margin-top:9px; position: relative;">
                     <input type="number" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
                        placeholder="Enter Amount"/>
                     <v-menu transition="scale-transition">
                         <template v-slot:activator="{ props }">
-                          <v-btn v-bind="props" class="position-absolute" :class="isDark ? 'show-all':'show-all-light'" style="right: 10px;margin-top: 8px;font-weight: 700;">
+                          <v-btn v-bind="props" class="position-absolute show-all" :class="isDark ? 'show-all-dark':'show-all-light'" style="right: 10px;margin-top: 8px;font-weight: 700;">
                             {{ Selectedcurrency }}
                             <v-icon  icon="mdi-chevron-down notranslate"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
                             <!-- <v-icon v-else icon="mdi-chevron-up"  color="#8E9BAE" style="margin-left: 6px "></v-icon> -->
                         </v-btn>
                         </template>
 
-                        <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="height: 160px !important; width: 130px !important; ">
+                        <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="height: 160px !important; width: 130px !important; border-radius: 15px !important">
                           <v-list-item v-for="(currency, i) in pinia.state.allcountries" :key="i">
                             <div>
                               <v-list-item @click="Selectedcurrency=currency.currency_name">
@@ -275,7 +275,7 @@
             <v-col cols="md-7" sm="12">
               <div class="">
                 <span class="section2-subtitlei1 sub-text2i" style="justify-content: flex-start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
-                <span class="section2-titlei2" :class="isDark ? 'section2-title1':'section2-title1-light'" style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
+                <span class="section2-titlei2 section2-title1" :class="isDark ? 'header-text1-dark':'header-text1-light'" style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
                 <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
                  <div class="d-flex social-icons-div" style="margin-top: 88px; width: fit-content; align-items: center">
                   <v-btn class="image-button me-4 desktop-social-icons" :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
@@ -310,7 +310,7 @@
         </div>
 
         <v-container style="margin-top: 70px">
-          <Expansion/>
+          <Faq/>
             
         </v-container>
 
@@ -422,26 +422,20 @@ font-weight: 700;
 line-height: 100%; 
 letter-spacing: -2.4px;
 background: linear-gradient(90deg, #FFF 8.61%, #8E9BAE 91.11%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
 justify-content: center
 
 }
+.header-text1-dark{
+background: linear-gradient(90deg, #FFF 8.61%, #8E9BAE 91.11%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
 .header-text1-light{
-text-align: center;
-font-family: "SF Pro Display" !important;
-font-size: 80px;
-font-style: normal;
-font-weight: 700;
-line-height: 100%; 
-letter-spacing: -2.4px;
 background: linear-gradient(90deg, #060A1D 7.92%, rgba(6, 10, 29, 0.50) 91.5%);
 background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-justify-content: center
-
 }
 
 .web{
@@ -659,7 +653,6 @@ margin-top: 169px ;
 
 }
 .writing-text{
-color: var(--Colors-Base-white, #FFF);
 text-align: center;
 font-family: "SF Pro Display";
 font-size: 14px;
@@ -668,15 +661,11 @@ font-weight: 400;
 line-height: 100%; /* 14px */
 letter-spacing: 0.14px;
 }
+.writing-text-dark{
+color: var(--Colors-Base-white, #FFF);
+}
 .writing-text-light{
 color: #1B2537;
-text-align: center;
-font-family: "SF Pro Display";
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 100%; /* 14px */
-letter-spacing: 0.14px;
 }
 .writing-btn {
 display: flex;
@@ -707,10 +696,8 @@ width: 32px;
 height: 32px;
 justify-content: center;
 align-items: center;
-/* gap: 10px; */
 flex-shrink: 0;
 border-radius: 10px;
-/* background: #F8FAFC; */
 }
 .small-text{
 color: var(--Main-Greyscale-40, #8E9BAE);
@@ -730,14 +717,7 @@ font-style: normal;
 font-weight: 700;
 line-height: 150%; /* 21px */
 }
-.btc-ammt1{
-color: #2873FF;
-font-family: Manrope;
-font-size: 14px;
-font-style: normal;
-font-weight: 700;
-line-height: 150%;
-}
+
 .v-list{
 background: #070B1F!important;
 color: white;
@@ -792,26 +772,6 @@ text-transform: unset !important;
 letter-spacing: 0px;
 
 }
-.show-all-light{
-color: var(--Main-Primary-100, #2873FF);
-text-align: center;
-font-family: Manrope;
-font-size: 12.86px;
-font-style: normal;
-font-weight: 700;
-line-height: 150%; /* 19.289px */
-display: flex;
-height: 32.149px;
-padding: 6.43px;
-justify-content: center;
-align-items: center;
-gap: 8.037px;
-border-radius: 9.645px;
-background: #F8FAFC !important;
-box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02);
-text-transform: unset !important;
-
-}
 
 .payment-wrap{
 display: flex;
@@ -838,7 +798,6 @@ background: var(--Main-Primary-100, #2873FF);
 text-align: center;
 letter-spacing: unset!important;
 text-transform: unset !important;
-/* filter: blur(1px); */
 }
 .exchange-text{
 width: 91px;
@@ -957,10 +916,6 @@ font-style: normal;
 font-weight: 700;
 line-height: 120%; /* 76.8px */
 letter-spacing: -1.92px;
-background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
 width: 688.35px;
 display: flex;
 justify-content: center;
@@ -983,23 +938,7 @@ display: flex;
 justify-content: center;
 margin: auto;
 }
-.section2-title1-light{
-text-align: center;
-font-family: "SF Pro Display";
-font-size: 64px;
-font-style: normal;
-font-weight: 700;
-line-height: 120%; /* 76.8px */
-letter-spacing: -1.92px;
-background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.50) 97.69%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-width: 688.35px;
-display: flex;
-justify-content: center;
-/* margin: auto; */
-}
+
 .caption{
 color: #64748B;
 text-align: center;
@@ -1067,7 +1006,6 @@ height: auto;
 }
 .orange-coin{
 right: 10%;
-/* margin-bottom: 60px; */
 max-width: 13%;
 height: auto;
 top: -64px;
@@ -1270,8 +1208,8 @@ border-radius: 15px;
 background: #fff !important;
 color: #060A1D;
 }
-::-webkit-input-placeholder {
 
+::-webkit-input-placeholder {
 color: #8E9BAE !important;
 font-family: Manrope !important;
 font-size: 14px !important;

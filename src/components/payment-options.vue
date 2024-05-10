@@ -2,7 +2,7 @@
     <span class="text2" style="font-weight: 700; display: contents; font-family: Manrope; color: #64748B; line-height: 150%; font-size: 14px;">{{ selectedOption }}</span> 
     <v-dialog class="dialogue" style="display: flex;  width: 75%;">
         <template v-slot:activator="{ props }">
-          <v-btn v-bind="props" :class="isDark ? 'show-all':'show-all-light'" text="Show all"> </v-btn>
+          <v-btn v-bind="props" :class="isDark ? 'show-all-dark':'show-all-light'" class=show-all text="Show all"> </v-btn>
         </template>
 
         <template v-slot:default="{ isActive }">
@@ -200,28 +200,7 @@ background: #10192D;
 box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02);
 text-transform: unset !important;
 letter-spacing: 0px;
-
 }
-.show-all-light{
-color: var(--Main-Primary-100, #2873FF);
-text-align: center;
-font-family: Manrope;
-font-size: 12.86px;
-font-style: normal;
-font-weight: 700;
-line-height: 150%; /* 19.289px */
-display: flex;
-height: 32.149px;
-padding: 6.43px;
-justify-content: center;
-align-items: center;
-gap: 8.037px;
-border-radius: 9.645px;
-background: #F8FAFC !important;
-box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02);
-text-transform: unset !important;
-}
-
 
 .dialogue :deep(.v-overlay__scrim){
   background: rgb(0, 0, 0) !important;
