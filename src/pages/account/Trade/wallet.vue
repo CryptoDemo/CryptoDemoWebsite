@@ -4,7 +4,7 @@
        <v-container>
             <div style="margin-top: 110px; display: flex; width: 100% !important;">
                <div>
-                  <div class="ma-2 mt-5 me-6">
+                  <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down">
                     <Wallet-nav/>
                    </div>
                </div>
@@ -17,13 +17,13 @@
                       <thead>
                         <tr style="display: flex; margin-bottom: 8px;">
 
-                          <th style="display: flex; align-items: center; align-self: center; margin-right: 20px">
+                          <th style="display: flex; align-items: center; align-self: center; width: 18%; justify-content: center;">
                             <div class="d-flex" >
                               <span class="table-header-text"  :class="isDark ? 'text-dark':'text-light'">Coin</span>
                             </div>
                           </th>
 
-                          <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px">
+                          <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px; width: 21%; justify-content: center;">
                             <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Price (USD)</span>
                           </th>
 
@@ -45,7 +45,7 @@
                     <tr v-for="(item, index) in pinia.state.tokenLists" :key="index" style="display: flex; justify-content: space-between;">
 
                       <td style="display: contents;">
-                          <div class="d-flex" style="align-items: center;">
+                          <div class="d-flex" style="align-items: center; width: 30%;">
                               <img :src="item.icon" width="30" class="me-3"/>
                                 <div style="flex-direction:row">
                                   <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
@@ -54,15 +54,15 @@
                             </div>
                       </td>
 
-                      <td style="display: flex;align-items: end;">
+                      <td style="display: flex;align-items: end; width: 20%;"><span class="browser-txt">{{item.price}}</span></td>
+
+
+                      <td style="display: flex; align-items: end; justify-content: center; width: 20%;">
                         <span class="browser-txt" > 
                           <TokenBalance :symbol="item.symbol"/> 
                         </span>
                       </td>
 
-                      <td style="display: flex;align-items: end;"><span class="browser-txt">{{item.Balance}}</span></td>
-
-                      <td style="display: flex;align-items: end;"><span class="browser-txt" >{{item.USDEqv}}</span></td>
 
                       <div class="d-flex" > 
                         <td style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
@@ -202,10 +202,8 @@ onMounted (async() => {{
       return pinia.state.tokenPrices = []
   }
 }})
-
-
-
 </script>
+
 <style scoped>
 .swap{
 border-radius: 16px;

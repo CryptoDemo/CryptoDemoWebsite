@@ -2,9 +2,9 @@
   <div>
      <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" />
      <v-container>
-        <div style="margin-top: 100px; min-height: 100%;">
+        <div style="margin-top: 100px;">
             <div no-gutters style="display: flex">
-              <div class="profile-section me-4">
+              <div class="profile-section me-4" style="min-width: 67%;">
                 <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 15px">
                   <div class="d-sm-flex" style="justify-content: space-around; align-items: center;">
                     <div class="d-flex">
@@ -71,7 +71,7 @@
                 </div>
               </div>
           
-            <v-row class="card-wrap" style="min-width: 90%; height: fit-content; margin-top: 1px; gap: 16px;">
+            <v-row class="card-wrap" style="min-width: 89%; height: fit-content; margin-top: 1px; gap: 16px;">
                 <v-col v-for="(variant, i) in profileCards" class="profile-cards" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :key="i" sm="3" cols="12" style="display: flex;">
                     <v-card class="mx-auto" variant="text">
                         <v-card-item>
@@ -170,12 +170,7 @@
                       </div>
                   </div>
                   
-                  <div class="" style="display: flex; align-items: center;">
-                    <v-rating class=" mb-1"
-                      v-model="rating" clearable length="1">       
-                    </v-rating>
-                      <span :class="isDark ? 'text-dark':'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 700; line-height: normal;">Add to favorites</span>
-                  </div>
+                 
 
                   <div style="margin-top: 32px; margin-block-start: auto;">
                       <div style="display: flex; margin-bottom: 14px">

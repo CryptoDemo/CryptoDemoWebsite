@@ -1,17 +1,11 @@
 <template>
-  <div>
+  <div class="dashboard-nav">
     <div :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'">
       <v-container style="display: flex; align-items: center;">   
         <img src="/svg/Logo.svg" class="me-3"/>
-        <v-app-bar-title class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-title':'nav-title-light'">Demo </v-app-bar-title>
-        <div style="position: relative"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
-        
-        <div class="header-nav-div" style="display: flex;margin-inline-start: auto;">
-          <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
-          <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
+        <v-app-bar-title class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-title':'nav-title-light'">Demo 
  
-
-          <div v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'" class="flex-lg-and-up hidden-sm-and-down" style="width: 380px; height: 58px ; flex-shrink: 0; border-radius: 20px; display: flex;position: absolute; right: 54%; margin-top: 25px">
+          <div v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'" class="flex-lg-and-up hidden-sm-and-down" style="width: 50%; height: 58px ; flex-shrink: 0; border-radius: 20px; display: flex; margin-left: 20px">
               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px; margin-right: 10px;" v-if="theme.global.current.value.dark">
                 <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -19,6 +13,16 @@
               <img src="/svg/search-dark.svg" class="ml-3 me-3" width="20" v-else/>
               <v-text-field clearable  hide-details placeholder="Search in dashboard..." variant="plain" style="width: fit-content;"> </v-text-field>
           </div>
+  
+
+        </v-app-bar-title>
+        <div style="position: relative"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
+        
+        <div class="header-nav-div" style="display: flex;margin-inline-start: auto;">
+          <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
+          <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
+ 
+
 
      
         <v-menu>
@@ -338,6 +342,16 @@ background: #F8FAFC !important;
 }
 .v-btn--size-default{
   min-width: 0px !important;
+}
+
+.dashboard-nav :deep(.v-toolbar-title__placeholder){
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-nav :deep (.field__clearable > .v-icon){
+  opacity: var(--v-medium-emphasis-opacity);
+  margin-right: 15px;
 }
 .country-name{
 font-family: Poppins;
