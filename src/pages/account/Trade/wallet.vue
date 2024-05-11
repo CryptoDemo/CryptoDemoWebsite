@@ -114,7 +114,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-import {getTokens, getTokenBalance, addMinutes} from "@/composables/requests/tokens";
+import {getTokens, getWalletAddress, addMinutes} from "@/composables/requests/tokens";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -202,6 +202,7 @@ onMounted (async() => {{
       return pinia.state.tokenPrices = []
   }
 }})
+
 </script>
 
 <style scoped>

@@ -28,6 +28,7 @@
     "browser-image-compression": "^2.0.2",
     "notivue": "^2.2.1",
     "pinia": "^2.1.7",
+    "qrcode.vue": "^3.4.1",
     "vue-lazy-loading": "^1.0.3",
     "vue3-apexcharts": "^1.5.2",
     "vue3-carousel": "^0.3.1"

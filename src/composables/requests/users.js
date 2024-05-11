@@ -58,6 +58,7 @@ export const UserDetails = async(UpdateUserDetails)=>{
             'x-access-token' : `${pinia.state.user?.token}`
         },
         body: JSON.stringify(UpdateUserDetails)
+        
     }).then(res => res.json());
     return data;
 };

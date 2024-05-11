@@ -37,7 +37,6 @@
                                     </v-list-item>
                                   </v-list-item>
                                 </v-list>
-                    
                           </v-menu>  
                       </div>
 
@@ -90,7 +89,6 @@
                                     </v-list-item>
                                   </v-list-item>
                                 </v-list>
-                    
                           </v-menu>   
                       </div>
 
@@ -133,10 +131,8 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
 const showOptions = ref(false);
 const toggleButtons = () => {
-      showOptions.value = !showOptions.value;
-    };
-
-
+  showOptions.value = !showOptions.value;
+};
 
 const countDownTimer = ref(60); 
 

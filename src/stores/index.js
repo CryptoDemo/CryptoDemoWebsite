@@ -20,7 +20,6 @@ export const useStore = defineStore('app',()=> {
       isPinSet: false,
       isTwoFactorSet: false,
       email:null,
-      phone:null,
       country:null,
       twoFactor:null,
       activityLogs:[],
@@ -61,10 +60,6 @@ export const useStore = defineStore('app',()=> {
       
   };
   
-  const setPhone = (payload) => {
-      state.phone = payload;
-      
-  };
   const setCombinedTokensWithPrices = (payload) => {
       state.combineTokenPrices = payload;
       
@@ -77,6 +72,7 @@ export const useStore = defineStore('app',()=> {
       state.twoFactor = payload;
       
   };
+  
   const setTokenNetworks = (payload) => {
       state.tokenNetworks = payload;
       
@@ -151,7 +147,6 @@ export const useStore = defineStore('app',()=> {
       setCountry,
       setCode,
       setTwoFactor,
-      setPhone,
       setActivityLogs,
       setNotificationLogs,
       setTokenNetworks,
@@ -160,7 +155,8 @@ export const useStore = defineStore('app',()=> {
       setTokenBalance,
       setallcountries,
       updateNotificationSettings,
-      setCombinedTokensWithPrices
+      setCombinedTokensWithPrices,
+      setFAQs
     }
 },
   {persist: {

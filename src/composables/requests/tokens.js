@@ -18,7 +18,20 @@ export const getTokenBalance = async(chain,token = 'USDT')=>{
         }
     }).then(res => res.json());
     return data
-}
+};
+
+export const getWalletAddress = async(chain)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return;
+    const data = await fetch(`${baseURL}web3/wallet-address/${chain}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': `${pinia.state.user?.token}`
+        }
+    }).then(res => res.json());
+    return data
+};
 
 export const calculateTax = async(payload)=>{
     const pinia = useStore();

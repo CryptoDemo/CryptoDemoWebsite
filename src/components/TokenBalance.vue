@@ -18,7 +18,7 @@
   const coinbal = ref(null)
   
   const tokens = pinia.state.tokenLists;
-  const isLoading = ref(false);
+  const isLoading = ref(false)
 
   const { symbol } = defineProps({ symbol: String })
   

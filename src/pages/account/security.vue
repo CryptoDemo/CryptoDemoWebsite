@@ -153,7 +153,7 @@ const UserPasswordUpdate = async () => {
     loading.value = false 
   } else{
     loading.value = false 
-    push.error(data.message, { duration: 900 })
+    push.error(data.message, { duration: 2000 })
   }
 }catch(e){
   console.log(e)

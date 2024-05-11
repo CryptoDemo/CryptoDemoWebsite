@@ -24,7 +24,7 @@
                        <v-btn class="inputstyling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props">
                          <div class="py-3 me-5" style="display: flex; padding-left: 12px; align-items: center; border-radius: 17px; position: absolute; left: 0;">
                              <img :src="icon"  width="30" class="me-3"/>
-                             <span style="font-weight: 600; color:  #fff; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{select}}</span> 
+                             <span style="font-weight: 600; color: #fff; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{select}}</span> 
                          </div>
                            <div style="position: absolute; right: 15px; box-shadow: none; background: inherit;">
                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -50,17 +50,23 @@
                  
                </v-menu> 
              </div>
-             <span style="color: #FFF; margin-left: 10px; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : <span style="color: #FFF; font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">0.0121285425 BTC</span></span>
+         
+             
+             <span style="color: #FFF; margin-left: 10px; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : <span style="color: #FFF; font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">0.0121285425 BTC {{}}</span></span>
        
              <div style="margin-top: 18px;">  
+           
                <span style=" font-family: Poppins; margin-left: 10px; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">BTC Address</span>
              </div>
              <div class="position-relative">
-              <input class="px-4" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; margin-bottom: 36px; align-items:  center; height: 60px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
-              <v-btn style="letter-spacing: 0px; width: 98px; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 14%;right: 2%; position: absolute; display: flex;box-shadow: none;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">
+              <input class="px-4 pr-" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" v-model="walletAddress" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; margin-bottom: 36px; align-items:  center; height: 60px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; text-overflow: ellipsis; overflow: hidden; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
+              <v-btn @click="copyToClipboard()" style="letter-spacing: 0px; width: 98px; color: white; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 2.3%; right: 2%; position: absolute; display: flex;box-shadow: none;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">
                 Copy
                 <img src="/svg/copy1.svg" style="margin-left: 10px;"/>
               </v-btn>
+            <div style="display: flex; justify-content: center;">
+              <qrcode-vue :value="walletAddress" :size="150" level="H" />
+            </div>
             </div>
             
            </template>
@@ -72,7 +78,10 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import {getTokens} from "@/composables/requests/tokens";
+import {getTokens, getWalletAddress} from "@/composables/requests/tokens";
+import QrcodeVue from 'qrcode.vue'
+
+// Vue.component('qr-code', VueQRCodeComponent)
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -81,7 +90,7 @@ const dialog =  ref(false);
 const dialog2 = ref(false);
 const dialog3 = ref(false);
 const pageNumber = ref(1);
-
+const walletAddress = ref('');
 
 const icon = ref ('/svg/btc.svg')
 const select  = ref ('Bitcoin')
@@ -98,7 +107,6 @@ try {
     const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
 
     if (newItems.length > 0) {
-      console.log('fetching')
       pinia.setTokenLists(fetchedTokens);
     }
   } else {
@@ -107,6 +115,46 @@ try {
 } catch (error) {
   console.log(error);
 };
+
+const getWalletAds = async () => {
+    if (pinia.state.isAuthenticated) {
+      try {
+        const data = await getWalletAddress(pinia.state.selectedNetwork)
+        console.log(getWalletAddress);
+        if (data.success) {
+          console.log(data);
+          return{ address: data.data?.address}
+          }else {
+            console.error("Error:", data.message);
+        }
+ 
+      } catch (error) {
+        console.log(error)
+        // Handle error
+      }
+    }
+  };
+
+  const copyToClipboard = () => {
+  navigator.clipboard.writeText(walletAddress.value)
+    .then(() => {
+      push.success('Text copied successfully!');
+    })
+    .catch((error) => {
+      console.error('Failed to copy text:', error);
+      push.error('Failed to copy text!');
+    });
+}
+  onMounted(async () => {
+      const addressData = await getWalletAds();
+      if (addressData) {
+        walletAddress.value = addressData.address;
+      }
+    });
+
+//   onMounted(async () => {
+//   await getWalletAds(); 
+// });
 </script>
 
 <style scoped>
