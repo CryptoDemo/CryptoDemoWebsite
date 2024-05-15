@@ -10,9 +10,9 @@
        <template v-slot:text>
            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px">
              <span class="snd-crypto" :class="isDark ? 'coin-name':'coin-name-light'">Receive Crypto</span>
-             <v-btn variant="plain" :class="isDark ? 'nav-btn':'nav-btn-light'" @click="dialog = false" style="max-width: 45px !important; height: 45px; border-radius: 14px;">
-               <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
-                 <path d="M17.5 16.0868L21.0355 12.5513C21.4261 12.1608 22.0592 12.1608 22.4497 12.5513C22.8403 12.9418 22.8403 13.575 22.4497 13.9655L18.9142 17.5011L22.4497 21.0366C22.8403 21.4271 22.8403 22.0603 22.4497 22.4508C22.0592 22.8413 21.4261 22.8413 21.0355 22.4508L17.5 18.9153L13.9645 22.4508C13.5739 22.8413 12.9408 22.8413 12.5503 22.4508C12.1597 22.0603 12.1597 21.4271 12.5503 21.0366L16.0858 17.5011L12.5503 13.9655C12.1597 13.575 12.1597 12.9418 12.5503 12.5513C12.9408 12.1608 13.5739 12.1608 13.9645 12.5513L17.5 16.0868Z" fill="white"/>
+             <v-btn  :class="isDark ? 'nav-btn':'nav-btn-light'" @click="dialog = false" style="max-width: 45px !important; height: 45px; border-radius: 14px; box-shadow: none">
+               <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" :class="isDark ? 'close-btn':'close-btn-light'" style="box-shadow: none !important">
+                 <path d="M17.5 16.0868L21.0355 12.5513C21.4261 12.1608 22.0592 12.1608 22.4497 12.5513C22.8403 12.9418 22.8403 13.575 22.4497 13.9655L18.9142 17.5011L22.4497 21.0366C22.8403 21.4271 22.8403 22.0603 22.4497 22.4508C22.0592 22.8413 21.4261 22.8413 21.0355 22.4508L17.5 18.9153L13.9645 22.4508C13.5739 22.8413 12.9408 22.8413 12.5503 22.4508C12.1597 22.0603 12.1597 21.4271 12.5503 21.0366L16.0858 17.5011L12.5503 13.9655C12.1597 13.575 12.1597 12.9418 12.5503 12.5513C12.9408 12.1608 13.5739 12.1608 13.9645 12.5513L17.5 16.0868Z"/>
                </svg>
              </v-btn>
            </div>
@@ -20,46 +20,44 @@
            <span style="margin-left: 10px; font-family: Poppins; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;"> Coin:</span>
              <div style="margin-top: 8px; margin-bottom: 8px;">
                <v-menu>
-                     <template v-slot:activator="{ props }">
-                       <v-btn class="inputstyling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props">
-                         <div class="py-3 me-5" style="display: flex; padding-left: 12px; align-items: center; border-radius: 17px; position: absolute; left: 0;">
-                             <img :src="icon"  width="30" class="me-3"/>
-                             <span style="font-weight: 600; color: #fff; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{select}}</span> 
-                         </div>
-                           <div style="position: absolute; right: 15px; box-shadow: none; background: inherit;">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" fill="white"/>
-                           </svg>
-                         </div>
-                       </v-btn>
-                     </template>
+                <template v-slot:activator="{ props }">
+                  <v-btn class="inputstyling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props">
+                    <div class="py-3 me-5" style="display: flex; padding-left: 12px; align-items: center; border-radius: 17px; position: absolute; left: 0;">
+                        <img :src="icon"  width="30" class="me-3"/>
+                        <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{select}}</span> 
+                    </div>
+                      <div style="position: absolute; right: 15px; box-shadow: none; background: inherit;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="isDark ? 'close-btn':'close-btn-light'">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
+                      </svg>
+                    </div>
+                  </v-btn>
+                </template>
 
-                     <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 15px;">
-                       <v-list-item>
-                         <div  v-for="(item, index) in pinia.state.tokenLists" :key="index" class="d-flex py-3">
-                           <v-list-item-title @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex">
-                            <img  :src="item.icon" class="me-3" width="30"/>  
-                            <div class="d-flex" style="flex-direction: column;">
-                              <span :class="isDark ? 'coin-name':'coin-name-light'" style="display: flex; align-items: center;"> {{ item.name }} </span>
-                              <span style="font-family: Poppins; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ item.symbol }}</span>
-                            </div>
-                           </v-list-item-title>
-                         </div>
-                       </v-list-item>
-                     </v-list>
-                 
-               </v-menu> 
+                <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 15px;">
+                  <v-list-item>
+                    <div v-for="(item, index) in pinia.state.tokenLists" :key="index" class="d-flex py-3">
+                      <v-list-item-title @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex">
+                      <img  :src="item.icon" class="me-3" width="30"/>  
+                      <div class="d-flex" style="flex-direction: column;">
+                        <span :class="isDark ? 'coin-name':'coin-name-light'" style="display: flex; align-items: center;"> {{ item.name }} </span>
+                        <span style="font-family: Poppins; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ item.symbol }}</span>
+                      </div>
+                      </v-list-item-title>
+                    </div>
+                  </v-list-item>
+                </v-list> 
+              </v-menu> 
              </div>
          
-             
-             <span style="color: #FFF; margin-left: 10px; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : <span style="color: #FFF; font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">0.0121285425 BTC {{}}</span></span>
+            <span :class="isDark ? 'coin-name':'coin-name-light'" style="margin-left: 10px; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : <span style="font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">0.012128</span></span>
        
              <div style="margin-top: 18px;">  
            
                <span style=" font-family: Poppins; margin-left: 10px; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">BTC Address</span>
              </div>
              <div class="position-relative">
-              <input class="px-4 pr-" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" v-model="walletAddress" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; margin-bottom: 36px; align-items:  center; height: 60px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; text-overflow: ellipsis; overflow: hidden; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
+              <input class="px-4" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" v-model="walletAddress" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; margin-bottom: 36px; align-items:  center; height: 60px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; text-overflow: ellipsis; overflow: hidden; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
               <v-btn @click="copyToClipboard()" style="letter-spacing: 0px; width: 98px; color: white; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 2.3%; right: 2%; position: absolute; display: flex;box-shadow: none;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">
                 Copy
                 <img src="/svg/copy1.svg" style="margin-left: 10px;"/>
@@ -122,7 +120,7 @@ const getWalletAds = async () => {
         const data = await getWalletAddress(pinia.state.selectedNetwork)
         console.log(getWalletAddress);
         if (data.success) {
-          console.log(data);
+          // console.log(data);
           return{ address: data.data?.address}
           }else {
             console.error("Error:", data.message);
@@ -130,7 +128,6 @@ const getWalletAds = async () => {
  
       } catch (error) {
         console.log(error)
-        // Handle error
       }
     }
   };
@@ -145,16 +142,13 @@ const getWalletAds = async () => {
       push.error('Failed to copy text!');
     });
 }
-  onMounted(async () => {
-      const addressData = await getWalletAds();
-      if (addressData) {
-        walletAddress.value = addressData.address;
-      }
-    });
+onMounted(async () => {
+    const addressData = await getWalletAds();
+    if (addressData) {
+      walletAddress.value = addressData.address;
+    }
+  });
 
-//   onMounted(async () => {
-//   await getWalletAds(); 
-// });
 </script>
 
 <style scoped>
@@ -229,9 +223,10 @@ line-height: 140%; /* 19.6px */
 stroke-width: 1px;
 border-radius: 26px !important;
 width: 426px !important;
-height: 60px !important;
+height: 58px !important;
 box-shadow: none!important;
 letter-spacing: 0px;
+border: 1px solid rgba(142, 155, 174, 0.5) !important;
 }
 .profile{
 background: #10192D !important;
@@ -286,9 +281,28 @@ border: 1px solid rgba(142, 155, 174, 0.5);
 background: inherit;
 }
 .profile-cards-light{
-border: #DBE8FF !important;
+/* border: #DBE8FF !important; */
 background: inherit;
 }
+.coin-name{
+color: white !important;
+}
+.coin-name-light{
+color: #10192D;
+}
+.close-btn{
+  fill: white;
+}
+.close-btn-dark{
+fill: #10192D;
+}
+.nav-btn{
+background: #1b2537 !important;
+}
+.nav-btn-light{
+background: #eef3fb !important;
+}
+
 ::-webkit-scrollbar{
 display: none;
 }

@@ -23,9 +23,10 @@ export const useStore = defineStore('app',()=> {
       country:null,
       twoFactor:null,
       activityLogs:[],
-      notificationLogs:null,
+      notificationLogs:[],
       tokenNetworks:[],
       selectedNetwork: "bep20",
+      preferredCurrency: "USD",
       tokenLists:[],
       tokenPrices:[],
       tokenBalance:null,
@@ -64,10 +65,17 @@ export const useStore = defineStore('app',()=> {
       state.combineTokenPrices = payload;
       
   };
+
   const setFAQs = (payload) => {
       state.UserFaqs = payload;
       
   };
+
+  const setpreferredCurrency = (payload) => {
+      state.preferredCurrency = payload;
+      
+  };
+
   const setTwoFactor = (payload) => {
       state.twoFactor = payload;
       
@@ -101,7 +109,7 @@ export const useStore = defineStore('app',()=> {
   };
   const setNotificationLogs = (payload) => {
       state.notificationLogs = payload;
-      state.notificationLogs.reverse(state.notificationLogs)
+      // state.notificationLogs.reverse(state.notificationLogs)
       
   };
 
@@ -156,7 +164,8 @@ export const useStore = defineStore('app',()=> {
       setallcountries,
       updateNotificationSettings,
       setCombinedTokensWithPrices,
-      setFAQs
+      setFAQs,
+      setpreferredCurrency,
     }
 },
   {persist: {

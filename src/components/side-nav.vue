@@ -27,7 +27,7 @@
      <v-btn  style="border-radius: 8px; display: flex;  background: linear-gradient(360deg, #2873FF, #0B6B96); padding: 6px 45px; color: white; letter-spacing: 0px; box-shadow: none; text-transform: unset; width: 100%; height: 40px!important;">Get app</v-btn>
    </div>
 
-   <v-dialog width="647px">
+   <!-- <v-dialog width="647px">
       <template v-slot:activator="{ props }"><v-btn v-bind="props" width="152px" class="primary-btn1" style="border-radius: 16px; background: #E33E38 !important;"> Delete Account</v-btn></template>
 
       <template v-slot:default="{ isActive }">
@@ -55,7 +55,7 @@
               </v-card-actions>
             </v-card>
       </template>
-    </v-dialog>
+    </v-dialog> -->
 </template>
 <script setup>
 import { useTheme } from 'vuetify';

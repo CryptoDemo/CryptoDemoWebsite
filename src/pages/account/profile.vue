@@ -6,26 +6,21 @@
             <div no-gutters style="display: flex">
               <div class="profile-section me-4" style="min-width: 67%;">
                 <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 15px">
-                  <div class="d-sm-flex" style="justify-content: space-around; align-items: center;">
+                  <div class="d-sm-flex" style="position:relative ; align-items: center; justify-content: space-between;">
                     <div class="d-flex">
                       <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="70" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start;"/>
                         <div class="unverified-div">
                           <v-chip class="profile-level" color="#FB774A" style="margin-bottom: 13.8px;">Unverified</v-chip>
-                         <div class="div-username1"> <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'">UID : {{ pinia.state.user?.username}} </span> </div>
+                         <div class="div-username1"> <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'">@{{ pinia.state.user?.username}} </span> </div>
                         </div>
                     </div>
 
                     <div class="d-flex">
-                     <span class="user-location me-4" :class="isDark ? 'card-text-dark':'card-text-light'" style="align-self: center;">(UYC+8 ) Asia/Singapore</span>
-                      <div class="d-flex me-4" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
-                          <img src="/svg/heart-tick.svg" class="hrt-icon" alt="icon">
-                          <span class="user-location" :class="isDark ? 'text-dark':'text-light'">0</span>
-                      </div>
-                      <div class="d-flex" style="align-items: center; background: inherit; box-shadow: none; height: 50px; border-radius: 15px;">
-                        <img src="/svg/heart-remove.svg" class="hrt-icon" alt="icon">
-                        <span class="user-location" :class="isDark ? 'text-dark':'text-light'">0</span>
-                      </div>
+                      <span class="username me-4" :class="isDark ? 'card-text-dark':'card-text-light'" style="align-self: center;">{{ pinia.state.user?.country}}</span>
                     </div>
+
+                    <!-- TODO: insert a user badge here when it is available -->
+                    
                   </div>
                 </div>
               </div>

@@ -14,7 +14,7 @@
                     
                     <div class="acct-settings" style="display: flex; justify-content: space-between; margin-bottom: 47px; width: 100%;">    
                         <span class="acct-text"> Payment methods</span>
-                        <span class="mail-text">vaststudiosng@gmail.com</span>  
+                        <span class="mail-text" :class="isDark ? 'text-dark':'text-light'">{{ pinia.state.user?.email }}</span>  
                     </div>
  
                     <section>
@@ -109,7 +109,6 @@ line-height: 28px;
 }
 
 .mail-text{
-  color: var(--Gray-Medium-light, #969696);
 font-family: Manrope;
 font-size: 16px;
 font-style: normal;

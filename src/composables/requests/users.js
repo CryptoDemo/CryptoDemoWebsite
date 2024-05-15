@@ -49,7 +49,7 @@ export const checkUsernameAvailability = async(username)=>{
     return data;
 };
 
-export const UserDetails = async(UpdateUserDetails)=>{
+export const updateUser = async(UpdateUserDetails)=>{
     const pinia = useStore();
     const data = await fetch(`${baseURL}user`,{ 
         method: 'PATCH',
@@ -59,6 +59,18 @@ export const UserDetails = async(UpdateUserDetails)=>{
         },
         body: JSON.stringify(UpdateUserDetails)
         
+    }).then(res => res.json());
+    return data;
+};
+
+export const getNotifications = async(pageNumber)=>{
+    const pinia = useStore();
+    const data = await fetch(`${baseURL}notification/${pageNumber}`,{ 
+    headers: {
+        'Content-Type': 'application/json',
+        'x-access-token' : `${pinia.state.user?.token}`
+    },
+
     }).then(res => res.json());
     return data;
 };

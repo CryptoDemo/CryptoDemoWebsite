@@ -5,7 +5,7 @@
       </div>
         <v-table  class="mt-5" style="display: grid! important; margin-bottom: 32px" >
           <thead>
-            <tr :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px !important; height: 74px;  display: flex; justify-content: space-between ">
+            <tr :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px !important; height: 70px;  display: flex; justify-content: space-between ">
             
 
               <th style="display: flex; align-items: center; align-self: center;">
@@ -15,14 +15,14 @@
                 </div>
               </th>
 
-            <th class="actions" style="display: flex; align-items: center; align-self: center; position: relative; right: 36px ">
+            <th class="actions" style="display: flex; align-items: center; align-self: center; width: 11%;">
                 <div class="d-flex">
                   <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Action</span>
                   <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
                 </div>
               </th>
 
-                <th class="browser" style="display: flex; align-items: center; align-self: center; position: relative; right: 15px;">
+                <th class="browser" style="display: flex; align-items: center; align-self: center; width: 59%; justify-content: center;">
                 <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Description</span>
                 <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
               </th>
@@ -36,10 +36,10 @@
           </thead>
         
             <tbody>
-              <tr v-for="(item,i) in activityLogs" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5);justify-content: space-between; align-items: baseline; margin-top: 10px">
+              <tr v-for="(item, i) in activityLogs" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5);justify-content: space-between; align-items: baseline; margin-top: 10px">
                 <td ><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'"  style="margin-left: 10px">{{i+1}}</span></td>
-                <td class="logCaptions"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.title}}</span></td>
-                <td class="logCaptions1"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.description}}</span></td>
+                <td class="logCaptions" style="width: 21%;display: flex; justify-content: center;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.title}}</span></td>
+                <td class="logCaptions1" style="width: 50%;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.description}}</span></td>
                 <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{formatDate(item.timestamp)}}</span></td>
               </tr>
 
@@ -74,12 +74,7 @@ const totalPages = ref(2);
 const isLoading = ref(false);
 const pinia = useStore();
 
-const activityLogs = ref([{
-    "id": "x483...",
-    "title": "New wallet created", // current page number
-    "description": "A new bep20 wallet address was created on your account",
-    "timestamp": "2024-02-02T20:46:44.098Z"
-}] || pinia.state.activityLogs || []);
+const activityLogs = ref(pinia.state.activityLogs || []);
 
 const fetchMore = async()=>{
   // increment the pageNumber
@@ -99,7 +94,7 @@ const fetchActivityLogs = async()=>{
   
     if(result?.data?.result?.length){
       activityLogs.value = filterByKey("id",[...activityLogs.value,...result?.data?.result]);
-      pinia.setActivityLogs(activityLogs.value);
+      pinia.ctivityLogs(activityLogs.value);
     }
   }catch(e){
     isLoading.value = false;

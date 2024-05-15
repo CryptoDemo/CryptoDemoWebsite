@@ -12,14 +12,14 @@
               <div style="width: -webkit-fill-available">
                 <div>
                   <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 32px;  font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
-                   <div :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 30px; margin-top: 28px; width: 96%">
+                   <div class="wallet-box" :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 30px; margin-top: 28px; width: 96%">
                     <v-table  style="display: grid! important; background: inherit; width: 100%;">
                       <thead>
                         <tr style="display: flex; margin-bottom: 8px;">
 
                           <th style="display: flex; align-items: center; align-self: center; width: 18%; justify-content: center;">
                             <div class="d-flex" >
-                              <span class="table-header-text"  :class="isDark ? 'text-dark':'text-light'">Coin</span>
+                              <span class="table-header-text" :class="isDark ? 'text-dark':'text-light'">Coin</span>
                             </div>
                           </th>
 
@@ -48,26 +48,26 @@
                           <div class="d-flex" style="align-items: center; width: 30%;">
                               <img :src="item.icon" width="30" class="me-3"/>
                                 <div style="flex-direction:row">
-                                  <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
-                                  <span class="sml-text d-flex" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
+                                  <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
+                                  <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
                                 </div>
                             </div>
                       </td>
 
-                      <td style="display: flex;align-items: end; width: 20%;"><span class="browser-txt">{{item.price}}</span></td>
+                      <td style="display: flex;align-items: end; width: 20%;"><span class="browser-txt">{{}}</span></td>
 
 
                       <td style="display: flex; align-items: end; justify-content: center; width: 20%;">
-                        <span class="browser-txt" > 
+                        <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'"> 
                           <TokenBalance :symbol="item.symbol"/> 
                         </span>
                       </td>
 
 
-                      <div class="d-flex" > 
-                        <td style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
-                        <td class="me-4" style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
-                        <td style="display: flex; align-items: center; color: white;"><div><nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'active-offers-dark':'active-offers-light'" class="swap">
+                      <div class="d-flex"> 
+                        <td class="flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
+                        <td class="me-4 flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
+                        <td class="flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center; color: white;"><div><nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'active-offers-dark':'active-offers-light'" class="swap">
                           <img src="/svg/arrow-swap.svg"/>
                           Swap</v-btn>
                         </nuxt-link>
@@ -79,36 +79,37 @@
               </v-table>
             </div>
 
-                  <div style="margin-top: 63px; margin-bottom: 94px;">
-                      <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Latest transactions</span>
-                  </div>
+            <div style="margin-top: 63px; margin-bottom: 94px;">
+                <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Latest transactions</span>
+            </div>
 
-                  <div style="display: flex; justify-content: space-between;  margin-bottom: 284px;">
-                    <span>1</span>
-                      <div style="display: flex;">
-                        <img src="/svg/btc.svg" class="me-3"/>
-                        <div style="display: flex; flex-direction: column;">
-                          <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600;">Bitcoin</span>
-                          <span class="sml-text" :class="isDark ? 'coin-name':'coin-name-light'">BTC</span>
-                        </div>
-                      </div>
-                      <div>
-                        <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">Jan 17, 4:33 PM</span>
-                      </div>
-
-                      <div>
-                        <span class="browser-txt" style="color: #35B233; font-weight: 600; font-family: Poppins;">Completed</span>
-                      </div>
-
-                      <div>
-                        <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600;">+2.820436 USDT</span>
-                      </div>
+            <div style="display: flex; justify-content: space-between;  margin-bottom: 284px; width: 95%;">
+              <span>1</span>
+                <div style="display: flex;">
+                  <img src="/svg/btc.svg" class="me-3"/>
+                  <div style="display: flex; flex-direction: column;">
+                    <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600;">Bitcoin</span>
+                    <span class="sml-text" :class="isDark ? 'coin-name':'coin-name-light'">BTC</span>
                   </div>
                 </div>
-              </div>
+                <div>
+                  <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">Jan 17, 4:33 PM</span>
+                </div>
+
+                <div>
+                  <span class="browser-txt" style="color: #35B233; font-weight: 600; font-family: Poppins;">Completed</span>
+                </div>
+
+                <div>
+                  <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600;">+2.820436 USDT</span>
+                </div>
             </div>
-        </v-container>   
-        <Footer/>
+          </div>
+        </div>
+      </div>
+    </v-container>   
+      <Footer class="desktop-footer"/>
+      <Mobile-footer class="mobile-footer"/>
     </div>
   </template>
 <script setup>
@@ -202,7 +203,12 @@ onMounted (async() => {{
       return pinia.state.tokenPrices = []
   }
 }})
+const tokenPricesArray = computed(() => Object.values(pinia.state.tokenPrices));
 
+    // Loop through all elements in tokenPricesArray and log the weightedAvgPrice
+    tokenPricesArray.value.forEach((tokenPrice, index) => {
+      console.log(`Weighted Average Price of element ${index}:`, tokenPrice.weightedAvgPrice);
+    });
 </script>
 
 <style scoped>
@@ -222,22 +228,20 @@ text-transform: unset;
 align-content: center;
 }
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
-  border: none !important;
-  color: var(--Gray-Medium-light, #969696);
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Poppins;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 160%;
+border: none !important;
+color: var(--Gray-Medium-light, #969696);
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 160%;
 }
-
 .v-table--density-default > .v-table__wrapper > table > thead > tr > th, .v-table--density-default > .v-table__wrapper > table > tfoot > tr > th {
-  border: none !important;
+border: none !important;
 }
-
 .browser-txt{
-  color: var(--White, var(--Colors-Base-white, #FFF));
+color: var(--White, var(--Colors-Base-white, #FFF));
 font-family: Poppins;
 font-size: 16px;
 font-style: normal;
@@ -261,14 +265,13 @@ line-height: normal;
 }
 .active-offers-dark{
   background: var(--secondary-background, #1B2537);
-
 }
 .active-offers-light{
-  background: var(--secondary-background, #F8FAFC);
+background: var(--secondary-background, #F8FAFC);
 }
 .wallet-border{
   border: 0.5px solid rgba(142, 155, 174, 0.5);
-  padding: 10px;
+  /* padding: 10px; */
 }
 .wallet-border-light{
   border: 1px solid #DBE8FF;
@@ -279,6 +282,28 @@ color: white !important;
 }
 .coin-name-light{
 color: #10192D;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+.wallet-box{
+  padding: 15px !important;
+  width: 100% !important;
+}
+.coin-name1{
+font-size: 14px !important;
+  /* width: 10px !important; */
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 1;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+::-webkit-scrollbar {
+  display: none;
+}
 }
 </style>
   

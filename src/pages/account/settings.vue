@@ -112,7 +112,7 @@ import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import { compressImage } from "@/composables/mixin";
 import {uploadUserFile} from "@/composables/requests/file";
-import {checkUsernameAvailability, UserDetails} from "@/composables/requests/users";
+import {checkUsernameAvailability, updateUser} from "@/composables/requests/users";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -124,9 +124,8 @@ const Selectedcurrency_code = ref ('$');
 const selectedImage = ref(null);
 const phoneNumber = ref(pinia.state?.user?.phone || "");
 const DateOfBirth = ref(pinia.state?.user?.dob || "");
-
+const username = ref(pinia.state?.user?.username || "")
 const handleImgChange = async(event)=> await handleFileChange(event,selectedImage,profileImg.value);
-
 
 watch(()=> selectedImage.value,async(newval)=>{
   console.log(newval);
@@ -136,38 +135,32 @@ watch(()=> selectedImage.value,async(newval)=>{
   
   var formdata = new FormData();
   formdata.append("file",compressedImg);
-  const imgUrl = await uploadUserFile(formdata);
-
-  const profile_image = {profile_image: imgUrl.uploaded_file_urls[0]}
-  const userToken = `${pinia.state.user.token}`;
-  const info = { ...pinia.state.user, ...profile_image };
-  delete info.token;
-
-  try {   
-  const data = await fetch(`${baseURL}user`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-access-token' : `${pinia.state.user?.token}`
-    },
-    body: JSON.stringify(info)
-  }).then(res => res.json());
-
   
-  if (data.success) {
-    const user = { ...info, token: userToken };
-      pinia.setUser(user);
+  try { 
+    const imgUrl = await uploadUserFile(formdata);
+    if(imgUrl?.uploaded_file_urls?.length){
 
-  } else {
-    // Display error message
-    push.error(data.message, { timeout: 2000 })
+      const profile_image = {profile_image: imgUrl.uploaded_file_urls[0]}
+      const update_user = {...pinia.state.user,...profile_image};
+      const tkn = update_user.token;
+      delete update_user.token;
 
+      const data = await updateUser(update_user);  
+      if (data.success) {
+        pinia.setUser({...update_user,token: tkn});
+      } else {
+        // Display error message
+        push.error(data.message, { duration: 2000 })
+      }
+    }else{
+      push.error("Error: file upload failed", { duration: 2000 })
+    }
+  
+  } catch (error) {
+
+    push.error(`Error: ${error}`, { duration: 2000 })
   }
-} catch (error) {
-  // Display error message
-  push.error(data.message, { timeout: 2000 })
-}
-});
+  });
 
 
 const ChangeUsername = async () => {
@@ -203,7 +196,7 @@ const UpdateUserInfo = async () => {
   console.log(UpdateUserDetails)
 
   try {
-  const data = await UserDetails(UpdateUserDetails);
+  const data = await updateUser(UpdateUserDetails);
   if (data.success) {
     pinia.setUser({...pinia.state.user,phone: phoneNumberString, dob: dobFormatted});
     push.success('Update Succesful');
@@ -216,8 +209,31 @@ const UpdateUserInfo = async () => {
   console.log(e)
   push.error(`${e}`)
 }
- 
 };
+
+// const ChoosepreferredCurrency = async () => {
+//   const UpdateUserDetails = {
+//     phone: phoneNumberString,
+//     dob: dobFormatted,
+//   }
+//   loading.value = true;
+//   console.log(UpdateUserDetails)
+
+//   try {
+//   const data = await updateUser(UpdateUserDetails);
+//   if (data.success) {
+//     pinia.setpreferredCurrency({...pinia.state.preferredCurrency});
+//     push.success('Update Succesful');
+//     loading.value = false 
+//   } else{
+//     push.error(data.message, { duration: 9000 })
+//   }
+// }catch(e){
+//   loading.value = false 
+//   console.log(e)
+//   push.error(`${e}`)
+// }
+// };
 
 </script>
 <style scoped>

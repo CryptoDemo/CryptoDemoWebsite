@@ -36,13 +36,15 @@ import { useTheme } from 'vuetify';
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const items = [
-       {icon:'/svg/profile1.svg', title: 'My profile', link:'/account/profile'},
-       {icon:'/svg/payment.svg', title: 'Payment Method', link:''},
-       {icon:'/svg/transaction.svg', title: 'Transactions', link:''},
-       {icon:'/svg/settings.svg', title: 'Settings', link:'/account/settings'},
-      //  {icon:'/svg/friend.svg', title: 'Invite a Friend', link:'account/trade/invite'},
-       {icon:'/svg/logout.svg', title: 'Log Out', link:'/authentication/login'},
-     ];
+  {icon:'/svg/profile1.svg', title: 'My profile', link:'/account/profile'},
+  {icon:'/svg/payment.svg', title: 'Payment Method', link:''},
+  {icon:'/svg/transaction.svg', title: 'Security', link:'/account/security'},
+  {icon:'/svg/settings.svg', title: 'Settings', link:'/account/settings'},
+  {icon:'/svg/friend.svg', title: 'Dashboard', link:'account/dashboard'},
+  {icon:'/svg/logout.svg', title: 'Log Out', link:'/authentication/login'},
+  {icon:'/svg/logout.svg', title: 'Create an Offer', link:'/authentication/login'},
+  {icon:'/svg/logout.svg', title: 'Wallet', link:'/authentication/login'},
+];
 </script>
 <style scoped>
 .profile-btn{
@@ -75,5 +77,10 @@ background: #10192D !important;
 }
 .nav-btn-light {
 background: #F8FAFC !important; 
+}
+@media screen and (max-width: 600px) {
+.nav-btn{
+  background: inherit !important;
+}
 }
 </style>

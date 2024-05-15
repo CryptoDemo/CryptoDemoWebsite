@@ -72,10 +72,39 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-
-
+import { getSummedBalance } from "@/composables/requests/tokens";
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
+const pinia = useStore()
+
+const allCountries = pinia.state.allcountries;
+const preferredCurrency = pinia.state.preferredCurrency;
+
+const selectedCountryId = allCountries.find(country=>country.currency_name==preferredCurrency);
+
+const getSummedBal = async () => {
+    if (pinia.state.isAuthenticated) {
+      try {
+        const data = await getSummedBalance(selectedCountryId.id)
+        console.log(getWalletAddress);
+        if (data.success) {
+          console.log(data);
+          const totalAmount = data.data;
+          // return{ address: data.data?.address}
+          }else {
+            console.error("Error:", data.message);
+        }
+ 
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  };
+
+  onMounted(async () => {
+     getSummedBal();
+  
+  });
 </script>
   
   <style scoped>
@@ -85,7 +114,6 @@ padding: 31px;
 width: 286px;
 border-radius: 15px;
 }
-
 .profile{
 background: var(--secondary-background, #10192D);
 }
@@ -104,23 +132,23 @@ font-weight: 600;
 line-height: normal;
 }
   
-  .sm-num{
-    color: var(--White, var(--Colors-Base-white, #FFF));
-  text-align: center;
-  font-family: Poppins;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  }
-  
-  .coin-perc{
-  color: #9E9FA4;
-  text-align: center;
-  font-family: Poppins;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  }
-  </style>
+.sm-num{
+  color: var(--White, var(--Colors-Base-white, #FFF));
+text-align: center;
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.coin-perc{
+color: #9E9FA4;
+text-align: center;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+</style>
