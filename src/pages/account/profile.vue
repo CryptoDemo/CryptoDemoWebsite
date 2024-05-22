@@ -34,7 +34,7 @@
             </div>
         </div>
      </v-container>
-      <div style="margin-bottom: 150px">      
+      <div style="margin-bottom: 150px;">      
           <v-container style="display: flex; flex-direction: column;">
             <div style="display: flex; position: relative;">
               <div  class="me-9 flex-lg-and-up hidden-sm-and-down">
