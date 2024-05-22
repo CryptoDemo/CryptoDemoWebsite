@@ -189,7 +189,7 @@
                 <div style="border-radius: 16px; border: 1px solid #303A46; display: flex; justify-content: space-between;  padding: 37px; margin-top: 16px; margin-bottom: 32px;">
                     <div class="d-flex">
                       <v-badge color="success" dot style="position: absolute; margin-left: 55px; margin-top: 47px "></v-badge>
-                        <img src="/svg/Image (1).svg" class="me-3" width="60" alt="avatar"/>
+                        <!-- <img src="/svg/Image (1).svg" class="me-3" width="60" alt="avatar"/> -->
                         <div style="display: flex; flex-direction: column; align-self: center;">
                             <span class="user-name">Tom Gravesen</span>
                             <span class="ifonline">Online</span>
@@ -249,7 +249,7 @@
 
                 <div style="border-radius: 16px; border: 1px solid #303A46; display: flex; justify-content: space-between;  padding: 37px; margin-top: 16px; margin-bottom: 32px;">
                     <div class="d-flex">
-                        <img src="/svg/Image (1).svg" class="me-3" width="70" alt="avatar"/>
+                        <!-- <img src="/svg/Image (1).svg" class="me-3" width="70" alt="avatar"/> -->
                         <div style="display: flex; flex-direction: column; align-self: center;">
                             <span class="user-name">Tom Gravesen</span>
                             <span class="ifonline">Online</span>
