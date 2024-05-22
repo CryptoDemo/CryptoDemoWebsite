@@ -8,7 +8,7 @@
                 <div class="profile" :class="isDark ? 'profile-dark':'profile-light'"  style="padding: 30px 0px">
                   <div class="d-flex" style="justify-content: space-around;">
                     <div class="d-flex">
-                      <img src="/svg/Image (1).svg" class="me-3" alt="avatar"/>
+                      <!-- <img src="/svg/Image (1).svg" class="me-3" alt="avatar"/> -->
                         <div>
                           <span class="username mt-5 d-flex" :class="isDark ? 'card-text-dark':'card-text-light'">UID : Ogadinma2024</span>
                         </div>
@@ -269,7 +269,7 @@
 
 
                         <div class="d-flex">
-                            <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
+                            <!-- <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/> -->
                                 <div>
                                     <div style="padding-top: 35px;">
                                     <span class="username">UID : <span class="grad-text">Ogadinma2024</span></span>
@@ -301,7 +301,7 @@
 
 
                         <div class="d-flex">
-                            <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/>
+                            <!-- <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/> -->
                                 <div>
                                     <div style="padding-top: 35px;">
                                     <span class="username">UID : <span class="grad-text">Ogadinma2024</span></span>
