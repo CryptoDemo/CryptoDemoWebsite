@@ -4,7 +4,6 @@
       <v-container style="display: flex; align-items: center;">   
         <img src="/svg/Logo.svg" class="me-3"/>
         <v-app-bar-title class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-title':'nav-title-light'">Demo 
- 
           <div v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'" class="flex-lg-and-up hidden-sm-and-down" style="width: 50%; height: 58px ; flex-shrink: 0; border-radius: 20px; display: flex; margin-left: 20px">
               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px; margin-right: 10px;" v-if="theme.global.current.value.dark">
                 <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -22,7 +21,7 @@
           <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
           <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
 
-          <v-menu>
+          <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
               <v-btn @click.prevent="emit('country',country)" class="me-4 mt-9 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; height: 50px;">
                 <img :src="flag" class="me-2" width="32" height="32" style="object-fit: cover;border-radius: 30px"/>
@@ -48,22 +47,23 @@
             </v-list>
           
           </v-menu> 
-      
+        
           <div v-if="icon1" style="display: grid; margin-top: 25px; margin-inline-end: -4px;">
-            <v-btn  @click.prevent="navigateTo('/account/trade/wallet')" class="nav-btn flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-btn':'nav-btn-light'">         
-                <img src="/svg/white-wallet.svg" v-if="theme.global.current.value.dark"/> 
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none" v-else>
-                  <path d="M22.7805 12.6201V14.6801C22.7805 15.2401 22.3205 15.7001 21.7505 15.7001H19.8205C18.7405 15.7001 17.7505 14.9101 17.6605 13.8301C17.6005 13.2001 17.8405 12.6101 18.2605 12.2001C18.6305 11.8201 19.1405 11.6001 19.7005 11.6001H21.7505C22.3205 11.6001 22.7805 12.0601 22.7805 12.6201Z" fill="#111111"/>
-                  <path d="M16.1603 13.9599C16.0703 12.9099 16.4503 11.8799 17.2103 11.1299C17.8503 10.4799 18.7403 10.0999 19.7003 10.0999H20.2703C20.5503 10.0999 20.7803 9.8699 20.7403 9.5899C20.4703 7.6499 18.7903 6.1499 16.7803 6.1499H6.78027C4.57027 6.1499 2.78027 7.9399 2.78027 10.1499V17.1499C2.78027 19.3599 4.57027 21.1499 6.78027 21.1499H16.7803C18.8003 21.1499 20.4703 19.6499 20.7403 17.7099C20.7803 17.4299 20.5503 17.1999 20.2703 17.1999H19.8203C17.9203 17.1999 16.3203 15.7799 16.1603 13.9599ZM13.7803 11.8999H7.78027C7.37027 11.8999 7.03027 11.5699 7.03027 11.1499C7.03027 10.7299 7.37027 10.3999 7.78027 10.3999H13.7803C14.1903 10.3999 14.5303 10.7399 14.5303 11.1499C14.5303 11.5599 14.1903 11.8999 13.7803 11.8999Z" fill="#111111"/>
-                  <path d="M14.9899 3.9801C15.2499 4.2501 15.0199 4.6501 14.6399 4.6501H6.80994C5.71994 4.6501 4.69994 4.9701 3.84994 5.5201C3.45994 5.7701 2.92994 5.5001 3.11994 5.0701C3.67994 3.7601 4.98994 2.8501 6.49994 2.8501H12.1199C13.2799 2.8501 14.3099 3.2601 14.9899 3.9801Z" fill="#111111"/>
+            <nuxt-link to="/account/trade/wallet">
+              <v-btn class="nav-btn flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-btn':'nav-btn-light'"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" :class="isDark ? 'close-btn':'close-btn-light'">
+                  <path d="M22.7805 12.6201V14.6801C22.7805 15.2401 22.3205 15.7001 21.7505 15.7001H19.8205C18.7405 15.7001 17.7505 14.9101 17.6605 13.8301C17.6005 13.2001 17.8405 12.6101 18.2605 12.2001C18.6305 11.8201 19.1405 11.6001 19.7005 11.6001H21.7505C22.3205 11.6001 22.7805 12.0601 22.7805 12.6201Z" />
+                  <path d="M16.1603 13.9599C16.0703 12.9099 16.4503 11.8799 17.2103 11.1299C17.8503 10.4799 18.7403 10.0999 19.7003 10.0999H20.2703C20.5503 10.0999 20.7803 9.8699 20.7403 9.5899C20.4703 7.6499 18.7903 6.1499 16.7803 6.1499H6.78027C4.57027 6.1499 2.78027 7.9399 2.78027 10.1499V17.1499C2.78027 19.3599 4.57027 21.1499 6.78027 21.1499H16.7803C18.8003 21.1499 20.4703 19.6499 20.7403 17.7099C20.7803 17.4299 20.5503 17.1999 20.2703 17.1999H19.8203C17.9203 17.1999 16.3203 15.7799 16.1603 13.9599ZM13.7803 11.8999H7.78027C7.37027 11.8999 7.03027 11.5699 7.03027 11.1499C7.03027 10.7299 7.37027 10.3999 7.78027 10.3999H13.7803C14.1903 10.3999 14.5303 10.7399 14.5303 11.1499C14.5303 11.5599 14.1903 11.8999 13.7803 11.8999Z"/>
+                  <path d="M14.9899 3.9801C15.2499 4.2501 15.0199 4.6501 14.6399 4.6501H6.80994C5.71994 4.6501 4.69994 4.9701 3.84994 5.5201C3.45994 5.7701 2.92994 5.5001 3.11994 5.0701C3.67994 3.7601 4.98994 2.8501 6.49994 2.8501H12.1199C13.2799 2.8501 14.3099 3.2601 14.9899 3.9801Z"/>
                 </svg>
             </v-btn>
+          </nuxt-link>
             <span  class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: 3px; margin-top: -6px;">Wallet</span>     
           </div>
 
           <div v-if="icon2" style="display: flex; flex-direction: column; margin-top: 25px;">
             <Profile-nav  class="profile-nav me-8"/>
-            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" style="margin-left: 7px; margin-bottom: 6px;">Profile</span>    
+            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 7px; margin-bottom: 6px;">Profile</span>    
           </div>
 
           <div v-if="icon3"  style="display: grid; position: relative; margin-top: 25px;">
@@ -82,14 +82,12 @@ import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import { getcountries } from "@/composables/requests/admin";
 
-
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
-
 const emit = defineEmits(['country'])
 const pageNumber = ref(1)
-const country=ref('Brazil')
+const country = ref('Brazil')
 const flag = ref('');
 try {
   const data = await getcountries(pageNumber.value);
@@ -108,8 +106,7 @@ try {
   } else {
     
   }
-} catch (error) {
-  
+} catch (error) { 
 };
 
 onMounted(()=>{{
@@ -330,7 +327,12 @@ background: #F8FAFC !important;
 .v-btn--size-default{
   min-width: 0px !important;
 }
-
+.close-btn{
+fill: white;
+}
+.close-btn-dark{
+fill: #10192D;
+}
 .dashboard-nav :deep(.v-toolbar-title__placeholder){
   display: flex;
   align-items: center;

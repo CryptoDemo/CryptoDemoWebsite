@@ -36,7 +36,7 @@
                     </div>
                 
                     <div id="chart-timeline">
-                    <apexchart ref="chartRef" type="area" height="350" :options="chartOptions" :series="series"></apexchart>
+                    <apexchart ref="chartRef" type="area" height="340" :options="chartOptions" :series="series"></apexchart>
                 </div>
             </div>
         </ClientOnly>
@@ -252,7 +252,32 @@
 .chart :deep(.apexcharts-grid-borders){
   display: none !important;
 }
+.chart :deep(.apexcharts-toolbar){
+  display: none !important;
+}
+/* .chart :deep(.apexcharts-yaxis){
+  display: none !important;
+} */
+/* .chart :deep(.apexcharts-xaxis-texts-g){
+  display: none !important;
+} */
+.chart :deep(.apexcharts-xaxis-tick){
+  display: none !important;
+}
+/* .chart :deep(.apexcharts-yaxis-annotations .apexcharts-hidden-element-shown){
+  display: none !important;
+} */
+/* .chart :deep(.apexcharts-yaxis-annotations){
+  display: none !important;
+} */
 /* .chart :deep(.apexcharts-gridlines-horizontal){
-  stroke-width: 0.5px solid red !important;
+  display: none !important;
+} */
+/* .chart :deep(.apexcharts-grid-borders){
+  display: none !important;
+} */
+/* .apexcharts-tooltip.apexcharts-theme-light {
+  border: 1px solid #e3e3e3;
+  background: #12181F;
 } */
 </style>

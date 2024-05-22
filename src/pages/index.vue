@@ -223,13 +223,13 @@
                           <span  :class="isDark ? 'sell-btc-text':'sell-btc-text-light'" style="font-size: 14px !important;  font-weight: 600;">wallet</span>
                         </v-btn>
                       </nuxt-link>
-                              <div style="display: grid; position: relative;">
-                                <span class="buy" :class="isDark ? 'free-demo':'free-demo-light'">Free Demo Web Wallet</span>
-                                <span  style="margin-top: 8px;  color: #8E9BAE;line-height: 140%; font-family: SF Pro Display ;">Get a free <NuxtLink to="#"><span class="text-demoi"  style="font-size: 16px;color: #2873FF;font-weight: 600; font-family: SF Pro Display; letter-spacing: 0.32px;">Demo Web</span></NuxtLink> 
-                                when you sign up to receive, send, and store your Bitcoin.</span>
-                              </div>
-                      
+                        <div style="display: grid; position: relative;">
+                          <span class="buy" :class="isDark ? 'free-demo':'free-demo-light'">Free Demo Web Wallet</span>
+                          <span  style="margin-top: 8px;  color: #8E9BAE;line-height: 140%; font-family: SF Pro Display ;">Get a free <NuxtLink to="#"><span class="text-demoi"  style="font-size: 16px;color: #2873FF;font-weight: 600; font-family: SF Pro Display; letter-spacing: 0.32px;">Demo Web</span></NuxtLink> 
+                          when you sign up to receive, send, and store your Bitcoin.</span>
                         </div>
+        
+                      </div>
                 </div>
               </div>
 
@@ -281,7 +281,6 @@
                   <v-btn class="image-button me-4 desktop-social-icons" :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
                   <v-btn class="image-button me-4 desktop-social-icons" :style="{ backgroundImage: `url(${imageSrc1})` }"></v-btn>
         
-
                     <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc2})`}"></v-btn>
                     <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
 
@@ -314,9 +313,9 @@
             
         </v-container>
 
-        <Coin-Banner style="margin-bottom:253.88px; margin-top: 19.33px" class="banner-wrap"/>
+      <Coin-Banner style="margin-bottom:253.88px; margin-top: 19.33px" class="banner-wrap"/>
         
-    
+
       <div class="position-relative">
         <v-container style="position: absolute; top: -197px; left: 0; right: 0;">
           <span class="Demo-header">Demo Web</span>

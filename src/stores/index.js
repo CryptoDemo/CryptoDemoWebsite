@@ -25,7 +25,8 @@ export const useStore = defineStore('app',()=> {
       activityLogs:[],
       notificationLogs:[],
       tokenNetworks:[],
-      selectedNetwork: "bep20",
+      BlockchainNetworks: [],
+      selectedNetwork: "Bep20" ,
       preferredCurrency: "USD",
       tokenLists:[],
       tokenPrices:[],
@@ -52,8 +53,8 @@ export const useStore = defineStore('app',()=> {
         }
     };
 
-  const setToken = (payload) => {
-      state.token = payload;
+  const setSelectedNetwork = (payload) => {
+      state.selectedNetwork = payload;
       
   };
   const setEmail = (payload) => {
@@ -150,7 +151,6 @@ export const useStore = defineStore('app',()=> {
       state,
       setEmail,
       setUser,
-      setToken,
       logout,
       setCountry,
       setCode,

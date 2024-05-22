@@ -5,7 +5,17 @@ export const getTokens = async(pageNumber)=>{
         }
     }).then(res => res.json());
     return data;
-}
+}; 
+
+export const getBlockchain = async(blockchain)=>{
+    const data = await fetch(`${baseURL}blockchain/all`,{ 
+    headers: {
+        'Content-Type': 'application/json',
+    },
+
+    }).then(res => res.json());
+    return data;
+};
 
 export const getTokenBalance = async(chain,token = 'USDT')=>{
     const pinia = useStore();
@@ -46,6 +56,17 @@ export const getWalletAddress = async(chain)=>{
     return data
 };
 
+export const currencyConverter = async(convertCurrency)=>{
+    const data = await fetch(`${baseURL}web3/currency-converter`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(convertCurrency),
+    }).then(res => res.json());
+    return data
+};
+
 export const calculateTxnFees = async(chain)=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return
@@ -72,7 +93,10 @@ export const swapCoin = async(payload)=>{
         body:JSON.stringify(payload)
     }).then(res => res.json());
     return data
-}
+};
+
+
+
 //set expiration date 
 export function addMinutes(minutesToAdd) {
  

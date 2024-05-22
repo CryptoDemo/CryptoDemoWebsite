@@ -79,7 +79,6 @@ import { useTheme } from 'vuetify';
 import {getTokens, getWalletAddress} from "@/composables/requests/tokens";
 import QrcodeVue from 'qrcode.vue'
 
-// Vue.component('qr-code', VueQRCodeComponent)
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);

@@ -1,7 +1,10 @@
 <template>
     <div :class="isDark ? 'profile':'profile-light'" class="wallet-nav">
-      <span class="sm-num" style="font-size: 16px; font-style: normal;font-weight: 600;">Balance</span>
-          <div style="margin-top: 51px; position: relative; display: flex; justify-content: center;">
+      <div class="d-flex" style="align-items: baseline; justify-content: space-between; margin-top: -30px; ">
+        <span class="sm-num" style="font-size: 16px; font-style: normal;font-weight: 600;">Balance</span>
+        <BlockChainNetwork/>
+      </div>
+          <div style="margin-top: 31px; position: relative; display: flex; justify-content: center;">
             <img src="/svg/coin-range.svg" style="position: relative;"/>
             <img src="/svg/range1.svg" style="position: absolute; left: 0;right: 0; margin: auto; top: 17%;"/>
             <div style="display: flex; flex-direction: column; position: absolute; left: 0; right: 0; top: 57px;">
@@ -85,12 +88,10 @@ const selectedCountryId = allCountries.find(country=>country.currency_name==pref
 const getSummedBal = async () => {
     if (pinia.state.isAuthenticated) {
       try {
-        const data = await getSummedBalance(selectedCountryId.id)
-        console.log(getWalletAddress);
+        const data = await getSummedBalance(chain, selectedCountryId.id)
+        console.log(getSummedBalance);
         if (data.success) {
           console.log(data);
-          const totalAmount = data.data;
-          // return{ address: data.data?.address}
           }else {
             console.error("Error:", data.message);
         }

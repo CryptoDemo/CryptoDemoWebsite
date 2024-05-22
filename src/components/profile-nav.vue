@@ -3,12 +3,12 @@
     <v-row>
       <v-col cols="12" offset-sm="3" sm="6">
         <div height="200px">
-            <v-menu> <template v-slot:activator="{ props }">
+            <v-menu transition="slide-y-transition"> 
+              <template v-slot:activator="{ props }">
                 <v-btn v-bind="props" class="nav-btn" :class="isDark ? 'nav-btn-dark':'nav-btn-light'">
-                  <img src="/svg/profile-icon.svg" v-if="theme.global.current.value.dark"/>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none" v-else>
-                    <path d="M12.7803 2C10.1603 2 8.03027 4.13 8.03027 6.75C8.03027 9.32 10.0403 11.4 12.6603 11.49C12.7403 11.48 12.8203 11.48 12.8803 11.49C12.9003 11.49 12.9103 11.49 12.9303 11.49C12.9403 11.49 12.9403 11.49 12.9503 11.49C15.5103 11.4 17.5203 9.32 17.5303 6.75C17.5303 4.13 15.4003 2 12.7803 2Z" fill="#0D0D0D"/>
-                    <path d="M17.8602 14.1499C15.0702 12.2899 10.5202 12.2899 7.71023 14.1499C6.44023 14.9999 5.74023 16.1499 5.74023 17.3799C5.74023 18.6099 6.44023 19.7499 7.70023 20.5899C9.10023 21.5299 10.9402 21.9999 12.7802 21.9999C14.6202 21.9999 16.4602 21.5299 17.8602 20.5899C19.1202 19.7399 19.8202 18.5999 19.8202 17.3599C19.8102 16.1299 19.1202 14.9899 17.8602 14.1499Z" fill="#0D0D0D"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" :class="isDark ? 'close-btn':'close-btn-light'">
+                    <path d="M12.7803 2C10.1603 2 8.03027 4.13 8.03027 6.75C8.03027 9.32 10.0403 11.4 12.6603 11.49C12.7403 11.48 12.8203 11.48 12.8803 11.49C12.9003 11.49 12.9103 11.49 12.9303 11.49C12.9403 11.49 12.9403 11.49 12.9503 11.49C15.5103 11.4 17.5203 9.32 17.5303 6.75C17.5303 4.13 15.4003 2 12.7803 2Z"/>
+                    <path d="M17.8602 14.1499C15.0702 12.2899 10.5202 12.2899 7.71023 14.1499C6.44023 14.9999 5.74023 16.1499 5.74023 17.3799C5.74023 18.6099 6.44023 19.7499 7.70023 20.5899C9.10023 21.5299 10.9402 21.9999 12.7802 21.9999C14.6202 21.9999 16.4602 21.5299 17.8602 20.5899C19.1202 19.7399 19.8202 18.5999 19.8202 17.3599C19.8102 16.1299 19.1202 14.9899 17.8602 14.1499Z"/>
                   </svg>
                 </v-btn>
               </template>
@@ -40,10 +40,10 @@ const items = [
   {icon:'/svg/payment.svg', title: 'Payment Method', link:''},
   {icon:'/svg/transaction.svg', title: 'Security', link:'/account/security'},
   {icon:'/svg/settings.svg', title: 'Settings', link:'/account/settings'},
-  {icon:'/svg/friend.svg', title: 'Dashboard', link:'account/dashboard'},
-  {icon:'/svg/logout.svg', title: 'Log Out', link:'/authentication/login'},
+  {icon:'/svg/friend.svg', title: 'Dashboard', link:'/account/dashboard'},
   {icon:'/svg/logout.svg', title: 'Create an Offer', link:'/authentication/login'},
   {icon:'/svg/logout.svg', title: 'Wallet', link:'/authentication/login'},
+  {icon:'/svg/logout.svg', title: 'Log Out', link:'/authentication/login'},
 ];
 </script>
 <style scoped>
@@ -77,6 +77,12 @@ background: #10192D !important;
 }
 .nav-btn-light {
 background: #F8FAFC !important; 
+}
+.close-btn{
+fill: white;
+}
+.close-btn-dark{
+fill: #10192D;
 }
 @media screen and (max-width: 600px) {
 .nav-btn{

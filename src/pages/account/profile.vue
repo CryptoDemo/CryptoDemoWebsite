@@ -34,7 +34,7 @@
             </div>
         </div>
      </v-container>
-      <div>      
+      <div style="margin-bottom: 150px">      
           <v-container style="display: flex; flex-direction: column;">
             <div style="display: flex; position: relative;">
               <div  class="me-9 flex-lg-and-up hidden-sm-and-down">
@@ -92,156 +92,7 @@
                     </v-card>
                 </v-col>
               
-  
-              <div style="min-width: 77%;">
-              <div class="mt-5"><span  style="color: white; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 400; line-height: normal;">Active offers</span></div>
-          
-              <div style="margin-top: 32px;">
-              <v-row class="px-3">
-                <v-btn class=" me-4 mb-4" :class="PurchaseCrypto ? 'active-btn': 'inactive-btn'"  @click.prevent="PurchaseCrypto=true"> 
-                    <span style="position: relative; left: -18px">Crypto purchased</span>
-                  <span style="position: relative; right: -18px; font-weight: 800;">0</span>
-                </v-btn>
-                <v-btn :class="`${PurchaseCrypto ? 'inactive-btn': 'active-btn'} ${isDark ? 'toggle-btn-dark':'toggle-btn-light'}`" @click.prevent="PurchaseCrypto=false">
-                    <span style="position: relative; left:-37px">Crypto sold </span>
-                    <span style="position: relative; right: -32px; font-weight: 800;">0</span>
-                </v-btn>
-
-                <div style="display: flex; margin-inline-start: auto;">
-                  <v-menu>
-                    <template v-slot:activator="{ props }">
-                      <v-btn class="mx-auto active-offers" :class="isDark ? 'active-offers-dark':'active-offers-light'" style="letter-spacing: 0px; box-shadow: none;"
-                        v-bind="props">
-                        <img  width="25" class="me-2" :src="icon" style="position: absolute; left: 7%;"/> 
-                        <div style="display: grid; cursor: pointer;">
-                        <span class="slt" >{{select}}</span> 
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;" v-if="theme.global.current.value.dark">
-                            <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" fill="#E0E4F5"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none" style="position: absolute; display: flex; right: 15px;" v-else>
-                          <path d="M5.61594 5.99999C5.75481 6.00001 5.89231 5.973 6.02062 5.92049C6.14892 5.86799 6.26551 5.79102 6.36372 5.69399L10.3099 1.794C10.5081 1.59813 10.6195 1.33249 10.6195 1.0555C10.6195 0.77851 10.5081 0.512869 10.3099 0.317007C10.1118 0.121144 9.84296 0.0110984 9.56269 0.0110984C9.28242 0.0110984 9.01363 0.121144 8.81544 0.317007L5.61394 2.717L2.41243 0.317007C2.21425 0.121144 1.94546 0.0110984 1.66518 0.0110984C1.38491 0.0110984 1.11609 0.121144 0.917902 0.317007C0.719718 0.512869 0.608398 0.77851 0.608398 1.0555C0.608398 1.33249 0.719718 1.59813 0.917902 1.794L4.86415 5.69399C4.9628 5.79155 5.08004 5.86882 5.20908 5.92135C5.33812 5.97387 5.47639 6.00059 5.61594 5.99999Z" fill="#101632"/>
-                        </svg>
-                      </v-btn>
-                    </template>
-
-                    <v-list :class="isDark ? 'coin-bg1':'coin-bg1-light'">
-                      <v-list-item style="width: 100%;">
-                        <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-2">
-                          <v-list-item-title style="width: 100%;">  
-                            <v-list-item @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center;">
-                              <div style="display: flex;">
-                                <img  width="25" class="rounded-5 me-3" :src="item.icon"/>  
-                                  <div  style="display: flex; flex-direction: column;">
-                                    <span style="font-family: Manrope;font-size: 14px; font-style: normal; font-weight: 700; line-height: 140%;"> {{ item.name }} </span>
-                                    <span class="small-text">{{ item.symbol }}</span>
-                                  </div>
-                              </div> 
-                            </v-list-item>
-                          </v-list-item-title>
-                        </div>
-                      </v-list-item>
-                    </v-list>
-                  </v-menu> 
-                </div>
-              </v-row>
-              </div>
-
-            <div style="border-top: 0.5px solid rgba(142,155,174,.5); margin-top:16px"></div>
-            <div v-for="n in 2" :key="n" >
-              <div style="display: flex; justify-content: space-between;">
-                  <div style="margin-top: 32px;">
-                      <div style="display: flex; margin-bottom: 14px">
-                          <span class="me-3">Esewa</span>
-                          <img src="/flags/do.svg" width="25px"/>
-                      </div>
-                      <div style="display: grid">
-                          <span class="mb-3" :class="isDark ? 'text-dark':'text-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">Bank Transfer</span>
-                          <span class="mb-3" :class="isDark ? 'text-dark':'text-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">First Bank only</span>
-                      <div style="display:flex">
-                          <v-btn class="smaller-btn me-4" :class="isDark ? 'toggle-btn-dark':'toggle-btn-light'">Guided Trade</v-btn>
-                          <v-btn class="smaller-btn" :class="isDark ? 'toggle-btn-dark':'toggle-btn-light'">Receipt required</v-btn>
-                      </div>
-                      </div>
-                  </div>
-                  
-                 
-
-                  <div style="margin-top: 32px; margin-block-start: auto;">
-                      <div style="display: flex; margin-bottom: 14px">
-                          <span :class="isDark ? 'transfer-dark':'transfer-light'" style="font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">Limit 15,000 - 100,000 NGN</span>
-                      </div>
-                      <div style="display: grid">
-                          <span :class="isDark ? 'text-dark':'text-light'" class="mb-3" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal; text-align-last: right;">62,797,850.5 NGN</span>
-                          <div class="d-flex mb-3" style="justify-content: end;">
-                              <img src="/svg/btc.svg" class="me-3" width="20px"/> 
-                              <span class="me-1" style="color: #8E9BAE;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600; line-height: 150%;">BTC</span>
-                              <img src="/svg/arrow-up.svg" class="mb-1 me-1"/>
-                              <span style="color: #22C36B; font-size: 12px; font-style: normal; font-weight: 400;line-height: 150%;">-10%</span>
-                          </div>
-                        <div style="display:flex; justify-content: end;">
-                            <v-btn class="smaller-btn" style="color: var(--Gray-Light, #D8D8D8); background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">{{ PurchaseCrypto ? 'Buy Now' : 'Sell Now'}}</v-btn>
-                        </div>
-                      </div>
-                  </div> 
-              </div>
-              <div style="border-bottom: 0.5px solid rgba(142,155,174,.5); margin-top:16px"></div>
-            </div>
-
-        <div style="margin-top: 101px">
-          <span class="user-location">Feedback</span>
-        </div>
-
-        <div class="mt-5"> 
-            <v-btn class=" me-4 inactive-btn" :class="isDark ? 'toggle-btn-dark':'toggle-btn-light'"> 
-                <span style="position: relative; left: -18px">From buyers</span>
-              <span style="position: relative; right: -18px; font-weight: 800;">0</span>
-              </v-btn>
-            <v-btn class=" me-4 inactive-btn" :class="isDark ? 'toggle-btn-dark':'toggle-btn-light'"> 
-                <span style="position: relative; left: -18px">From sellers</span>
-              <span style="position: relative; right: -18px; font-weight: 800;">0</span>
-              </v-btn>
-            <div style="border-top: 0.5px solid rgba(142,155,174,.5); margin-top:16px"></div> 
-
-
-            <div style="justify-content: space-between; display: flex;"> 
-
-
-                <div class="d-flex">
-                  <img src="/svg/Image (1).svg" width="70px" class="me-3 avatar" alt="avatar"/>
-                      <div>
-                          <div style="padding-top: 35px;">
-                            <span class="username" style="font-size: 16px;">UID : <span class="grad-text"> {{ pinia.state.user?.username}} </span></span>
-                            <div style="display: grid">
-                                <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
-                                <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
-                            </div>
-                          </div>
-                      </div>
-                </div> 
-
-                <div style="margin-top: 35px">
-                    <span :class="isDark ? 'card-text-dark':'card-text-light'" class="me-5 bank-trf" style="font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Bank Transfer</span>
-                    <span class="me-5 bank-trf" style="color: #119254; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">NGN</span>
-                    <span class="bank-trf" style="color: #FACC15; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Low Ammount</span>
-                    <div>
-                        <span class="bank-trf" :class="isDark ? 'text-dark':'text-light'" style=";font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">Very Fast</span>
-                    </div>
-                </div>
-
-                <div  style="margin-top: 35px">
-                    <span class="grad-text bank-trf">View Offer</span>
-                </div>
-            </div>
-
-            <div style="border-bottom: 0.5px solid rgba(142,155,174,.5); margin-top:16px"></div>
-
-            <div style="justify-content: space-between; display: flex; margin-bottom: 191px"> 
-   
-            </div>
-        </div>
-
-      </div>
+         
   
             </v-row>
         </div>
@@ -260,7 +111,7 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
 const PurchaseCrypto = ref(true);
-const rating = ref();
+
 const profileCards = [
   {image:'/svg/call.svg', image1:'/svg/call-light.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number', status:'Verify now'},
   {image:'/svg/sms.svg', image1:'/svg/msg-light.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.',  status1:'Verified' },
@@ -295,14 +146,13 @@ const pageNumber = ref(1)
     console.log(error);
   };
 const navigation = [
-  {icon:'/svg/grad-location.svg', title: 'location', link:'/profile', flag:'/flags/ag.svg',},
-  {icon:'/svg/globe.svg', title: 'Languages:', link:'/payment', type:'English'},
-  {icon:'/svg/partners.svg', title: 'Trade partners:', link:'', number:0},
+  {icon:'/svg/grad-location.svg', title: 'Referral Code'},
+  {icon:'/svg/partners.svg', title: 'Trade partners', number:0},
   {icon:'/svg/trade1.svg', title: 'Trades', link:'/history'},
-  {icon:'/svg/trade1.svg', title: 'Trade volume:', link:'/settings', number:0},
-  {icon:'/svg/trust1.svg', title: 'Trusted By:', link:'/trade/invite', number:0},
-  {icon:'/svg/blocked1.svg', title: 'Blocked By:', link:'', number:0},
-  {icon:'/svg/blocked2.svg', title: 'Blocked', link:'', number:0},
+  {icon:'/svg/trade1.svg', title: 'Trade volume', number:0},
+  {icon:'/svg/trust1.svg', title: 'Balance'},
+  {icon:'/svg/blocked1.svg', title: 'Block chain Network', number:"BEP20"},
+  {icon:'/svg/blocked2.svg', title: 'Preferred Currency', number:"USD"},
 ];
      
 </script>
@@ -321,16 +171,7 @@ height: 130px;
 flex-shrink: 0;
 }
 
-.grad-text{
-background-image: linear-gradient(360deg, #2873FF, #0B6B96); 
-background-clip: text;  
--webkit-text-fill-color: transparent ; 
-font-family: Poppins; 
-font-size: 16px; 
-font-style: normal; 
-font-weight: 600; 
-line-height: normal;
-}
+
 .v-card-item {
 padding: 0 !important;
 padding-top: 5px !important;
@@ -405,43 +246,8 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 }
-.active-offers{
-width: 202.371px !important;
-height: 50px!important;
-flex-shrink: 0;
-border-radius: 20px;
-border-radius: 20px;
-letter-spacing: unset!important;
-text-transform: unset !important;
-overflow: hidden;
-color: #C2C2C2;
-text-overflow: ellipsis;
-white-space: nowrap;
-font-family: Poppins;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-.coin-bg1 {
-border-radius: 15px !important;
-background: #1B2537 !important;
-width: 100%;
-display: flex;
-margin: auto;
-justify-content: center;
-margin-top: 10px;
-border: 0.5px solid #2f3946;
-}
-.coin-bg1-light{
-border-radius: 15px !important;
-border: 1px solid #DBE8FF !important;
-color: #060A1D;
-width: 100%;
-margin-top: 10px;
-border: 0.5px solid #2f3946;
-box-shadow: none !important;
-}
+
+
 .active-offers-dark{
   background: var(--secondary-background, #1B2537);
   color: #8E9BAE !important;
@@ -581,6 +387,13 @@ font-style: normal;
 font-weight: 400;
 line-height: 150%; /* 18px */
  }
+
+.close-btn{
+  fill: white;
+}
+.close-btn-dark{
+fill: #10192D;
+}
 
  @media screen and (max-width: 600px) {
   .card-wrap {

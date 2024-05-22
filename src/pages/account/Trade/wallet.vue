@@ -12,8 +12,8 @@
               <div style="width: -webkit-fill-available">
                 <div>
                   <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 32px;  font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
-                   <div class="wallet-box" :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 30px; margin-top: 28px; width: 96%">
-                    <v-table  style="display: grid! important; background: inherit; width: 100%;">
+                   <div class="wallet-box" :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 30px; margin-top: 28px; width: 96%;">
+                    <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
                       <thead>
                         <tr style="display: flex; margin-bottom: 8px;">
 
@@ -43,7 +43,6 @@
                     
                   <tbody>
                     <tr v-for="(item, index) in pinia.state.tokenLists" :key="index" style="display: flex; justify-content: space-between;">
-
                       <td style="display: contents;">
                           <div class="d-flex" style="align-items: center; width: 30%;">
                               <img :src="item.icon" width="30" class="me-3"/>
@@ -54,7 +53,7 @@
                             </div>
                       </td>
 
-                      <td style="display: flex;align-items: end; width: 20%;"><span class="browser-txt">{{}}</span></td>
+                      <td  style="display: flex;align-items: end; width: 20%;"><span class="browser-txt mb-2" :class="isDark ? 'coin-name':'coin-name-light'">{{ item?.converted_value || 0 }}</span></td>
 
 
                       <td style="display: flex; align-items: end; justify-content: center; width: 20%;">
@@ -62,7 +61,6 @@
                           <TokenBalance :symbol="item.symbol"/> 
                         </span>
                       </td>
-
 
                       <div class="d-flex"> 
                         <td class="flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
@@ -115,14 +113,15 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-import {getTokens, getWalletAddress, addMinutes} from "@/composables/requests/tokens";
+import {getTokens, currencyConverter} from "@/composables/requests/tokens";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
 const pageNumber = ref(1)
 const symbolPrice= ref()
-const error = ref()
+const conversionResult = ref([]);
+
   try {
     const data = await getTokens(pageNumber.value);
     if(data.success) {
@@ -144,71 +143,63 @@ const error = ref()
     console.log(error);
   };
 
-
-const fetchSymbolPrice = async(symbol) =>{
-
-try{
-    error.value = null;
-    
-    const worker = new Worker('/worker/index.js');
-    worker.postMessage({ symbol}); // Replace 'BTCUSDT' with your desired symbol
-    
-    worker.onmessage = (event) => {
-    if (event.data.error) {
-      error.value = event.data.error;
-
-    } else {
-      symbolPrice.value = {...event.data, time: addMinutes(20)};
-      console.log(symbolPrice.value)
-      pinia.setTokenPrices(symbolPrice.value)
+  watch(()=>conversionResult.value,(newVal)=>{
+    pinia.state.tokenLists.map(t=>{
+    const tokenConversion = newVal.find(tc=>tc.from== t.symbol);
+    if(tokenConversion){
+      t.converted_value = tokenConversion.value;
     }
-
-    worker.terminate();
-    };
-
-}catch(e){
-    console.log(e)
-
-}
-}
-onMounted (async() => {{
-  let symbol = pinia.state?.tokenLists.map(coin => coin.symbol + 'USDT');
-    symbol = symbol.filter(s => s != 'USDTUSDT' );
-
-    if(pinia.state.tokenPrices && pinia.state.tokenPrices.time < Date()){
-
-        return pinia.state.tokenPrices
-
-    }else{
-
-      await fetchSymbolPrice(JSON.stringify(symbol))
-      
-    }
-
-  // Assuming pinia.state.tokenLists contains tokens and pinia.state.tokenPrices contains prices and percentages
-  const tokens = pinia.state.tokenLists;
-  const prices = pinia.state.tokenPrices;
-             
-  // Combine tokens and prices
-  const combineTokenPrices = tokens.map(token => {
-      const priceInfo = prices.find(price => price.symbol === token.symbol + 'USDT');
-      return {
-          ...token,
-          ...priceInfo
-      };
   });
-  pinia.setCombinedTokensWithPrices(combineTokenPrices)
+});
 
-  if(Date() < pinia.state.tokenPrices.time){
-      return pinia.state.tokenPrices = []
+
+const convertCurrencies = async () => {
+
+
+  // Get the list of coins from pinia state
+
+  const coins = pinia.state.tokenLists;
+
+  try {
+    console.log("Starting currency conversion...");
+
+    const convertCurrency = [];
+    
+    // Loop through each coin and convert to USD
+    for (const coin of coins) {
+      convertCurrency.push({ from: coin.symbol, to: "USD" });
+    }
+
+    try {
+      const data = await currencyConverter(convertCurrency);
+      console.log(`Data received: `, data);
+
+      if (data.success) {
+        // Store the conversion result in the array
+        conversionResult.value = data.data;
+      } else {
+        console.log(`Conversion failed:`, data.message);
+      }
+    } catch (error) {
+      console.log(`Error converting:`, error);
+    }
+
+    // Optionally, store all conversion results in pinia
+    // pinia.setTokenPrices(conversionResults, addMinutes(10));
+
+  } catch (error) {
+    console.log(error);
   }
-}})
-const tokenPricesArray = computed(() => Object.values(pinia.state.tokenPrices));
 
-    // Loop through all elements in tokenPricesArray and log the weightedAvgPrice
-    tokenPricesArray.value.forEach((tokenPrice, index) => {
-      console.log(`Weighted Average Price of element ${index}:`, tokenPrice.weightedAvgPrice);
-    });
+  // Log the array to see the stored conversion results
+  console.log("Conversion Results:", conversionResult.value);
+};
+
+onMounted(async () => {
+  await convertCurrencies();
+
+  });
+
 </script>
 
 <style scoped>
@@ -301,9 +292,7 @@ display: -webkit-box;
 overflow: hidden;
 text-overflow: ellipsis;
 }
-::-webkit-scrollbar {
-  display: none;
-}
+
 }
 </style>
   

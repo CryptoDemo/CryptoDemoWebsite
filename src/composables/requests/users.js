@@ -63,6 +63,19 @@ export const updateUser = async(UpdateUserDetails)=>{
     return data;
 };
 
+export const refreshUser = async(refresh_user)=>{
+    const pinia = useStore();
+    const data = await fetch(`${baseURL}user/refresh`,{ 
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token' : `${pinia.state.user?.token}`
+        },
+        
+    }).then(res => res.json());
+    return data;
+};
+
 export const getNotifications = async(pageNumber)=>{
     const pinia = useStore();
     const data = await fetch(`${baseURL}notification/${pageNumber}`,{ 
