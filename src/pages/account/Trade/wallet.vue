@@ -53,7 +53,7 @@
                             </div>
                       </td>
 
-                      <td  style="display: flex;align-items: end; width: 20%;"><span class="browser-txt mb-2" :class="isDark ? 'coin-name':'coin-name-light'">{{ item?.converted_value || 0 }}</span></td>
+                      <td  style="display: flex;align-items: end; width: 20%;"><span class="browser-txt coin-price" style="margin-bottom: 8px" :class="isDark ? 'coin-name':'coin-name-light'">{{ item?.converted_value || 0 }}</span></td>
 
 
                       <td style="display: flex; align-items: end; justify-content: center; width: 20%;">
@@ -285,12 +285,14 @@ color: #10192D;
 }
 .coin-name1{
 font-size: 14px !important;
-  /* width: 10px !important; */
 display: -webkit-box;
 -webkit-box-orient: vertical;
 -webkit-line-clamp: 1;
 overflow: hidden;
 text-overflow: ellipsis;
+}
+.coin-price{
+  margin-bottom: 21px!important;
 }
 
 }

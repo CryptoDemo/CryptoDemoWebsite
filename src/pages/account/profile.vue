@@ -6,7 +6,7 @@
             <div no-gutters style="display: flex">
               <div class="profile-section me-4" style="min-width: 67%;">
                 <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 15px">
-                  <div class="d-sm-flex" style="position:relative ; align-items: center; justify-content: space-between;">
+                  <div class="d-flex" style="position:relative ; align-items: center; justify-content: space-between;">
                     <div class="d-flex">
                       <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="70" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start;"/>
                         <div class="unverified-div">
@@ -403,7 +403,7 @@ fill: #10192D;
   }
   .avatar{
     width: 40px !important;
-    margin-left: 15px;
+    /* margin-left: 15px; */
   }
   .profile-section{
     min-width: 100% !important;
@@ -414,9 +414,9 @@ fill: #10192D;
   .user-location{
     font-size: 14px !important;
   }
-  .unverified-div{
+  /* .unverified-div{
     display: flex;
-  }
+  } */
   .username1{
   width: 230px !important;
   display: -webkit-box !important; 

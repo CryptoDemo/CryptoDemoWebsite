@@ -33,7 +33,6 @@ export const useStore = defineStore('app',()=> {
       tokenBalance:null,
       allcountries: [],
       selectedToken: 'USDT',
-      combineTokenPrices: [],
       UserFaqs:[],
     });
   
@@ -59,11 +58,6 @@ export const useStore = defineStore('app',()=> {
   };
   const setEmail = (payload) => {
       state.email = payload;
-      
-  };
-  
-  const setCombinedTokensWithPrices = (payload) => {
-      state.combineTokenPrices = payload;
       
   };
 
@@ -163,7 +157,6 @@ export const useStore = defineStore('app',()=> {
       setTokenBalance,
       setallcountries,
       updateNotificationSettings,
-      setCombinedTokensWithPrices,
       setFAQs,
       setpreferredCurrency,
     }

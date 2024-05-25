@@ -2,7 +2,7 @@
     <div>
         <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <v-btn class="dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" variant="plain" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; height: px;">
+              <v-btn class="dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; height: px;">
                 <span class="me-2" :class="isDark ? 'country-text':'country-text-light'">{{pinia.state.selectedNetwork}}</span>
                 <img src="/svg/chevron-light.svg" v-if="theme.global.current.value.dark"/>
                 <img src="/svg/chevron-dark.svg" v-else/>

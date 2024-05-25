@@ -64,7 +64,7 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
 const loading= ref(false);
 const navigation = [
-  {icon:'/svg/profile1.svg', icon1:'/svg/profile1-dark.svg', title: 'profile', link:'account/profile', },
+  {icon:'/svg/profile1.svg', icon1:'/svg/profile1-dark.svg', title: 'profile', link:'/account/profile', },
   {icon:'/svg/settings.svg', icon1:'/svg/security-dark.svg', title: 'Security', link:'/account/settings',},
   {icon:'/svg/payment1.svg', icon1:'/svg/payment-dark.svg', title: 'payment methods', link:'/account/payment', },
   {icon:'/svg/Item.svg',     icon1:'/svg/security-dark.svg', title: 'Security Questions ', link:'/account/Questions'},

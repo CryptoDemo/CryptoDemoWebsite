@@ -70,16 +70,17 @@
                       </v-btn>
                     </template>
 
-                    <div class="coin-overlay">
+                    <div class="coin-overlay" style="height: 200px">
                     <v-list :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 10px; margin-top: 10px;">
-                      <v-list-item style="width: -webkit-fill-available;">
-                        <div  @click.stop style="margin-top: 8px; margin-bottom: 15px;">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 30px; margin-left: 45px;">
+                     
+                      <v-list-item style="width: -webkit-fill-available;">                      
+                        <div @click.stop style="margin-top: 8px; margin-bottom: 15px;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 33px; margin-left: 45px;">
                                 <path d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z" stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                           </svg>
-                          <v-textarea clearable variant="text" rows="1" no-resize  placeholder="Search for Coins..." v-model="input" style=" border: 1px solid #64748B; height: 55px; margin: auto;  border-radius: 30px; padding-left: 30px; align-items: center; width: 90%;"></v-textarea>
+                          <v-textarea clearable variant="plain" rows="1" no-resize  placeholder="Search for Coins..." v-model="input" style=" border: 1px solid #64748B; height: 55px; margin: auto;  border-radius: 30px; padding-left: 45px; align-items: center; width: 90%;"></v-textarea>
                         </div>
-  
+                      <div style="height: 250px; overflow: scroll">
                         <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-2">
                           <v-list-item @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
                           <div class="ml-7" style="display: flex">
@@ -91,13 +92,16 @@
                           </div>
                           </v-list-item>
                         </div>
+                      </div>
                       </v-list-item>
                     </v-list>
                   </div>
                   </v-menu> 
+
                   <div style="margin-top:9px">  
-                    <span class="btc-ammt">40 BTC = <span class="btc-ammt1" style="color: #2873FF; font-family: Manrope;">40,144.86 USD</span></span>
+                    <span class="btc-ammt">1 {{coin}} = USD <span class="btc-ammt1" style="color: #2873FF; font-family: Manrope;">{{ conversionResult.find(c=>c.from==coin)?.value || 0 }}</span></span>
                   </div>
+                  
                   <div style="margin-top: 30px;">
                     <span :class="isDark ? 'pay-with':'pay-with-light'" > {{transaction? "Pay with" : "Get paid via" }}</span>
                       <div :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
@@ -332,12 +336,18 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-import {getTokens} from "@/composables/requests/tokens";
-
+import {getTokens, currencyConverter} from "@/composables/requests/tokens";
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
 const Paymentmethod1= ref('Select Payment method');
+const transaction = ref(true);
+const transaction1 = ref(true);
 const pinia = useStore()
 const pageNumber = ref(1)
-
+const conversionResult = ref([]);
+const select =ref("Bitcoin")
+const coin = ref ("BTC")
+const piniastoredicon = ref(null)
   try {
     const data = await getTokens(pageNumber.value);
     if(data.success) {
@@ -358,21 +368,69 @@ const pageNumber = ref(1)
   } catch (error) {
     console.log(error);
   };
-const transaction = ref(true);
-const transaction1 = ref(true);
+
+  watch(()=>conversionResult.value,(newVal)=>{
+    pinia.state.tokenLists.map(t=>{
+    const tokenConversion = newVal.find(tc=>tc.from== t.symbol);
+    if(tokenConversion){
+      t.converted_value = tokenConversion.value;
+    }
+  });
+});
 
 
-const theme = useTheme()
-const isDark = computed(() =>  theme.global.current.value.dark);
+const convertCurrencies = async () => {
 
 
-const select =ref("Bitcoin")
-const coin = ref ("BTC")
+  // Get the list of coins from pinia state
 
-const piniastoredicon = ref(null)
+  const coins = pinia.state.tokenLists;
+
+  try {
+    console.log("Starting currency conversion...");
+
+    const convertCurrency = [];
+    
+    // Loop through each coin and convert to USD
+    for (const coin of coins) {
+      convertCurrency.push({ from: coin.symbol, to: "USD" });
+    }
+
+    try {
+      const data = await currencyConverter(convertCurrency);
+      console.log(`Data received: `, data);
+
+      if (data.success) {
+        // Store the conversion result in the array
+        conversionResult.value = data.data;
+      } else {
+        console.log(`Conversion failed:`, data.message);
+      }
+    } catch (error) {
+      console.log(`Error converting:`, error);
+    }
+
+    // Optionally, store all conversion results in pinia
+    // pinia.setTokenPrices(conversionResults, addMinutes(10));
+
+  } catch (error) {
+    console.log(error);
+  }
+
+  // Log the array to see the stored conversion results
+  console.log("Conversion Results:", conversionResult.value);
+};
+
+onMounted(async () => {
+  await convertCurrencies();
+
+  });
+
+
+
 
 onMounted(()=>{{
-piniastoredicon.value = pinia.state?.tokenLists[0]?.icon
+piniastoredicon.value = pinia.state?.tokenLists[7]?.icon
 }})
 
 const icon = ref(piniastoredicon)
