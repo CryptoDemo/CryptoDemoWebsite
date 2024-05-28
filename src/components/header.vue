@@ -67,8 +67,8 @@
           </div>
 
           <div v-if="icon3"  style="display: grid; position: relative; margin-top: 25px;">
-              <Notifications/>
-              <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-right: 13px; margin-top: -8px;">Notification</span>     
+            <Notifications/>
+            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-right: 13px; margin-top: -8px;">Notification</span>     
           </div>
     </div>   
     </v-container>
@@ -326,6 +326,7 @@ background: #F8FAFC !important;
 }
 .v-btn--size-default{
   min-width: 0px !important;
+  /* margin-top: 40px !important; */
 }
 .close-btn{
 fill: white;
@@ -361,6 +362,9 @@ margin-inline-end: 0px !important;
 }
 .nav-btn{
   background: inherit !important;
+}
+.v-btn__content {
+  margin-top: 9px !important;
 }
 }
 </style>

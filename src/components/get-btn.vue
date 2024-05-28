@@ -58,10 +58,10 @@
              </div>
              <div class="position-relative">
               <input class="px-4" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" v-model="walletAddress" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; margin-bottom: 36px; align-items:  center; height: 60px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; text-overflow: ellipsis; overflow: hidden; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
-              <v-btn @click="copyToClipboard()" style="letter-spacing: 0px; width: 98px; color: white; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 2.3%; right: 2%; position: absolute; display: flex;box-shadow: none;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">
-                Copy
-                <img src="/svg/copy1.svg" style="margin-left: 10px;"/>
-              </v-btn>
+                <v-btn @click="copyToClipboard()" style="letter-spacing: 0px; width: 98px; color: white; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 2.3%; right: 2%; position: absolute; display: flex;box-shadow: none;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">
+                  Copy
+                  <img src="/svg/copy1.svg" style="margin-left: 10px;"/>
+                </v-btn>
             <div style="display: flex; justify-content: center;">
               <qrcode-vue :value="walletAddress" :size="150" level="H" />
             </div>
@@ -81,7 +81,7 @@ import QrcodeVue from 'qrcode.vue'
 
 
 const theme = useTheme()
-const isDark = computed(() =>  theme.global.current.value.dark);
+const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore()
 const dialog =  ref(false);
 const dialog2 = ref(false);

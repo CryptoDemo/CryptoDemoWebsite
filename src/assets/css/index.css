@@ -360,7 +360,7 @@ padding: 16px var(--spacing-3xl, 24px);
 justify-content: space-between;
 align-items: center;
 margin-bottom: 16px;
-height: 70px;
+height: 70px !important;
 }
 .partners-text{
 color: var(--Gray-Medium-dark, #646464);

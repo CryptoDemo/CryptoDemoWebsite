@@ -7,9 +7,9 @@
               <div>
                 
                  <div class="wallet-box" :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 25px; margin-top: 28px; width: 100%;">
-                  <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
+                  <v-table style="display: grid! important; background: inherit; width: 100%; height: 420px;">
                     <thead>
-                      <tr style="display: flex; margin-bottom: 8px;">
+                      <tr style="display: flex; margin-bottom: 8px; ">
 
                         <th style="display: flex; align-items: center; align-self: center; width: 7%; justify-content: center;">
                           <div class="d-flex" >
@@ -17,13 +17,13 @@
                           </div>
                         </th>
 
-                        <th style="display: flex; align-items: center; align-self: center; width: 18%; justify-content: center;">
+                        <th style="display: flex; align-items: center; align-self: center; width: 20%; justify-content: center;">
                           <div class="d-flex" >
                             <span class="table-header-text" :class="isDark ? 'text-dark':'text-light'">Coin</span>
                           </div>
                         </th>
 
-                        <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px; width: 21%; justify-content: center;">
+                        <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px; width: 42%; justify-content: center;">
                           <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Price (USD)</span>
                         </th>
 
@@ -38,20 +38,22 @@
                   
                 <tbody>
                   <tr v-for="(item, index) in pinia.state.tokenLists" :key="index" style="display: flex; justify-content: space-between;">
-                    <td class="mt-2" style="display: flex; align-items: center;">{{index+1}}</td>
+                    <td class="mt-2 me-5" style="display: flex; align-items: center;">{{index+1}}</td>
 
+                    <!-- <button> -->
                     <td style="display: contents;">
-                        <div class="d-flex" style="align-items: center; width: 30%;">
+                      <div class="d-flex" style="align-items: center; width: 30%;">
                             <img :src="item.icon" width="30" class="me-3 py-5"/>
                               <div style="flex-direction:row">
                                 <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
                                 <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
                               </div>
-                          </div>
-                    </td>
+                            </div>
+                          </td>
+                        <!-- </button> -->
 
-                    <td class="mt-4" style="width: 20%; display: flex; align-self: self-start;"><span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">{{ item?.converted_value || 0 }}</span></td>
-                      <td class="flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center;"> 
+                    <td class="mt-4" style="width: 20%; overflow: scroll; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical;-webkit-line-clamp: 1; display: flex; align-self: self-start;"><span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">{{ item?.converted_value || 0 }}</span></td>
+                      <td style="display: flex; align-items: center;"> 
                         <v-chip 
                         class="ma-2" color="success" variant="outlined">
                         0.008%
@@ -169,6 +171,9 @@ await convertCurrencies();
 
 });
 
+const props = defineProps({
+  selectedCoin: String,
+});
 </script>
 
 <style scoped>
@@ -231,7 +236,6 @@ background: var(--secondary-background, #F8FAFC);
 }
 .wallet-border{
 border: 0.5px solid rgba(142, 155, 174, 0.5);
-/* padding: 10px; */
 }
 .wallet-border-light{
 border: 1px solid #DBE8FF;

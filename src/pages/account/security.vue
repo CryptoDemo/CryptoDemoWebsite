@@ -90,7 +90,7 @@ const toggleButton = () => {
 
 };
 
-onBeforeMount(async()=>{
+onMounted(async()=>{
 
 if(pinia.state.twoFactor !== null){
 

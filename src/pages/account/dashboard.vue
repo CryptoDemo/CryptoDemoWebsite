@@ -12,13 +12,13 @@
               <div class="mt-3 pa-2">
                 <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; width: 802px; justify-content: space-between; margin-bottom: 29px">    
                   <span class="partners-text"  :class="isDark ? 'text-dark':'text-light'"> Complete verification to access Demo products and services.</span>
-                  <div> <v-btn class="primary-btn" style="height: 37px; width: 120px; border-radius: 8px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);text-transform: capitalize; color: white; letter-spacing: 0px">Verify</v-btn> </div>
+                  <div> <v-btn class="primary-btn" style="height: 37px !important; width: 120px; border-radius: 8px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);text-transform: capitalize; color: white; letter-spacing: 0px">Verify</v-btn> </div>
                 </div>
                 <div class="d-flex">
                   <div style="width: 570px;">
                     <div class="d-flex">
                       <img src="/img/btc.png" class="me-2"/>
-                      <span class="selected-coin">Bitcoin Price Chart (BTC)</span>
+                      <span class="selected-coin">{{ selectedCoin="Bitcoin" }}</span>
                     </div>
                   <Chart class="me-5"/>
                 </div>

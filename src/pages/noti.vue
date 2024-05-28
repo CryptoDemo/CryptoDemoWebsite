@@ -37,7 +37,7 @@
               </div>
               <div style="display: inline-grid;">
                 <span class="coin-perc">Bitcoin</span>
-                <span class="sm-num" style="font-weight: 500;">$1920</span>
+                <span class="sm-num" style="font-weight: 500;">{{ conversionResult.find(c=>c.from==coin)?.value || 0 }}</span>
               </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import { getSummedBalance } from "@/composables/requests/tokens";
+import { getSummedBalance, getTokenBalance } from "@/composables/requests/tokens";
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
@@ -103,8 +103,36 @@ const getSummedBal = async () => {
   }
 };
 
+const getTokenBals = async () => {
+    if (pinia.state.isAuthenticated) {
+
+      try {
+        console.log(pinia.state.selectedNetwork.toLowerCase())
+        const data = await getTokenBalance(pinia.state.selectedNetwork.toLowerCase(), symbol)
+
+        
+        const updatedTokens = tokens.map(token => {
+          if (token.symbol === symbol) {
+            return { ...token, balance: data.data?.balance || 0 }
+          }
+          return token
+        })
+
+        coinbal.value = updatedTokens
+        // console.log('b',updatedTokens)
+        pinia.setTokenLists(updatedTokens)
+
+      } catch (error) {
+        console.log(error)
+        // Handle error
+      }
+
+    }
+  }
+
 onMounted(async () => {
    getSummedBal();
+   convertCurrencies();
 
 });
 </script>
