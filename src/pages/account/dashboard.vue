@@ -14,24 +14,14 @@
                   <div> <v-btn class="primary-btn" style="height: 37px !important; width: 120px; border-radius: 8px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);text-transform: capitalize; color: white; letter-spacing: 0px">Verify</v-btn> </div>
                 </div>
                 <div class="d-flex">
-                  <div style="width: 70%;">
+                  <div style="width: 100%;">
                     <div class="d-flex">
                       <img src="/img/btc.png" class="me-2"/>
                       <span class="selected-coin">{{ selectedCoin="Bitcoin" }}</span>
                     </div>
                   <Chart class="me-5"/>
                 </div>
-                <div>
-                  <span class="buy px-2">Buy / Sell</span>
-                  <div style="border-radius: 20px; border: 1px solid rgba(142,155,174,.5); backdrop-filter: blur(21px); height: 55px; width: 230px; margin-top: 20px; margin-bottom: 20px; display: flex; justify-content: center;">
-                    <v-btn :class="`${transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'profile-cards-dark':'profile-cards-light'}`" @click.prevent="transaction=true" style="border-radius: 15px !important;"> Buy</v-btn>
-                    <v-btn :class="`${!transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'profile-cards-dark':'profile-cards-light'}` " @click.prevent="transaction=false">Sell</v-btn>
-                  </div>
-                  <v-textarea variant="plain" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" no-resize class="text-bg pl-3" placeholder="Price (USDT)"></v-textarea>
-                  <v-textarea variant="plain" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" no-resize class="text-bg pl-3 mt-3" placeholder="ammount"></v-textarea>
-                  <v-btn class="primary-btn1" style="width: 230px; margin-top: 18px; height: 60px; border-radius: 20px; font-size: 16px; font-weight: 700; font-family: Manrope;color: white;">{{ transaction ? 'Buy':'Sell' }}</v-btn>
-          
-                </div> 
+               
               </div>
 
               <div style="margin-top: -130px;">
@@ -54,9 +44,6 @@ import { useTheme } from 'vuetify';
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
-
-const transaction = ref(true);
-const buttonText = ref('Buy');
 </script>
 
 <style scoped>
@@ -77,16 +64,6 @@ box-shadow: none;
 letter-spacing: 0px;
 margin-top: 5px;
 /* margin-left: 5px !important; */
-}
-.sell-btn{
-border-radius: 15px;
-background: inherit !important;
-width: 110px;
-height: 42px;
-text-transform: unset;
-box-shadow: none;
-letter-spacing: 0px;
-margin-top: 5px;
 }
 .bg-color{
 background: #12181F;
