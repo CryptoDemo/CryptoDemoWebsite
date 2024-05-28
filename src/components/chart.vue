@@ -3,36 +3,7 @@
         <ClientOnly>
             <div id="chart" class="chart">
                 <div class="toolbar">
-                    <!-- <v-btn id="one_month"
-                        @click="updateData('one_month')" :class="{active: selection==='one_month'}"
-                        >
-                        1M
-                    </v-btn>
-                    
-                    <v-btn id="six_months"
-                        @click="updateData('six_months')" :class="{active: selection==='six_months'}"
-                        >
-                        6M
-                    </v-btn>
-                    
-                    <v-btn id="one_year"
-                        
-                        @click="updateData('one_year')" :class="{active: selection==='one_year'}"
-                        >
-                        1Y
-                    </v-btn>
-                    
-                    <v-btn id="ytd"
-                        @click="updateData('ytd')" :class="{active: selection==='ytd'}"
-                        >
-                        YTD
-                    </v-btn>
-                    
-                    <v-btn id="all"
-                        @click="updateData('all')" :class="{active: selection==='all'}"
-                        >
-                        ALL
-                    </v-btn> -->
+
                     </div>
                 
                     <div id="chart-timeline">

@@ -4,12 +4,25 @@
           <div style="margin-top: 110px; display: flex; width: 100% !important;">
              
             <div style="width: -webkit-fill-available">
-              <div>
-                
+              <div>   
                  <div class="wallet-box" :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 25px; margin-top: 28px; width: 100%;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; flex-direction: column">
+                      <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: Poppins;font-size: 16px; font-style: normal; font-weight: 600">Hot Coins</span>
+                      <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 12px; font-style: normal; font-weight: 400;">Updates every 60 seconds</span>
+                    </div>
+                    <div @click.stop style="margin-top: 4px; margin-bottom: 15px; display: flex; width: 40%; margin-inline-start: auto;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" style="position: absolute; margin-top: 1.5%; margin-left: 15px;">
+                        <path d="M9.58335 18.1986C13.9556 18.1986 17.5 14.6542 17.5 10.2819C17.5 5.90965 13.9556 2.36523 9.58335 2.36523C5.2111 2.36523 1.66669 5.90965 1.66669 10.2819C1.66669 14.6542 5.2111 18.1986 9.58335 18.1986Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path opacity="0.4" d="M18.3334 19.0319L16.6667 17.3652" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <v-textarea clearable variant="plain" rows="1" no-resize  placeholder="Search for Coins..." v-model="input" style=" border: 1px solid #64748B; height: 55px; border-radius: 30px; padding-left: 45px; padding-right: 15px; align-items: center; width: 50%;"></v-textarea>
+                    </div>
+                  </div>
+
                   <v-table style="display: grid! important; background: inherit; width: 100%; height: 420px;">
                     <thead>
-                      <tr style="display: flex; margin-bottom: 8px; ">
+                      <tr style="display: flex; margin-bottom: 8px;">
 
                         <th style="display: flex; align-items: center; align-self: center; width: 7%; justify-content: center;">
                           <div class="d-flex" >
@@ -37,7 +50,7 @@
                     </thead>
                   
                 <tbody>
-                  <tr v-for="(item, index) in pinia.state.tokenLists" :key="index" style="display: flex; justify-content: space-between;">
+                  <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" style="display: flex; justify-content: space-between;">
                     <td class="mt-2 me-5" style="display: flex; align-items: center;">{{index+1}}</td>
 
                     <!-- <button> -->
@@ -166,13 +179,25 @@ try {
 console.log("Conversion Results:", conversionResult.value);
 };
 
+let input = ref("");
+
+const filteredItems = computed(() => {
+const searchTerm = input.value.toLowerCase();
+return pinia.state.tokenLists.filter((loc) => {
+const lowername = loc.name.toLowerCase();
+const symbol = loc.symbol.toLowerCase();
+return (
+lowername.includes(searchTerm) || symbol.includes(searchTerm)
+);
+});
+});
+const props = defineProps({
+  selectedCoin: String,
+});
+
 onMounted(async () => {
 await convertCurrencies();
 
-});
-
-const props = defineProps({
-  selectedCoin: String,
 });
 </script>
 

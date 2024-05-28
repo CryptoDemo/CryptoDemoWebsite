@@ -170,8 +170,6 @@ box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px;
 height: 130px;
 flex-shrink: 0;
 }
-
-
 .v-card-item {
 padding: 0 !important;
 padding-top: 5px !important;
@@ -246,8 +244,6 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 }
-
-
 .active-offers-dark{
   background: var(--secondary-background, #1B2537);
   color: #8E9BAE !important;

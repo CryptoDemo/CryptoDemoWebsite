@@ -3,7 +3,7 @@
       <div style="display: flex; justify-content: center;">
           <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="70" alt="avatar"/>
       </div>
-      <span class="mt-4" style="font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; display: flex; justify-content: center;">@{{ pinia.state.user?.username}}</span>
+      <span class="mt-4" style="font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; display: flex;justify-content: center;">@{{ pinia.state.user?.username}}</span>
           <div style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 32px;">
          
            
@@ -11,7 +11,6 @@
               <template #append>
                 <img width="20" height="20" class="ml-3" src="/svg/verification-badge.svg"/>
               </template>
-    
               Verified
            </v-chip>
           </div>

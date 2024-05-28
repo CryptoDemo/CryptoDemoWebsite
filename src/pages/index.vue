@@ -327,9 +327,7 @@
           <Footer class="desktop-footer"/>
           <Mobile-footer class="mobile-footer"/>
         </div>
-   
-    
-    
+
   </div>   
 </template>
 
