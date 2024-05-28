@@ -89,7 +89,8 @@
 
                         <td class="flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
                         <td class="me-4 flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
-                        <td class="flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center; color: white;"><div><nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'active-offers-dark':'active-offers-light'" class="swap">
+                        <td class="flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center; color: white;"><div>
+                          <nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'active-offers-dark':'active-offers-light'" class="swap">
                           <img src="/svg/arrow-swap.svg"/>
                           Swap</v-btn>
                         </nuxt-link>
@@ -229,7 +230,6 @@ onMounted(async () => {
 <style scoped>
 .swap{
 border-radius: 16px;
-box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
 display: flex;
 width: 86.333px;
 height: 48px !important;
@@ -241,6 +241,7 @@ flex-shrink: 0;
 letter-spacing: 0px;
 text-transform: unset;
 align-content: center;
+box-shadow: none;
 }
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
 border: none !important;
@@ -279,10 +280,12 @@ font-weight: 500;
 line-height: normal;
 }
 .active-offers-dark{
-  background: var(--secondary-background, #1B2537);
+  background: var(--secondary-background, #1B2537) !important;
+  color: white;
 }
 .active-offers-light{
-background: var(--secondary-background, #F8FAFC);
+background: var(--secondary-background, #F8FAFC) !important;
+color: #10192D;
 }
 .wallet-border{
   border: 0.5px solid rgba(142, 155, 174, 0.5);

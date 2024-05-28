@@ -50,7 +50,7 @@
               </v-menu> 
              </div>
          
-            <span :class="isDark ? 'coin-name':'coin-name-light'" style="margin-left: 10px; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : <span style="font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">0.012128</span></span>
+            <span :class="isDark ? 'coin-name':'coin-name-light'" style="margin-left: 10px; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : <span style="font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">{{ select.balance }}</span></span>
        
              <div style="margin-top: 18px;">  
            
@@ -88,10 +88,11 @@ const dialog2 = ref(false);
 const dialog3 = ref(false);
 const pageNumber = ref(1);
 const walletAddress = ref('');
-
 const icon = ref ('/svg/btc.svg')
 const select  = ref ('Bitcoin')
 const coin =  ref('BTC')
+const coinbal = ref(null)
+const tokens = pinia.state.tokenLists;
 
 try {
   const data = await getTokens(pageNumber.value);
@@ -141,6 +142,47 @@ const getWalletAds = async () => {
       push.error('Failed to copy text!');
     });
 }
+
+const formatBalance = balance => (balance === 0 ? '0.00' : balance?.toFixed(7))
+  
+  const getTokenBals = async () => {
+    if (pinia.state.isAuthenticated) {
+
+      try {
+        console.log(pinia.state.selectedNetwork.toLowerCase())
+        const data = await getTokenBalance(pinia.state.selectedNetwork.toLowerCase(), symbol)
+
+        
+        const updatedTokens = tokens.map(token => {
+          if (token.symbol === symbol) {
+            return { ...token, balance: data.data?.balance || 0 }
+          }
+          return token
+        })
+
+        coinbal.value = updatedTokens
+        // console.log('b',updatedTokens)
+        pinia.setTokenLists(updatedTokens)
+
+      } catch (error) {
+        console.log(error)
+        // Handle error
+      }
+
+    }
+  }
+  
+//   const checkedbal = pinia.state.tokenLists.some(item => item.balance == undefined || item.balance == null );
+  onBeforeMount(async () => {
+    if(pinia.state.tokenLists.length){
+        coinbal.value = pinia.state.tokenLists
+    }
+    // if(!pinia.state.tokenLists.length){
+    //     isLoading.value = true
+    // }
+    await getTokenBals()
+          
+  })
 onMounted(async () => {
     const addressData = await getWalletAds();
     if (addressData) {

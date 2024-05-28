@@ -51,7 +51,7 @@
                 </v-menu> 
 
                </div>
-               <span class="isDark ? 'coin-name':'coin-name-light'" style="margin-left: 10px; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : <span style="font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">0.012128</span></span>
+               <span class="isDark ? 'coin-name':'coin-name-light'" style="margin-left: 10px; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : <span style="font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">{{ select.balance }}</span></span>
          
                <div style="margin-top: 18px;">  
                  <span style=" font-family: Poppins; margin-left: 10px; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">BTC Address</span>
@@ -92,9 +92,9 @@
            <span class="success-txt">You have successfully sent <span style="font-weight: 600; color: white; line-height: 150%;">  2,000USD </span> worth of <span style="font-weight: 600; color: white; line-height: 150%;">  Bitcoin </span> to  <span style="font-weight: 600; color: white; line-height: 150%;"> 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span></span>
          </div>
            <v-card-actions style="margin-top: 28px;">
-           <v-spacer></v-spacer>
-           <v-btn text="Confirm" variant="text" @click="dialog3 = false" color="#2873FF" style="font-family: Manrope; letter-spacing: 0px;  text-transform: capitalize; font-size: 16px; font-style: normal; font-weight: 700; line-height: 160%; "
-           ></v-btn>
+        
+           <v-btn text="Confirm" variant="text" @click="dialog3 = false" color="#2873FF" style="font-family: Manrope; letter-spacing: 0px;  text-transform: capitalize; font-size: 16px; font-style: normal; font-weight: 700; line-height: 160%;">
+           </v-btn>
          </v-card-actions>
  
        </v-card>
@@ -105,7 +105,7 @@
  <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import {getTokens, calculateTxnFees} from "@/composables/requests/tokens";
+import {getTokens, getTokenBalance, calculateTxnFees} from "@/composables/requests/tokens";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -120,6 +120,8 @@ const coin  = ref ('')
 const transferWallet = ref()
 const trfAmmount = ref("")
 const loading = ref(false)
+const coinbal = ref(null)
+const tokens = pinia.state.tokenLists;
  try {
     const data = await getTokens(pageNumber.value);
     if(data.success) {
@@ -151,7 +153,7 @@ const calculateFee = async () => {
   }
     console.log(TxnInfo)
   try {
-      // isloading.value = true
+      loading.value = true
       const data = await calculateTxnFees(TxnInfo);
       console.log(data);
 
@@ -161,20 +163,62 @@ const calculateFee = async () => {
         from_amount_total.value = data.data.amount_plus_fee;
         tax_fee.value = data.data.fee_amount;
         is_balance_sufficient.value = data.data.is_balance_sufficient;
+        loading.value = false
+        dialog2.value = true
       } else {
           push.error(data.message);
       }
 
-      // isloading.value = false
   } catch (e) {
       console.log(e)
-      // isloading.value = false
   }
 }
 
 const focusInput = () => {
   transferWallet.value.focus();
 }
+
+  
+const formatBalance = balance => (balance === 0 ? '0.00' : balance?.toFixed(7))
+  
+  const getTokenBals = async () => {
+    if (pinia.state.isAuthenticated) {
+
+      try {
+        console.log(pinia.state.selectedNetwork.toLowerCase())
+        const data = await getTokenBalance(pinia.state.selectedNetwork.toLowerCase(), symbol)
+
+        
+        const updatedTokens = tokens.map(token => {
+          if (token.symbol === symbol) {
+            return { ...token, balance: data.data?.balance || 0 }
+          }
+          return token
+        })
+
+        coinbal.value = updatedTokens
+        // console.log('b',updatedTokens)
+        pinia.setTokenLists(updatedTokens)
+
+      } catch (error) {
+        console.log(error)
+        // Handle error
+      }
+
+    }
+  }
+  
+//   const checkedbal = pinia.state.tokenLists.some(item => item.balance == undefined || item.balance == null );
+  onBeforeMount(async () => {
+    if(pinia.state.tokenLists.length){
+        coinbal.value = pinia.state.tokenLists
+    }
+    // if(!pinia.state.tokenLists.length){
+    //     isLoading.value = true
+    // }
+    await getTokenBals()
+          
+  })
  </script>
  
  <style scoped>
