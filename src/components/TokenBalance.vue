@@ -1,65 +1,66 @@
 <template>
-    <div v-for="token in coinbal" :key="token.id">
-        <div v-if="!isLoading">
-            <div v-if="token.symbol === symbol">{{ formatBalance(token.balance) }}</div>
-        </div>
-      <div v-else>
-          <!-- <LoaderLight v-if="token.symbol === symbol"/> -->
+   <div v-for="token in tokens" :key="token.symbol">
+        {{ token.symbol }}: {{ token.balance }}
       </div>
-    </div>
-  </template>
-  
-  <script setup>
-  import { ref, onMounted } from 'vue'
-  import { getTokenBalance } from '@/composables/requests/tokens'
-  
-  const pinia = useStore()
+</template>
 
-  const coinbal = ref(null)
-  
-  const tokens = pinia.state.tokenLists;
-  const isLoading = ref(false)
+<script setup>
+import { ref, onMounted } from 'vue'
+import { getTokenBalance } from '@/composables/requests/tokens'
 
-  const { symbol } = defineProps({ symbol: String })
-  
-  const formatBalance = balance => (balance === 0 ? '0.00' : balance?.toFixed(7))
-  
-  const getTokenBals = async () => {
-    if (pinia.state.isAuthenticated) {
+const pinia = useStore()
 
-      try {
-        console.log(pinia.state.selectedNetwork.toLowerCase())
-        const data = await getTokenBalance(pinia.state.selectedNetwork.toLowerCase(), symbol)
+const isLoading = ref(false);
 
-        
-        const updatedTokens = tokens.map(token => {
-          if (token.symbol === symbol) {
-            return { ...token, balance: data.data?.balance || 0 }
+const formatBalance = balance => (balance === 0 ? '0.00' : balance?.toFixed(7));
+const network = pinia.state.selectedNetwork.toLowerCase();
+const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
+console.log('Selected Network ID:', selectedNetworkId);
+
+const tokensForSelectedNetwork = pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
+console.log('Tokens for Selected Network:', tokensForSelectedNetwork);
+
+const symbols = tokensForSelectedNetwork.map(token => token.symbol);
+console.log('Symbols:', symbols);
+
+console.log(symbols)
+
+const getTokenBals = async () => {
+
+  // Check if user is authenticated
+
+  if (pinia.state.isAuthenticated) {
+    try {
+      console.log(network);
+
+      // Fetch token balance
+      const data = await getTokenBalance(symbols);
+      console.log('here.....1')
+      // Update tokens with the new balance
+      if (data.success) {
+          for (const token of data.data) {
+            console.log(data);
+            // Update tokenLists with the new balance
+            const index = symbols.findIndex(t => t.token === token.token);
+            if (index !== -1) {
+              symbols[index].balance = formatBalance(token.balance);
+            }
           }
-          return token
-        })
-
-        coinbal.value = updatedTokens
-        // console.log('b',updatedTokens)
-        pinia.setTokenLists(updatedTokens)
-
-      } catch (error) {
-        console.log(error)
-        // Handle error
+      } else {
+        console.log('Error:', data.message);
       }
-
+    } catch (error) {
+      console.log('Fetch error:', error);
     }
   }
-  
-//   const checkedbal = pinia.state.tokenLists.some(item => item.balance == undefined || item.balance == null );
-  onBeforeMount(async () => {
-    if(pinia.state.tokenLists.length){
-        coinbal.value = pinia.state.tokenLists
-    }
-    // if(!pinia.state.tokenLists.length){
-    //     isLoading.value = true
-    // }
+};
+
+onBeforeMount(async () => {
     await getTokenBals()
           
   })
-  </script>
+
+
+
+
+</script>

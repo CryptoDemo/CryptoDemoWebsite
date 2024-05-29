@@ -17,15 +17,16 @@ export const getBlockchain = async(blockchain)=>{
     return data;
 };
 
-export const getTokenBalance = async(chain,token = 'USDT')=>{
+export const getTokenBalance = async(chain)=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return
-    const data = await fetch(`${baseURL}web3/token-balance/${chain}/${token}`, {
-        method: 'GET',
+    const data = await fetch(`${baseURL}web3/bulk-token-balance/${pinia.state.selectedNetwork.toLowerCase()}`, {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'x-access-token': `${pinia.state.user?.token}`
-        }
+        },
+    body: JSON.stringify(chain)
     }).then(res => res.json());
     return data
 };

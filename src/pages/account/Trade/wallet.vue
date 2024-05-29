@@ -44,27 +44,27 @@
                       </thead>
                     
                   <tbody>
-                    <tr v-for="(item, index) in pinia.state.tokenLists" :key="index" style="display: flex; justify-content: space-between;">
+                    <tr v-for="token in tokensForSelectedNetwork" :key="token.id" style="display: flex; justify-content: space-between;">
                       <td style="display: contents;">
                           <div class="d-flex" style="align-items: center; width: 30%;">
-                              <img :src="item.icon" width="30" class="me-3"/>
+                              <img :src="token.icon" width="30" class="me-3"/>
                                 <div style="flex-direction:row">
-                                  <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
-                                  <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
+                                  <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{ token.name }}</span>
+                                  <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ token.symbol }}</span>
                                 </div>
                             </div>
                       </td>
 
-                      <td  style="display: flex;align-items: end; width: 20%;"><span class="browser-txt coin-price" style="margin-bottom: 8px" :class="isDark ? 'coin-name':'coin-name-light'">{{ item?.converted_value || 0 }}</span></td>
+                      <td  style="display: flex;align-items: end; width: 20%;"><span class="browser-txt coin-price" style="margin-bottom: 8px" :class="isDark ? 'coin-name':'coin-name-light'">{{ token?.converted_value || 0 }}</span></td>
 
 
                       <td style="display: flex; align-items: end; justify-content: center; width: 20%;">
-                        <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'"> 
-                          <TokenBalance :symbol="item.symbol"/> 
+                        <span class="browser-txt mb-2" :class="isDark ? 'coin-name':'coin-name-light'"> 
+                         {{ token.balance }}
                         </span>
                       </td>
 
-                      <div class="d-flex"> 
+                      <div class="d-flex mb-2"> 
                         <div class="hidden-lg-and-up flex-sm-and-down">
                           <v-menu>
                             <template v-slot:activator="{ props }">
@@ -138,7 +138,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-import {getTokens, currencyConverter} from "@/composables/requests/tokens";
+import {getTokens, currencyConverter, getTokenBalance} from "@/composables/requests/tokens";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -147,26 +147,40 @@ const pageNumber = ref(1)
 const symbolPrice= ref()
 const conversionResult = ref([]);
 
-  try {
+
+try {
     const data = await getTokens(pageNumber.value);
-    if(data.success) {
+
+    if (data.success) {
       const fetchedTokens = data.data.result;
+
+      // Filter tokens based on the selected network ID
+      const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
+      const filteredTokens = fetchedTokens.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
 
       const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
 
       // Check if there are any new items in the fetched data
-      const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
+      const newItems = filteredTokens.filter(item => !storedTokenIds.includes(item.id));
 
       if (newItems.length > 0) {
-        console.log('fetching')
-        pinia.setTokenLists(fetchedTokens);
+        console.log('fetching');
+        pinia.setTokenLists(newItems);
       }
     } else {
-      console.log('Unavailable')
+      console.log('Unavailable');
     }
   } catch (error) {
     console.log(error);
-  };
+  }
+
+//   watch(() => pinia.state.selectedNetwork, (newNetworkId) => {
+//   if (newNetworkId) {
+//     fetchAndStoreTokens();
+//   }
+// });
+
+
 
   watch(()=>conversionResult.value,(newVal)=>{
     pinia.state.tokenLists.map(t=>{
@@ -209,8 +223,6 @@ const convertCurrencies = async () => {
       console.log(`Error converting:`, error);
     }
 
-    // Optionally, store all conversion results in pinia
-    // pinia.setTokenPrices(conversionResults, addMinutes(10));
 
   } catch (error) {
     console.log(error);
@@ -220,8 +232,54 @@ const convertCurrencies = async () => {
   console.log("Conversion Results:", conversionResult.value);
 };
 
+
+// const formatBalance = balance => (balance === 0 ? '0.00' : balance?.toFixed(7));
+const network = pinia.state.selectedNetwork.toLowerCase();
+const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
+console.log('Selected Network ID:', selectedNetworkId);
+
+const tokensForSelectedNetwork = pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
+console.log('Tokens for Selected Network:', tokensForSelectedNetwork);
+
+const symbols = tokensForSelectedNetwork.map(token => token.symbol);
+console.log('Symbols:', symbols);
+
+
+const getTokenBals = async () => {
+
+  // Check if user is authenticated
+
+  if (pinia.state.isAuthenticated) {
+    try {
+      console.log(network);
+
+      // Fetch token balance
+      const data = await getTokenBalance(symbols);
+      console.log('here.....1')
+      // Update tokens with the new balance
+      if (data.success) {
+          for (const token_ of data.data) {
+            console.log(data);
+            // Update tokenLists with the new balance
+            // const token = tokensForSelectedNetwork.find(t => t.symbol === token_);
+            const token = pinia.state.tokenLists.find(t => t.symbol === token_.token);
+            if (token) {
+            // Update token balance
+            token.balance = (token_.balance);
+          }
+          }
+      } else {
+        console.log('Error:', data.message);
+      }
+    } catch (error) {
+      console.log('Fetch error:', error);
+    }
+  }
+};
+
 onMounted(async () => {
   await convertCurrencies();
+  getTokenBals();
 
   });
 

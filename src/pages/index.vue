@@ -421,15 +421,9 @@ const convertCurrencies = async () => {
 
 onMounted(async () => {
   await convertCurrencies();
-
+  piniastoredicon.value = pinia.state?.tokenLists[7]?.icon
   });
 
-
-
-
-onMounted(()=>{{
-piniastoredicon.value = pinia.state?.tokenLists[7]?.icon
-}})
 
 const icon = ref(piniastoredicon)
 console.log(icon.value)
