@@ -44,7 +44,7 @@
                       </thead>
                     
                   <tbody>
-                    <tr v-for="token in tokensForSelectedNetwork" :key="token.id" style="display: flex; justify-content: space-between;">
+                    <tr v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
                       <td style="display: contents;">
                           <div class="d-flex" style="align-items: center; width: 30%;">
                               <img :src="token.icon" width="30" class="me-3"/>
@@ -156,33 +156,69 @@ console.log('Tokens for Selected Network:', tokensForSelectedNetwork);
 const symbols = tokensForSelectedNetwork.map(token => token.symbol);
 console.log('Symbols:', symbols);
 
-const getTokens_ = async ()=>{
+// const getTokens_ = async ()=>{
+//   try {
+//       // const data = await getTokens(pageNumber.value);
+  
+//       if (data.success) {
+//         const fetchedTokens = data.data.result;
+  
+//         // Filter tokens based on the selected network ID
+//         const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
+//         const filteredTokens = fetchedTokens.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
+  
+//         const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
+  
+//         // Check if there are any new items in the fetched data
+//         const newItems = filteredTokens.filter(item => !storedTokenIds.includes(item.id));
+  
+//         if (newItems.length > 0) {
+//           console.log('fetching');
+//           pinia.setTokenLists([...pinia.state.tokenLists, ...newItems]);
+//         }
+//       } else {
+//         console.log('Unavailable');
+//       }
+//     } catch (error) {
+//       console.log(error);
+//     }
+// }
+
+const getTokens_ = async () => {
   try {
-      // const data = await getTokens(pageNumber.value);
-  
-      if (data.success) {
-        const fetchedTokens = data.data.result;
-  
-        // Filter tokens based on the selected network ID
-        const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
-        const filteredTokens = fetchedTokens.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
-  
-        const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
-  
-        // Check if there are any new items in the fetched data
-        const newItems = filteredTokens.filter(item => !storedTokenIds.includes(item.id));
-  
-        if (newItems.length > 0) {
-          console.log('fetching');
-          pinia.setTokenLists([...pinia.state.tokenLists, ...newItems]);
-        }
-      } else {
-        console.log('Unavailable');
+    // Replace `getTokens` with your actual API call function
+    const data = await getTokens(pageNumber.value);
+
+    if (data.success) {
+      const fetchedTokens = data.data.result;
+
+      // Get the selected network ID
+      const selectedNetworkId = pinia.state.BlockchainNetworks.find(b => b.name === network)?.id;
+
+      // Filter tokens based on the selected network ID
+      const filteredTokens = fetchedTokens.filter(token => 
+        token.token_networks.some(tkn => tkn.blockchain_id === selectedNetworkId)
+      );
+
+      // Get stored token IDs
+      const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
+
+      // Filter out new tokens
+      const newItems = filteredTokens.filter(item => !storedTokenIds.includes(item.id));
+
+      // Update the store if there are new tokens
+      if (newItems.length > 0) {
+        console.log('fetching');
+        pinia.setTokenLists([...pinia.state.tokenLists, ...newItems]);
       }
-    } catch (error) {
-      console.log(error);
+    } else {
+      console.log('Unavailable');
     }
-}
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 watch(() => pinia.state.selectedNetwork, (newNetworkId) => {
   if (newNetworkId) {
