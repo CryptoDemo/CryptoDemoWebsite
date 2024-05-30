@@ -96,8 +96,8 @@ const icon = ref(piniastoredicon);
 
 const storedSymbol = ref("");
 const select  = ref(storedSymbol);
-
-const coin =  ref('BTC')
+const network = pinia.state.selectedNetwork.toLowerCase();
+const coin =  ref('BTC');
 
 let selectedToken = ref(null);
 const selectedTokenBalance = computed(() => {
@@ -107,33 +107,34 @@ const selectedTokenBalance = computed(() => {
 });
 console.log(selectedToken)
 
-try {
-    const data = await getTokens(pageNumber.value);
-
-    if (data.success) {
-      const fetchedTokens = data.data.result;
-
-      // Filter tokens based on the selected network ID
-      const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
-      const filteredTokens = fetchedTokens.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
-
-      const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
-
-      // Check if there are any new items in the fetched data
-      const newItems = filteredTokens.filter(item => !storedTokenIds.includes(item.id));
-
-      if (newItems.length > 0) {
-        console.log('fetching');
-        pinia.setTokenLists(newItems);
+const getTokens_ = async()=>{
+  try {
+      const data = await getTokens(pageNumber.value);
+  
+      if (data.success) {
+        const fetchedTokens = data.data.result;
+  
+        // Filter tokens based on the selected network ID
+        const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
+        const filteredTokens = fetchedTokens.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
+  
+        const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
+  
+        // Check if there are any new items in the fetched data
+        const newItems = filteredTokens.filter(item => !storedTokenIds.includes(item.id));
+  
+        if (newItems.length > 0) {
+          console.log('fetching');
+          pinia.setTokenLists(newItems);
+        }
+      } else {
+        console.log('Unavailable');
       }
-    } else {
-      console.log('Unavailable');
-    }
   } catch (error) {
     console.log(error);
   }
+}
 
-const network = pinia.state.selectedNetwork.toLowerCase();
 const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
 console.log('Selected Network ID:', selectedNetworkId);
 
@@ -194,33 +195,34 @@ const getWalletAds = async () => {
         console.log(error)
       }
     }
-  };
+};
 
-  const copyToClipboard = () => {
+const copyToClipboard = () => {
   navigator.clipboard.writeText(walletAddress.value)
-    .then(() => {
-      push.success('Text copied successfully!');
-    })
-    .catch((error) => {
-      console.error('Failed to copy text:', error);
-      push.error('Failed to copy text!');
-    });
+  .then(() => {
+    push.success('Text copied successfully!');
+  })
+  .catch((error) => {
+    console.error('Failed to copy text:', error);
+    push.error('Failed to copy text!');
+  });
 }
 
 
 onMounted(async () => {
-    const addressData = await getWalletAds();
-    if (addressData) {
-      walletAddress.value = addressData.address;
-    }
-    getTokenBals();
+  getTokens_();
+  const addressData = await getWalletAds();
+  if (addressData) {
+    walletAddress.value = addressData.address;
+  }
+  getTokenBals();
 
-    piniastoredicon.value = tokensForSelectedNetwork[0]?.icon;
-    storedSymbol.value = tokensForSelectedNetwork[0]?.name;
+  piniastoredicon.value = tokensForSelectedNetwork[0]?.icon;
+  storedSymbol.value = tokensForSelectedNetwork[0]?.name;
 
   console.log('Icon:', piniastoredicon.value);
   console.log('Stored Symbol:', tokensForSelectedNetwork[0]); // This
-  });
+});
 
 </script>
 

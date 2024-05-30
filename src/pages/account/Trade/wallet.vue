@@ -64,7 +64,7 @@
                         </span>
                       </td>
 
-                      <div class="d-flex mb-2"> 
+                      <div class="d-flex"> 
                         <div class="hidden-lg-and-up flex-sm-and-down">
                           <v-menu>
                             <template v-slot:activator="{ props }">
@@ -146,39 +146,51 @@ const pinia = useStore()
 const pageNumber = ref(1)
 const symbolPrice= ref()
 const conversionResult = ref([]);
+const network = pinia.state.selectedNetwork.toLowerCase();
+const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
+console.log('Selected Network ID:', selectedNetworkId);
 
+const tokensForSelectedNetwork = pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
+console.log('Tokens for Selected Network:', tokensForSelectedNetwork);
 
-try {
-    const data = await getTokens(pageNumber.value);
+const symbols = tokensForSelectedNetwork.map(token => token.symbol);
+console.log('Symbols:', symbols);
 
-    if (data.success) {
-      const fetchedTokens = data.data.result;
-
-      // Filter tokens based on the selected network ID
-      const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
-      const filteredTokens = fetchedTokens.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
-
-      const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
-
-      // Check if there are any new items in the fetched data
-      const newItems = filteredTokens.filter(item => !storedTokenIds.includes(item.id));
-
-      if (newItems.length > 0) {
-        console.log('fetching');
-        pinia.setTokenLists(newItems);
+const getTokens_ = async ()=>{
+  try {
+      // const data = await getTokens(pageNumber.value);
+  
+      if (data.success) {
+        const fetchedTokens = data.data.result;
+  
+        // Filter tokens based on the selected network ID
+        const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
+        const filteredTokens = fetchedTokens.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
+  
+        const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
+  
+        // Check if there are any new items in the fetched data
+        const newItems = filteredTokens.filter(item => !storedTokenIds.includes(item.id));
+  
+        if (newItems.length > 0) {
+          console.log('fetching');
+          pinia.setTokenLists([...pinia.state.tokenLists, ...newItems]);
+        }
+      } else {
+        console.log('Unavailable');
       }
-    } else {
-      console.log('Unavailable');
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
+}
 
-//   watch(() => pinia.state.selectedNetwork, (newNetworkId) => {
-//   if (newNetworkId) {
-//     fetchAndStoreTokens();
-//   }
-// });
+watch(() => pinia.state.selectedNetwork, (newNetworkId) => {
+  if (newNetworkId) {
+
+    console.log('Token for  NetworkId:', newNetworkId)
+    getTokens_();
+  }
+});
 
 
 
@@ -200,7 +212,6 @@ const convertCurrencies = async () => {
   const coins = pinia.state.tokenLists;
 
   try {
-    console.log("Starting currency conversion...");
 
     const convertCurrency = [];
     
@@ -211,7 +222,7 @@ const convertCurrencies = async () => {
 
     try {
       const data = await currencyConverter(convertCurrency);
-      console.log(`Data received: `, data);
+
 
       if (data.success) {
         // Store the conversion result in the array
@@ -228,21 +239,10 @@ const convertCurrencies = async () => {
     console.log(error);
   }
 
-  // Log the array to see the stored conversion results
-  console.log("Conversion Results:", conversionResult.value);
 };
 
 
 // const formatBalance = balance => (balance === 0 ? '0.00' : balance?.toFixed(7));
-const network = pinia.state.selectedNetwork.toLowerCase();
-const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
-console.log('Selected Network ID:', selectedNetworkId);
-
-const tokensForSelectedNetwork = pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
-console.log('Tokens for Selected Network:', tokensForSelectedNetwork);
-
-const symbols = tokensForSelectedNetwork.map(token => token.symbol);
-console.log('Symbols:', symbols);
 
 
 const getTokenBals = async () => {
@@ -255,14 +255,14 @@ const getTokenBals = async () => {
 
       // Fetch token balance
       const data = await getTokenBalance(symbols);
-      console.log('here.....1')
+
       // Update tokens with the new balance
       if (data.success) {
           for (const token_ of data.data) {
             console.log(data);
             // Update tokenLists with the new balance
-            // const token = tokensForSelectedNetwork.find(t => t.symbol === token_);
-            const token = pinia.state.tokenLists.find(t => t.symbol === token_.token);
+            const token = tokensForSelectedNetwork.find(t => t.symbol === token_);
+            // const token = pinia.state.tokenLists.find(t => t.symbol === token_.token);
             if (token) {
             // Update token balance
             token.balance = (token_.balance);
@@ -279,6 +279,7 @@ const getTokenBals = async () => {
 
 onMounted(async () => {
   await convertCurrencies();
+  getTokens_()
   getTokenBals();
 
   });

@@ -2,33 +2,39 @@
   <div>
     <Header :hide="true" :icon1="true" :icon3="true" :icon2="true"/>
     <v-container>
-          <div style="margin-top:100px; display: flex; width: 100%;">
-              <div class="pa-2 ma-2">
-                <Sd-nav1/>
-              </div>
+      <div style="margin-top:100px; display: flex; width: 100%;">
+        <div class="pa-2 ma-2">
+          <Sd-nav1/>
+        </div>
          
             <div>
               <div class="mt-3 pa-2">
-                <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; width: 802px; justify-content: space-between; margin-bottom: 29px">    
+                <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; width: 786px; justify-content: space-between;">    
                   <span class="partners-text"  :class="isDark ? 'text-dark':'text-light'"> Complete verification to access Demo products and services.</span>
                   <div> <v-btn class="primary-btn" style="height: 37px !important; width: 120px; border-radius: 8px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);text-transform: capitalize; color: white; letter-spacing: 0px">Verify</v-btn> </div>
                 </div>
-                <div class="d-flex">
-                  <div style="width: 100%;">
-                    <div class="d-flex">
-                      <img src="/img/btc.png" class="me-2"/>
-                      <span class="selected-coin">{{ selectedCoin="Bitcoin" }}</span>
-                    </div>
-                  <Chart class="me-5"/>
-                </div>
-               
+
+              <div style="width: 30%;">
+                <DashboardCoin/>
               </div>
 
-              <div style="margin-top: -130px;">
-                <Coins/>
+              <div class="d-flex">              
+                <div style="width: 30%; height: 100%; margin-top: 50px;">
+                  <div class="d-flex">
+                    <img src="/img/btc.png" class="me-2"/>
+                    <span class="selected-coin">{{ selectedCoin="Bitcoin" }} Price Chart</span>
+                  </div>
+                  <VuetifyChart class="me-5"/>
+                </div>
+                
               </div>
-              <div style="margin-top: -130px;">
-                <Invite/>
+              
+              
+              <div style="margin-top: -130px; width: 30%;">
+                <Coins/>
+                <div style="margin-top: -130px;">
+                  <Invite/>
+                </div>
               </div>
               </div>
             </div>
