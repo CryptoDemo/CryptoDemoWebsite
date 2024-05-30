@@ -408,7 +408,7 @@ input::-webkit-inner-spin-button {
     width: 230px !important;
   }
   .currency-div{
-    margin-top: 20px;
+    margin-top: -1px;
   }
   .table-div{
     margin-left: 0px !important;
