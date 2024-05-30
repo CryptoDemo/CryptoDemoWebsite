@@ -126,4 +126,12 @@ fill: #10192D;
     min-width: 64px;
     padding: 0px !important;
 }
+
+@media screen and (max-width: 600px) {
+.nav-btn{
+  background: inherit !important;
+  position: relative;
+  bottom: 18%;
+}
+}
 </style>

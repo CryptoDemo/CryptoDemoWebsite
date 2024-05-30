@@ -40,10 +40,8 @@ const blockchainNetwork = ref("Bep20")
 
  try {
   const data = await getBlockchain();
-  console.log("here......1");
   if (data.success) {
     const fetchedBlockchains = data.data;
-    console.log(fetchedBlockchains);
 
     // Extract IDs of stored blockchains
     const storedBlockchainsIds = pinia.state.BlockchainNetworks.map(item => item.id);
@@ -52,7 +50,7 @@ const blockchainNetwork = ref("Bep20")
     const newItems = fetchedBlockchains.filter(item => !storedBlockchainsIds.includes(item.id));
 
     if (newItems.length > 0) {
-      console.log('fetching');
+    
       // Update blockchainNetworks with new items
       pinia.state.BlockchainNetworks = [...pinia.state.BlockchainNetworks, ...newItems];
     }

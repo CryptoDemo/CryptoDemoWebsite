@@ -89,10 +89,8 @@ const getSummedBal = async () => {
   if (pinia.state.isAuthenticated) {
     try {
       const data = await getSummedBalance(chain.value.toLowerCase(), selectedCountryId.id)
-      console.log(getSummedBalance);
       if (data.success) {
         balanceData.value = data.data;
-        console.log(data);
         }else {
           console.error("Error:", data.message);
       }

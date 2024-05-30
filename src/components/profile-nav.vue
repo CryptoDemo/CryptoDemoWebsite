@@ -87,6 +87,7 @@ fill: #10192D;
 @media screen and (max-width: 600px) {
 .nav-btn{
   background: inherit !important;
+  
 }
 }
 </style>

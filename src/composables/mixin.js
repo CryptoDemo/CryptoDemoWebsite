@@ -53,6 +53,14 @@ export const formatDate = (dateString) =>{
   return `${day}.${month}.${year}`;
 }
 
+// mixins/timeMixin.js
+//set expiration date 
+export function addMinutes(minutesToAdd) {
+ 
+  return new Date(new Date().getTime() + minutesToAdd * 60000);
+}
+
+
 // or debounce mixins.   let debounce_timeout;
 export const debounce = (fn, value) => {
   let debounce_timeout; // Declare debounce_timeout inside the debounce function

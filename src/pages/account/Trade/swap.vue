@@ -152,26 +152,26 @@ onMounted(() => {
 const icon = ref ('/svg/btc.svg')
 const select  = ref ('Bitcoin USD')
 
-try {
-    const data = await getTokens(pageNumber.value);
-    if(data.success) {
-      const fetchedTokens = data.data.result;
+// try {
+//     const data = await getTokens(pageNumber.value);
+//     if(data.success) {
+//       const fetchedTokens = data.data.result;
 
-      const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
+//       const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
 
-      // Check if there are any new items in the fetched data
-      const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
+//       // Check if there are any new items in the fetched data
+//       const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
 
-      if (newItems.length > 0) {
-        console.log('fetching')
-        pinia.setTokenLists(fetchedTokens);
-      }
-    } else {
-      console.log('Unavailable')
-    }
-  } catch (error) {
-    console.log(error);
-  };
+//       if (newItems.length > 0) {
+//         console.log('fetching')
+//         pinia.setTokenLists(fetchedTokens);
+//       }
+//     } else {
+//       console.log('Unavailable')
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   };
 const coinIcon1 = ref ('/svg/tether.svg')
 const selectedCoin1  = ref ('USDT')
 
