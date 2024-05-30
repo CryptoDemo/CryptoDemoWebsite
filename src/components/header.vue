@@ -23,7 +23,7 @@
 
           <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <v-btn @click.prevent="emit('country',country)" class="me-4 mt-9 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; height: 50px;">
+              <v-btn @click.prevent="emit('country',country)" class="me-4 mt-7 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; height: 50px; margin-top: px;">
                 <img :src="flag" class="me-2" width="32" height="32" style="object-fit: cover;border-radius: 30px"/>
                 <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{country.slice(0, 5)}}</span>
                 <img src="/svg/chevron-light.svg" v-if="theme.global.current.value.dark"/>
@@ -221,7 +221,7 @@ background: #10192D;
 text-transform: unset !important;
 color: white;
 letter-spacing: 0px;
-margin-top: 40px !important;
+
 }
 .dropdown-btn1i-light{
 width: 135px;
@@ -232,7 +232,7 @@ text-transform: unset !important;
 color: #161D26 !important;
 letter-spacing: 0px;
 box-shadow: none;
-margin-top: 28px !important;
+
 }
 
 .nav-icon-text{
@@ -362,6 +362,9 @@ margin-inline-end: 0px !important;
 }
 .nav-btn{
   background: inherit !important;
+}
+.dropdown-btn1i{
+  margin-top: 40px !important;
 }
 .v-btn__content {
   margin-top: 9px !important;
