@@ -4,24 +4,25 @@
     <div  style="margin-top:130px; margin-bottom: 170px;">
       <div class="pa-2 ma-2">
         <div  style="display: flex; justify-content: space-between;">  
-          
-              <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 18.54px; display: flex; width: 70%; padding: 34px 18px; height: 215px; border: 0.5px solid rgba(142, 155, 174, 0.5); box-shadow: 0px 25.029px 18.54px 0px rgba(0, 0, 0, 0.02);">
-                <img src="/img/phoneHand.png" width="150" class="mb-3"/>
-                  <div style="display: grid">
-                    <span class="refer-txt" :class="isDark ? 'card-text-dark':'card-text-light'">Refer and Earn</span>
-                    <span class="share-link">Share the link, referral code for registration, or scan barcode to earn more</span>
-                    <div style="display: flex;  position: relative;">
-                      <input class="copy-link-box pl-4" disabled  v-model="referralCode" style="align-content: baseline;"/>
-                        <v-btn @click="copyToClipboard()" variant="plain" style=" background: inherit !important; box-shadow: none; position: absolute; right: 0; margin-top: 2.3%;">
-                          <img src="/svg/copy.svg"/>
-                        </v-btn>
-                    </div>
-                    
+          <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+            <img src="/img/phoneHand.png" width="195" class="mb-3"/>
+          </div>
+            <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 18.54px; display: flex; width: 45%; padding: 34px 18px; border: 0.5px solid rgba(142, 155, 174, 0.5); box-shadow: 0px 25.029px 18.54px 0px rgba(0, 0, 0, 0.02);">
+                <div style="display: grid">
+                  <span class="refer-txt" :class="isDark ? 'card-text-dark':'card-text-light'">Refer and Earn</span>
+                  <span class="share-link mt-2">Share the link, referral code for registration, or scan barcode to earn more</span>
+                  <div style="display: flex;  position: relative;">
+                    <input class="copy-link-box pl-4 mt-4" disabled  v-model="referralCode" style="align-content: baseline;"/>
+                      <v-btn @click="copyToClipboard()" variant="plain" style=" background: inherit !important; box-shadow: none; position: absolute; right: 0; margin-top: 8.3%;">
+                        <img src="/svg/copy.svg"/>
+                      </v-btn>
                   </div>
+                  
                 </div>
-                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-                  <qrcode-vue :value="referralCode" :size="206" level="H" style="padding: 20px;"/>
-                </div>
+            </div>
+            <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+              <qrcode-vue :value="referralCode" :size="206" level="H" style="padding: 20px;"/>
+            </div>
           </div>
         </div>
       </div>
@@ -39,20 +40,12 @@ const isDark = computed(() => theme.global.current.value.dark);
 const referralCode = pinia.state.user?.referral_code || "";
 
 
-const copyToClipboard = () => {
-  if (!referralCode.value) {
-    console.error('Referral code is undefined or empty');
-    return;
-  }
-  navigator.clipboard.writeText(referralCode.value)
-  console.log(referralCode)
-    .then(() => {
-      push.success('Text copied successfully!');
-    })
-    .catch((error) => {
-      console.error('Failed to copy text:', error);
-      push.error('Failed to copy text!');
-    });
+
+  const copyToClipboard = () => {
+  const text = referralCode
+  navigator.clipboard.writeText(text).then(() => {
+    push.success('Text copied to clipboard!')
+  })
 }
 
 </script>

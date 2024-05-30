@@ -46,19 +46,28 @@
                   <tbody>
                     <tr v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex;">
                       <td style="display: contents;">
-                          <div class="d-flex" style="align-items: center; width: 30%;">
-                              <img :src="token.icon" width="30" class="me-3"/>
-                                <div style="flex-direction:row;">
-                                  <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal;">{{ token.name }}</span>
-                                  <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ token.symbol }}</span>
-                                </div>
-                            </div>
+                        <div class="d-flex me-7" style="align-items: center; width: 25%; overflow: hidden;">
+                          <img :src="token.icon" width="30" class="me-3" />
+                          <div style="flex-direction: column; display: flex; overflow: hidden; text-overflow: ellipsis;">
+                            <span class="coin-name1"
+                                  :class="isDark ? 'coin-name' : 'coin-name-light'"
+                                  style="font-family: Poppins; font-weight: 600; font-size: 16px; line-height: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                              {{ token.name }}
+                            </span>
+                            <span class="sml-text"
+                                  :class="isDark ? 'text-dark' : 'text-light'"
+                                  style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                              {{ token.symbol }}
+                            </span>
+                          </div>
+                        </div>
                       </td>
+
 
                       <td  style="display: flex;align-items: end; width: 22%;"><span class="browser-txt coin-price" style="margin-bottom: 8px" :class="isDark ? 'coin-name':'coin-name-light'">{{ token?.converted_value }}</span></td>
 
 
-                      <td style="display: flex; align-items: end; justify-content: center; width: 20%; overflow: scroll; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical;-webkit-line-clamp: 1;">
+                      <td style="display: flex; align-items: end; justify-content: center; width: 20%;">
                         <span class="browser-txt mb-2" :class="isDark ? 'coin-name':'coin-name-light'"> 
                          {{ token.balance }}
                         </span>
