@@ -1,5 +1,5 @@
 <template>
-    <div class="pa-4 text-center">
+    <div class=" text-center">
      <v-btn @click="dialog = true" :class="isDark ? 'active-offers-dark':'active-offers-light'" class="send-btn">
        <img src="/svg/send-arrow.svg"/>
        <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>

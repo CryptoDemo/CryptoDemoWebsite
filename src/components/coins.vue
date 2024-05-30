@@ -53,17 +53,17 @@
                   <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" style="display: flex; justify-content: space-between;">
                     <td class="mt-2 me-5" style="display: flex; align-items: center;">{{index+1}}</td>
 
-                    <!-- <button> -->
+                   
                     <td style="display: contents;">
                       <div class="d-flex" style="align-items: center; width: 30%;">
                             <img :src="item.icon" width="30" class="me-3 py-5"/>
-                              <div style="flex-direction:row">
-                                <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
-                                <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
-                              </div>
+                            <div style="flex-direction:row">
+                              <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
+                              <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
                             </div>
-                          </td>
-                        <!-- </button> -->
+                      </div>
+                    </td>
+                  
 
                     <td class="mt-4" style="width: 20%; overflow: scroll; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical;-webkit-line-clamp: 1; display: flex; align-self: self-start;"><span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">{{ item?.converted_value || 0 }}</span></td>
                       <td style="display: flex; align-items: center;"> 
@@ -230,6 +230,7 @@ line-height: 160%;
 .v-table--density-default > .v-table__wrapper > table > thead > tr > th, .v-table--density-default > .v-table__wrapper > table > tfoot > tr > th {
 border: none !important;
 }
+
 .browser-txt{
 color: var(--White, var(--Colors-Base-white, #FFF));
 font-family: Poppins;

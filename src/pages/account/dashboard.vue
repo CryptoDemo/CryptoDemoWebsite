@@ -14,12 +14,12 @@
                   <div> <v-btn class="primary-btn" style="height: 37px !important; width: 120px; border-radius: 8px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);text-transform: capitalize; color: white; letter-spacing: 0px">Verify</v-btn> </div>
                 </div>
 
-              <div style="width: 30%;">
+              <div style="width: 33%;">
                 <DashboardCoin/>
               </div>
 
               <div class="d-flex">              
-                <div style="width: 30%; height: 100%; margin-top: 50px;">
+                <div style="width: 33%; height: 100%; margin-top: 50px;">
                   <div class="d-flex">
                     <img src="/img/btc.png" class="me-2"/>
                     <span class="selected-coin">{{ selectedCoin="Bitcoin" }} Price Chart</span>
@@ -30,7 +30,7 @@
               </div>
               
               
-              <div style="margin-top: -130px; width: 30%;">
+              <div style="margin-top: -130px; width: 33%;">
                 <Coins/>
                 <div style="margin-top: -130px;">
                   <Invite/>

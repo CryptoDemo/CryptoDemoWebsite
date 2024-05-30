@@ -2,12 +2,14 @@
   <div>
     
     <div  style="margin-top:130px; margin-bottom: 170px;">
-        <div class="pa-2 ma-2">
-            <div  style="display: flex; justify-content: space-between;">  
-              <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 18.54px; display: flex; width: 50%; padding: 34px 18px; height: 222px; border: 0.5px solid rgba(142, 155, 174, 0.5); box-shadow: 0px 25.029px 18.54px 0px rgba(0, 0, 0, 0.02);">
+      <div class="pa-2 ma-2">
+        <div  style="display: flex; justify-content: space-between;">  
+          
+              <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 18.54px; display: flex; width: 70%; padding: 34px 18px; height: 215px; border: 0.5px solid rgba(142, 155, 174, 0.5); box-shadow: 0px 25.029px 18.54px 0px rgba(0, 0, 0, 0.02);">
+                <img src="/img/phoneHand.png" width="150" class="mb-3"/>
                   <div style="display: grid">
                     <span class="refer-txt" :class="isDark ? 'card-text-dark':'card-text-light'">Refer and Earn</span>
-                    <span class="share-link">Share the link, referral code for registration, or scan barcode</span>
+                    <span class="share-link">Share the link, referral code for registration, or scan barcode to earn more</span>
                     <div style="display: flex;  position: relative;">
                       <input class="copy-link-box pl-4" disabled  v-model="referralCode" style="align-content: baseline;"/>
                         <v-btn @click="copyToClipboard()" variant="plain" style=" background: inherit !important; box-shadow: none; position: absolute; right: 0; margin-top: 2.3%;">
@@ -18,7 +20,7 @@
                   </div>
                 </div>
                 <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-                  <qrcode-vue :value="referralCode" :size="220" level="H" style="padding: 20px;"/>
+                  <qrcode-vue :value="referralCode" :size="206" level="H" style="padding: 20px;"/>
                 </div>
           </div>
         </div>
