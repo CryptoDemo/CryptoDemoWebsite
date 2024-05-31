@@ -12,7 +12,7 @@
                  <div class="chat-headings" > 
                   <div  style="display: flex; justify-content: space-between; width: 940px; margin-bottom: 23px">    
                       <div class="d-flex">
-                          <img src="/svg/Avatar1.svg" class="me-3" alt="avatar"/>
+                          <!-- <img src="/svg/Avatar1.svg" class="me-3" alt="avatar"/> -->
 
                           <div>
                               <span style="font-family: Poppins; display: flex; color: #2873FF; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Tom Gravesen</span>
@@ -43,7 +43,7 @@
 
                               <v-card min-width="304" style="border-radius: 24px; padding: 21px; border: 1px solid  #303A46; background: #161D26;">
                                   <div class="d-flex" style="margin-bottom: 15px;">
-                                      <img src="/svg/Avatar1.svg" width="50" class="me-3" alt="avatar"/>
+                                      <!-- <img src="/svg/Avatar1.svg" width="50" class="me-3" alt="avatar"/> -->
                                         
                                       <v-btn variant="text" @click="menu = false" style="border-radius: 14px; background: #12181F; max-width: 45px!important; height: 45px !important;">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
