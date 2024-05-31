@@ -28,7 +28,7 @@
                                 </div>
                             </div>
 
-                            <v-btn :class="{ 'primary-btn1': isEnabled, 'toggled': !isEnabled }" class="tggle-btn" @click="toggleButton" style="width: 100px; height: 60px;">
+                            <v-btn :class="{ 'primary-btn1': isEnabled, 'toggled': !isEnabled }" class="tggle-btn" @click="Init2fa()" style="width: 100px; height: 60px;">
                               {{ isEnabled ? 'Enable' : 'Disable' }}
                             </v-btn>
                         </div>
@@ -72,7 +72,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import { passwordUpdate, } from "@/composables/requests/users";
+import { passwordUpdate, Init2fa } from "@/composables/requests/users";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -85,31 +85,15 @@ const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };
 const isEnabled= ref(false)
-const toggleButton = () => {
+// const initialize2FA = () => {
+//   isEnabled.value = !isEnabled.value;
+
+// };
+
+const initialize2FA = async () => {
   isEnabled.value = !isEnabled.value;
-
-};
-
-onMounted(async()=>{
-
-if(pinia.state.twoFactor !== null){
-
-  two_factor_val.value = pinia.state.twoFactor[0]
-  code_input.value = two_factor_val.value.code
-  selected_code.value = two_factor_val.value.code
-  pinia.state.isTwoFactorSet = true
-
-}else{
-
   try{
-    const data = await fetch(`${baseURL}user/init-2fa`,{
-  method: 'GET',
-  headers: {
-      'Content-Type': 'application/json',
-      'x-access-token' : `${pinia.state.user?.token}`
-  }
-  })
-  .then(res=>res.json());
+    const data = await Init2fa (Initialize2fa);
 
   if(data.success){
 
@@ -118,11 +102,7 @@ if(pinia.state.twoFactor !== null){
   loading.value = false
   const two_factor = [...data.data]
 
-  two_factor.map((item,index)=>{
-        if(item.code==two_factor_val.value.code){
-          two_factor[index] = two_factor_val.value;
-        }
-  });
+
 
   // pinia.setTwoFactor(two_factor)
     }else{
@@ -133,8 +113,8 @@ if(pinia.state.twoFactor !== null){
   console.log(e)
   push.error(`${e}`)
 }
-  }
-})
+}
+
 
 const UserPasswordUpdate = async () => {
   loading.value = true;

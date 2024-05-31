@@ -39,8 +39,6 @@ const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
 const referralCode = pinia.state.user?.referral_code || "";
 
-
-
   const copyToClipboard = () => {
   const text = referralCode
   navigator.clipboard.writeText(text).then(() => {

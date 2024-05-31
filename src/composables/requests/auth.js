@@ -22,13 +22,13 @@ export const Resend_Code = async(codeMsg)=>{
     return data;
 };
 
-export const VerifyOtp = async(Otpmsg)=>{
-    const data = await fetch(`${baseURL}auth/verify-account`,{ 
+export const VerifyOtp = async(verify_otp)=>{
+    const data = await fetch(`${baseURL}user/verify-2fa`,{ 
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
     },
-    body: JSON.stringify(Otpmsg)
+    body: JSON.stringify(verify_otp)
 
     }).then(res => res.json());
     return data;

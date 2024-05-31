@@ -24,6 +24,17 @@ export const Init2fa = async(Initialize2fa)=>{
     return data;
 };
 
+export const Verify2FA = async(authentication)=>{
+    const data = await fetch(`${baseURL}user/verify-2fa`,{ 
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(authentication)
+
+    }).then(res => res.json());
+    return data;
+};
 
 export const getActivityLogs = async(pageNumber)=>{
     const pinia = useStore();
