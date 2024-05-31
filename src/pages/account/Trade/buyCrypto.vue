@@ -173,7 +173,7 @@
                             </div>
                             <div style="display: grid">
                               <div class="d-flex" style="align-items: center;">
-                                <img src="/svg/heart-tick.svg" alt="icon">
+                                <!-- <img src="/svg/heart-tick.svg" alt="icon"> -->
                                 <span class="heart-number">23</span>
                               </div>
                                 <span class="mb-3" style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Last seen: <span style="font-weight: 400;">3 minutes ago</span></span>
@@ -188,7 +188,7 @@
                         <div>
                             <div style="margin-bottom: 17px; display: flex; align-items: center;">
                               <span class="me-3" style="color: #D8D8D8; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Bank Transfer</span>
-                              <img src="/flags/ae.svg"   width="30"/>
+                              <!-- <img src="/flags/ae.svg"   width="30"/> -->
                             </div>
                             <span style="color:#969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400;line-height: normal; margin-top: 17px;">All banks accepted</span>
                           </div>
@@ -259,9 +259,7 @@ const TradeCoins = [
 const currencyType = ref("$")
 
 const country = [
-        {image:"/flags/us.svg", title: 'US Dollar', caption:'/svg/Currency.svg', },
-        { image:"/flags/gr.svg", title: 'British Pound', caption:'/svg/Currency (1).svg' },
-        { image:"/flags/al.svg", title: 'Canadian Dollar', caption:'/svg/Currency.svg'},
+     
       ];
 
 

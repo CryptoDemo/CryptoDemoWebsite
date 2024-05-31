@@ -4,8 +4,16 @@
       <span class="sm-num" style="font-size: 16px; font-style: normal;font-weight: 600;">Balance</span>
       <BlockChainNetwork/>
     </div>
-        <div style="margin-top: 31px; position: relative; display: flex; justify-content: center;">
-          <img src="/svg/coin-range.svg" style="position: relative;"/>
+        <div style="margin-top: 25px; margin-bottom: 25px; position: relative; display: flex; justify-content: center;">
+        <v-progress-circular style="position: relative;"
+          :rotate="360"
+          :size="170"
+          :width="15"
+          :color="dominantColor"
+        >
+        </v-progress-circular>
+
+          <!-- <img src="/svg/coin-range.svg" style="position: relative;"/> -->
           <img src="/svg/range1.svg" style="position: absolute; left: 0;right: 0; margin: auto; top: 17%;"/>
           <div style="display: flex; flex-direction: column; position: absolute; left: 0; right: 0; top: 57px;">
             <span class="lg-num">${{ balanceData }}</span>
@@ -13,11 +21,11 @@
           </div>
           
         </div>
-        <v-row style="display: flex;">
+        <v-row class="ml-2" style="display: flex;">
           <v-col v-for="token in pinia.state.tokenLists.slice(0, 6)" :key="token.id" class="d-flex" style="justify-content: space-between;">
               <div class="d-flex">
                 <div style="display: flex; align-items: center;">
-                  <v-progress-circular
+                  <v-progress-circular 
                     :size="30"
                     :width="5"
                     model-value="100"
@@ -67,6 +75,19 @@ const getSummedBal = async () => {
     }
   }
 };
+
+const coinsWithBalance = computed(() => {
+  return pinia.state.tokenLists.filter(token => token.balance > 0);
+});
+
+const dominantColor = computed(() => {
+  if (coinsWithBalance.value.length > 0) {
+    // Assuming tokens have a property `icon_dominant_color`
+    return coinsWithBalance.value.icon_dominant_color; // Adjust this logic to select the appropriate dominant color
+  } else {
+    return 'white';
+  }
+});
 
 onMounted(async () => {
    getSummedBal();

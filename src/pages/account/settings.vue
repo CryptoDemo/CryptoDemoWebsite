@@ -26,7 +26,7 @@
                       <div class="d-flex img-col" style="margin-top: 0px!important; margin-left: 16px;">
                         <div @click="$refs.imageSelector.click()">
                           <input type="image" src="/svg/Camera.svg" accept="image/png, image/jpeg, image/bmp" style="position: absolute; margin-left: 17px; margin-top: 17px;"/>
-                          <img ref="profileImg" :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" class="me-4" style="align-self: start;height: 65px;width: 72px;border-radius: 25px;"/>
+                          <img ref="profileImg" :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" class="me-4" style="align-self: start;height: 72px;width: 72px;border-radius: 25px;"/>
                         </div>
                         <input ref="imageSelector" @input="handleImgChange" type="file" accept="image/*" style="display:none"/>
                         <div class="email-div">

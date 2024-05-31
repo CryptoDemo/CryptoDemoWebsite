@@ -19,13 +19,13 @@
                       <thead>
                         <tr style="display: flex; margin-bottom: 8px;">
 
-                          <th style="display: flex; align-items: center; align-self: center; width: 18%; justify-content: center;">
+                          <th class="me-7" style="display: flex; align-items: center; align-self: center; width: 18%; justify-content: center;">
                             <div class="d-flex" >
                               <span class="table-header-text" :class="isDark ? 'text-dark':'text-light'">Coin</span>
                             </div>
                           </th>
 
-                          <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px; width: 21%; justify-content: center;">
+                          <th class="me-7" style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px; width: 21%; justify-content: center;">
                             <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Price (USD)</span>
                           </th>
 
@@ -115,27 +115,7 @@
                 <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Latest transactions</span>
             </div>
 
-            <div style="display: flex; justify-content: space-between;  margin-bottom: 284px; width: 95%;">
-              <span>1</span>
-                <div style="display: flex;">
-                  <img src="/svg/btc.svg" class="me-3"/>
-                  <div style="display: flex; flex-direction: column;">
-                    <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600;">Bitcoin</span>
-                    <span class="sml-text" :class="isDark ? 'coin-name':'coin-name-light'">BTC</span>
-                  </div>
-                </div>
-                <div>
-                  <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">Jan 17, 4:33 PM</span>
-                </div>
-
-                <div>
-                  <span class="browser-txt" style="color: #35B233; font-weight: 600; font-family: Poppins;">Completed</span>
-                </div>
-
-                <div>
-                  <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600;">+2.820436 USDT</span>
-                </div>
-            </div>
+          
           </div>
         </div>
       </div>
@@ -148,6 +128,7 @@
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 import {getTokens, currencyConverter, getTokenBalance} from "@/composables/requests/tokens";
+import { getWebTransaction } from "@/composables/requests/transaction";
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
@@ -275,12 +256,14 @@ const getTokenBals = async () => {
   }
 };
 
-onMounted(() => {
-  convertCurrencies();
-  getTokens_()
-  getTokenBals();
 
-  });
+
+
+onMounted(() => {
+convertCurrencies();
+getTokens_();
+getTokenBals();
+});
 
 </script>
 

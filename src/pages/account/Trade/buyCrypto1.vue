@@ -222,16 +222,6 @@
                     </div>
 
 
-                    <div class="d-flex" style="align-items: center;">
-                          <img src="/svg/heart-tick.svg" alt="icon">
-                            <span class="user-location">241</span>
-                    </div>
-
-                    <div class="d-flex" style="align-items: center;">
-                      <img src="/svg/heart-remove.svg" alt="icon">
-                      <span class="user-location">2</span>
-                    </div>
-
 
                 </div>
                 
@@ -306,9 +296,7 @@ const locations = [
 const currencyType = ref("$")
 
 const country = [
-        {image:"/flags/us.svg", title: 'US Dollar', caption:'/svg/Currency.svg', },
-        { image:"/flags/gr.svg", title: 'British Pound', caption:'/svg/Currency (1).svg' },
-        { image:"/flags/al.svg", title: 'Canadian Dollar', caption:'/svg/Currency.svg'},
+  
       ];
   </script>
   

@@ -1,7 +1,7 @@
 <template>
   <div>
     
-    <div  style="margin-top:130px; margin-bottom: 170px;">
+    <div style="margin-top:150px; margin-bottom: 170px;">
       <div class="pa-2 ma-2">
         <div  style="display: flex; justify-content: space-between;">  
           <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
@@ -44,7 +44,7 @@ const referralCode = pinia.state.user?.referral_code || "";
   const copyToClipboard = () => {
   const text = referralCode
   navigator.clipboard.writeText(text).then(() => {
-    push.success('Text copied to clipboard!')
+    push.success('Code copied to clipboard!')
   })
 }
 
