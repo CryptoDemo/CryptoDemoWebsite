@@ -30,7 +30,7 @@
         <v-list :class="isDark ? 'coin-bg1':'coin-bg1-light'" style="border-radius: 24px; border: 1px solid #303A46; width: 231px; padding: 22px; position: relative; margin-left: 170px;">
           <div class="d-flex">
             <div  class="me-5" style="position: relative; padding-top: 22px;">
-            <img src="/svg/bluelevel-star.svg" class="position-absolute" style="top: 0; left: -10px;"/>
+            <!-- <img src="/svg/bluelevel-star.svg" class="position-absolute" style="top: 0; left: -10px;"/> -->
             <img src="/svg/bluelevel-line.svg" class="my-2"/>
             <div style="position: relative; display: grid;">
               <img src="/svg/greylevel-line.svg" class="position-absolute" style="left: -10px; top: -10px;"/>
