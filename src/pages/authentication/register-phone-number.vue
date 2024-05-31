@@ -103,17 +103,7 @@
                 <div class="border"></div> <span class="cnt-text">Or Continue with</span> <div class="border"></div>
               </div>
 
-               <div class="d-flex justify-center mt-4">
-              <div class="cursor-pointer">
-                <img src="/svg/facebook.svg" alt="facebook-logo" class="facebook-icon"/>
-              </div>
-              <div class="cursor-pointer">
-                <img src="/svg/apple.svg" alt="facebook-logo" class="facebook-icon"/>
-              </div>
-              <div class="">
-                <img src="/img/google-logo.png" alt="google-logo" class="facebook-icon"/>
-              </div>
-            </div>
+            
         </div>
       </v-col>
      
