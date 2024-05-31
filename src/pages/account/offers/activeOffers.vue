@@ -187,7 +187,7 @@
               <div style="margin-top: 32px">
                 <div style="display: flex; margin-bottom: 14px">
                   <span class="me-3">Esewa</span>
-                  <img src="/flags/do.svg" width="25px" />
+                  <!-- <img src="/flags/do.svg" width="25px" /> -->
                 </div>
                 <div style="display: grid">
                   <span

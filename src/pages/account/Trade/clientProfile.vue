@@ -165,7 +165,7 @@
                         <div style="margin-top: 32px;">
                             <div style="display: flex; margin-bottom: 14px">
                                  <span class="me-3">Esewa</span>
-                                 <img src="/flags/do.svg" width="25px"/>
+                                 <!-- <img src="/flags/do.svg" width="25px"/> -->
                             </div>
                             <div style="display: grid">
                                 <span class="mb-3" style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">Bank Transfer</span>
@@ -209,7 +209,7 @@
                         <div style="margin-top: 32px;">
                             <div style="display: flex; margin-bottom: 14px">
                                  <span class="me-3">Esewa</span>
-                                 <img src="/flags/dz.svg" width="25px"/>
+                                 <!-- <img src="/flags/dz.svg" width="25px"/> -->
                             </div>
                             <div style="display: grid">
                                 <span class="mb-3" style="color: #969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 500; line-height: normal;">Bank Transfer</span>
@@ -381,14 +381,7 @@ const pageNumber = ref(1)
   };
 
   const navigation = [
-  {icon:'/svg/grad-location.svg', title: 'location', link:'/profile', flag:'/flags/ag.svg', country:'Argentina'},
-  {icon:'/svg/globe.svg', title: 'Languages:', link:'/payment', type:'English'},
-  {icon:'/svg/partners.svg', title: 'Trade partners:', link:'', number:0},
-  {icon:'/svg/trade1.svg', title: 'Trades', link:'/history'},
-  {icon:'/svg/trade1.svg', title: 'Trade volume:', link:'/settings', number:0},
-  {icon:'/svg/trust1.svg', title: 'Trusted By:', link:'/trade/invite', number:0},
-  {icon:'/svg/blocked1.svg', title: 'Blocked By:', link:'', number:0},
-  {icon:'/svg/blocked2.svg', title: 'Blocked', link:'', number:0},
+ 
 ];
     
     

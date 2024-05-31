@@ -188,7 +188,7 @@
                         <div>
                             <div style="margin-bottom: 17px; display: flex; align-items: center;">
                               <span class="me-3" style="color: #D8D8D8; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">Bank Transfer</span>
-                              <!-- <img src="/flags/ae.svg"   width="30"/> -->
+                             
                             </div>
                             <span style="color:#969696;font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400;line-height: normal; margin-top: 17px;">All banks accepted</span>
                           </div>

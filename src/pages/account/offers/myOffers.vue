@@ -105,7 +105,6 @@ const  Tradepartners = [
     MinMaxamount: "14,950 - 15,950",
     denomination:"NGN",
     Paymentmethod: "Bank Transfer",
-    flag:'/flags/au.svg',
     offerviews: '0',
     trust:'Trust',
     Status: "View",
