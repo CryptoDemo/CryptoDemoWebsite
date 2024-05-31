@@ -257,7 +257,7 @@
                     </div>
                     
                     <div style="display: flex; flex-direction: column; align-items: center;">
-                      <img src="/svg/heart-tick.svg" width="40" alt="icon">
+                      <!-- <img src="/svg/heart-tick.svg" width="40" alt="icon"> -->
                       <span style="color: #2873FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">View Offer</span>
                     </div>
                   </div>

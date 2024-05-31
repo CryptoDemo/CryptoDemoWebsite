@@ -18,14 +18,7 @@
                      <v-btn class="d-flex" style="color: #F65556; font-family: Poppins; align-self: center; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal; box-shadow: none; letter-spacing: 0px; text-transform: capitalize; background: inherit;"><img src="/svg/forbidden.svg" style="margin-right: 3px !important"/>Block</v-btn>
                     </div>
 
-                    <v-btn class="d-flex" style="align-self: center; box-shadow: none; letter-spacing: 0px; background: inherit; height: fit-content;">
-                          <img src="/svg/heart-tick.svg" alt="icon">
-                            <span class="user-location">0</span>
-                    </v-btn>
-                    <v-btn class="d-flex" style="align-self: center; height: fit-content; background: inherit; box-shadow: none;">
-                      <img src="/svg/heart-remove.svg" alt="icon">
-                      <span class="user-location">0</span>
-                    </v-btn>
+                
                   </div>
                 </div>
               </div>
@@ -270,15 +263,7 @@
 
                         <div class="d-flex">
                             <!-- <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/> -->
-                                <div>
-                                    <div style="padding-top: 35px;">
-                                    <span class="username">UID : <span class="grad-text">Ogadinma2024</span></span>
-                                    <div style="display: grid">
-                                        <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
-                                        <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
-                                    </div>
-                                    </div>
-                                </div>
+                         
                         </div> 
 
                             <div style="margin-top: 35px">
@@ -302,15 +287,7 @@
 
                         <div class="d-flex">
                             <!-- <img src="/svg/Image (1).svg" width="70px" class="me-3" alt="avatar"/> -->
-                                <div>
-                                    <div style="padding-top: 35px;">
-                                    <span class="username">UID : <span class="grad-text">Ogadinma2024</span></span>
-                                    <div style="display: grid">
-                                        <span class="username" style="font-size: 16px;">Feb 5, 2024</span>
-                                        <img src="/svg/heart-tick.svg" class="mt-3" alt="icon">
-                                    </div>
-                                    </div>
-                                </div>
+                            
                         </div> 
 
                             <div style="margin-top: 35px">

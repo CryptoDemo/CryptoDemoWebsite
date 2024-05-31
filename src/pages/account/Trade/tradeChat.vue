@@ -23,16 +23,7 @@
                       <div class="d-flex" style="margin-right: 30px; align-items: center;">
                           <v-btn style="background: inherit; "><img src="/svg/call1.svg" class=""/></v-btn>
                           <v-btn style="background: inherit; "><img src="/svg/profile-circle(2).svg" class=""/></v-btn>
-                          
-                          <v-btn class="d-flex" style="background: inherit; padding: 10px;">
-                            <img src="/svg/heart-tick.svg" alt="icon">
-                            <span class="user-location" style="color: #64748B; font-size: 16px;">0</span>
-                          </v-btn>
-
-                          <v-btn class="d-flex" style="background: inherit; padding: 10px;">
-                            <img src="/svg/heart-remove.svg" alt="icon">
-                            <span class="user-location" style="color: #64748B; font-size: 16px;">0</span>
-                          </v-btn> 
+                         
 
                            <v-menu v-model="menu" :close-on-content-click="false" location="end">
                               <template v-slot:activator="{ props }">
@@ -53,20 +44,7 @@
                               <v-card min-width="304" style="border-radius: 24px; padding: 21px; border: 1px solid  #303A46; background: #161D26;">
                                   <div class="d-flex" style="margin-bottom: 15px;">
                                       <img src="/svg/Avatar1.svg" width="50" class="me-3" alt="avatar"/>
-                                          <div>
-                                              <span style="font-family: Poppins; display: flex; color: #2873FF; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Tom Gravesen</span>
-                                                <div class="d-flex">
-                                                  <div class="d-flex me-6" style="align-items: center;">
-                                                    <img src="/svg/heart-tick.svg" alt="icon">
-                                                    <span class="user-location">0</span>
-                                                  </div>
-
-                                                  <div class="d-flex me-8" style="align-items: center;">
-                                                    <img src="/svg/heart-remove.svg" alt="icon">
-                                                    <span class="user-location">0</span>
-                                                  </div> 
-                                                </div>
-                                          </div>
+                                        
                                       <v-btn variant="text" @click="menu = false" style="border-radius: 14px; background: #12181F; max-width: 45px!important; height: 45px !important;">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
                                           <path d="M17.5 16.0849L21.0355 12.5494C21.4261 12.1588 22.0592 12.1588 22.4497 12.5494C22.8403 12.9399 22.8403 13.573 22.4497 13.9636L18.9142 17.4991L22.4497 21.0346C22.8403 21.4252 22.8403 22.0583 22.4497 22.4489C22.0592 22.8394 21.4261 22.8394 21.0355 22.4489L17.5 18.9133L13.9645 22.4489C13.5739 22.8394 12.9408 22.8394 12.5503 22.4489C12.1597 22.0583 12.1597 21.4252 12.5503 21.0346L16.0858 17.4991L12.5503 13.9636C12.1597 13.573 12.1597 12.9399 12.5503 12.5494C12.9408 12.1588 13.5739 12.1588 13.9645 12.5494L17.5 16.0849Z" fill="white"/>
