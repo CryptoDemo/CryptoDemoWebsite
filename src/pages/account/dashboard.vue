@@ -21,7 +21,7 @@
               <div class="d-flex">              
                 <div style="width: 33%; height: 100%; margin-top: 50px;">
                   <div class="d-flex">
-                    <img src="/img/btc.png" class="me-2"/>
+                    <!-- <img src="/img/btc.png" class="me-2"/> -->
                     <span class="selected-coin">{{ selectedCoin="Bitcoin" }} Price Chart</span>
                   </div>
                   <VuetifyChart class="me-5"/>
