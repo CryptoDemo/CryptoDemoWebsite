@@ -39,17 +39,17 @@
                           <th style="display: flex; align-items: center; align-self: center; position: relative;right: 72px">
                             <span></span>
                           </th>
-                        
                         </tr>
                       </thead>
-                    
+
+
                   <tbody>
-                    <tr v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex;">
+                    <tr class="token-price" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
                       <td style="display: contents;">
                         <div class="d-flex me-7" style="align-items: center; width: 25%; overflow: hidden;">
                           <img :src="token.icon" width="30" class="me-3" />
-                          <div style="flex-direction: column; display: flex; overflow: hidden; text-overflow: ellipsis;">
-                            <span class="coin-name1"
+                          <div class="coin-div" style="flex-direction: column; display: flex; overflow: hidden; text-overflow: ellipsis;">
+                            <span class="coin-name1 flex-lg-and-up hidden-sm-and-down"
                                   :class="isDark ? 'coin-name' : 'coin-name-light'"
                                   style="font-family: Poppins; font-weight: 600; font-size: 16px; line-height: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                               {{ token.name }}
@@ -63,9 +63,7 @@
                         </div>
                       </td>
 
-
-                      <td  style="display: flex;align-items: end; width: 22%;"><span class="browser-txt coin-price" style="margin-bottom: 8px" :class="isDark ? 'coin-name':'coin-name-light'">{{ token?.converted_value }}</span></td>
-
+                      <td class="mt-2" style="display: flex;align-items: center; width: 22%;"><span class="browser-txt coin-price" style="margin-bottom: 8px" :class="isDark ? 'coin-name':'coin-name-light'">{{ token?.converted_value }}</span></td>
 
                       <td style="display: flex; align-items: end; justify-content: center; width: 20%;">
                         <span class="browser-txt mb-2" :class="isDark ? 'coin-name':'coin-name-light'"> 
@@ -75,6 +73,7 @@
 
                       <div class="d-flex"> 
                         <div class="hidden-lg-and-up flex-sm-and-down">
+                         
                           <v-menu>
                             <template v-slot:activator="{ props }">
                               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" v-bind="props">
@@ -85,27 +84,53 @@
                          
                             </template>
 
-                            <v-list>
-                              <v-list-item
-                                v-for="(item, i) in items"
-                                :key="i"
-                              >
-                                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                            <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px">
+                              <v-list-item>
+                                <h4 style="font-family: Poppins; font-size: 400 !important;">Select the action you want to perform</h4>
+                                <div class="d-flex me-7 mt-4" style="align-items: center;">
+                                  <img :src="token.icon" width="30" class="me-3" />
+                                  <div class="coin-div" style="flex-direction: column; display: flex !important;">
+                                    <span class="coin-name1"
+                                          :class="isDark ? 'coin-name' : 'coin-name-light'"
+                                          style="font-family: Poppins; font-weight: 600; font-size: 16px; line-height: normal;">
+                                      {{ token.name }}
+                                    </span>
+                                    <span class="sml-text"
+                                          :class="isDark ? 'text-dark' : 'text-light'"
+                                          style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                      {{ token.symbol }}
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="d-flex">
+                                    <td style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
+                                    <td style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
+                                    <td style="display: flex; align-items: center; color: white;">
+                                      <div>
+                                      <nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'active-offers-dark':'active-offers-light'" class="swap">
+                                      <img src="/svg/arrow-swap.svg"/>
+                                      Swap</v-btn>
+                                      </nuxt-link>
+                                      </div> 
+                                    </td>
+                                </div>
                               </v-list-item>
                             </v-list>
                           </v-menu>
                         </div>
-
-                        <td class="flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
+                      <div class="d-flex">
+                        <td class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
                         <td class=" flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
-                        <td class="flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center; color: white;"><div>
+                        <td class="flex-lg-and-up hidden-md-and-down" style="display: flex; align-items: center; color: white;">
+                          <div>
                           <nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'active-offers-dark':'active-offers-light'" class="swap">
                           <img src="/svg/arrow-swap.svg"/>
                           Swap</v-btn>
-                        </nuxt-link>
-                      </div> 
+                          </nuxt-link>
+                          </div> 
                         </td>
                     </div>
+                      </div>
                     </tr>
                   </tbody>
               </v-table>
@@ -120,7 +145,7 @@
         </div>
       </div>
     </v-container>   
-      <Footer class="desktop-footer"/>
+      <Footer class="desktop-footer flex-lg-and-up hidden-sm-and-down"/>
       <Mobile-footer class="mobile-footer"/>
     </div>
   </template>
@@ -338,7 +363,6 @@ color: #10192D;
 .wallet-border-light{
   border: 1px solid #DBE8FF;
 }
-
 .coin-name{
 color: white !important;
 }
@@ -349,21 +373,24 @@ color: #10192D;
   display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
 .wallet-box{
   padding: 15px !important;
   width: 100% !important;
 }
-.coin-name1{
-font-size: 14px !important;
-display: -webkit-box;
--webkit-box-orient: vertical;
--webkit-line-clamp: 1;
-overflow: hidden;
-text-overflow: ellipsis;
+.coin-div{
+ overflow: unset !important;
+ display: block !important;
 }
-.coin-price{
-  margin-bottom: 10px !important;
+.sml-text{
+font-size: 14px !important;
+font-weight: 600;
+line-height: normal;
+}
+
+.token-price{
+  display: flex !important;
+  justify-content: space-between !important;
 }
 
 }
