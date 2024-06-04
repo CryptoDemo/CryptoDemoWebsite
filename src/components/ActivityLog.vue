@@ -38,8 +38,8 @@
             <tbody>
               <tr v-for="(item, i) in activityLogs" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5);justify-content: space-between; align-items: baseline; margin-top: 10px">
                 <td ><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 10px">{{i+1}}</span></td>
-                <td class="logCaptions" style="width: 21%;display: flex; justify-content: center;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.title}}</span></td>
-                <td class="logCaptions1" style="width: 50%;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.description}}</span></td>
+                <td class="logCaptions" style="width: 22%;display: flex; justify-content: center;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.title}}</span></td>
+                <td class="logCaptions1" style="width: 60%;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.description}}</span></td>
                 <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{formatDate(item.timestamp)}}</span></td>
               </tr>
 
@@ -233,21 +233,21 @@ font-size: 12px;
 font-style: normal;
 font-weight: 700;
 }
-.browser-txt{
+/* .browser-txt{
 font-size: 12px;
 display: -webkit-box !important; 
 -webkit-box-orient: vertical !important;
 -webkit-line-clamp: 1 !important;
 text-overflow: ellipsis;
 overflow: hidden;
-}
+} */
 .logCaptions{
-width: 90px !important;
+width: 132px !important;
 position: relative !important;
-right: -9px !important;
+/* right: -9px !important; */
 }
 .logCaptions1{
-width: 90px !important;
+width: 235px !important;
 margin-left: -15px;
 }
 .logCaptions2{
@@ -260,19 +260,19 @@ margin-left: -15px;
   position: relative;
   right: 2px;
 }
-.actions{
+/* .actions{
   margin-left: 28px !important;
-}
+} */
 .browser{
 right: 28px  !important;
 }
-.ipAddress{
+/* .ipAddress{
   right: 29px !important;
   width: 129px !important;
-}
-.location1{
+} */
+/* .location1{
   right: 34px !important;
-}
+} */
 .signedIn{
   display: flex;
   width: max-content;

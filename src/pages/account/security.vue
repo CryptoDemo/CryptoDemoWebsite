@@ -3,14 +3,14 @@
     <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true"/>
       <v-container style="width: 100%;">
 
-          <div  style="margin-top: 110px; display: flex;">
+          <div  style="margin-top: 110px; display: flex;width: 100%">
               <div class="flex-lg-and-up hidden-sm-and-down">
                 <div class="">
                     <Side-nav/>
                 </div>
               </div>
 
-              <div class="mobile-col" style="width: 70%">
+              <div class="mobile-col" style="">
                 <div class="security-col" style="margin-left: 28px;">
                     <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; justify-content: space-between">    
                         <span class="acct-text"> Security</span>
@@ -33,7 +33,7 @@
                             </v-btn>
                         </div>
                         
-                      <div class="ml-2" style="margin-top: 42px;">
+                      <div class="ml-2" style="margin-top: 42px; width: 100%;">
                           <span class="pswrd-mgt" :class="isDark ? 'card-text-dark':'card-text-light'" style="font-weight: 700;">Change Password</span>
                           <div class="d-md-flex">
                             <v-text-field class="password-styling firstPassword pl-4 me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="Enter current password" v-model="OldPassword" variant="plain">   

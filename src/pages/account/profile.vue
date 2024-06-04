@@ -98,7 +98,7 @@
         </div>
     </v-container>
     </div>
-    <Footer class="desktop-footer"/>
+    <Footer class="desktop-footer flex-lg-and-up hidden-md-and-down"/>
     <Mobile-footer class="mobile-footer"/>
   </div>
 </template>
