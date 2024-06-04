@@ -36,7 +36,7 @@
                 </div>
                 <div style="display: inline-grid;">
                   <span class="coin-perc ml-3 mt-1">{{ token.symbol }}</span>
-                  <span class="sm-num" style="font-weight: 500;">{{ token.balance }}</span>
+                  <span class="sm-num" style="font-weight: 500;">{{formatBalance (token.balance) }}</span>
                 </div>
               </div>
 
