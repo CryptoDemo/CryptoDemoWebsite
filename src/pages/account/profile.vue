@@ -398,8 +398,8 @@ fill: #10192D;
     margin: auto;
   }
   .avatar{
-    width: 40px !important;
-    /* margin-left: 15px; */
+    width: 54px !important;
+    height: 54px !important;
   }
   .profile-section{
     min-width: 100% !important;
