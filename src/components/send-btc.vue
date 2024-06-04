@@ -6,7 +6,7 @@
      </v-btn>
  
      <v-dialog v-model="dialog" max-width="479">
-       <v-card :class="isDark ? 'profile':'profile-light'" style="border-radius: 24px; padding: 29px ; box-shadow: none; width: 479px; height: 580px;">
+       <v-card class="dialog-card" :class="isDark ? 'profile':'profile-light'" style="border-radius: 24px; padding: 29px ; box-shadow: none; width: 479px; height: 580px;">
          <template v-slot:text>
              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px">
                <span class="snd-crypto" :class="isDark ? 'coin-name':'coin-name-light'">Send Crypto</span>
@@ -133,34 +133,6 @@ const selectedTokenBalance = computed(() => {
   return selectedToken?.balance;
 });
 
-
-// const getTokens_ = async()=>{
-//   try {
-//       const data = await getTokens(pageNumber.value);
-  
-//       if (data.success) {
-//         const fetchedTokens = data.data.result;
-  
-//         // Filter tokens based on the selected network ID
-//         const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
-//         const filteredTokens = fetchedTokens.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
-  
-//         const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
-  
-//         // Check if there are any new items in the fetched data
-//         const newItems = filteredTokens.filter(item => !storedTokenIds.includes(item.id));
-  
-//         if (newItems.length > 0) {
-//           console.log('fetching');
-//           pinia.setTokenLists(newItems);
-//         }
-//       } else {
-//         console.log('Unavailable');
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-// }
 
 const calculateFee = async () => {
   const TxnInfo = {
@@ -399,5 +371,13 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+.dialog-card{
+  padding: 10px !important;
+  width: 100% !important;
+  height: auto !important;
+}
 }
  </style>

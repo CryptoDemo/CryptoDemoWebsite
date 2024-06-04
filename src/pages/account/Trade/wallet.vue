@@ -73,9 +73,7 @@
 
                       <div class="d-flex" style="align-items: center;"> 
                         <div class="hidden-lg-and-up flex-sm-and-down">
-                         
-
-                          
+                        
                           <v-btn @click="dialog = true" style="background: inherit; box-shadow: none;"> 
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                 <path d="M14.5 5.5C14.5 4.4 13.6 3.5 12.5 3.5C11.4 3.5 10.5 4.4 10.5 5.5C10.5 6.6 11.4 7.5 12.5 7.5C13.6 7.5 14.5 6.6 14.5 5.5Z" stroke="#D8D8D8" stroke-width="1.5"/>
@@ -88,7 +86,7 @@
                             <v-card max-width="400" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; padding: 20px;">
                               <h4 style="font-family: Poppins; font-size: 400 !important;">Select the action you want to perform</h4>
                                 <div class="d-flex me-7 mt-4" style="align-items: center;">
-                                  <img :src="token.icon" width="30" class="me-3" />
+                                  <img :src="token.icon" width="35" class="me-3" />
                                   <div class="coin-div" style="flex-direction: column; display: flex !important;">
                                     <span class="coin-name1"
                                           :class="isDark ? 'coin-name' : 'coin-name-light'"
@@ -116,12 +114,12 @@
                                       </div> 
                                     </td>
                                 </div>
-                              <template v-slot:actions>
+                             
                                 <v-btn class="ms-auto primary-btn1" style="border-radius: 10px !important; color: white"
                                   text="Cancel"
                                   @click="dialog = false"
                                 ></v-btn>
-                              </template>
+                             
                             </v-card>
                           </v-dialog>
                         

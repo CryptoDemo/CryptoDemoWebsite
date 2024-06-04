@@ -341,7 +341,6 @@ margin-top: 15px;
 box-shadow: none  !important;
 height: 320px !important;
 }
-
 .profile-cards-dark{
 border: 1px solid rgba(142, 155, 174, 0.5);
 background: inherit;
@@ -382,6 +381,7 @@ input::-webkit-inner-spin-button {
 .dialog-card{
   padding: 10px !important;
   width: 100% !important;
+  height: auto !important;
 }
 }
 </style>
