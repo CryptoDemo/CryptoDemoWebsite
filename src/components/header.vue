@@ -4,7 +4,7 @@
       <v-container style="display: flex; align-items: center;">   
         <img src="/svg/Logo.svg" class="me-3"/>
         <v-app-bar-title class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-title':'nav-title-light'">Demo 
-          <div v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'" class="flex-lg-and-up hidden-sm-and-down" style="width: 50%; height: 58px ; flex-shrink: 0; border-radius: 20px; display: flex; margin-left: 20px">
+          <div v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'" class="flex-lg-and-up hidden-sm-and-down" style="width: 360px; height: 58px ; flex-shrink: 0; border-radius: 20px; display: flex; margin-left: 20px">
               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px; margin-right: 10px;" v-if="theme.global.current.value.dark">
                 <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
