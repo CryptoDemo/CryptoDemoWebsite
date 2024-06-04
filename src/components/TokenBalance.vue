@@ -43,7 +43,7 @@ const getTokenBals = async () => {
             // Update tokenLists with the new balance
             const index = symbols.findIndex(t => t.token === token.token);
             if (index !== -1) {
-              symbols[index].balance = formatBalance(token.balance);
+              symbols[index].balance =formatBalance (token.balance);
             }
           }
       } else {
