@@ -11,7 +11,7 @@
                 </v-btn>
             </template>
             <div>
-            <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="width: 330px; height: 300px; border-radius: 15px;">
+            <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="width: 350px; height: 500px; border-radius: 15px;">
                 <v-list-item v-for="(msgs, i) in notificationLogs" :key="i">
                     <v-list-item-title>
                     <div class="d-flex">
