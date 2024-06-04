@@ -25,7 +25,7 @@
                             </div>
                           </th>
 
-                          <th class="me-7 price-th" style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px; width: 21%; justify-content: center;">
+                          <th class="me-7 price-th" style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px; width: 27%;">
                             <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Price (USD)</span>
                           </th>
 
@@ -74,19 +74,19 @@
                       <div class="d-flex" style="align-items: center;"> 
                         <div class="hidden-lg-and-up flex-sm-and-down">
                          
-                          <v-menu>
-                            <template v-slot:activator="{ props }">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" v-bind="props">
+
+                          
+                          <v-btn @click="dialog = true" style="background: inherit; box-shadow: none;"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                 <path d="M14.5 5.5C14.5 4.4 13.6 3.5 12.5 3.5C11.4 3.5 10.5 4.4 10.5 5.5C10.5 6.6 11.4 7.5 12.5 7.5C13.6 7.5 14.5 6.6 14.5 5.5Z" stroke="#D8D8D8" stroke-width="1.5"/>
                                 <path d="M14.5 19.5C14.5 18.4 13.6 17.5 12.5 17.5C11.4 17.5 10.5 18.4 10.5 19.5C10.5 20.6 11.4 21.5 12.5 21.5C13.6 21.5 14.5 20.6 14.5 19.5Z" stroke="#D8D8D8" stroke-width="1.5"/>
                                 <path d="M14.5 12.5C14.5 11.4 13.6 10.5 12.5 10.5C11.4 10.5 10.5 11.4 10.5 12.5C10.5 13.6 11.4 14.5 12.5 14.5C13.6 14.5 14.5 13.6 14.5 12.5Z" stroke="#D8D8D8" stroke-width="1.5"/>
-                              </svg>
-                         
-                            </template>
+                            </svg>
+                          </v-btn>
 
-                            <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px">
-                              <v-list-item>
-                                <h4 style="font-family: Poppins; font-size: 400 !important;">Select the action you want to perform</h4>
+                          <v-dialog v-model="dialog" width="auto">
+                            <v-card max-width="400" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; padding: 20px;">
+                              <h4 style="font-family: Poppins; font-size: 400 !important;">Select the action you want to perform</h4>
                                 <div class="d-flex me-7 mt-4" style="align-items: center;">
                                   <img :src="token.icon" width="30" class="me-3" />
                                   <div class="coin-div" style="flex-direction: column; display: flex !important;">
@@ -110,15 +110,21 @@
                                     <td style="display: flex; align-items: center; color: white;">
                                       <div>
                                       <nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'active-offers-dark':'active-offers-light'" class="swap">
-                                      <img src="/svg/arrow-swap.svg"/>
+                                      <img src="/svg/arrow-swap.svg" class="me-1"/>
                                       Swap</v-btn>
                                       </nuxt-link>
                                       </div> 
                                     </td>
                                 </div>
-                              </v-list-item>
-                            </v-list>
-                          </v-menu>
+                              <template v-slot:actions>
+                                <v-btn class="ms-auto primary-btn1" style="border-radius: 10px !important; color: white"
+                                  text="Cancel"
+                                  @click="dialog = false"
+                                ></v-btn>
+                              </template>
+                            </v-card>
+                          </v-dialog>
+                        
                         </div>
                       <div class="d-flex">
                         <td class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
@@ -155,10 +161,10 @@
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 import {getTokens, currencyConverter, getTokenBalance} from "@/composables/requests/tokens";
-import { getWebTransaction } from "@/composables/requests/transaction";
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
+const dialog = ref(false)
 const pageNumber = ref(1)
 const conversionResult = ref([]);
 const network = pinia.state.selectedNetwork.toLowerCase();
@@ -395,7 +401,7 @@ line-height: normal;
 }
 
 .price-th{
-width: 27% !important;
+width: 29% !important;
 }
 
 }

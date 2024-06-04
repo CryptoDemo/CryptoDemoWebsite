@@ -1,12 +1,12 @@
 <template>
   <div class="pa-4 text-center">
-   <v-btn @click="dialog = true" :class="isDark ? 'active-offers-dark':'active-offers-light'" class="send-btn">
-     <img src="/svg/get.svg"/>
+   <v-btn @click.stop="dialog = true" :class="isDark ? 'active-offers-dark':'active-offers-light'" class="send-btn">
+     <img src="/svg/get.svg" class="me-1"/>
      <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
    </v-btn>
 
    <v-dialog v-model="dialog" max-width="479">
-     <v-card :class="isDark ? 'profile':'profile-light'" style="border-radius: 24px; padding: 29px ; box-shadow: none; width: 479px; height: 580px;">
+     <v-card class="dialog-card"  :class="isDark ? 'profile':'profile-light'" style="border-radius: 24px; padding: 29px ; box-shadow: none; width: 479px; height: 580px;">
        <template v-slot:text>
            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px">
              <span class="snd-crypto" :class="isDark ? 'coin-name':'coin-name-light'">Receive Crypto</span>
@@ -376,6 +376,13 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+.dialog-card{
+  padding: 10px !important;
+  width: 100% !important;
+}
 }
 </style>
 
