@@ -51,7 +51,7 @@
                     <tr class="token-price" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
                       <td style="display: contents;">
                         <div class="d-flex me-7" style="align-items: center; width: 25%; overflow: hidden;">
-                          <img :src="token.icon" width="30" class="me-3" />
+                          <img :src="token.icon" width="35" class="me-3" />
                           <div class="coin-div" style="flex-direction: column; display: flex; overflow: hidden; text-overflow: ellipsis;">
                             <span class="coin-name1 flex-lg-and-up hidden-sm-and-down"
                                   :class="isDark ? 'coin-name' : 'coin-name-light'"

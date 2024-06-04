@@ -1,7 +1,7 @@
 <template>
   <div :class="isDark ? 'profile':'profile-light'" class="wallet-nav">
     <div class="d-flex" style="align-items: baseline; justify-content: space-between; margin-top: -30px; ">
-      <span class="sm-num" style="font-size: 16px; font-style: normal;font-weight: 600;">Balance</span>
+      <span class="sm-num" :class="isDark ? 'country-name' : 'country-name-light'" style="font-size: 16px; font-style: normal;font-weight: 600;">Balance</span>
       <BlockChainNetwork/>
     </div>
         <div style="margin-top: 25px; margin-bottom: 25px; position: relative; display: flex; justify-content: center;">
@@ -36,7 +36,7 @@
                 </div>
                 <div style="display: inline-grid;">
                   <span class="coin-perc ml-3 mt-1">{{ token.symbol }}</span>
-                  <span class="sm-num" style="font-weight: 500;">{{formatBalance (token.balance) }}</span>
+                  <span class="sm-num" :class="isDark ? 'country-name' : 'country-name-light'" style="font-weight: 500;">{{formatBalance (token.balance) }}</span>
                 </div>
               </div>
 
@@ -139,5 +139,12 @@ font-size: 12px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
+}
+
+.country-name{
+color: white !important;
+}
+.country-name-light{
+color: #10192D !important;
 }
 </style>

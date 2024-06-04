@@ -23,7 +23,7 @@
 
           <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <v-btn @click.prevent="emit('country',country)" class="me-4 mt-7 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; height: 50px; margin-top: px;">
+              <v-btn @click.prevent="emit('country',country)" class="me-4 mt-8 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; height: 50px; margin-top: px;">
                 <img :src="flag" class="me-2" width="32" height="32" style="object-fit: cover;border-radius: 30px"/>
                 <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{country.slice(0, 5)}}</span>
                 <img src="/svg/chevron-light.svg" v-if="theme.global.current.value.dark"/>
@@ -61,12 +61,12 @@
             <span  class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: 3px; margin-top: -6px;">Wallet</span>     
           </div>
 
-          <div class="profile-div" v-if="icon2" style="display: flex; flex-direction: column; margin-top: 25px;">
+          <div class="profile-div" v-if="icon2" style="display: flex; flex-direction: column; margin-top: 27px;">
             <Profile-nav  class="profile-nav me-8"/>
-            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 7px; margin-bottom: 6px;">Profile</span>    
+            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 7px; margin-bottom: 5px;">Profile</span>    
           </div>
 
-          <div v-if="icon3"  style="display: grid; position: relative; margin-top: 25px;">
+          <div v-if="icon3"  style="display: grid; position: relative; margin-top: 27px;">
             <Notifications/>
             <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-right: 13px; margin-top: -8px;">Notification</span>     
           </div>
