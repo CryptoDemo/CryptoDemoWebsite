@@ -37,11 +37,11 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const items = [
   {icon:'/svg/profile1.svg', title: 'My profile', link:'/account/profile'},
-  {icon:'/svg/payment.svg', title: 'Payment Method', link:''},
+  {icon:'/svg/payment.svg', title: 'Payment Method', link:'/account/payment'},
   {icon:'/svg/transaction.svg', title: 'Security', link:'/account/security'},
   {icon:'/svg/settings.svg', title: 'Settings', link:'/account/settings'},
   {icon:'/svg/friend.svg', title: 'Dashboard', link:'/account/dashboard'},
-  {icon:'/svg/logout.svg', title: 'Create an Offer', link:'/authentication/login'},
+  {icon:'/svg/logout.svg', title: 'Market Place', link:'/authentication/login'},
   {icon:'/svg/logout.svg', title: 'Wallet', link:'/authentication/login'},
   {icon:'/svg/logout.svg', title: 'Log Out', link:'/authentication/login'},
 ];

@@ -47,14 +47,14 @@ const navigation = [
           </defs>
         </svg>`, title: 'Active Offers', link:'/account/activeOffers', },
 
-       {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+       {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M18.04 13.55C17.62 13.96 17.38 14.55 17.44 15.18C17.53 16.26 18.52 17.05 19.6 17.05H21.5V18.24C21.5 20.31 19.81 22 17.74 22H6.26C4.19 22 2.5 20.31 2.5 18.24V11.51C2.5 9.44001 4.19 7.75 6.26 7.75H17.74C19.81 7.75 21.5 9.44001 21.5 11.51V12.95H19.48C18.92 12.95 18.41 13.17 18.04 13.55Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M2.5 12.4113V7.84132C2.5 6.65132 3.23 5.59128 4.34 5.17128L12.28 2.17128C13.52 1.70128 14.85 2.62131 14.85 3.95131V7.7513" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M22.5588 13.9692V16.0292C22.5588 16.5792 22.1188 17.0292 21.5588 17.0492H19.5988C18.5188 17.0492 17.5288 16.2592 17.4388 15.1792C17.3788 14.5492 17.6188 13.9592 18.0388 13.5492C18.4088 13.1692 18.9188 12.9492 19.4788 12.9492H21.5588C22.1188 12.9692 22.5588 13.4192 22.5588 13.9692Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M7 12H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>`, title: 'Payment', link:'/account/payment',},
 
-       {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="currentColor">
+       {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
           <path d="M7.48 18.8505L10.58 21.2505C10.98 21.6505 11.88 21.8505 12.48 21.8505H16.28C17.48 21.8505 18.78 20.9505 19.08 19.7505L21.48 12.4505C21.98 11.0505 21.08 9.85046 19.58 9.85046H15.58C14.98 9.85046 14.48 9.35046 14.58 8.65046L15.08 5.45046C15.28 4.55046 14.68 3.55046 13.78 3.25046C12.98 2.95046 11.98 3.35046 11.58 3.95046L7.48 10.0505" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
           <path d="M2.38 18.8484V9.04844C2.38 7.64844 2.98 7.14844 4.38 7.14844H5.38C6.78 7.14844 7.38 7.64844 7.38 9.04844V18.8484C7.38 20.2484 6.78 20.7484 5.38 20.7484H4.38C2.98 20.7484 2.38 20.2484 2.38 18.8484Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>`, title: 'Market Place', link:'/account/trade/marketPlace',},
