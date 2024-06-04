@@ -17,7 +17,7 @@
                    <div class="wallet-box" :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 30px; margin-top: 20px; width: 96%;">
                     <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
                       <thead>
-                        <tr style="display: flex; margin-bottom: 8px;">
+                        <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
 
                           <th class="me-7" style="display: flex; align-items: center; align-self: center; width: 18%; justify-content: center;">
                             <div class="d-flex" >
@@ -25,11 +25,11 @@
                             </div>
                           </th>
 
-                          <th class="me-7" style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px; width: 21%; justify-content: center;">
+                          <th class="me-7 price-th" style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px; width: 21%; justify-content: center;">
                             <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Price (USD)</span>
                           </th>
 
-                          <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 21px">
+                          <th class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 21px">
                             <span class="table-header-text"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Balance</span>
                           </th>
 
@@ -63,7 +63,7 @@
                         </div>
                       </td>
 
-                      <td class="mt-2" style="display: flex;align-items: center; width: 22%;"><span class="browser-txt coin-price" style="margin-bottom: 8px" :class="isDark ? 'coin-name':'coin-name-light'">{{ token?.converted_value }}</span></td>
+                      <td class="mt-2" style="display: flex; align-items: center; width: 22%;"><span class="browser-txt coin-price" style="margin-bottom: 8px" :class="isDark ? 'coin-name':'coin-name-light'">{{ token?.converted_value }}</span></td>
 
                       <td style="display: flex; align-items: end; justify-content: center; width: 20%;">
                         <span class="browser-txt mb-2" :class="isDark ? 'coin-name':'coin-name-light'"> 
@@ -71,7 +71,7 @@
                         </span>
                       </td>
 
-                      <div class="d-flex"> 
+                      <div class="d-flex" style="align-items: center;"> 
                         <div class="hidden-lg-and-up flex-sm-and-down">
                          
                           <v-menu>
@@ -97,12 +97,14 @@
                                     </span>
                                     <span class="sml-text"
                                           :class="isDark ? 'text-dark' : 'text-light'"
-                                          style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                          style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12px !important;">
                                       {{ token.symbol }}
                                     </span>
                                   </div>
+
+                                  <h3>{{ token.balance}}</h3>
                                 </div>
-                                <div class="d-flex">
+                                <div class="d-flex mt-3">
                                     <td style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
                                     <td style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
                                     <td style="display: flex; align-items: center; color: white;">
@@ -387,10 +389,13 @@ font-size: 14px !important;
 font-weight: 600;
 line-height: normal;
 }
-
 .token-price{
   display: flex !important;
   justify-content: space-between !important;
+}
+
+.price-th{
+width: 27% !important;
 }
 
 }
