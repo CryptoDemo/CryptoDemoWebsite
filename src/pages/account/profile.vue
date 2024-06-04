@@ -14,10 +14,10 @@
                          <div class="div-username1"> <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'">@{{ pinia.state.user?.username}} </span> </div>
                         </div>
                     </div>
-
+<!-- 
                     <div class="d-flex">
                       <span class="username me-4" :class="isDark ? 'card-text-dark':'card-text-light'" style="align-self: center;">{{ pinia.state.user?.country}}</span>
-                    </div>
+                    </div> -->
 
                     <!-- TODO: insert a user badge here when it is available -->
                     
