@@ -5,31 +5,27 @@
       </div>
         <v-table  class="mt-5" style="display: grid! important; margin-bottom: 32px" >
           <thead>
-            <tr :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px !important; height: 70px;  display: flex; justify-content: space-between ">
+            <tr :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="tr-div" style="border-radius: 24px !important; height: 70px;  display: flex; justify-content: space-between ">
             
 
               <th style="display: flex; align-items: center; align-self: center;">
                 <div class="d-inline-flex">
                     <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">S.N.</span>
-                    <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
                 </div>
               </th>
 
             <th class="actions" style="display: flex; align-items: center; align-self: center; width: 11%;">
                 <div class="d-flex">
                   <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Action</span>
-                  <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
                 </div>
               </th>
 
                 <th class="browser" style="display: flex; align-items: center; align-self: center; width: 59%; justify-content: center;">
                 <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Description</span>
-                <v-icon size="large" color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
               </th>
 
-              <th class="signedIn" style="display: flex; align-items: center; align-self: center; position: relative;right: 0px">
+              <th class="signedIn" style="display: flex; align-items: center; align-self: center; position: relative;right: 20px">
                 <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Date</span>
-                <v-icon size="large"  color="#969696" icon="mdi-unfold-more-horizontal" style="opacity: 0.4; cursor: pointer"></v-icon>
               </th>
               
             </tr>
@@ -260,19 +256,13 @@ margin-left: -15px;
   position: relative;
   right: 2px;
 }
-/* .actions{
-  margin-left: 28px !important;
-} */
+
 .browser{
 right: 28px  !important;
 }
-/* .ipAddress{
-  right: 29px !important;
-  width: 129px !important;
-} */
-/* .location1{
-  right: 34px !important;
-} */
+.tr-div{
+height: 60px !important;
+}
 .signedIn{
   display: flex;
   width: max-content;

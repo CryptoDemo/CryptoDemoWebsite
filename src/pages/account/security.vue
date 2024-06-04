@@ -213,10 +213,11 @@ position: absolute;
 } 
 
 .password-styling{
-width: 295px;
+width: 100%;
 height: 64px !important; 
 align-self: flex-end;
 border-radius: 16px;
+margin-top: 20px;
 } 
 
 
