@@ -76,7 +76,7 @@
                       </td>
 
                       <div class="d-flex" style="align-items: center;"> 
-                        <div class="hidden-md-and-up flex-sm-and-down">
+                        <div class="dialog-btn hidden-md-and-up flex-sm-and-down">
                           <v-dialog max-width="500">
                             <template v-slot:activator="{ props: activatorProps }">
                               <v-btn v-bind="activatorProps" style="background: inherit; box-shadow: none;">
@@ -408,10 +408,14 @@ line-height: normal;
   display: flex !important;
   justify-content: space-between !important;
 }
-
 .price-th{
 width: 17% !important;
 margin-left: 9%;
+}
+
+.dialog-btn :deep(.v-btn--size-default){
+padding: 0px;
+min-width: 0px !important;
 }
 
 }
