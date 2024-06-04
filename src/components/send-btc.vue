@@ -317,7 +317,6 @@ font-size: var(--v-btn-size);
 min-width: 45px !important;
 padding: 0 16px;
 }
-
 .country-dropdown{
 border-radius: 15px;
 border: 0.5px solid #2f3946;
@@ -363,6 +362,13 @@ box-shadow: none;
 .nav-btn-light{
 background: #eef3fb !important;
 box-shadow: none;
+}
+
+.coin-name{
+color: white !important;
+}
+.coin-name-light{
+color: #10192D;
 }
 ::-webkit-scrollbar{
   display: none;
