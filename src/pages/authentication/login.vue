@@ -155,11 +155,11 @@ const login = async () => {
 }
 };
 
-onBeforeMount(()=>{
-  if(pinia.state.user.id){
-    navigateTo('/account/dashboard')
-  }
-})
+// onBeforeMount(()=>{
+//   if(pinia.state.user.id){
+//     navigateTo('/account/dashboard')
+//   }
+// })
 </script>
 <style scoped>
 

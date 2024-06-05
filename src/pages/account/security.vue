@@ -105,7 +105,6 @@ const initialize2FA = async () => {
   const two_factor = [...data.data]
 
 
-
   // pinia.setTwoFactor(two_factor)
     }else{
     loading.value = false 
@@ -276,7 +275,7 @@ height: fit-content;
   margin-top: 16px !important;
 }
  .password-styling {
-    width: 100%;
+    width: 98%;
     margin-top: 28px;
  }
  .primary-btn1{

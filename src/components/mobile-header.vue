@@ -102,11 +102,11 @@
              <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> theme</span>
           </div>
           <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px; margin-bottom: 20px; padding: 10px;">
-            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; justify-content: center; border-radius: 10px !important;">Log In</v-btn>
+          <NuxtLink to="/authentication/login"><v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; justify-content: center; border-radius: 10px !important;">Log In</v-btn></NuxtLink> 
           </div>
   
           <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 30px; border-radius: 10px !important; background: #2873FF; padding: 11px;">
-            <v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; justify-content: center; border-radius: 10px !important;">Register</v-btn>
+          <NuxtLink to="/authentication/login"><v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; justify-content: center; border-radius: 10px !important;">Register</v-btn></NuxtLink>
           </div>
         </v-navigation-drawer>
       </nav>
@@ -305,6 +305,7 @@ letter-spacing: -0.14px;
 }
 .mobile-btn{
 background: #060A1D !important;
+color: #fff;
 box-shadow: none;
 letter-spacing: 0px;
 text-transform: unset;
@@ -321,6 +322,7 @@ border-radius: 10px
 }
 .mobile-btn-light{
 background: #fff !important;
+color: #060A1D;
 box-shadow: none;
 letter-spacing: 0px;
 text-transform: unset;
