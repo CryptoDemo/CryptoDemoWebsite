@@ -125,7 +125,7 @@
                                 </div>
                               
                               <div class="mt-3" style="display: flex; justify-content: end;">
-                                <v-btn class="primary-btn1" style="border-radius: 10px !important; color: white; padding: 20px; width: 30%;"
+                                <v-btn class="primary-btn1" style="border-radius: 10px !important; color: white; padding: 20px; width: 30%; display: flex;"
                                   text="Cancel"
                                   @click="isActive.value = false"
                                 ></v-btn>
