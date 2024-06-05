@@ -89,7 +89,7 @@ fill: #10192D;
 background: inherit !important;
 min-width: 0px!important;
 height: 30px !important;
-margin-top: 10px;
+margin-top: -7px;
 }
 .nav-btn :deep(.v-btn__overlay, .v-btn__underlay) {
   width: 0% !important;
