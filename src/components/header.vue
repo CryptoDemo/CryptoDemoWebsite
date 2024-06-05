@@ -61,8 +61,8 @@
           </div>
 
           <div class="profile-div" v-if="icon2" style="display: flex; flex-direction: column; margin-top: 27px;">
-            <Profile-nav  class="profile-nav me-8" style="margin-bottom: 2px;"/>
-            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 7px;">Profile</span>    
+            <Profile-nav  class="profile-nav me-8"/>
+            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 6px;">Profile</span>    
           </div>
 
           <div v-if="icon3"  style="display: grid; position: relative; margin-top: 27px;">
@@ -260,7 +260,7 @@ flex: 0 0 auto;
 position: relative;
 transition: inherit;
 width: 100%;
-height: 83px !important;
+/* height: 83px !important; */
 }
 .country-text{
 color: var(--Colors-Base-white, #FFF);
@@ -327,7 +327,6 @@ background: #F8FAFC !important;
 }
 .v-btn--size-default{
   min-width: 0px !important;
-  /* margin-top: 40px !important; */
 }
 .close-btn{
 fill: white;
@@ -344,11 +343,13 @@ fill: #10192D;
 .dashboard-nav :deep(.v-field__clearable > .v-icon){
 opacity: var(--v-medium-emphasis-opacity);
 margin-right: 15px;
-margin-top: 19px;
 position: relative;
-bottom: 9px;
+bottom: -2px;
 }
-
+.dashboard-nav :deep(.v-text-field .v-field--no-label input, .v-text-field .v-field--active input) {
+  opacity: 1;
+  margin-bottom: 8px;
+}
 .country-name{
 font-family: Poppins;
 font-size: 14px;
@@ -356,7 +357,6 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
-
 ::-webkit-scrollbar {
   display: none;
 }
