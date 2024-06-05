@@ -183,7 +183,6 @@ const register = async () => {
 try {
   const data = await register_(registerInfo);
   if (data.success) {
-    pinia.setEmail(email.value)
     navigateTo('/authentication/sign-up-email-verification')
   } else{
     loading.value = false 
@@ -195,11 +194,7 @@ try {
 }
 };
 
-// onBeforeMount(()=>{
-//   if(pinia.state.user.id){
-//     navigateTo('/account/dashboard')
-//   }
-// })
+
 </script>
 <style scoped>
 .form-layout :deep(.Notivue__notification *) {

@@ -10,7 +10,7 @@
                 </div>
               </div>
 
-              <div class="mobile-col" style="">
+              <div class="mobile-col" style="width: 71%;">
                 <div class="security-col" style="margin-left: 28px;">
                     <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; justify-content: space-between">    
                         <span class="acct-text"> Security</span>

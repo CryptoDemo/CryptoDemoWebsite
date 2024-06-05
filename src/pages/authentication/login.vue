@@ -133,16 +133,14 @@ const login = async () => {
   try {
   const data = await signIn(userLogin);
   if (data.success) {
-
-    console.log(data.data);
-    if (data.message=="Please verify your email to continue") {
+    pinia.setEmail(email.value);
+    if (data.data === null) {
       navigateTo('/authentication/sign-up-email-verification')
     } 
     else if (data.message=="Please provide your 2FA code to continue") {
       navigateTo('/authentication/2fa-verification')
     } else{
-      pinia.state.isAuthenticated = true
-      pinia.setUser(data.data)
+      pinia.state.isAuthenticated = true;
       navigateTo('/account/profile')
     }  
 
@@ -153,14 +151,11 @@ const login = async () => {
 }catch(e){
   console.log(e)
   push.error(`${e}`);
+  loading.value = false
 }
 };
 
-// onBeforeMount(()=>{
-//   if(pinia.state.user.id){
-//     navigateTo('/account/dashboard')
-//   }
-// })
+
 </script>
 <style scoped>
 

@@ -11,7 +11,7 @@
 
             <div>
               <div class="settings-body">
-                  <div class="settings-header d-md-flex mt-4" style="width: 99%; margin-left: 16px;">
+                  <div class="settings-header d-md-flex mt-4" style="width: 100%; margin-left: 16px;">
                     <span class="header-text1">Setting answers to your security questions is a requirement in the event that you need to reset or update your phone number. <span style="color: #2873FF; display: contents;">Set Answers!</span></span>
                   </div>
                   <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex;width: 99%; margin-left: 16px; justify-content: space-between; margin-top: 32px">
