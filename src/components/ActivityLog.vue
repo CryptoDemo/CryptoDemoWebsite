@@ -82,6 +82,7 @@ const fetchMore = async()=>{
 
 const fetchActivityLogs = async()=>{
   try{
+    if(pinia.state.user?.token)
     isLoading.value = true;
     const result = await getActivityLogs(currentPageNumber.value);
     isLoading.value = false;

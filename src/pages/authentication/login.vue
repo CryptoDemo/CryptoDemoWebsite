@@ -133,6 +133,7 @@ const login = async () => {
   try {
   const data = await signIn(userLogin);
   if (data.success) {
+
     console.log(data.data);
     if (data.message=="Please verify your email to continue") {
       navigateTo('/authentication/sign-up-email-verification')

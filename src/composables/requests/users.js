@@ -1,6 +1,6 @@
 export const passwordUpdate = async(updatePassword)=>{
-    if(!pinia.state.user?.token) return
     const pinia = useStore();
+    if(!pinia.state.user?.token) return
     const data = await fetch(`${baseURL}user/update-password`,{ 
     method: 'PATCH',
     headers: {
@@ -14,8 +14,8 @@ export const passwordUpdate = async(updatePassword)=>{
 };
 
 export const Init2fa = async(Initialize2fa)=>{
-    if(!pinia.state.user?.token) return
     const pinia = useStore();
+    if(!pinia.state.user?.token) return
     const data = await fetch(`${baseURL}user/init-2fa`,{ 
     method: 'GET',
     headers: {
@@ -39,8 +39,8 @@ export const Verify2FA = async(authentication)=>{
 };
 
 export const getActivityLogs = async(pageNumber)=>{
-    if(!pinia.state.user?.token) return
     const pinia = useStore();
+    if(!pinia.state.user?.token) return
     const data = await fetch(`${baseURL}activity-log/${pageNumber}`,{ 
         method: 'GET',
         headers: {
@@ -53,6 +53,7 @@ export const getActivityLogs = async(pageNumber)=>{
 
 export const checkUsernameAvailability = async(username)=>{
     const pinia = useStore();
+    if(!pinia.state.user?.token) return
     const data = await fetch(`${baseURL}user/check-username-availability/${username}`,{ 
         method: 'GET',
         headers: {
@@ -62,8 +63,10 @@ export const checkUsernameAvailability = async(username)=>{
     }).then(res => res.json());
     return data;
 };
+
 export const updateUser = async(UpdateUserDetails)=>{
     const pinia = useStore();
+    if(!pinia.state.user?.token) return
     const data = await fetch(`${baseURL}user`,{ 
         method: 'PATCH',
         headers: {
