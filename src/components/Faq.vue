@@ -33,6 +33,7 @@ const pinia = useStore()
 const pageNumber = ref(1)
 const currentPageNumber = ref(1);
 const totalPages = ref(2);
+const isLoading = ref();
 
 const UserFaqs = ref([{
         "id": "8272...",

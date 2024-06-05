@@ -38,7 +38,7 @@ const navigation = [
           <path d="M10.5 19.9V4.1C10.5 2.6 9.86 2 8.27 2H4.23C2.64 2 2 2.6 2 4.1V19.9C2 21.4 2.64 22 4.23 22H8.27C9.86 22 10.5 21.4 10.5 19.9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M22 10.9V4.1C22 2.6 21.36 2 19.77 2H15.73C14.14 2 13.5 2.6 13.5 4.1V10.9C13.5 12.4 14.14 13 15.73 13H19.77C21.36 13 22 12.4 22 10.9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M22 19.9V18.1C22 16.6 21.36 16 19.77 16H15.73C14.14 16 13.5 16.6 13.5 18.1V19.9C13.5 21.4 14.14 22 15.73 22H19.77C21.36 22 22 21.4 22 19.9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`, title: 'Dashboard', link:'/account/dahsboard', },
+        </svg>`, title: 'Dashboard', link:'/account/dashboard', },
 
        {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"> <g clip-path="url(#clip0_7346_12470)">
         <path d="M12 22C6.477 22 2 17.523 2 12C2 6.477 6.477 2 12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22ZM12 20C14.1217 20 16.1566 19.1571 17.6569 17.6569C19.1571 16.1566 20 14.1217 20 12C20 9.87827 19.1571 7.84344 17.6569 6.34315C16.1566 4.84285 14.1217 4 12 4C9.87827 4 7.84344 4.84285 6.34315 6.34315C4.84285 7.84344 4 9.87827 4 12C4 14.1217 4.84285 16.1566 6.34315 17.6569C7.84344 19.1571 9.87827 20 12 20ZM7 13H16V15H12V18L7 13ZM12 9V6L17 11H8V9H12Z" fill="currentColor"/> </g>
@@ -57,7 +57,7 @@ const navigation = [
        {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
           <path d="M7.48 18.8505L10.58 21.2505C10.98 21.6505 11.88 21.8505 12.48 21.8505H16.28C17.48 21.8505 18.78 20.9505 19.08 19.7505L21.48 12.4505C21.98 11.0505 21.08 9.85046 19.58 9.85046H15.58C14.98 9.85046 14.48 9.35046 14.58 8.65046L15.08 5.45046C15.28 4.55046 14.68 3.55046 13.78 3.25046C12.98 2.95046 11.98 3.35046 11.58 3.95046L7.48 10.0505" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
           <path d="M2.38 18.8484V9.04844C2.38 7.64844 2.98 7.14844 4.38 7.14844H5.38C6.78 7.14844 7.38 7.64844 7.38 9.04844V18.8484C7.38 20.2484 6.78 20.7484 5.38 20.7484H4.38C2.98 20.7484 2.38 20.2484 2.38 18.8484Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`, title: 'Market Place', link:'/account/trade/marketPlace',},
+        </svg>`, title: 'Market Place', link:'#',},
 
        {icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
         <path d="M14.2388 4.7125C14.2388 4.71253 14.2389 4.71256 14.2389 4.71259C14.2389 4.71256 14.2388 4.71253 14.2388 4.7125Z" fill="currentColor" stroke="currentColor" stroke-width="2"/>

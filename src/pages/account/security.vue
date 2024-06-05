@@ -21,9 +21,13 @@
                       
                         <div style="margin-top:35px !important; display:flex; justify-content: space-between;">
                             <div class="d-flex">
-                                  <img src="/svg/lock-circle (1).svg" class="me-3" style="display: flex; align-self: start;"/>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="31" viewBox="0 0 24 31" fill="none" class="me-3" style="display: flex; align-self: start;" v-if="theme.global.current.value.dark">
+                                <path d="M12 5L20.217 6.826C20.4391 6.87536 20.6377 6.99897 20.78 7.1764C20.9224 7.35384 21 7.57452 21 7.802V17.789C20.9999 18.7767 20.756 19.7492 20.2899 20.62C19.8238 21.4908 19.1499 22.2331 18.328 22.781L12 27L5.672 22.781C4.85027 22.2332 4.17646 21.4911 3.71035 20.6205C3.24424 19.7498 3.00024 18.7776 3 17.79V7.802C3.00004 7.57452 3.07764 7.35384 3.21999 7.1764C3.36234 6.99897 3.56094 6.87536 3.783 6.826L12 5ZM12 7.049L5 8.604V17.789C5.00001 18.4475 5.16257 19.0957 5.47326 19.6763C5.78395 20.2568 6.23315 20.7517 6.781 21.117L12 24.597L17.219 21.117C17.7667 20.7518 18.2158 20.2571 18.5265 19.6767C18.8372 19.0964 18.9998 18.4483 19 17.79V8.604L12 7.05V7.049ZM12 11C12.4403 10.9998 12.8684 11.1449 13.2179 11.4129C13.5673 11.6808 13.8186 12.0566 13.9326 12.4819C14.0467 12.9072 14.0172 13.3582 13.8488 13.7651C13.6803 14.1719 13.3823 14.5118 13.001 14.732L13 19H11V14.732C10.6187 14.5119 10.3208 14.1721 10.1523 13.7653C9.98384 13.3586 9.95429 12.9076 10.0682 12.4824C10.1822 12.0571 10.4333 11.6813 10.7825 11.4133C11.1318 11.1453 11.5597 11 12 11Z" fill="#8e9bae"/>
+                              </svg>
+                              <img src="/svg/lock-circle (1).svg" class="me-3" style="display: flex; align-self: start;" v-else/>
+
                                 <div style="display: grid;">
-                                  <span class="pswrd-mgt" :class="isDark ? 'text-dark':'text-light'">Login 2-Step Verification</span>
+                                  <span class="pswrd-mgt" :class="isDark ? 'coin-name':'coin-name-light'">Login 2-Step Verification</span>
                                   <span class="second-text" :class="isDark ? 'text-dark':'text-light'" style="margin-top: 4px;">The Login 2step Verification adds an extra layer of security to your account. </span>
                                 </div>
                             </div>
@@ -220,6 +224,12 @@ border-radius: 16px;
 margin-top: 20px;
 } 
 
+.coin-name{
+color: white !important;
+}
+.coin-name-light{
+color: #10192D;
+}
 
 ::-webkit-input-placeholder {
 color: #808195!important;

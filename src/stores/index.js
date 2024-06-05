@@ -67,31 +67,30 @@ export const useStore = defineStore('app',()=> {
   };
 
   const setpreferredCurrency = (payload) => {
-      state.preferredCurrency = payload;
-      
+      state.preferredCurrency = payload;  
   };
 
   const setTwoFactor = (payload) => {
       state.twoFactor = payload;
-      
   };
   
   const setTokenNetworks = (payload) => {
-      state.tokenNetworks = payload;
-      
+      state.tokenNetworks = payload;  
   };
+
   const setTokenLists = (payload) => {
-      state.tokenLists = payload;
-  
-      
+      state.tokenLists = payload;   
   };
+
   const setTokenPrices = (payload) => {
-      state.tokenPrices = payload;
-      
+      state.tokenPrices = payload;    
   };
+
   const setTokenBalance = (payload) => {
-      state.tokenBalance = payload;
-      
+      state.tokenBalance = payload;   
+  };
+  const setWeb3_transactions = (payload) => {
+      state.setWeb3_transactions = payload;   
   };
 
   const setallcountries = (payload) => {
@@ -160,6 +159,7 @@ export const useStore = defineStore('app',()=> {
       updateNotificationSettings,
       setFAQs,
       setpreferredCurrency,
+      setWeb3_transactions,
     }
 },
   {persist: {

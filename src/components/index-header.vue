@@ -9,7 +9,7 @@
  
           <div class="d-flex" style="position: absolute; margin-left: 150px;">
              <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Create an offer</span> </NuxtLink></v-btn>
-             <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"><NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Wallet</span> </NuxtLink></v-btn>
+             <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"><NuxtLink to="/account/trade/wallet"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Wallet</span> </NuxtLink></v-btn>
              <div class="text-center flex-lg-and-up hidden-sm-and-down">
               <v-menu open-on-hover>
                   <template v-slot:activator="{ props }">
@@ -56,7 +56,7 @@
       
 
           <v-btn class="header-link me-3 flex-lg-and-up hidden-sm-and-down">  
-            <NuxtLink to="/authentication/register"><span class="text2 d-flex" style="align-self: center; margin: auto;" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{props.title}}</span></NuxtLink> </v-btn>
+            <NuxtLink to="/authentication/login"><span class="text2 d-flex" style="align-self: center; margin: auto;" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{props.title}}</span></NuxtLink> </v-btn>
 
           <NuxtLink to="/authentication/register">  
             <v-btn class="register me-3 flex-lg-and-up hidden-sm-and-down" style="border-radius: 10px !important;"> <span class="register-text" >Register </span></v-btn>

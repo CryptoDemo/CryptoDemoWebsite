@@ -40,7 +40,7 @@ const getTokenBals = async () => {
 
 if (pinia.state.isAuthenticated) {
   try {
-    console.log(network);
+ 
 
     // Fetch token balance
     const data = await getTokenBalance(symbols);
@@ -67,10 +67,7 @@ if (pinia.state.isAuthenticated) {
 };
 
 onMounted(async () => {
-await convertCurrencies();
-getTokens_()
-getTokenBals();
-
+await getTokenBals();
 });
 
 </script>

@@ -13,7 +13,7 @@
         >
         </v-progress-circular>
 
-          <!-- <img src="/svg/coin-range.svg" style="position: relative;"/> -->
+       
           <img src="/svg/range1.svg" style="position: absolute; left: 0;right: 0; margin: auto; top: 17%;"/>
           <div style="display: flex; flex-direction: column; position: absolute; left: 0; right: 0; top: 57px;">
             <span class="lg-num">$ {{ formatBalance(balanceData) }}</span>
@@ -21,11 +21,12 @@
           </div>
           
         </div>
-        <v-row class="ml-2" style="display: flex;">
-          <v-col v-for="token in pinia.state.tokenLists.slice(0, 6)" :key="token.id" class="d-flex" style="justify-content: space-between;">
+        
+        <v-row class="" style="display: flex; justify-content: space-between;">
+          <v-col v-for="token in pinia.state.tokenLists.slice(0, 6)" :key="token.id" class="d-flex" cols="6">
               <div class="d-flex">
                 <div style="display: flex; align-items: center;">
-                  <v-progress-circular 
+                  <v-progress-circular class="me-2"
                     :size="30"
                     :width="5"
                     model-value="100"
@@ -34,13 +35,11 @@
                   </v-progress-circular>
 
                 </div>
-                <div style="display: inline-grid;">
-                  <span class="coin-perc ml-3 mt-1">{{ token.symbol }}</span>
+                <div style="display: flex; flex-direction: column;">
+                  <span class="coin-perc mt-1">{{ token.symbol }}</span>
                   <span class="sm-num" :class="isDark ? 'country-name' : 'country-name-light'" style="font-weight: 500;">{{formatBalance (token.balance) }}</span>
                 </div>
               </div>
-
-
             
           </v-col>
         </v-row>

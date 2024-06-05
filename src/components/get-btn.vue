@@ -96,6 +96,7 @@ const icon = ref(piniastoredicon);
 
 const storedSymbol = ref("");
 const select  = ref(storedSymbol);
+
 const network = pinia.state.selectedNetwork.toLowerCase();
 const coin =  ref('BTC');
 

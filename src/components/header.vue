@@ -23,9 +23,9 @@
 
           <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <v-btn @click.prevent="emit('country',country)" class="me-4 mt-8 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; height: 50px; margin-top: px;">
+              <v-btn @click.prevent="emit('country',country)" class="me-4 mt-8 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; height: 52px; margin-top: px;">
                 <img :src="flag" class="me-2" width="32" height="32" style="object-fit: cover;border-radius: 30px"/>
-                <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{country.slice(0, 5)}}</span>
+                <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{Countryname}}</span>
                 <img src="/svg/chevron-light.svg" v-if="theme.global.current.value.dark"/>
                 <img src="/svg/chevron-dark.svg" v-else/>
               </v-btn>
@@ -86,8 +86,12 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
 const emit = defineEmits(['country'])
-const pageNumber = ref(1)
-const country = ref('Brazil')
+const pageNumber = ref(1);
+const country = ref('Brazil');
+const Countryname = ref('');
+const selectedCountry  = ref(Countryname);
+
+
 const flag = ref('');
 try {
   const data = await getcountries(pageNumber.value);
@@ -110,7 +114,8 @@ try {
 };
 
 onMounted(()=>{{
-  flag.value = pinia.state?.allcountries[0]?.flag_url
+  flag.value = pinia.state?.allcountries[0]?.flag_url;
+  Countryname.value = pinia.state?.allcountries[0]?.country_code
 }})
 
 const props = defineProps(
@@ -221,7 +226,6 @@ background: #10192D;
 text-transform: unset !important;
 color: white;
 letter-spacing: 0px;
-
 }
 .dropdown-btn1i-light{
 width: 135px;
@@ -232,7 +236,6 @@ text-transform: unset !important;
 color: #161D26 !important;
 letter-spacing: 0px;
 box-shadow: none;
-
 }
 
 .nav-icon-text{

@@ -2,11 +2,11 @@
     <div>
         <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <v-btn class="dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; height: px;">
+              <button class="dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none;">
                 <span class="me-2" :class="isDark ? 'country-text':'country-text-light'">{{pinia.state.selectedNetwork}}</span>
                 <img src="/svg/chevron-light.svg" v-if="theme.global.current.value.dark"/>
                 <img src="/svg/chevron-dark.svg" v-else/>
-              </v-btn>
+              </button>
             </template>
 
             <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 15px; height: 120px !important;">
@@ -15,7 +15,6 @@
                   <v-col v-for="(item, index) in pinia.state.BlockchainNetworks" :key="index">
                   <v-list-item @click="pinia.state.selectedNetwork = item.name;" style="display: flex;">
                       <span>{{ item.name }}</span>
-                      <!-- <span>{{ item.scanner_url }}</span> -->
                   </v-list-item>
                 </v-col>
                 </v-row>
@@ -89,20 +88,35 @@ border: 1px solid #DBE8FF;
 .dropdown-btn1i{
 flex-shrink: 0;
 border-radius: 20px !important;
-background: #10192D;
+background: inherit;
 text-transform: unset !important;
 color: white;
 letter-spacing: 0px;
 margin-top: 28px !important;
+text-transform: capitalize;
 }
 .dropdown-btn1i-light{
 flex-shrink: 0;
 border-radius: 20px !important;
-background-color: #F8FAFC;
+background-color: inherit;
 text-transform: unset !important;
 color: #161D26 !important;
 letter-spacing: 0px;
 box-shadow: none;
 margin-top: 28px !important;
+}
+
+.dropdown-btn1i:hover,
+.dropdown-btn1i:focus,
+.dropdown-btn1i:active {
+  /* Ensure no background color change */
+  background-color: inherit !important;
+
+  /* Remove any other hover effects like box-shadow, transform, etc. */
+  box-shadow: none !important;
+  transform: none !important;
+
+  /* Remove text color change on hover */
+  color: inherit !important;
 }
 </style>

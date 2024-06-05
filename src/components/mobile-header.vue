@@ -51,7 +51,7 @@
             <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
           </div>
           <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 17px; margin-top: 17px;">
-            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" >Wallet</v-btn>
+          <nuxt-link to="/account/trade/wallet"> <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" >Wallet</v-btn> </nuxt-link>
           </div>
         
   

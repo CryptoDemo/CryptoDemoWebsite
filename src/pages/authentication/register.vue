@@ -193,8 +193,13 @@ try {
   console.log(e)
   push.error(`${e}`)
 }
- 
 };
+
+onBeforeMount(()=>{
+  if(pinia.state.user.id){
+    navigateTo('/account/dashboard')
+  }
+})
 </script>
 <style scoped>
 .form-layout :deep(.Notivue__notification *) {

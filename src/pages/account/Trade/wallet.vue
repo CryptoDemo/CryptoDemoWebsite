@@ -202,7 +202,6 @@ const getTokens_ = async () => {
     }
     } catch (error) {
     console.log(error);
-    // toast.message(error, { position: 'top', timeout: 2000 });
     }
 };
 
@@ -232,13 +231,11 @@ const convertCurrencies = async () => {
 
     try {
       const data = await currencyConverter(convertCurrency);
-      console.log('here....')
      
 
       if (data.success) {
         // Store the conversion result in the array
         conversionResult.value = data.data;
-        console.log(conversionResult.value)
         
       } else {
         console.log(`Conversion failed:`, data.message);

@@ -32,9 +32,9 @@
           </thead>
         
             <tbody>
-              <tr v-for="(item, i) in activityLogs" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5);justify-content: space-between; align-items: baseline; margin-top: 10px">
+              <tr v-for="(item, i) in activityLogs" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5);justify-content: space-between; align-items: baseline; margin-top: 5px">
                 <td ><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 10px">{{i+1}}</span></td>
-                <td class="logCaptions" style="width: 23%;display: flex; justify-content: center;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.title}}</span></td>
+                <td class="logCaptions" style="width: 23%;display: flex; justify-content: center; align-items: center;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.title}}</span></td>
                 <td class="logCaptions1" style="width: 60%;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.description}}</span></td>
                 <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{formatDate(item.timestamp)}}</span></td>
               </tr>
@@ -54,7 +54,7 @@
             </tbody>
         </v-table>
 
-        <v-btn :disabled="isLoading" :loading="isLoading" v-if="(!isLoading && activityLogs?.length) && (currentPageNumber!=totalPages)" class="primary-btn1" width="152px" @click.prevent="fetchMore()"> Fetch More</v-btn>
+        <v-btn :disabled="isLoading" :loading="isLoading" v-if="(!isLoading && activityLogs?.length) && (currentPageNumber!=totalPages)" class="primary-btn1" width="152px" @click.prevent="fetchMore()" style="margin-bottom: 130px;"> Fetch More</v-btn>
   </div>
 </template>
 

@@ -10,7 +10,6 @@ import { getTokenBalance } from '@/composables/requests/tokens'
 
 const pinia = useStore()
 
-const isLoading = ref(false);
 
 const formatBalance = balance => (balance === 0 ? '0.00' : balance?.toFixed(7));
 const network = pinia.state.selectedNetwork.toLowerCase();

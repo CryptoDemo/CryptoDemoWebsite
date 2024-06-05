@@ -41,8 +41,8 @@ const items = [
   {icon:'/svg/transaction.svg', title: 'Security', link:'/account/security'},
   {icon:'/svg/settings.svg', title: 'Settings', link:'/account/settings'},
   {icon:'/svg/friend.svg', title: 'Dashboard', link:'/account/dashboard'},
-  {icon:'/svg/logout.svg', title: 'Market Place', link:'/authentication/login'},
-  {icon:'/svg/logout.svg', title: 'Wallet', link:'/authentication/login'},
+  {icon:'/svg/logout.svg', title: 'Market Place', link:'/account/trade/marketPlace'},
+  {icon:'/svg/logout.svg', title: 'Wallet', link:'/account/trade/wallet'},
   {icon:'/svg/logout.svg', title: 'Log Out', link:'/authentication/login'},
 ];
 </script>

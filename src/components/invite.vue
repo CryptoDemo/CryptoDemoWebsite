@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-              <qrcode-vue :value="referralCode" :size="206" level="H" style="padding: 20px;"/>
+              <qrcode-vue :value="referralCode" :size="206" level="H" style="padding: 20px;display: flex;"/>
             </div>
           </div>
         </div>

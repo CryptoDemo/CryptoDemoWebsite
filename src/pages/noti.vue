@@ -1,7 +1,7 @@
 <template>
 <div>
-  <div v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;  margin-bottom: 284px; width: 95%;">
-    <span>1</span>
+  <div v-for="txns in setWeb3_transactions" :key="txns.id" style="display: flex; justify-content: space-between;  margin-bottom: 284px; width: 95%;">
+    <span>{{txns+1}}</span>
       <div style="display: flex;">
         <img src="/svg/btc.svg" class="me-3"/>
         <div style="display: flex; flex-direction: column;">
@@ -37,79 +37,36 @@ const selectedNetwork = pinia.state.selectedNetwork;
 const fetchTxnData = async () => {
   try {
     const data = await getWebTransaction(selectedNetwork, pageNumber.value, );
-    if (!data.success) {
-      throw new Error('Network response was not ok ' + data.statusText);
-    }
- 
-    console.log(data);
+    if(data.success){
+      const transData = data?.data.result
+      if(transData.length != 0){
 
-    // Process the response based on transaction type
-    if (data.success) {
-      data.data.result.forEach(transaction => {
-        if (transaction.details.crypto.transfer) {
-          processTransfer(transaction);
-        } else if (transaction.details.crypto.swap) {
-          processSwap(transaction);
+      const groupedTransactions = transData.reduce((groups, transaction) => {
+            const createdAt = new Date(transaction.created_at);
+            const dateKey = createdAt.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+            if (!groups[dateKey]) {
+                groups[dateKey] = [];
+            }
+            groups[dateKey].push(transaction);
+            return groups;
+      }, {});
+
+        pinia.setWeb3_transactions(groupedTransactions,addMinutes(5))
+          return
+        }else{
+            pinia.setWeb3_transactions(transData)
         }
-      });
-    } else {
-      console.error('Error:', data.message);
-    }
-  } catch (error) {
-    console.error('Fetch error:', error);
+
+        }else{
+          push.error(`${data.message}`)
+        }
+  
+        }catch(e){
+        //    console.log(e)
+
   }
 }
 
-const processTransfer = (transaction) => {
-  const { transaction_hash, transfer_type, token_id, from_address, to_address, amount, status, fees } = transaction.details.crypto.transfer;
-
-  console.log("Transfer Details:");
-  console.log("Transaction Hash:", transaction_hash);
-  console.log("Transfer Type:", transfer_type);
-  console.log("Token ID:", token_id);
-  console.log("From Address:", from_address);
-  console.log("To Address:", to_address);
-  console.log("Amount:", amount);
-
-  if (status.fulfilled) {
-    console.log("Status: Fulfilled -", status.fulfilled.reason);
-  } else if (status.pending) {
-    console.log("Status: Pending -", status.pending.reason);
-  } else if (status.failed) {
-    console.log("Status: Failed -", status.failed.reason);
-  }
-
-  console.log("Fees:");
-  fees.forEach(fee => {
-    console.log(`Recipient Type: ${fee.recipient_type}, Token ID: ${fee.token_id}, Address: ${fee.address}, Amount: ${fee.amount}`);
-  });
-}
-
-const processSwap = (transaction) => {
-  const { transaction_hash, from, to, status, fees } = transaction.details.crypto.swap;
-
-  console.log("Swap Details:");
-  console.log("Transaction Hash:", transaction_hash);
-  console.log("From Token ID:", from.token_id);
-  console.log("From Address:", from.address);
-  console.log("From Amount:", from.amount);
-  console.log("To Token ID:", to.token_id);
-  console.log("To Address:", to.address);
-  console.log("To Amount:", to.amount);
-
-  if (status.fulfilled) {
-    console.log("Status: Fulfilled -", status.fulfilled.reason);
-  } else if (status.pending) {
-    console.log("Status: Pending -", status.pending.reason);
-  } else if (status.failed) {
-    console.log("Status: Failed -", status.failed.reason);
-  }
-
-  console.log("Fees:");
-  fees.forEach(fee => {
-    console.log(`Recipient Type: ${fee.recipient_type}, Token ID: ${fee.token_id}, Address: ${fee.address}, Amount: ${fee.amount}`);
-  });
-}
 
 onMounted(() => {
 fetchTxnData();
