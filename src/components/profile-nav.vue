@@ -94,5 +94,11 @@ margin-top: 10px;
 .nav-btn :deep(.v-btn__overlay, .v-btn__underlay) {
   width: 0% !important;
 }
+.v-btn:focus, 
+.v-btn:active {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
 }
 </style>
