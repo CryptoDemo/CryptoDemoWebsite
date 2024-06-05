@@ -10,6 +10,18 @@ export const register_ = async(registerInfo)=>{
     return data;
 };
 
+export const Verify_account = async(acct_verification)=>{
+    const data = await fetch(`${baseURL}auth/verify-account`,{ 
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(acct_verification)
+
+    }).then(res => res.json());
+    return data;
+};
+
 export const Resend_Code = async(codeMsg)=>{
     const data = await fetch(`${baseURL}auth/resend-email-code`,{ 
     method: 'POST',

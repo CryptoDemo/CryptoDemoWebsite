@@ -44,7 +44,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-import { Resend_Code, VerifyOtp } from "@/composables/requests/auth";
+import { Resend_Code, Verify_account } from "@/composables/requests/auth";
 import { push } from 'notivue';
 
 const theme = useTheme()
@@ -69,13 +69,13 @@ onMounted(() => {
 
 const VerifyEmail = async () => {
   loading.value = true;
-  const Otpmsg = {
+  const acct_verification = {
   email: pinia.state.email,
   code: otp.value
   };
-  console.log('Otpmsg:', Otpmsg); 
+  console.log('Otpmsg:', acct_verification); 
 try {
-  const data = await VerifyOtp(Otpmsg);
+  const data = await Verify_account(acct_verification);
   if (data.success) {
     pinia.setUser(data.data);
     navigateTo('/account/profile')
