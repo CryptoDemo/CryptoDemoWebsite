@@ -90,7 +90,7 @@ import {newpassword} from "@/composables/requests/auth";
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
-const {code} = useRoute().query;
+// const {code} = useRoute().query;
 
 const email= ref('');
 const password = ref('');
@@ -113,7 +113,7 @@ const Passwordrules = [
  const login = async () => {
   const changePassword = {
     email: pinia.state.email,
-    code: code,
+    code: pinia.state.codeInput,
     password: password.value,
   }
   if (!isFormValid.value) {

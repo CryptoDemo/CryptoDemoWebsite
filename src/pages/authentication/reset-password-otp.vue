@@ -26,7 +26,7 @@
         </div>
 
           <div style="margin-top:65px;">
-            <Button buttonText="Request New Password"  :loading="loading" @click="VerifyEmail()"/>
+            <Button buttonText="Next"  :loading="loading" @click="VerifyEmail()"/>
           </div>
          <div class="d-flex" style="margin-top:43px; margin-bottom: 137px">
           <img src="/svg/arrow-left.svg" class="me-3" />
@@ -47,7 +47,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import { Resend_Code, VerifyOtp } from "@/composables/requests/auth";
+import { Resend_Code, Change_password } from "@/composables/requests/auth";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -71,28 +71,20 @@ onMounted(() => {
 });
 
 
-const VerifyEmail = async()=>{
-  loading.value = true 
-  const Otpmsg = {
-   email: pinia.state.email,
-   code: otp.value
-  }
-  try {
-  const data = await VerifyOtp(Otpmsg);
-  if (data.success) {
-    pinia.setCode(otp.value)
-    navigateTo('/authentication/create-new-password')
-    // router.push(`/authentication/create-new-password?code=${otp.value}`);
-  } else{
-    loading.value = false 
-    push.error(data.message, { timeout: 90000000 })
-  }
-}catch(e){
-  console.log(e)
-  push.error(`${e}`)
-}
+const VerifyEmail = async () => {
+  loading.value = true;
+  const changePasskey = {
+    email: pinia.state.email,
+    code: otp.value
+  };
+
+    // Assuming there should be a condition here to check if the OTP is valid
+    pinia.setCode(otp.value);
+    navigateTo('/authentication/create-new-password');
+   
  
 };
+
   
 const resendCode = async() => {
   OtpCountdown.value = 60
