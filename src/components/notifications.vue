@@ -131,7 +131,13 @@ fill: #10192D;
 .nav-btn{
   background: inherit !important;
   position: relative;
-  bottom: 18%;
+  bottom: 9%;
+  min-width: 0px!important;
+  height: 40px !important;
 }
+.nav-btn :deep(.v-btn__overlay, .v-btn__underlay) {
+  width: 0% !important;
+}
+
 }
 </style>

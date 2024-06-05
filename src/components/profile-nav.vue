@@ -86,8 +86,13 @@ fill: #10192D;
 }
 @media screen and (max-width: 600px) {
 .nav-btn{
-  background: inherit !important;
-  
+background: inherit !important;
+min-width: 0px!important;
+height: 30px !important;
+margin-top: 10px;
+}
+.nav-btn :deep(.v-btn__overlay, .v-btn__underlay) {
+  width: 0% !important;
 }
 }
 </style>

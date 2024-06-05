@@ -12,7 +12,7 @@
       el.checked = e.target.checked;
     });
     currentTheme.value = theme.global.name.value;
-    document.querySelector(".switch-hint").innerHTML = e.target.checked ? 'dark' : 'light';
+
   }
 </script>
 <style src="./style.css"></style>
