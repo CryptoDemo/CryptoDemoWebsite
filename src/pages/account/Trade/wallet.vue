@@ -210,7 +210,8 @@ watch(() => pinia.state.selectedNetwork, async(newNetwork) => {
   if (newNetwork) {
     console.log(newNetwork)
     await getTokens_();
-    
+    getTokenBals();
+    convertCurrencies();
   }
 });
 
