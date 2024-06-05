@@ -1,4 +1,5 @@
 export const passwordUpdate = async(updatePassword)=>{
+    if(!pinia.state.user?.token) return
     const pinia = useStore();
     const data = await fetch(`${baseURL}user/update-password`,{ 
     method: 'PATCH',
@@ -13,6 +14,7 @@ export const passwordUpdate = async(updatePassword)=>{
 };
 
 export const Init2fa = async(Initialize2fa)=>{
+    if(!pinia.state.user?.token) return
     const pinia = useStore();
     const data = await fetch(`${baseURL}user/init-2fa`,{ 
     method: 'GET',
@@ -37,6 +39,7 @@ export const Verify2FA = async(authentication)=>{
 };
 
 export const getActivityLogs = async(pageNumber)=>{
+    if(!pinia.state.user?.token) return
     const pinia = useStore();
     const data = await fetch(`${baseURL}activity-log/${pageNumber}`,{ 
         method: 'GET',
