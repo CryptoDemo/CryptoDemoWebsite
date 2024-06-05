@@ -17,7 +17,7 @@
         </v-app-bar-title>
         <div style="position: relative"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
         
-        <div class="header-nav-div" style="display: flex;margin-inline-start: auto;">
+        <div class="header-nav-div" style="display: flex;margin-inline-start: auto; align-items: center;">
           <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
           <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
 
@@ -58,7 +58,7 @@
                 </svg>
             </v-btn>
           </nuxt-link>
-            <span  class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: 3px; margin-top: -6px;">Wallet</span>     
+            <span  class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: 3px;">Wallet</span>     
           </div>
 
           <div class="profile-div" v-if="icon2" style="display: flex; flex-direction: column; margin-top: 27px;">
@@ -68,7 +68,7 @@
 
           <div v-if="icon3"  style="display: grid; position: relative; margin-top: 27px;">
             <Notifications/>
-            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-right: 13px; margin-top: -8px;">Notification</span>     
+            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-right: 13px;">Notification</span>     
           </div>
     </div>   
     </v-container>

@@ -14,7 +14,7 @@
                   <div style=" margin-top: 10px;">
                     <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 32px;  font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
                   </div>
-                   <div class="wallet-box" :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 30px; margin-top: 20px; width: 96%;">
+                   <div class="wallet-box" :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 97%; padding: 30px; margin-top: 20px;">
                     <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
                       <thead>
                         <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
