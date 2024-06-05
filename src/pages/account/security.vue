@@ -35,7 +35,7 @@
                             </v-btn>
                         </div>
                         
-                      <div class="ml-2" style="margin-top: 42px; width: 100%;">
+                      <div class="ml-2" style="margin-top: 42px; width: 99%;">
                           <span class="pswrd-mgt" :class="isDark ? 'card-text-dark':'card-text-light'" style="font-weight: 700;">Change Password</span>
                           <div class="d-md-flex">
                             <v-text-field class="password-styling firstPassword pl-4 me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="Enter current password" v-model="OldPassword" variant="plain">   
