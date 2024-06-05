@@ -3,8 +3,8 @@
     <div :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'">
       <v-container style="display: flex; align-items: center;">   
         <img src="/svg/Logo.svg" class="me-3"/>
-        <v-app-bar-title class="flex-lg-and-up hidden-sm-and-down search-bar" :class="isDark ? 'nav-title':'nav-title-light'">Demo 
-          <v-text-field clearable  hide-details placeholder="Search in dashboard..." variant="plain" v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'" style="width: 40px; height: 55px; flex-shrink: 0; border-radius: 18px; margin-left: 20px; align-content: flex-end;"> 
+        <v-app-bar-title class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-title':'nav-title-light'">Demo 
+          <v-text-field clearable  hide-details placeholder="Search in dashboard..." variant="plain" v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'" style="height: 55px; flex-shrink: 0; border-radius: 18px; margin-left: 20px; align-content: flex-end;"> 
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 16px; margin-right: 10px; bottom: 10px; position: relative;" v-if="theme.global.current.value.dark">
                   <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -337,7 +337,7 @@ fill: #10192D;
 .dashboard-nav :deep(.v-toolbar-title__placeholder){
   display: flex;
   align-items: center;
-  width: 56% !important;
+  width: 400px !important;
 }
 
 .dashboard-nav :deep(.v-field__clearable > .v-icon){
