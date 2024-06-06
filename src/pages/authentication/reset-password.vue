@@ -11,53 +11,8 @@
         <div style="margin-top: 135px;"><span class="card-title">Reset Your Password</span></div>
           <div class="password-subtitle" >Enter your email address to reset your password.</div>
 
-          <!-- <div class="rounded-5  btn-box ">
-              <v-btn :class="{
-                    'button-base': true,
-                    'active': isEmailPopupOpen,
-                  }" @click.prevent="isEmailPopupOpen=true" style="margin-right: 10px " >Email
-              </v-btn>
-              <v-btn :class="{
-                    'button-base': true,
-                    'active': !isEmailPopupOpen,
-                  }" @click.prevent="isEmailPopupOpen=false">Phone Number
-              </v-btn>  
-            </div> -->
           
-<!--           
-            <div class="position-relative input-styling d-flex" v-if="!isEmailPopupOpen" style="margin-bottom: 43.13px;" >
-            <v-text-field placeholder="Phone number"  style="left: -21px !important;"
-                variant="plain">
-               <template v-slot:prepend>
-                    <v-select class="form-select mt-1" style="position: relative; padding-left: 4px!important; margin-inline-start: -3px !important;" 
-                        variant="plain" v-model="selected" 
-                        :items="['+00', '+98', '+07', '+90', '+08', '+29']">
-                    </v-select>
-                </template>
-              <v-icon class="prepend-inner-icon" style="position: absolute!important; right: 185px !important;">
-               <svg xmlns="http://www.w3.org/2000/svg" width="2" height="32" viewBox="0 0 2 32" fill="none">
-                  <path d="M1 0V32" stroke="#E2E8F0"/>
-                </svg>
-                </v-icon>
-            </v-text-field>
-                <div class="position-absolute tick-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
-                      <path d="M8.55756 14.3555C7.38453 14.3555 6.23785 14.0184 5.26251 13.3869C4.28717 12.7553 3.52699 11.8577 3.07809 10.8075C2.62919 9.75728 2.51173 8.60167 2.74058 7.48677C2.96943 6.37188 3.5343 5.34779 4.36375 4.544C5.19321 3.7402 6.25 3.19281 7.40049 2.97105C8.55098 2.74928 9.7435 2.8631 10.8272 3.29811C11.911 3.73312 12.8373 4.46978 13.489 5.41494C14.1407 6.3601 14.4885 7.47131 14.4885 8.60804C14.4885 10.1324 13.8636 11.5942 12.7514 12.6721C11.6391 13.7499 10.1305 14.3555 8.55756 14.3555ZM8.55756 13.206C9.49599 13.206 10.4133 12.9363 11.1936 12.4311C11.9739 11.9259 12.582 11.2078 12.9411 10.3676C13.3003 9.52743 13.3942 8.60294 13.2111 7.71103C13.0281 6.81911 12.5762 5.99984 11.9126 5.35681C11.249 4.71377 10.4036 4.27586 9.48322 4.09845C8.56283 3.92103 7.60881 4.01209 6.74182 4.3601C5.87483 4.7081 5.1338 5.29743 4.61244 6.05356C4.09108 6.80969 3.81281 7.69865 3.81281 8.60804C3.81281 9.82749 4.3127 10.997 5.20251 11.8593C6.09233 12.7216 7.29918 13.206 8.55756 13.206ZM7.96447 10.907L5.44975 8.46819L6.28403 7.65588L7.96447 9.27857L11.3253 6.03032L12.1646 6.84262L7.96447 10.907Z" fill="#C4C4C4"/>
-                    </svg>
-                </div>
-           </div> -->
-
-          <!-- <v-alert  v-model="alert"  variant="tonal" style="border-radius: 25px; background: #161D26;width: 298.116px; height: 64px; color: #35B233;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: 150%; position: absolute; margin-top: 25px;">
-            <div style="display: flex;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" class="me-3">
-                <path d="M7.99992 14.6666C11.6666 14.6666 14.6666 11.6666 14.6666 7.99992C14.6666 4.33325 11.6666 1.33325 7.99992 1.33325C4.33325 1.33325 1.33325 4.33325 1.33325 7.99992C1.33325 11.6666 4.33325 14.6666 7.99992 14.6666Z" stroke="#35B333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8 5.33325V8.66659" stroke="#35B333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M7.99634 10.6667H8.00233" stroke="#35B333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>Verification code has been sent to the registered email.</span>
-          </div>
-          </v-alert> -->
-       <div class="position-relative"  style="margin-bottom: 43.13px; margin-top: 125px;">
+          <div class="position-relative"  style="margin-bottom: 43.13px; margin-top: 125px;">
             <v-text-field placeholder="Email Address" class="input-styling" v-model="email" 
                 variant="plain">
              <v-icon class="prepend-inner-icon ml-3">

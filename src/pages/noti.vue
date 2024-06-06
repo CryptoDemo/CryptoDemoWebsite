@@ -1,7 +1,7 @@
 <template>
 <div>
   <!-- <div> -->
-
+   
     <v-dialog style="width: 100%">
       <template v-slot:activator="{ props: activatorProps }">
         <v-btn v-for="(txns, date) in pinia.state.Web3_transactions.data" :key="date" v-bind="activatorProps" color="surface-variant" variant="text" style="width: 100%; height: 60px; background: inherit; display: flex; justify-content: space-between;">
