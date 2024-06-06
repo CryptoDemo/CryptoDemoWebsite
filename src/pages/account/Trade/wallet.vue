@@ -19,7 +19,7 @@
                       <thead>
                         <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
 
-                          <th class="me-7" style="display: flex; align-items: center; align-self: center; width: 18%; justify-content: center;">
+                          <th class="me-7 coin-th" style="display: flex; align-items: center; align-self: center; width: 18%; justify-content: center;">
                             <div class="d-flex" >
                               <span class="table-header-text" :class="isDark ? 'text-dark':'text-light'">Coin</span>
                             </div>
@@ -32,7 +32,7 @@
                             <span class="table-header-text"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Balance</span>
                           </th>
                          
-                          <th class="me-7" style="display: flex; align-items: center; align-self: center; position: relative; width: 27%;">
+                          <th class=" " style="display: flex; align-items: center; align-self: center; position: relative; width: 27%;">
                             <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: "></span>
                           </th>
 
@@ -407,13 +407,17 @@ line-height: normal;
   justify-content: space-between !important;
 }
 .price-th{
-width: 17% !important;
+width: 65% !important;
 margin-left: 9%;
 }
 
 .dialog-btn :deep(.v-btn--size-default){
 padding: 0px;
 min-width: 0px !important;
+}
+
+.coin-th{
+  width: 45% !important;
 }
 
 }

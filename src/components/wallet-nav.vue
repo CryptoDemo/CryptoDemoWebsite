@@ -23,7 +23,7 @@
         </div>
         
         <v-row class="" style="display: flex; justify-content: space-between;">
-          <v-col v-for="token in pinia.state.tokenLists.slice(0, 6)" :key="token.id" class="d-flex" cols="6">
+          <v-col v-for="token in pinia.state.tokenLists.slice(0, 4)" :key="token.id" class="d-flex" cols="6">
               <div class="d-flex">
                 <div style="display: flex; align-items: center;">
                   <v-progress-circular class="me-2"
