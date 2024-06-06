@@ -32,7 +32,7 @@
                             <span class="table-header-text"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Balance</span>
                           </th>
                          
-                          <th class=" " style="display: flex; align-items: center; align-self: center; position: relative; width: 27%;">
+                          <th class="me-5" style="display: flex; align-items: center; align-self: center; position: relative; width: 27%;">
                             <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: "></span>
                           </th>
 

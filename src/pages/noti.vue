@@ -1,27 +1,50 @@
 <template>
 <div>
-  <div v-for="txns in setWeb3_transactions" :key="txns.id" style="display: flex; justify-content: space-between;  margin-bottom: 284px; width: 95%;">
-    <span>{{txns+1}}</span>
-      <div style="display: flex;">
-        <img src="/svg/btc.svg" class="me-3"/>
-        <div style="display: flex; flex-direction: column;">
-          <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600;">Bitcoin</span>
-          <span class="sml-text" :class="isDark ? 'coin-name':'coin-name-light'">BTC</span>
-        </div>
-      </div>
-      <div>
-        <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">Jan 17, 4:33 PM</span>
-      </div>
+  <!-- <div> -->
 
-      <div>
-        <span class="browser-txt" style="color: #35B233; font-weight: 600; font-family: Poppins;">Completed</span>
-      </div>
+    <v-dialog style="width: 100%">
+      <template v-slot:activator="{ props: activatorProps }">
+        <v-btn v-for="txns in pinia.state.Web3_transactions" :key="txns.id" v-bind="activatorProps" color="surface-variant" variant="text" style="width: 100%; height: 60px; background: inherit; display: flex; justify-content: space-between;">
+          
+        
+          <span class="me-3">{{txns+1}}</span>
+        
+          <div class="me-3" style="display: flex; align-items: center">
+            <img src="/svg/btc.svg" class="me-3"/>
+            <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600;">Bitcoin</span>
+          </div>
 
-      <div>
-        <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600;">+2.820436 USDT</span>
-      </div>
+            <span class="browser-txt me-3" :class="isDark ? 'coin-name':'coin-name-light'">Jan 17, 4:33 PM</span>
+
+
+            <span class="browser-txt me-3" style="color: #35B233; font-weight: 600; font-family: Poppins;">{{ txns.status }}</span>
+
+            <span class="browser-txt me-3" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600;">{{ txns.fees }}</span>
+
+
+        </v-btn>
+      </template>
+
+      <template v-slot:default="{ isActive }">
+        <v-card title="Dialog">
+          <v-card-text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn
+              text="Close Dialog"
+              @click="isActive.value = false"
+            ></v-btn>
+          </v-card-actions>
+        </v-card>
+      </template>
+    </v-dialog>
+
+  <!-- </div> -->
   </div>
-</div>
 </template>
 
 <script setup>

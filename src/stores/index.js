@@ -34,6 +34,7 @@ export const useStore = defineStore('app',()=> {
       allcountries: [],
       selectedToken: 'USDT',
       UserFaqs:[],
+      Web3_transactions:[],
     });
   
   
@@ -90,7 +91,7 @@ export const useStore = defineStore('app',()=> {
       state.tokenBalance = payload;   
   };
   const setWeb3_transactions = (payload) => {
-      state.setWeb3_transactions = payload;   
+      state.Web3_transactions = payload;   
   };
 
   const setallcountries = (payload) => {
