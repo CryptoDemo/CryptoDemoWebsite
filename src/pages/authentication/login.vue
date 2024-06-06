@@ -133,8 +133,10 @@ const login = async () => {
   try {
   const data = await signIn(userLogin);
   if (data.success) {
-    pinia.setEmail(email.value);
+    pinia.setUser(data.data);
+    
     if (data.data === null) {
+      pinia.setEmail(email.value);
       navigateTo('/authentication/sign-up-email-verification')
     } 
     else if (data.message=="Please provide your 2FA code to continue") {
