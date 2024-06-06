@@ -12,9 +12,9 @@
                       <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 12px; font-style: normal; font-weight: 400;">Updates every 60 seconds</span>
                     </div>
                     <div @click.stop style="margin-top: 4px; margin-bottom: 15px; display: flex; width: 40%; margin-inline-start: auto;">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" style="position: absolute; margin-top: 1.5%; margin-left: 15px;">
-                        <path d="M9.58335 18.1986C13.9556 18.1986 17.5 14.6542 17.5 10.2819C17.5 5.90965 13.9556 2.36523 9.58335 2.36523C5.2111 2.36523 1.66669 5.90965 1.66669 10.2819C1.66669 14.6542 5.2111 18.1986 9.58335 18.1986Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path opacity="0.4" d="M18.3334 19.0319L16.6667 17.3652" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px; left: 16%; margin-right: 10px; position: relative;">
+                        <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                       <v-textarea clearable variant="plain" rows="1" no-resize  placeholder="Search for Coins..." v-model="input" style=" border: 1px solid #64748B; height: 55px; border-radius: 30px; padding-left: 45px; padding-right: 15px; align-items: center; width: 50%;"></v-textarea>
                     </div>

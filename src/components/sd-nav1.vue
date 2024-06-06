@@ -16,8 +16,8 @@
           </div>
           <div v-for="(nav, i) in navigation" :key="i">
             <nuxt-link :to="nav.link">
-            <v-btn class="nav-options2" :class="isDark ? 'text-dark':'text-light'" > 
-              <div v-html="nav.icon" class="me-2"></div>
+            <v-btn class="nav-options2" :class="isDark ? 'text-dark':'text-light'"> 
+              <div v-html="nav.icon" class="me-2" :class="isDark ? 'close-btn':'close-btn-dark'"></div>
               {{ nav.title }}
             </v-btn>
           </nuxt-link>      
@@ -54,9 +54,12 @@ const navigation = [
           <path d="M7 12H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>`, title: 'Payment', link:'/account/payment',},
 
-       {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-          <path d="M7.48 18.8505L10.58 21.2505C10.98 21.6505 11.88 21.8505 12.48 21.8505H16.28C17.48 21.8505 18.78 20.9505 19.08 19.7505L21.48 12.4505C21.98 11.0505 21.08 9.85046 19.58 9.85046H15.58C14.98 9.85046 14.48 9.35046 14.58 8.65046L15.08 5.45046C15.28 4.55046 14.68 3.55046 13.78 3.25046C12.98 2.95046 11.98 3.35046 11.58 3.95046L7.48 10.0505" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/>
-          <path d="M2.38 18.8484V9.04844C2.38 7.64844 2.98 7.14844 4.38 7.14844H5.38C6.78 7.14844 7.38 7.64844 7.38 9.04844V18.8484C7.38 20.2484 6.78 20.7484 5.38 20.7484H4.38C2.98 20.7484 2.38 20.2484 2.38 18.8484Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+       {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <path d="M2.16667 18.4817H13" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4.57164 14.625H10.595C12.5234 14.625 13 15.1017 13 17.0083V21.4608C13 23.3675 12.5234 23.8442 10.595 23.8442H4.57164C2.6433 23.8442 2.16667 23.3675 2.16667 21.4608V17.0083C2.16667 15.1017 2.6433 14.625 4.57164 14.625Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M23.8333 16.25C23.8333 20.4425 20.4425 23.8333 16.25 23.8333L17.3875 21.9375" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2.16667 9.74996C2.16667 5.55746 5.5575 2.16663 9.75 2.16663L8.61251 4.06246" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20.0417 11.9166C22.7341 11.9166 24.9167 9.73401 24.9167 7.04163C24.9167 4.34924 22.7341 2.16663 20.0417 2.16663C17.3493 2.16663 15.1667 4.34924 15.1667 7.04163C15.1667 9.73401 17.3493 11.9166 20.0417 11.9166Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>`, title: 'Market Place', link:'#',},
 
        {icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
@@ -125,5 +128,10 @@ const navigation = [
   line-height: normal;
   transform: translateX(6px);
   }
-  
+.close-btn{
+fill: white;
+}
+.close-btn-dark{
+fill: #10192D;
+}
   </style>

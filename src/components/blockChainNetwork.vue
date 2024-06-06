@@ -2,10 +2,19 @@
     <div>
         <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <button class="dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none;">
-                <span class="me-2" :class="isDark ? 'country-text':'country-text-light'">{{pinia.state.selectedNetwork}}</span>
-                <img src="/svg/chevron-light.svg" v-if="theme.global.current.value.dark"/>
-                <img src="/svg/chevron-dark.svg" v-else/>
+              <button class="dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none;" @click="toggleChevron">
+                <span class="me-2" :class="isDark ? 'country-text':'country-text-light'" style="text-transform: capitalize;">{{pinia.state.selectedNetwork}}</span>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
+                  <g clip-path="url(#clip0_10476_6360)">
+                    <path d="M12.7207 13.7951L17.6707 8.74609L19.0847 10.1884L12.7207 16.6797L6.35669 10.1884L7.77069 8.74609L12.7207 13.7951Z" fill="currentColor"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_10476_6360">
+                      <rect width="24" height="24.48" fill="currentColor" transform="translate(0.719971 0.359375)"/>
+                    </clipPath>
+                  </defs>
+                </svg>
               </button>
             </template>
 
@@ -14,7 +23,7 @@
                 <v-row dense style="max-width: 250px; display: block;">
                   <v-col v-for="(item, index) in pinia.state.BlockchainNetworks" :key="index">
                   <v-list-item @click="pinia.state.selectedNetwork = item.name;" style="display: flex;">
-                      <span>{{ item.name }}</span>
+                      <span style="text-transform: capitalize;">{{ item.name }}</span>
                   </v-list-item>
                 </v-col>
                 </v-row>
@@ -58,9 +67,12 @@ const blockchainNetwork = ref("Bep20")
   }
 } catch (error) {
   console.error('Fetch error:', error);
-}
+};
 
-
+const isChevronToggled = ref(false);
+const toggleChevron = () => {
+      isChevronToggled.value = !isChevronToggled.value;
+};
 </script>
 
 <style scoped>
@@ -105,18 +117,18 @@ letter-spacing: 0px;
 box-shadow: none;
 margin-top: 28px !important;
 }
+.close-btn{
+fill: white;
+transition: transform 0.3s ease;
+}
+.close-btn-dark{
+fill: #10192D;
+}
+.chevron-icon {
+  transition: transform 0.3s;
+}
 
-.dropdown-btn1i:hover,
-.dropdown-btn1i:focus,
-.dropdown-btn1i:active {
-  /* Ensure no background color change */
-  background-color: inherit !important;
-
-  /* Remove any other hover effects like box-shadow, transform, etc. */
-  box-shadow: none !important;
-  transform: none !important;
-
-  /* Remove text color change on hover */
-  color: inherit !important;
+.chevron-icon-rotated {
+  transform: rotate(180deg);
 }
 </style>

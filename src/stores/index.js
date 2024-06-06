@@ -134,6 +134,11 @@ export const useStore = defineStore('app',()=> {
     state.notificationLogs = [],
     state.tokenNetworks = [],
     state.tokenLists = [],
+    state.Web3_transactions = {
+      data:[],
+      time:null
+    };
+   
     navigateTo('/login')
   }
 

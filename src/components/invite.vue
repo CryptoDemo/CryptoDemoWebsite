@@ -9,12 +9,16 @@
           </div>
             <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 18.54px; display: flex; width: 45%; padding: 34px 18px; border: 0.5px solid rgba(142, 155, 174, 0.5); box-shadow: 0px 25.029px 18.54px 0px rgba(0, 0, 0, 0.02);">
                 <div style="display: grid">
-                  <span class="refer-txt" :class="isDark ? 'card-text-dark':'card-text-light'">Refer and Earn</span>
+                  <div style="display: flex; align-items: center;">
+                    <span class="refer-txt me-2" :class="isDark ? 'card-text-dark':'card-text-light'">Refer and Earn</span>
+                    <img src="/svg/copied.svg"/>
+                  </div>
                   <span class="share-link mt-2">Share the link, referral code for registration, or scan barcode to earn more</span>
                   <div style="display: flex;  position: relative;">
-                    <input class="copy-link-box pl-4 mt-4" disabled  v-model="referralCode" style="align-content: baseline;"/>
+                    <input class="copy-link-box pl-4 mt-4" :class="isDark ? 'text-dark':'text-light'" disabled  v-model="referralCode" style="align-content: baseline;"/>
                       <v-btn @click="copyToClipboard()" variant="plain" style=" background: inherit !important; box-shadow: none; position: absolute; right: 0; margin-top: 8.3%;">
-                        <img src="/svg/copy.svg"/>
+                        <img v-if="!copied" src="/svg/copy.svg"/>
+                        <h4 style="color: green; font-weight: 400; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</h4>
                       </v-btn>
                   </div>
                   
@@ -38,12 +42,18 @@ const pinia = useStore()
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
 const referralCode = pinia.state.user?.referral_code || "";
+const copied = ref(false);
 
   const copyToClipboard = () => {
   const text = referralCode
   navigator.clipboard.writeText(text).then(() => {
-    push.success('Code copied to clipboard!')
-  })
+  copied.value = true;
+  setTimeout(() => {
+      copied.value = false;
+    }, 2000); // Change the text back to 'Copy' after 2 seconds
+  }).catch(err => {
+    console.error('Failed to copy: ', err);
+  });
 }
 
 </script>

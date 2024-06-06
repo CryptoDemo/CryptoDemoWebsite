@@ -17,7 +17,7 @@
                 <v-list-item v-for="(item, i) in items" :key="i">
                   <div>
                     <v-btn  @click.prevent="navigateTo(item.link)" class="profile-btn">
-                    <img :src="item.icon" class="me-3"/>
+                    <img :src="item.icon" class="me-3" width="20"/>
                     {{ item.title }}
                     </v-btn>
                   </div>
@@ -41,7 +41,7 @@ const items = [
   {icon:'/svg/transaction.svg', title: 'Security', link:'/account/security'},
   {icon:'/svg/settings.svg', title: 'Settings', link:'/account/settings'},
   {icon:'/svg/friend.svg', title: 'Dashboard', link:'/account/dashboard'},
-  {icon:'/svg/logout.svg', title: 'Market Place', link:'/account/trade/marketPlace'},
+  {icon:'/svg/market.svg', title: 'Market Place', link:'/account/trade/marketPlace'},
   {icon:'/svg/logout.svg', title: 'Wallet', link:'/account/trade/wallet'},
   {icon:'/svg/logout.svg', title: 'Log Out', link:'/authentication/login'},
 ];
