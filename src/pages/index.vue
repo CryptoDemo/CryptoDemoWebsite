@@ -346,6 +346,7 @@ const conversionResult = ref([]);
 const select =ref("Bitcoin")
 const coin = ref ("BTC")
 const piniastoredicon = ref(null)
+
   try {
     const data = await getTokens(pageNumber.value);
     if(data.success) {
@@ -465,7 +466,7 @@ const imageSrc3=('/svg/BTN-two.svg');
 .header-text1{
 text-align: center;
 font-family: "SF Pro Display" !important;
-font-size: 80px ;
+font-size: 80px;
 font-style: normal;
 font-weight: 700;
 line-height: 100%; 

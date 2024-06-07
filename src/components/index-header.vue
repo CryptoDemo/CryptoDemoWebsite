@@ -147,6 +147,10 @@ const items = [
   {icon1:'/svg/btc-logodark.svg', icon2:'/svg/binance-lightlogo.svg', title: 'Buy with Binance Coin', subtitle:'Search for offers to buy gift cards with Binance Coin.'},
   
 ];
+
+onMounted(()=>{{
+  flag.value = pinia.state?.allcountries[0]?.flag_url;
+}})
   
 </script>
 
