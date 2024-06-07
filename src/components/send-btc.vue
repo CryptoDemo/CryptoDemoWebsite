@@ -21,13 +21,13 @@
                <div style="margin-top: 8px; margin-bottom: 8px;">
                  <v-menu>
                   <template v-slot:activator="{ props }">
-                    <v-btn class="inputstyling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  v-bind="props">
+                    <v-btn @click.prevent="sendBtn()" class="inputstyling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  v-bind="props">
                       <div class="me-5" style="display: flex; padding-left: 12px; align-items: center; border-radius: 17px; position: absolute; left: 0;">
                         <img :src="icon"  width="30" class="me-3"/>
                         <span class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{select}}</span> 
                       </div>
                         <div style="position: absolute; right: 15px; box-shadow: none; background: inherit;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="isDark ? 'close-btn':'close-btn-light'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z"/>
                         </svg>
                       </div>
@@ -58,7 +58,7 @@
                </div>
                <div class="position-relative">
                 <input class="px-4" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" id="hiddenInput" v-model="transferWallet" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; display: -webkit-box !important; -webkit-box-orient: vertical !important; -webkit-line-clamp: 1 !important; text-overflow: ellipsis !important; overflow: hidden !important; margin-bottom: 36px; align-items: center; height: 60px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between; ">
-                <v-btn @click="focusInput()" style="letter-spacing: 0px; width: 98px; font-family: Poppins; font-size: 16px; color: white; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 14%;right: 2%; position: absolute; display: flex;box-shadow: none; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Paste</v-btn>
+                <v-btn @click="pasteText()" style="letter-spacing: 0px; width: 98px; font-family: Poppins; font-size: 16px; color: white; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 14%;right: 2%; position: absolute; display: flex;box-shadow: none; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Paste</v-btn>
               </div>
                <input type="number" v-model="trfAmmount" placeholder="Amount to send" style="height: 60px; outline: none; border-radius: 25px; width: 100%; border: 1px solid rgba(142, 155, 174, 0.5); padding: 10px;"/>
                <v-btn :loading="loading" text="Continue" @click="calculateFee()" style="letter-spacing: 0px; margin-top: 35px; box-shadow: none; color: white; width: 100%; height: 55px; text-transform: capitalize; border-radius: 17px;background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);"></v-btn>
@@ -165,55 +165,35 @@ const calculateFee = async () => {
   }
 }
 
+const isChevronToggled = ref(false);
+const toggleChevron = () => {
+      isChevronToggled.value = !isChevronToggled.value;
+};
+
 const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
 
 const tokensForSelectedNetwork = pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
 
 const symbols = tokensForSelectedNetwork.map(token => token.symbol);
 
-// const getTokenBals = async () => {
-
-// // Check if user is authenticated
-
-// if (pinia.state.isAuthenticated) {
-//   try {
-//     console.log(network);
-
-//     // Fetch token balance
-//     const data = await getTokenBalance(symbols);
-//     console.log('here.....1')
-//     // Update tokens with the new balance
-//     if (data.success) {
-//         for (const token_ of data.data) {
-//           console.log(data);
-//           // Update tokenLists with the new balance
-       
-//           const token = pinia.state.tokenLists.find(t => t.symbol === token_.token);
-//           if (token) {
-//           // Update token balance
-//           token.balance = (token_.balance);
-//         }
-//         }
-//     } else {
-//       console.log('Error:', data.message);
-//     }
-//   } catch (error) {
-//     console.log('Fetch error:', error);
-//   }
-// }
-// };
-
-const focusInput = () => {
-  transferWallet.value.focus();
+const sendBtn = () => {
+  dialog.value = true;
+  toggleChevron();
 }
 
-  onMounted(async () => { 
- 
-  
+const pasteText = async () => {
+  try {
+    const text = await navigator.clipboard.readText();
+    transferWallet.value = text;
+  } catch (err) {
+    console.error('Failed to read clipboard contents: ', err);
+  }
+};
 
-    piniastoredicon.value = tokensForSelectedNetwork[0]?.icon;
-    storedSymbol.value = tokensForSelectedNetwork[0]?.name;
-  });
+onMounted(async () => { 
+piniastoredicon.value = tokensForSelectedNetwork[0]?.icon;
+storedSymbol.value = tokensForSelectedNetwork[0]?.name;
+});
 
 
  </script>
@@ -364,6 +344,13 @@ background: #eef3fb !important;
 box-shadow: none;
 }
 
+.chevron-icon {
+  transition: transform 0.3s;
+}
+
+.chevron-icon-rotated {
+  transform: rotate(180deg);
+}
 .coin-name{
 color: white !important;
 }

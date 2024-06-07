@@ -13,10 +13,10 @@
                 </v-btn>
               </template>
 
-              <v-list style="background: rgba(22, 29, 38, 0.60)!important; backdrop-filter: blur(20px)!important; border-radius: 15px;">
+              <v-list style="backdrop-filter: blur(20px)!important; border-radius: 15px;" :class="isDark ? 'menu-bg-dark':'menu-bg-light'">
                 <v-list-item v-for="(item, i) in items" :key="i">
                   <div>
-                    <v-btn  @click.prevent="navigateTo(item.link)" class="profile-btn">
+                    <v-btn  @click.prevent="navigateTo(item.link)" class="profile-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
                     <img :src="item.icon" class="me-3" width="20"/>
                     {{ item.title }}
                     </v-btn>
@@ -37,7 +37,7 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const items = [
   {icon:'/svg/profile1.svg', title: 'My profile', link:'/account/profile'},
-  {icon:'/svg/payment.svg', title: 'Payment Method', link:'/account/payment'},
+  {icon:'/svg/payment.svg', title: 'Payment Method', link:'#'},
   {icon:'/svg/transaction.svg', title: 'Security', link:'/account/security'},
   {icon:'/svg/settings.svg', title: 'Settings', link:'/account/settings'},
   {icon:'/svg/friend.svg', title: 'Dashboard', link:'/account/dashboard'},
@@ -55,15 +55,14 @@ justify-content: flex-start !important;
 align-items: center;
 flex-shrink: 0;
 border-radius: 16px !important;
-background: #0F141A !important;
 letter-spacing: 0px !important;
 text-transform: unset !important;
-color: var(--Gray-Medium-light, #969696) !important;
 font-family: Manrope !important;
 font-size: 14px !important;
 font-style: normal;
 font-weight: 600 !important;
 line-height: 28px !important; /* 200% */
+box-shadow: none;
 }     
 .nav-btn{
 border-radius: 20px !important; 
@@ -83,6 +82,23 @@ fill: white;
 }
 .close-btn-dark{
 fill: #10192D;
+}
+
+.menu-bg-dark{
+background: #10192D !important;
+
+}
+.menu-bg-light{
+background: #F8FAFC !important;
+}
+
+.menu-bg-dark{
+background: #10192D !important;
+color: #8E9BAE;
+}
+.profile-cards-light{
+background: #F8FAFC !important;
+color: #10192D !important;
 }
 @media screen and (max-width: 600px) {
 .nav-btn{

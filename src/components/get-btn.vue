@@ -1,6 +1,6 @@
 <template>
   <div class="pa-4 text-center">
-   <v-btn @click.stop="dialog = true" :class="isDark ? 'active-offers-dark':'active-offers-light'" class="send-btn">
+   <v-btn @click.prevent="dialog = true" :class="isDark ? 'active-offers-dark':'active-offers-light'" class="send-btn">
      <img src="/svg/get.svg" class="me-1"/>
      <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
    </v-btn>
@@ -21,15 +21,15 @@
              <div style="margin-top: 8px; margin-bottom: 8px;">
                <v-menu>
                 <template v-slot:activator="{ props }">
-                  <v-btn class="inputstyling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props">
+                  <v-btn @click.prevent="getBtn()" class="inputstyling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props">
                     <div class="py-3 me-5" style="display: flex; padding-left: 12px; align-items: center; border-radius: 17px; position: absolute; left: 0;">
                         <img :src="icon"  width="30" class="me-3"/>
                         <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{select}}</span> 
                     </div>
                       <div style="position: absolute; right: 15px; box-shadow: none; background: inherit;">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="isDark ? 'close-btn':'close-btn-light'">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
-                      </svg>
+                      </svg>             
                     </div>
                   </v-btn>
                 </template>
@@ -61,8 +61,12 @@
              <div class="position-relative">
               <input class="px-4" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" v-model="walletAddress" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; margin-bottom: 36px; align-items:  center; height: 60px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; text-overflow: ellipsis; overflow: hidden; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
                 <v-btn @click="copyToClipboard()" style="letter-spacing: 0px; width: 98px; color: white; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 2.3%; right: 2%; position: absolute; display: flex;box-shadow: none;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">
-                  Copy
-                  <img src="/svg/copy1.svg" style="margin-left: 10px;"/>
+                  <div v-if="!copied" class="d-flex">
+                    <span>Copy</span>
+                    <img src="/svg/copy1.svg" style="margin-left: 10px;"/>
+                  </div>
+
+                  <spanv v-else>Copied</spanv>
                 </v-btn>
             <div style="display: flex; justify-content: center;">
               <qrcode-vue :value="walletAddress" :size="150" level="H" />
@@ -106,74 +110,10 @@ const selectedTokenBalance = computed(() => {
   return selectedToken?.balance;
 });
 
-
-// const getTokens_ = async()=>{
-//   try {
-//       const data = await getTokens(pageNumber.value);
-  
-//       if (data.success) {
-//         const fetchedTokens = data.data.result;
-  
-//         // Filter tokens based on the selected network ID
-//         const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
-//         const filteredTokens = fetchedTokens.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
-  
-//         const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
-  
-//         // Check if there are any new items in the fetched data
-//         const newItems = filteredTokens.filter(item => !storedTokenIds.includes(item.id));
-  
-//         if (newItems.length > 0) {
-//           console.log('fetching');
-//           pinia.setTokenLists(newItems);
-//         }
-//       } else {
-//         console.log('Unavailable');
-//       }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
 const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
 const tokensForSelectedNetwork = pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
 
 const symbols = tokensForSelectedNetwork.map(token => token.symbol);
-
-
-
-// const getTokenBals = async () => {
-
-//   // Check if user is authenticated
-
-//   if (pinia.state.isAuthenticated) {
-//     try {
-//       console.log(network);
-
-//       // Fetch token balance
-//       const data = await getTokenBalance(symbols);
-//       console.log('here.....1')
-//       // Update tokens with the new balance
-//       if (data.success) {
-//           for (const token_ of data.data) {
-//             console.log(data);
-//             // Update tokenLists with the new balance
-         
-//             const token = pinia.state.tokenLists.find(t => t.symbol === token_.token);
-//             if (token) {
-//             // Update token balance
-//             token.balance = (token_.balance);
-//           }
-//           }
-//       } else {
-//         console.log('Error:', data.message);
-//       }
-//     } catch (error) {
-//       console.log('Fetch error:', error);
-//     }
-//   }
-// };
-
 
 
 const getWalletAds = async () => {
@@ -192,17 +132,27 @@ const getWalletAds = async () => {
     }
 };
 
+const copied = ref(false);
 const copyToClipboard = () => {
-  navigator.clipboard.writeText(walletAddress.value)
-  .then(() => {
-    push.success('Text copied successfully!');
-  })
-  .catch((error) => {
-    console.error('Failed to copy text:', error);
-    push.error('Failed to copy text!');
+  navigator.clipboard.writeText(walletAddress.value).then(() => {
+  copied.value = true;
+  setTimeout(() => {
+      copied.value = false;
+    }, 2000); // Change the text back to 'Copy' after 2 seconds
+  }).catch(err => {
+    console.error('Failed to copy: ', err);
   });
 }
 
+const getBtn = () => {
+  dialog.value = true;
+  toggleChevron();
+}
+
+const isChevronToggled = ref(false);
+const toggleChevron = () => {
+      isChevronToggled.value = !isChevronToggled.value;
+};
 
 onMounted(async () => {
 
@@ -367,6 +317,14 @@ background: #1b2537 !important;
 }
 .nav-btn-light{
 background: #eef3fb !important;
+}
+
+.chevron-icon {
+  transition: transform 0.3s;
+}
+
+.chevron-icon-rotated {
+  transform: rotate(180deg);
 }
 
 ::-webkit-scrollbar{

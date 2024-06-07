@@ -17,7 +17,7 @@
           <div v-for="(nav, i) in navigation" :key="i">
             <nuxt-link :to="nav.link">
             <v-btn class="nav-options2" :class="isDark ? 'text-dark':'text-light'"> 
-              <div v-html="nav.icon" class="me-2" :class="isDark ? 'close-btn':'close-btn-dark'"></div>
+              <div v-html="nav.icon" class="me-2" :class="isDark ? 'dashboard-btn':'dashboard-btn-dark'"></div>
               {{ nav.title }}
             </v-btn>
           </nuxt-link>      
@@ -52,19 +52,19 @@ const navigation = [
           <path d="M2.5 12.4113V7.84132C2.5 6.65132 3.23 5.59128 4.34 5.17128L12.28 2.17128C13.52 1.70128 14.85 2.62131 14.85 3.95131V7.7513" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M22.5588 13.9692V16.0292C22.5588 16.5792 22.1188 17.0292 21.5588 17.0492H19.5988C18.5188 17.0492 17.5288 16.2592 17.4388 15.1792C17.3788 14.5492 17.6188 13.9592 18.0388 13.5492C18.4088 13.1692 18.9188 12.9492 19.4788 12.9492H21.5588C22.1188 12.9692 22.5588 13.4192 22.5588 13.9692Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M7 12H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`, title: 'Payment', link:'/account/payment',},
+        </svg>`, title: 'Payment', link:'#',},
 
        {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <path d="M2.16667 18.4817H13" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M4.57164 14.625H10.595C12.5234 14.625 13 15.1017 13 17.0083V21.4608C13 23.3675 12.5234 23.8442 10.595 23.8442H4.57164C2.6433 23.8442 2.16667 23.3675 2.16667 21.4608V17.0083C2.16667 15.1017 2.6433 14.625 4.57164 14.625Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M23.8333 16.25C23.8333 20.4425 20.4425 23.8333 16.25 23.8333L17.3875 21.9375" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M2.16667 9.74996C2.16667 5.55746 5.5575 2.16663 9.75 2.16663L8.61251 4.06246" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M20.0417 11.9166C22.7341 11.9166 24.9167 9.73401 24.9167 7.04163C24.9167 4.34924 22.7341 2.16663 20.0417 2.16663C17.3493 2.16663 15.1667 4.34924 15.1667 7.04163C15.1667 9.73401 17.3493 11.9166 20.0417 11.9166Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2.16667 18.4817H13" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4.57164 14.625H10.595C12.5234 14.625 13 15.1017 13 17.0083V21.4608C13 23.3675 12.5234 23.8442 10.595 23.8442H4.57164C2.6433 23.8442 2.16667 23.3675 2.16667 21.4608V17.0083C2.16667 15.1017 2.6433 14.625 4.57164 14.625Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M23.8333 16.25C23.8333 20.4425 20.4425 23.8333 16.25 23.8333L17.3875 21.9375" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2.16667 9.74996C2.16667 5.55746 5.5575 2.16663 9.75 2.16663L8.61251 4.06246" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20.0417 11.9166C22.7341 11.9166 24.9167 9.73401 24.9167 7.04163C24.9167 4.34924 22.7341 2.16663 20.0417 2.16663C17.3493 2.16663 15.1667 4.34924 15.1667 7.04163C15.1667 9.73401 17.3493 11.9166 20.0417 11.9166Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>`, title: 'Market Place', link:'#',},
 
        {icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
         <path d="M14.2388 4.7125C14.2388 4.71253 14.2389 4.71256 14.2389 4.71259C14.2389 4.71256 14.2388 4.71253 14.2388 4.7125Z" fill="currentColor" stroke="currentColor" stroke-width="2"/>
-        <mask id="path-2-inside-1_10309_70142" fill="white">
+        <mask id="path-2-inside-1_10309_70142" fill="currentColor">
           <path d="M3.11667 10.6497C3.1 10.6497 3.075 10.6497 3.05833 10.6497C2.725 10.6163 2.48333 10.3163 2.51667 9.98301C2.74167 7.80801 3.89167 5.84135 5.68333 4.57468C5.95 4.38301 6.33333 4.44968 6.525 4.71635C6.71667 4.99135 6.65 5.36635 6.38333 5.55801C4.88333 6.62468 3.90833 8.27468 3.725 10.0997C3.69167 10.4163 3.425 10.6497 3.11667 10.6497Z"/>
         </mask>
         <path d="M3.11667 10.6497C3.1 10.6497 3.075 10.6497 3.05833 10.6497C2.725 10.6163 2.48333 10.3163 2.51667 9.98301C2.74167 7.80801 3.89167 5.84135 5.68333 4.57468C5.95 4.38301 6.33333 4.44968 6.525 4.71635C6.71667 4.99135 6.65 5.36635 6.38333 5.55801C4.88333 6.62468 3.90833 8.27468 3.725 10.0997C3.69167 10.4163 3.425 10.6497 3.11667 10.6497Z" fill="currentColor"/>
@@ -81,7 +81,7 @@ const navigation = [
       
        {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16" fill="none">
   <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="#D8D8D8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M1.33331 8.58679V7.41345C1.33331 6.72012 1.89998 6.14679 2.59998 6.14679C3.80665 6.14679 4.29998 5.29345 3.69331 4.24679C3.34665 3.64679 3.55331 2.86679 4.15998 2.52012L5.31331 1.86012C5.83998 1.54679 6.51998 1.73345 6.83331 2.26012L6.90665 2.38679C7.50665 3.43345 8.49331 3.43345 9.09998 2.38679L9.17331 2.26012C9.48665 1.73345 10.1666 1.54679 10.6933 1.86012L11.8466 2.52012C12.4533 2.86679 12.66 3.64679 12.3133 4.24679C11.7066 5.29345 12.2 6.14679 13.4066 6.14679C14.1 6.14679 14.6733 6.71345 14.6733 7.41345V8.58679C14.6733 9.28012 14.1066 9.85345 13.4066 9.85345C12.2 9.85345 11.7066 10.7068 12.3133 11.7535C12.66 12.3601 12.4533 13.1335 11.8466 13.4801L10.6933 14.1401C10.1666 14.4535 9.48665 14.2668 9.17331 13.7401L9.09998 13.6135C8.49998 12.5668 7.51331 12.5668 6.90665 13.6135L6.83331 13.7401C6.51998 14.2668 5.83998 14.4535 5.31331 14.1401L4.15998 13.4801C3.55331 13.1335 3.34665 12.3535 3.69331 11.7535C4.29998 10.7068 3.80665 9.85345 2.59998 9.85345C1.89998 9.85345 1.33331 9.28012 1.33331 8.58679Z" stroke="#D8D8D8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1.33331 8.58679V7.41345C1.33331 6.72012 1.89998 6.14679 2.59998 6.14679C3.80665 6.14679 4.29998 5.29345 3.69331 4.24679C3.34665 3.64679 3.55331 2.86679 4.15998 2.52012L5.31331 1.86012C5.83998 1.54679 6.51998 1.73345 6.83331 2.26012L6.90665 2.38679C7.50665 3.43345 8.49331 3.43345 9.09998 2.38679L9.17331 2.26012C9.48665 1.73345 10.1666 1.54679 10.6933 1.86012L11.8466 2.52012C12.4533 2.86679 12.66 3.64679 12.3133 4.24679C11.7066 5.29345 12.2 6.14679 13.4066 6.14679C14.1 6.14679 14.6733 6.71345 14.6733 7.41345V8.58679C14.6733 9.28012 14.1066 9.85345 13.4066 9.85345C12.2 9.85345 11.7066 10.7068 12.3133 11.7535C12.66 12.3601 12.4533 13.1335 11.8466 13.4801L10.6933 14.1401C10.1666 14.4535 9.48665 14.2668 9.17331 13.7401L9.09998 13.6135C8.49998 12.5668 7.51331 12.5668 6.90665 13.6135L6.83331 13.7401C6.51998 14.2668 5.83998 14.4535 5.31331 14.1401L4.15998 13.4801C3.55331 13.1335 3.34665 12.3535 3.69331 11.7535C4.29998 10.7068 3.80665 9.85345 2.59998 9.85345C1.89998 9.85345 1.33331 9.28012 1.33331 8.58679Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`, title: 'Settings', link:'/account/settings'},     
      ];
   </script>
@@ -128,10 +128,10 @@ const navigation = [
   line-height: normal;
   transform: translateX(6px);
   }
-.close-btn{
+.dashboard-btn{
 fill: white;
 }
-.close-btn-dark{
+.dashboard-btn-dark{
 fill: #10192D;
 }
   </style>
