@@ -60,7 +60,7 @@
                             <template v-slot:activator="{ props }">
                               <v-btn class="input-styling1 ml-1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props"  style="box-shadow: none;">
                                 <div  class="py-3" style="display: flex; cursor: pointer; position: absolute; left: 37px; align-items: center;">
-                                  <span :class="isDark ? 'text-dark':'text-light'" class="me-2" style="font-weight: 700; font-size: 16px;">{{Selectedcurrency_code}}</span>
+                                  <span :class="isDark ? 'text-dark':'text-light'" class="me-2" style="font-weight: 700; font-size: 16px;">{{pinia.state.Selectedcurrency_code}}</span>
                                   <span :class="isDark ? 'text-dark':'text-light'" class="mt-" style="font-weight: 700;">{{pinia.state.preferredCurrency}}</span> 
                                 </div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none" style="position: absolute; right: 30px; bottom: 27px;" :class="isDark ? 'svg-dark':'svg-light'">
@@ -72,7 +72,7 @@
                             <v-list :class="isDark ? 'country-dropdown1':'country-dropdown1-light'" >
                               <v-list-item style="width: 100%;">
                                 <div v-for="(currency, index) in pinia.state.allcountries" class="d-flex py-1" :key="index">
-                                  <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; Selectedcurrency_code = currency.currency_code">
+                                  <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code">
                                       <div class="d-flex ml-4">
                                         <span :class="isDark ? 'country-name' : 'country-name-light'">{{ currency.currency_name }}</span>
                                       </div>
@@ -125,7 +125,6 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
 const loading = ref(false);
 const profileImg = ref(null)
-const Selectedcurrency_code = ref ('$');
 const selectedImage = ref(null);
 const phoneNumber = ref(pinia.state?.user?.phone || "");
 const DateOfBirth = ref();

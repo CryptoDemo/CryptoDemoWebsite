@@ -3,10 +3,10 @@
 <div>
     <v-container>
        <div style="display: flex; align-items: center; margin-bottom: 44px; margin-top: 100px;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="navigateTo('/account/trade/wallet')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="navigateTo('/account/trade/wallet')" style="cursor: pointer;">
         <path d="M15 19.9181L8.47997 13.3981C7.70997 12.6281 7.70997 11.3681 8.47997 10.5981L15 4.07812" stroke="#B9D1FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-           <img :src="coin.icon" width="35" class="me-2"/>
+           <img :src="coin.icon" width="35" class="me-2 ml-2"/>
            <span>{{ coin.name }}/{{pinia.state.preferredCurrency}}</span>
        </div>
        <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="width: 100%; height: 250px;border-radius: 24px; padding: 45px;">
@@ -24,10 +24,30 @@
                </div>
                <span class="bal" v-if="isToggled">{{fetchedBalance }} {{ coin.symbol }}</span>
                <span class="bal" v-else>***</span>
-               <span class="currency-bal">{{ pinia.state.tokenLists.converted_value }}</span>
-           </div>
+
+            <div style="display: flex;align-items: center; margin-top: -13px; justify-content: space-between;">
+            <div>
+                <span class="currency-bal">{{ pinia.state.tokenLists.converted_value }}</span>
+                <span class="currencyEquiv me-3">{{ pinia.state.Selectedcurrency_code }} {{ currencyEquivalent }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                 <path d="M6.22003 11.9987H9.78003C11.9934 11.9987 12.8934 10.432 11.7934 8.5187L11.3 7.66536C11.18 7.4587 10.96 7.33203 10.72 7.33203H5.28003C5.04003 7.33203 4.82003 7.4587 4.70003 7.66536L4.2067 8.5187C3.1067 10.432 4.0067 11.9987 6.22003 11.9987Z" fill="white"/>
+                 <path d="M5.86004 6.66833H10.1467C10.4067 6.66833 10.5667 6.38833 10.4334 6.16833L10.0067 5.435C8.90671 3.52167 7.09337 3.52167 5.99337 5.435L5.56671 6.16833C5.44004 6.38833 5.60004 6.66833 5.86004 6.66833Z" fill="white"/>
+                </svg>
+                <span class="perc">+10%</span>
+            </div>
+
+            <div style="display: flex; align-items: center;">
+                <SendBtc/>
+                <GetBtn/>
+            </div>
+        </div>
+        </div>
        </div>                   
     </v-container>
+    <div style="margin-top: 500px;">
+        <Footer class="desktop-footer flex-lg-and-up hidden-sm-and-down"/>
+        <Mobile-footer class="mobile-footer"/>
+    </div>
 </div>
   </template>
   
@@ -94,23 +114,21 @@ const fetchConversionRate = async () => {
   }
 };
 
+const currencyEquivalent = ref(0);
 const calculateCurrencyEquivalent = () => {
   const balance = parseFloat(fetchedBalance.value);
   const rate = parseFloat(conversionRate.value);
 
-  if (!isNaN(balance) && !isNaN(rate)) {
-    const currencyEquivalent = balance * rate;
+
+    currencyEquivalent.value = balance * rate;
     console.log(currencyEquivalent);
-  } else {
-    console.log('Invalid balance or conversion rate.');
-  }
+
 };
-console.log(typeof fetchedBalance.value, typeof conversionRate.value);
 
 
-onBeforeMount(() => {
-  fetchConversionRate()
-  getSingleBal();
+onBeforeMount(async() => {
+ await fetchConversionRate()
+ await getSingleBal();
   calculateCurrencyEquivalent()
 });
 // Call the function
@@ -134,13 +152,28 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 }
-
 .currency-bal{
 font-family: Poppins;
 font-size: 24px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+}
+.currencyEquiv{
+font-family: Poppins;
+font-size: 24px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.perc{
+text-align: right;
+font-family: Manrope;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%; /* 24px */
 }
 </style>
   

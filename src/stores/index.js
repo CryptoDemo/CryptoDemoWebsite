@@ -28,6 +28,7 @@ export const useStore = defineStore('app',()=> {
       BlockchainNetworks: [],
       selectedNetwork: "Bep20" ,
       preferredCurrency: "USD",
+      Selectedcurrency_code:"$",
       tokenLists:[],
       tokenPrices:[],
       tokenBalance:null,
@@ -70,6 +71,10 @@ export const useStore = defineStore('app',()=> {
 
   const setpreferredCurrency = (payload) => {
       state.preferredCurrency = payload;  
+  };
+
+  const  setSelectedcurrency_code= (payload) => {
+      state.Selectedcurrency_code = payload;  
   };
 
   const setTwoFactor = (payload) => {
@@ -167,6 +172,7 @@ export const useStore = defineStore('app',()=> {
       setFAQs,
       setpreferredCurrency,
       setWeb3_transactions,
+      setSelectedcurrency_code,
     }
 },
   {persist: {
