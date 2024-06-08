@@ -14,9 +14,9 @@
                   <div style=" margin-top: 10px;">
                     <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 32px;  font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
                   </div>
-                   <div class="wallet-box" :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 97%; padding: 30px; margin-top: 20px;">
+                   <div class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; width: 97%; padding: 30px; margin-top: 20px;">
                     <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
-                      <thead>
+                      <thead :class="isDark ? 'wallet-border' : 'wallet-border-light'">
                         <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
 
                           <th class="me-7 coin-th" style="display: flex; align-items: center; align-self: center; width: 18%; justify-content: center;">
@@ -48,7 +48,7 @@
 
 
                   <tbody>
-                    <tr class="token-price" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
+                    <tr @click="pinia.state.getNewCoinInfo = token.symbol ; navigateTo('/account/trade/coinId')" class="token-price"  :class="isDark ? 'wallet-border' : 'wallet-border-light'" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
                       <td style="display: contents;">
                         <div class="d-flex me-7" style="align-items: center; width: 25%; overflow: hidden;">
                           <img :src="token.icon" width="35" class="me-3" />
@@ -116,7 +116,7 @@
                                     <td style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
                                     <td style="display: flex; align-items: center; color: white;">
                                       <div>
-                                      <nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'active-offers-dark':'active-offers-light'" class="swap">
+                                      <nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'text-dark':'text-light'" class="swap">
                                       <img src="/svg/arrow-swap.svg" class="me-1"/>
                                       Swap</v-btn>
                                       </nuxt-link>
@@ -140,7 +140,7 @@
                         <td class=" flex-md-and-up hidden-sm-and-down" style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
                         <td class="flex-md-and-up hidden-sm-and-down" style="display: flex; align-items: center; color: white;">
                           <div>
-                          <nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'active-offers-dark':'active-offers-light'" class="swap">
+                          <nuxt-link to="/account/trade/swap"><v-btn class="swap">
                           <img src="/svg/arrow-swap.svg"/>
                           Swap</v-btn>
                           </nuxt-link>
@@ -154,7 +154,7 @@
             </div>
 
             <div style="margin-top: 63px; margin-bottom: 94px;">
-                <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Latest transactions</span>
+                <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Transaction History</span>
             </div>
 
           
@@ -263,30 +263,60 @@ watch(()=>conversionResult.value,(newVal)=>{
 });
 // const formatBalance = balance => (balance === 0 ? '0.00' : balance?.toFixed(7));
 
+// const getTokenBals = async () => {
+//   // Check if user is authenticated
+
+//   if (pinia.state.isAuthenticated) {
+//     try {
+
+//       // Fetch token balance
+//       const data = await getTokenBalance(symbols);
+     
+
+//       // Update tokens with the new balance
+//       if (data.success) {
+//           for (const token_ of data.data) {
+          
+//             // Update tokenLists with the new balance
+//             // const token = tokensForSelectedNetwork.find(t => t.symbol === token_);
+//             const token = pinia.state.tokenLists.find(t => t.symbol === token_.token);
+//             if (token) {
+//             // Update token balance
+//             token.balance = (token_.balance);
+        
+//           }
+//           }
+//       } else {
+//         console.log('Error:', data.message);
+//       }
+//     } catch (error) {
+//       console.log('Fetch error:', error);
+//     }
+//   }
+// };
+
 const getTokenBals = async () => {
-
   // Check if user is authenticated
-
   if (pinia.state.isAuthenticated) {
     try {
-
       // Fetch token balance
       const data = await getTokenBalance(symbols);
-     
 
       // Update tokens with the new balance
       if (data.success) {
-          for (const token_ of data.data) {
-          
-            // Update tokenLists with the new balance
-            // const token = tokensForSelectedNetwork.find(t => t.symbol === token_);
-            const token = pinia.state.tokenLists.find(t => t.symbol === token_.token);
-            if (token) {
-            // Update token balance
-            token.balance = (token_.balance);
-        
+        // Create a copy of the token list to update locally
+        const updatedTokens = pinia.state.tokenLists.map(token => {
+          const tokenData = data.data.find(t => t.token === token.symbol);
+          if (tokenData) {
+            return { ...token, balance: tokenData.balance };
           }
-          }
+          return token;
+        });
+
+        // Log updated tokens or do something with the updatedTokens
+        console.log('Updated Tokens:', updatedTokens);
+        // Optionally, you can return or use `updatedTokens` as needed
+
       } else {
         console.log('Error:', data.message);
       }
@@ -322,6 +352,8 @@ letter-spacing: 0px;
 text-transform: unset;
 align-content: center;
 box-shadow: none;
+border: 1px solid  #1B2537;
+background: inherit;
 }
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
 border: none !important;
@@ -372,11 +404,10 @@ background: var(--secondary-background, #F8FAFC) !important;
 color: #10192D;
 }
 .wallet-border{
-  border: 0.5px solid rgba(142, 155, 174, 0.5);
-  /* padding: 10px; */
+  border-bottom: 1px solid  #1B2537;
 }
 .wallet-border-light{
-  border: 1px solid #DBE8FF;
+border-bottom: 1px solid #E2E8F0;
 }
 .coin-name{
 color: white !important;

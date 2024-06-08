@@ -57,6 +57,19 @@ export const getWalletAddress = async(chain)=>{
     return data
 };
 
+export const getSingleTokenBal = async(chain)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}web3/token-balance/${pinia.state.selectedNetwork.toLowerCase()}/${pinia.state.getNewCoinInfo}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': `${pinia.state.user?.token}`
+        }
+    }).then(res => res.json());
+    return data
+};
+
 export const currencyConverter = async(convertCurrency)=>{
     const data = await fetch(`${baseURL}web3/currency-converter`, {
         method: 'POST',

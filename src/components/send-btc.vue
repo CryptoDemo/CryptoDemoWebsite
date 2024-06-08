@@ -1,6 +1,6 @@
 <template>
     <div class=" text-center">
-     <v-btn @click="dialog = true" :class="isDark ? 'active-offers-dark':'active-offers-light'" class="send-btn">
+     <v-btn @click="dialog = true" class="send-btn" :class="isDark ? 'wallet-border':'wallet-border-light'" >
        <img src="/svg/send-arrow.svg" class="me-1"/>
        <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
      </v-btn>
@@ -218,6 +218,7 @@ font-size: 14px;
 font-style: normal;
 font-weight: 700;
 line-height: 140%;
+background: inherit;
  }
  .success-txt{
  color: #8E9BAE;
@@ -357,6 +358,14 @@ color: white !important;
 .coin-name-light{
 color: #10192D;
 }
+
+.wallet-border{
+  border: 1px solid  #1B2537;
+}
+.wallet-border-light{
+border: 1px solid #E2E8F0;
+}
+
 ::-webkit-scrollbar{
   display: none;
 }

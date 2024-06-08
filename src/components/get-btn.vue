@@ -1,6 +1,6 @@
 <template>
   <div class="pa-4 text-center">
-   <v-btn @click.prevent="dialog = true" :class="isDark ? 'active-offers-dark':'active-offers-light'" class="send-btn">
+   <v-btn @click.prevent="dialog = true" class="send-btn" :class="isDark ? 'wallet-border':'wallet-border-light'">
      <img src="/svg/get.svg" class="me-1"/>
      <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
    </v-btn>
@@ -188,6 +188,7 @@ font-size: 14px;
 font-style: normal;
 font-weight: 700;
 line-height: 140%;
+background: inherit;
 }
 .success-txt{
 color: #8E9BAE;
@@ -253,7 +254,6 @@ border: 1px solid #1B2537 !important;
 background: #F8FAFC!important;
 border: 1px solid #DBE8FF !important;
 }
-
 .active-offers-dark{
 background: var(--secondary-background, #1B2537);
 }
@@ -318,10 +318,18 @@ background: #1b2537 !important;
 .nav-btn-light{
 background: #eef3fb !important;
 }
-
 .chevron-icon {
   transition: transform 0.3s;
 }
+
+
+.wallet-border{
+  border: 1px solid  #1B2537;
+}
+.wallet-border-light{
+border: 1px solid #E2E8F0;
+}
+
 
 .chevron-icon-rotated {
   transform: rotate(180deg);

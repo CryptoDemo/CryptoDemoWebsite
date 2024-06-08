@@ -35,6 +35,7 @@ export const useStore = defineStore('app',()=> {
       selectedToken: 'USDT',
       UserFaqs:[],
       Web3_transactions:[],
+      getNewCoinInfo:""
     });
   
   
