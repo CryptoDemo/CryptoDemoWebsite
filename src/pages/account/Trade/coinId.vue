@@ -11,7 +11,7 @@
        </div>
        <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="width: 100%; height: 250px;border-radius: 24px; padding: 45px;">
            <div style="display: flex; flex-direction: column;">
-               <div style="display: flex; align-items: center;">
+               <div style="display: flex; align-items: center; margin-bottom: 5px;">
                    <span class="tkn-bal me-3">Balance</span>
                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" v-if="isToggled"  @click="togglePassword()" style="cursor: pointer;">
                    <path d="M15.58 12.0019C15.58 13.9819 13.98 15.5819 12 15.5819C10.02 15.5819 8.42004 13.9819 8.42004 12.0019C8.42004 10.0219 10.02 8.42188 12 8.42188C13.98 8.42188 15.58 10.0219 15.58 12.0019Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

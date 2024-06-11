@@ -105,7 +105,7 @@
  <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import {getTokens, getTokenBalance, calculateTxnFees} from "@/composables/requests/tokens";
+import { calculateTxnFees} from "@/composables/requests/transaction";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);

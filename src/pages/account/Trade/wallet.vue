@@ -11,10 +11,11 @@
   
               <div style="width: -webkit-fill-available">
                 <div>
-                  <div style=" margin-top: 10px;">
-                    <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 32px;  font-style: normal; font-weight: 700; line-height: normal;">Wallet</span>
-                  </div>
-                   <div class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; width: 97%; padding: 30px; margin-top: 20px;">
+                  <div class="btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                  <v-btn  :class="`${selectedScreen ? 'wallet-btn': 'fiat-btn'} ${isDark ? 'wallet-btn':'fiat-btn-light'}`" @click.prevent="selectedScreen=true" > Wallet </v-btn>
+                  <v-btn :class="`${!selectedScreen ? 'wallet-btn': 'fiat-btn'} ${isDark ? 'wallet-btn':'fiat-btn-light'}` " @click.prevent="selectedScreen=false" >Fiat</v-btn>
+                </div>
+                <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; width: 97%; padding: 30px; margin-top: 30px;">
                     <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
                       <thead :class="isDark ? 'wallet-border' : 'wallet-border-light'">
                         <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
@@ -151,7 +152,11 @@
                     </tr>
                   </tbody>
               </v-table>
-            </div>
+                </div>
+
+                <div v-else style="margin-top: 30px; margin-bottom: 400px;">
+                  <Fiat/>
+                </div>
 
             <div style="margin-top: 63px; margin-bottom: 94px;">
                 <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Transaction History</span>
@@ -173,6 +178,7 @@ import {getTokens, currencyConverter, getTokenBalance} from "@/composables/reque
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
+const selectedScreen = ref(true)
 const dialog = ref(false)
 const pageNumber = ref(1)
 const conversionResult = ref([]);
@@ -414,6 +420,45 @@ color: white !important;
 }
 .coin-name-light{
 color: #10192D;
+}
+
+.wallet-btn{
+border-radius: 22px;
+background: var(--linear-card, linear-gradient(270deg, #1DA1DB -11.75%, #2873FF 119.96%));
+display: flex;
+width: 228px;
+height: 48px;
+padding: 12px 98px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+flex-shrink: 0;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+box-shadow: none;
+color: white;
+}
+
+.fiat-btn{
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+width: 228px;
+height: 48px;
+padding: 12px 98px;
+background: inherit;
+box-shadow: none;
+}
+
+.btn-segment{
+display: flex;
+border-radius: 24px;
+border: 1px solid #1B2537;
+width: fit-content;
+margin-top: 30px;
 }
 ::-webkit-scrollbar {
   display: none;

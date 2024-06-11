@@ -296,8 +296,6 @@ cursor: pointer;
 }
 .resend-code-btn{
 color:  #2873FF !important; 
-/* background-clip: text;   */
-/* -webkit-text-fill-color: transparent ;  */
 font-family: Manrope;
 font-size: 16px !important;
 font-style: normal;

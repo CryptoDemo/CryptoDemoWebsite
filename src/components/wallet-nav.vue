@@ -16,7 +16,7 @@
        
           <img src="/svg/range1.svg" style="position: absolute; left: 0;right: 0; margin: auto; top: 17%;"/>
           <div style="display: flex; flex-direction: column; position: absolute; left: 0; right: 0; top: 57px;">
-            <span class="lg-num">$ {{ formatBalance(balanceData) }}</span>
+            <span class="lg-num">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(balanceData) }}</span>
             <span class="sm-num">0.0140 BTC</span>
           </div>
           

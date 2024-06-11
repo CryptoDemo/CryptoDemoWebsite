@@ -15,11 +15,9 @@
                         </div>
                     </div>
 <!-- 
-                    <div class="d-flex">
-                      <span class="username me-4" :class="isDark ? 'card-text-dark':'card-text-light'" style="align-self: center;">{{ pinia.state.user?.country}}</span>
-                    </div> -->
+               
 
-                    <!-- TODO: insert a user badge here when it is available -->
+                    < TODO: insert a user badge here when it is available -->
                     
                   </div>
                 </div>
@@ -39,7 +37,7 @@
             <div style="display: flex; position: relative;">
               <div  class="me-9 flex-lg-and-up hidden-sm-and-down">
                 <div class="sd-nav1 position-relative" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-                  <div style="border-bottom: 1px solid var(--border, rgba(142,155,174,.5));  position: relative;top: 58px;"></div>
+                  <div :class="isDark ? 'border-dark':'border-light'" style="position: relative;top: 58px;"></div>
                     <div style="padding: 20px 24px;">
                       <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
                       </div>
@@ -57,7 +55,7 @@
                             </v-btn>
                         </div>
                       </div>
-                      <div style="border-top:.5px solid rgba(142,155,174,.5);">
+                      <div :class="isDark ? 'border-dark':'border-light'">
                         <div style="padding: 20px 24px;">
                         <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
                         </div>
@@ -146,13 +144,13 @@ const pageNumber = ref(1)
     console.log(error);
   };
 const navigation = [
-  {icon:'/svg/grad-location.svg', title: 'Referral Code'},
+  {icon:'/svg/grad-location.svg', title: 'Referral Code', number: pinia.state.user.referral_code},
   {icon:'/svg/partners.svg', title: 'Trade partners', number:0},
   {icon:'/svg/trade1.svg', title: 'Trades', link:'/history'},
   {icon:'/svg/trade1.svg', title: 'Trade volume', number:0},
   {icon:'/svg/trust1.svg', title: 'Balance'},
-  {icon:'/svg/blocked1.svg', title: 'Block chain Network', number:"BEP20"},
-  {icon:'/svg/blocked2.svg', title: 'Preferred Currency', number:"USD"},
+  {icon:'/svg/blocked1.svg', title: 'Block chain Network', number: pinia.state.selectedNetwork},
+  {icon:'/svg/blocked2.svg', title: 'Preferred Currency', number: pinia.state.preferredCurrency},
 ];
      
 </script>
@@ -389,6 +387,14 @@ line-height: 150%; /* 18px */
 }
 .close-btn-dark{
 fill: #10192D;
+}
+
+.border-dark{
+border-bottom: 1px solid #10192D !important;
+}
+
+.border-light{
+  border-bottom: 1px solid #E2E8F0 !important;
 }
 
  @media screen and (max-width: 600px) {
