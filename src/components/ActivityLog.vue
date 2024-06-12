@@ -108,7 +108,7 @@ onMounted(()=>{
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
   border: none !important;
   font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Poppins;
+  font-family: Manrope;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -136,7 +136,7 @@ color: var(--Gray-Medium-light, #969696) !important;
 .header{
 color: var(--Gray-Medium-light, #969696);
 font-feature-settings: 'clig' off, 'liga' off;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -196,7 +196,7 @@ background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%)
 text-transform: unset !important;
 color: var(--Colors-Base-white, #FFF);
 text-align: center !important;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal !important;
 font-weight: 400;

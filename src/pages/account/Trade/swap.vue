@@ -12,25 +12,25 @@
             <div class="d-md-flex" style="justify-content: space-between; position: relative;">
                 <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
               
-                     <div class="d-flex">   
-                      <div class="me-13" style="display: flex; flex-direction: column;">
+                     <div class="d-flex" style="width: 12%;">   
+                      <div class="me-13" style="display: flex; flex-direction: column; z-index: 1000">
                         <span class="have">I have :</span>
                           <v-menu>
                               <template v-slot:activator="{ props }">
-                                <v-btn class="inputstyling2" v-bind="props" style="height: fit-content; width: fit-content; box-shadow: none;">
-                                    <div  class="py-3" style="display: flex; padding-left: 12px; align-items: center;  border-radius: 17px; background: inherit;">
+                                <button class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
+                                    <div  class="py-3" style="display: flex;  align-items: center;  border-radius: 17px; background: inherit;">
                                       <img :src="icon" width="30" class="me-2"/>
                                     </div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none">
                                         <path d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z" fill="#E0E4F5"/>
                                     </svg>
-                                </v-btn>
+                                </button>
                               </template>
   
                                 <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 16px;">
                                   <v-list-item>
                                     <v-list-item v-for="(item, index) in pinia.state.tokenLists" :key="index">
-                                      <v-list-item-title @click="select=item.name; icon =item.icon"  class="d-flex">
+                                      <v-list-item-title @click="select=item.name; selectedSymbol=item.symbol; icon =item.icon; selectedBalance =item.balance" class="d-flex">
                                         <img :src="item.icon" width="30" class="me-3"/>  
                                         <span class="me-3" style="align-items: center;"> {{item.name}} </span>
                                       </v-list-item-title>
@@ -39,74 +39,74 @@
                                 </v-list>
                           </v-menu>  
                       </div>
-
-                      <div style="display: flex; justify-content: center; align-self: center ; margin-top: 17px; border-radius: 4px; width: 48px; height: 26px; position: relative ; z-index: 1000;">
-                        <v-btn @click="increaseCounter" class="me-4" style="border: 1px solid #303A46; height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit;"><span class="min">Min</span></v-btn>    
-                        <v-btn class="me-3" style=" border: 1px solid #303A46; letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit;"><span class="min">Max</span></v-btn>
-                    
-                      </div>
-
                     </div>
-                    <div class="number-input" style="display: flex; flex-direction: column;">
-                      <span class="have" style="color: #fff; font-size: 12px;">25,000 USDT</span>
-                      <v-number-input append-icon="" prepend-icon="" variant="plain" style="width:70px; height: 10px; z-index: 10000; border: 1px solid #303A46;"></v-number-input>
+
+                    <div style="display: flex; justify-content: center; align-self: center ; margin-top: 17px; border-radius: 4px; height: 26px; z-index: 1000">
+                      <v-btn @click="swapAmount = minimumswap?.minimum_swap" class="me-4" style="border: 1px solid #303A46; height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;-"><span class="min">Min</span></v-btn>    
+                      <v-btn @click="swapAmount = selectedBalance" class="me-3" style=" border: 1px solid #303A46; letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span></v-btn>
+                    </div>
+
+                    <div class="number-input" style="display: flex; flex-direction: column; z-index: 1000">
+                      <span class="have" style="font-family: manrope; color: #fff; font-size: 14px; font-weight: 500; margin-bottom; 10px; display: flex;justify-content: end;">{{ selectedBalance }} {{ selectedSymbol }}</span>
+                      <input type="number" v-model="swapAmount" style="outline: none; height: 50px; border: 1px solid #303A46; padding: 10px; border-radius: 8px;"/>  
                       
                     </div>
-                
                 </div>
 
                 
-                <div style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 11px; "><img src="/svg/swap.svg" width="8%"/></div> 
+                <div style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px; "><img src="/svg/swap.svg" width="8%"/></div> 
               
 
-                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
-                  <div class="d-flex">   
-                      <div class="me-13" style="display: flex; flex-direction: column;">
-                        <span class="have">I want :</span>
-                          <v-menu :coin1="coin1">
-                              <template v-slot:activator="{ props }">
-                                <v-btn class="inputstyling2" v-bind="props" style="margin-left: 14px; height: fit-content; width: fit-content;">
-  
-                                    <div  class="py-3" style="display: flex; padding-left: 12px; align-items: center;  border-radius: 17px; background: inherit;">
-                                        <img :src="coinIcon1" class="me-2"/>
-                                        <span class="me-4" style="font-weight: 600; color:  #fff; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{selectedCoin1}}</span> 
-                                    </div>
-                                
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none">
-                                        <path d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z" fill="#E0E4F5"/>
-                                    </svg>
-                              
-                                </v-btn>
-                              </template>
-  
-                              <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 16px;">
-                                  <v-list-item>
-                                    <v-list-item v-for="(item, index) in pinia.state.tokenLists" :key="index">
-                                      <v-list-item-title @click="select=item.name; icon =item.icon"  class="d-flex">
-                                        <img :src="item.icon" width="30" class="me-3"/>  
-                                        <span class="me-3" style="align-items: center;"> {{item.name}} </span>
-                                      </v-list-item-title>
-                                    </v-list-item>
+              <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
+                <div class="d-flex">   
+                    <div class="me-13" style="display: flex; flex-direction: column;">
+                      <span class="have">Expected Ammount :</span>
+                        <v-menu>
+                            <template v-slot:activator="{ props }">
+                              <button class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
+
+                                <div  class="py-3" style="display: flex; align-items: center;  border-radius: 17px; background: inherit;">
+                                  <img :src="coin_to_swap" class="me-2" width="30"/>
+                                </div>
+                            
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none">
+                                    <path d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z" fill="#E0E4F5"/>
+                                </svg>
+                            
+                              </button>
+                            </template>
+
+                            <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 16px;">
+                                <v-list-item>
+                                  <v-list-item v-for="(item, index) in pinia.state.tokenLists" :key="index">
+                                    <v-list-item-title @click="select=item.name; coin_to_swap =item.icon; selected_tokenType_to_swap =item.symbol"  class="d-flex">
+                                      <img :src="item.icon" width="30" class="me-3"/>  
+                                      <span class="me-3" style="align-items: center;"> {{item.name}} </span>
+                                    </v-list-item-title>
                                   </v-list-item>
-                                </v-list>
-                          </v-menu>   
+                                </v-list-item>
+                              </v-list>
+                        </v-menu>   
+                    </div>
+
+                    
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <span class="have" style="color: #fff; font-size: 14px; font-weight: 500; font-family: manrope;">0.12000 {{ selected_tokenType_to_swap }}</span>
+                    <input type="number"  disabled v-model="ExpectedAmmount" style="outline: none; height: 50px; border: 1px solid #303A46; padding: 10px; border-radius: 8px;"/>  
+                    </div>
+
+              </div>
+     
+              </div>
+                <div>
+                        <h5 style="font-family: manrope;">Minimum swap limit : {{ minimumswap?.minimum_swap }}</h5>
                       </div>
 
-                     
-                  </div>
-                  <div style="display: flex; flex-direction: column;">
-                      <span class="have" style="color: #fff; font-size: 12px;">0.12000 USDT</span>
-                      <span class="have" style="color: #fff;  font-family: Poppins; font-size: 18px; margin-top: 15px; font-style: normal; font-weight: 700; line-height: normal; display: flex; justify-content: end;">$403</span>
-                     </div>
-
-                </div>
-
-            </div>
-
             <div style="display: flex; justify-content: space-between; margin-top: 55px;">
-              <span style="color: #FFF; font-family: Poppins; display: flex; align-items: center; font-size: 16px; font-style: normal; font-weight: 800;line-height: normal;">
+              <span style="color: #FFF; font-family: Manrope; display: flex; align-items: center; font-size: 16px; font-style: normal; font-weight: 800;line-height: normal;">
                 Refreshes every 
-                <span style="color: #5892FF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">{{ countDownTimer }}s</span>
+                <!-- <span style="color: #5892FF; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">{{ countDownTimer }}s</span> -->
               </span>
 
               <v-btn @click="toggleButtons" v-if="!showOptions" v-model="exchangeBtn" append-icon="mdi-arrow-right" class="exchange-btn1"> Exchange </v-btn>
@@ -124,7 +124,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-
+import { calculateTax } from "@/composables/requests/transaction";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -133,47 +133,80 @@ const showOptions = ref(false);
 const toggleButtons = () => {
   showOptions.value = !showOptions.value;
 };
+const ExpectedAmmount = ref();
+const piniastoredicon = ref(null);
+const icon = ref (piniastoredicon)
 
-const countDownTimer = ref(60); 
+const select  = ref ()
+const selectedBalance = ref(null);
 
-onMounted(() => {
-  // Start the countdown
-  const intervalId = setInterval(() => {
-    countDownTimer.value--;
-    if (countDownTimer.value === 0) {
-      clearInterval(intervalId);
-      // Perform any actions after the countdown finishes
-    }
-  }, 1000); 
-});
+const coin_to_swap = ref ('/svg/tether.svg')
+const selected_tokenType_to_swap  = ref ('USDT')
+
+const selectedSymbol = ref('');
+
+const minimumswap = ref(null);
+
+const swapAmount =ref(null);
+
+const isloading = ref(false);
+
+piniastoredicon.value = pinia.state.tokenLists[0]?.icon;
+selectedBalance.value = pinia.state.tokenLists[0]?.balance;
+selectedSymbol.value = pinia.state.tokenLists[0]?.symbol;
 
 
+const mytoken = pinia.state.tokenLists.find(c => c.symbol ===  selectedSymbol.value )
+const selectedNetwork = pinia.state.BlockchainNetworks.find(e => e.name.toLowerCase() === pinia.state.selectedNetwork.toLowerCase())
+minimumswap.value = mytoken.token_networks.find(e => e.id ===  selectedNetwork.blockchain_id)
 
-const icon = ref ('/svg/btc.svg')
-const select  = ref ('Bitcoin USD')
 
-// try {
-//     const data = await getTokens(pageNumber.value);
-//     if(data.success) {
-//       const fetchedTokens = data.data.result;
+// Calculate tax for swapping
+const caltax = async () => {
+        const info = {
+            swap_input: {
+              from_token: selectedSymbol.value,
+              from_amount: parseFloat(swapAmount.value),
+              to_token: selected_tokenType_to_swap.value,
+            },
+        }
 
-//       const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
+        console.log(info)
+        try {
+            isloading.value = true
+            const data = await calculateTax(info);
+            console.log(data);
 
-//       // Check if there are any new items in the fetched data
-//       const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
+            if (data.success) {
+                amount_to_recieve.value = data.data.expected_swapped_amount.amount
+                swap_fee_id.value = data.data.fee_id
+                from_amount_total.value = data.data.amount_plus_fee
+                console.log('here...1')
+                if(pinia.state.selectedNetwork === 'trc20'){
+                    to_amount.value = data.data?.expected_swapped_amount
+                }else{
+                    to_amount.value = data.data?.expected_swapped_amount?.amount
+                    console.log('Expected Swapped Amount:', to_amount.value)
+                }
+                tax_fee.value = data.data.fee_amount
+                is_balance_sufficient.value = data.data.is_balance_sufficient
+                hideAlertInfo.value = true;
+            } else {
+                push.error(data.message);
+            }
 
-//       if (newItems.length > 0) {
-//         console.log('fetching')
-//         pinia.setTokenLists(fetchedTokens);
-//       }
-//     } else {
-//       console.log('Unavailable')
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   };
-const coinIcon1 = ref ('/svg/tether.svg')
-const selectedCoin1  = ref ('USDT')
+            isloading.value = false
+        } catch (e) {
+            console.log(e)
+            isloading.value = false
+        }
+    };
+  
+  // Watch for changes in amount_to_swap and trigger tax calculation
+  watchEffect(() => {
+      if (swapAmount.value < minimumswap.value || swapAmount.value > selectedBalance.value) return;
+      debounce(caltax);
+  });
 
 
 </script>
@@ -196,7 +229,7 @@ const selectedCoin1  = ref ('USDT')
 }
 .swap1{
 color: var(--Colors-Base-white, #FFF);
-font-family: Poppins;
+font-family: Manrope;
 font-size: 32px;
 font-style: normal;
 font-weight: 800;
@@ -211,7 +244,7 @@ border-radius: 20px;
 background: var(--dark-bg, #10192D);
 color: var(--White, var(--Colors-Base-white, #FFF));
 text-align: center;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 700;
@@ -224,7 +257,7 @@ letter-spacing: 0px;
 }
 .quick-swap{
 color: var(--White, var(--Colors-Base-white, #FFF));
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 600;
@@ -233,7 +266,7 @@ line-height: normal;
 
 .have{
 color: var(--Second-Text, #A4A8AB);
-font-family: Poppins;
+font-family: Manrope;
 font-size: 13px;
 font-style: normal;
 font-weight: 400;
@@ -244,23 +277,19 @@ line-height: normal;
 /* border-radius: 20px; */
 background: inherit;
 /* color: var(--White, var(--Colors-Base-white, #FFF)); */
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
 box-shadow: none;
-/* width: 110px; */
-/* height: 55px; */
 letter-spacing: 0px;
 position: relative;
-/* right: 28px; */
-z-index: 10000;
 }
 
 .min{
 color: var(--Gray-Light, #D8D8D8);
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
@@ -273,7 +302,7 @@ background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%)
 width: 258px;
 height: 60px !important;
 text-align: center;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 700;
@@ -323,4 +352,5 @@ margin-top: 15px;
 box-shadow: none  !important;
 height: 170px !important;
 }
+
 </style>

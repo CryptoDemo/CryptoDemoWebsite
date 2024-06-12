@@ -54,7 +54,7 @@ const pinia = useStore()
 
 <style scoped>
 .partners-text{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
@@ -75,7 +75,7 @@ margin-top: 5px;
 background: #12181F;
 }
 .selected-coin{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 600;
@@ -86,7 +86,7 @@ border-radius: 20px;
 height: 64px !important;
 }
 .buy{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 18px;
 font-style: normal;
 font-weight: 700;

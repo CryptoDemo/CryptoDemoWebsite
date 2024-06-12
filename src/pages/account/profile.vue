@@ -8,7 +8,7 @@
                 <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 15px">
                   <div class="d-flex" style="position:relative ; align-items: center; justify-content: space-between;">
                     <div class="d-flex">
-                      <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="72" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start;"/>
+                      <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="72" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start; border-radius: 50px;"/>
                         <div class="unverified-div">
                           <v-chip class="profile-level" color="#FB774A" style="margin-bottom: 13.8px;">Unverified</v-chip>
                          <div class="div-username1"> <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'">@{{ pinia.state.user?.username}} </span> </div>
@@ -39,7 +39,7 @@
                 <div class="sd-nav1 position-relative" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
                   <div :class="isDark ? 'border-dark':'border-light'" style="position: relative;top: 58px;"></div>
                     <div style="padding: 20px 24px;">
-                      <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
+                      <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Manrope; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
                       </div>
                       <div v-for="(item, i) in navigation" :key="i">
                         <div style="display: flex; justify-content: space-between;">
@@ -57,7 +57,7 @@
                       </div>
                       <div :class="isDark ? 'border-dark':'border-light'">
                         <div style="padding: 20px 24px;">
-                        <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
+                        <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Manrope; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
                         </div>
                       </div>
             
@@ -76,7 +76,7 @@
                             <div class="d-flex" style="flex-direction: column;">
                               <span class="card-text">{{ variant.Title }}</span>
                               <span class="card-text" :class="isDark ? 'card-text-dark':'card-text-light'">{{ variant.Title1 }}</span>
-                              <div :class="isDark ? 'text-dark':'text-light'" style="font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; margin-top: 8px;">{{variant.textCaption}}</div>
+                              <div :class="isDark ? 'text-dark':'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; margin-top: 8px;">{{variant.textCaption}}</div>
                             </div> 
                           </div>
                         </v-card-item>
@@ -144,11 +144,11 @@ const pageNumber = ref(1)
     console.log(error);
   };
 const navigation = [
-  {icon:'/svg/grad-location.svg', title: 'Referral Code', number: pinia.state.user.referral_code},
+  {icon:'/svg/grad-location.svg', title: 'Country', number: pinia.state.user.country},
   {icon:'/svg/partners.svg', title: 'Trade partners', number:0},
   {icon:'/svg/trade1.svg', title: 'Trades', link:'/history'},
   {icon:'/svg/trade1.svg', title: 'Trade volume', number:0},
-  {icon:'/svg/trust1.svg', title: 'Balance'},
+  {icon:'/svg/trust1.svg', title: 'Referral Code', number: pinia.state.user.referral_code},
   {icon:'/svg/blocked1.svg', title: 'Block chain Network', number: pinia.state.selectedNetwork},
   {icon:'/svg/blocked2.svg', title: 'Preferred Currency', number: pinia.state.preferredCurrency},
 ];
@@ -186,21 +186,21 @@ display: flex;
 width: 101.521px;
 padding: 7px 13px;
 align-items: center;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
 .username{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 18px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
 }
 .user-location{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
@@ -233,7 +233,7 @@ background: #F8FAFC!important;
 }
 .card-text{
 color: var(--Warm-Red, #E33E38);
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 700;
@@ -251,7 +251,7 @@ justify-content: center;
   color: #646464 !important;
 }
 .offers-text{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -264,7 +264,7 @@ background-image: linear-gradient(360deg, #2873FF, #0B6B96);
 background-clip: text;  
 -webkit-text-fill-color: transparent ; 
 font-feature-settings: 'clig' off, 'liga' off;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
@@ -283,7 +283,7 @@ width: 231.714px;
 height: 50px!important;
 flex-shrink: 0;
 color: #C2C2C2;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -299,7 +299,7 @@ width: 231.714px;
 height: 50px!important;
 flex-shrink: 0;
 color: var(--Gray-Light, #fff);
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -330,7 +330,7 @@ box-shadow: none;
 overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;

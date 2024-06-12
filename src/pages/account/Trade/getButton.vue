@@ -2,16 +2,16 @@
   <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true"/>
     <div>
       <v-container>
-        <div style="display: flex; align-items: center; margin-bottom: 24px; margin-top: 100px;">
+        <div class="ml-6"  style="display: flex; align-items: center; margin-bottom: 24px; margin-top: 100px;">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="navigateTo('/account/trade/wallet')" style="cursor: pointer;">
         <path d="M15 19.9181L8.47997 13.3981C7.70997 12.6281 7.70997 11.3681 8.47997 10.5981L15 4.07812" stroke="#B9D1FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-       <span style="font-family: Poppins;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal; margin-left: 10px;">Get Coin</span>
+       <span style="font-family: Manrope;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal; margin-left: 10px;">Get Coin</span>
        </div>
-        <div style="margin-top: 60px; border: none; padding: 30px;" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+        <div style="margin-top: 60px; border: none; padding: 30px; width: 96%; margin: auto" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
           <div style="display: flex; flex-direction: column;">
-          <span style="margin-bottom: 34px; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600;line-height: normal;">Receive Crypto</span>
-          <span :class="isDark ? 'text-dark':'text-light'" style="font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;"> Coin:</span>
+          <span style="margin-bottom: 34px; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600;line-height: normal;">Receive Crypto</span>
+          <span :class="isDark ? 'text-dark':'text-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;"> Coin:</span>
           </div>
                <div style="margin-top: 8px; margin-bottom: 8px;">
                  <v-menu>
@@ -19,7 +19,7 @@
                     <v-btn @click.prevent="getBtn()" class="inputstyling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props">
                       <div class="py-3 me-5" style="display: flex; padding-left: 12px; align-items: center; border-radius: 17px; position: absolute; left: 0;">
                           <img :src="icon"  width="30" class="me-3"/>
-                          <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{select}}</span> 
+                          <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; text-transform: capitalize; font-family: Manrope; font-size: 16px;">{{select}}</span> 
                       </div>
                       <div style="position: absolute; right: 15px; box-shadow: none; background: inherit;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
@@ -36,7 +36,7 @@
                         <img  :src="token.icon" class="me-3" width="30"/>  
                         <div class="d-flex" style="flex-direction: column;">
                           <span :class="isDark ? 'coin-name':'coin-name-light'" style="display: flex; align-items: center;"> {{ token.name }} </span>
-                          <span style="font-family: Poppins; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ token.symbol }}</span>
+                          <span style="font-family: Manrope; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ token.symbol }}</span>
                         </div>
                         </v-list-item-title>
                       </div>
@@ -45,17 +45,17 @@
                 </v-menu> 
                </div>
            
-              <span :class="isDark ? 'coin-name':'coin-name-light'" style="margin-left: 10px; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : 
-                <span style="font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">{{ selectedTokenBalance }}</span>
+              <span :class="isDark ? 'coin-name':'coin-name-light'" style="margin-left: 10px; font-family: Manrope;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : 
+                <span style="font-family: Manrope; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">{{ selectedTokenBalance }}</span>
               </span>
          
                <div style="margin-top: 18px;">  
              
-                 <span style=" font-family: Poppins; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">BTC Address</span>
+                 <span style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">BTC Address</span>
                </div>
                <div class="position-relative">
                 <input class="px-4" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" v-model="walletAddress" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; margin-bottom: 36px; align-items:  center; height: 65px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; text-overflow: ellipsis; overflow: hidden; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
-                  <v-btn @click="copyToClipboard()" style="letter-spacing: 0px; width: 98px; color: white; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 4.0%; right: 1%; position: absolute; display: flex;box-shadow: none;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">
+                  <v-btn @click="copyToClipboard()" style="letter-spacing: 0px; width: 98px; color: white; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 4.0%; right: 1%; position: absolute; display: flex;box-shadow: none;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">
                     <div v-if="!copied" class="d-flex">
                       <span>Copy</span>
                       <img src="/svg/copy1.svg" style="margin-left: 10px;"/>
@@ -183,7 +183,7 @@ line-height: 140%; /* 19.6px */
 overflow: hidden;
 color: var(--White, var(--Colors-Base-white, #FFF));
 text-overflow: ellipsis;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 600;
@@ -194,7 +194,7 @@ width: 171px;
 -webkit-line-clamp: 1;
 }
 .snd-crypto{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 600;

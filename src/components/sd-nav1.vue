@@ -3,7 +3,7 @@
       <div style="display: flex; justify-content: center;">
           <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="70" alt="avatar"/>
       </div>
-      <span class="mt-4" style="font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; display: flex;justify-content: center;">@{{ pinia.state.user?.username}}</span>
+      <span class="mt-4" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; display: flex;justify-content: center;">@{{ pinia.state.user?.username}}</span>
           <div style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 32px;">
          
            
@@ -101,7 +101,7 @@ const navigation = [
   letter-spacing: 0px;
   text-transform: capitalize;
   background: inherit;
-  font-family: Poppins;
+  font-family: Manrope;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -110,7 +110,7 @@ const navigation = [
   }
   .status1{
   text-align: center;
-  font-family: Poppins;
+  font-family: Manrope;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -121,7 +121,7 @@ const navigation = [
   border-radius: 22px;
   width: 199px;
   color: white !important;
-  font-family: Poppins;
+  font-family: Manrope;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;

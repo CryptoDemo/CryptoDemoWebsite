@@ -37,8 +37,22 @@
             </div>
 
             <div style="display: flex; align-items: center;">
-                <SendBtc/>
-                <GetBtn/>
+           
+              <v-btn @click.prevent="navigateTo('/account/trade/sendButton')" class="send-btn me-3" :class="isDark ? 'wallet-border':'wallet-border-light'" >
+                <img src="/svg/send-arrow.svg" class="me-1"/>
+                <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
+              </v-btn>
+       
+
+              <v-btn @click.prevent="navigateTo('/account/trade/getButton')" class="send-btn me-3" :class="isDark ? 'wallet-border':'wallet-border-light'">
+                <img src="/svg/get.svg" class="me-1"/>
+                <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
+              </v-btn>
+
+              <v-btn @click.prevent="navigateTo('/account/trade/swap')" class="send-btn" :class="isDark ? 'wallet-border':'wallet-border-light'">
+                <img src="/svg/arrow-swap.svg" class="me-1"/>
+                <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
+              </v-btn>
             </div>
         </div>
         </div>
@@ -174,6 +188,35 @@ font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: 150%; /* 24px */
+}
+
+.send-btn{
+border-radius: 16px;
+display: flex;
+max-width: 86.333px !important;
+height: 48px !important;
+padding: 12px 16px;
+box-shadow: none;
+justify-content: center;
+align-items: center;
+gap: 8px;
+flex-shrink: 0;
+letter-spacing: 0px;
+text-transform: unset;
+align-content: center;
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+line-height: 140%;
+background: inherit;
+}
+
+.wallet-border{
+  border: 1px solid  #1B2537;
+}
+.wallet-border-light{
+border: 1px solid #E2E8F0;
 }
 </style>
   

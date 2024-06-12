@@ -83,14 +83,14 @@ margin-top: 10px;
 }
 .balance{
 color: var(--White, var(--Colors-Base-white, #FFF));
-font-family: Poppins;
+font-family: Manrope;
 font-size: 26px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
 }
 .coinName{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;

@@ -1,11 +1,11 @@
 <template>
   <div class="pa-4 text-center">
-   <v-btn @click.prevent="dialog = true" class="send-btn" :class="isDark ? 'wallet-border':'wallet-border-light'">
+   <v-btn @click.once.stop="navigateTo('/account/trade/getButton')" class="send-btn" :class="isDark ? 'wallet-border':'wallet-border-light'">
      <img src="/svg/get.svg" class="me-1"/>
      <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
    </v-btn>
 
-   <v-dialog v-model="dialog" max-width="479">
+   <!-- <v-dialog v-model="dialog" max-width="479">
      <v-card class="dialog-card"  :class="isDark ? 'profile':'profile-light'" style="border-radius: 24px; padding: 29px ; box-shadow: none; width: 479px; height: 580px;">
        <template v-slot:text>
            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px">
@@ -17,14 +17,14 @@
              </v-btn>
            </div>
 
-           <span style="margin-left: 10px; font-family: Poppins; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;"> Coin:</span>
+           <span style="margin-left: 10px; font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;"> Coin:</span>
              <div style="margin-top: 8px; margin-bottom: 8px;">
                <v-menu>
                 <template v-slot:activator="{ props }">
                   <v-btn @click.prevent="getBtn()" class="inputstyling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props">
                     <div class="py-3 me-5" style="display: flex; padding-left: 12px; align-items: center; border-radius: 17px; position: absolute; left: 0;">
                         <img :src="icon"  width="30" class="me-3"/>
-                        <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; text-transform: capitalize; font-family: Poppins; font-size: 16px;">{{select}}</span> 
+                        <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; text-transform: capitalize; font-family: Manrope; font-size: 16px;">{{select}}</span> 
                     </div>
                       <div style="position: absolute; right: 15px; box-shadow: none; background: inherit;">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
@@ -41,7 +41,7 @@
                       <img  :src="token.icon" class="me-3" width="30"/>  
                       <div class="d-flex" style="flex-direction: column;">
                         <span :class="isDark ? 'coin-name':'coin-name-light'" style="display: flex; align-items: center;"> {{ token.name }} </span>
-                        <span style="font-family: Poppins; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ token.symbol }}</span>
+                        <span style="font-family: Manrope; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ token.symbol }}</span>
                       </div>
                       </v-list-item-title>
                     </div>
@@ -50,23 +50,23 @@
               </v-menu> 
              </div>
          
-            <span :class="isDark ? 'coin-name':'coin-name-light'" style="margin-left: 10px; font-family: Poppins;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : 
-              <span style="font-family: Poppins; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">{{ selectedTokenBalance }}</span>
+            <span :class="isDark ? 'coin-name':'coin-name-light'" style="margin-left: 10px; font-family: Manrope;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : 
+              <span style="font-family: Manrope; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">{{ selectedTokenBalance }}</span>
             </span>
        
              <div style="margin-top: 18px;">  
            
-               <span style=" font-family: Poppins; margin-left: 10px; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">BTC Address</span>
+               <span style=" font-family: Manrope; margin-left: 10px; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">BTC Address</span>
              </div>
              <div class="position-relative">
               <input class="px-4" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" v-model="walletAddress" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; margin-bottom: 36px; align-items:  center; height: 60px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; text-overflow: ellipsis; overflow: hidden; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
-                <v-btn @click="copyToClipboard()" style="letter-spacing: 0px; width: 98px; color: white; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 2.3%; right: 2%; position: absolute; display: flex;box-shadow: none;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">
+                <v-btn @click="copyToClipboard()" style="letter-spacing: 0px; width: 98px; color: white; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 2.3%; right: 2%; position: absolute; display: flex;box-shadow: none;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">
                   <div v-if="!copied" class="d-flex">
                     <span>Copy</span>
                     <img src="/svg/copy1.svg" style="margin-left: 10px;"/>
                   </div>
 
-                  <spanv v-else>Copied</spanv>
+                  <span v-else>Copied</span>
                 </v-btn>
             <div style="display: flex; justify-content: center;">
               <qrcode-vue :value="walletAddress" :size="150" level="H" />
@@ -75,7 +75,7 @@
             
            </template>
      </v-card>
-   </v-dialog>
+   </v-dialog> -->
  </div>
 </template>
 
@@ -212,7 +212,7 @@ line-height: 140%; /* 19.6px */
 overflow: hidden;
 color: var(--White, var(--Colors-Base-white, #FFF));
 text-overflow: ellipsis;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 600;
@@ -223,7 +223,7 @@ width: 171px;
 -webkit-line-clamp: 1;
 }
 .snd-crypto{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 600;

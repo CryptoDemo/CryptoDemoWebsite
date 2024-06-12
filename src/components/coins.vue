@@ -8,7 +8,7 @@
                  <div class="wallet-box" :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 25px; margin-top: 28px; width: 100%;">
                   <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div style="display: flex; flex-direction: column">
-                      <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: Poppins;font-size: 16px; font-style: normal; font-weight: 600">Hot Coins</span>
+                      <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: Manrope;font-size: 16px; font-style: normal; font-weight: 600">Hot Coins</span>
                       <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 12px; font-style: normal; font-weight: 400;">Updates every 60 seconds</span>
                     </div>
                     <div @click.stop style="margin-top: 4px; margin-bottom: 15px; display: flex; width: 40%; margin-inline-start: auto;">
@@ -82,7 +82,7 @@
                       <div class="d-flex" style="align-items: center; width: 30%;">
                             <img :src="item.icon" width="30" class="me-3 py-5"/>
                             <div style="flex-direction:row">
-                              <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: poppins; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
+                              <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
                               <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
                             </div>
                       </div>
@@ -245,7 +245,7 @@ align-content: center;
 border: none !important;
 color: var(--Gray-Medium-light, #969696);
 font-feature-settings: 'clig' off, 'liga' off;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -257,14 +257,14 @@ border: none !important;
 
 .browser-txt{
 color: var(--White, var(--Colors-Base-white, #FFF));
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
 .sml-text{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 12px;
 font-style: normal;
 font-weight: 400;

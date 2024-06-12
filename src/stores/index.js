@@ -73,6 +73,10 @@ export const useStore = defineStore('app',()=> {
       state.preferredCurrency = payload;  
   };
 
+  const setTokenBalance = (payload) => {
+      state.tokenBalance = payload;  
+  };
+
   const  setSelectedcurrency_code= (payload) => {
       state.Selectedcurrency_code = payload;  
   };
@@ -93,9 +97,7 @@ export const useStore = defineStore('app',()=> {
       state.tokenPrices = payload;    
   };
 
-  const setTokenBalance = (payload) => {
-      state.tokenBalance = payload;   
-  };
+
   const setWeb3_transactions = (payload) => {
       state.Web3_transactions = payload;   
   };

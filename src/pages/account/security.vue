@@ -164,7 +164,7 @@ color: white;
 }
 
 .second-text{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -191,7 +191,7 @@ text-transform: unset!important;
 box-shadow: none !important;
 }
 .setup-text{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 700;
@@ -199,7 +199,7 @@ line-height: normal;
 margin-top: 16px;
 }
 .pswrd-mgt{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 600;

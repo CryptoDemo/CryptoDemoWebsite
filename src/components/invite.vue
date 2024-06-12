@@ -63,14 +63,14 @@ const copied = ref(false);
 .header{
 color: var(--Gray-Medium-light, #969696);
 font-feature-settings: 'clig' off, 'liga' off;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: 160%; /* 22.4px */
 }
 .refer-txt{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 24px;
 font-style: normal;
 font-weight: 600;
@@ -106,7 +106,7 @@ line-height: 140%; /* 17.675px */
 
 .partners-text{
 color: var(--Gray-Medium-dark, #646464);
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;

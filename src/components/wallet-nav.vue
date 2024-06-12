@@ -108,12 +108,12 @@ background: var(--secondary-background, #10192D);
 .profile-light{
 background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 65.19%, #F8FAFC 100%) !important;
 box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px;
-border: 1px solid #DBE8FF;
+border: 1px solid #E2E8F0;;
 }
 .lg-num{
 color: var(--White, var(--Colors-Base-white, #FFF));
 text-align: center;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 24px;
 font-style: normal;
 font-weight: 600;
@@ -123,7 +123,7 @@ line-height: normal;
 .sm-num{
 color: var(--White, var(--Colors-Base-white, #FFF));
 text-align: center;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -133,7 +133,7 @@ line-height: normal;
 .coin-perc{
 color: #9E9FA4;
 text-align: center;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 12px;
 font-style: normal;
 font-weight: 500;

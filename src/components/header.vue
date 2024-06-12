@@ -70,7 +70,7 @@
 
           <div class="profile-div" v-if="icon2" style="display: flex; flex-direction: column; margin-top: 27px;">
             <Profile-nav  class="profile-nav me-8"/>
-            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 6px;">Profile</span>    
+            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 6px;">Menu</span>    
           </div>
 
           <div v-if="icon3"  style="display: grid; position: relative; margin-top: 27px;">
@@ -258,7 +258,7 @@ box-shadow: none;
 .nav-icon-text{
 color: #969696;
 text-align: center;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 12px;
 font-style: normal;
 font-weight: 300;
@@ -284,7 +284,7 @@ width: 100%;
 .country-text{
 color: var(--Colors-Base-white, #FFF);
 text-align: center;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -293,7 +293,7 @@ line-height: normal;
 .country-text-light{
 color: var(--Black-100, #060A1D);
 text-align: center;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -383,7 +383,7 @@ bottom: -2px;
   margin-bottom: 8px;
 }
 .country-name{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;

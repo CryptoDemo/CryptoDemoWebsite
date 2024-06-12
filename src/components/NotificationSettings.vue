@@ -61,7 +61,7 @@ const toggleNotification = async (key, value) => {
   border: none !important;
   color: var(--Gray-Medium-light, #969696);
   font-feature-settings: 'clig' off, 'liga' off;
-  font-family: Poppins;
+  font-family: Manrope;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -89,7 +89,7 @@ const toggleNotification = async (key, value) => {
 .header{
 color: var(--Gray-Medium-light, #969696);
 font-feature-settings: 'clig' off, 'liga' off;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -105,7 +105,7 @@ opacity: 1;
 }
 .notification-text{
 font-feature-settings: 'clig' off, 'liga' off;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;

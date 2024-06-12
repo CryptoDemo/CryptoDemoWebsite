@@ -11,7 +11,7 @@
   
               <div style="width: -webkit-fill-available">
                 <div>
-                  <div class="btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                  <div :class="isDark ? 'btn-segment':'btn-segment-light'" style="display: flex; border-radius: 24px; width: fit-content;">
                   <v-btn  :class="`${selectedScreen ? 'wallet-btn': 'fiat-btn'} ${isDark ? 'wallet-btn':'fiat-btn-light'}`" @click.prevent="selectedScreen=true" > Wallet </v-btn>
                   <v-btn :class="`${!selectedScreen ? 'wallet-btn': 'fiat-btn'} ${isDark ? 'wallet-btn':'fiat-btn-light'}` " @click.prevent="selectedScreen=false" >Fiat</v-btn>
                 </div>
@@ -20,13 +20,13 @@
                       <thead :class="isDark ? 'wallet-border' : 'wallet-border-light'">
                         <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
 
-                          <th class="me-7 coin-th" style="display: flex; align-items: center; align-self: center; width: 18%; justify-content: center;">
+                          <th class="me-7 coin-th" style="display: flex; align-items: center; align-self: center; width: 21%; justify-content: center;">
                             <div class="d-flex" >
                               <span class="table-header-text" :class="isDark ? 'text-dark':'text-light'">Coin</span>
                             </div>
                           </th>
 
-                          <th class="me-7 price-th" style="display: flex; align-items: center; align-self: center; position: relative;  width: 15%;">
+                          <th class="me-7 price-th" style="display: flex; align-items: center; align-self: center; position: relative;  width: 17%;">
                             <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Price (USD)</span>
                           </th>
                           <th class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 21px">
@@ -56,7 +56,7 @@
                           <div class="coin-div" style="flex-direction: column; display: flex; overflow: hidden; text-overflow: ellipsis;">
                             <span class="coin-name1 flex-lg-and-up hidden-sm-and-down"
                                   :class="isDark ? 'coin-name' : 'coin-name-light'"
-                                  style="font-family: Poppins; font-weight: 600; font-size: 16px; line-height: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                  style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                               {{ token.name }}
                             </span>
                             <span class="sml-text"
@@ -70,7 +70,7 @@
 
                       <td class="mt-2" style="display: flex; align-items: center; width: 22%;"><span class="browser-txt coin-price" style="margin-bottom: 8px" :class="isDark ? 'coin-name':'coin-name-light'">{{ token?.converted_value }}</span></td>
 
-                      <td style="display: flex; align-items: end; justify-content: center; width: 20%;">
+                      <td style="display: flex; align-items: end; width: 15%;">
                         <span class="browser-txt mb-2 flex-md-and-up hidden-sm-and-down" :class="isDark ? 'coin-name':'coin-name-light'"> 
                          {{ token.balance }}
                         </span>
@@ -92,14 +92,14 @@
                             <template v-slot:default="{ isActive }">
                               <v-card max-width="400" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; padding: 20px;">
                           
-                                <h4 style="font-family: Poppins; font-size: 400 !important;">Select the action you want to perform</h4>
+                                <h4 style="font-family: Manrope; font-size: 400 !important;">Select the action you want to perform</h4>
                                 <div  class="d-flex me-7 mt-4" style="align-items: center;">
                                   <img :src="token.icon" width="35" class="me-3" />
                                   <div style="display: flex; justify-content: space-between;">
                                   <div class="coin-div" style="flex-direction: column; display: flex !important;">
                                     <span class="coin-name1"
                                           :class="isDark ? 'coin-name' : 'coin-name-light'"
-                                          style="font-family: Poppins; font-weight: 600; font-size: 16px; line-height: normal;">
+                                          style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height: normal;">
                                       {{ token.name }}
                                     </span>
                                     <span class="sml-text"
@@ -109,7 +109,7 @@
                                     </span>
                                   </div>
 
-                                <h3 style="position: absolute; right: 7%; font-family: Poppins; font-weight: 600; font-size: 16px;">{{ pinia.state.preferredCurrency }} {{ token.balance}}</h3>
+                                <h3 style="position: absolute; right: 7%; font-family: Manrope; font-weight: 700; font-size: 16px;">{{ pinia.state.preferredCurrency }} {{ token.balance}}</h3>
                                 </div>
                               </div>
                                 <div class="d-flex mt-3">
@@ -117,7 +117,7 @@
                                     <td style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
                                     <td style="display: flex; align-items: center; color: white;">
                                       <div>
-                                      <nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'text-dark':'text-light'" class="swap">
+                                      <nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'btn-segment':'btn-segment-light'" class="swap">
                                       <img src="/svg/arrow-swap.svg" class="me-1"/>
                                       Swap</v-btn>
                                       </nuxt-link>
@@ -141,10 +141,11 @@
                         <td class=" flex-md-and-up hidden-sm-and-down" style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
                         <td class="flex-md-and-up hidden-sm-and-down" style="display: flex; align-items: center; color: white;">
                           <div>
-                          <nuxt-link to="/account/trade/swap"><v-btn class="swap">
+                          <v-btn class="swap" @click.prevent="navigateTo('/account/trade/swap')" :class="isDark ? 'btn-segment':'btn-segment-light'">
                           <img src="/svg/arrow-swap.svg"/>
-                          Swap</v-btn>
-                          </nuxt-link>
+                         <span :class="isDark ? 'coin-name':'coin-name-light'"> Swap </span>
+                        </v-btn>
+                     
                           </div> 
                         </td>
                     </div>
@@ -159,7 +160,7 @@
                 </div>
 
             <div style="margin-top: 63px; margin-bottom: 94px;">
-                <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Poppins; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Transaction History</span>
+                <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Transaction History</span>
             </div>
 
           
@@ -269,41 +270,12 @@ watch(()=>conversionResult.value,(newVal)=>{
 });
 // const formatBalance = balance => (balance === 0 ? '0.00' : balance?.toFixed(7));
 
-// const getTokenBals = async () => {
-//   // Check if user is authenticated
 
-//   if (pinia.state.isAuthenticated) {
-//     try {
-
-//       // Fetch token balance
-//       const data = await getTokenBalance(symbols);
-     
-
-//       // Update tokens with the new balance
-//       if (data.success) {
-//           for (const token_ of data.data) {
-          
-//             // Update tokenLists with the new balance
-//             // const token = tokensForSelectedNetwork.find(t => t.symbol === token_);
-//             const token = pinia.state.tokenLists.find(t => t.symbol === token_.token);
-//             if (token) {
-//             // Update token balance
-//             token.balance = (token_.balance);
-        
-//           }
-//           }
-//       } else {
-//         console.log('Error:', data.message);
-//       }
-//     } catch (error) {
-//       console.log('Fetch error:', error);
-//     }
-//   }
-// };
 
 const getTokenBals = async () => {
+ 
   // Check if user is authenticated
-  if (pinia.state.isAuthenticated) {
+  if (pinia.state.isAuthenticated)  {
     try {
       // Fetch token balance
       const data = await getTokenBalance(symbols);
@@ -319,7 +291,11 @@ const getTokenBals = async () => {
           return token;
         });
 
-        // Log updated tokens or do something with the updatedTokens
+        // Update the token store with the new balances
+        // pinia.setTokenBalance(updatedTokens);
+
+        pinia.setTokenLists(updatedTokens, addMinutes(5))
+
         console.log('Updated Tokens:', updatedTokens);
         // Optionally, you can return or use `updatedTokens` as needed
 
@@ -331,6 +307,7 @@ const getTokenBals = async () => {
     }
   }
 };
+
 
 
 
@@ -358,14 +335,13 @@ letter-spacing: 0px;
 text-transform: unset;
 align-content: center;
 box-shadow: none;
-border: 1px solid  #1B2537;
 background: inherit;
 }
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
 border: none !important;
 color: var(--Gray-Medium-light, #969696);
 font-feature-settings: 'clig' off, 'liga' off;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -376,14 +352,14 @@ border: none !important;
 }
 .browser-txt{
 color: var(--White, var(--Colors-Base-white, #FFF));
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
 .sml-text{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 12px;
 font-style: normal;
 font-weight: 400;
@@ -433,7 +409,7 @@ justify-content: center;
 align-items: center;
 gap: 10px;
 flex-shrink: 0;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 700;
@@ -442,7 +418,7 @@ color: white;
 }
 
 .fiat-btn{
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 700;
@@ -454,12 +430,13 @@ box-shadow: none;
 }
 
 .btn-segment{
-display: flex;
-border-radius: 24px;
 border: 1px solid #1B2537;
-width: fit-content;
-margin-top: 30px;
 }
+
+.btn-segment-light{
+border: 1px solid #E2E8F0;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
