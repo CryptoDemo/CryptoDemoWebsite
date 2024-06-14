@@ -89,6 +89,10 @@
                   <v-row no-gutter class="user-inputs d-sm-flex ml-3">
                   <v-col md="6" sm="12" cols="12">
                     <input type="number" id="phone" placeholder="333-4444-4444" minlength="9" maxlength="12" v-model="phoneNumber" style="font-size: 16px; font-weight: 400; height: 64px; outline: none; width: 100%" class="input-styling1 pl-4 pr-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"/>
+                    
+                    <v-select placeholder="Select" :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']" style="width: 20%; ">
+                    </v-select>
+
                     <span class="number-caption ml-1 mb-1" :class="isDark ? 'text-dark':'text-light'">Enter a valid phone number for your wallet.</span>
                   </v-col>
                   <v-col :class="isDark ? 'date-input-profile-cards-dark':'date-input-profile-cards-light'">

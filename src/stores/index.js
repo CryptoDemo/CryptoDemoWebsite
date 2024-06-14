@@ -38,6 +38,7 @@ export const useStore = defineStore('app',()=> {
       getNewCoinInfo: "",
       calculatedTaxFee: "",
       TransactionDetails: [],
+      selectedCoin:'',
     });
   
   

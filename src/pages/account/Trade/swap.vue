@@ -46,7 +46,7 @@
                       <v-btn @click="swapAmount = selectedBalance" class="me-3" style=" border: 1px solid #303A46; letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span></v-btn>
                     </div>
 
-                    <div class="number-input" style="display: flex; flex-direction: column; z-index: 1000">
+                    <div class="number-input" style="display: flex; margin-right: 10px; flex-direction: column; z-index: 1000">
                       <span class="have" style="font-family: manrope; color: #fff; font-size: 14px; font-weight: 500; margin-bottom; 10px; display: flex;justify-content: end;">{{ selectedBalance }} {{ selectedSymbol }}</span>
                       <input type="number" v-model="swapAmount" style="outline: none; height: 50px; border: 1px solid #303A46; padding: 10px; border-radius: 8px;"/>  
                       
@@ -54,13 +54,13 @@
                 </div>
 
                 
-                <div style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px; "><img src="/svg/swap.svg" width="8%"/></div> 
+                <div @click="toggleTokens()" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px; "><img src="/svg/swap.svg" width="8%"/></div> 
               
 
               <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
                 <div class="d-flex">   
-                    <div class="me-13" style="display: flex; flex-direction: column;">
-                      <span class="have">Expected Ammount :</span>
+                    <div class="me-13" style="display: flex; flex-direction: column; margin-left: 10px;">
+                      <span class="have">I want:</span>
                         <v-menu>
                             <template v-slot:activator="{ props }">
                               <button class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
@@ -78,7 +78,7 @@
 
                             <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 16px;">
                                 <v-list-item>
-                                  <v-list-item v-for="(item, index) in pinia.state.tokenLists" :key="index">
+                                  <v-list-item v-for="(item, index) in filteredToken_to_swap_to" :key="index">
                                     <v-list-item-title @click="select=item.name; coin_to_swap =item.icon; selected_tokenType_to_swap =item.symbol"  class="d-flex">
                                       <img :src="item.icon" width="30" class="me-3"/>  
                                       <span class="me-3" style="align-items: center;"> {{item.name}} </span>
@@ -92,8 +92,8 @@
                     
                 </div>
                 <div style="display: flex; flex-direction: column;">
-                    <span class="have" style="color: #fff; font-size: 14px; font-weight: 500; font-family: manrope;">0.12000 {{ selected_tokenType_to_swap }}</span>
-                    <input type="number"  disabled v-model="ExpectedAmmount" style="outline: none; height: 50px; border: 1px solid #303A46; padding: 10px; border-radius: 8px;"/>  
+                    <span class="have" style="color: #fff; font-size: 14px; font-weight: 500; font-family: manrope;"> {{ selected_tokenType_to_swap }}</span>
+                    <input type="number"  disabled v-model="amount_to_recieve" style="outline: none; height: 50px; border: 1px solid #303A46; padding: 10px; border-radius: 8px;"/>  
                     </div>
 
               </div>
@@ -140,10 +140,11 @@ const icon = ref (piniastoredicon)
 const select  = ref ()
 const selectedBalance = ref(null);
 
-const coin_to_swap = ref ('/svg/tether.svg')
+const coin_to_swap = ref(pinia.state.tokenLists[0].icon)
 const selected_tokenType_to_swap  = ref ('USDT')
 
 const selectedSymbol = ref('');
+const selectedSymbol_to_swap_to  = ref('');
 
 const minimumswap = ref(null);
 
@@ -151,14 +152,57 @@ const swapAmount =ref(null);
 
 const isloading = ref(false);
 
-piniastoredicon.value = pinia.state.tokenLists[0]?.icon;
-selectedBalance.value = pinia.state.tokenLists[0]?.balance;
-selectedSymbol.value = pinia.state.tokenLists[0]?.symbol;
+const mytoken = ref(null)
 
+const amount_to_recieve = ref(null)
 
-const mytoken = pinia.state.tokenLists.find(c => c.symbol ===  selectedSymbol.value )
+mytoken.value = pinia.state.tokenLists.find(c => c.symbol ===  pinia.state.getNewCoinInfo )
 const selectedNetwork = pinia.state.BlockchainNetworks.find(e => e.name.toLowerCase() === pinia.state.selectedNetwork.toLowerCase())
-minimumswap.value = mytoken.token_networks.find(e => e.id ===  selectedNetwork.blockchain_id)
+minimumswap.value = mytoken.value.token_networks.find(e => e.id ===  selectedNetwork.blockchain_id)
+console.log(minimumswap.value)
+
+
+piniastoredicon.value = mytoken.value.icon;
+selectedBalance.value = mytoken.value.balance;
+selectedSymbol.value = mytoken.value.symbol;
+
+const filteredToken_to_swap_to = ref([])
+filteredToken_to_swap_to.value = pinia.state.tokenLists.filter(c => c.symbol !=  selectedSymbol.value)
+
+watch(()=> selectedSymbol.value,(newv)=>{
+  if(newv){
+    mytoken.value =  pinia.state.tokenLists.find(c => c.symbol ===  newv )
+    const selectedNetwork = pinia.state.BlockchainNetworks.find(e => e.name.toLowerCase() === pinia.state.selectedNetwork.toLowerCase())
+    minimumswap.value = mytoken.value.token_networks.find(e => e.id ===  selectedNetwork.blockchain_id)
+    selectedBalance.value = mytoken.value.balance
+
+    filteredToken_to_swap_to.value = pinia.state.tokenLists.filter(c => c.symbol !=  newv)
+  }
+})
+
+coin_to_swap.value = filteredToken_to_swap_to.value[0].icon
+// selected_tokenType_to_swap.value = filteredToken_to_swap_to.value[0].symbol
+
+
+const toggleTokens = ()=>{
+  const m = selectedSymbol.value
+  const p = piniastoredicon.value
+
+  selectedSymbol.value = selected_tokenType_to_swap.value;
+  piniastoredicon.value =  coin_to_swap.value
+  selected_tokenType_to_swap.value = m
+  coin_to_swap.value = p
+
+
+
+}
+
+
+
+
+
+
+
 
 
 // Calculate tax for swapping
@@ -204,9 +248,28 @@ const caltax = async () => {
   
   // Watch for changes in amount_to_swap and trigger tax calculation
   watchEffect(() => {
-      if (swapAmount.value < minimumswap.value || swapAmount.value > selectedBalance.value) return;
+      if (swapAmount.value < minimumswap.value || swapAmount.value < selectedBalance.value) return;
       debounce(caltax);
-  });
+    });
+
+
+  watch(()=>swapAmount.value,(newv)=>{
+    if(newv < minimumswap.value || newv < selectedBalance.value){
+      debounce(caltax);
+
+    }
+    if(newv == null ){
+      swapAmount.value = ''
+    }
+  })
+
+
+
+
+
+  onMounted(()=>{
+    
+  })
 
 
 </script>
