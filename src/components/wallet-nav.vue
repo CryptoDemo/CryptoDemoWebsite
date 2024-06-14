@@ -4,20 +4,11 @@
       <span class="sm-num" :class="isDark ? 'country-name' : 'country-name-light'" style="font-size: 16px; font-style: normal;font-weight: 600;">Balance</span>
       <BlockChainNetwork/>
     </div>
-        <div style="margin-top: 25px; margin-bottom: 25px; position: relative; display: flex; justify-content: center;">
-        <v-progress-circular style="position: relative;"
-          :rotate="360"
-          :size="170"
-          :width="15"
-          :color="dominantColor"
-        >
-        </v-progress-circular>
-
-       
-          <img src="/svg/range1.svg" style="position: absolute; left: 0;right: 0; margin: auto; top: 17%;"/>
-          <div style="display: flex; flex-direction: column; position: absolute; left: 0; right: 0; top: 57px;">
+        <div :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="margin-top: 25px; margin-bottom: 25px; height: 130px; position: relative; display: flex; justify-content: center; align-items: center;">
+      
+          <div style="display: flex; flex-direction: column;">
             <span class="lg-num">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(balanceData) }}</span>
-            <span class="sm-num">0.0140 BTC</span>
+            <span class="sm-num mt-2">0.0140 BTC</span>
           </div>
           
         </div>
@@ -140,6 +131,16 @@ font-weight: 500;
 line-height: normal;
 }
 
+.txn-cards-dark {
+  background: #162138;
+  padding: 10px;
+  border-radius: 15px;
+}
+.txn-cards-light {
+  background: #edf3ff;
+  padding: 10px;
+  border-radius: 15px;
+}
 .country-name{
 color: white !important;
 }
