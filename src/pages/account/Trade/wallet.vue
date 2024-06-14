@@ -20,7 +20,7 @@
                       <thead :class="isDark ? 'wallet-border' : 'wallet-border-light'">
                         <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
 
-                          <th class="me-7 coin-th" style="display: flex; align-items: center; align-self: center; width: 21%; justify-content: center;">
+                          <th class="me-7 coin-th" style="display: flex; align-items: center; align-self: center; width: 20%; justify-content: center;">
                             <div class="d-flex" >
                               <span class="table-header-text" :class="isDark ? 'text-dark':'text-light'">Coin</span>
                             </div>
