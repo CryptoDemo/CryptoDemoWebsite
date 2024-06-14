@@ -200,7 +200,7 @@ background: inherit !important;
 border: 1px solid #1B2537;
 color: white;
 font-size: 12px;
-font-family: Poppins;
+font-family: Manrope;
 padding-left: 20px;
 padding-right: 20px;
 }
@@ -212,7 +212,7 @@ border: 1px solid #DBE8FF;
 background: var(--Basic-White, #FFF) !important;
 color: #0B0E13;
 font-size: 12px;
-font-family: Poppins;
+font-family: Manrope;
 padding-left: 20px;
 padding-right: 20px;
 }

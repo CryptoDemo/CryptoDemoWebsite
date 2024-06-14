@@ -1,7 +1,7 @@
-export const getWebTransaction = async(chain, pageNumber)=>{
+export const getWebTransaction = async(pageNumber)=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return
-    const data = await fetch(`${baseURL}transaction/web3/${chain}/${pageNumber}`,{ 
+    const data = await fetch(`${baseURL}transaction/web3/${pinia.state.selectedNetwork.toLowerCase()}/${pageNumber}`,{ 
     headers: {
         'Content-Type': 'application/json',
         'x-access-token': `${pinia.state.user?.token}`
@@ -52,3 +52,17 @@ export const executeTrans = async(payload)=>{
     }).then(res => res.json());
     return data
 }
+
+
+export const getSingleTransactions = async(txnId)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}transaction/${transactionId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': `${pinia.state.user?.token}`
+        }
+    }).then(res => res.json());
+    return data
+};

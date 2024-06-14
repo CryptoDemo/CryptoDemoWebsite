@@ -52,8 +52,39 @@ export const formatDate = (dateString) =>{
   const year = date.getFullYear();
   return `${day}.${month}.${year}`;
 }
-
 // mixins/timeMixin.js
+
+
+export const formattedDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { day: 'numeric', month: 'long', year: 'numeric' };
+  return new Intl.DateTimeFormat('en-GB', options).format(date);
+};
+
+export const formatTime = (dateString) => {
+  const date = new Date(dateString);
+  const options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+  let formattedTime = new Intl.DateTimeFormat('en-US', options).format(date);
+
+  // Extract the hour part from the formatted time
+  const hour = parseInt(formattedTime.split(':')[0]);
+
+  // Adjust the hour to 12-hour format
+  const displayHour = hour % 12 || 12;
+
+  // Append 'AM' or 'PM' based on the hour value
+  formattedTime = `${displayHour}:${formattedTime.split(':')[1]} ${hour >= 12 ? 'PM' : 'AM'}`;
+
+  return formattedTime;
+};
+
+
+export const formatNumber = (number) => {
+  // Ensure the number is no more than seven digits
+  const truncatedNumber = Number(number.toPrecision(7));
+  return truncatedNumber.toLocaleString('en-US', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
+};
+
 //set expiration date 
 export function addMinutes(minutesToAdd) {
  

@@ -7,10 +7,11 @@
         <path d="M15 19.9181L8.47997 13.3981C7.70997 12.6281 7.70997 11.3681 8.47997 10.5981L15 4.07812" stroke="#B9D1FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
            <img :src="coin.icon" width="35" class="me-2 ml-2"/>
-           <span>{{ coin.name }}/{{pinia.state.preferredCurrency}}</span>
+           <span style="font-size: 18px; font-weight: 600;">{{ coin.name }}/</span>
+           <span style="font-size: 16px; font-weight: 500;">{{pinia.state.preferredCurrency}}</span>
        </div>
        <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="width: 100%; height: 250px;border-radius: 24px; padding: 45px;">
-           <div style="display: flex; flex-direction: column;">
+          <div style="display: flex; flex-direction: column;">
                <div style="display: flex; align-items: center; margin-bottom: 5px;">
                    <span class="tkn-bal me-3">Balance</span>
                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" v-if="isToggled"  @click="togglePassword()" style="cursor: pointer;">
@@ -51,12 +52,22 @@
 
               <v-btn @click.prevent="navigateTo('/account/trade/swap')" class="send-btn" :class="isDark ? 'wallet-border':'wallet-border-light'">
                 <img src="/svg/arrow-swap.svg" class="me-1"/>
-                <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
+                <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
               </v-btn>
             </div>
+          </div>
         </div>
-        </div>
-       </div>                   
+
+      </div>    
+
+      <div style="margin-top: 80px; margin-bottom: 94px;">
+          <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Transaction History</span>
+      </div>
+
+      <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
+
+      </div>
+      
     </v-container>
     <div style="margin-top: 500px;">
         <Footer class="desktop-footer flex-lg-and-up hidden-sm-and-down"/>

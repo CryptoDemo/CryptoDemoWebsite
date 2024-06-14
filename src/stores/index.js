@@ -30,13 +30,14 @@ export const useStore = defineStore('app',()=> {
       preferredCurrency: "USD",
       Selectedcurrency_code:"$",
       tokenLists:[],
-      tokenPrices:[],
       tokenBalance:null,
       allcountries: [],
       selectedToken: 'USDT',
       UserFaqs:[],
-      Web3_transactions:[],
-      getNewCoinInfo:""
+      Web3_transactions: [],
+      getNewCoinInfo: "",
+      calculatedTaxFee: "",
+      TransactionDetails: [],
     });
   
   
@@ -46,13 +47,13 @@ export const useStore = defineStore('app',()=> {
 
     };
     const updateNotificationSettings = (payload) => {
-        const {key, value} = payload;
-        // if not an object
-        if(!Object.keys(state.user.settings.notifications[key]).length){
-            state.user.settings.notifications[key] = value;
-        }else{ // if an object
-            state.user.settings.notifications[key].is_enabled = value;
-        }
+      const {key, value} = payload;
+      // if not an object
+      if(!Object.keys(state.user.settings.notifications[key]).length){
+          state.user.settings.notifications[key] = value;
+      }else{ // if an object
+          state.user.settings.notifications[key].is_enabled = value;
+      }
     };
 
   const setSelectedNetwork = (payload) => {
@@ -65,8 +66,11 @@ export const useStore = defineStore('app',()=> {
   };
 
   const setFAQs = (payload) => {
-      state.UserFaqs = payload;
-      
+      state.UserFaqs = payload;   
+  };
+
+  const setCalculatedTaxFee = (payload) => {
+      state.calculatedTaxFee = payload;   
   };
 
   const setpreferredCurrency = (payload) => {
@@ -93,8 +97,9 @@ export const useStore = defineStore('app',()=> {
       state.tokenLists = payload;   
   };
 
-  const setTokenPrices = (payload) => {
-      state.tokenPrices = payload;    
+
+  const setTransactionDetails = (payload) => {
+      state.TransactionDetails = payload;    
   };
 
 
@@ -167,7 +172,6 @@ export const useStore = defineStore('app',()=> {
       setNotificationLogs,
       setTokenNetworks,
       setTokenLists,
-      setTokenPrices,
       setTokenBalance,
       setallcountries,
       updateNotificationSettings,
@@ -175,6 +179,8 @@ export const useStore = defineStore('app',()=> {
       setpreferredCurrency,
       setWeb3_transactions,
       setSelectedcurrency_code,
+      setTransactionDetails,
+      setCalculatedTaxFee,
     }
 },
   {persist: {

@@ -96,7 +96,7 @@
                     Cancel
                 </v-btn>
 
-                <v-btn @click.prevent="calculateFee()" class="confirm-txn" style="margin-top: 28px">
+                <v-btn @click.prevent="execute()" class="confirm-txn" style="margin-top: 28px">
                     Confirm
                 </v-btn>
                 </template>
@@ -115,7 +115,7 @@
   <script setup>
   import { ref } from 'vue'
   import { useTheme } from 'vuetify';
-  import { calculateTxnFees } from "@/composables/requests/transaction";
+  import { calculateTxnFees, executeTrans } from "@/composables/requests/transaction";
   
   const theme = useTheme()
   const isDark = computed(() => theme.global.current.value.dark);
@@ -199,7 +199,11 @@ const calculateFee = async () => {
         tax_fee.value = data.data.fee_amount;
         console.log(tax_fee.value)
         is_balance_sufficient.value = data.data.is_balance_sufficient;
+
+        pinia.setCalculatedTaxFee(data.data.fee_id);
+
         loading.value = false
+
       } else {
         loading.value = false
         push.error(data.message);
@@ -214,7 +218,7 @@ const calculateFee = async () => {
 //execute transaction
 const execute = async()=>{
     const info = {
-      fee_id: pinia.state.calculatedTaxFee.fee_id
+      fee_id: pinia.state.calculatedTaxFee
     }
     try{
       loading.value = true
@@ -226,28 +230,26 @@ const execute = async()=>{
         loading.value = false
         pinia.setTransactionDetails(data.data)
 
-        pinia.state.selected_payment_action_to_display = 'send'
+        // pinia.state.selected_payment_action_to_display = 'send'
 
-        // navigateTo(/dashboard/wallet/transactionDetails/${data.data.result.id})
+        navigateTo('/account/trade/coinId/'`${data.data.result.id}`)
        
-        
-        // navigateTo(/dashboard/wallet/get/${pinia.state.transactionDetails.id})
+        dialog = false
+        // navigateTo(/dashboard/wallet/get/`${pinia.state.transactionDetails.id}`)
 
+        push.success('Transfer Succesful')
 
       }else{
         
-        toast.message(`${data.message}`, {
-          position: 'top',
-          timeout: 2000,
+        push.error(`${data.message}`, {
         });
         loading.value = false;
         
       }
-      emit('open', visible = false);
+     
 
     }catch(e){
        console.log(e)
-       showNotification(e)
        loading.value = false;
     }
 

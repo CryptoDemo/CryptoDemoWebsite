@@ -49,7 +49,8 @@
 
 
                   <tbody>
-                    <tr @click="pinia.state.getNewCoinInfo = token.symbol ; navigateTo('/account/trade/coinId')" class="token-price"  :class="isDark ? 'wallet-border' : 'wallet-border-light'" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
+                    <!-- <tr @click="pinia.state.getNewCoinInfo = token.symbol; navigateTo('/account/trade/coinId')" class="token-price"  :class="isDark ? 'wallet-border' : 'wallet-border-light'" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;"> -->
+                    <tr @click="pinia.state.getNewCoinInfo = token.symbol; navigateTo('/account/trade/coinId')" class="token-price"  :class="isDark ? 'wallet-border' : 'wallet-border-light'" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
                       <td style="display: contents;">
                         <div class="d-flex me-7" style="align-items: center; width: 25%; overflow: hidden;">
                           <img :src="token.icon" width="35" class="me-3" />
@@ -155,14 +156,17 @@
               </v-table>
                 </div>
 
-                <div v-else style="margin-top: 30px; margin-bottom: 400px;">
-                  <Fiat/>
-                </div>
+              <div v-else style="margin-top: 30px; margin-bottom: 400px;">
+                <Fiat/>
+              </div>
 
-            <div style="margin-top: 63px; margin-bottom: 94px;">
+            <div style="margin-top: 47px; margin-bottom: 34px;">
                 <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Transaction History</span>
             </div>
 
+            <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="padding: 10px; width: 97%; margin-bottom: 300px;">
+              <WebTxn/>
+            </div>
           
           </div>
         </div>
