@@ -8,40 +8,10 @@
                     <div class="mt-2" :class="isDark ? 'wallet-border' : 'wallet-border-light'"
                     v-if="transaction.details.crypto.transfer" style="display: flex; justify-content: space-between">
                     <div style="display: flex; align-items: center">
-                        <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="41"
-                        height="40"
-                        viewBox="0 0 21 20"
-                        fill="none"
-                        :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-                        style="padding: 7px; margin-right: 15px"
-                        >
-                        <path
-                            d="M4 14.1641V15.8307C4 16.2728 4.17559 16.6967 4.48816 17.0092C4.80072 17.3218 5.22464 17.4974 5.66667 17.4974H15.6667C16.1087 17.4974 16.5326 17.3218 16.8452 17.0092C17.1577 16.6967 17.3333 16.2728 17.3333 15.8307V14.1641"
-                            stroke="#FF3E46"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-                        <path
-                            d="M6.5 9.16406L10.6667 13.3307L14.8333 9.16406"
-                            stroke="#FF3E46"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-                        <path
-                            d="M10.6667 3.33203V13.332"
-                            stroke="#FF3E46"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-                        </svg>
+                        <img src="/svg/transfer.svg" class="me-1 p-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
                         <div style="display: flex; flex-direction: column">
                         <span>Sold</span>
-                        <div class="d-flex">
+                        <div class="d-flex" style="margin-bottom: 6px">
                             <h5 class="me-2">
                             {{ formattedDate(transaction.created_at) }}
                             </h5>

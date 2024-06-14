@@ -8,7 +8,7 @@
                     <div class="mt-2" :class="isDark ? 'wallet-border' : 'wallet-border-light'"
                     v-if="transaction.details.crypto.transfer" style="display: flex; justify-content: space-between">
                     <div style="display: flex; align-items: center">
-                        <img src="/svg/transfer.svg" class="me-1 p-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"/>
+                        <img src="/svg/transfer.svg" class="me-1 p-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
                         <div style="display: flex; flex-direction: column">
                         <span>Sold</span>
                         <div class="d-flex" style="margin-bottom: 6px">
