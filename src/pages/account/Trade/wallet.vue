@@ -164,7 +164,7 @@
                 <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Transaction History</span>
             </div>
 
-            <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="padding: 10px; width: 97%; margin-bottom: 300px;">
+            <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="padding: 10px; width: 97%; margin-bottom: 300px; max-height: 400px; overflow: scroll">
               <WebTxn/>
             </div>
           

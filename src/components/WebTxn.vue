@@ -3,12 +3,12 @@
         <div v-for="(transaction, index) in datainfo" :key="index">
             <v-dialog max-width="420">
             <template v-slot:activator="{ props: activatorProps }">
-                <div v-bind="activatorProps" style="background: inherit; height: 60px">
-                <div v-if="transaction.details.crypto">
+                <div v-bind="activatorProps" style="background: inherit; height: 60px; cursor: pointer;">
+                <div v-if="transaction?.details?.crypto">
                     <div class="mt-2" :class="isDark ? 'wallet-border' : 'wallet-border-light'"
-                    v-if="transaction.details.crypto.transfer" style="display: flex; justify-content: space-between">
+                    v-if="transaction?.details?.crypto?.transfer" style="display: flex; justify-content: space-between">
                     <div style="display: flex; align-items: center">
-                        <img src="/svg/transfer.svg" class="me-1 p-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
+                        <img src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
                         <div style="display: flex; flex-direction: column">
                         <span>Sold</span>
                         <div class="d-flex" style="margin-bottom: 6px">
@@ -21,13 +21,13 @@
                     </div>
     
                     <div class="d-flex">
-                        <span style="color: #ff3e46">{{formatNumber(transaction.details.crypto.transfer.amount)}}</span>
+                        <span style="color: #ff3e46">{{formatNumber(transaction?.details?.crypto?.transfer?.amount)}}</span>
                         <span style="color: #ff3e46">{{
-                        tokenLists.find((p) => p.id === transaction.details.crypto.transfer.token_id).symbol}}</span>
+                        tokenLists.find((p) => p.id === transaction?.details.crypto.transfer.token_id).symbol}}</span>
                     </div>
                     </div>
     
-                    <div v-if="transaction.details.crypto.swap">
+                    <div v-if="transaction?.details?.crypto.swap">
                     <p>
                         Token Symbol:
                         {{ transaction.details.crypto.swap.from.token_id }}
@@ -42,10 +42,10 @@
                     </p>
                     </div>
                     
-                    <div v-else-if="transaction.details.crypto.exchange">
+                    <div v-else-if="transaction?.details?.crypto.exchange">
                     <p>
                         Token Symbol:
-                        {{ transaction.details.crypto.exchange.from.token_id }}
+                        {{ transaction?.details?.crypto?.exchange?.from.token_id }}
                     </p>
                     <p>Tax Fee: {{ transaction.details.crypto.exchange.fees }}</p>
                     <p>Status: {{ transaction.details.crypto.exchange.status }}</p>
@@ -62,9 +62,9 @@
                     </div>
                 </div>
     
-                <div v-else-if="transaction.details.fiat">
+                <div v-else-if="transaction?.details?.fiat">
                     <!-- Display fiat transaction details -->
-                    <div v-if="transaction.details.fiat.withdrawal">
+                    <div v-if="transaction?.details?.fiat?.withdrawal">
                     <h3>Fiat Withdrawal</h3>
                     <p>
                         Country: {{ transaction.details.fiat.withdrawal.country_id }}
@@ -76,15 +76,15 @@
                     </p>
                     <p>
                         Account Number:
-                        {{ transaction.details.fiat.withdrawal.to.account_number }}
+                        {{ transaction?.details?.fiat?.withdrawal.to.account_number }}
                     </p>
                     <p>
                         Bank Name:
-                        {{ transaction.details.fiat.withdrawal.to.bank_name }}
+                        {{ transaction?.details?.fiat?.withdrawal?.to.bank_name }}
                     </p>
-                    <p>Status: {{ transaction.details.fiat.withdrawal.status }}</p>
+                    <p>Status: {{ transaction?.details?.fiat?.withdrawal.status }}</p>
                     </div>
-                    <div v-else-if="transaction.details.fiat.transfer">
+                    <div v-else-if="transaction?.details?.fiat?.transfer">
                     <h3>Fiat Transfer</h3>
                     <p>Country: {{ transaction.details.fiat.transfer.country_id }}</p>
                     <p>Amount: {{ transaction.details.fiat.transfer.amount }}</p>
@@ -93,7 +93,7 @@
                 </div>
                 </div>
     
-                <!-- </div> -->
+             
             </template>
             <template v-slot:default="{ isActive }">
                 <v-card
@@ -104,11 +104,13 @@
     
                 <div v-if="transaction?.details?.crypto?.transfer">
                     <div  class="d-flex py-4" style="justify-content: center;">
-                    <h4 class="me-1">{{(transaction?.details?.crypto?.transfer?.amount)}}</h4>
-                    <h4>{{tokenLists.find((p) =>p.id === transaction?.details?.crypto?.transfer?.token_id).symbol }}</h4>
+                        <v-chip :color="getStatusClass(transaction?.details?.crypto?.transfer?.status)">
+                            <h4 class="me-1">{{(transaction?.details?.crypto?.transfer?.amount)}}</h4>
+                            <h4>{{tokenLists.find((p) => p.id === transaction?.details?.crypto?.transfer?.token_id).symbol }}</h4>
+                        </v-chip>
                     </div>
     
-                    <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 250%" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
+                    <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
                         <div>
                             <p style="font-size: 14px;">Date & Time:</p>
                             <p style="font-size: 14px;">Fees:</p>
@@ -131,16 +133,26 @@
                                 <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
                             </button>
                             </div>
-                            <v-chip color="orange"> {{ transaction.details.crypto.transfer.transfer_type}}</v-chip>
-                        </div>
+                            <v-chip color="orange" style="font-size: 14px;"> {{ transaction.details.crypto.transfer.transfer_type}}</v-chip>
+
+                        
+                            
+                            <p class="truncate" style="font-size: 14px; width: 157px"
+                            v-if="transaction?.details?.crypto?.transfer?.status">
+                                <v-chip color="green" v-if="transaction?.details?.crypto?.transfer?.status?.fulfilled">Successful</v-chip>
+                                <v-chip color="red" v-else-if="transaction?.details?.crypto?.transfer?.status?.failed">Failed</v-chip>
+                                <v-chip color="orange" v-else>Pending</v-chip>
+                            </p>
+                       
                     </div>
-    
-                    <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="height: 60px; width: 100%; display: flex; align-items: center; border-left: 2px solid var(--Primary-100, #2873FF);">
-                        <p style="font-size: 14px;">Transaction is Processing...</p>
-                    </div>
-    
+
                 </div>
-    
+                    <div v-if="transaction?.details?.crypto?.transfer?.status" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="height: 60px; width: 100%; display: flex; align-items: center; border-left: 2px solid var(--Primary-100, #2873FF);">
+                        <p v-if="transaction?.details?.crypto?.transfer?.status?.fulfilled" style="font-size: 14px; color: green;">Transaction is Successful</p>
+                        <p v-else-if="transaction?.details?.crypto?.transfer?.status.failed === 'failed'" style="font-size: 14px; color: red;">Transaction has Failed</p>
+                        <p v-else style="font-size: 14px; color: orange;">Transaction is Pending</p>
+                    </div>
+    </div>
                 <v-card-actions class="mt-8" style="display: flex; justify-content: space-between;">
                     <v-btn variant="tonal" text="Close Receipt" @click="isActive.value = false" style="text-transform: unset; letter-spacing: 0px; width: 140px; height: 40px; border-radius: 10px !important;"></v-btn>
                     <v-btn class="primary-btn1" text="Print Receipt" style="border-radius: 10px !important; width: 140px; height: 40px; color: white;"></v-btn>
@@ -212,6 +224,17 @@ const copyToClipboard = (text) => {
   });
 }
 
+const getStatusClass = (status) => {
+  if (status === 'fulfilled') {
+    return 'fulfilled-chip';
+  } else if (status === 'pending') {
+    return 'pending-chip';
+  } else if (status === 'failed') {
+    return 'failed-chip';
+  } 
+};
+
+
 onMounted(() => {
   getWebTrans();
 });
@@ -229,11 +252,16 @@ onMounted(() => {
   padding: 10px;
   border-radius: 15px;
 }
-
+.txn-cards-light {
+  background: #edf3ff;
+  padding: 10px;
+  border-radius: 15px;
+}
 .truncate {
-  /* width: 180px; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
 </style>

@@ -73,8 +73,8 @@
  
         <v-dialog v-model="dialog" max-width="450" persistent>
             <template v-slot:activator="{ props: activatorProps }">
-                <v-btn @click.prevent="calculateFee()" :loading="loading"  v-bind="activatorProps" class="primary-btn1" style="width: 100%; border-radius: 17px; height: 56px; color: white; box-shadow: none; font-weight: 600; font-size: 16px; font-family: Manrope;">
-                Confirm
+                <v-btn  :disabled="isCalculateDisabled"  @click.prevent="calculateFee()" :loading="loading"  v-bind="activatorProps" class="primary-btn1" style="width: 100%; border-radius: 17px; height: 56px; color: white; box-shadow: none; font-weight: 600; font-size: 16px; font-family: Manrope;">
+                Continue
                 </v-btn>
             </template>
 
@@ -192,7 +192,6 @@ const calculateFee = async () => {
       console.log(data);
 
       if (data.success) {
-        console.log ('here...')
         fee_id.value = data.data.fee_id;
         token_id.value = data.data.token;
         from_amount_total.value = data.data.amount_plus_fee;
@@ -232,9 +231,9 @@ const execute = async()=>{
 
         // pinia.state.selected_payment_action_to_display = 'send'
 
-        navigateTo('/account/trade/coinId/'`${data.data.result.id}`)
+        // navigateTo('/account/trade/coinId/'`${data.data.result.id}`)
        
-        dialog = false
+        dialog.value = false
         // navigateTo(/dashboard/wallet/get/`${pinia.state.transactionDetails.id}`)
 
         push.success('Transfer Succesful')
@@ -261,7 +260,9 @@ const toggleChevron = () => {
     isChevronToggled.value = !isChevronToggled.value;
 };
 
-
+const isCalculateDisabled = computed(() => {
+  return !coin.value || !trfAmmount.value || !transferWallet.value || parseFloat(trfAmmount.value) < minimumTransfer.value;
+});
 
 
 </script>

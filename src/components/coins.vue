@@ -96,10 +96,6 @@
                         0.008%
                         </v-chip> 
                       </td>
-                      
-                      <td class="mt-3" style="display: flex; align-items: center;"> 
-                        <CoinChart/> 
-                      </td>
                   </tr>
                 </tbody>
             </v-table>
