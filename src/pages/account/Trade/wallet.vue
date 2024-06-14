@@ -26,7 +26,7 @@
                             </div>
                           </th>
 
-                          <th class="me-7 price-th" style="display: flex; align-items: center; align-self: center; position: relative;  width: 17%;">
+                          <th class="me-7 price-th" style="display: flex; align-items: center; align-self: center; position: relative;  width: 12%;">
                             <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Price (USD)</span>
                           </th>
                           <th class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 21px">
