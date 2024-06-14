@@ -49,7 +49,7 @@ const allCountries = pinia.state.allcountries;
 const preferredCurrency = pinia.state.preferredCurrency;
 const selectedCountryId = allCountries.find(country=>country.currency_name==preferredCurrency);
 const chain = computed(()=>pinia.state.selectedNetwork);
-const formatBalance = balance => (balance === 0 ? '0.00' : balance?.toFixed(3));
+
 
 const getSummedBal = async () => {
   if (pinia.state.isAuthenticated) {
