@@ -10,9 +10,15 @@
             </template>
 
             <template v-slot:default="{ isActive }">
-                <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+                <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
                 <v-card-text>
-                    magna aliqua.
+                    <h3 class="text-center">Wallet Deposit</h3>
+                    <input type="number" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px;"/>
+                
+                    <v-select :class="isDark ? 'txn-cards-dark':'txn-cards-light'"  variant="plain" :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']" style="width: 15%; height: 58px; border-radius: 15px; position: absolute; right: 5%; top: 30%;">
+                        NGN
+                    </v-select>
+
                 </v-card-text>
 
                 <v-card-actions>
@@ -61,5 +67,23 @@ font-size: 24px;
 font-style: normal;
 font-weight: 700;
 line-height: 140%; /* 33.6px */
+}
+
+.btn-segment{
+border: 1px solid #1B2537;
+}
+
+.btn-segment-light{
+border: 1px solid #E2E8F0;
+}
+.txn-cards-dark {
+  background: #162138;
+  padding: 10px;
+  border-radius: 15px;
+}
+.txn-cards-light {
+  background: #edf3ff;
+  padding: 10px;
+  border-radius: 15px;
 }
 </style>

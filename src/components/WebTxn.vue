@@ -155,7 +155,6 @@
 
 
 
-
                 <div v-if="transaction?.details?.crypto?.swap">
                     <div  class="d-flex py-4" style="justify-content: center;">
                         <v-chip>

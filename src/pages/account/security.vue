@@ -48,6 +48,22 @@
                                 </span>
                               </div>
                             </v-text-field> 
+
+                            <v-text-field class="password-styling pl-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="Enter new password" v-model="NewPassword" variant="plain">   
+                              <div  class="eye-icon">
+                                <span  v-if="isToggled"  @click="togglePassword()" >
+                                  <img src="/svg/invisible.svg">
+                                </span>
+                                <span v-else @click="togglePassword()">
+                                  <img src="/svg/visible.svg">
+                                </span>
+                              </div>
+                            </v-text-field>  
+
+                          </div>
+
+                          <div class="d-md-flex">
+                          
                             <v-text-field class="password-styling pl-4 me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="confirm new password" v-model="ConfirmNewPassword" variant="plain">   
                               <div  class="eye-icon">
                                 <span  v-if="isToggled"  @click="togglePassword()" >
@@ -58,8 +74,10 @@
                                 </span>
                               </div>
                             </v-text-field>  
-                            <v-btn  @click="UserPasswordUpdate()" :loading="loading" class="primary-btn1 mt-5" style=" align-self: center; height: 60px; color: #fff;">Change Password</v-btn>
+                            
+                            <v-btn  @click="UserPasswordUpdate()" :loading="loading" class="primary-btn1 mt-5" style=" align-self: center; height: 60px; width: 49%; color: #fff;">Change Password</v-btn>
                           </div>
+                          <p v-if="errorMessage" style="color: red; font-size: 14px;">{{ errorMessage }}</p>
                       </div>
                     </section>
                   <ActivityLog/>
@@ -81,8 +99,10 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
 const loading = ref(false);
 const OldPassword= ref('');
+const NewPassword= ref('');
 const ConfirmNewPassword= ref('');
 const isToggled = ref(true);
+const errorMessage = ref('');
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };
@@ -118,6 +138,10 @@ const initialize2FA = async () => {
 
 
 const UserPasswordUpdate = async () => {
+  if (NewPassword.value !== ConfirmNewPassword.value) {
+    errorMessage.value = 'New Passwords does not match';
+    return
+  }
   loading.value = true;
   const updatePassword = {
     old_password: OldPassword.value ,
@@ -130,6 +154,7 @@ const UserPasswordUpdate = async () => {
     // pinia.setUser(user)
     push.success('password changed succesfully')
     OldPassword.value = '';
+    NewPassword.value = '';
     ConfirmNewPassword.value = '';
     loading.value = false 
   } else{

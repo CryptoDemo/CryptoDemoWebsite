@@ -25,19 +25,19 @@ export const calculateTxnFees = async(chain)=>{
     return data
 };
 
-// export const calculateTax = async(payload)=>{
-//     const pinia = useStore();
-//     if(!pinia.state.user?.token) return
-//     const data = await fetch(`${baseURL}web3/calculate-txn-fees/${pinia.state.selectedNetwork.toLowerCase()}`, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'x-access-token': `${pinia.state.user?.token}`
-//         },
-//         body:JSON.stringify(payload)
-//     }).then(res => res.json());
-//     return data
-// }
+export const FundFiatWallet = async(payload)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}fiat/fund-wallet`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': `${pinia.state.user?.token}`
+        },
+        body:JSON.stringify(payload)
+    }).then(res => res.json());
+    return data
+}
 
 export const executeTrans = async(payload)=>{
     const pinia = useStore();
