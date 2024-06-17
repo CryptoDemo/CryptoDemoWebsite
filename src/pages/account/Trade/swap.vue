@@ -3,26 +3,26 @@
   <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" />
     <v-container style="margin-top: 90px;">
         <span class="swap1">Swap</span>
-        <div style="border-radius: 24px; border: 1px solid #303A46; padding: 37px; margin-top: 40px; margin-bottom: 525px;">
+        <div :class="isDark ? 'btn-segment':'btn-segment-light'" style="border-radius: 24px; padding: 37px; margin-top: 40px; margin-bottom: 525px;">
             <div class="d-flex" style="margin-bottom: 30px;">
                 <span class="quick-swap me-3 ">Quick Swap</span>
                 <img src="/svg/reload.svg" class="icon1"/>
             </div>
 
             <div class="d-md-flex" style="justify-content: space-between; position: relative;">
-                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
+                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
               
                      <div class="d-flex" style="width: 12%;">   
                       <div class="me-13" style="display: flex; flex-direction: column; z-index: 1000">
                         <span class="have">I have :</span>
                           <v-menu>
                               <template v-slot:activator="{ props }">
-                                <button class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
+                                <button @click="toggleChevron" class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
                                     <div  class="py-3" style="display: flex;  align-items: center;  border-radius: 17px; background: inherit;">
                                       <img :src="icon" width="30" class="me-2"/>
                                     </div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none">
-                                        <path d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z" fill="#E0E4F5"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
+                                        <path d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z" fill="currentColor"/>
                                     </svg>
                                 </button>
                               </template>
@@ -42,19 +42,33 @@
                     </div>
 
                     <div style="display: flex; justify-content: center; align-self: center ; margin-top: 17px; border-radius: 4px; height: 26px; z-index: 1000">
-                      <v-btn @click="swapAmount = minimumswap?.minimum_swap" class="me-4" style="border: 1px solid #303A46; height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;-"><span class="min">Min</span></v-btn>    
-                      <v-btn @click="swapAmount = selectedBalance" class="me-3" style=" border: 1px solid #303A46; letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span></v-btn>
+                      <v-btn @click="swapAmount = minimumswap?.minimum_swap" class="me-4" :class="isDark ? 'btn-segment':'btn-segment-light'" style="height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;-"><span class="min">Min</span></v-btn>    
+                      <v-btn @click="swapAmount = selectedBalance" class="me-3" :class="isDark ? 'btn-segment':'btn-segment-light'" style="letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span></v-btn>
                     </div>
 
                     <div class="number-input" style="display: flex; margin-right: 10px; flex-direction: column; z-index: 1000">
-                      <span class="have" style="font-family: manrope; color: #fff; font-size: 14px; font-weight: 500; margin-bottom; 10px; display: flex;justify-content: end;">{{ selectedBalance }} {{ selectedSymbol }}</span>
-                      <input type="number" v-model="swapAmount" style="outline: none; height: 50px; border: 1px solid #303A46; padding: 10px; border-radius: 8px;"/>  
-                      
+                      <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom; 10px; display: flex;justify-content: end;">{{ selectedBalance }} {{ selectedSymbol }}</span>
+                      <input type="number" v-model="swapAmount" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>    
                     </div>
                 </div>
 
                 
-                <div @click="toggleTokens()" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px; "><img src="/svg/swap.svg" width="8%"/></div> 
+                <div @click="toggleTokens()" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark"><img src="/svg/swap.svg" width="8%"/></div> 
+
+                <div @click="toggleTokens()" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-else>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="90" height="85" viewBox="0 0 70 71" fill="none">
+                    <path d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z" fill="#4284FF"/>
+                    <path d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z" fill="url(#paint0_linear_5037_31025)"/>
+                    <path d="M63 35.1992C63 19.7352 50.464 7.19922 35 7.19922C19.536 7.19922 7 19.7352 7 35.1992C7 50.6632 19.536 63.1992 35 63.1992C50.464 63.1992 63 50.6632 63 35.1992Z" stroke="#fff" stroke-width="14"/>
+                    <path d="M29.167 36.3659H39.667V38.6992H35.0003V42.1992L29.167 36.3659ZM35.0003 31.6992V28.1992L40.8337 34.0326H30.3337V31.6992H35.0003Z" fill="white"/>
+                    <defs>
+                      <linearGradient id="paint0_linear_5037_31025" x1="35.0003" y1="15.3672" x2="35.0003" y2="55.0339" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#2873FF"/>
+                        <stop offset="1" stop-color="#0B6B96"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
               
 
               <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
@@ -63,14 +77,14 @@
                       <span class="have">I want:</span>
                         <v-menu>
                             <template v-slot:activator="{ props }">
-                              <button class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
+                              <button @click="toggleChevron1" class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
 
                                 <div  class="py-3" style="display: flex; align-items: center;  border-radius: 17px; background: inherit;">
                                   <img :src="coin_to_swap" class="me-2" width="30"/>
                                 </div>
                             
-                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none">
-                                    <path d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z" fill="#E0E4F5"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled1 }, isDark ? 'close-btn' : 'close-btn-dark']">
+                                    <path d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z" fill="currentColor"/>
                                 </svg>
                             
                               </button>
@@ -92,16 +106,16 @@
                     
                 </div>
                 <div style="display: flex; flex-direction: column;">
-                    <span class="have" style="color: #fff; font-size: 14px; font-weight: 500; font-family: manrope; display: flex;justify-content: end;"> {{ selected_tokenType_to_swap }}</span>
-                    <input type="number"  disabled v-model="amount_to_recieve" style="outline: none; height: 50px; border: 1px solid #303A46; padding: 10px; border-radius: 8px;"/>  
+                    <span class="have" style="font-size: 14px; font-weight: 500; font-family: manrope; display: flex;justify-content: end;"> {{ selected_tokenType_to_swap }}</span>
+                    <input type="number"  disabled v-model="amount_to_recieve" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>  
                     </div>
 
               </div>
      
               </div>
                 <div>
-                        <h5 class="quick-swap mt-2" style="font-family: manrope;">Minimum swap limit : {{ minimumswap?.minimum_swap }}</h5>
-                      </div>
+                  <h5 class="quick-swap mt-2" style="font-family: manrope;">Minimum swap limit : {{ minimumswap?.minimum_swap }}</h5>
+                  </div>
 
             <div style="display: flex; justify-content: space-between; margin-top: 55px; align-items: center;">
 
@@ -312,7 +326,15 @@ const caltax = async () => {
     }
   })
 
+const isChevronToggled = ref(false);
+const toggleChevron = () => {
+      isChevronToggled.value = !isChevronToggled.value;
+};
 
+const isChevronToggled1 = ref(false);
+const toggleChevron1 = () => {
+      isChevronToggled1.value = !isChevronToggled1.value;
+};
 </script>
 
 <style>
@@ -346,7 +368,6 @@ letter-spacing: 0px;
   display: none;
 }
 .quick-swap{
-color: var(--White, var(--Colors-Base-white, #FFF));
 font-family: Manrope;
 font-size: 16px;
 font-style: normal;
@@ -355,7 +376,6 @@ line-height: normal;
 }
 
 .have{
-color: var(--Second-Text, #A4A8AB);
 font-family: Manrope;
 font-size: 13px;
 font-style: normal;
@@ -378,7 +398,6 @@ position: relative;
 }
 
 .min{
-color: var(--Gray-Light, #D8D8D8);
 font-family: Manrope;
 font-size: 16px;
 font-style: normal;
@@ -399,7 +418,8 @@ font-weight: 700;
 line-height: normal;
 text-transform: capitalize;
 letter-spacing: 0px;
-position: relative !important;
+color: white;
+box-shadow: none;
 }
 
 .mdi-arrow-right{
@@ -443,4 +463,27 @@ box-shadow: none  !important;
 height: 170px !important;
 }
 
+.btn-segment{
+border: 1px solid #1B2537;
+}
+
+.btn-segment-light{
+border: 1px solid #E2E8F0;
+}
+
+.close-btn{
+fill: white;
+transition: transform 0.3s ease;
+}
+.close-btn-dark{
+fill: #10192D;
+}
+
+.chevron-icon {
+  transition: transform 0.3s;
+}
+
+.chevron-icon-rotated {
+  transform: rotate(180deg);
+}
 </style>
