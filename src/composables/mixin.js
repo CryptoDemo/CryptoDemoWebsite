@@ -81,7 +81,7 @@ export const formatTime = (dateString) => {
 
 export const formatNumber = (number) => {
   // Ensure the number is no more than seven digits
-  const truncatedNumber = Number(number.toPrecision(7));
+  const truncatedNumber = Number(number?.toPrecision(7));
   return truncatedNumber.toLocaleString('en-US', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
 };
 

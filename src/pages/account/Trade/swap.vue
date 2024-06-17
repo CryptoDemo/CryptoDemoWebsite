@@ -1,11 +1,11 @@
 <template>
 <div>
-    <Header/>
+  <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" />
     <v-container style="margin-top: 90px;">
         <span class="swap1">Swap</span>
         <div style="border-radius: 24px; border: 1px solid #303A46; padding: 37px; margin-top: 40px; margin-bottom: 525px;">
             <div class="d-flex" style="margin-bottom: 30px;">
-                <span class="quick-swap me-8 ">Quick Swap</span>
+                <span class="quick-swap me-3 ">Quick Swap</span>
                 <img src="/svg/reload.svg" class="icon1"/>
             </div>
 
@@ -92,7 +92,7 @@
                     
                 </div>
                 <div style="display: flex; flex-direction: column;">
-                    <span class="have" style="color: #fff; font-size: 14px; font-weight: 500; font-family: manrope;"> {{ selected_tokenType_to_swap }}</span>
+                    <span class="have" style="color: #fff; font-size: 14px; font-weight: 500; font-family: manrope; display: flex;justify-content: end;"> {{ selected_tokenType_to_swap }}</span>
                     <input type="number"  disabled v-model="amount_to_recieve" style="outline: none; height: 50px; border: 1px solid #303A46; padding: 10px; border-radius: 8px;"/>  
                     </div>
 
@@ -100,20 +100,21 @@
      
               </div>
                 <div>
-                        <h5 style="font-family: manrope;">Minimum swap limit : {{ minimumswap?.minimum_swap }}</h5>
+                        <h5 class="quick-swap mt-2" style="font-family: manrope;">Minimum swap limit : {{ minimumswap?.minimum_swap }}</h5>
                       </div>
 
-            <div style="display: flex; justify-content: space-between; margin-top: 55px;">
-              <span style="color: #FFF; font-family: Manrope; display: flex; align-items: center; font-size: 16px; font-style: normal; font-weight: 800;line-height: normal;">
-                Refreshes every 
-                <!-- <span style="color: #5892FF; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 800; line-height: normal;">{{ countDownTimer }}s</span> -->
-              </span>
+            <div style="display: flex; justify-content: space-between; margin-top: 55px; align-items: center;">
 
-              <v-btn @click="toggleButtons" v-if="!showOptions" v-model="exchangeBtn" append-icon="mdi-arrow-right" class="exchange-btn1"> Exchange </v-btn>
-              <div v-else>
-                <v-btn  @click.prevent="navigateTo('/trade/convert-successful')" class="exchange-btn1 me-4">Continue</v-btn>
-                <v-btn @click="toggleButtons" class="cancel1">Cancel</v-btn>
-               </div>
+            <div style="width: 41%;">
+              <v-alert v-if="FeeCard" variant="tonal" type="info" density="compact" style="font-family: Manrope;font-size: 14px;  font-style: normal;font-weight: 600;line-height: 180%; border-radius: 10px;">
+                <span>Charges incurred for this swap transaction:</span><br>
+                  Fee id: {{ swap_fee_id }} <br>
+                  Tax fee: {{ tax_fee }} <br>
+                  Total ammount: {{ from_amount_total }} <br>
+              </v-alert>
+            </div>
+
+              <v-btn @click="executeTxn()" :loading="loading" append-icon="mdi-arrow-right" class="exchange-btn1"> Exchange </v-btn>
           </div>
         </div>
     </v-container>
@@ -124,15 +125,16 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import { calculateTax } from "@/composables/requests/transaction";
+import { calculateTxnFees, executeTrans } from "@/composables/requests/transaction";
+
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
-const showOptions = ref(false);
-const toggleButtons = () => {
-  showOptions.value = !showOptions.value;
-};
+
+
+const FeeCard = ref(false);
+
 const ExpectedAmmount = ref();
 const piniastoredicon = ref(null);
 const icon = ref (piniastoredicon)
@@ -150,11 +152,22 @@ const minimumswap = ref(null);
 
 const swapAmount =ref(null);
 
-const isloading = ref(false);
+const loading = ref(false);
 
 const mytoken = ref(null)
 
-const amount_to_recieve = ref(null)
+const amount_to_recieve = ref(null);
+
+const swap_fee_id = ref();
+
+const from_amount_total = ref();
+
+const to_amount = ref();
+
+const tax_fee = ref();
+
+const is_balance_sufficient = ref();
+
 
 mytoken.value = pinia.state.tokenLists.find(c => c.symbol ===  pinia.state.getNewCoinInfo )
 const selectedNetwork = pinia.state.BlockchainNetworks.find(e => e.name.toLowerCase() === pinia.state.selectedNetwork.toLowerCase())
@@ -198,13 +211,6 @@ const toggleTokens = ()=>{
 }
 
 
-
-
-
-
-
-
-
 // Calculate tax for swapping
 const caltax = async () => {
         const info = {
@@ -217,34 +223,77 @@ const caltax = async () => {
 
         console.log(info)
         try {
-            isloading.value = true
-            const data = await calculateTax(info);
+            loading.value = true
+            const data = await calculateTxnFees(info);
             console.log(data);
 
             if (data.success) {
                 amount_to_recieve.value = data.data.expected_swapped_amount.amount
                 swap_fee_id.value = data.data.fee_id
+                console.log(swap_fee_id.value)
                 from_amount_total.value = data.data.amount_plus_fee
-                console.log('here...1')
                 if(pinia.state.selectedNetwork === 'trc20'){
                     to_amount.value = data.data?.expected_swapped_amount
                 }else{
                     to_amount.value = data.data?.expected_swapped_amount?.amount
-                    console.log('Expected Swapped Amount:', to_amount.value)
+                    
                 }
                 tax_fee.value = data.data.fee_amount
                 is_balance_sufficient.value = data.data.is_balance_sufficient
-                hideAlertInfo.value = true;
+                FeeCard.value = true;
+
+                pinia.setCalculatedTaxFee_for_swap(data.data.fee_id);
+
             } else {
                 push.error(data.message);
             }
 
-            isloading.value = false
+            loading.value = false
         } catch (e) {
             console.log(e)
-            isloading.value = false
+            loading.value = false
         }
     };
+
+  const executeTxn = async()=>{
+    const info = {
+      fee_id: pinia.state.calculatedTaxFee_for_swap
+    }
+    try{
+      loading.value = true
+
+      const data = await executeTrans(info)
+
+      if(data.success){
+        
+        loading.value = false
+        pinia.setTransactionDetails(data.data)
+
+        // pinia.state.selected_payment_action_to_display = 'send'
+
+        // navigateTo('/account/trade/coinId/'`${data.data.result.id}`)
+
+        navigateTo('/account/Trade/success/')
+       
+        // navigateTo(/dashboard/wallet/get/`${pinia.state.transactionDetails.id}`)
+
+
+      }else{
+        
+        push.error(`${data.message}`, {
+        });
+        loading.value = false;
+        
+      }
+     
+
+    }catch(e){
+       console.log(e)
+       loading.value = false;
+    }
+
+
+  }
   
   // Watch for changes in amount_to_swap and trigger tax calculation
   watchEffect(() => {
@@ -264,32 +313,10 @@ const caltax = async () => {
   })
 
 
-
-
-
-  onMounted(()=>{
-    
-  })
-
-
 </script>
 
 <style>
 
-.icon1 {
-  transform-origin: 0% 50%;
-  animation: slide4 3s linear infinite;
-}
-
-@keyframes slide4 {
-  0% {
-    transform: rotate(0);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
 .swap1{
 color: var(--Colors-Base-white, #FFF);
 font-family: Manrope;

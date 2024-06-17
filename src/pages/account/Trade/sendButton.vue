@@ -83,6 +83,7 @@
                 <div style="display: flex; justify-content: center; flex-direction: column;">
                 <span style="font-family: Manrope;font-size: 18px;font-style: normal;font-weight: 700;line-height: 140%; display: flex;justify-content: center; margin-bottom: 16px">Confirm action</span>
                 <v-alert  variant="tonal" type="info" density="compact" style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600;line-height: 170%; border-radius: 10px;">
+                 
                   Fee id: {{ fee_id }} <br>
                   Tax fee: {{ tax_fee }} <br>
                   Total ammount: {{ from_amount_total }} <br>

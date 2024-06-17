@@ -73,7 +73,7 @@
 
                       <td style="display: flex; align-items: end; width: 15%;">
                         <span class="browser-txt mb-2 flex-md-and-up hidden-sm-and-down" :class="isDark ? 'coin-name':'coin-name-light'"> 
-                         {{ token.balance }}
+                         {{formatBalance(token.balance) }}
                         </span>
                       </td>
 

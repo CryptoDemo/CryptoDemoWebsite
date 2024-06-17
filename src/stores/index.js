@@ -37,6 +37,7 @@ export const useStore = defineStore('app',()=> {
       Web3_transactions: [],
       getNewCoinInfo: "",
       calculatedTaxFee: "",
+      calculatedTaxFee_for_swap: "",
       TransactionDetails: [],
       selectedCoin:'',
     });
@@ -72,6 +73,10 @@ export const useStore = defineStore('app',()=> {
 
   const setCalculatedTaxFee = (payload) => {
       state.calculatedTaxFee = payload;   
+  };
+
+  const setCalculatedTaxFee_for_swap = (payload) => {
+      state.calculatedTaxFee_for_swap = payload;   
   };
 
   const setpreferredCurrency = (payload) => {
@@ -182,6 +187,7 @@ export const useStore = defineStore('app',()=> {
       setSelectedcurrency_code,
       setTransactionDetails,
       setCalculatedTaxFee,
+      setCalculatedTaxFee_for_swap,
     }
 },
   {persist: {

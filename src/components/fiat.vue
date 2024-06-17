@@ -1,9 +1,28 @@
 <template>
     <div style="display: flex; justify-content: space-between; width: 100%;">
-        <v-btn class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-            <img src="/svg/get.svg" class="me-1"/>
-            Send
-        </v-btn>
+
+        <v-dialog max-width="500">
+            <template v-slot:activator="{ props: activatorProps }">
+                <v-btn v-bind="activatorProps" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+                    <img src="/svg/get.svg" class="me-1"/>
+                     Fund
+                </v-btn>
+            </template>
+
+            <template v-slot:default="{ isActive }">
+                <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+                <v-card-text>
+                    magna aliqua.
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn text="Close Dialog" @click="isActive.value = false"></v-btn>
+                </v-card-actions>
+                </v-card>
+            </template>
+        </v-dialog>
             
         <v-btn class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
             <img src="/svg/send-arrow.svg" class="me-1"/>

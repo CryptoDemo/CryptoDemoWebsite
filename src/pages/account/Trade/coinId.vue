@@ -23,18 +23,13 @@
                    <path d="M12 20.2688C15.53 20.2688 18.82 18.1887 21.11 14.5887C22.01 13.1787 22.01 10.8087 21.11 9.39875C18.82 5.79875 15.53 3.71875 12 3.71875C8.46997 3.71875 5.17997 5.79875 2.88997 9.39875C1.98997 10.8087 1.98997 13.1787 2.88997 14.5887C5.17997 18.1887 8.46997 20.2688 12 20.2688Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                    </svg>
                </div>
-               <span class="bal" v-if="isToggled">{{fetchedBalance }} {{ coin.symbol }}</span>
+               <span class="bal" v-if="isToggled">{{ formatBalance(fetchedBalance) }} {{ coin.symbol }}</span>
                <span class="bal" v-else>***</span>
 
             <div style="display: flex;align-items: center; margin-top: -13px; justify-content: space-between;">
             <div>
                 <span class="currency-bal">{{ pinia.state.tokenLists.converted_value }}</span>
                 <span class="currencyEquiv me-3">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(currencyEquivalent) }}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                 <path d="M6.22003 11.9987H9.78003C11.9934 11.9987 12.8934 10.432 11.7934 8.5187L11.3 7.66536C11.18 7.4587 10.96 7.33203 10.72 7.33203H5.28003C5.04003 7.33203 4.82003 7.4587 4.70003 7.66536L4.2067 8.5187C3.1067 10.432 4.0067 11.9987 6.22003 11.9987Z" fill="white"/>
-                 <path d="M5.86004 6.66833H10.1467C10.4067 6.66833 10.5667 6.38833 10.4334 6.16833L10.0067 5.435C8.90671 3.52167 7.09337 3.52167 5.99337 5.435L5.56671 6.16833C5.44004 6.38833 5.60004 6.66833 5.86004 6.66833Z" fill="white"/>
-                </svg>
-                <span class="perc">+10%</span>
             </div>
 
             <div style="display: flex; align-items: center;">
@@ -198,15 +193,6 @@ font-size: 24px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
-}
-
-.perc{
-text-align: right;
-font-family: Manrope;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 150%; /* 24px */
 }
 
 .send-btn{
