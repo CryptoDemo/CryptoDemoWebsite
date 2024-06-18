@@ -402,7 +402,6 @@ const isCalculateDisabled = computed(() => {
     transition: transform 0.3s;
   }
   
-  
   .wallet-border{
     border: 1px solid  #1B2537;
   }

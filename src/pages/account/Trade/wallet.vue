@@ -98,9 +98,7 @@
                                   <img :src="token.icon" width="35" class="me-3" />
                                   <div style="display: flex; justify-content: space-between;">
                                   <div class="coin-div" style="flex-direction: column; display: flex !important;">
-                                    <span class="coin-name1"
-                                          :class="isDark ? 'coin-name' : 'coin-name-light'"
-                                          style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height: normal;">
+                                    <span class="coin-name1" :class="isDark ? 'coin-name' : 'coin-name-light'" style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height: normal;">
                                       {{ token.name }}
                                     </span>
                                     <span class="sml-text"

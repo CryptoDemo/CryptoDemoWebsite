@@ -60,7 +60,7 @@ const navigation = [
           <path d="M23.8333 16.25C23.8333 20.4425 20.4425 23.8333 16.25 23.8333L17.3875 21.9375" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M2.16667 9.74996C2.16667 5.55746 5.5575 2.16663 9.75 2.16663L8.61251 4.06246" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M20.0417 11.9166C22.7341 11.9166 24.9167 9.73401 24.9167 7.04163C24.9167 4.34924 22.7341 2.16663 20.0417 2.16663C17.3493 2.16663 15.1667 4.34924 15.1667 7.04163C15.1667 9.73401 17.3493 11.9166 20.0417 11.9166Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`, title: 'Market Place', link:'#',},
+        </svg>`, title: 'Market Place', link:'/account/marketplace/activeOffers',},
 
        {icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
         <path d="M14.2388 4.7125C14.2388 4.71253 14.2389 4.71256 14.2389 4.71259C14.2389 4.71256 14.2388 4.71253 14.2388 4.7125Z" fill="currentColor" stroke="currentColor" stroke-width="2"/>

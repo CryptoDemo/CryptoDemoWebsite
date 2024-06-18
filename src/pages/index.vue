@@ -51,9 +51,8 @@
                   <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619519/bitcoin-star_h5jhpu.svg" class="yellow-coin position-absolute"/>
                   <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute"/>
 
-                <div class="btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'">
-                  <v-btn  :class="`${transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction=true" > Buy </v-btn>
-                  <v-btn :class="`${!transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction=false" >Sell</v-btn>
+                <div class="mb-3" style="display: flex; justify-content: center">
+                  <span class="transact text-center" :class="isDark ? 'header-text1-dark':'header-text1-light'" style="font-size: 26px">Transact Swiftly on Demo</span>
                 </div>
 
                 <div style="margin-top: 24px;">
@@ -102,19 +101,7 @@
                     <span class="btc-ammt">1 {{coin}} = USD <span class="btc-ammt1" style="color: #2873FF; font-family: Manrope;">{{ conversionResult.find(c=>c.from==coin)?.value || 0 }}</span></span>
                   </div>
                   
-                  <div style="margin-top: 30px;">
-                    <span :class="isDark ? 'pay-with':'pay-with-light'" > {{transaction? "Pay with" : "Get paid via" }}</span>
-                      <div :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"  style="margin-top:9px; width: 100%;">
-                          <Payment-options :selectedPaymentOption="Paymentmethod1"/>
-                      </div>
-                      <div class="payment-wrap" style="overflow: scroll;">
-                          <Transaction-btn buttonText="Bank Transfers" class="mt-4" @click="Paymentmethod1='Bank Transfers'"/>
-                          <Transaction-btn buttonText="Paypal" class="mt-4"  @click="Paymentmethod1='Paypal'"/>
-                          <Transaction-btn buttonText="Mtn Mobile Money" class="mt-4"  @click="Paymentmethod1='Mtn Mobile Money'"/>
-                          <Transaction-btn buttonText="Flutterwave" class="mt-4" @click="Paymentmethod1='Flutterwave'"/>
-                          <Transaction-btn buttonText="Chipper Cash" class="mt-4"  @click="Paymentmethod1='Chipper Cash'"/>
-                      </div>
-                  </div>
+                 
                   <div style="margin-top: 30px;">
                     <span :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to  spend" : "I want to  receive" }}</span>
                     <div class="d-flex" style="margin-top:9px; position: relative;">
@@ -144,7 +131,7 @@
                       <span class="hint-text">Mininum: 10 {{ Selectedcurrency }}</span>
                     </div>
                   </div>
-                  <v-btn class="exchange-btn" color="" style="letter-spacing: 0px !important;"> <span class="exchange-text">Exchange Now </span></v-btn>
+                  <v-btn class="exchange-btn" color="" style="letter-spacing: 0px !important;"> <span class="exchange-text">Trade Now </span></v-btn>
                 </div>
               </div>
             </div>

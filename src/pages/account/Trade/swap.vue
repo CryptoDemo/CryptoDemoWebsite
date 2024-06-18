@@ -2,8 +2,13 @@
 <div>
   <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" />
     <v-container style="margin-top: 90px;">
-        <span class="swap1">Swap</span>
-        <div :class="isDark ? 'btn-segment':'btn-segment-light'" style="border-radius: 24px; padding: 37px; margin-top: 40px; margin-bottom: 525px;">
+      <div class="py-7 ml-3" style="display: flex; align-items: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="navigateTo('/account/trade/wallet')" style="cursor: pointer;">
+        <path d="M15 19.9181L8.47997 13.3981C7.70997 12.6281 7.70997 11.3681 8.47997 10.5981L15 4.07812" stroke="#B9D1FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="swap1 ml-2">Swap</span>
+      </div>
+        <div :class="isDark ? 'btn-segment':'btn-segment-light'" style="border-radius: 24px; padding: 37px; margin-top: 70px; margin-bottom: 925px; width: 97%; margin: auto;">
             <div class="d-flex" style="margin-bottom: 30px;">
                 <span class="quick-swap me-3 ">Quick Swap</span>
                 <img src="/svg/reload.svg" class="icon1"/>
@@ -47,7 +52,7 @@
                     </div>
 
                     <div class="number-input" style="display: flex; margin-right: 10px; flex-direction: column; z-index: 1000">
-                      <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom; 10px; display: flex;justify-content: end;">{{ selectedBalance }} {{ selectedSymbol }}</span>
+                      <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom; 10px; display: flex;justify-content: end;">{{ formatBalance(selectedBalance) }} {{ selectedSymbol }}</span>
                       <input type="number" v-model="swapAmount" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>    
                     </div>
                 </div>
@@ -132,7 +137,11 @@
           </div>
         </div>
     </v-container>
-    <Footer/>
+  <div style="margin-top: 500px;">
+
+    <Footer class="desktop-footer flex-lg-and-up hidden-md-and-down"/>
+    <Mobile-footer class="mobile-footer"/>
+  </div>
 </div>
 </template>
 
@@ -340,12 +349,12 @@ const toggleChevron1 = () => {
 <style>
 
 .swap1{
-color: var(--Colors-Base-white, #FFF);
 font-family: Manrope;
-font-size: 32px;
+font-size: 20px;
 font-style: normal;
-font-weight: 800;
-line-height: normal;
+font-weight: 600;
+line-height: normal; 
+margin-left: 10px;
 }
 
 .cancel1{
