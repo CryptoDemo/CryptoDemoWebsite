@@ -26,7 +26,7 @@ export const useStore = defineStore('app',()=> {
       notificationLogs:[],
       tokenNetworks:[],
       BlockchainNetworks: [],
-      selectedNetwork: "Bep20" ,
+      selectedNetwork: "TRC20" ,
       preferredCurrency: "USD",
       Selectedcurrency_code:"$",
       tokenLists:[],
@@ -39,7 +39,8 @@ export const useStore = defineStore('app',()=> {
       calculatedTaxFee: "",
       calculatedTaxFee_for_swap: "",
       TransactionDetails: [],
-      selectedCoin:'',
+      selectedLandingCoin:'',
+      selectedLandingAmmount:'',
     });
   
   
@@ -62,9 +63,13 @@ export const useStore = defineStore('app',()=> {
       state.selectedNetwork = payload;
       
   };
+
   const setEmail = (payload) => {
-      state.email = payload;
-      
+      state.email = payload;    
+  };
+
+  const setselectedLandingCoin = (payload) => {
+      state.selectedLandingCoin = payload;    
   };
 
   const setFAQs = (payload) => {
@@ -153,6 +158,7 @@ export const useStore = defineStore('app',()=> {
     state.notificationLogs = [],
     state.tokenNetworks = [],
     state.tokenLists = [],
+    state.selectedLandingCoin = "",
     state.Web3_transactions = {
       data:[],
       time:null
@@ -188,6 +194,7 @@ export const useStore = defineStore('app',()=> {
       setTransactionDetails,
       setCalculatedTaxFee,
       setCalculatedTaxFee_for_swap,
+      setselectedLandingCoin,
     }
 },
   {persist: {

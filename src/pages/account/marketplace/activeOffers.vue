@@ -65,7 +65,7 @@
             <div style="display: flex; justify-content: space-between">
               <div style="margin-top: 32px">
                 <div style="display: flex; align-items: center; margin-bottom: 14px">
-                  <img v-if="offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" />
+                  <img v-if="offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" style="width: 30px; height: 30px; border-radius: 30px;"/>
      
                     <v-icon v-else style="width: 20px;">mdi-account-circle</v-icon>
          

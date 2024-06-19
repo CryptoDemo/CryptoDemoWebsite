@@ -1,5 +1,5 @@
 body{
-font-family: 'Poppins', manrope;                                            
+font-family: 'Manrope', manrope;                                            
 padding: 0;
 overflow-x: hidden;
 height: 100vh;
@@ -69,7 +69,7 @@ a {
   cursor: pointer;
 }
 .card-title {
-font-family: Poppins;
+font-family: Manrope;
 width: 344.74px;
 height: 34.48px;
 font-size: 24px;
@@ -79,7 +79,7 @@ text-align: left;
 color: white;   
 }
 .card-title-light{
-font-family: Poppins;
+font-family: Manrope;
 width: 344.74px;
 height: 34.48px;
 font-size: 24px;
@@ -91,7 +91,7 @@ color: #10192D;
 
 .card-subtitle{
 color: #C3CDDB !important;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 1rem;
 font-style: normal;
 font-weight: 400;
@@ -104,7 +104,7 @@ margin-bottom: 50.24px!important;
 }
 .card-subtitle-light{
 color: #64748B !important;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 1rem;
 font-style: normal;
 font-weight: 400;
@@ -133,7 +133,7 @@ background: inherit !important;
 border: 1px solid #1B2537;
 color: white;
 font-size: 12px;
-font-family: Poppins;
+font-family: Manrope;
 
 }
 .input-styling-light{
@@ -144,7 +144,7 @@ border: 1px solid #DBE8FF;
 background: var(--Basic-White, #FFF) !important;
 color: #0B0E13;
 font-size: 12px;
-font-family: Poppins;
+font-family: Manrope;
 }
 .sd-nav1-dark{
   background: #10192D;
@@ -214,7 +214,7 @@ background: #10192D;
 .cnt-text {
 color: var(--White, #FFF);
 text-align: center;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 600;
@@ -224,7 +224,7 @@ margin-right: 6px ;
 .cnt-text-light{
 color: #10192D;
 text-align: center;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 600;
@@ -336,7 +336,7 @@ overflow-x: hidden;
   text-transform: unset !important;
   color: var(--Colors-Base-white, #FFF);
   text-align: center !important;
-  font-family: Poppins;
+  font-family: Manrope;
   font-size: 14px;
   font-style: normal !important;
   font-weight: 400;
@@ -362,13 +362,13 @@ height: 70px !important;
 }
 .partners-text{
 color: var(--Gray-Medium-dark, #646464);
-font-family: Poppins;
+font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
 text-align: center;
-font-family: Poppins;
+font-family: Manrope;
 font-size: 24px;
 font-style: normal;
 font-weight: 600;

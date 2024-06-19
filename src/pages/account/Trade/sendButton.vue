@@ -73,7 +73,7 @@
  
         <v-dialog v-model="dialog" max-width="450" persistent>
             <template v-slot:activator="{ props: activatorProps }">
-                <v-btn  :disabled="isCalculateDisabled"  @click.prevent="calculateFee()" :loading="loading"  v-bind="activatorProps" class="primary-btn1" style="width: 100%; border-radius: 17px; height: 56px; color: white; box-shadow: none; font-weight: 600; font-size: 16px; font-family: Manrope;">
+                <v-btn :disabled="isCalculateDisabled"  @click.prevent="calculateFee()" :loading="loading"  v-bind="activatorProps" class="primary-btn1" style="width: 100%; border-radius: 17px; height: 56px; color: white; box-shadow: none; font-weight: 600; font-size: 16px; font-family: Manrope;">
                 Continue
                 </v-btn>
             </template>

@@ -81,7 +81,7 @@
                         </div>
                       <div style="height: 250px; overflow: scroll">
                         <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-2">
-                          <v-list-item @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
+                          <v-list-item @click="select=item.name; pinia.state.selectedLandingCoin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
                           <div class="ml-7" style="display: flex">
                             <img width="25" class="rounded-5 me-3" :src="item.icon"/>    
                             <div>                  
@@ -101,9 +101,16 @@
                     <span class="btc-ammt">1 {{coin}} = USD <span class="btc-ammt1" style="color: #2873FF; font-family: Manrope;">{{ conversionResult.find(c=>c.from==coin)?.value || 0 }}</span></span>
                   </div>
                   
+                  <div style="margin-top: 24px;">
+                    <BlockChain/>
+                     <div style=" margin-top: 9px ;">
+                      <span class="hint-text mt-8">Select preferred BlockChain Network</span>
+                    </div>
+                    
+                  </div>
                  
                   <div style="margin-top: 30px;">
-                    <span :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to  spend" : "I want to  receive" }}</span>
+                    <span :class="isDark ? 'pay-with':'pay-with-light'">I want to buy</span>
                     <div class="d-flex" style="margin-top:9px; position: relative;">
                     <input type="number" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
                        placeholder="Enter Amount"/>
@@ -112,7 +119,7 @@
                           <v-btn v-bind="props" class="position-absolute show-all" :class="isDark ? 'show-all-dark':'show-all-light'" style="right: 10px;margin-top: 8px;font-weight: 700;">
                             {{ Selectedcurrency }}
                             <v-icon  icon="mdi-chevron-down notranslate"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
-                            <!-- <v-icon v-else icon="mdi-chevron-up"  color="#8E9BAE" style="margin-left: 6px "></v-icon> -->
+                           
                         </v-btn>
                         </template>
 
