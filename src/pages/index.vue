@@ -51,9 +51,15 @@
                   <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619519/bitcoin-star_h5jhpu.svg" class="yellow-coin position-absolute"/>
                   <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute"/>
 
-                <div class="mb-3" style="display: flex; justify-content: center">
+                <!-- <div class="mb-3" style="display: flex; justify-content: center">
                   <span class="transact text-center" :class="isDark ? 'header-text1-dark':'header-text1-light'" style="font-size: 26px">Transact Swiftly on Demo</span>
+                </div> -->
+
+                <div class="btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                  <v-btn  :class="`${transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction=true" > Buy </v-btn>
+                  <v-btn :class="`${!transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction=false" >Sell</v-btn>
                 </div>
+
 
                 <div style="margin-top: 24px;">
                   <v-menu>
@@ -110,7 +116,7 @@
                   </div>
                  
                   <div style="margin-top: 30px;">
-                    <span :class="isDark ? 'pay-with':'pay-with-light'">I want to buy</span>
+                    <span :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to buy" : "I want to sell" }}</span>
                     <div class="d-flex" style="margin-top:9px; position: relative;">
                     <input type="number" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
                        placeholder="Enter Amount"/>
