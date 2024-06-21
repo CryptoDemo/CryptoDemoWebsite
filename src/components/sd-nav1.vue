@@ -14,13 +14,13 @@
               Verified
            </v-chip>
           </div>
-          <div v-for="(nav, i) in navigation" :key="i">
-            <nuxt-link :to="nav.link">
+          <div v-for="(nav, i) in activeNavigation" :key="i" :class="nav.isActive ? 'nav-options2:focus' : ''">
+            <router-link :to="nav.link">
             <v-btn class="nav-options2" :class="isDark ? 'text-dark':'text-light'"> 
               <div v-html="nav.icon" class="me-2" :class="isDark ? 'dashboard-btn':'dashboard-btn-dark'"></div>
               {{ nav.title }}
             </v-btn>
-          </nuxt-link>      
+          </router-link>      
           </div>
     </div>
   </template>
@@ -28,31 +28,32 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
+import { useRouter } from 'vue-router';
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
 const isSelected = ref(false);
-const navigation = [
-      {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+const navigation = ref([
+     {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
           <path d="M10.5 19.9V4.1C10.5 2.6 9.86 2 8.27 2H4.23C2.64 2 2 2.6 2 4.1V19.9C2 21.4 2.64 22 4.23 22H8.27C9.86 22 10.5 21.4 10.5 19.9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M22 10.9V4.1C22 2.6 21.36 2 19.77 2H15.73C14.14 2 13.5 2.6 13.5 4.1V10.9C13.5 12.4 14.14 13 15.73 13H19.77C21.36 13 22 12.4 22 10.9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M22 19.9V18.1C22 16.6 21.36 16 19.77 16H15.73C14.14 16 13.5 16.6 13.5 18.1V19.9C13.5 21.4 14.14 22 15.73 22H19.77C21.36 22 22 21.4 22 19.9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`, title: 'Dashboard', link:'/account/dashboard', },
+        </svg>`, title: 'Dashboard', link:'/account/dashboard', isActive: false},
 
-       {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"> <g clip-path="url(#clip0_7346_12470)">
+       {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"> <g clip-path="url(#clip0_7346_12470)"> 
         <path d="M12 22C6.477 22 2 17.523 2 12C2 6.477 6.477 2 12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22ZM12 20C14.1217 20 16.1566 19.1571 17.6569 17.6569C19.1571 16.1566 20 14.1217 20 12C20 9.87827 19.1571 7.84344 17.6569 6.34315C16.1566 4.84285 14.1217 4 12 4C9.87827 4 7.84344 4.84285 6.34315 6.34315C4.84285 7.84344 4 9.87827 4 12C4 14.1217 4.84285 16.1566 6.34315 17.6569C7.84344 19.1571 9.87827 20 12 20ZM7 13H16V15H12V18L7 13ZM12 9V6L17 11H8V9H12Z" fill="currentColor"/> </g>
           <defs>
           <clipPath id="clip0_7346_12470"> <rect width="24" height="24" fill="currentColor"/></clipPath>
           </defs>
-        </svg>`, title: 'Active Offers', link:'/account/activeOffers', },
+        </svg>`, title: 'Active Offers', link:'/account/marketplace/activeOffers', isActive: false},
 
        {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M18.04 13.55C17.62 13.96 17.38 14.55 17.44 15.18C17.53 16.26 18.52 17.05 19.6 17.05H21.5V18.24C21.5 20.31 19.81 22 17.74 22H6.26C4.19 22 2.5 20.31 2.5 18.24V11.51C2.5 9.44001 4.19 7.75 6.26 7.75H17.74C19.81 7.75 21.5 9.44001 21.5 11.51V12.95H19.48C18.92 12.95 18.41 13.17 18.04 13.55Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M2.5 12.4113V7.84132C2.5 6.65132 3.23 5.59128 4.34 5.17128L12.28 2.17128C13.52 1.70128 14.85 2.62131 14.85 3.95131V7.7513" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M22.5588 13.9692V16.0292C22.5588 16.5792 22.1188 17.0292 21.5588 17.0492H19.5988C18.5188 17.0492 17.5288 16.2592 17.4388 15.1792C17.3788 14.5492 17.6188 13.9592 18.0388 13.5492C18.4088 13.1692 18.9188 12.9492 19.4788 12.9492H21.5588C22.1188 12.9692 22.5588 13.4192 22.5588 13.9692Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M7 12H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`, title: 'Payment', link:'#',},
+        </svg>`, title: 'Payment', link:'#', isActive: false},
 
        {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
           <path d="M2.16667 18.4817H13" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -60,7 +61,7 @@ const navigation = [
           <path d="M23.8333 16.25C23.8333 20.4425 20.4425 23.8333 16.25 23.8333L17.3875 21.9375" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M2.16667 9.74996C2.16667 5.55746 5.5575 2.16663 9.75 2.16663L8.61251 4.06246" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M20.0417 11.9166C22.7341 11.9166 24.9167 9.73401 24.9167 7.04163C24.9167 4.34924 22.7341 2.16663 20.0417 2.16663C17.3493 2.16663 15.1667 4.34924 15.1667 7.04163C15.1667 9.73401 17.3493 11.9166 20.0417 11.9166Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`, title: 'Market Place', link:'/account/marketplace/activeOffers',},
+        </svg>`, title: 'Create Offers', link:'/account/marketplace/createOffer', isActive: false},
 
        {icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
         <path d="M14.2388 4.7125C14.2388 4.71253 14.2389 4.71256 14.2389 4.71259C14.2389 4.71256 14.2388 4.71253 14.2388 4.7125Z" fill="currentColor" stroke="currentColor" stroke-width="2"/>
@@ -77,13 +78,24 @@ const navigation = [
         <path d="M10.0417 1.67578C8.75 1.67578 7.69167 2.72578 7.69167 4.02578C7.69167 5.32578 8.74167 6.37578 10.0417 6.37578C11.3417 6.37578 12.3917 5.32578 12.3917 4.02578C12.3917 2.72578 11.3417 1.67578 10.0417 1.67578Z" fill="currentColor"/>
         <path d="M4.20834 11.5586C2.91667 11.5586 1.85834 12.6086 1.85834 13.9086C1.85834 15.2086 2.90834 16.2586 4.20834 16.2586C5.50834 16.2586 6.55834 15.2086 6.55834 13.9086C6.55834 12.6086 5.5 11.5586 4.20834 11.5586Z" fill="currentColor"/>
         <path d="M15.7917 11.5586C14.5 11.5586 13.4417 12.6086 13.4417 13.9086C13.4417 15.2086 14.4917 16.2586 15.7917 16.2586C17.0917 16.2586 18.1417 15.2086 18.1417 13.9086C18.1417 12.6086 17.0917 11.5586 15.7917 11.5586Z" fill="currentColor"/>
-      </svg>`, title: 'Security', link:'/account/Security',},
+      </svg>`, title: 'Security', link:'/account/Security', isActive: false},
       
        {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16" fill="none">
   <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="#D8D8D8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M1.33331 8.58679V7.41345C1.33331 6.72012 1.89998 6.14679 2.59998 6.14679C3.80665 6.14679 4.29998 5.29345 3.69331 4.24679C3.34665 3.64679 3.55331 2.86679 4.15998 2.52012L5.31331 1.86012C5.83998 1.54679 6.51998 1.73345 6.83331 2.26012L6.90665 2.38679C7.50665 3.43345 8.49331 3.43345 9.09998 2.38679L9.17331 2.26012C9.48665 1.73345 10.1666 1.54679 10.6933 1.86012L11.8466 2.52012C12.4533 2.86679 12.66 3.64679 12.3133 4.24679C11.7066 5.29345 12.2 6.14679 13.4066 6.14679C14.1 6.14679 14.6733 6.71345 14.6733 7.41345V8.58679C14.6733 9.28012 14.1066 9.85345 13.4066 9.85345C12.2 9.85345 11.7066 10.7068 12.3133 11.7535C12.66 12.3601 12.4533 13.1335 11.8466 13.4801L10.6933 14.1401C10.1666 14.4535 9.48665 14.2668 9.17331 13.7401L9.09998 13.6135C8.49998 12.5668 7.51331 12.5668 6.90665 13.6135L6.83331 13.7401C6.51998 14.2668 5.83998 14.4535 5.31331 14.1401L4.15998 13.4801C3.55331 13.1335 3.34665 12.3535 3.69331 11.7535C4.29998 10.7068 3.80665 9.85345 2.59998 9.85345C1.89998 9.85345 1.33331 9.28012 1.33331 8.58679Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`, title: 'Settings', link:'/account/settings'},     
-     ];
+</svg>`, title: 'Settings', link:'/account/settings', isActive: false},     
+]);
+
+
+const route = useRoute();
+
+const activeNavigation = computed(() => {
+      return navigation.value.map(item => {
+        item.isActive = route.path === item.link;
+        return item;
+      });
+    });
+
   </script>
   
   <style scoped>

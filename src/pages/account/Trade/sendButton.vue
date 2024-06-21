@@ -46,7 +46,7 @@
             </div>
              
                 <span :class="isDark ? 'coin-name':'coin-name-light'" style="margin-left: 10px; font-family: Manrope;font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : 
-                  <span style="font-family: Manrope; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">{{ selectedTokenBalance }}</span>
+                  <span style="font-family: Manrope; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">{{ formatBalance(selectedTokenBalance) }}</span>
                 </span>
            
                 <div style="margin-top: 18px;">  
@@ -88,7 +88,7 @@
                   Tax fee: {{ tax_fee }} <br>
                   Total ammount: {{ from_amount_total }} <br>
               </v-alert>
-                <span style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600;line-height: 150%; margin-top: 20px;">By clicking the confirm button you will be sending <h3>{{ from_amount_total }}</h3> {{  token_id  }}  to {{ transferWallet }}.
+                <span style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600;line-height: 150%; margin-top: 20px;">By clicking the confirm button you will be sending <h3>{{ trfAmmount }}</h3> {{  token_id  }}  to {{ transferWallet }}.
                 </span>
                 </div>
                 <template v-slot:actions>
@@ -121,7 +121,6 @@
   const theme = useTheme()
   const isDark = computed(() => theme.global.current.value.dark);
   const pinia = useStore()
-  const walletAddress = ref('');
   const dialog =  ref(false);
   const token = ref();
   const transferWallet = ref();
@@ -202,7 +201,9 @@ const calculateFee = async () => {
 
         pinia.setCalculatedTaxFee(data.data.fee_id);
 
+        
         loading.value = false
+      
 
       } else {
         loading.value = false
@@ -235,6 +236,8 @@ const execute = async()=>{
         // navigateTo('/account/trade/coinId/'`${data.data.result.id}`)
        
         dialog.value = false
+        transferWallet.value = "";
+        trfAmmount.value = "";
         // navigateTo(/dashboard/wallet/get/`${pinia.state.transactionDetails.id}`)
 
         push.success('Transfer Succesful')

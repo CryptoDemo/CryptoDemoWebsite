@@ -10,13 +10,13 @@
                 </div>
               </div>
 
-              <div class="mobile-col" style="width: 71%;">
+              <div class="mobile-col">
                 <div class="security-col" style="margin-left: 28px;">
                     <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; justify-content: space-between">    
                         <span class="acct-text"> Security</span>
                         <span class="mail-text" :class="isDark ? 'text-dark':'text-light'">{{ pinia.state.user?.email }}</span>  
                     </div>
-                    <span class="setup-text ml-2 d-flex" :class="isDark ? 'card-text-dark':'card-text-light'">Setup your 2FA and make your account more secure</span>
+                    <span class="setup-text ml-2 d-flex" style="font-size: 18px;">Setup your 2FA and make your account more secure</span>
                     <section>
                       
                         <div style="margin-top:35px !important; display:flex; justify-content: space-between;">
@@ -30,13 +30,40 @@
                                 </div>
                             </div>
 
-                            <v-btn :class="{ 'primary-btn1': isEnabled, 'toggled': !isEnabled }" class="tggle-btn" @click="Init2fa()" style="width: 100px; height: 60px;">
+                            <v-dialog max-width="400">
+                              <template v-slot:activator="{ props: activatorProps }">
+                               
+                              <v-btn v-bind="activatorProps" :class="{ 'primary-btn1': isEnabled, 'toggled': !isEnabled }" class="tggle-btn" @click="initialize2FA()" style="width: 100px; height: 60px;">
                               {{ isEnabled ? 'Enable' : 'Disable' }}
                             </v-btn>
+                              </template>
+
+                              <template v-slot:default="{ isActive }">
+                                <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
+                                  <v-card-text>
+                                    <div style="display: flex; justify-content: center;">
+                                      <div class="qr-code" v-html="twoFactorCodeUrl"></div>
+
+                                      <!-- <qrcode-vue :value="twoFactorCode" :size="206" level="H" style="padding: 20px;display: flex;"/> -->
+                                    </div>
+
+                                    <div style="display: flex;  position: relative;">
+                                      <input class="copy-link-box pl-4 mt-4" :class="isDark ? 'text-dark':'text-light'" disabled  v-model="twoFactorCode" style="align-content: baseline;"/>
+                                        <v-btn @click="copyToClipboard(twoFactorCode)" variant="plain" style=" background: inherit !important; box-shadow: none; position: absolute; right: 0; margin-top: 8.3%;">
+                                          <img v-if="!copied" src="/svg/copy.svg"/>
+                                          <h4 style="color: green; font-weight: 400; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</h4>
+                                        </v-btn>
+                                    </div>
+                                  </v-card-text>
+
+                                </v-card>
+                              </template>
+                            </v-dialog>
+
                         </div>
                         
                       <div class="ml-2" style="margin-top: 42px; width: 99%;">
-                          <span class="pswrd-mgt" :class="isDark ? 'card-text-dark':'card-text-light'" style="font-weight: 700;">Change Password</span>
+                          <span class="pswrd-mgt" style="font-weight: 700; font-size: 18px;">Change Password</span>
                           <div class="d-md-flex">
                             <v-text-field class="password-styling firstPassword pl-4 me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="Enter current password" v-model="OldPassword" variant="plain">   
                               <div  class="eye-icon">
@@ -75,12 +102,14 @@
                               </div>
                             </v-text-field>  
                             
-                            <v-btn  @click="UserPasswordUpdate()" :loading="loading" class="primary-btn1 mt-5" style=" align-self: center; height: 60px; width: 49%; color: #fff;">Change Password</v-btn>
+                            <v-btn  @click="UserPasswordUpdate()" :loading="loading" class="primary-btn1 mt-5" style=" align-self: center; height: 60px; font-weight: 600; width: 49%; color: #fff;">Change Password</v-btn>
                           </div>
                           <p v-if="errorMessage" style="color: red; font-size: 14px;">{{ errorMessage }}</p>
                       </div>
                     </section>
-                  <ActivityLog/>
+                    <div style="margin-bottom: 220px;">
+                      <ActivityLog/>
+                    </div>
                 </div>
               </div>     
           </div>
@@ -93,6 +122,7 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import { passwordUpdate, Init2fa } from "@/composables/requests/users";
+import QrcodeVue from 'qrcode.vue'
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -107,34 +137,47 @@ const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };
 const isEnabled= ref(false)
+
+const twoFactorData = ref();
+
+const twoFactorCodeUrl = ref();
+
+const twoFactorCode = ref();
 // const initialize2FA = () => {
 //   isEnabled.value = !isEnabled.value;
 
 // };
 
 const initialize2FA = async () => {
+  console.log('initialize2FA called'); // Added logging
   isEnabled.value = !isEnabled.value;
-  try{
-    const data = await Init2fa (Initialize2fa);
+  try {
+    console.log('Calling Init2fa'); // Added logging
+    const data = await Init2fa(); 
+    console.log('Init2fa response:', data); // Added logging
 
-  if(data.success){
+    if (data.success) {
+      console.log('2FA initialization successful'); // Added logging
+      pinia.state.isTwoFactorSet = true;
+      loading.value = false;
+      twoFactorData.value = data.data;
+      console.log('twoFactorData:', twoFactorData.value); // Added logging
 
-  pinia.state.isTwoFactorSet = true
+      twoFactorCodeUrl.value = twoFactorData.value.auth_url_img;
 
-  loading.value = false
-  const two_factor = [...data.data]
-
-
-  // pinia.setTwoFactor(two_factor)
-    }else{
-    loading.value = false 
-    push.error(data.message, { duration: 2000 })
+       twoFactorCode.value = twoFactorData.value.code;
+      console.log(twoFactorCode)
+      // pinia.setTwoFactor(two_factor)
+    } else {
+      console.log('2FA initialization failed'); // Added logging
+      loading.value = false;
+      push.error(data.message, { duration: 2000 });
+    }
+  } catch (e) {
+    console.log('Error:', e); // Added logging
+    push.error(`${e}`);
   }
-}catch(e){
-  console.log(e)
-  push.error(`${e}`)
-}
-}
+};
 
 
 const UserPasswordUpdate = async () => {
@@ -167,6 +210,19 @@ const UserPasswordUpdate = async () => {
 }
  
 };
+
+const copied = ref(false);
+
+const copyToClipboard = (text) => {
+  navigator.clipboard.writeText(text).then(() => {
+  copied.value = true;
+  setTimeout(() => {
+      copied.value = false;
+    }, 2000); // Change the text back to 'Copy' after 2 seconds
+  }).catch(err => {
+    console.error('Failed to copy: ', err);
+  });
+}
 </script>
 <style>
 
@@ -217,7 +273,6 @@ box-shadow: none !important;
 }
 .setup-text{
 font-family: Manrope;
-font-size: 16px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -225,7 +280,7 @@ margin-top: 16px;
 }
 .pswrd-mgt{
 font-family: Manrope;
-font-size: 16px;
+font-size: 20px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
@@ -271,6 +326,24 @@ height: fit-content;
 .profile-cards-light{
 background: #F8FAFC!important;
 height: fit-content;
+}
+
+.copy-link-box{
+border-radius: 13.527px;
+border: 0.902px solid rgba(142, 155, 174, 0.5);
+display: flex;
+align-items: center;
+align-self: stretch; 
+height: 51px; 
+width: 100%;
+outline: none;
+position: relative;
+color: #AEB4BF;
+font-family: Manrope;
+font-size: 12.625px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 17.675px */
 }
 
 

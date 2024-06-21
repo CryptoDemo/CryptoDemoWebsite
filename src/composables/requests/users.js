@@ -13,7 +13,7 @@ export const passwordUpdate = async(updatePassword)=>{
     return data;
 };
 
-export const Init2fa = async(Initialize2fa)=>{
+export const Init2fa = async()=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return
     const data = await fetch(`${baseURL}user/init-2fa`,{ 

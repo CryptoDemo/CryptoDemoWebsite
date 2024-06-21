@@ -13,9 +13,7 @@
           <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; margin-bottom: 80px; width: 100%;margin-top: 15px;">
             <span style=" font-size: 24px; font-style: 28px; font-weight: 600; color: #5892FF;">MarketPlace</span>
             
-            <div>
-              <v-btn class="primary-btn" style="height: 37px; width: 120px; border-radius: 8px; background: var( --Primary-100, linear-gradient(180deg, #2873ff 0%, #0b6b96 100%),#2873ff); text-transform: capitalize; letter-spacing: 0px;"></v-btn>
-            </div>
+            <span class="mail-text" :class="isDark ? 'text-dark':'text-light'"> {{ pinia.state.user?.email }}</span>
 
           </div>
 
@@ -27,11 +25,12 @@
               <div style="display: flex; margin-inline-start: auto">
                 <v-menu>
                   <template v-slot:activator="{ props }">
-                    <v-btn class="mx-auto active-offers" :class=" isDark ? 'active-offers-dark' : 'active-offers-light'" style="letter-spacing: 0px; box-shadow: none" v-bind="props">
+                    <v-btn  class="mx-auto active-offers"  :class=" isDark ? 'active-offers-dark' : 'active-offers-light'" style="letter-spacing: 0px; box-shadow: none" v-bind="props">
 
-                      <img width="25"  class="me-2" :src="icon" style="position: absolute; left: 7%"/>
-                      <div style="display: grid; cursor: pointer">
-                        <span class="slt">{{ coin }}</span>
+                      <img width="25" class="me-2" :src="tokenIcon" style="position: absolute; left: 7%"/>
+
+                      <div style="display: grid; position: absolute; margin-right: 34%;">
+                        <span class="slt">{{ tokenSymbol }}</span>
                       </div>
 
                       <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" :class="isDark ? 'close-btn' : 'close-btn-light'" style="position: absolute; display: flex; right: 15px">
@@ -61,7 +60,7 @@
 
           <div style="border-top: 0.5px solid rgba(142, 155, 174, 0.5); margin-top: 16px;"></div>
 
-          <div v-for="offer in offers" :key="offer.id">
+          <div v-for="offer in filteredOffers" :key="offer.id">
             <div style="display: flex; justify-content: space-between">
               <div style="margin-top: 32px">
                 <div style="display: flex; align-items: center; margin-bottom: 14px">
@@ -102,22 +101,13 @@
             </div>
           </div>
 
-          <!-- <tr v-if="loading">
-            <td class="d-flex justify-content-center align-items-center">
-              <v-progress-circular
-                :width="3"
-                indeterminate
-              ></v-progress-circular>
-            </td>
-          </tr> -->
-<!-- 
-          <tr v-if="!loading && !activityLogs?.length">
-            <td>
-              <span class="d-flex justify-content-center align-items-center"
-                >No records found</span
-              >
-            </td>
-          </tr> -->
+
+          <div v-if="!filteredOffers.length" style="text-align: center; margin-top: 80px; display: flex; flex-direction: column;align-items: center;">
+            <img src="/svg/emptyState.svg" width="250"/>
+            <span class="mt-6">No records found</span>
+   
+          </div>
+
         </div>
       </div>
     </v-container>
@@ -136,13 +126,11 @@ const pinia = useStore();
 const PurchaseCrypto = ref(true);
 const pageNumber = ref(1);
 const loading = ref (false);
-const coin = ref("All Cryptocurrency");
-const icon = ref();
+const tokenIcon = ref();
+const tokenSymbol = ref();
+
 const offers = ref([]);
 
-
-// const countryCurrencyName = pinia.state.allcountries.find(country => country.id === country)?.currency_name;
-// console.log('Selected Network ID:', countryCurrencyName);
 
 const get_allMarket_Offers = async () => {
   loading.value = true;
@@ -172,6 +160,10 @@ const get_allMarket_Offers = async () => {
   }
 };
 
+const filteredOffers = computed(() => {
+  if (!tokenSymbol.value) return offers.value;
+  return offers.value.filter(offer => offer.trading_pair?.crypto?.token?.symbol === tokenSymbol.value);
+});
 
 onMounted(async() => {
   await get_allMarket_Offers();

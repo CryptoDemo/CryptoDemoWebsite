@@ -4,28 +4,25 @@
      <v-container>
         <div style="margin-top: 100px;">
             <div no-gutters style="display: flex">
-              <div class="profile-section me-4" style="min-width: 67%;">
+              <div class="profile-section me-4" style="min-width: 98%;">
                 <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 15px">
                   <div class="d-flex" style="position:relative ; align-items: center; justify-content: space-between;">
                     <div class="d-flex">
-                      <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="72" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start; border-radius: 55px; height: 70px;"/>
-                        <div class="unverified-div">
+                      <img  v-if="offer?.user?.profile_image" :src="pinia.state?.user?.profile_image" width="72" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start; border-radius: 55px; height: 70px;"/>
+                      
+                      <v-avatar v-else color="info" style="width: 72px; height: 70px;">
+                        <v-icon icon="mdi-account-circle"></v-icon>
+                      </v-avatar>
+
+                      <div class="unverified-div ml-3">
                           <v-chip class="profile-level" color="#FB774A" style="margin-bottom: 13.8px;">Unverified</v-chip>
                          <div class="div-username1"> <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'">@{{ pinia.state.user?.username}} </span> </div>
                         </div>
                     </div>
 <!-- 
-               
-
                     < TODO: insert a user badge here when it is available -->
                     
                   </div>
-                </div>
-              </div>
-      
-              <div sm="4" md="4" class="flex-lg-and-up hidden-md-and-down">
-                <div>
-                  <Acct-level/>
                 </div>
               </div>
            
@@ -55,15 +52,11 @@
                             </v-btn>
                         </div>
                       </div>
-                      <div :class="isDark ? 'border-dark':'border-light'">
-                        <div style="padding: 20px 24px;">
-                        <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Manrope; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Joined 1 week ago</span>
-                        </div>
-                      </div>
+                      
             
                 </div>
               </div>
-          
+<!--           
             <v-row class="card-wrap" style="min-width: 89%; height: fit-content; margin-top: 1px; gap: 16px;">
                 <v-col v-for="(variant, i) in profileCards" class="profile-cards" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :key="i" sm="3" cols="12" style="display: flex;">
                     <v-card class="mx-auto" variant="text">
@@ -92,7 +85,7 @@
               
          
   
-            </v-row>
+            </v-row> -->
         </div>
     </v-container>
     </div>
@@ -108,41 +101,21 @@ import {getTokens} from "@/composables/requests/tokens";
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
-const PurchaseCrypto = ref(true);
 
-const profileCards = [
-  {image:'/svg/call.svg', image1:'/svg/call-light.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number', status:'Verify now'},
-  {image:'/svg/sms.svg', image1:'/svg/msg-light.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.',  status1:'Verified' },
-  {image:'/svg/login.svg', image1:'/svg/login-light.svg', Title: '2FA not enabled', textCaption: 'Enabling 2FA is a great way to secure your',  status:'Verify now'}, 
-  {image:'/svg/profile-circle.svg', image1:'/svg/profile-light.svg', Title:'I.D. not verified', textCaption: 'Take a minute to verify your phone I.D.',  status:'Verify now'}, 
-  {image:'/svg/location.svg', image1:'/svg/location-light.svg', Title: 'Address not verified', textCaption:'Take a minute to verify your address',  status:'Verify now'},
-];
 
-const select =ref("All Cryptocurrency")
+// const profileCards = [
+//   {image:'/svg/call.svg', image1:'/svg/call-light.svg', Title: 'Phone not verified', textCaption: 'Take a minute to verify your phone number', status:'Verify now'},
+//   {image:'/svg/sms.svg', image1:'/svg/msg-light.svg', Title1: 'Email verified', textCaption: 'You have verified your phone number.',  status1:'Verified' },
+//   {image:'/svg/login.svg', image1:'/svg/login-light.svg', Title: '2FA not enabled', textCaption: 'Enabling 2FA is a great way to secure your',  status:'Verify now'}, 
+//   {image:'/svg/profile-circle.svg', image1:'/svg/profile-light.svg', Title:'I.D. not verified', textCaption: 'Take a minute to verify your phone I.D.',  status:'Verify now'}, 
+//   {image:'/svg/location.svg', image1:'/svg/location-light.svg', Title: 'Address not verified', textCaption:'Take a minute to verify your address',  status:'Verify now'},
+// ];
+
+
 
 
 const pageNumber = ref(1)
 
-  try {
-    const data = await getTokens(pageNumber.value);
-    if(data.success) {
-      const fetchedTokens = data.data.result;
-
-      const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
-
-      // Check if there are any new items in the fetched data
-      const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
-
-      if (newItems.length > 0) {
-        console.log('fetching')
-        pinia.setTokenLists(fetchedTokens);
-      }
-    } else {
-      console.log('Unavailable')
-    }
-  } catch (error) {
-    console.log(error);
-  };
 const navigation = [
   {icon:'/svg/grad-location.svg', title: 'Country', number: pinia.state.user.country},
   {icon:'/svg/partners.svg', title: 'Trade partners', number:0},

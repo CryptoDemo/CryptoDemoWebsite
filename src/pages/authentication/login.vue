@@ -135,7 +135,7 @@ const login = async () => {
   if (data.success) {
     pinia.setUser(data.data);
     
-    if (data.data === null) {
+    if (data.message ==="Please verify your email to continue") {
       pinia.setEmail(email.value);
       navigateTo('/authentication/sign-up-email-verification')
     } 

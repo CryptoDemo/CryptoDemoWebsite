@@ -159,16 +159,20 @@ const pinia = useStore();
 const FeeCard = ref(false);
 
 const ExpectedAmmount = ref();
+
 const piniastoredicon = ref(null);
+
 const icon = ref (piniastoredicon)
 
 const select  = ref ()
 const selectedBalance = ref(null);
 
 const coin_to_swap = ref(pinia.state.tokenLists[0].icon)
+
 const selected_tokenType_to_swap  = ref ('USDT')
 
 const selectedSymbol = ref('');
+
 const selectedSymbol_to_swap_to  = ref('');
 
 const minimumswap = ref(null);
@@ -217,7 +221,7 @@ watch(()=> selectedSymbol.value,(newv)=>{
 })
 
 coin_to_swap.value = filteredToken_to_swap_to.value[0].icon
-// selected_tokenType_to_swap.value = filteredToken_to_swap_to.value[0].symbol
+
 
 
 const toggleTokens = ()=>{
@@ -292,9 +296,6 @@ const caltax = async () => {
         loading.value = false
         pinia.setTransactionDetails(data.data)
 
-        // pinia.state.selected_payment_action_to_display = 'send'
-
-        // navigateTo('/account/trade/coinId/'`${data.data.result.id}`)
 
         navigateTo('/account/Trade/success/')
        

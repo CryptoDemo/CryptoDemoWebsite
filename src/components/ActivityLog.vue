@@ -1,9 +1,9 @@
 <template>
   <div class="ml-2">
     <div style="margin-bottom: 13px!important; margin-top:48px">
-        <span class="pswrd-mgt" :class="isDark ? 'card-text-dark':'card-text-light'" style="font-weight: 700;">Activity</span>
+        <span style="font-weight: 700; font-size: 18px;">Activity Log</span>
       </div>
-        <v-table  class="mt-5" style="display: grid! important; margin-bottom: 32px" >
+        <v-table  class="mt-5" style="display: grid! important; margin-bottom: 32px; height: 440px;" >
           <thead>
             <tr :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="tr-div" style="border-radius: 24px !important; height: 70px;  display: flex; justify-content: space-between ">
             

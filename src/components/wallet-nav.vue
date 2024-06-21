@@ -8,7 +8,7 @@
       
           <div style="display: flex; flex-direction: column;">
             <span class="lg-num">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(balanceData) }}</span>
-            <span class="sm-num mt-2">0.0140 BTC</span>
+            <!-- <span class="sm-num mt-2">0.0140 BTC</span> -->
           </div>
           
         </div>
@@ -102,7 +102,6 @@ box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px;
 border: 1px solid #E2E8F0;;
 }
 .lg-num{
-color: var(--White, var(--Colors-Base-white, #FFF));
 text-align: center;
 font-family: Manrope;
 font-size: 24px;

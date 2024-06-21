@@ -97,32 +97,22 @@
 import { ref } from "vue";
 import { useTheme } from "vuetify";
 import { Verify2FA } from "@/composables/requests/users";
-import QrcodeVue from "qrcode.vue";
+
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
 const otp = ref("");
-const device = useDevice();
 const pinia = useStore();
 const loading = ref(false);
 const OtpCountdown = ref(60);
 const timerFinished = ref(false);
-const decreaseTimer = () => {
-  if (OtpCountdown.value > 0) {
-    OtpCountdown.value--;
-  } else {
-    timerFinished.value = true; // Timer finished
-  }
-};
-onMounted(() => {
-  const intervalId = setInterval(decreaseTimer, 1000);
 
-  return () => clearInterval(intervalId);
-});
+
 
 const verify2FA_ = async () => {
   loading.value = true;
+
   const verify_otp = {
-    email: pinia.state.user.email,
+    email: pinia.state.email,
     code: otp.value,
   };
   console.log(verify_otp);
@@ -132,6 +122,7 @@ const verify2FA_ = async () => {
       pinia.setUser(data.data);
       navigateTo("/account/dashboard");
     } else {
+      loading.value = false;
       push.error(data.message);
     }
   } catch (e) {

@@ -47,7 +47,7 @@
 
               <v-btn @click.prevent="navigateTo('/account/trade/swap')" class="send-btn" :class="isDark ? 'wallet-border':'wallet-border-light'">
                 <img src="/svg/arrow-swap.svg" class="me-1"/>
-                <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
+                <span :class="isDark ? 'coin-name':'coin-name-light'">Swap</span>
               </v-btn>
             </div>
           </div>

@@ -1,320 +1,340 @@
 <template>
     <div>
-        <div v-for="(transaction, index) in datainfo" :key="index">
-            <v-dialog max-width="420">
-            <template v-slot:activator="{ props: activatorProps }">
-                <div v-bind="activatorProps" style="background: inherit; height: 60px; cursor: pointer;">
-                <div v-if="transaction?.details?.crypto" :class="isDark ? 'wallet-border' : 'wallet-border-light'">
-                    <div class="mt-2" v-if="transaction?.details?.crypto?.transfer" style="display: flex; justify-content: space-between">
-                    <div style="display: flex; align-items: center">
-                        <img src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
-                        <div style="display: flex; flex-direction: column">
-                        <span>Sold</span>
-                        <div class="d-flex" style="margin-bottom: 6px">
-                            <h5 class="me-2">
-                            {{ formattedDate(transaction.created_at) }}
-                            </h5>
-                            <h5>{{ formatTime(transaction.created_at) }}</h5>
+      <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" />
+      <v-container>
+        <div class="container-style">
+          <div>
+            <div class="pa-2 ma-2">
+              <Sd-nav1 />
+            </div>
+          </div>
+  
+          <div class="main-content">
+            <div :class="['acct-settings', isDark ? 'profile-cards-dark' : 'profile-cards-light']">
+              <span class="marketplace-title">MarketPlace</span>
+              <v-btn class="primary-btn"></v-btn>
+            </div>
+  
+            <div class="marketplace-buttons">
+              <v-row class="px-2">
+                <v-btn class="me-4 mb-4" :class="PurchaseCrypto ? 'active-btn' : 'inactive-btn'" @click.prevent="PurchaseCrypto = true">Buy Crypto</v-btn>
+                <v-btn :class="[PurchaseCrypto ? 'inactive-btn' : 'active-btn', isDark ? 'profile-cards-dark' : 'profile-cards-light']" @click.prevent="PurchaseCrypto = false">Sell Crypto</v-btn>
+                <div class="token-menu">
+                  <v-menu>
+                    <template v-slot:activator="{ props }">
+                      <v-btn :class="['mx-auto', isDark ? 'active-offers-dark' : 'active-offers-light']" v-bind="props">
+                        <img class="token-icon" :src="tokenIcon" />
+                        <div class="token-info">
+                          <span class="slt">{{ tokenSymbol }}</span>
                         </div>
-                        </div>
-                    </div>
-    
-                    <div class="d-flex">
-                        <span style="color: #ff3e46">{{formatNumber(transaction?.details?.crypto?.transfer?.amount)}}</span>
-                        <span style="color: #ff3e46">{{
-                        tokenLists.find((p) => p.id === transaction?.details.crypto.transfer.token_id).symbol}}</span>
-                    </div>
-                    </div>
-    
-
-
-                    <div v-if="transaction?.details?.crypto.swap">
-                        <div class="d-flex" style="justify-content: space-between;">
-                            <div style="display: flex; align-items: center">
-                                <img src="/svg/newSwap.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
-                                <div style="display: flex; flex-direction: column">
-                                <span>Swap</span>
-                                <div class="d-flex" style="margin-bottom: 6px">
-                                    <h5 class="me-2">
-                                    {{ formattedDate(transaction.created_at) }}
-                                    </h5>
-                                    <h5>{{ formatTime(transaction.created_at) }}</h5>
-                                </div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex">
-                                <span style="color: #007F80">{{formatNumber(transaction?.details?.crypto?.swap?.from.amount)}}</span>
-                                <span style="color: #007F80">{{tokenLists.find((p) => p.id === transaction?.details.crypto.swap.from.token_id).symbol}}</span>
-                            </div>
-                        </div>
-
-
-                    <!-- <p>Token Symbol:{{ transaction.details.crypto.swap.from.token_id }}</p> -->
-                    <!-- <p>Tax Fee: {{ transaction.details.crypto.swap.fees }}</p> -->
-                    <!-- <p>Status: {{ transaction.details.crypto.swap.status }}</p> -->
-                    <!-- <p>Amount: {{ transaction.details.crypto.swap.from.amount }}</p> -->
-                    <!-- <p>Sent To: {{ transaction.details.crypto.swap.to.address }}</p> -->
-                    <!-- <p>
-                        Transaction Hash:
-                        {{ transaction.details.crypto.swap.transaction_hash }}
-                    </p> -->
-                    </div>
-                    
-                    <div v-else-if="transaction?.details?.crypto.exchange">
-                        <p>Token Symbol:{{ transaction?.details?.crypto?.exchange?.from.token_id }}</p>
-                        <p>Tax Fee: {{ transaction.details.crypto.exchange.fees }}</p>
-                        <p>Status: {{ transaction.details.crypto.exchange.status }}</p>
-                        <p>Amount: {{ transaction.details.crypto.exchange.from.amount }}</p>
-                        <p> Sent To: {{ transaction.details.crypto.exchange.to.address }}</p>
-                        <p>Transaction Hash: {{ transaction.details.crypto.exchange.transaction_hash }}</p>
-                    </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" :class="isDark ? 'close-btn' : 'close-btn-light'">
+                          <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z"/>
+                        </svg>
+                      </v-btn>
+                    </template>
+  
+                    <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="token-list">
+                      <v-list-item class="token-list-item">
+                        <v-row dense>
+                          <div v-for="tokens in pinia.state.tokenLists" :key="tokens.id" class="token-row">
+                            <v-list-item @click="selectToken(tokens)">
+                              <div class="token-item">
+                                <img :src="tokens.icon" width="30" class="me-2"/>
+                                <span class="currency-list">{{ tokens.name }}</span>
+                              </div>
+                            </v-list-item>
+                          </div>
+                        </v-row>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
                 </div>
-    
-
-
-                <div v-else-if="transaction?.details?.fiat">
-                    <!-- Display fiat transaction details -->
-                    <div v-if="transaction?.details?.fiat?.withdrawal">
-                        <h3>Fiat Withdrawal</h3>
-                        <p>Country: {{ transaction.details.fiat.withdrawal.country_id }}</p>
-                        <p>Amount: {{ transaction.details.fiat.withdrawal.amount }}</p>
-                        <p>Account Name: {{ transaction.details.fiat.withdrawal.to.account_name }}</p>
-                        <p>Account Number:{{ transaction?.details?.fiat?.withdrawal.to.account_number }}</p>
-                        <p>Bank Name:{{ transaction?.details?.fiat?.withdrawal?.to.bank_name }}</p>
-                        <p>Status: {{ transaction?.details?.fiat?.withdrawal.status }}</p>
-                    </div>
-
-                    <div v-else-if="transaction?.details?.fiat?.transfer">
-                        <h3>Fiat Transfer</h3>
-                        <p>Country: {{ transaction.details.fiat.transfer.country_id }}</p>
-                        <p>Amount: {{ transaction.details.fiat.transfer.amount }}</p>
-                        <p>Status: {{ transaction.details.fiat.transfer.status }}</p>
-                    </div>
+              </v-row>
+            </div>
+  
+            <div class="divider"></div>
+  
+            <div v-for="offer in filteredOffers" :key="offer.id" class="offer-card">
+              <div class="offer-header">
+                <div class="offer-user-info">
+                  <img v-if="offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" class="user-img"/>
+                  <v-icon v-else class="user-icon">mdi-account-circle</v-icon>
+                  <span class="username">{{ offer?.user?.username }}</span>
                 </div>
+                <div class="offer-details">
+                  <span class="offer-unit-range">Unit range values</span>
+                  <span class="offer-price-model">Price model</span>
+                  <div class="offer-token">
+                    <img :src="offer.trading_pair?.crypto?.token?.icon" class="token-icon"/>
+                    <span class="token-name">{{ offer.trading_pair?.crypto?.token?.name }}</span>
+                    <img src="/svg/arrow-up.svg" class="arrow-icon"/>
+                  </div>
                 </div>
-    
-             
-            </template>
-            <template v-slot:default="{ isActive }">
-                <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 20px; padding: 20px">
-                <h2 class="text-center">Transaction Details</h2>
-    
-                <div v-if="transaction?.details?.crypto?.transfer">
-                    <div  class="d-flex py-4" style="justify-content: center;">
-                        <v-chip :color="getStatusClass(transaction?.details?.crypto?.transfer?.status)">
-                            <h4 class="me-1">{{(transaction?.details?.crypto?.transfer?.amount)}}</h4>
-                            <h4>{{tokenLists.find((p) => p.id === transaction?.details?.crypto?.transfer?.token_id).symbol }}</h4>
-                        </v-chip>
-                    </div>
-    
-                    <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-                        <div>
-                            <p style="font-size: 14px;">Date & Time:</p>
-                            <p style="font-size: 14px;">Fees:</p>
-                            <p style="font-size: 14px;">Sent To:</p>
-                            <p style="font-size: 14px;">Txn ID:</p>
-                            <p style="font-size: 14px;">Txn Type:</p>
-                            <p style="font-size: 14px;">Status:</p>
-                        </div>
-    
-                        <div style="text-align: right;">
-                            <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{ formatTime(transaction.created_at) }}</p>
-                            <p style="font-size: 14px;">{{transaction?.details?.crypto?.transfer?.fees.find((p) => p.recipient_type === "GAS" ).amount}}</p>
-    
-                            <p class="truncate" style="font-size: 14px;width: 157px">{{ transaction?.details?.crypto?.transfer?.to_address }}</p>
-                            
-                            <div class="d-flex">
-                                <p class="truncate" style="font-size: 14px;width: 134px">{{ transaction?.details?.crypto.transfer?.transaction_hash }}</p>
-                                <button @click="copyToClipboard(transaction?.details?.crypto?.transfer?.transaction_hash)" variant="plain" style=" background: inherit !important; box-shadow: none;">
-                                <img v-if="!copied" src="/svg/copy.svg"/>
-                                <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
-                            </button>
-                            </div>
-                            <v-chip color="orange" style="font-size: 14px;"> {{ transaction.details.crypto.transfer.transfer_type}}</v-chip>
-
-                        
-                            
-                            <p class="truncate" style="font-size: 14px; width: 157px" v-if="transaction?.details?.crypto?.transfer?.status">
-                                <v-chip color="green" v-if="transaction?.details?.crypto?.transfer?.status?.fulfilled">Successful</v-chip>
-                                <v-chip color="red" v-else-if="transaction?.details?.crypto?.transfer?.status?.failed">Failed</v-chip>
-                                <v-chip color="orange" v-else>Pending</v-chip>
-                            </p>
-                       
-                    </div>
-
+              </div>
+  
+              <div class="offer-footer">
+                <span v-if="offer.user?.is_verified" class="verified">Verified</span>
+                <span v-else class="unverified">Unverified User</span>
+                <span class="offer-limit">{{ offer?.trading_pair?.fiat?.minimum_buy_limit }} - {{ offer?.trading_pair?.fiat?.maximum_buy_limit }} {{ offer?.countryCurrencyName }}</span>
+                <div class="offer-price">
+                  <span class="unit-value">{{ offer?.trading_pair?.fiat?.unit_value }}</span>
+                  <v-btn class="smaller-btn">{{ PurchaseCrypto ? "Buy Now" : "Sell Now" }}</v-btn>
                 </div>
-
-
-                    <div v-if="transaction?.details?.crypto?.transfer?.status" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="height: 60px; width: 100%; display: flex; align-items: center; border-left: 2px solid var(--Primary-100, #2873FF);">
-                        <p v-if="transaction?.details?.crypto?.transfer?.status?.fulfilled" style="font-size: 14px; color: green;">Transaction is Successful</p>
-                        <p v-else-if="transaction?.details?.crypto?.transfer?.status.failed === 'failed'" style="font-size: 14px; color: red;">Transaction has Failed</p>
-                        <p v-else style="font-size: 14px; color: orange;">Transaction is Pending</p>
-                    </div>
-                </div>
-
-
-
-
-                <div v-if="transaction?.details?.crypto?.swap">
-                    <div  class="d-flex py-4" style="justify-content: center;">
-                        <v-chip>
-                            <h4 class="me-1">{{(transaction?.details?.crypto?.swap?.from.amount)}}</h4>
-                            <h4>{{tokenLists.find((p) => p.id === transaction?.details?.crypto?.swap?.from?.token_id).symbol }}</h4>
-                        </v-chip>
-                    </div>
-    
-                    <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-                        <div>
-                            <p style="font-size: 14px;">Date & Time:</p>
-                            <p style="font-size: 14px;">Fees:</p>
-                            <p style="font-size: 14px;">User ID:</p>
-                            <p style="font-size: 14px;">Txn ID:</p>
-                            <p style="font-size: 14px;">Status:</p>
-                        </div>
-    
-                        <div style="text-align: right;">
-                            <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{ formatTime(transaction.created_at) }}</p>
-                            <p style="font-size: 14px;">{{transaction?.details?.crypto?.swap?.fees.find((p) => p.recipient_type === "GAS" ).amount}}</p>
-    
-                            <p class="truncate" style="font-size: 14px;width: 187px">{{ transaction?.user_id }}</p>
-                            
-                            <div class="d-flex">
-                                <p class="truncate me-1" style="font-size: 14px;width: 157px">{{ transaction.details.crypto.swap.transaction_hash }}</p>
-                                <button @click="copyToClipboard(transaction?.details?.crypto?.swap?.transaction_hash)" variant="plain" style=" background: inherit !important; box-shadow: none;">
-                                    <img v-if="!copied" src="/svg/copy.svg"/>
-                                    <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
-                                </button>
-                            </div>
-                          
-                            <p class="truncate" style="font-size: 14px; width: 187px" v-if="transaction?.details?.crypto?.swap?.status">
-                                <v-chip color="green" v-if="transaction?.details?.crypto?.swap?.status?.fulfilled">Successful</v-chip>
-                                <v-chip color="red" v-else-if="transaction?.details?.crypto?.swap?.status?.failed">Failed</v-chip>
-                                <v-chip color="orange" v-else>Pending</v-chip>
-                            </p>
-                       
-                    </div>
-
-                   </div> 
-
-
-                    <div v-if="transaction?.details?.crypto?.transfer?.status || transaction?.details?.crypto?.swap?.status || transaction?.details?.crypto?.exchange?.status" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="height: 60px; width: 100%; display: flex; align-items: center; border-left: 2px solid var(--Primary-100, #2873FF);">
-                        <p v-if="transaction?.details?.crypto?.transfer?.status?.fulfilled || transaction?.details?.crypto?.swap?.status.fulfilled || transaction?.details?.crypto?.exchange?.status.fulfilled" style="font-size: 14px; color: green;">Transaction is Successful</p>
-                        <p v-else-if="transaction?.details?.crypto?.transfer?.status.failed || transaction?.details?.crypto?.swap?.status.failed || transaction?.details?.crypto?.exchange?.status.failed === 'failed'" style="font-size: 14px; color: red;">Transaction has Failed</p>
-                        <p v-else style="font-size: 14px; color: orange;">Transaction is Pending</p>
-                    </div>
-                </div>
-
-                
-                <v-card-actions class="mt-8" style="display: flex; justify-content: space-between;">
-                    <v-btn variant="tonal" text="Close Receipt" @click="isActive.value = false" style="text-transform: unset; letter-spacing: 0px; width: 140px; height: 40px; border-radius: 10px !important;"></v-btn>
-                    <v-btn class="primary-btn1" text="Print Receipt" style="border-radius: 10px !important; width: 140px; height: 40px; color: white;"></v-btn>
-                </v-card-actions>
-                </v-card>
-            </template>
-            </v-dialog>
+              </div>
+  
+              <div class="divider"></div>
+            </div>
+          </div>
         </div>
+      </v-container>
+      <Footer />
     </div>
-</template>
+  </template>
+  
+  <script setup>
+  import { ref, computed, onMounted } from 'vue';
+  import { useTheme } from 'vuetify';
+  import { getMarketOffers } from '@/composables/requests/marketplace';
 
-<script setup>
-import { ref } from "vue";
-import { useTheme } from "vuetify";
-import { getWebTransaction } from "@/composables/requests/transaction";
-
-const theme = useTheme();
-const isDark = computed(() => theme.global.current.value.dark);
-const pinia = useStore();
-const isloading = ref(false);
-const tokenSymbol = ref();
-const GasFee = ref();
-const pageNumber = ref(1);
-const tokenLists = ref(pinia.state.tokenLists);
-const copied = ref(false);
-// const crypto_trans = ref();
-
-const created_at = ref();
-
-const datainfo = ref(pinia.state.TransactionDetails || []);
-
-tokenSymbol.value = tokenLists.value.find((p) => p.id === datainfo.token_id);
-
-const getWebTrans = async () => {
-  isloading.value = true;
-  try {
-    const data = await getWebTransaction(pageNumber.value);
-    if (data.success) {
-      datainfo.value = data.data.result;
-
-      console.log("datainfo.value:", datainfo.value);
-
-
-      datainfo.value = filterByKey("id", [
-        ...datainfo.value,
-        ...data.data.result,
-      ]);
-      pinia.setTransactionDetails(datainfo.value);
-
-      isloading.value = false;
-    } else {
-      push.error(`${data.message}`);
-      isloading.value = false;
+  
+  const theme = useTheme();
+  const isDark = computed(() => theme.global.current.value.dark);
+  const pinia = useStore();
+  const PurchaseCrypto = ref(true);
+  const pageNumber = ref(1);
+  const loading = ref(false);
+  const tokenIcon = ref('');
+  const tokenSymbol = ref('');
+  const offers = ref([]);
+  
+  const get_allMarket_Offers = async () => {
+    loading.value = true;
+    try {
+      const data = await getMarketOffers(pageNumber.value);
+      if (data.success) {
+        offers.value = data.data.result.map(offer => {
+          const countryId = offer.trading_pair?.fiat.country_id;
+          let countryCurrencyName = 'Unknown';
+          if (countryId) {
+            const country = pinia.state.allcountries.find(country => country.id === countryId);
+            countryCurrencyName = country?.currency_name || 'Unknown';
+          }
+          return { ...offer, countryCurrencyName };
+        });
+      } else {
+        console.error(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      loading.value = false;
     }
-  } catch (e) {
-    console.log(e);
-    isloading.value = false;
-  }
-};
-
-const copyToClipboard = (text) => {
-  navigator.clipboard.writeText(text).then(() => {
-  copied.value = true;
-  setTimeout(() => {
-      copied.value = false;
-    }, 2000); // Change the text back to 'Copy' after 2 seconds
-  }).catch(err => {
-    console.error('Failed to copy: ', err);
-  });
-}
-
-const getStatusClass = (status) => {
-  if (status === 'fulfilled') {
-    return 'fulfilled-chip';
-  } else if (status === 'pending') {
-    return 'pending-chip';
-  } else if (status === 'failed') {
-    return 'failed-chip';
-  } 
-};
-
-
-onMounted(() => {
-  getWebTrans();
+  };
+  
+  const selectToken = (token) => {
+    tokenIcon.value = token.icon;
+    tokenSymbol.value = token.symbol;
+  };
+  
+  const filteredOffers = computed(() => {
+  if (!tokenSymbol.value) return offers.value;
+  return offers.value.filter(offer => offer.trading_pair?.crypto?.token?.symbol === tokenSymbol.value);
 });
-</script>
+  
+  onMounted(async () => {
+    await get_allMarket_Offers();
+  });
+  </script>
+  
+  <style scoped>
+  .container-style {
+    margin-top: 105px;
+    margin-bottom: 100px;
+    display: flex;
+    width: 100%;
+  }
+  
+  .main-content {
+    width: 780px;
+    margin-left: 20px;
+  }
+  
+  .acct-settings {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 80px;
+    width: 100%;
+    margin-top: 15px;
+  }
+  
+  .marketplace-title {
+    font-size: 24px;
+    font-style: 400;
+    color: #5892fc;
+    font-family: 'Roboto';
+    text-align: start;
+    margin-left: 8px;
+  }
+  
+ 
+  
+  .profile-cards-dark {
+    background-color: #353535;
+  }
+  
+  .profile-cards-light {
+    background-color: white;
+  }
+  
+  .active-btn {
+    background-color: #5892fc;
+    border: 1px solid #5892fc;
+    color: white;
+    width: 300px;
+    height: 50px;
+    border-radius: 12px;
+    text-transform: none;
+  }
+  
+  .inactive-btn {
+    background-color: white;
+    border: 1px solid #5892fc;
+    color: #5892fc;
+    width: 300px;
+    height: 50px;
+    border-radius: 12px;
+    text-transform: none;
+  }
+  
+  .active-offers-dark {
+    border: 1px solid #353535;
+    background-color: #353535;
+    height: 50px;
+    border-radius: 12px;
+    width: 250px;
+    text-transform: none;
+  }
+  
+  .active-offers-light {
+    border: 1px solid #5892fc;
+    background-color: white;
+    height: 50px;
+    border-radius: 12px;
+    width: 250px;
+    text-transform: none;
+  }
+  
+  .token-list {
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .token-list-item {
+    padding: 0;
+  }
+  
+  .token-row {
+    width: 100%;
+    display: flex;
+  }
+  
+  .token-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-img {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .user-icon {
+    font-size: 35px;
+    color: gray;
+  }
+  
+  .username {
+    color: white;
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  
+  .offer-card {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 12px;
+    margin-bottom: 40px;
+  }
+  
+  .offer-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .offer-user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .offer-details {
+    display: flex;
+    align-items: center;
+  }
+  
+  .offer-token {
+    display: flex;
+    align-items: center;
+  }
+  
+  .token-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .arrow-icon {
+    width: 11px;
+    height: 6px;
+  }
+  
+  .offer-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .verified {
+    color: green;
+  }
+  
+  .unverified {
+    color: red;
+  }
+  
+  .offer-limit {
+    color: gray;
+  }
+  
+  .offer-price {
+    display: flex;
+    align-items: center;
+  }
+  
+  .unit-value {
+    margin-right: 10px;
+  }
+  
 
-<style scoped>
-.wallet-border {
-  border-bottom: 1px solid #1b2537;
-}
-.wallet-border-light {
-  border-bottom: 1px solid #e2e8f0;
-}
-.txn-cards-dark {
-  background: #162138;
-  padding: 10px;
-  border-radius: 15px;
-}
-.txn-cards-light {
-  background: #edf3ff;
-  padding: 10px;
-  border-radius: 15px;
-}
-.truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-
-</style>
+  
+  .divider {
+    height: 1px;
+    width: 100%;
+    background: #ebebeb;
+    margin: 20px 0;
+  }
+  
+  </style>
+  

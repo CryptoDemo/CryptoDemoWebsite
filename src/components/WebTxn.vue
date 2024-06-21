@@ -7,12 +7,16 @@
                 <div v-if="transaction?.details?.crypto" :class="isDark ? 'wallet-border' : 'wallet-border-light'">
                     <div class="mt-2" v-if="transaction?.details?.crypto?.transfer" style="display: flex; justify-content: space-between">
                     <div style="display: flex; align-items: center">
-                        <img src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
+                        <div v-if="transaction?.details?.crypto?.transfer">
+                            <img v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" src="/svg/greenGet.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
+                            <img v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
+                        </div>
                         <div style="display: flex; flex-direction: column">
-                        <span>Sold</span>
+                        <span v-if="transaction.details.crypto.transfer.transfer_type == 'IN'">Received</span>
+                        <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'">Sent</span>
                         <div class="d-flex" style="margin-bottom: 6px">
                             <h5 class="me-2">
-                            {{ formattedDate(transaction.created_at) }}
+                            {{ formattedDate(transaction.created_at) }},
                             </h5>
                             <h5>{{ formatTime(transaction.created_at) }}</h5>
                         </div>
@@ -20,9 +24,11 @@
                     </div>
     
                     <div class="d-flex">
-                        <span style="color: #ff3e46">{{formatNumber(transaction?.details?.crypto?.transfer?.amount)}}</span>
-                        <span style="color: #ff3e46">{{
-                        tokenLists.find((p) => p.id === transaction?.details.crypto.transfer.token_id).symbol}}</span>
+                        <span v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" style="color: #35B233">{{formatNumber(transaction?.details?.crypto?.transfer?.amount)}}</span>
+                        <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" style="color: #ff3e46">{{formatNumber(transaction?.details?.crypto?.transfer?.amount)}}</span>
+
+                        <span v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" style="color: #35B233">{{tokenLists.find((p) => p.id === transaction?.details.crypto.transfer.token_id).symbol}}</span>
+                        <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" style="color: #ff3e46">{{tokenLists.find((p) => p.id === transaction?.details.crypto.transfer.token_id).symbol}}</span>
                     </div>
                     </div>
     
@@ -50,15 +56,7 @@
                         </div>
 
 
-                    <!-- <p>Token Symbol:{{ transaction.details.crypto.swap.from.token_id }}</p> -->
-                    <!-- <p>Tax Fee: {{ transaction.details.crypto.swap.fees }}</p> -->
-                    <!-- <p>Status: {{ transaction.details.crypto.swap.status }}</p> -->
-                    <!-- <p>Amount: {{ transaction.details.crypto.swap.from.amount }}</p> -->
-                    <!-- <p>Sent To: {{ transaction.details.crypto.swap.to.address }}</p> -->
-                    <!-- <p>
-                        Transaction Hash:
-                        {{ transaction.details.crypto.swap.transaction_hash }}
-                    </p> -->
+           
                     </div>
                     
                     <div v-else-if="transaction?.details?.crypto.exchange">
@@ -110,12 +108,12 @@
     
                     <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
                         <div>
-                            <p style="font-size: 14px;">Date & Time:</p>
-                            <p style="font-size: 14px;">Fees:</p>
-                            <p style="font-size: 14px;">Sent To:</p>
-                            <p style="font-size: 14px;">Txn ID:</p>
-                            <p style="font-size: 14px;">Txn Type:</p>
-                            <p style="font-size: 14px;">Status:</p>
+                            <p style="font-size: 14px; font-weight: 600;">Date & Time:</p>
+                            <p style="font-size: 14px; font-weight: 600;">Fees:</p>
+                            <p style="font-size: 14px; font-weight: 600;">Sent To:</p>
+                            <p style="font-size: 14px; font-weight: 600;">Transaction ID:</p>
+                            <p style="font-size: 14px; font-weight: 600;">Transaction Type:</p>
+                            <p style="font-size: 14px; font-weight: 600;">Status:</p>
                         </div>
     
                         <div style="text-align: right;">
@@ -131,7 +129,10 @@
                                 <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
                             </button>
                             </div>
-                            <v-chip color="orange" style="font-size: 14px;"> {{ transaction.details.crypto.transfer.transfer_type}}</v-chip>
+                            <div v-if="transaction?.details?.crypto?.transfer?.transfer_type">
+                                <v-chip v-if="transaction.details.crypto.transfer.transfer_type == 'IN'"  color="green" style="font-size: 14px; border-radius: 20px;"> IN </v-chip>
+                                <v-chip v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'"  color="orange" style="font-size: 14px; border-radius: 20px"> OUT </v-chip>
+                            </div>
 
                         
                             
@@ -147,8 +148,8 @@
 
 
                     <div v-if="transaction?.details?.crypto?.transfer?.status" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="height: 60px; width: 100%; display: flex; align-items: center; border-left: 2px solid var(--Primary-100, #2873FF);">
-                        <p v-if="transaction?.details?.crypto?.transfer?.status?.fulfilled" style="font-size: 14px; color: green;">Transaction is Successful</p>
-                        <p v-else-if="transaction?.details?.crypto?.transfer?.status.failed === 'failed'" style="font-size: 14px; color: red;">Transaction has Failed</p>
+                        <p v-if="transaction?.details?.crypto?.transfer?.status?.fulfilled" style="font-size: 14px; color: green; font-weight: 500">Transaction is Successful</p>
+                        <p v-else-if="transaction?.details?.crypto?.transfer?.status.failed === 'failed'" style="font-size: 14px; font-weight: 500; color: red;">Transaction has Failed</p>
                         <p v-else style="font-size: 14px; color: orange;">Transaction is Pending</p>
                     </div>
                 </div>
@@ -206,8 +207,8 @@
 
                 
                 <v-card-actions class="mt-8" style="display: flex; justify-content: space-between;">
-                    <v-btn variant="tonal" text="Close Receipt" @click="isActive.value = false" style="text-transform: unset; letter-spacing: 0px; width: 140px; height: 40px; border-radius: 10px !important;"></v-btn>
-                    <v-btn class="primary-btn1" text="Print Receipt" style="border-radius: 10px !important; width: 140px; height: 40px; color: white;"></v-btn>
+                    <v-btn variant="tonal" text="Close Receipt" @click="isActive.value = false" style="text-transform: unset; letter-spacing: 0px; font-weight: 600;  width: 140px; height: 40px; border-radius: 10px !important;"></v-btn>
+                    <v-btn class="primary-btn1" text="Download Receipt" style="border-radius: 10px !important; width: 140px; font-weight: 600; height: 40px; color: white;"></v-btn>
                 </v-card-actions>
                 </v-card>
             </template>
