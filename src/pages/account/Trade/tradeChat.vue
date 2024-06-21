@@ -21,8 +21,8 @@
                       </div>
                       
                       <div class="d-flex" style="margin-right: 30px; align-items: center;">
-                          <v-btn style="background: inherit; "><img src="/svg/call1.svg" class=""/></v-btn>
-                          <v-btn style="background: inherit; "><img src="/svg/profile-circle(2).svg" class=""/></v-btn>
+                          <!-- <v-btn style="background: inherit; "><img src="/svg/call1.svg" class=""/></v-btn> -->
+                          <!-- <v-btn style="background: inherit; "><img src="/svg/profile-circle(2).svg" class=""/></v-btn> -->
                          
 
                            <v-menu v-model="menu" :close-on-content-click="false" location="end">
@@ -54,12 +54,12 @@
 
                                   <span style="font-family: Poppins; margin-top: 15px;  font-size: 16px; font-style: normal; font-weight: 600; line-height: 22px;">About</span>
                                   <div style=" display: flex; margin-top: 24px">
-                                   <img src="/svg/call1.svg" class="me-4"/>
+                                   <!-- <img src="/svg/call1.svg" class="me-4"/> -->
                                    <span style="font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 400; color: #35B233">Phone verified</span>
                                   </div>
 
                                   <div style="display: flex; margin-top: 6px; margin-bottom: 28px">
-                                     <img src="/svg/profile-circle(2).svg" class="me-4"/>
+                                     <!-- <img src="/svg/profile-circle(2).svg" class="me-4"/> -->
                                      <span style="font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 400; color: #35B233">ID verified</span>
                                   </div>
 
