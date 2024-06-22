@@ -1,11 +1,11 @@
 <template>
   <div class="ml-2">
     <div style="margin-bottom: 13px!important; margin-top:48px">
-        <span style="font-weight: 700; font-size: 18px;">Activity Log</span>
+        <span style="font-weight: 700; font-size: 16px;">Activity Log</span>
       </div>
         <v-table  class="mt-5" style="display: grid! important; margin-bottom: 32px; height: 440px;" >
           <thead>
-            <tr :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="tr-div" style="border-radius: 24px !important; height: 70px; width: 784px; position: absolute;  display: flex; justify-content: space-between">
+            <tr :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="tr-div" style="border-radius: 24px !important; height: 70px;  display: flex; justify-content: space-between ">
             
 
               <th style="display: flex; align-items: center; align-self: center;">

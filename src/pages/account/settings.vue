@@ -11,18 +11,18 @@
 
             <div>
               <div class="settings-body">
-                  <div class="settings-header d-md-flex mt-4" style="width: 100%; margin-left: 16px;">
+                  <div class="settings-header d-md-flex mt-4" style="margin-left: 16px;">
                     <span class="header-text1">Setting answers to your security questions is a requirement in the event that you need to reset or update your phone number. <span style="color: #2873FF; display: contents;">Set Answers!</span></span>
                   </div>
-                  <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex;width: 99%; margin-left: 16px; justify-content: space-between; margin-top: 32px">
+                  <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex;width: 100%; margin-left: 16px; justify-content: space-between; margin-top: 32px">
                     <span class="acct-text"> Account Settings</span>
                     <span class="mail-text" :class="isDark ? 'text-dark':'text-light'"> {{ pinia.state.user?.email }}</span>
 
                   </div>
               </div>
 
-               <v-row no-gutters class="d-sm-flex"  style="margin-top: 32px; width: 100.5%; margin-bottom:16px; gap: 20px">
-                    <v-col  sm="6" cols="12" class="username-col" style="margin-inline-end: px;">
+               <v-row no-gutters class="d-sm-flex"  style="margin-top: 32px; width: 102%; margin-bottom:16px; gap: 20px">
+                    <v-col  sm="6" cols="12" class="username-col">
                       <div class="d-flex img-col" style="margin-top: 0px!important; margin-left: 16px;">
                         <div @click="$refs.imageSelector.click()">
                           <input type="image" src="/svg/Camera.svg" accept="image/png, image/jpeg, image/bmp" style="position: absolute; margin-left: 17px; margin-top: 17px;"/>
@@ -86,7 +86,7 @@
                     </v-col>  
                   </v-row>
 
-                  <v-row no-gutter class="user-inputs d-sm-flex ml-3">
+                  <v-row no-gutter class="user-inputs d-sm-flex ml-3" style="width: 102%;">
                   <v-col md="6" sm="12" cols="12">
 
                     <div style="position: relative">

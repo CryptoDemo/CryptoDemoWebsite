@@ -1,9 +1,9 @@
 <template>
   <div>
     <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true"/>
-      <v-container style="width: 100%;">
+      <v-container>
 
-          <div  style="margin-top: 110px; display: flex;width: 100%">
+          <div  style="margin-top: 110px; display: flex;">
               <div class="flex-lg-and-up hidden-sm-and-down">
                 <div class="">
                     <Side-nav/>
