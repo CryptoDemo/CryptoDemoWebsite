@@ -99,8 +99,8 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none" class="mr-2" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
                               <path d="M5.05508 5.99413C5.19232 5.99415 5.32822 5.96714 5.45502 5.91463C5.58182 5.86213 5.69705 5.78516 5.7941 5.68813L9.69409 1.78814C9.88995 1.59227 10 1.32663 10 1.04964C10 0.772651 9.88995 0.50701 9.69409 0.311147C9.49823 0.115285 9.23259 0.00523901 8.9556 0.00523901C8.67861 0.00523901 8.41296 0.115285 8.2171 0.311147L5.0531 2.71114L1.8891 0.311147C1.69324 0.115285 1.4276 0.00523901 1.1506 0.00523901C0.873613 0.00523901 0.607941 0.115285 0.412079 0.311147C0.216217 0.50701 0.106201 0.772651 0.106201 1.04964C0.106201 1.32663 0.216217 1.59227 0.412079 1.78814L4.3121 5.68813C4.4096 5.78569 4.52546 5.86297 4.65298 5.91549C4.78051 5.96801 4.91716 5.99473 5.05508 5.99413Z"/>
                             </svg>
-                            <!-- <img :src="flag" width="32" height="32" style="border-radius: 20px; object-fit: cover;"/> -->
-                            {{ Countrycode }}
+                            
+                            {{  Countrycode.phone_code  }}
                           </v-btn>
                         </template>
   
@@ -252,8 +252,8 @@ const UpdateUserInfo = async () => {
 }
 };
 
-// Countrycode.value = pinia.state.allcountries.find(c => c.phone_code === pinia.state.user.country);
-// console.log('Selected country code:', Countrycode.value);
+Countrycode.value = pinia.state.allcountries.find(c => c.country_name === pinia.state.user.country);
+console.log('Selected country code:', Countrycode.value.phone_code);
 
 </script>
 <style scoped>
