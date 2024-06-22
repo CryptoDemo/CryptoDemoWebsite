@@ -23,7 +23,7 @@
                           <v-menu>
                               <template v-slot:activator="{ props }">
                                 <button @click="toggleChevron" class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
-                                    <div  class="py-3" style="display: flex;  align-items: center;  border-radius: 17px; background: inherit;">
+                                    <div class="py-3" style="display: flex;  align-items: center;  border-radius: 17px; background: inherit;">
                                       <img :src="icon" width="30" class="me-2"/>
                                     </div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">

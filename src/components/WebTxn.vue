@@ -90,7 +90,11 @@
                         <p>Status: {{ transaction.details.fiat.transfer.status }}</p>
                     </div>
                 </div>
+                
+                <div v-if="isloading" class="loader-container">
+                <v-progress-circular indeterminate color="primary"></v-progress-circular>
                 </div>
+            </div>
     
              
             </template>
@@ -100,7 +104,7 @@
     
                 <div v-if="transaction?.details?.crypto?.transfer">
                     <div  class="d-flex py-4" style="justify-content: center;">
-                        <v-chip :color="getStatusClass(transaction?.details?.crypto?.transfer?.status)">
+                        <v-chip>
                             <h4 class="me-1">{{(transaction?.details?.crypto?.transfer?.amount)}}</h4>
                             <h4>{{tokenLists.find((p) => p.id === transaction?.details?.crypto?.transfer?.token_id).symbol }}</h4>
                         </v-chip>
@@ -253,6 +257,7 @@ const getWebTrans = async () => {
         ...datainfo.value,
         ...data.data.result,
       ]);
+    //   pageNumber.value += 1;
       pinia.setTransactionDetails(datainfo.value);
 
       isloading.value = false;
@@ -266,6 +271,7 @@ const getWebTrans = async () => {
   }
 };
 
+
 const copyToClipboard = (text) => {
   navigator.clipboard.writeText(text).then(() => {
   copied.value = true;
@@ -277,15 +283,7 @@ const copyToClipboard = (text) => {
   });
 }
 
-const getStatusClass = (status) => {
-  if (status === 'fulfilled') {
-    return 'fulfilled-chip';
-  } else if (status === 'pending') {
-    return 'pending-chip';
-  } else if (status === 'failed') {
-    return 'failed-chip';
-  } 
-};
+
 
 
 onMounted(() => {

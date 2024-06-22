@@ -79,7 +79,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import {getTokens, getWalletAddress, getTokenBalance} from "@/composables/requests/tokens";
+import {getWalletAddress, getTokenBalance} from "@/composables/requests/tokens";
 import QrcodeVue from 'qrcode.vue'
 
 const theme = useTheme()

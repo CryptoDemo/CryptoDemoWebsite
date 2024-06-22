@@ -88,10 +88,39 @@
 
                   <v-row no-gutter class="user-inputs d-sm-flex ml-3">
                   <v-col md="6" sm="12" cols="12">
-                    <input type="number" id="phone" placeholder="333-4444-4444" minlength="9" maxlength="12" v-model="phoneNumber" style="font-size: 16px; font-weight: 400; height: 64px; outline: none; width: 100%" class="input-styling1 pl-4 pr-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"/>
-                    
-                    <v-select placeholder="Select" :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']" style="width: 20%; ">
-                    </v-select>
+
+                    <div style="position: relative">
+
+                      <input type="number" id="phone" placeholder="333-4444-4444" minlength="9" maxlength="12" v-model="phoneNumber" style="font-size: 16px; font-weight: 400; height: 64px; padding-left: 100px; outline: none; width: 100%" class="input-styling1  pr-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"/>
+                      
+                      <v-menu transition="scale-transition">
+                        <template v-slot:activator="{ props }">
+                          <v-btn @click="toggleChevron()" v-bind="props" :class="isDark ? 'wallet-border' : 'wallet-border-light'" style="box-shadow: none; height: 50px; width: 80px; background: inherit; position: absolute; left: 6px; margin-top: 7px; border-radius: 10px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none" class="mr-2" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
+                              <path d="M5.05508 5.99413C5.19232 5.99415 5.32822 5.96714 5.45502 5.91463C5.58182 5.86213 5.69705 5.78516 5.7941 5.68813L9.69409 1.78814C9.88995 1.59227 10 1.32663 10 1.04964C10 0.772651 9.88995 0.50701 9.69409 0.311147C9.49823 0.115285 9.23259 0.00523901 8.9556 0.00523901C8.67861 0.00523901 8.41296 0.115285 8.2171 0.311147L5.0531 2.71114L1.8891 0.311147C1.69324 0.115285 1.4276 0.00523901 1.1506 0.00523901C0.873613 0.00523901 0.607941 0.115285 0.412079 0.311147C0.216217 0.50701 0.106201 0.772651 0.106201 1.04964C0.106201 1.32663 0.216217 1.59227 0.412079 1.78814L4.3121 5.68813C4.4096 5.78569 4.52546 5.86297 4.65298 5.91549C4.78051 5.96801 4.91716 5.99473 5.05508 5.99413Z"/>
+                            </svg>
+                            <!-- <img :src="flag" width="32" height="32" style="border-radius: 20px; object-fit: cover;"/> -->
+                            {{ Countrycode }}
+                          </v-btn>
+                        </template>
+  
+                        <v-list :class="isDark ? 'country-dropdown1':'country-dropdown1-light'">
+                          <v-list-item style="display: contents">
+                            <v-row dense style="max-width: 250px;">
+                              <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" cols="12" :key="index">
+                              <v-list-item @click="Countrycode=item.phone_code; flag= item.flag_url;" style="display: flex;">
+                                <div class="pl-4" style="display: flex; align-items: center; ">
+                                  <img width="35" height="35" class="me-3" :src="item.flag_url" style="object-fit: cover;border-radius: 30px"/> 
+                                  <span class="country-name ml-2" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.phone_code }}</span>
+                              </div>
+                              </v-list-item>
+                            </v-col>
+                            </v-row>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                    </div>
+
 
                     <span class="number-caption ml-1 mb-1" :class="isDark ? 'text-dark':'text-light'">Enter a valid phone number for your wallet.</span>
                   </v-col>
@@ -133,6 +162,7 @@ const selectedImage = ref(null);
 const phoneNumber = ref(pinia.state?.user?.phone || "");
 const DateOfBirth = ref();
 const username_ = ref(pinia.state?.user?.username || "")
+const Countrycode = ref();
 const handleImgChange = async(event)=> await handleFileChange(event,selectedImage,profileImg.value);
 
 watch(()=> selectedImage.value,async(newval)=>{
@@ -170,16 +200,20 @@ watch(()=> selectedImage.value,async(newval)=>{
   }
   });
 
+const isChevronToggled = ref(false);
+const toggleChevron = () => {
+      isChevronToggled.value = !isChevronToggled.value;
+};
+
+
 const result = ref('');
 watchEffect(() => username_, debounce((value) => {
       console.log('Updating username to:', value);
       // Your logic to update the username
  }, 500)); 
 
-
-
   onMounted(async () => {
-    //  await ChangeUsername();
+  
   
     }
   );
@@ -218,6 +252,9 @@ const UpdateUserInfo = async () => {
 }
 };
 
+// Countrycode.value = pinia.state.allcountries.find(c => c.phone_code === pinia.state.user.country);
+// console.log('Selected country code:', Countrycode);
+
 </script>
 <style scoped>
 .settings-header {
@@ -252,6 +289,13 @@ font-size: 24px;
 font-style: normal;
 font-weight: 600;
 line-height: 28px; 
+}
+
+.wallet-border{
+  border: 1px solid  #1B2537;
+}
+.wallet-border-light{
+border: 1px solid #E2E8F0;
 }
 
 .area-num{
@@ -360,6 +404,21 @@ width: 100%;
 .svg-light{
   fill: #101632;
 }
+
+.close-btn{
+fill: white;
+}
+.close-btn-dark{
+fill: #10192D;
+}
+.chevron-icon {
+  transition: transform 0.3s;
+}
+
+.chevron-icon-rotated {
+  transform: rotate(180deg);
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

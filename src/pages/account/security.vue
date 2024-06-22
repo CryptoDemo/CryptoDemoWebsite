@@ -30,35 +30,45 @@
                                 </div>
                             </div>
 
-                            <v-dialog max-width="400">
-                              <template v-slot:activator="{ props: activatorProps }">
-                               
-                              <v-btn v-bind="activatorProps" :class="{ 'primary-btn1': isEnabled, 'toggled': !isEnabled }" class="tggle-btn" @click="initialize2FA()" style="width: 100px; height: 60px;">
+                            
+                            
+                            <v-btn @click="toggle2FA()" :class="{ 'primary-btn1': isEnabled, 'toggled': !isEnabled }" class="tggle-btn" style="width: 100px; height: 60px;">
                               {{ isEnabled ? 'Enable' : 'Disable' }}
                             </v-btn>
-                              </template>
+                       
+                            <v-dialog v-model="dialog" max-width="500">
+                              <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
+                                <v-card-text>
+                                  <h3 class="text-center">Two-Factor Authentication</h3>
+                                  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                    <div class="qr-code mt-7" v-html="twoFactorCodeUrl"></div>
+                                    <span style="font-size: 14px; font-weight: 700; margin-top: 10px; color: #2873FF;">Scan the QR code with your Google Authenticator</span>
+                                  </div>
 
-                              <template v-slot:default="{ isActive }">
-                                <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
-                                  <v-card-text>
-                                    <div style="display: flex; justify-content: center;">
-                                      <div class="qr-code" v-html="twoFactorCodeUrl"></div>
+                                <div style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 5px;">
+                                  <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px;">Or</span>
+                                </div>
 
-                                      <!-- <qrcode-vue :value="twoFactorCode" :size="206" level="H" style="padding: 20px;display: flex;"/> -->
-                                    </div>
+                                  <div style="display: flex; flex-direction: column; position: relative;">
+                                    <input class="copy-link-box pl-4 mt-4" :class="isDark ? 'text-dark':'text-light'" disabled  v-model="twoFactorCode" style="align-content: baseline; width: 80%; margin: auto;"/>
+                                      <v-btn @click="copyToClipboard(twoFactorCode)" variant="plain" style=" background: inherit !important; box-shadow: none; position: absolute; right: 8%; margin-top: 5.5%;">
+                                        <img v-if="!copied" src="/svg/copy.svg"/>
+                                        <h4 style="color: green; font-weight: 400; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</h4>
+                                      </v-btn>
+                                      <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; font-weight: 400; margin-top: 10px; display: flex; justify-content: center;">Copy and Paste this code into your Google Authenticator</span>
 
-                                    <div style="display: flex;  position: relative;">
-                                      <input class="copy-link-box pl-4 mt-4" :class="isDark ? 'text-dark':'text-light'" disabled  v-model="twoFactorCode" style="align-content: baseline;"/>
-                                        <v-btn @click="copyToClipboard(twoFactorCode)" variant="plain" style=" background: inherit !important; box-shadow: none; position: absolute; right: 0; margin-top: 8.3%;">
-                                          <img v-if="!copied" src="/svg/copy.svg"/>
-                                          <h4 style="color: green; font-weight: 400; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</h4>
-                                        </v-btn>
-                                    </div>
-                                  </v-card-text>
+                                      
+                                        <v-alert text="A 6 digit code will be provided for you from google which will be needed when next you login"
+                                        
+                                          type="info" variant="tonal" style="font-size: 14px; margin-top: 20px; border-radius: 15px;"
+                                        ></v-alert>
+                                    
+                                  </div>
+                                </v-card-text>
 
-                                </v-card>
-                              </template>
+                              </v-card>
                             </v-dialog>
+                           
 
                         </div>
                         
@@ -105,6 +115,7 @@
                             <v-btn  @click="UserPasswordUpdate()" :loading="loading" class="primary-btn1 mt-5" style=" align-self: center; height: 60px; font-weight: 600; width: 49%; color: #fff;">Change Password</v-btn>
                           </div>
                           <p v-if="errorMessage" style="color: red; font-size: 14px;">{{ errorMessage }}</p>
+                          <p v-if="successMessage" style="color: #35B233; font-size: 14px;">{{ successMessage }}</p>
                       </div>
                     </section>
                     <div style="margin-bottom: 220px;">
@@ -121,8 +132,8 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import { passwordUpdate, Init2fa } from "@/composables/requests/users";
-import QrcodeVue from 'qrcode.vue'
+import { passwordUpdate, Init2fa, Remove2fa } from "@/composables/requests/users";
+
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -133,6 +144,8 @@ const NewPassword= ref('');
 const ConfirmNewPassword= ref('');
 const isToggled = ref(true);
 const errorMessage = ref('');
+const successMessage = ref('');
+const dialog = ref(false);
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };
@@ -143,30 +156,38 @@ const twoFactorData = ref();
 const twoFactorCodeUrl = ref();
 
 const twoFactorCode = ref();
-// const initialize2FA = () => {
-//   isEnabled.value = !isEnabled.value;
 
-// };
+const toggle2FA = async () => {
+  if (!pinia.state.isTwoFactorSet) {
+    await initialize2FA();
+  } else {
+    await terminate2FA();
+  }
+};
 
 const initialize2FA = async () => {
-  console.log('initialize2FA called'); // Added logging
-  isEnabled.value = !isEnabled.value;
+ 
   try {
     console.log('Calling Init2fa'); // Added logging
     const data = await Init2fa(); 
-    console.log('Init2fa response:', data); // Added logging
+    console.log('Init2fa response:', data); 
 
     if (data.success) {
       console.log('2FA initialization successful'); // Added logging
       pinia.state.isTwoFactorSet = true;
+
       loading.value = false;
+
       twoFactorData.value = data.data;
-      console.log('twoFactorData:', twoFactorData.value); // Added logging
+
+      dialog.value = true
 
       twoFactorCodeUrl.value = twoFactorData.value.auth_url_img;
 
-       twoFactorCode.value = twoFactorData.value.code;
-      console.log(twoFactorCode)
+      twoFactorCode.value = twoFactorData.value.code;
+    
+      isEnabled.value = true;
+      
       // pinia.setTwoFactor(two_factor)
     } else {
       console.log('2FA initialization failed'); // Added logging
@@ -178,6 +199,33 @@ const initialize2FA = async () => {
     push.error(`${e}`);
   }
 };
+
+const terminate2FA = async () => {
+  try {
+    const data = await Remove2fa();
+    console.log('Remove2fa response:', data); 
+
+    if (data?.success) {
+      console.log('2FA terminated successfully'); // Log success
+      pinia.state.isTwoFactorSet = false;
+      twoFactorData.value = null;
+      loading.value = false;
+      isEnabled.value = false;
+      dialog.value = false;
+    
+    } else {
+
+      console.log('2FA termination failed'); // Log failure
+      loading.value = false;
+      push.error(data.message, { duration: 2000 });
+    }
+  } catch (e) {
+    // Catch any errors during the process
+    console.log('Error:', e); // Log the error
+    push.error(`${e}`);
+  }
+};
+
 
 
 const UserPasswordUpdate = async () => {
@@ -195,7 +243,7 @@ const UserPasswordUpdate = async () => {
   const data = await passwordUpdate(updatePassword);
   if (data.success) {
     // pinia.setUser(user)
-    push.success('password changed succesfully')
+    successMessage.value = 'password changed succesfully';
     OldPassword.value = '';
     NewPassword.value = '';
     ConfirmNewPassword.value = '';
@@ -210,6 +258,10 @@ const UserPasswordUpdate = async () => {
 }
  
 };
+
+watch([NewPassword, ConfirmNewPassword], () => {
+      errorMessage.value = '';
+    });
 
 const copied = ref(false);
 

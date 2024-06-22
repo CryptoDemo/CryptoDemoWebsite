@@ -57,17 +57,9 @@
                 align-items: baseline;
               "
             >
-              <div class="code-validation-text">
-                <span>Valid for {{ OtpCountdown }} seconds</span>
-              </div>
+             
               <div class="d-flex" style="margin-top: 23px">
-                <v-btn
-                  class="resend-code-btn"
-                  variant="plain"
-                  :disabled="!timerFinished"
-                  @click.prevent="resendCode()"
-                  >Resend code</v-btn
-                >
+               
               </div>
             </div>
 

@@ -162,6 +162,9 @@ const getBtn = () => {
 toggleChevron();
 }
 
+const Newtoken = ref();
+Newtoken.value = pinia.state.tokenLists.find(c => c.symbol ===  pinia.state.getNewCoinInfo )
+
 piniastoredicon.value = tokensForSelectedNetwork[0]?.icon;
 storedSymbol.value = tokensForSelectedNetwork[0]?.name;
 coin.value = pinia.state.tokenLists[0]?.symbol;

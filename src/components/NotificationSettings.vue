@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-3" style=" border: 1px solid rgba(142,155,174,.5);  border-radius: 24px !important;">
+  <div class="pb-3" :class="isDark ? 'wallet-border' : 'wallet-border-light'" style="border-radius: 24px !important;">
     <h3 class="notify-me text-center my-7">Notification Settings</h3>
     <v-table class="notification-table" style=" padding-left: 50px;  margin-top: -25px; padding-bottom: 20px;">
           <thead>
@@ -118,6 +118,13 @@ font-size: 24px;
 font-style: normal;
 font-weight: 600;
 line-height: 28px; /* 116.667% */
+}
+
+.wallet-border{
+  border: 1px solid  #1B2537;
+}
+.wallet-border-light{
+border: 1px solid #E2E8F0;
 }
 
 @media screen and (max-width: 600px) {

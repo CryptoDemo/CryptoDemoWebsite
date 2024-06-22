@@ -26,6 +26,19 @@ export const Init2fa = async()=>{
     return data;
 };
 
+export const Remove2fa = async()=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return;
+    const data = await fetch(`${baseURL}user/remove-2fa`,{ 
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'x-access-token' : `${pinia.state.user?.token}`
+    },
+    }).then(res => res.json());
+    return data;
+};
+
 export const Verify2FA = async(authentication)=>{
     const data = await fetch(`${baseURL}user/verify-2fa`,{ 
     method: 'POST',
