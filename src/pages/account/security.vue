@@ -45,8 +45,8 @@
                                     <span style="font-size: 14px; font-weight: 700; margin-top: 10px; color: #2873FF;">Scan the QR code with your Google Authenticator</span>
                                   </div>
 
-                                <div style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 5px;">
-                                  <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px;">Or</span>
+                                <div style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 5px; font-weight: 600;">
+                                  <span style="font-size: 14px;">Or</span>
                                 </div>
 
                                   <div style="display: flex; flex-direction: column; position: relative;">

@@ -253,7 +253,7 @@ const UpdateUserInfo = async () => {
 };
 
 // Countrycode.value = pinia.state.allcountries.find(c => c.phone_code === pinia.state.user.country);
-// console.log('Selected country code:', Countrycode);
+// console.log('Selected country code:', Countrycode.value);
 
 </script>
 <style scoped>
