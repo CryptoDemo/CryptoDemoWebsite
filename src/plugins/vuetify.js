@@ -29,7 +29,8 @@ const DarkThemeConfig = {
   dark: true,
   colors: {
     background: '#060A1D',
-    height: '100%',    
+    height: '100%', 
+     
   }
 } 
 

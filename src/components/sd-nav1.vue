@@ -1,7 +1,7 @@
 <template>
     <div class="sd-nav3 flex-lg-and-up hidden-md-and-down" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
       <div style="display: flex; justify-content: center;">
-          <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="70" alt="avatar"/>
+          <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="70" height="70" alt="avatar" style="border-radius: 70px;"/>
       </div>
       <span class="mt-4" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; display: flex;justify-content: center;">@{{ pinia.state.user?.username}}</span>
           <div style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 32px;">

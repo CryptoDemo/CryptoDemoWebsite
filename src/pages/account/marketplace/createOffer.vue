@@ -105,18 +105,18 @@
                   <div style="margin-top: 8px; margin-bottom: 16px;">
                     <input type="number" placeholder="Enter Minimum Ammount" v-model="minAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                   
-                          <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
-                            <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
-                          </v-btn>
+                      <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
+                        <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
+                      </v-btn>
                   </div>
 
                   <span class="select1i">Enter Maximum Ammount</span>
                   <div style="margin-top: 8px; margin-bottom: 16px;">
                     <input type="number" placeholder="Enter Maximum Ammount" v-model="maxAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                   
-                          <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
-                            <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
-                          </v-btn>
+                    <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
+                      <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
+                    </v-btn>
                   </div>
 
                 <div style="display: flex; justify-content: end; margin-top: 30px;">
