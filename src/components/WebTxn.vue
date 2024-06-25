@@ -1,5 +1,9 @@
 <template>
     <div>
+        <div v-if="datainfo.length === 0" class="no-transactions">
+            <img src="/img/wallet-free.png" alt="No Transactions" class="no-transactions-svg" />
+            <p>No transactions to display.</p>
+        </div>
         <div v-for="(transaction, index) in datainfo" :key="index">
             <v-dialog max-width="420">
             <template v-slot:activator="{ props: activatorProps }">

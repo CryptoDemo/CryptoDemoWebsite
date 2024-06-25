@@ -87,6 +87,7 @@ const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore()
 const walletAddress = ref('');
 const dialog =  ref(false);
+const mytoken = ref();
 
 const piniastoredicon = ref(null);
 const icon = ref(piniastoredicon);
@@ -146,6 +147,8 @@ const isChevronToggled = ref(false);
 const toggleChevron = () => {
       isChevronToggled.value = !isChevronToggled.value;
 };
+
+mytoken.value = pinia.state.tokenLists.find(c => c.symbol ===  pinia.state.getNewCoinInfo )
 
 onMounted(async () => {
 
