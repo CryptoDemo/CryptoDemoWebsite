@@ -95,9 +95,9 @@
                     </div>
                 </div>
                 
-                <div v-if="isloading" class="loader-container">
+                <!-- <div v-if="isloading" class="loader-container">
                 <v-progress-circular indeterminate color="primary"></v-progress-circular>
-                </div>
+                </div> -->
             </div>
     
              

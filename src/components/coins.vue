@@ -20,7 +20,7 @@
                     </div>
                   </div>
 
-                  <v-table style="display: grid! important; background: inherit; width: 100%; height: 420px;">
+                  <v-table class="coin-table" style="display: grid! important; background: inherit; width: 100%; height: 420px;">
                     <thead>
                       <tr style="display: flex; margin-bottom: 8px;">
 
@@ -275,8 +275,13 @@ color: white !important;
 .coin-name-light{
 color: #10192D;
 }
-::-webkit-scrollbar {
-display: none;
+.coin-table::-webkit-scrollbar {
+  display: none;
+}
+
+.coin-table {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
 }
 
 @media screen and (max-width: 600px) {

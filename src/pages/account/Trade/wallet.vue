@@ -10,7 +10,7 @@
                </div>
   
               <div style="width: -webkit-fill-available">
-                <div>
+                <div class="mt-6">
                   <div :class="isDark ? 'btn-segment':'btn-segment-light'" style="display: flex; border-radius: 24px; width: fit-content;">
                   <v-btn  :class="`${selectedScreen ? 'wallet-btn': 'fiat-btn'} ${isDark ? 'wallet-btn':'fiat-btn-light'}`" @click.prevent="selectedScreen=true" > Wallet </v-btn>
                   <v-btn :class="`${!selectedScreen ? 'wallet-btn': 'fiat-btn'} ${isDark ? 'wallet-btn':'fiat-btn-light'}` " @click.prevent="selectedScreen=false" >Fiat</v-btn>
