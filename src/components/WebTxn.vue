@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div v-if="datainfo.length === 0" class="no-transactions">
-            <img src="/img/wallet-free.png" alt="No Transactions" class="no-transactions-svg" />
-            <p>No transactions to display.</p>
+        <div v-if="!datainfo.length" class="no-transactions">
+            <img src="/img/wallet-free.png" alt="No Transactions" style="width: 50%;"/>
+            <span>No transactions to display.</span>
         </div>
         <div v-for="(transaction, index) in datainfo" :key="index">
             <v-dialog max-width="420">
@@ -316,6 +316,13 @@ onMounted(() => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.no-transactions{
+ display: flex; 
+ flex-direction: column;
+ align-items: center;
+ text-align: center;
 }
 
 
