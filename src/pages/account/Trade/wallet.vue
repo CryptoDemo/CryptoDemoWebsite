@@ -15,9 +15,10 @@
                   <v-btn  :class="`${selectedScreen ? 'wallet-btn': 'fiat-btn'} ${isDark ? 'wallet-btn':'fiat-btn-light'}`" @click.prevent="selectedScreen=true" > Wallet </v-btn>
                   <v-btn :class="`${!selectedScreen ? 'wallet-btn': 'fiat-btn'} ${isDark ? 'wallet-btn':'fiat-btn-light'}` " @click.prevent="selectedScreen=false" >Fiat</v-btn>
                 </div>
+
                 <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; width: 97%; padding: 30px; margin-top: 30px;">
                     <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
-                      <thead :class="isDark ? 'wallet-border' : 'wallet-border-light'">
+                      <thead>
                         <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
 
                           <th class="me-7 coin-th" style="display: flex; align-items: center; align-self: center; width: 20%; justify-content: center;">

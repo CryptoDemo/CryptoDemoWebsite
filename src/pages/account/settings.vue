@@ -160,7 +160,7 @@ const loading = ref(false);
 const profileImg = ref(null)
 const selectedImage = ref(null);
 const phoneNumber = ref(pinia.state?.user?.phone || "");
-const DateOfBirth = ref();
+const DateOfBirth = ref(pinia.state?.user?.dob || "");
 const username_ = ref(pinia.state?.user?.username || "")
 const Countrycode = ref();
 const handleImgChange = async(event)=> await handleFileChange(event,selectedImage,profileImg.value);

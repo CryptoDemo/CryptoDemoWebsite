@@ -64,14 +64,14 @@
                 <div style="margin-top: 24px;">
                   <v-menu>
                     <template v-slot:activator="{ props }">
-                      <v-btn :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" style="letter-spacing: 0px; box-shadow: none"
+                      <v-btn @click="toggleChevron" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" style="letter-spacing: 0px; box-shadow: none"
                         v-bind="props">
                         <img  width="25" class="me-3 select" :src="icon"/> 
                         <div class="py-3" style="display: grid; cursor: pointer;">
                         <span class="me-2">{{select}}</span> 
                         <span class="me-2 small-text">{{coin}}</span> 
                         </div>
-                        <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon"></v-icon>
+                        <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']"></v-icon>
                       </v-btn>
                     </template>
 
@@ -108,7 +108,7 @@
                   </div>
                   
                   <div style="margin-top: 24px;">
-                    <BlockChain/>
+                    <BlockChain />
                      <div style=" margin-top: 9px ;">
                       <span class="hint-text mt-8">Select preferred BlockChain Network</span>
                     </div>
@@ -420,6 +420,11 @@ const convertCurrencies = async () => {
   console.log("Conversion Results:", conversionResult.value);
 };
 
+const isChevronToggled = ref(false);
+const toggleChevron = () => {
+      isChevronToggled.value = !isChevronToggled.value;
+};
+
 onMounted(async () => {
   await convertCurrencies();
   piniastoredicon.value = pinia.state?.tokenLists[7]?.icon
@@ -532,6 +537,13 @@ align-items: center;
 gap: 32px;
 width: 652px;
 /* overflow: hidden; */
+}
+
+.chevron-icon {
+  transition: transform 0.3s;
+}
+.chevron-icon-rotated {
+  transform: rotate(180deg);
 }
 .light-landing-page-form{
 border-radius: 15px;

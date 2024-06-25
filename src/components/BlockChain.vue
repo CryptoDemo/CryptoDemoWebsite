@@ -2,18 +2,19 @@
     <div>
         <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <button class="dropdown-btn1i" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; width: 100%; box-shadow: none; margin-top: 15px;" @click="toggleChevron">
-                <span class="me-2" :class="isDark ? 'country-text':'country-text-light'" style="text-transform: capitalize; font-family: Manrope;">{{pinia.state.selectedNetwork}}</span>
+              <v-btn  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; width: 100%; box-shadow: none; margin-top: 15px; letter-spacing: 0px;" @click="toggleChevron">
+                <span class="me-2" :class="isDark ? 'country-text':'country-text-light'" style="text-transform: capitalize; font-family: Manrope; font-size: 16px;">{{pinia.state.selectedNetwork}}</span>
 
-                <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']"></v-icon>
+                <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']" style="position: absolute;
+    right: 14px;"></v-icon>
 
-              </button>
+              </v-btn>
             </template>
 
             <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 15px; height: 120px !important;">
               <v-list-item style="display: contents">
-                <v-row dense style="width: 100%; display: block;">
-                  <v-col v-for="(item, index) in pinia.state.BlockchainNetworks" :key="index">
+                <v-row dense>
+                  <v-col v-for="(item, index) in pinia.state.BlockchainNetworks" :key="index" cols="12">
                   <v-list-item @click="pinia.state.selectedNetwork = item.name;" style="display: flex;">
                       <span style="text-transform: capitalize;">{{ item.name }}</span>
                   </v-list-item>
@@ -33,10 +34,9 @@ import { getBlockchain } from "@/composables/requests/tokens";
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
-const blockchainNetwork = ref("Bep20")
 
 
-// const selectedNetwork = ref(pinia.state.selectedNetwork);
+
 
  try {
   const data = await getBlockchain();
@@ -106,13 +106,12 @@ fill: #10192D;
 
 .coin-dropdown{
 display: flex;
-width: 532px;
 height: 50px !important;
 padding: 10px;
 justify-content: space-between;
 align-items: center;
-border-radius: 15px;
-border: 1px solid #1B2537;
+border-radius: 15px !important;
+border: 1px solid #1B2537 !important;
 background: inherit;
 color: white;
 font-family: Manrope;
@@ -124,13 +123,12 @@ text-transform: unset;
 }
 .coin-dropdown-light{
 display: flex;
-width: 532px;
 height: 50px !important;
 padding: 10px;
 justify-content: space-between;
 align-items: center;
-border-radius: 15px;
-border: 1px solid #E2E8F0;
+border-radius: 15px !important;
+border: 1px solid #E2E8F0 !important;
 background: inherit;
 box-shadow: none;
 color: var(--Main-Greyscale-90, #10192D);
