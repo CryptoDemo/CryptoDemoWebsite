@@ -82,11 +82,11 @@ export const formatTime = (dateString) => {
 export const formatNumber = (number) => {
   // Ensure the number is no more than seven digits
   const truncatedNumber = Number(number?.toPrecision(7));
-  return truncatedNumber.toLocaleString('en-US', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
+  return truncatedNumber.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 });
 };
 
 export const formatBalance = balance => {
-  const formattedBalance = balance === 0 ? '0.00' : balance?.toFixed(3);
+  const formattedBalance = balance === 0 ? '0.00' : balance?.toFixed(2);
   return new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 3,

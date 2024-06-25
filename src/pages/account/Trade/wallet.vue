@@ -11,9 +11,11 @@
   
               <div style="width: -webkit-fill-available">
                 <div class="mt-6">
-                  <div :class="isDark ? 'btn-segment':'btn-segment-light'" style="display: flex; border-radius: 24px; width: fit-content;">
-                  <v-btn  :class="`${selectedScreen ? 'wallet-btn': 'fiat-btn'} ${isDark ? 'wallet-btn':'fiat-btn-light'}`" @click.prevent="selectedScreen=true" > Wallet </v-btn>
-                  <v-btn :class="`${!selectedScreen ? 'wallet-btn': 'fiat-btn'} ${isDark ? 'wallet-btn':'fiat-btn-light'}` " @click.prevent="selectedScreen=false" >Fiat</v-btn>
+                  <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="display: flex; border-radius: 10px; width: fit-content; height: 65px; align-items: center; padding: 10px;">
+                  <v-btn class="me-3" :class="[selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=true" >Crypto Wallet </v-btn>
+
+
+                  <v-btn :class="[!selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=false">Fiat Wallet</v-btn>
                 </div>
 
                 <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; width: 97%; padding: 30px; margin-top: 30px;">
@@ -73,7 +75,7 @@
                       <td class="mt-2" style="display: flex; align-items: center; width: 22%;"><span class="browser-txt coin-price" style="margin-bottom: 8px" :class="isDark ? 'coin-name':'coin-name-light'">{{ token?.converted_value }}</span></td>
 
                       <td style="display: flex; align-items: end; width: 15%;">
-                        <span class="browser-txt mb-2 flex-md-and-up hidden-sm-and-down" :class="isDark ? 'coin-name':'coin-name-light'"> 
+                        <span class="browser-txt mb-2 flex-md-and-up hidden-sm-and-down" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 700;"> 
                          {{formatBalance(token.balance) }}
                         </span>
                       </td>
@@ -402,7 +404,7 @@ color: #10192D;
 }
 
 .wallet-btn{
-border-radius: 22px;
+border-radius: 10px;
 background: var(--linear-card, linear-gradient(270deg, #1DA1DB -11.75%, #2873FF 119.96%));
 display: flex;
 width: 228px;
@@ -418,6 +420,8 @@ font-style: normal;
 font-weight: 700;
 box-shadow: none;
 color: white;
+text-transform: capitalize;
+letter-spacing: 0px;
 }
 
 .fiat-btn{
@@ -429,6 +433,19 @@ width: 228px;
 height: 48px;
 padding: 12px 98px;
 background: inherit;
+box-shadow: none;
+color: #969696;
+background: #060A1D;
+}
+
+.fiat-btn-light{
+background: white;
+font-family: Manrope;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+width: 228px;
+height: 48px;
 box-shadow: none;
 }
 
