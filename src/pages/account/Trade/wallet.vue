@@ -436,6 +436,8 @@ background: inherit;
 box-shadow: none;
 color: #969696;
 background: #060A1D;
+text-transform: capitalize;
+letter-spacing: 0px;
 }
 
 .fiat-btn-light{
@@ -447,6 +449,8 @@ font-weight: 700;
 width: 228px;
 height: 48px;
 box-shadow: none;
+text-transform: capitalize;
+letter-spacing: 0px;
 }
 
 .btn-segment{
