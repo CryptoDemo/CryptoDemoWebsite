@@ -1,4 +1,5 @@
 // fetchWorker.js
+
 self.addEventListener('message', async (event) => {
   
     const { symbol } = event.data;

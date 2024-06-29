@@ -7,7 +7,7 @@
         <div :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="margin-top: 25px; margin-bottom: 25px; height: 130px; position: relative; display: flex; justify-content: center; align-items: center;">
       
           <div style="display: flex; flex-direction: column;">
-            <span class="lg-num">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(balanceData) }}</span>
+            <span class="lg-num">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(pinia.state.SummedBalance) }}</span>
             <!-- <span class="sm-num mt-2">0.0140 BTC</span> -->
           </div>
           
@@ -57,6 +57,7 @@ const getSummedBal = async () => {
       const data = await getSummedBalance(chain.value.toLowerCase(), selectedCountryId.id)
       if (data.success) {
         balanceData.value = data.data;
+        pinia.setSummedBalance(data.data)
         }else {
           console.error("Error:", data.message);
       }

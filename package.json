@@ -30,6 +30,7 @@
     "pinia": "^2.1.7",
     "qrcode.vue": "^3.4.1",
     "vue-lazy-loading": "^1.0.3",
+    "vue-simple-websocket": "^1.0.0",
     "vue3-apexcharts": "^1.5.2",
     "vue3-carousel": "^0.3.1"
   }

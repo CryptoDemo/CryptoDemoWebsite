@@ -191,7 +191,8 @@ const conversionResult = ref([]);
 const network = pinia.state.selectedNetwork.toLowerCase();
 const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
 
-const tokensForSelectedNetwork = pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
+
+const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.token_networks?.find(tkn=>tkn.blockchain_id === selectedNetworkId));
 
 const symbols = tokensForSelectedNetwork.map(token => token.symbol);
 
@@ -249,6 +250,8 @@ const convertCurrencies = async () => {
       if (data.success) {
         // Store the conversion result in the array
         conversionResult.value = data.data;
+
+        // pinia.setTokenLists(...data.data, addMinutes(5))
         
       } else {
         console.log(`Conversion failed:`, data.message);
@@ -266,15 +269,13 @@ const convertCurrencies = async () => {
 
 
 watch(()=>conversionResult.value,(newVal)=>{
-    pinia.state.tokenLists.map(t=>{
+    pinia.state.tokenLists?.map(t=>{
     const tokenConversion = newVal.find(tc=>tc.from== t.symbol);
     if(tokenConversion){
       t.converted_value = tokenConversion.value;
     }
   });
 });
-// const formatBalance = balance => (balance === 0 ? '0.00' : balance?.toFixed(7));
-
 
 
 const getTokenBals = async () => {
@@ -312,9 +313,6 @@ const getTokenBals = async () => {
     }
   }
 };
-
-
-
 
 
 onMounted(() => {
@@ -425,6 +423,7 @@ letter-spacing: 0px;
 }
 
 .fiat-btn{
+border-radius: 10px;
 font-family: Manrope;
 font-size: 16px;
 font-style: normal;

@@ -23,7 +23,7 @@
                    <path d="M12 20.2688C15.53 20.2688 18.82 18.1887 21.11 14.5887C22.01 13.1787 22.01 10.8087 21.11 9.39875C18.82 5.79875 15.53 3.71875 12 3.71875C8.46997 3.71875 5.17997 5.79875 2.88997 9.39875C1.98997 10.8087 1.98997 13.1787 2.88997 14.5887C5.17997 18.1887 8.46997 20.2688 12 20.2688Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                    </svg>
                </div>
-               <span class="bal" v-if="isToggled">{{ formatBalance(fetchedBalance) }} {{ coin.symbol }}</span>
+               <span class="bal" v-if="isToggled">{{ formatBalance(pinia.state.Selected_coin_Balance) }} {{ coin.symbol }}</span>
                <span class="bal" v-else>***</span>
 
             <div style="display: flex;align-items: center; margin-top: -13px; justify-content: space-between;">
@@ -87,13 +87,13 @@ const token = pinia.state.tokenLists.find(e => e.symbol === pinia.state.getNewCo
 
 const fetchedBalance = ref(); // Define a ref to store the fetched balance
 
-const formatBalance = balance => {
-  const formattedBalance = balance === 0 ? '0.00' : balance?.toFixed(3);
-  return new Intl.NumberFormat('en-US', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 3,
-  }).format(formattedBalance);
-};
+// const formatBalance = balance => {
+//   const formattedBalance = balance === 0 ? '0.00' : balance?.toFixed(3);
+//   return new Intl.NumberFormat('en-US', {
+//     minimumFractionDigits: 2,
+//     maximumFractionDigits: 3,
+//   }).format(formattedBalance);
+// };
 
 const coins = pinia.state.tokenLists;
 
@@ -107,7 +107,8 @@ const getSingleBal = async () => {
   try {
     const data = await getSingleTokenBal(chain, token);
     if (data.success) {
-      fetchedBalance.value = data.data.balance; // Update the ref with the fetched balance
+      fetchedBalance.value = data.data.balance;
+      pinia.setSelected_coin_Balance(data.data.balance) // Update the ref with the fetched balance
       console.log(fetchedBalance.value)
     } else {
       console.log("Error in response:", data.message);

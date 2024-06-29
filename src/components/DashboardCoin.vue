@@ -34,41 +34,41 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
 
-const getTokenBals = async () => {
+// const getTokenBals = async () => {
 
-// Check if user is authenticated
+// // Check if user is authenticated
 
-if (pinia.state.isAuthenticated) {
-  try {
+// if (pinia.state.isAuthenticated) {
+//   try {
  
 
-    // Fetch token balance
-    const data = await getTokenBalance(symbols);
+//     // Fetch token balance
+//     const data = await getTokenBalance(symbols);
 
-    // Update tokens with the new balance
-    if (data.success) {
-        for (const token_ of data.data) {
-          console.log(data);
-          // Update tokenLists with the new balance
-          const token = tokensForSelectedNetwork.find(t => t.symbol === token_);
-          // const token = pinia.state.tokenLists.find(t => t.symbol === token_.token);
-          if (token) {
-          // Update token balance
-          token.balance = (token_.balance);
-        }
-        }
-    } else {
-      console.log('Error:', data.message);
-    }
-  } catch (error) {
-    console.log('Fetch error:', error);
-  }
-}
-};
+//     // Update tokens with the new balance
+//     if (data.success) {
+//         for (const token_ of data.data) {
+//           console.log(data);
+//           // Update tokenLists with the new balance
+//           const token = tokensForSelectedNetwork.find(t => t.symbol === token_);
+//           // const token = pinia.state.tokenLists.find(t => t.symbol === token_.token);
+//           if (token) {
+//           // Update token balance
+//           token.balance = (token_.balance);
+//         }
+//         }
+//     } else {
+//       console.log('Error:', data.message);
+//     }
+//   } catch (error) {
+//     console.log('Fetch error:', error);
+//   }
+// }
+// };
 
-onMounted(async () => {
-await getTokenBals();
-});
+// onMounted(async () => {
+// await getTokenBals();
+// });
 
 </script>
 

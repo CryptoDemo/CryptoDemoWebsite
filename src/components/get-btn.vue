@@ -111,7 +111,7 @@ const selectedTokenBalance = computed(() => {
 });
 
 const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
-const tokensForSelectedNetwork = pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
+const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.token_networks?.find(tkn=>tkn.blockchain_id === selectedNetworkId));
 
 const symbols = tokensForSelectedNetwork.map(token => token.symbol);
 

@@ -209,7 +209,7 @@ selectedSymbol.value = mytoken.value.symbol;
 const filteredToken_to_swap_to = ref([])
 filteredToken_to_swap_to.value = pinia.state.tokenLists.filter(c => c.symbol !=  selectedSymbol.value)
 
-watch(()=> selectedSymbol.value,(newv)=>{
+watch(()=> selectedSymbol.value,(newv)=> {
   if(newv){
     mytoken.value =  pinia.state.tokenLists.find(c => c.symbol ===  newv )
     const selectedNetwork = pinia.state.BlockchainNetworks.find(e => e.name.toLowerCase() === pinia.state.selectedNetwork.toLowerCase())

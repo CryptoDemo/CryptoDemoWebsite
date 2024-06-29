@@ -85,13 +85,26 @@ export const formatNumber = (number) => {
   return truncatedNumber.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 });
 };
 
+// export const formatBalance = balance => {
+//   const formattedBalance = balance === 0 ? '0.00' : balance?.toFixed(2);
+//   return new Intl.NumberFormat('en-US', {
+//     minimumFractionDigits: 2,
+//     maximumFractionDigits: 3,
+//   }).format(formattedBalance);
+// };
 export const formatBalance = balance => {
-  const formattedBalance = balance === 0 ? '0.00' : balance?.toFixed(2);
+  if (typeof balance !== 'number') {
+    return '0.00'; // or handle it in a way that suits your use case
+  }
+  
+  const formattedBalance = balance === 0 ? '0.00' : balance.toFixed(2);
+  
   return new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 3,
   }).format(formattedBalance);
 };
+
 
 //set expiration date 
 export function addMinutes(minutesToAdd) {

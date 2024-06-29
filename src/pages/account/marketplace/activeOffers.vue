@@ -18,13 +18,13 @@
 
           <div style="width: 780px; margin-left: 20px;">
 
-            <div style="margin-top: 32px">
+            <div class="px-1" style="margin-top: 32px; margin-bottom: 25px;">
               <v-row class="px-2">
                 <v-btn class="me-4 mb-4 toggle-btn" :class="[PurchaseCrypto ? 'active-btn' : isDark ? 'inactive-btn' : 'inactive-btn-light']" @click.prevent="PurchaseCrypto = true">
-                  Buy Crypto
+                  Market Offers
                 </v-btn>
                 <v-btn class="toggle-btn" :class="[PurchaseCrypto ? (isDark ? 'inactive-btn' : 'inactive-btn-light') : 'active-btn']" @click.prevent="PurchaseCrypto = false">
-                  Sell Crypto
+                Personal Offers
                 </v-btn>
   
                
@@ -68,14 +68,15 @@
             <div class="offers-div" style="height: 550px; margin-bottom: 300px; overflow: scroll;">
   
               <div v-for="offer in filteredOffers" :key="offer.id">
-                <div style="display: flex; justify-content: space-between;">
-                  <div style="margin-top: 32px">
+              <div class="py-3">
+                <div class="px-4" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; border: none;">
+                  <div style="margin-top: 20px; margin-bottom: 10px;">
                     <div style="display: flex; align-items: center; margin-bottom: 14px">
-                      <img v-if="offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" style="width: 30px; height: 30px; border-radius: 30px;"/>
+                    <img v-if="offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" style="width: 30px; height: 30px; border-radius: 30px;"/>
          
-                        <v-icon v-else style="width: 20px;">mdi-account-circle</v-icon>
+                    <v-icon v-else style="width: 20px;">mdi-account-circle</v-icon>
              
-                      <span class="me-3 ml-2" style="font-size: 14px;">{{ offer?.user?.username }}</span>
+                    <span class="me-3 ml-2" style="font-size: 14px;">{{ offer?.user?.username }}</span>
                     </div>
                     <div style="display: grid">
                       <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Unit range values</span>
@@ -85,48 +86,63 @@
                         <img :src="offer.trading_pair?.crypto?.token?.icon" class="me-3" width="20px" />
                         <span class="me-1" style="color: #8e9bae; font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600;line-height: 150%;">{{ offer.trading_pair?.crypto?.token?.name }}</span>
     
-                        <img src="/svg/arrow-up.svg" class="mb-1 me-1" />
+                        <img src="/svg/arrow-up.svg" width="15" class="mb-1 me-1" />
                      
                       </div>
                     </div>
                   </div>
     
-                  <div style="margin-top: 32px; margin-block-start: auto">
+                  <div style="margin-top: 20px; margin-bottom: 10px; margin-block-start: auto">
                     <div style="display: flex; flex-direction: column; margin-bottom: 14px; justify-content: flex-end;">
-                      <span v-if="offer.user?.is_verified" style="font-size: 14px; color: green; text-align-last: right; margin-bottom: 20px;">Verified</span>
+                      <span v-if="offer.user?.is_verified" style="font-size: 14px; font-weight: 600; color: green; text-align-last: right; margin-bottom: 20px;">Verified</span>
                        <p v-else>Unverified User</p>
-                      <span :class="isDark ? 'transfer-dark' : 'transfer-light'" style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; align-self: self-end;">Limit {{ offer?.trading_pair?.fiat?.minimum_buy_limit }} - {{ offer?.trading_pair?.fiat?.maximum_buy_limit }} {{ offer?.countryCurrencyName }}</span>
+                      <span :class="isDark ? 'transfer-dark' : 'transfer-light'" style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; align-self: self-end;">Limit {{ offer?.trading_pair?.fiat?.minimum_buy_limit }} - {{ offer?.trading_pair?.fiat?.maximum_buy_limit }} {{ offer?.countryCurrencyName }}</span>
                     </div>
                     <div style="display: grid">
                       <span :class="isDark ? 'text-dark' : 'text-light'" class="mb-3" style=" font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 600;line-height: normal; text-align-last: right;">{{ offer?.trading_pair?.fiat?.unit_value }}</span>
                       <div style="display: flex; justify-content: end"> 
-                        <v-dialog max-width="500">
+
+
+                      <v-dialog max-width="500">
                           <template v-slot:activator="{ props: activatorProps }">
-                            <v-btn v-bind="activatorProps" class="smaller-btn">Buy Now</v-btn>
+                            <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id" v-bind="activatorProps" class="smaller-btn">Buy Now</v-btn>
                           </template>
   
                         <template v-slot:default="{ isActive }">
                           <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; box-shadow: none;">
                             <v-card-text>
-                              <h3 class="text-center">View Offer</h3>
-                              <span style="font-size: 14px;">By continuing, you will be buying Cryptocurrency from this seller</span>
-                              <input type="number" placeholder="Enter Maximum Ammount" v-model="maxAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
+                              <h3 class="text-center py-3">View Offer</h3>
+                              <span style="font-size: 14px;">By continuing, you will be buying <span style="font-weight: 600;">{{ offer.trading_pair?.crypto?.token?.name }}</span> from {{ offer?.user?.username }}</span>
+                              <input type="number" placeholder="Enter Ammount to pay" v-model="amount_to_pay" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%; margin-top: 10px; padding-left: 15px;"/>
                     
-                      <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
-                        <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
-                      </v-btn>
+                              <v-btn style="min-width: 70px; height: 56px; position: absolute; margin-top: 12px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 26px; letter-spacing: 0px;  text-transform: capitalize;"> 
+                                <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
+                              </v-btn>
+
+                              <span style="font-size: 14px;">Range Unit Value 
+                                <span style="font-weight: 600;">{{offer?.trading_pair?.fiat?.minimum_buy_limit }} - {{ offer?.trading_pair?.fiat?.maximum_buy_limit }} {{ offer?.countryCurrencyName }} </span>
+                              </span>
+
+                            <div class="mt-5">
+                              <span style="font-weight: 600; font-size: 14px;">Expected ammount you will receive</span>
+                              <input type="number" disabled placeholder="Ammount to receive" v-model="ammount_to_receive" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%; margin-top: 10px; padding-left: 15px;"/>
+                      
+                              <v-btn style="min-width: 70px; height: 56px; position: absolute; margin-top: 12px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 26px; letter-spacing: 0px;  text-transform: capitalize;"> 
+                                <img :src="offer.trading_pair?.crypto?.token?.icon" width="30px" />
+                              </v-btn>
+                              <span style="font-size: 14px;">You will receive this ammount in 
+                                <span style="font-weight: 600;">{{ offer.trading_pair?.crypto?.token?.symbol }}</span>
+                              </span>
+                            </div>
+
                             </v-card-text>
   
                             <v-card-actions>
-                              <v-spacer></v-spacer>
-  
-                              <v-btn
-                                text="Close Dialog"
-                                @click="isActive.value = false"
-                              ></v-btn>
+                              <v-btn @click="create_offer()" class="primary-btn1" style="width: 100%; height: 50px; margin-bottom: 10px; font-weight: 600;">Buy Coin</v-btn>
                             </v-card-actions>
                           </v-card>
                         </template>
+
                       </v-dialog>
   
   
@@ -135,8 +151,8 @@
                     </div>
                   </div>
                 </div>
-                <div style="border-bottom: 0.5px solid rgba(142, 155, 174, 0.5); margin-top: 16px;">
-                </div>
+              </div>
+                
               </div>
                     
               
@@ -159,7 +175,7 @@
 <script setup>
 import { ref } from "vue";
 import { useTheme } from "vuetify";
-import { getMarketOffers } from "@/composables/requests/marketplace";
+import { getMarketOffers, createOrder } from "@/composables/requests/marketplace";
 
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
@@ -169,9 +185,10 @@ const pageNumber = ref(1);
 const loading = ref (false);
 const tokenIcon = ref();
 const tokenSymbol = ref();
-
+const amount_to_pay = ref();
+const ammount_to_receive = ref();
 const offers = ref([]);
-
+const isCreating = ref();
 
 const get_allMarket_Offers = async () => {
   loading.value = true;
@@ -179,7 +196,6 @@ const get_allMarket_Offers = async () => {
     const data = await getMarketOffers(pageNumber.value);
     if (data.success) {
       offers.value = data.data.result;
-      console.log(offers.value)
       loading.value = false;
 
       offers.value = offers.value.map(offer => {
@@ -191,6 +207,7 @@ const get_allMarket_Offers = async () => {
         }
         return { ...offer, countryCurrencyName };
       });
+      pinia.setMarketPlace(data.data.result)
     } else {
       push.error(`${data.message}`);
       loading.value = false;
@@ -200,6 +217,49 @@ const get_allMarket_Offers = async () => {
     loading.value = false;
   }
 };
+
+
+const offerID = ref();
+offerID.value = pinia.state.MarketPlace.map(item => item.id);
+console.log(offerID)
+const selectedCoinId = pinia.state.selected_coin_to_buy_from_marketplace;
+const productID = offerID.value.find(b=>b ===selectedCoinId);
+console.log(productID)
+// Create an order
+const create_offer = async () => {
+        const payload = {
+            purchase_amount: amount_to_pay.value
+        }
+        isCreating.value = true;
+        try {
+            const data = await createOrder(payload, productID);
+            if (data.success) {
+              
+            } else {
+                push.error(data.message);
+            }
+            isCreating.value = false;
+        } catch (e) {
+            console.log(e);
+            isCreating.value = false;
+        }
+    };
+
+
+// const debouncedUpdate = debounce(() => {
+//   ammount_to_receive.value = null;
+//   if (
+//     amount_to_pay.value >= offerDetails.value?.trading_pair?.fiat.minimum_buy_limit &&
+//     amount_to_pay.value <= offerDetails.value?.trading_pair?.fiat.maximum_buy_limit
+//   ) {
+//     ammount_to_receive.value = parseFloat(
+//       (offerDetails.value?.trading_pair?.crypto?.unit_value * amount_to_pay.value) / offerDetails.value?.trading_pair?.fiat?.unit_value
+//     );
+//   }
+// }, 1000, 3000);
+
+// Watch the amount_to_pay and call the debounced function
+// watch(amount_to_pay, debouncedUpdate);
 
 const filteredOffers = computed(() => {
   if (!tokenSymbol.value) return offers.value;
@@ -308,7 +368,7 @@ color: #fff;
 font-family: Manrope;
 font-size: 14px;
 font-style: normal;
-font-weight: 400;
+font-weight: 600;
 text-transform: unset;
 letter-spacing: 0px;
 box-shadow: none;
@@ -318,7 +378,7 @@ box-shadow: none;
 border-radius: 24px;
 background:  #10192D!important;
 height: fit-content;
-border: 1px solid #030814 !important;
+border: 1px solid #1b2537;
 }
 .profile-cards-light{
 border-radius: 24px;

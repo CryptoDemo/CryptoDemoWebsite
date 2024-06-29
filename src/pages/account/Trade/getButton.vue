@@ -63,7 +63,7 @@
   
                     <spanv v-else>Copied</spanv>
                   </v-btn>
-              <div style="display: flex; justify-content: center;">
+              <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="display: flex; justify-content: center; border: none; width:20%; margin: auto;">
                 <qrcode-vue :value="walletAddress" :size="150" level="H" />
               </div>
               </div>
@@ -294,6 +294,17 @@ background: #eef3fb !important;
 }
 .chevron-icon {
   transition: transform 0.3s;
+}
+
+.txn-cards-dark {
+  background: #162138;
+  padding: 30px;
+  border-radius: 15px;
+}
+.txn-cards-light {
+  background: #edf3ff;
+  padding: 30px;
+  border-radius: 15px;
 }
 
 

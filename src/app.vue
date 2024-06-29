@@ -14,6 +14,224 @@
 <script setup>
 import { useStore } from '@/stores/index'
 import { Notification ,push,  pastelTheme} from 'notivue';
+import { getSummedBalance,  currencyConverter, getTokenBalance } from "@/composables/requests/tokens";
+
+const initSocketListeners = ($socketClient)=>{
+    $socketClient.onOpen = () => {
+  
+      console.log('WebSocket connection established');
+      
+      // $socketClient.sendObj({name: "oscar"});
+      // setTimeout(()=>{
+      // // Send a message to the server
+      // // Optionally, send a JSON object as a string
+      //   let message = {
+      //       type: "greeting",
+      //       content: "Hello, Server!",
+      //       userId: "your_user_id"
+      //   };
+        
+      //   $socketClient.send(JSON.stringify(message));
+      // },500);
+  
+    };
+  
+  
+    if(pinia.state.isAuthenticated || pinia.state.user){
+      $socketClient.onMessage = (event) => {
+        const message = JSON.parse(event.data);
+        console.log('Message from server:', message);
+    
+        // Handle different types of actions
+        switch (message.action) {
+          case 'new_web3_txn':
+            console.log('New Web3 Transaction:', message.data);
+            const selectedNetworkById = pinia.state.BlockchainNetworks.find(e => e.name === pinia.state.selectedNetwork.toLowerCase())
+            console.log(selectedNetworkById)
+            if(pinia.state.isAuthenticated || pinia.state.user){
+              if (selectedNetworkById && message.data.chain_id === selectedNetworkById.id) {
+                 const transData = [message.data.payload]
+                 const data_payload = ([...pinia.state.TransactionDetails,...transData]);
+                 pinia.setTransactionDetails(data_payload)
+        
+      
+              } else {
+                console.error('Selected network or chain ID does not match:', message.data.chain_id, selectedNetworkById);
+              }
+            }
+          
+            break;
+    
+          case 'new_fiat_txn':
+            console.log('Transfer:', message.data);
+           
+            // const fiat_trans_payload = [message.data]
+            // const data_payload = [...pinia.state.TransactionDetails,...fiat_trans_payload]
+             
+            // const grouped_fiat_trans = [...storedpiniavalue, ...group_trans(fiat_trans_payload)]
+            // console.log(grouped_fiat_trans)
+    
+            break;
+  
+          case 'fiat_balances_updated':
+            console.log('Fiat Balance:', message.data);
+            pinia.setTotal_fiat_bal(message.data,addMinutes(5));
+            break;
+          case 'P2P':
+            console.log('P2P:', message.data);
+            break;
+          case 'chatting':
+            console.log('Chatting:', message.data);
+            break;
+          case 'agent_online_availability':
+            console.log('Agent Online Availability:', message.data);
+            break;
+          default:
+            console.warn('Unknown action:', message.action);
+        }
+      };
+    }
+  
+    $socketClient.onClose = () => {
+      console.log('WebSocket connection closed');
+    };
+  
+    $socketClient.onError = (error) => {
+      console.error('WebSocket error:', error);
+    };
+  }
+
+const { $initSocket } = useNuxtApp();
+  const pinia = useStore();
+
+
+  const initWS = (newVal)=>{
+    //init websocket only when a user is logged in
+    if(newVal?.id){
+      const $socketClient = $initSocket();
+      
+      setTimeout(() => {
+        initSocketListeners($socketClient);
+      }, 1000);
+    }
+  }
+
+  watch(()=>pinia.state.user,(newVal)=>{
+    initWS(newVal);
+  });
+  initWS(pinia.state.user);
+
+
+// const allCountries = pinia.state.allcountries;
+// const preferredCurrency = pinia.state.preferredCurrency;
+// const selectedCountryId = allCountries.find(country=>country.currency_name==preferredCurrency);
+// const chain = computed(()=>pinia.state.selectedNetwork);
+// const conversionResult = ref([]);
+// const network = pinia.state.selectedNetwork.toLowerCase();
+// const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
+// const tokensForSelectedNetwork = pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
+// const symbols = tokensForSelectedNetwork.map(token => token.symbol);
+// const balanceData = ref(null);
+
+// const getSummedBal = async () => {
+//   if (pinia.state.isAuthenticated) {
+//     try {
+//       const data = await getSummedBalance(chain.value.toLowerCase(), selectedCountryId.id)
+//       if (data.success) {
+//         balanceData.value = data.data;
+//         }else {
+//           console.error("Error:", data.message);
+//       }
+
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// };
+
+// const getTokenBals = async () => {
+ 
+//  // Check if user is authenticated
+//  if (pinia.state.isAuthenticated)  {
+//    try {
+//      // Fetch token balance
+//      const data = await getTokenBalance(symbols);
+
+//      // Update tokens with the new balance
+//      if (data.success) {
+//        // Create a copy of the token list to update locally
+//        const updatedTokens = pinia.state.tokenLists.map(token => {
+//          const tokenData = data.data.find(t => t.token === token.symbol);
+//          if (tokenData) {
+//            return { ...token, balance: tokenData.balance };
+//          }
+//          return token;
+//        });
+
+//        // Update the token store with the new balances
+//        // pinia.setTokenBalance(updatedTokens);
+
+//        pinia.setTokenLists(updatedTokens, addMinutes(5))
+
+//        console.log('Updated Tokens:', updatedTokens);
+//        // Optionally, you can return or use `updatedTokens` as needed
+
+//      } else {
+//        console.log('Error:', data.message);
+//      }
+//    } catch (error) {
+//      console.log('Fetch error:', error);
+//    }
+//  }
+// };
+
+// const convertCurrencies = async () => {
+//   // Get the list of coins from pinia state
+
+//   const coins = pinia.state.tokenLists;
+
+//   try {
+
+//     const convertCurrency = [];
+   
+//     // Loop through each coin and convert to USD
+//     for (const coin of coins) {
+//       convertCurrency.push({ from: coin.symbol, to: "USD" });
+//     }
+
+//     try {
+//       const data = await currencyConverter(convertCurrency);
+     
+
+//       if (data.success) {
+//         // Store the conversion result in the array
+//         conversionResult.value = data.data;
+        
+//       } else {
+//         console.log(`Conversion failed:`, data.message);
+//       }
+//     } catch (error) {
+//       console.log(`Error converting:`, error);
+//     }
+
+
+//   } catch (error) {
+//     console.log(error);
+//   }
+
+// };
+
+
+// onBeforeMount(() => {
+// convertCurrencies();
+// getTokenBals();
+// getSummedBal();
+// });
+
+
+
+
+
 
 </script>
 <style>

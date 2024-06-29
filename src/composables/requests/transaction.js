@@ -66,3 +66,4 @@ export const getSingleTransactions = async(txnId)=>{
     }).then(res => res.json());
     return data
 };
+

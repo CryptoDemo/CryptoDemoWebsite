@@ -18,8 +18,8 @@
             <template v-slot:activator="{ props }">
                 <v-btn @click.prevent="getBtn()" class="inputstyling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props">
                 <div class="py-3 me-5" style="display: flex; padding-left: 12px; align-items: center; border-radius: 17px; position: absolute; left: 0;">
-                    <img :src="icon"  width="30" class="me-3"/>
-                    <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; text-transform: capitalize; font-family: Manrope; font-size: 16px;">{{select}}</span> 
+                    <img :src="pinia.state.coin_to_transfer"  width="30" class="me-3"/>
+                    <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; text-transform: capitalize; font-family: Manrope; font-size: 16px;">{{pinia.state.token_to_transfer}}</span> 
                 </div>
                     <div style="position: absolute; right: 15px; box-shadow: none; background: inherit;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
@@ -32,7 +32,7 @@
             <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 15px;">
                 <v-list-item>
                 <div v-for="token in tokensForSelectedNetwork" :key="token.id" class="d-flex py-3">
-                    <v-list-item-title @click="select=token.name; coin=token.symbol; icon =token.icon; token = token" class="d-flex">
+                    <v-list-item-title @click="pinia.state.token_to_transfer=token.name; coin=token.symbol; pinia.state.coin_to_transfer=token.icon; token = token" class="d-flex">
                     <img  :src="token.icon" class="me-3" width="30"/>  
                     <div class="d-flex" style="flex-direction: column;">
                     <span :class="isDark ? 'coin-name':'coin-name-light'" style="display: flex; align-items: center;"> {{ token.name }} </span>
@@ -55,7 +55,7 @@
 
                  <div class="position-relative" style="margin-bottom: 31px;">
                     <input class="px-4" placeholder="Ammount to send..." id="hiddenInput" v-model="trfAmmount" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; display: -webkit-box !important; -webkit-box-orient: vertical !important; -webkit-line-clamp: 1 !important; text-overflow: ellipsis !important; overflow: hidden !important; margin-bottom: 6px; align-items: center; height: 65px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
-                    <img :src="icon" width="35" style="top: 16%;right: 1.5%; position: absolute;"/>
+                    <img :src="pinia.state.coin_to_transfer" width="35" style="top: 16%;right: 1.5%; position: absolute;"/>
                     <span :class="isDark ? 'text-dark':'text-light'" style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">minimum transfer limit:  {{ minimumTransfer?.minimum_transfer }}</span>
                 </div>
 
@@ -71,38 +71,36 @@
 
             
  
-        <v-dialog v-model="dialog" max-width="450" persistent>
-            <template v-slot:activator="{ props: activatorProps }">
-                <v-btn :disabled="isCalculateDisabled"  @click.prevent="calculateFee()" :loading="loading"  v-bind="activatorProps" class="primary-btn1" style="width: 100%; border-radius: 17px; height: 56px; color: white; box-shadow: none; font-weight: 600; font-size: 16px; font-family: Manrope;">
+                <v-btn @click.prevent="calculateFee()" :loading="loading" class="primary-btn1" style="width: 100%; border-radius: 17px; height: 56px; color: white; box-shadow: none; font-weight: 600; font-size: 16px; font-family: Manrope;">
                 Continue
                 </v-btn>
-            </template>
+         
+                <v-dialog v-model="dialog1" width="auto">
+                  <v-card style="padding: 24px 20px 24px 20px; border-radius: 12px; width: 450px; " :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
 
-            <v-card style="padding: 24px 20px 24px 20px; border-radius: 12px;" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+                      <div style="display: flex; justify-content: center; flex-direction: column;">
+                      <span style="font-family: Manrope;font-size: 18px;font-style: normal;font-weight: 700;line-height: 140%; display: flex;justify-content: center; margin-bottom: 16px">Confirm action</span>
+                      <v-alert  variant="tonal" type="info" density="compact" style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600; line-height: 170%; border-radius: 10px;">
+                      
+                        <span>A tax fee of {{ tax_fee }}  applies, resulting in a total deduction of {{ from_amount_total }} from your account</span>
+                         
+                     
+                    </v-alert>
+                      <span style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600;line-height: 150%; margin-top: 20px;">By clicking the confirm button you will be sending <h3>{{ trfAmmount }}</h3> {{  token_id  }}  to {{ transferWallet }}.
+                      </span>
+                      </div>
+                      <template v-slot:actions>
 
-                <div style="display: flex; justify-content: center; flex-direction: column;">
-                <span style="font-family: Manrope;font-size: 18px;font-style: normal;font-weight: 700;line-height: 140%; display: flex;justify-content: center; margin-bottom: 16px">Confirm action</span>
-                <v-alert  variant="tonal" type="info" density="compact" style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600;line-height: 170%; border-radius: 10px;">
-                 
-                  Fee id: {{ fee_id }} <br>
-                  Tax fee: {{ tax_fee }} <br>
-                  Total ammount: {{ from_amount_total }} <br>
-              </v-alert>
-                <span style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600;line-height: 150%; margin-top: 20px;">By clicking the confirm button you will be sending <h3>{{ trfAmmount }}</h3> {{  token_id  }}  to {{ transferWallet }}.
-                </span>
-                </div>
-                <template v-slot:actions>
+                      <v-btn @click="dialog1 = false" class="confirm-txn" style="margin-top: 28px; color: white;">
+                          Cancel
+                      </v-btn>
 
-                <v-btn @click="dialog = false" class="confirm-txn" style="margin-top: 28px; color: white;">
-                    Cancel
-                </v-btn>
-
-                <v-btn @click.prevent="execute()" class="confirm-txn" style="margin-top: 28px">
-                    Confirm
-                </v-btn>
-                </template>
-            </v-card>
-        </v-dialog>
+                      <v-btn @click.prevent="execute()" class="confirm-txn" style="margin-top: 28px">
+                          Confirm
+                      </v-btn>
+                      </template>
+                  </v-card>
+                </v-dialog>
 
           </div>
         </v-container>
@@ -122,18 +120,13 @@
   const isDark = computed(() => theme.global.current.value.dark);
   const pinia = useStore()
   const dialog =  ref(false);
-  const token = ref();
+  const dialog1 =  ref(false);
   const transferWallet = ref();
   const trfAmmount = ref();
-  const loading = ref(false)
-  const piniastoredicon = ref(null);
-  const icon = ref(piniastoredicon);
+  const loading = ref(false);
   
   const minimumTransfer = ref(null);
-  
-  const storedSymbol = ref("");
-  const select  = ref(storedSymbol);
-  
+
   const network = pinia.state.selectedNetwork.toLowerCase();
   const coin =  ref();
   
@@ -164,9 +157,12 @@ toggleChevron();
 
 const Newtoken = ref();
 Newtoken.value = pinia.state.tokenLists.find(c => c.symbol ===  pinia.state.getNewCoinInfo )
+console.log(Newtoken.value.name)
 
-piniastoredicon.value = tokensForSelectedNetwork[0]?.icon;
-storedSymbol.value = tokensForSelectedNetwork[0]?.name;
+pinia.state.coin_to_transfer = Newtoken.value.icon;
+
+pinia.state.token_to_transfer = Newtoken.value.name;
+
 coin.value = pinia.state.tokenLists[0]?.symbol;
 
 
@@ -181,43 +177,50 @@ const tax_fee = ref(0);
 const is_balance_sufficient = ref(false);
 
 const calculateFee = async () => {
+  // Check if any required value is missing or if the transfer amount is less than the minimum transfer amount
+  if (!trfAmmount.value || (parseFloat(trfAmmount.value) < minimumTransfer.value.minimum_transfer) || !transferWallet.value) {
+    push.error('Required fields are missing or transfer amount is below minimum.');
+    return;
+  }
+
   const TxnInfo = {
     transfer_input: {
       token: coin.value,
       amount: parseFloat(trfAmmount.value),
       to_address: transferWallet.value,
     },
-  }
-    console.log(TxnInfo)
+  };
+  console.log(TxnInfo);
+
   try {
-      loading.value = true
-      const data = await calculateTxnFees(TxnInfo);
-      console.log(data);
+    loading.value = true;
+    const data = await calculateTxnFees(TxnInfo);
+    console.log(data);
 
-      if (data.success) {
-        fee_id.value = data.data.fee_id;
-        token_id.value = data.data.token;
-        from_amount_total.value = data.data.amount_plus_fee;
-        tax_fee.value = data.data.fee_amount;
-        console.log(tax_fee.value)
-        is_balance_sufficient.value = data.data.is_balance_sufficient;
+    if (data.success) {
+      fee_id.value = data.data.fee_id;
+      token_id.value = data.data.token;
+      from_amount_total.value = data.data.amount_plus_fee;
+      tax_fee.value = data.data.fee_amount;
+      console.log(tax_fee.value);
+      is_balance_sufficient.value = data.data.is_balance_sufficient;
 
-        pinia.setCalculatedTaxFee(data.data.fee_id);
+      pinia.setCalculatedTaxFee(data.data.fee_id);
 
-        
-        loading.value = false
-      
+      dialog1.value = true
 
-      } else {
-        loading.value = false
-        push.error(data.message);
-      }
-
+      loading.value = false;
+    } else {
+      loading.value = false;
+      push.error(data.message);
+    }
   } catch (e) {
-    loading.value = false
-      console.log(e)
+    loading.value = false;
+    console.log(e);
   }
 };
+
+
 
 //execute transaction
 const execute = async()=>{
@@ -260,16 +263,17 @@ const execute = async()=>{
     }
 
 
-  }
+  };
+
+watch(transferWallet, (newVal) => {
+  pinia.setTransferWallet(newVal);
+});
   
 const isChevronToggled = ref(false);
 const toggleChevron = () => {
     isChevronToggled.value = !isChevronToggled.value;
 };
 
-const isCalculateDisabled = computed(() => {
-  return !coin.value || !trfAmmount.value || !transferWallet.value || parseFloat(trfAmmount.value) < minimumTransfer.value;
-});
 
 
 </script>

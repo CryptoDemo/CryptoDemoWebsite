@@ -14,7 +14,6 @@ export const useStore = defineStore('app',()=> {
       selectedOfferType:"buy",
       user: null,
       isAuthenticated: false,
-      token:null,
       code: "",
       codeInput:'',
       isPinSet: false,
@@ -38,9 +37,18 @@ export const useStore = defineStore('app',()=> {
       getNewCoinInfo: "",
       calculatedTaxFee: "",
       calculatedTaxFee_for_swap: "",
+      token_to_transfer: "",
+      TransferWallet: "",
+      SummedBalance: "",
+      selected_coin_to_buy_from_marketplace: "",
+      coin_to_transfer: "",
+      Selected_coin_Balance: "",
       TransactionDetails: [],
       selectedLandingCoin:'',
       selectedLandingAmmount:'',
+      MarketPlace: [],
+      Fiat_transactions: [],
+      Total_fiat_bal:[],
     });
   
   
@@ -80,8 +88,28 @@ export const useStore = defineStore('app',()=> {
       state.calculatedTaxFee = payload;   
   };
 
+  const setTotal_fiat_bal = (payload) => {
+      state.Total_fiat_bal = payload;   
+  };
+
+  const setFiat_transactions = (payload) => {
+      state.Fiat_transactions = payload;   
+  };
+
   const setCalculatedTaxFee_for_swap = (payload) => {
       state.calculatedTaxFee_for_swap = payload;   
+  };
+
+  const setToken_to_transfer = (payload) => {
+      state.token_to_transfer = payload;   
+  };
+
+  const setCoin_to_transfer = (payload) => {
+      state.coin_to_transfer = payload;   
+  };
+
+  const setTransferWallet = (payload) => {
+      state.TransferWallet = payload;   
   };
 
   const setpreferredCurrency = (payload) => {
@@ -90,6 +118,17 @@ export const useStore = defineStore('app',()=> {
 
   const setTokenBalance = (payload) => {
       state.tokenBalance = payload;  
+  };
+
+  const setSummedBalance = (payload) => {
+      state.SummedBalance = payload;  
+  };
+  const setSelected_coin_to_buy_from_marketplace = (payload) => {
+      state.selected_coin_to_buy_from_marketplace = payload;  
+  };
+
+  const setSelected_coin_Balance = (payload) => {
+      state.Selected_coin_Balance = payload;  
   };
 
   const  setSelectedcurrency_code= (payload) => {
@@ -114,13 +153,13 @@ export const useStore = defineStore('app',()=> {
   };
 
 
-  const setWeb3_transactions = (payload) => {
-      state.Web3_transactions = payload;   
+  const setMarketPlace = (payload) => {
+      state.MarketPlace = payload;    
   };
 
+
   const setallcountries = (payload) => {
-    state.allcountries = payload;
-    
+    state.allcountries = payload;    
 };
   const setActivityLogs = (payload) => {
       state.activityLogs = payload;
@@ -156,8 +195,10 @@ export const useStore = defineStore('app',()=> {
     state.phone = null,
     state.activityLogs = [],
     state.notificationLogs = [],
+    state.Fiat_transactions = [],
     state.tokenNetworks = [],
     state.tokenLists = [],
+    state.Total_fiat_bal = [],
     state.selectedLandingCoin = "",
     state.Web3_transactions = {
       data:[],
@@ -189,12 +230,20 @@ export const useStore = defineStore('app',()=> {
       updateNotificationSettings,
       setFAQs,
       setpreferredCurrency,
-      setWeb3_transactions,
       setSelectedcurrency_code,
       setTransactionDetails,
       setCalculatedTaxFee,
       setCalculatedTaxFee_for_swap,
       setselectedLandingCoin,
+      setFiat_transactions,
+      setTotal_fiat_bal,
+      setToken_to_transfer,
+      setTransferWallet,
+      setCoin_to_transfer,
+      setSummedBalance,
+      setSelected_coin_Balance,
+      setMarketPlace,
+      setSelected_coin_to_buy_from_marketplace,
     }
 },
   {persist: {
