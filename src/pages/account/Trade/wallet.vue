@@ -10,7 +10,7 @@
                </div>
   
               <div style="width: -webkit-fill-available">
-                <div class="mt-6">
+                <div class="mt-5">
                   <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="display: flex; border-radius: 10px; width: fit-content; height: 65px; align-items: center; padding: 10px;">
                   <v-btn class="me-3" :class="[selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=true" >Crypto Wallet </v-btn>
 
@@ -52,8 +52,8 @@
 
 
                   <tbody>
-                    <!-- <tr @click="pinia.state.getNewCoinInfo = token.symbol; navigateTo('/account/trade/coinId')" class="token-price"  :class="isDark ? 'wallet-border' : 'wallet-border-light'" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;"> -->
-                    <tr @click="pinia.state.getNewCoinInfo = token.symbol; navigateTo('/account/trade/coinId')" class="token-price"  :class="isDark ? 'wallet-border' : 'wallet-border-light'" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
+                    
+                    <tr @click="pinia.state.getNewCoinInfo = token.symbol; navigateTo('/account/trade/coinId')" class="token-price py-2"  :class="isDark ? 'wallet-border' : 'wallet-border-light'" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
                       <td style="display: contents;">
                         <div class="d-flex me-7" style="align-items: center; width: 25%; overflow: hidden;">
                           <img :src="token.icon" width="35" class="me-3" />
@@ -72,10 +72,10 @@
                         </div>
                       </td>
 
-                      <td class="mt-2" style="display: flex; align-items: center; width: 22%;"><span class="browser-txt coin-price" style="margin-bottom: 8px" :class="isDark ? 'coin-name':'coin-name-light'">{{ token?.converted_value }}</span></td>
+                      <td class="mt-2" style="display: flex; align-items: center; width: 22%;"><span class="browser-txt coin-price" style="display: flex; align-self: start; margin-top: 3px;" :class="isDark ? 'coin-name':'coin-name-light'">{{ token?.converted_value }}</span></td>
 
-                      <td style="display: flex; align-items: end; width: 15%;">
-                        <span class="browser-txt mb-2 flex-md-and-up hidden-sm-and-down" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 700;"> 
+                      <td style="display: flex; align-items: end; width: 16%;">
+                        <span class="browser-txt mb-2 flex-md-and-up hidden-sm-and-down" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 700; display: flex; align-self: center;"> 
                          {{formatBalance(token.balance) }}
                         </span>
                       </td>
@@ -115,8 +115,22 @@
                                 </div>
                               </div>
                                 <div class="d-flex mt-3">
-                                    <td style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
-                                    <td style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
+                                    <td style="display: flex; align-items: center;"> 
+                                      <div> 
+                                        <v-btn @click.once.stop="navigateTo('/account/trade/sendButton')" class="send-btn" :class="isDark ? 'wallet-border':'wallet-border-light'" >
+                                          <img src="/svg/send-arrow.svg" class="me-1"/>
+                                          <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
+                                        </v-btn>
+                                      </div> 
+                                    </td>
+                                    <td style="display: flex; align-items: center;"> 
+                                      <div> 
+                                        <v-btn @click.once.stop="navigateTo('/account/trade/getButton')" class="send-btn" :class="isDark ? 'wallet-border':'wallet-border-light'">
+                                          <img src="/svg/get.svg" class="me-1"/>
+                                          <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
+                                        </v-btn>
+                                      </div> 
+                                    </td>
                                     <td style="display: flex; align-items: center; color: white;">
                                       <div>
                                       <nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'btn-segment':'btn-segment-light'" class="swap">
@@ -138,19 +152,34 @@
                           </v-dialog>                         
                         </div>
                         
-                      <div class="d-flex">
-                        <td class="flex-md-and-up hidden-sm-and-down" style="display: flex; align-items: center;"> <div> <Send-btc/> </div> </td>
-                        <td class=" flex-md-and-up hidden-sm-and-down" style="display: flex; align-items: center;"> <div> <Get-btn/> </div> </td>
-                        <td class="flex-md-and-up hidden-sm-and-down" style="display: flex; align-items: center; color: white;">
-                          <div>
-                          <v-btn class="swap" @click.prevent="navigateTo('/account/trade/swap')" :class="isDark ? 'btn-segment':'btn-segment-light'">
-                          <img src="/svg/arrow-swap.svg"/>
-                         <span :class="isDark ? 'coin-name':'coin-name-light'"> Swap </span>
-                        </v-btn>
-                     
+                
+                        <td class="flex-md-and-up hidden-sm-and-down me-3" style="display: flex; align-items: center; color: white;"> 
+                          <div>  
+                            <v-btn @click.prevent="navigateTo('/account/trade/sendButton')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                              <img src="/svg/send-arrow.svg" class="me-1"/>
+                              <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
+                            </v-btn>
                           </div> 
                         </td>
-                    </div>
+
+                        <td class=" flex-md-and-up hidden-sm-and-down me-3" style="display: flex; align-items: center; color: white;">
+                           <div> 
+                            <v-btn @click.prevent="navigateTo('/account/trade/getButton')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                              <img src="/svg/get.svg" class="me-1"/>
+                              <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
+                            </v-btn>
+                           </div> 
+                        </td>
+
+                        <td class="flex-md-and-up hidden-sm-and-down" style="display: flex; align-items: center; color: white;">
+                          <div>
+                            <v-btn class="swap" @click.prevent="navigateTo('/account/trade/swap')" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                              <img src="/svg/arrow-swap.svg"/>
+                              <span :class="isDark ? 'coin-name':'coin-name-light'"> Swap </span>
+                            </v-btn>
+                          </div> 
+                        </td>
+               
                       </div>
                     </tr>
                   </tbody>

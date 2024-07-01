@@ -254,8 +254,6 @@ const getWebTrans = async () => {
     if (data.success) {
       datainfo.value = data.data.result;
 
-      console.log("datainfo.value:", datainfo.value);
-
 
       datainfo.value = filterByKey("id", [
         ...datainfo.value,

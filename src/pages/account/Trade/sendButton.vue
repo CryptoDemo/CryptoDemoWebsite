@@ -95,7 +95,7 @@
                           Cancel
                       </v-btn>
 
-                      <v-btn @click.prevent="execute()" class="confirm-txn" style="margin-top: 28px">
+                      <v-btn @click.prevent="execute()" :loading="loading_send_coin" class="confirm-txn" style="margin-top: 28px">
                           Confirm
                       </v-btn>
                       </template>
@@ -121,11 +121,11 @@
   const pinia = useStore()
   const dialog =  ref(false);
   const dialog1 =  ref(false);
-  const transferWallet = ref();
+  const transferWallet = ref(pinia.state.TransferWallet || "");
   const trfAmmount = ref();
   const loading = ref(false);
-  
   const minimumTransfer = ref(null);
+  const loading_send_coin = ref();
 
   const network = pinia.state.selectedNetwork.toLowerCase();
   const coin =  ref();
@@ -142,7 +142,7 @@
   const symbols = tokensForSelectedNetwork.map(token => token.symbol);
   
 
-  const pasteText = async () => {
+const pasteText = async () => {
   try {
     const text = await navigator.clipboard.readText();
     transferWallet.value = text;
@@ -155,15 +155,17 @@ const getBtn = () => {
 toggleChevron();
 }
 
+
 const Newtoken = ref();
-Newtoken.value = pinia.state.tokenLists.find(c => c.symbol ===  pinia.state.getNewCoinInfo )
-console.log(Newtoken.value.name)
+Newtoken.value = pinia.state.tokenLists.find(c => c.symbol ===  pinia.state.getNewCoinInfo);
 
+if (Newtoken.value) {
 pinia.state.coin_to_transfer = Newtoken.value.icon;
-
 pinia.state.token_to_transfer = Newtoken.value.name;
-
-coin.value = pinia.state.tokenLists[0]?.symbol;
+coin.value = Newtoken.value.symbol;
+} else {
+  console.error("Token not found");
+}
 
 
 const mytoken = pinia.state.tokenLists.find(c => c.symbol ===  coin.value )
@@ -195,7 +197,7 @@ const calculateFee = async () => {
   try {
     loading.value = true;
     const data = await calculateTxnFees(TxnInfo);
-    console.log(data);
+ 
 
     if (data.success) {
       fee_id.value = data.data.fee_id;
@@ -228,7 +230,7 @@ const execute = async()=>{
       fee_id: pinia.state.calculatedTaxFee
     }
     try{
-      loading.value = true
+      // loading_send_coin.value = true
 
       const data = await executeTrans(info)
 
@@ -236,15 +238,10 @@ const execute = async()=>{
         
         loading.value = false
         pinia.setTransactionDetails(data.data)
-
-        // pinia.state.selected_payment_action_to_display = 'send'
-
-        // navigateTo('/account/trade/coinId/'`${data.data.result.id}`)
-       
-        dialog.value = false
+    
         transferWallet.value = "";
         trfAmmount.value = "";
-        // navigateTo(/dashboard/wallet/get/`${pinia.state.transactionDetails.id}`)
+        dialog1.value = false
 
         push.success('Transfer Succesful')
 
@@ -252,14 +249,14 @@ const execute = async()=>{
         
         push.error(`${data.message}`, {
         });
-        loading.value = false;
+        // loading_send_coin.value = false;
         
       }
      
 
     }catch(e){
        console.log(e)
-       loading.value = false;
+       loading_send_coin.value = false;
     }
 
 
@@ -268,7 +265,8 @@ const execute = async()=>{
 watch(transferWallet, (newVal) => {
   pinia.setTransferWallet(newVal);
 });
-  
+
+
 const isChevronToggled = ref(false);
 const toggleChevron = () => {
     isChevronToggled.value = !isChevronToggled.value;

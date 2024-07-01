@@ -16,6 +16,59 @@ import { useStore } from '@/stores/index'
 import { Notification ,push,  pastelTheme} from 'notivue';
 import { getSummedBalance,  currencyConverter, getTokenBalance } from "@/composables/requests/tokens";
 
+const pinia = useStore()
+
+const getTokenBals = async () => {
+ 
+ // Check if user is authenticated
+ if (pinia.state.isAuthenticated)  {
+   try {
+     // Fetch token balance
+     const data = await getTokenBalance(symbols);
+
+     // Update tokens with the new balance
+     if (data.success) {
+       // Create a copy of the token list to update locally
+       const updatedTokens = pinia.state.tokenLists.map(token => {
+         const tokenData = data.data.find(t => t.token === token.symbol);
+         if (tokenData) {
+           return { ...token, balance: tokenData.balance };
+         }
+         return token;
+       });
+
+       pinia.setTokenLists(updatedTokens, addMinutes(5))
+
+       console.log('Updated Tokens:', updatedTokens);
+       // Optionally, you can return or use `updatedTokens` as needed
+
+     } else {
+       console.log('Error:', data.message);
+     }
+   } catch (error) {
+     console.log('Fetch error:', error);
+   }
+ }
+};
+
+const getSummedBal = async () => {
+  if (pinia.state.isAuthenticated) {
+    try {
+      const data = await getSummedBalance(chain.value.toLowerCase(), selectedCountryId.id)
+      if (data.success) {
+        balanceData.value = data.data;
+        pinia.setSummedBalance(data.data)
+        }else {
+          console.error("Error:", data.message);
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+};
+
+
 const initSocketListeners = ($socketClient)=>{
     $socketClient.onOpen = () => {
   
@@ -53,8 +106,13 @@ const initSocketListeners = ($socketClient)=>{
                  const transData = [message.data.payload]
                  const data_payload = ([...pinia.state.TransactionDetails,...transData]);
                  pinia.setTransactionDetails(data_payload)
-        
-      
+
+                 getTokenBals()
+                 getSummedBal()
+           
+                 console.log('done')
+    
+  
               } else {
                 console.error('Selected network or chain ID does not match:', message.data.chain_id, selectedNetworkById);
               }
@@ -102,7 +160,7 @@ const initSocketListeners = ($socketClient)=>{
   }
 
 const { $initSocket } = useNuxtApp();
-  const pinia = useStore();
+ 
 
 
   const initWS = (newVal)=>{
@@ -122,104 +180,6 @@ const { $initSocket } = useNuxtApp();
   initWS(pinia.state.user);
 
 
-// const allCountries = pinia.state.allcountries;
-// const preferredCurrency = pinia.state.preferredCurrency;
-// const selectedCountryId = allCountries.find(country=>country.currency_name==preferredCurrency);
-// const chain = computed(()=>pinia.state.selectedNetwork);
-// const conversionResult = ref([]);
-// const network = pinia.state.selectedNetwork.toLowerCase();
-// const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
-// const tokensForSelectedNetwork = pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
-// const symbols = tokensForSelectedNetwork.map(token => token.symbol);
-// const balanceData = ref(null);
-
-// const getSummedBal = async () => {
-//   if (pinia.state.isAuthenticated) {
-//     try {
-//       const data = await getSummedBalance(chain.value.toLowerCase(), selectedCountryId.id)
-//       if (data.success) {
-//         balanceData.value = data.data;
-//         }else {
-//           console.error("Error:", data.message);
-//       }
-
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
-// };
-
-// const getTokenBals = async () => {
- 
-//  // Check if user is authenticated
-//  if (pinia.state.isAuthenticated)  {
-//    try {
-//      // Fetch token balance
-//      const data = await getTokenBalance(symbols);
-
-//      // Update tokens with the new balance
-//      if (data.success) {
-//        // Create a copy of the token list to update locally
-//        const updatedTokens = pinia.state.tokenLists.map(token => {
-//          const tokenData = data.data.find(t => t.token === token.symbol);
-//          if (tokenData) {
-//            return { ...token, balance: tokenData.balance };
-//          }
-//          return token;
-//        });
-
-//        // Update the token store with the new balances
-//        // pinia.setTokenBalance(updatedTokens);
-
-//        pinia.setTokenLists(updatedTokens, addMinutes(5))
-
-//        console.log('Updated Tokens:', updatedTokens);
-//        // Optionally, you can return or use `updatedTokens` as needed
-
-//      } else {
-//        console.log('Error:', data.message);
-//      }
-//    } catch (error) {
-//      console.log('Fetch error:', error);
-//    }
-//  }
-// };
-
-// const convertCurrencies = async () => {
-//   // Get the list of coins from pinia state
-
-//   const coins = pinia.state.tokenLists;
-
-//   try {
-
-//     const convertCurrency = [];
-   
-//     // Loop through each coin and convert to USD
-//     for (const coin of coins) {
-//       convertCurrency.push({ from: coin.symbol, to: "USD" });
-//     }
-
-//     try {
-//       const data = await currencyConverter(convertCurrency);
-     
-
-//       if (data.success) {
-//         // Store the conversion result in the array
-//         conversionResult.value = data.data;
-        
-//       } else {
-//         console.log(`Conversion failed:`, data.message);
-//       }
-//     } catch (error) {
-//       console.log(`Error converting:`, error);
-//     }
-
-
-//   } catch (error) {
-//     console.log(error);
-//   }
-
-// };
 
 
 // onBeforeMount(() => {

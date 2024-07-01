@@ -47,6 +47,7 @@ export const useStore = defineStore('app',()=> {
       selectedLandingCoin:'',
       selectedLandingAmmount:'',
       MarketPlace: [],
+      MyOffers: [],
       Fiat_transactions: [],
       Total_fiat_bal:[],
     });
@@ -90,6 +91,10 @@ export const useStore = defineStore('app',()=> {
 
   const setTotal_fiat_bal = (payload) => {
       state.Total_fiat_bal = payload;   
+  };
+
+  const setgetNewCoinInfo = (payload) => {
+      state.getNewCoinInfo = payload;   
   };
 
   const setFiat_transactions = (payload) => {
@@ -155,6 +160,10 @@ export const useStore = defineStore('app',()=> {
 
   const setMarketPlace = (payload) => {
       state.MarketPlace = payload;    
+  };
+
+  const setMyOffers = (payload) => {
+      state.MyOffers = payload;    
   };
 
 
@@ -243,6 +252,8 @@ export const useStore = defineStore('app',()=> {
       setSummedBalance,
       setSelected_coin_Balance,
       setMarketPlace,
+      setMyOffers,
+      setgetNewCoinInfo,
       setSelected_coin_to_buy_from_marketplace,
     }
 },

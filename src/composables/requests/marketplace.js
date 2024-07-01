@@ -24,19 +24,6 @@ export const createOffer = async(payload)=>{
     return data
 };
 
-export const deleteOffer = async(offer_id)=>{
-    const pinia = useStore();
-    const data = await fetch(`${baseURL}p2p-marketplace/${offer_id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'x-access-token': `${pinia.state.user?.token}`
-        },
-
-    }).then(res => res.json());
-    return data
-}
-
 
 export const createOrder = async(payload,offer_id)=>{
     const pinia = useStore();
@@ -51,3 +38,30 @@ export const createOrder = async(payload,offer_id)=>{
     }).then(res => res.json());
     return data
 }
+
+export const deleteOffer = async(offer_id)=>{
+    const pinia = useStore();
+    const data = await fetch(`${baseURL}p2p-marketplace/${offer_id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': `${pinia.state.user?.token}`
+        },
+
+    }).then(res => res.json());
+    return data
+}
+
+export const personal_Offer = async(pageNumber)=>{
+    const pinia = useStore();
+    const data = await fetch(`${baseURL}p2p-marketplace/my-offers/${pinia.state.selectedNetwork.toLowerCase()}/${pageNumber}`, {
+        method: 'Get',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': `${pinia.state.user?.token}`
+        },
+    
+        }).then(res => res.json());
+        return data;
+ };
+    
