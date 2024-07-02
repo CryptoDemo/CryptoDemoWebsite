@@ -118,7 +118,7 @@
                   <div style="margin-top: 30px;">
                     <span :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to buy" : "I want to sell" }}</span>
                     <div class="d-flex" style="margin-top:9px; position: relative;">
-                    <input type="number" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
+                    <input type="number" v-model="ammount_of_coin" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
                        placeholder="Enter Amount"/>
                     <v-menu transition="scale-transition">
                         <template v-slot:activator="{ props }">
@@ -144,7 +144,7 @@
                       <span class="hint-text">Mininum: 10 {{ Selectedcurrency }}</span>
                     </div>
                   </div>
-                  <v-btn class="exchange-btn" color="" style="letter-spacing: 0px !important;"> <span class="exchange-text">Trade Now </span></v-btn>
+                  <v-btn @click="collectVals()" class="exchange-btn" color="" style="letter-spacing: 0px !important;"> <span class="exchange-text">Trade Now </span></v-btn>
                 </div>
               </div>
             </div>
@@ -343,9 +343,12 @@ const transaction1 = ref(true);
 const pinia = useStore()
 const pageNumber = ref(1)
 const conversionResult = ref([]);
-const select =ref("Bitcoin")
-const coin = ref ("BTC")
-const piniastoredicon = ref(null)
+const select =ref("Bitcoin");
+const coin = ref ("BTC");
+const piniastoredicon = ref(null);
+const ammount_of_coin = ref();
+const Selectedcurrency =ref("USD");
+
 
   try {
     const data = await getTokens(pageNumber.value);
@@ -376,6 +379,43 @@ const piniastoredicon = ref(null)
     }
   });
 });
+
+
+const collectVals = () => {
+  // Always save trading data
+  const payload = {
+    name: select.value,
+    type: transaction.value ? 'buy' : 'sell',
+    amount: ammount_of_coin.value,
+    currency: Selectedcurrency.value,
+  };
+  pinia.saveTradingData(payload);
+  console.log(payload);
+
+  // Check if user is authenticated
+  if (!pinia.state.isAuthenticated) {
+    // Redirect to login if not authenticated
+    navigateTo('authentication/login'); // Adjust navigation method and URL as per your router setup
+    return;
+  }
+
+  // User is authenticated
+  if (pinia.state.selectedOfferType_from_landing.type === "sell") {
+    // Navigate to create sell offer page
+    navigateTo('/account/marketplace/createOffer'); // Adjust navigation method and URL as per your router setup
+  } else {
+    // Redirect to active offers page for buys or any other case
+    navigateTo('/account/marketplace/activeOffers'); // Adjust navigation method and URL as per your router setup
+  }
+};
+
+
+
+
+
+
+
+
 
 
 const convertCurrencies = async () => {
@@ -432,7 +472,7 @@ onMounted(async () => {
 
 
 const icon = ref(piniastoredicon)
-console.log(icon.value)
+
 
 const variants = [
 { cardImages: '/svg/Featured icon.svg', title:'Bank transfer', textCaption:'Our guided bank transfer trades make it even easier to sell Bitcoin and receive payment.', textCaption1:'Our guided bank transfer trades makes it even easier to Buy Bitcoin.'}, 
@@ -443,7 +483,7 @@ const variants = [
 { cardImages: '/svg/Featured icon (5).svg', title:'Goods and services' , textCaption:'Use Bitcoin to pay for goods and services from around the world.', textCaption1:'Use Bitcoin to Buy  goods and services from around the world.'}, 
 ];
 
-const Selectedcurrency =ref("USD")
+
 
 let input = ref("");
 

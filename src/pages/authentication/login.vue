@@ -123,39 +123,52 @@ const loading= ref(false);
 
 const login = async () => {
   const device = useDevice();
-  loading.value = true 
+  loading.value = true;
   const userLogin = {
     email: email.value,
     password: password.value,
     device_info: JSON.stringify(device)
-  }
+  };
 
   try {
-  const data = await signIn(userLogin);
-  if (data.success) {
-    pinia.setUser(data.data);
-    
-    if (data.message ==="Please verify your email to continue") {
-      pinia.setEmail(email.value);
-      navigateTo('/authentication/sign-up-email-verification')
-    } 
-    else if (data.message=="Please provide your 2FA code to continue") {
-      navigateTo('/authentication/2fa-verification')
-    } else{
-      pinia.state.isAuthenticated = true;
-      navigateTo('/account/profile')
-    }  
+    const data = await signIn(userLogin);
+    if (data.success) {
+      // User successfully signed in
+      pinia.setUser(data.data);
 
-  } else{
-    loading.value = false 
-    push.error(data.message, { duration: 2000 })
+      if (data.message === "Please verify your email to continue") {
+        // Navigate to email verification page
+        pinia.setEmail(email.value);
+        navigateTo('/authentication/sign-up-email-verification');
+      } else if (data.message === "Please provide your 2FA code to continue") {
+        // Navigate to 2FA verification page
+        navigateTo('/authentication/2fa-verification');
+      } else {
+        // Check additional conditions before navigating to profile
+        if (pinia.state.selectedOfferType_from_landing.type === "sell") {
+          // Navigate to create sell offer page
+          navigateTo('/account/marketplace/createOffer');
+        } else if (pinia.state.selectedOfferType_from_landing.type === "buy") {
+          // Navigate to active buy offer page
+          navigateTo('/account/marketplace/activeOffers');
+        } else {
+          // Default navigation to profile if no other conditions apply
+          pinia.state.isAuthenticated = true;
+          navigateTo('/account/profile');
+        }
+      }
+    } else {
+      // Login was not successful
+      loading.value = false;
+      push.error(data.message, { duration: 2000 });
+    }
+  } catch (e) {
+    console.log(e);
+    push.error(`${e}`);
+    loading.value = false;
   }
-}catch(e){
-  console.log(e)
-  push.error(`${e}`);
-  loading.value = false
-}
 };
+
 
 
 </script>

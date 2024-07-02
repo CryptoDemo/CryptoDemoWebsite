@@ -30,18 +30,23 @@
             </template>
 
             <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 15px;">
-                <v-list-item>
-                <div v-for="token in tokensForSelectedNetwork" :key="token.id" class="d-flex py-3">
-                    <v-list-item-title @click="pinia.state.token_to_transfer=token.name; coin=token.symbol; pinia.state.coin_to_transfer=token.icon; token = token" class="d-flex">
-                    <img  :src="token.icon" class="me-3" width="30"/>  
-                    <div class="d-flex" style="flex-direction: column;">
-                    <span :class="isDark ? 'coin-name':'coin-name-light'" style="display: flex; align-items: center;"> {{ token.name }} </span>
-                    <span style="font-family: Manrope; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ token.symbol }}</span>
+              <v-list-item style="display: contents">
+             
+                <div v-for="token in tokensForSelectedNetwork" :key="token.id">
+                  <v-list-item @click="pinia.state.token_to_transfer=token.name; coin=token.symbol; pinia.state.coin_to_transfer=token.icon; token = token"  style="display: flex;">
+                    <div class="d-flex py-2">
+                      <img  :src="token.icon" class="me-3" width="30"/>  
+                      <div class="d-flex" style="flex-direction: column;">
+                        <span :class="isDark ? 'coin-name':'coin-name-light'" style="display: flex; align-items: center;"> {{ token.name }} </span>
+                        <span style="font-family: Manrope; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ token.symbol }}</span>
+                      </div>
                     </div>
-                    </v-list-item-title>
+                  </v-list-item>
                 </div>
-                </v-list-item>
-            </v-list> 
+                
+              </v-list-item>
+            </v-list>
+
             </v-menu> 
             </div>
              
@@ -86,19 +91,20 @@
                          
                      
                     </v-alert>
-                      <span style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600;line-height: 150%; margin-top: 20px;">By clicking the confirm button you will be sending <h3>{{ trfAmmount }}</h3> {{  token_id  }}  to {{ transferWallet }}.
+                      <span style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600;line-height: 150%; margin-top: 20px;">By clicking the confirm button you will be sending a non refundable ammount of <span style="font-weight: 600; font-size: 16px;">{{ trfAmmount }} {{  token_id  }}</span> to {{ transferWallet }}.
                       </span>
                       </div>
-                      <template v-slot:actions>
-
-                      <v-btn @click="dialog1 = false" class="confirm-txn" style="margin-top: 28px; color: white;">
-                          Cancel
-                      </v-btn>
-
-                      <v-btn @click.prevent="execute()" :loading="loading_send_coin" class="confirm-txn" style="margin-top: 28px">
-                          Confirm
-                      </v-btn>
-                      </template>
+                     
+                        <div class="mt-3">
+                          <v-btn  @click="dialog1 = false" rounded="lg" variant="tonal" class="confirm-txn" style="margin-top: 8px; color: white;  width: 100%; height: 50px">
+                              Cancel
+                          </v-btn>
+ 
+                          <v-btn @click.prevent="execute()" rounded="lg" variant="tonal" :loading="loading_send_coin" class="confirm-txn mt-3" style="margin-top: 8px; width: 100%; height: 50px">
+                              Confirm
+                          </v-btn>
+                        </div>
+                
                   </v-card>
                 </v-dialog>
 
@@ -115,6 +121,7 @@
   import { ref } from 'vue'
   import { useTheme } from 'vuetify';
   import { calculateTxnFees, executeTrans } from "@/composables/requests/transaction";
+  import { getTokenBalance } from "@/composables/requests/tokens";
   
   const theme = useTheme()
   const isDark = computed(() => theme.global.current.value.dark);
@@ -130,17 +137,31 @@
   const network = pinia.state.selectedNetwork.toLowerCase();
   const coin =  ref();
   
-  let selectedToken = ref(null);
-  const selectedTokenBalance = computed(() => {
-    const selectedToken = tokensForSelectedNetwork.find(token => token.symbol === coin.value);
-    return selectedToken?.balance;
-  });
-  
+
   const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
   const tokensForSelectedNetwork = pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId));
   
   const symbols = tokensForSelectedNetwork.map(token => token.symbol);
   
+
+const selectedToken = ref(null);
+
+watch(coin, (newCoin) => {
+  selectedToken.value = tokensForSelectedNetwork.find(token => token.symbol === newCoin);
+}, { immediate: true });
+
+// Compute the balance of the selected token
+const selectedTokenBalance = computed(() => {
+  return selectedToken.value?.balance || 0;
+});
+
+// Watch for changes in the selectedTokenBalance and log it
+watch(() => selectedToken.value ? selectedToken.value.balance : 0, (newBalance) => {
+  selectedTokenBalance.value = newBalance;
+  console.log('Selected Token Balance:', newBalance);
+});
+
+
 
 const pasteText = async () => {
   try {
@@ -167,10 +188,16 @@ coin.value = Newtoken.value.symbol;
   console.error("Token not found");
 }
 
+watch(coin, (newCoin) => {
+  const mytoken = pinia.state.tokenLists.find(c => c.symbol === newCoin);
+  const selectedNetwork = pinia.state.BlockchainNetworks.find(e => e.name.toLowerCase() === pinia.state.selectedNetwork.toLowerCase());
+  minimumTransfer.value = mytoken?.token_networks.find(e => e.id === selectedNetwork.blockchain_id);
+}, { immediate: true });
+console.log("mimi", minimumTransfer.value)
 
-const mytoken = pinia.state.tokenLists.find(c => c.symbol ===  coin.value )
-const selectedNetwork = pinia.state.BlockchainNetworks.find(e => e.name.toLowerCase() === pinia.state.selectedNetwork.toLowerCase())
-minimumTransfer.value = mytoken.token_networks.find(e => e.id ===  selectedNetwork.blockchain_id)
+// const mytoken = pinia.state.tokenLists.find(c => c.symbol ===  coin.value )
+// const selectedNetwork = pinia.state.BlockchainNetworks.find(e => e.name.toLowerCase() === pinia.state.selectedNetwork.toLowerCase())
+// minimumTransfer.value = mytoken?.token_networks.find(e => e.id ===  selectedNetwork.blockchain_id)
 
 const fee_id = ref('');
 const token_id = ref('');
@@ -245,6 +272,7 @@ const execute = async()=>{
 
         push.success('Transfer Succesful')
 
+
       }else{
         
         push.error(`${data.message}`, {
@@ -261,6 +289,8 @@ const execute = async()=>{
 
 
   };
+
+
 
 watch(transferWallet, (newVal) => {
   pinia.setTransferWallet(newVal);

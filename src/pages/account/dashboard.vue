@@ -18,18 +18,7 @@
                 <DashboardCoin/>
               </div>
 
-              <div class="d-flex">              
-                <div style="width: 810px; height: 100%; margin-top: 50px;">
-                  <div class="d-flex">
-                    <!-- <img src="/img/btc.png" class="me-2"/> -->
-                    <span class="selected-coin">{{ selectedCoin="Bitcoin" }} Price Chart</span>
-                  </div>
-                  <VuetifyChart class="me-5"/>
-                </div>
-                
-              </div>
-              
-              
+           
               <div style="margin-top: -130px; width: 810px;">
                 <Coins/>
                 <div style="margin-top: -130px;">

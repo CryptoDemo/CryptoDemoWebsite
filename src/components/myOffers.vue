@@ -38,13 +38,16 @@
                   <template v-slot:default="{ isActive }">
                     <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; box-shadow: none;">
                       <v-card-text>
-                        Lorem ipsum dolor sit amet, incididunt ut labore et dolore magna aliqua.
+                        <div class="d-flex" style="flex-direction: column; justify-content: center;">
+                          <img src="/img/Frame 41502.png" width="90" class="mx-auto mb-3"/>
+                          <h3 class="text-center mb-3">Are you sure you want to delete this offer?</h3>
+                          <span class=""> This action cannot be undone. Once deleted, this offer will no longer be visible on the marketplace.</span>
+                        </div>
                       </v-card-text>
 
-                      <v-card-actions>
-                        <v-spacer></v-spacer>
+                      <v-card-actions class="px-3">
 
-                        <v-btn text="Delete Permanently" @click="delete_My_Offers()"></v-btn>
+                        <v-btn  @click="delete_My_Offers()" variant="tonal" style="letter-spacing: 0px; color: #E33E38; height: 50px; width: 100%; border-radius: 15px; margin-bottom: 10px; font-weight: 600; font-size: 16px; text-transform: unset;">Delete Permanently</v-btn>
                       </v-card-actions>
                     </v-card>
                   </template>
@@ -56,6 +59,12 @@
         </div>
       </div>
     </div>
+
+     
+      <div v-if="!personalOffers.length" style="text-align: center; margin-top: 80px; display: flex; flex-direction: column;align-items: center;">
+        <img src="/svg/emptyState.svg" width="250"/>
+        <span class="mt-6">You have not created any personal offers yet</span>
+      </div>
   </div>
 </template>
 
@@ -127,6 +136,8 @@ const delete_My_Offers = async () => {
     if (data.success) {
       personalOffers.value = data.data;
       console.log(personalOffers.value);
+      await get_allMy_Offers()
+      pinia.setMyOffers(data.data);
     } else {
       push.error(`${data.message}`);
    

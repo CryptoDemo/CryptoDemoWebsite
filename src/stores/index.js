@@ -1,6 +1,7 @@
 // myStore.js
 
 
+// import types from '@pinia/nuxt'
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('app',()=> {
@@ -33,9 +34,9 @@ export const useStore = defineStore('app',()=> {
       allcountries: [],
       selectedToken: 'USDT',
       UserFaqs:[],
-      Web3_transactions: [],
       getNewCoinInfo: "",
       calculatedTaxFee: "",
+      offer_from_landing: "Buy",
       calculatedTaxFee_for_swap: "",
       token_to_transfer: "",
       TransferWallet: "",
@@ -44,12 +45,14 @@ export const useStore = defineStore('app',()=> {
       coin_to_transfer: "",
       Selected_coin_Balance: "",
       TransactionDetails: [],
-      selectedLandingCoin:'',
-      selectedLandingAmmount:'',
       MarketPlace: [],
       MyOffers: [],
       Fiat_transactions: [],
       Total_fiat_bal:[],
+
+      selectedOfferType_from_landing: [],
+
+
     });
   
   
@@ -97,6 +100,10 @@ export const useStore = defineStore('app',()=> {
       state.getNewCoinInfo = payload;   
   };
 
+  const saveTradingData = (payload) => {
+    state.selectedOfferType_from_landing = payload
+  };
+
   const setFiat_transactions = (payload) => {
       state.Fiat_transactions = payload;   
   };
@@ -128,9 +135,7 @@ export const useStore = defineStore('app',()=> {
   const setSummedBalance = (payload) => {
       state.SummedBalance = payload;  
   };
-  const setSelected_coin_to_buy_from_marketplace = (payload) => {
-      state.selected_coin_to_buy_from_marketplace = payload;  
-  };
+ 
 
   const setSelected_coin_Balance = (payload) => {
       state.Selected_coin_Balance = payload;  
@@ -250,11 +255,12 @@ export const useStore = defineStore('app',()=> {
       setTransferWallet,
       setCoin_to_transfer,
       setSummedBalance,
+      setSelectedNetwork,
       setSelected_coin_Balance,
       setMarketPlace,
       setMyOffers,
       setgetNewCoinInfo,
-      setSelected_coin_to_buy_from_marketplace,
+      saveTradingData
     }
 },
   {persist: {

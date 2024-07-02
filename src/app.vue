@@ -51,6 +51,8 @@ const getTokenBals = async () => {
  }
 };
 
+
+
 const getSummedBal = async () => {
   if (pinia.state.isAuthenticated) {
     try {
@@ -103,8 +105,8 @@ const initSocketListeners = ($socketClient)=>{
             console.log(selectedNetworkById)
             if(pinia.state.isAuthenticated || pinia.state.user){
               if (selectedNetworkById && message.data.chain_id === selectedNetworkById.id) {
-                 const transData = [message.data.payload]
-                 const data_payload = ([...pinia.state.TransactionDetails,...transData]);
+                 const data_payload = ([...pinia.state.TransactionDetails, ...message.data.payload]);
+                 console.log(pinia.state.TransactionDetails)
                  pinia.setTransactionDetails(data_payload)
 
                  getTokenBals()

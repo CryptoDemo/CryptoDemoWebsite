@@ -18,8 +18,8 @@
                   <template v-slot:activator="{ props }">
                     <v-btn @click.prevent="getBtn()" class="inputstyling1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props">
                       <div class="py-3 me-5" style="display: flex; padding-left: 12px; align-items: center; border-radius: 17px; position: absolute; left: 0;">
-                          <img :src="icon"  width="30" class="me-3"/>
-                          <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; text-transform: capitalize; font-family: Manrope; font-size: 16px;">{{select}}</span> 
+                          <img :src="pinia.state.coin_to_transfer"  width="30" class="me-3"/>
+                          <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; text-transform: capitalize; font-family: Manrope; font-size: 16px;">{{pinia.state.token_to_transfer}}</span> 
                       </div>
                       <div style="position: absolute; right: 15px; box-shadow: none; background: inherit;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
@@ -30,23 +30,28 @@
                   </template>
   
                   <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 15px;">
-                    <v-list-item>
-                      <div v-for="token in tokensForSelectedNetwork" :key="token.id" class="d-flex py-3">
-                        <v-list-item-title @click="select=token.name; coin=token.symbol; icon =token.icon; token = token" class="d-flex">
-                        <img  :src="token.icon" class="me-3" width="30"/>  
-                        <div class="d-flex" style="flex-direction: column;">
-                          <span :class="isDark ? 'coin-name':'coin-name-light'" style="display: flex; align-items: center;"> {{ token.name }} </span>
-                          <span style="font-family: Manrope; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ token.symbol }}</span>
-                        </div>
-                        </v-list-item-title>
+                    <v-list-item style="display: contents">
+                  
+                      <div v-for="token in tokensForSelectedNetwork" :key="token.id">
+                        <v-list-item @click="pinia.state.token_to_transfer=token.name; coin=token.symbol; pinia.state.coin_to_transfer=token.icon; token = token"  style="display: flex;">
+                          <div class="d-flex py-2">
+                            <img  :src="token.icon" class="me-3" width="30"/>  
+                            <div class="d-flex" style="flex-direction: column;">
+                              <span :class="isDark ? 'coin-name':'coin-name-light'" style="display: flex; align-items: center;"> {{ token.name }} </span>
+                              <span style="font-family: Manrope; display: flex; align-items: center; font-size: 12px; font-style: normal; font-weight: 400; line-height: normal;">{{ token.symbol }}</span>
+                            </div>
+                          </div>
+                        </v-list-item>
                       </div>
+                      
                     </v-list-item>
-                  </v-list> 
-                </v-menu> 
+            </v-list>
+
+           </v-menu> 
                </div>
            
               <span :class="isDark ? 'coin-name':'coin-name-light'" style="margin-left: 10px; font-family: Manrope;font-size: 14px; font-style: normal; font-weight: 600; line-height: normal;">Total Balance : 
-                <span style="font-family: Manrope; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">{{ selectedTokenBalance }}</span>
+                <span style="font-family: Manrope; font-size: 16px; font-style: normal;font-weight: 600; line-height: normal;">{{ formatBalance(selectedTokenBalance) }}</span>
               </span>
          
                <div style="margin-top: 18px;">  
@@ -61,7 +66,7 @@
                       <img src="/svg/copy1.svg" style="margin-left: 10px;"/>
                     </div>
   
-                    <spanv v-else>Copied</spanv>
+                    <span v-else>Copied</span>
                   </v-btn>
               <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="display: flex; justify-content: center; border: none; width:20%; margin: auto;">
                 <qrcode-vue :value="walletAddress" :size="150" level="H" />
@@ -89,14 +94,21 @@ const walletAddress = ref('');
 const dialog =  ref(false);
 const mytoken = ref();
 
-const piniastoredicon = ref(null);
-const icon = ref(piniastoredicon);
 
-const storedSymbol = ref("");
-const select  = ref(storedSymbol);
 
 const network = pinia.state.selectedNetwork.toLowerCase();
-const coin =  ref('BTC');
+const coin =  ref();
+
+const Newtoken = ref();
+Newtoken.value = pinia.state.tokenLists.find(c => c.symbol ===  pinia.state.getNewCoinInfo);
+
+if (Newtoken.value) {
+pinia.state.coin_to_transfer = Newtoken.value.icon;
+pinia.state.token_to_transfer = Newtoken.value.name;
+coin.value = Newtoken.value.symbol;
+} else {
+  console.error("Token not found");
+}
 
 let selectedToken = ref(null);
 const selectedTokenBalance = computed(() => {
@@ -156,10 +168,6 @@ onMounted(async () => {
   if (addressData) {
     walletAddress.value = addressData.address;
   }
-
-  piniastoredicon.value = tokensForSelectedNetwork[0]?.icon;
-  storedSymbol.value = tokensForSelectedNetwork[0]?.name;
-
 });
 </script>
 

@@ -15,14 +15,13 @@
           
 
             <div class="d-md-flex" style="justify-content: space-between; margin-top: 53px; margin-bottom: 66px;">
-              <div class="" :class="priceType ? 'box1': 'box2'"  @click="priceType=true">
-                <span :class="priceType ? 'mkt-place': 'mkt-place1'"  @click="priceType=true">Market Price</span>
-                <span :class="priceType ? 'mkt-place-caption': 'mkt-place-caption1'"  @click="priceType=true">Your offer’s selling price will change according to the market price of Bitcoin.This price is determined by supply and demand dynamics in the marketplace.</span>
-                
+              <div :class="priceType ? 'box1' : 'box2'" @click="priceType = true">
+                <span :class="priceType ? 'mkt-place' : 'mkt-place1'">Market Price</span>
+                <span :class="priceType ? 'mkt-place-caption' : 'mkt-place-caption1'">Your offer’s selling price will change according to the market price of Bitcoin. This price is determined by supply and demand dynamics in the marketplace.</span>
               </div>
-              <div class="" :class="priceType ? 'box2': 'box1'"  @click="priceType=false">
-                <span :class="priceType ? 'mkt-place1': 'mkt-place'"  @click="priceType=false">Fixed Price</span>
-                <span :class="priceType ? 'mkt-place-caption1': 'mkt-place-caption'"  @click="priceType=false">Your offer’s selling price is locked when you create it, and won’t change with the market price. This price does not change based on market conditions.</span>
+              <div :class="priceType ? 'box2' : 'box1'" @click="priceType = false">
+                <span :class="priceType ? 'mkt-place1' : 'mkt-place'">Fixed Price</span>
+                <span :class="priceType ? 'mkt-place-caption1' : 'mkt-place-caption'">Your offer’s selling price is locked when you create it, and won’t change with the market price. This price does not change based on market conditions.</span>
               </div>
             </div>
 
@@ -195,7 +194,7 @@ const offerInfo = {
           unit_value: EquivPrice.value,
           minimum_buy_limit: minAmmount.value,
           maximum_buy_limit: maxAmmount.value,
-          use_fixed_price: priceType.value,
+          use_fixed_price: priceType.value 
         },
     },
     active: true

@@ -111,13 +111,13 @@
                                     </span>
                                   </div>
 
-                                <h3 style="position: absolute; right: 7%; font-family: Manrope; font-weight: 700; font-size: 16px;">{{ pinia.state.preferredCurrency }} {{ token.balance}}</h3>
+                                <h3 style="position: absolute; right: 7%; font-family: Manrope; font-weight: 700; font-size: 16px;">{{ pinia.state.preferredCurrency }} {{formatBalance (token.balance)}}</h3>
                                 </div>
                               </div>
-                                <div class="d-flex mt-3">
+                                <div class="d-flex mt-6" style="justify-content: space-between;">
                                     <td style="display: flex; align-items: center;"> 
                                       <div> 
-                                        <v-btn @click.once.stop="navigateTo('/account/trade/sendButton')" class="send-btn" :class="isDark ? 'wallet-border':'wallet-border-light'" >
+                                        <v-btn @click.once.stop="navigateTo('/account/trade/sendButton')" class="swap me-2" :class="isDark ? 'btn-segment':'btn-segment-light'">
                                           <img src="/svg/send-arrow.svg" class="me-1"/>
                                           <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
                                         </v-btn>
@@ -125,7 +125,7 @@
                                     </td>
                                     <td style="display: flex; align-items: center;"> 
                                       <div> 
-                                        <v-btn @click.once.stop="navigateTo('/account/trade/getButton')" class="send-btn" :class="isDark ? 'wallet-border':'wallet-border-light'">
+                                        <v-btn @click.prevent="navigateTo('/account/trade/getButton')" class="swap me-2" :class="isDark ? 'btn-segment':'btn-segment-light'">
                                           <img src="/svg/get.svg" class="me-1"/>
                                           <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
                                         </v-btn>
@@ -133,15 +133,15 @@
                                     </td>
                                     <td style="display: flex; align-items: center; color: white;">
                                       <div>
-                                      <nuxt-link to="/account/trade/swap"><v-btn :class="isDark ? 'btn-segment':'btn-segment-light'" class="swap">
+                                    <v-btn @click.prevent="navigateTo('/account/trade/swap')"  :class="isDark ? 'btn-segment':'btn-segment-light'" class="swap">
                                       <img src="/svg/arrow-swap.svg" class="me-1"/>
                                       Swap</v-btn>
-                                      </nuxt-link>
+                                   
                                       </div> 
                                     </td>
                                 </div>
                               
-                              <div class="mt-3" style="display: flex; justify-content: end;">
+                              <div style="display: flex; justify-content: end;">
                                 <v-btn class="primary-btn1" style="border-radius: 10px !important; color: white; padding: 20px; width: 30%; display: flex;"
                                   text="Cancel"
                                   @click="isActive.value = false"
