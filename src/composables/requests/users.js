@@ -77,6 +77,19 @@ export const checkUsernameAvailability = async(username)=>{
     return data;
 };
 
+export const getUserInfo = async(username)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}user/get-user-by-username/${username}`,{ 
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token' : `${pinia.state.user?.token}`
+        },
+    }).then(res => res.json());
+    return data;
+};
+
 export const updateUser = async(UpdateUserDetails)=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return

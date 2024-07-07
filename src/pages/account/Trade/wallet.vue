@@ -186,7 +186,7 @@
               </v-table>
                 </div>
 
-              <div v-else style="margin-top: 30px; margin-bottom: 400px;">
+              <div v-else style="margin-top: 30px; margin-bottom: 400px; width: 96%;">
                 <Fiat/>
               </div>
 

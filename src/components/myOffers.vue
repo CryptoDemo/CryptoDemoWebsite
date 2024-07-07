@@ -1,6 +1,6 @@
 <template>
   <div class="offers-div">
-    <div v-for="(offer, i) in personalOffers" :key="offer.id">
+    <div v-for="offer in personalOffers" :key="offer.id">
       <div class="py-3">
         <div class="px-4" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; border: none;">
           <div style="margin-top: 20px; margin-bottom: 10px;">
@@ -35,7 +35,7 @@
                     <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id" v-bind="activatorProps" class="smaller-btn" style="background: red;">Delete offer</v-btn>
                   </template>
 
-                  <template v-slot:default="{ isActive }">
+                  <template v-slot:default>
                     <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; box-shadow: none;">
                       <v-card-text>
                         <div class="d-flex" style="flex-direction: column; justify-content: center;">

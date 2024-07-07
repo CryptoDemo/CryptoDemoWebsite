@@ -19,6 +19,7 @@ export default defineNuxtConfig ({
     "@pinia-plugin-persistedstate/nuxt",
     'notivue/nuxt',
     '@nuxtjs/device',
+    '@lambahq/nuxt',
     async(options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', config => {
         // @ts-expect-error

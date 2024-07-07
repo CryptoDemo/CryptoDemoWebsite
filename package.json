@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@capacitor/core": "^5.7.4",
+    "@lambahq/nuxt": "^1.0.3",
     "@mdi/font": "^7.4.47",
     "@pinia/nuxt": "^0.5.1",
     "@sentry/vue": "^7.79.0",

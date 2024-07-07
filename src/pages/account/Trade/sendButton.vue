@@ -1,6 +1,6 @@
 <template>
+  <div>
     <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true"/>
-      <div>
         <v-container>
           <div class="ml-6" style="display: flex; align-items: center; margin-bottom: 24px; margin-top: 100px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="navigateTo('/account/trade/wallet')" style="cursor: pointer;">

@@ -47,12 +47,12 @@
                     </div>
 
                     <div style="display: flex; justify-content: center; align-self: center ; margin-top: 17px; border-radius: 4px; height: 26px; z-index: 1000">
-                      <v-btn @click="swapAmount = minimumswap?.minimum_swap" class="me-4" :class="isDark ? 'btn-segment':'btn-segment-light'" style="height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;-"><span class="min">Min</span></v-btn>    
+                      <v-btn @click="swapAmount = minimumswap?.minimum_swap" class="me-4" :class="isDark ? 'btn-segment':'btn-segment-light'" style="height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span></v-btn>    
                       <v-btn @click="swapAmount = selectedBalance" class="me-3" :class="isDark ? 'btn-segment':'btn-segment-light'" style="letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span></v-btn>
                     </div>
 
                     <div class="number-input" style="display: flex; margin-right: 10px; flex-direction: column; z-index: 1000">
-                      <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom; 10px; display: flex;justify-content: end;">{{ formatBalance(selectedBalance) }} {{ selectedSymbol }}</span>
+                      <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom: 10px; display: flex;justify-content: end;">{{ formatBalance(selectedBalance) }} {{ selectedSymbol }}</span>
                       <input type="number" v-model="swapAmount" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>    
                     </div>
                 </div>

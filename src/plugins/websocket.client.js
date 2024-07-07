@@ -6,7 +6,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     const initSocket = ()=>{
       nuxtApp.vueApp.use(VueSimpleWebsocket, websocketUrl(), {
         reconnectEnabled: true,
-        reconnectInterval: 5000,
+        reconnectInterval: 500,
       });
   
       return nuxtApp.vueApp.config.globalProperties.$socketClient;

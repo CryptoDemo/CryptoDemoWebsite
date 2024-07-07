@@ -113,10 +113,9 @@ export function addMinutes(minutesToAdd) {
 }
 
 
-// or debounce mixins.   let debounce_timeout;
-export const debounce = (fn, value) => {
-  let debounce_timeout; // Declare debounce_timeout inside the debounce function
+let debounce_timeout; // Declare debounce_timeout inside the debounce function
 
+export const debounce = (fn, value) => {
   // clear old timeout
   if (debounce_timeout) clearTimeout(debounce_timeout);
 

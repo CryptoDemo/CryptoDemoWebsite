@@ -1,55 +1,301 @@
 <template>
+<div>
+
     <div style="display: flex; justify-content: space-between; width: 100%;">
 
-        <v-dialog max-width="500">
-            <template v-slot:activator="{ props: activatorProps }">
-                <v-btn v-bind="activatorProps" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-                    <img src="/svg/get.svg" class="me-1"/>
-                     Fund
-                </v-btn>
-            </template>
-
-            <template v-slot:default="{ isActive }">
+    
+            <v-btn @click="dialog = true" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+                <img src="/svg/get.svg" class="me-1"/>
+                Fund
+            </v-btn>
+    
+            
+            <v-dialog v-model="dialog" max-width="500">
+        
                 <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
                 <v-card-text>
                     <h3 class="text-center">Wallet Deposit</h3>
-                    <input type="number" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px;"/>
+                    <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Fund your fiat wallet in your preferred currency</span>
+                    <input type="number" placeholder="Enter  ammount" v-model="fund_fiat_payload" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
                 
-                    <v-select :class="isDark ? 'txn-cards-dark':'txn-cards-light'"  variant="plain" :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']" style="width: 15%; height: 58px; border-radius: 15px; position: absolute; right: 5%; top: 30%;">
-                        NGN
-                    </v-select>
-
+                    <v-menu>
+                        <template v-slot:activator="{ props: activatorProps }">
+                            <v-btn @click.prevent="toggleChevron()" v-bind="activatorProps" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="min-width: 70px; height: 53px; position: absolute; border-radius: 15px; box-shadow: none; right: 5.5%; margin-top: 13px; letter-spacing: 0px;  text-transform: capitalize;">
+                                {{ pinia.state.preferredCurrency }}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
+                                </svg>
+                            </v-btn>
+                        </template>
+    
+                        <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
+                            <v-list-item style="display: contents; left: 532px;">
+                            <v-row dense style="max-width: 250px; height: 300px; overflow: scroll;">
+                                <v-col v-for="(currency, index) in pinia.state.allcountries" :key="index" sm="12">
+                                <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; currencyCode = currency.currency_code" style="display: flex;">
+                                
+                                <span class="currency-list my-2">{{ currency.currency_name }}</span>
+                             
+                                </v-list-item>
+                            </v-col>
+                            </v-row>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu> 
+                    <v-alert class="text-subtitle-2" type="info" variant="tonal" style="border-radius: 15px; margin-top: 20px;">
+                        The minimum funding amount for {{ pinia.state.preferredCurrency }} is {{ currencyCode }}{{ formatBalance(fiatToken.minimum_fiat_funding) }}, and the maximum funding amount is {{ currencyCode }}{{ formatBalance(fiatToken.maximum_fiat_funding) }}.
+                    </v-alert>
+    
+    
                 </v-card-text>
-
+    
                 <v-card-actions>
                     <v-spacer></v-spacer>
-
-                    <v-btn text="Close Dialog" @click="isActive.value = false"></v-btn>
+                    <div class="px-4 mb-3">
+                        <v-btn :loading="isloading" @click=fund_fiat_w() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;">Proceed</v-btn>
+                        <v-btn @click="dialog = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;">Cancel</v-btn>
+                    </div>
+    
                 </v-card-actions>
                 </v-card>
-            </template>
-        </v-dialog>
+    
+            </v-dialog>
+   
+
+
+
+            <v-btn @click="dialog1 = true" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+                <img src="/svg/send-arrow.svg" class="me-1"/>
+                Get
+            </v-btn>
+    
             
-        <v-btn class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-            <img src="/svg/send-arrow.svg" class="me-1"/>
-            Get
-        </v-btn>
+            <v-dialog v-model="dialog1" transition="dialog-bottom-transition" fullscreen>
+        
+                <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
+
+                    <v-card-text>
+                        <h3 class="text-center">Send Money</h3>
+                        <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Effortlessly transfer funds using our fiat currency service.</span>
+                        
+                        <v-btn @click="dialog2 = true" class="mt-10" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0.8px; line-height: 20px;">
+                            <div class="d-flex" style="align-items: center;">
+                                <h1 style="color: #2873FF;">@</h1>
+                                <div class="d-flex" style="flex-direction: column;">
+                                    <span class="ml-2" style="font-weight: 600; align-items: flex-start;text-align: justify;">Send Money using CryptoDemo Tag</span>
+                                    <span class="ml-2" style="font-weight: 400;">Easily transfer funds globally using the crypto demo tag for instant transactions.</span>
+                                </div>
+                            </div>
+                        </v-btn>
+
+                        <v-dialog v-model="dialog2" max-width="500">
+            
+                            <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
+
+                                <v-card-text>
+                                    <h3 class="text-center">Send money using Tag</h3>
+                                    <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Transfer funds instantly using the user's username.</span>
+                                    <div>
+                                        <input type="text" placeholder="@Enter Username tag" v-model="fiatUsername" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                                        <v-progress-circular v-if="loading_username" indeterminate color="primary"></v-progress-circular>
+                                        <v-icon v-if="showSuccessIcon" color="green-darken-2" icon="mdi-check-circle"></v-icon>
+                                        <v-icon v-else color="red-darken-2" icon="mdi-close-octagon"></v-icon>
+
+                                        <span class="text-subtitle-2" :class="isDark ? 'text-dark':'text-light'">Enter the valid username of the receiver</span>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <input type="number" placeholder="Enter ammount" v-model="fiat_ammount_to_send" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative; margin-top: 10px;"/>
+                                        <span class="text-subtitle-2" :class="isDark ? 'text-dark':'text-light'">The minimum ammount is
+                                            <span style="color: #2873FF; font-weight: 600;">{{ pinia.state.preferredCurrency }}{{ formatBalance(fiatToken.minimum_fiat_funding) }}</span>
+                                        </span>
+                                    </div>
+                                </v-card-text>
+
+                                <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <div class="px-4 mb-3">
+                                        <v-btn :loading="loading_send_fiat" @click=send_Fiat() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;">Proceed</v-btn>
+                                        <v-btn @click="dialog2 = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;">Cancel</v-btn>
+                                    </div>
+
+                                </v-card-actions>
+
+                             </v-card>
+
+                        </v-dialog>
+        
+        
+                    </v-card-text>
+        
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <div class="px-4 mb-3">
+                            <v-btn :loading="isloading" @click=fund_fiat_w() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;">Proceed</v-btn>
+                            <v-btn @click="dialog1 = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;">Cancel</v-btn>
+                        </div>
+                    </v-card-actions>
+
+                </v-card>
+    
+            </v-dialog>
+
+
+
+            
+            
+                        
+                   
+
+
 
         <v-btn class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
             <img src="/svg/arrow-swap.svg" class="me-1"/>
             Swap
         </v-btn>
     </div>
+</div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { useTheme } from 'vuetify';
-// import { getWebTransaction } from "@/composables/requests/transaction";
+import { fundFiatWallet, getbals, sendFiat } from "@/composables/requests/fiat";
+import { getUserInfo } from "@/composables/requests/users";
+import {debounce} from "@/composables/mixin";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-const pinia = useStore()
+const pinia = useStore();
+const currencyCode = ref();
+const fund_fiat_payload = ref();
+const isloading = ref(false);
+const loading_send_fiat = ref(false);
+const loading_username = ref(false);
+const fiatUsername = ref('');
+const fiat_ammount_to_send = ref(0);
+const dialog = ref(false);
+const dialog1 = ref(false);
+const dialog2 = ref(false);
+const showSuccessIcon = ref(false);
+const showFailureIcon = ref(false);
+
+const nuxtApp = useNuxtApp();
+// const totalFiatBal = computed(()=>pinia.state.Total_fiat_bal);
+
+const fiatToken = computed(() => {
+  return pinia.state.allcountries.find(country => country.currency_name === pinia.state.preferredCurrency);
+});
+
+const minimumFiatFunding = computed(() => {
+  return fiatToken.value ? fiatToken.value.minimum_fiat_funding : null;
+});
+
+const maximumFiatFunding = computed(() => {
+  return fiatToken.value ? fiatToken.value.maximum_fiat_funding : null;
+});
+
+const fund_fiat_w = async()=>{
+    if(!fund_fiat_payload.value) return push.error('Enter amount');
+    try{
+        isloading.value = true
+        const data = await fundFiatWallet({amount: fund_fiat_payload.value, country_id: fiatToken.value.id});
+        isloading.value = false;
+
+        if(data.success){
+            const config = data.data
+            config.theme = `${isDark.value?'dark':'light'}`;
+            config.icon = `${isDark.value?'https://crypto-demo-website-iobf.vercel.app/svg/Logo.svg':'https://crypto-demo-website-iobf.vercel.app/svg/Logo.svg'}`;
+            
+            const lamba = nuxtApp.$lamba(config);
+            const getbalsCount = 0;
+
+            dialog.value = false;
+            lamba.on('paymentVerified',()=>{
+                const intervalId = setInterval(async () => {
+                    if (getbalsCount < 2) {
+                        getbalsCount++;
+                        await getbals();
+                    } else {
+                        clearInterval(intervalId); // Stop the setInterval loop after executing getbals() twice
+                    }
+                }, 1000); // Adjust the interval time as needed
+            });
+
+            return  
+
+        }else{
+            push.error(`${data.message}`)
+        }
+        fund_fiat_payload.value = 0
+    }catch(e){
+        console.log(e)
+    }
+}
+
+const get_user_info = async () => {
+    if (!fiatUsername.value) {
+    // If the username is empty, do not proceed
+    return;
+  }
+loading_username.value = true;
+
+  try {
+    const data = await getUserInfo(fiatUsername.value);
+    loading_username.value = false;
+
+    if (data.success) {
+        showSuccessIcon.value = true;
+      
+    } else {
+        showFailureIcon.value = true;
+    }
+  } catch (e) {
+    loading_username.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+// const debounced_get_user_info = debounce(get_user_info);
+
+watchEffect(() => {
+    if (fiatUsername.value) {
+      console.log(fiatUsername.value)
+        debounce(get_user_info);
+    }
+});
+
+const send_Fiat = async () => {
+    loading_send_fiat.value = true;
+  const payload = {
+    recipient_username: fiatUsername.value,
+    country_id: fiatToken.value.id,
+    amount: fiat_ammount_to_send.value,
+  };
+
+  try {
+    const data = await sendFiat(payload);
+    loading_send_fiat.value = false;
+
+    if (data.success) {
+      
+      pinia.setFiat_transactions(data.data);
+   
+    } else {
+      push.error(data.message, { duration: 2000 });
+    }
+  } catch (e) {
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+
+const isChevronToggled = ref(false);
+const toggleChevron = () => {
+    isChevronToggled.value = !isChevronToggled.value;
+};
 </script>
 
 <style scoped>
@@ -85,5 +331,20 @@ border: 1px solid #E2E8F0;
   background: #edf3ff;
   padding: 10px;
   border-radius: 15px;
+}
+
+.chevron-icon {
+transition: transform 0.3s;
+}
+
+.chevron-icon-rotated {
+transform: rotate(180deg);
+}
+
+.close-btn{
+fill: white;
+}
+.close-btn-dark{
+fill: #10192D;
 }
 </style>

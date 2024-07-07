@@ -1,7 +1,8 @@
 <template>
- <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" />
   <div>
-    <v-container style="margin-top: 80px;">
+    <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" />
+    <div>
+      <v-container style="margin-top: 80px;">
 
         <div style="width: 95%; margin: auto; margin-bottom: 280px;">      
           <div class="offer-txt1 mt-10" :class="isDark ? 'card-text-dark':'card-text-light'">Create an Offer to Sell your Crypto</div>
@@ -17,11 +18,11 @@
             <div class="d-md-flex" style="justify-content: space-between; margin-top: 53px; margin-bottom: 66px;">
               <div :class="priceType ? 'box1' : 'box2'" @click="priceType = true">
                 <span :class="priceType ? 'mkt-place' : 'mkt-place1'">Market Price</span>
-                <span :class="priceType ? 'mkt-place-caption' : 'mkt-place-caption1'">Your offer’s selling price will change according to the market price of Bitcoin. This price is determined by supply and demand dynamics in the marketplace.</span>
+                <span :class="priceType ? 'mkt-place-caption' : 'mkt-place-caption1'">Your offer's selling price will change according to the market price of Bitcoin. This price is determined by supply and demand dynamics in the marketplace.</span>
               </div>
               <div :class="priceType ? 'box2' : 'box1'" @click="priceType = false">
                 <span :class="priceType ? 'mkt-place1' : 'mkt-place'">Fixed Price</span>
-                <span :class="priceType ? 'mkt-place-caption1' : 'mkt-place-caption'">Your offer’s selling price is locked when you create it, and won’t change with the market price. This price does not change based on market conditions.</span>
+                <span :class="priceType ? 'mkt-place-caption1' : 'mkt-place-caption'">Your offer's selling price is locked when you create it, and won't change with the market price. This price does not change based on market conditions.</span>
               </div>
             </div>
 
@@ -139,6 +140,7 @@
     </v-container>
     <Footer class="desktop-footer flex-lg-and-up hidden-md-and-down"/>
     <Mobile-footer class="mobile-footer"/>
+  </div>
   </div>
 </template>
 
