@@ -78,7 +78,7 @@
                         <h3 class="text-center">Send Money</h3>
                         <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Effortlessly transfer funds using our fiat currency service.</span>
                         
-                        <v-btn @click="dialog2 = true" class="mt-10" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0.8px; line-height: 25px; text-transform: unset;">
+                        <v-btn @click="dialog2 = true" class="mt-10 mb-8" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0.8px; line-height: 25px; text-transform: unset;">
                             <div class="d-flex" style="align-items: center;">
                                 <h1 style="color: #2873FF;">@</h1>
                                 <div class="d-flex" style="flex-direction: column;">
@@ -128,6 +128,7 @@
 
                         </v-dialog>
         
+                        <Fiat-withdrawal-acct/>
         
                     </v-card-text>
         

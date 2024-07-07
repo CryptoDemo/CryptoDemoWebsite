@@ -1,340 +1,222 @@
 <template>
-    <div>
-      <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" />
-      <v-container>
-        <div class="container-style">
-          <div>
-            <div class="pa-2 ma-2">
-              <Sd-nav1 />
-            </div>
-          </div>
+  <div>
   
-          <div class="main-content">
-            <div :class="['acct-settings', isDark ? 'profile-cards-dark' : 'profile-cards-light']">
-              <span class="marketplace-title">MarketPlace</span>
-              <v-btn class="primary-btn"></v-btn>
-            </div>
+      <div style="display: flex; justify-content: space-between; width: 100%;">
   
-            <div class="marketplace-buttons">
-              <v-row class="px-2">
-                <v-btn class="me-4 mb-4" :class="PurchaseCrypto ? 'active-btn' : 'inactive-btn'" @click.prevent="PurchaseCrypto = true">Buy Crypto</v-btn>
-                <v-btn :class="[PurchaseCrypto ? 'inactive-btn' : 'active-btn', isDark ? 'profile-cards-dark' : 'profile-cards-light']" @click.prevent="PurchaseCrypto = false">Sell Crypto</v-btn>
-                <div class="token-menu">
-                  <v-menu>
-                    <template v-slot:activator="{ props }">
-                      <v-btn :class="['mx-auto', isDark ? 'active-offers-dark' : 'active-offers-light']" v-bind="props">
-                        <img class="token-icon" :src="tokenIcon" />
-                        <div class="token-info">
-                          <span class="slt">{{ tokenSymbol }}</span>
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" :class="isDark ? 'close-btn' : 'close-btn-light'">
-                          <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z"/>
-                        </svg>
-                      </v-btn>
-                    </template>
+
+              <v-btn @click="dialog1 = true" class="fiat-btn" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0.8px; line-height: 25px; text-transform: unset;">
+                <div class="d-flex" style="align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#2873FF" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                    </svg>
+               
+                    <div class="d-flex" style="flex-direction: column;">
+                        <span class="ml-2" style="font-weight: 600; align-items: flex-start;text-align: justify;">Add a Withdrawal account</span>
+                        <span class="ml-2" style="font-weight: 400;">To receive your payment, please provide the details of your withdrawal account.</span>
+                    </div>
+                </div>
+              </v-btn>
+      
+              
+              <v-dialog v-model="dialog1" transition="dialog-bottom-transition" fullscreen>
+          
+                  <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
   
-                    <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="token-list">
-                      <v-list-item class="token-list-item">
-                        <v-row dense>
-                          <div v-for="tokens in pinia.state.tokenLists" :key="tokens.id" class="token-row">
-                            <v-list-item @click="selectToken(tokens)">
-                              <div class="token-item">
-                                <img :src="tokens.icon" width="30" class="me-2"/>
-                                <span class="currency-list">{{ tokens.name }}</span>
-                              </div>
-                            </v-list-item>
+                      <v-card-text>
+                          <h3 class="text-center">withdrawal account information</h3>
+                          <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Effortlessly Withdraw funds using our fiat currency service.</span>
+                         
+                          <div style="display: flex; flex-direction: column; justify-content: center; margin: auto; align-items: center; margin-top: 30px;">
+                            
+                            <div class="d-flex" style="flex-direction: column; width: 70%;">
+                              <v-menu>
+                                <template v-slot:activator="{ props }">
+                                  <v-btn class="input-styling1 ml-1" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" v-bind="props"  style="box-shadow: none; height: 60px;">
+                                    <div  class="py-3" style="display: flex; cursor: pointer; position: absolute; left: 37px; align-items: center;">
+                                      <span :class="isDark ? 'text-dark':'text-light'" class="me-2" style="font-weight: 700; font-size: 16px;">{{pinia.state.Selectedcurrency_code}}</span>
+                                      <span :class="isDark ? 'text-dark':'text-light'" class="mt-" style="font-weight: 700;">{{pinia.state.preferredCurrency}}</span> 
+                                    </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none" style="position: absolute; right: 30px; bottom: 27px;" :class="isDark ? 'svg-dark':'svg-light'">
+                                      <path d="M5.05508 5.99413C5.19232 5.99415 5.32822 5.96714 5.45502 5.91463C5.58182 5.86213 5.69705 5.78516 5.7941 5.68813L9.69409 1.78814C9.88995 1.59227 10 1.32663 10 1.04964C10 0.772651 9.88995 0.50701 9.69409 0.311147C9.49823 0.115285 9.23259 0.00523901 8.9556 0.00523901C8.67861 0.00523901 8.41296 0.115285 8.2171 0.311147L5.0531 2.71114L1.8891 0.311147C1.69324 0.115285 1.4276 0.00523901 1.1506 0.00523901C0.873613 0.00523901 0.607941 0.115285 0.412079 0.311147C0.216217 0.50701 0.106201 0.772651 0.106201 1.04964C0.106201 1.32663 0.216217 1.59227 0.412079 1.78814L4.3121 5.68813C4.4096 5.78569 4.52546 5.86297 4.65298 5.91549C4.78051 5.96801 4.91716 5.99473 5.05508 5.99413Z"/>
+                                    </svg>
+                                  </v-btn>
+                                </template>
+    
+                                <v-list :class="isDark ? 'country-dropdown1':'country-dropdown1-light'" >
+                                  <v-list-item style="width: 100%;">
+                                    <div v-for="(currency, index) in pinia.state.allcountries" class="d-flex py-1" :key="index">
+                                      <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code">
+                                          <div class="d-flex ml-4">
+                                            <span :class="isDark ? 'country-name' : 'country-name-light'">{{ currency.currency_name }}</span>
+                                          </div>
+                                      </v-list-item>
+                                    </div>
+                                  </v-list-item>
+                                </v-list>
+                              </v-menu>
+
+                                <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
+                                  Please select the currency for withdrawal. Kindly note that withdrawals are only permitted in currencies where you have an existing balance.
+                                </span>
+                        
+                            </div>
+
+                            <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
+                              <input type="number" placeholder="Enter  ammount" v-model="fund_fiat_payload" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                            
+                              <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
+                                  Enter withdrawal ammount.
+                              </span>
+                            </div>
+
+                            <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
+                              <input type="text" placeholder="Enter Bank name" v-model="fund_fiat_payload" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                            
+                              <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
+                                  Enter Bank Name.
+                              </span>
+                            </div>
+
+                            <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
+                              <input type="text" placeholder="Enter account name" v-model="fund_fiat_payload" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                            
+                              <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
+                                  Enter account name.
+                              </span>
+                            </div>
+
+                            <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
+                              <input type="text" placeholder="Enter account number" v-model="fund_fiat_payload" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                            
+                              <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
+                                  Enter account number.
+                              </span>
+                            </div>
+
+
+                            <v-btn class="primary-btn1 mt-8" style="width: 70%; height: 60px;"> Process withdrawal</v-btn>
+                
                           </div>
-                        </v-row>
-                      </v-list-item>
-                    </v-list>
-                  </v-menu>
-                </div>
-              </v-row>
-            </div>
   
-            <div class="divider"></div>
+                         
+          
+                      </v-card-text>
+          
+                      <v-card-actions>
+                          <v-spacer></v-spacer>
+                          <div class="px-4 mb-3">
+                              <v-btn @click="dialog1 = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;">Cancel</v-btn>
+                          </div>
+                      </v-card-actions>
   
-            <div v-for="offer in filteredOffers" :key="offer.id" class="offer-card">
-              <div class="offer-header">
-                <div class="offer-user-info">
-                  <img v-if="offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" class="user-img"/>
-                  <v-icon v-else class="user-icon">mdi-account-circle</v-icon>
-                  <span class="username">{{ offer?.user?.username }}</span>
-                </div>
-                <div class="offer-details">
-                  <span class="offer-unit-range">Unit range values</span>
-                  <span class="offer-price-model">Price model</span>
-                  <div class="offer-token">
-                    <img :src="offer.trading_pair?.crypto?.token?.icon" class="token-icon"/>
-                    <span class="token-name">{{ offer.trading_pair?.crypto?.token?.name }}</span>
-                    <img src="/svg/arrow-up.svg" class="arrow-icon"/>
-                  </div>
-                </div>
-              </div>
+                  </v-card>
+      
+              </v-dialog>
   
-              <div class="offer-footer">
-                <span v-if="offer.user?.is_verified" class="verified">Verified</span>
-                <span v-else class="unverified">Unverified User</span>
-                <span class="offer-limit">{{ offer?.trading_pair?.fiat?.minimum_buy_limit }} - {{ offer?.trading_pair?.fiat?.maximum_buy_limit }} {{ offer?.countryCurrencyName }}</span>
-                <div class="offer-price">
-                  <span class="unit-value">{{ offer?.trading_pair?.fiat?.unit_value }}</span>
-                  <v-btn class="smaller-btn">{{ PurchaseCrypto ? "Buy Now" : "Sell Now" }}</v-btn>
-                </div>
-              </div>
   
-              <div class="divider"></div>
-            </div>
-          </div>
-        </div>
-      </v-container>
-      <Footer />
-    </div>
+  
+              
+              
+                          
+                     
+  
+  
+  
+      </div>
+  </div>
   </template>
   
   <script setup>
-  import { ref, computed, onMounted } from 'vue';
+  import { ref, watchEffect } from 'vue';
   import { useTheme } from 'vuetify';
-  import { getMarketOffers } from '@/composables/requests/marketplace';
+  import { fundFiatWallet, getbals, sendFiat } from "@/composables/requests/fiat";
+  import { getUserInfo } from "@/composables/requests/users";
+  import {debounce} from "@/composables/mixin";
+  
+  const theme = useTheme()
+  const isDark = computed(() =>  theme.global.current.value.dark);
+  const pinia = useStore();
+  const fund_fiat_payload = ref();
+  const isloading = ref(false);
+  const loading_send_fiat = ref(false);
+  const loading_username = ref(false);
+  const fiatUsername = ref('');
+  const fiat_ammount_to_send = ref(0);
+  const dialog = ref(false);
+  const dialog1 = ref(false);
+  const dialog2 = ref(false);
+  const userName = ref('');
 
   
-  const theme = useTheme();
-  const isDark = computed(() => theme.global.current.value.dark);
-  const pinia = useStore();
-  const PurchaseCrypto = ref(true);
-  const pageNumber = ref(1);
-  const loading = ref(false);
-  const tokenIcon = ref('');
-  const tokenSymbol = ref('');
-  const offers = ref([]);
   
-  const get_allMarket_Offers = async () => {
-    loading.value = true;
-    try {
-      const data = await getMarketOffers(pageNumber.value);
-      if (data.success) {
-        offers.value = data.data.result.map(offer => {
-          const countryId = offer.trading_pair?.fiat.country_id;
-          let countryCurrencyName = 'Unknown';
-          if (countryId) {
-            const country = pinia.state.allcountries.find(country => country.id === countryId);
-            countryCurrencyName = country?.currency_name || 'Unknown';
-          }
-          return { ...offer, countryCurrencyName };
-        });
-      } else {
-        console.error(data.message);
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      loading.value = false;
-    }
-  };
-  
-  const selectToken = (token) => {
-    tokenIcon.value = token.icon;
-    tokenSymbol.value = token.symbol;
-  };
-  
-  const filteredOffers = computed(() => {
-  if (!tokenSymbol.value) return offers.value;
-  return offers.value.filter(offer => offer.trading_pair?.crypto?.token?.symbol === tokenSymbol.value);
-});
-  
-  onMounted(async () => {
-    await get_allMarket_Offers();
+  const fiatToken = computed(() => {
+    return pinia.state.allcountries.find(country => country.currency_name === pinia.state.preferredCurrency);
   });
+  
+  const minimumFiatFunding = computed(() => {
+    return fiatToken.value ? fiatToken.value.minimum_fiat_funding : null;
+  });
+  
+  const maximumFiatFunding = computed(() => {
+    return fiatToken.value ? fiatToken.value.maximum_fiat_funding : null;
+  });
+
+  
+
+  
+  // const debounced_get_user_info = debounce(get_user_info);
+  
+  watchEffect(() => {
+      if (fiatUsername.value) {
+        console.log(fiatUsername.value)
+        showSuccessIcon.value = false;
+        showFailureIcon.value = false;
+        debounce(get_user_info);
+      }
+  });
+  
+
+   
+  const isChevronToggled = ref(false);
+  const toggleChevron = () => {
+      isChevronToggled.value = !isChevronToggled.value;
+  };
   </script>
   
   <style scoped>
-  .container-style {
-    margin-top: 105px;
-    margin-bottom: 100px;
-    display: flex;
-    width: 100%;
-  }
-  
-  .main-content {
-    width: 780px;
-    margin-left: 20px;
-  }
-  
-  .acct-settings {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 80px;
-    width: 100%;
-    margin-top: 15px;
-  }
-  
-  .marketplace-title {
-    font-size: 24px;
-    font-style: 400;
-    color: #5892fc;
-    font-family: 'Roboto';
-    text-align: start;
-    margin-left: 8px;
-  }
-  
- 
-  
-  .profile-cards-dark {
-    background-color: #353535;
-  }
-  
-  .profile-cards-light {
-    background-color: white;
-  }
-  
-  .active-btn {
-    background-color: #5892fc;
-    border: 1px solid #5892fc;
-    color: white;
-    width: 300px;
-    height: 50px;
-    border-radius: 12px;
-    text-transform: none;
-  }
-  
-  .inactive-btn {
-    background-color: white;
-    border: 1px solid #5892fc;
-    color: #5892fc;
-    width: 300px;
-    height: 50px;
-    border-radius: 12px;
-    text-transform: none;
-  }
-  
-  .active-offers-dark {
-    border: 1px solid #353535;
-    background-color: #353535;
-    height: 50px;
-    border-radius: 12px;
-    width: 250px;
-    text-transform: none;
-  }
-  
-  .active-offers-light {
-    border: 1px solid #5892fc;
-    background-color: white;
-    height: 50px;
-    border-radius: 12px;
-    width: 250px;
-    text-transform: none;
-  }
-  
-  .token-list {
-    padding: 10px;
-    max-height: 300px;
-    overflow-y: auto;
-  }
-  
-  .token-list-item {
-    padding: 0;
-  }
-  
-  .token-row {
-    width: 100%;
-    display: flex;
-  }
-  
-  .token-item {
-    display: flex;
-    align-items: center;
-  }
-  
-  .user-img {
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-  }
-  
-  .user-icon {
-    font-size: 35px;
-    color: gray;
-  }
-  
-  .username {
-    color: white;
-    font-size: 14px;
-    margin-left: 10px;
-  }
-  
-  .offer-card {
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    border-radius: 12px;
-    margin-bottom: 40px;
-  }
-  
-  .offer-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-  }
-  
-  .offer-user-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  .offer-details {
-    display: flex;
-    align-items: center;
-  }
-  
-  .offer-token {
-    display: flex;
-    align-items: center;
-  }
-  
-  .token-icon {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .arrow-icon {
-    width: 11px;
-    height: 6px;
-  }
-  
-  .offer-footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-  }
-  
-  .verified {
-    color: green;
-  }
-  
-  .unverified {
-    color: red;
-  }
-  
-  .offer-limit {
-    color: gray;
-  }
-  
-  .offer-price {
-    display: flex;
-    align-items: center;
-  }
-  
-  .unit-value {
-    margin-right: 10px;
-  }
-  
 
   
-  .divider {
-    height: 1px;
-    width: 100%;
-    background: #ebebeb;
-    margin: 20px 0;
+  .btn-segment{
+  border: 1px solid #1B2537;
   }
   
-  </style>
+  .btn-segment-light{
+  border: 1px solid #E2E8F0;
+  }
+  .txn-cards-dark {
+    background: #162138;
+    padding: 10px;
+    border-radius: 15px;
+  }
+  .txn-cards-light {
+    background: #edf3ff;
+    padding: 10px;
+    border-radius: 15px;
+  }
   
+  .chevron-icon {
+  transition: transform 0.3s;
+  }
+  
+  .chevron-icon-rotated {
+  transform: rotate(180deg);
+  }
+  
+  .close-btn{
+  fill: white;
+  }
+  .close-btn-dark{
+  fill: #10192D;
+  }
+  </style>
