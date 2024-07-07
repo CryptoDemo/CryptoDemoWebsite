@@ -63,15 +63,20 @@
                             </div>
 
                             <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
-                              <input type="number" placeholder="Enter  ammount" v-model="fund_fiat_payload" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                              <input type="number" placeholder="Enter  ammount" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
                             
                               <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
-                                  Enter withdrawal ammount.
+                                  Enter withdrawal ammount. The minimum withdrawal is 
+                                  <span style="color: #2873FF;">{{ pinia.state.Selectedcurrency_code }}{{ minimumWithdrawalAmmount }}</span> with a withdrwal percentage fee of
+                                  <span style="color: #2873FF;">{{ pinia.state.Selectedcurrency_code }}{{ Withdrawalfee }}</span> 
                               </span>
                             </div>
 
+                            <template v-if="!isStripeGateway">
+
+
                             <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
-                              <input type="text" placeholder="Enter Bank name" v-model="fund_fiat_payload" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                              <input type="text" placeholder="Enter Bank name" v-model="Bankname" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
                             
                               <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
                                   Enter Bank Name.
@@ -79,7 +84,7 @@
                             </div>
 
                             <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
-                              <input type="text" placeholder="Enter account name" v-model="fund_fiat_payload" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                              <input type="text" placeholder="Enter account name" v-model="acctName" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
                             
                               <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
                                   Enter account name.
@@ -87,15 +92,19 @@
                             </div>
 
                             <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
-                              <input type="text" placeholder="Enter account number" v-model="fund_fiat_payload" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                              <input type="text" placeholder="Enter account number" v-model="acctNumber" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
                             
                               <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
                                   Enter account number.
                               </span>
                             </div>
 
+                            </template>
 
-                            <v-btn class="primary-btn1 mt-8" style="width: 70%; height: 60px;"> Process withdrawal</v-btn>
+                          
+                            <v-btn @click="Withdrawal_ ()" class="primary-btn1 mt-8" v-if="!isStripeGateway" :loading="loading_withdrawal" style="width: 70%; height: 60px;"> Process withdrawal</v-btn>
+
+                            <v-btn class="primary-btn1 mt-8" v-else style="width: 70%; height: 60px;">Proceed with Stripe</v-btn>
                 
                           </div>
   
@@ -130,53 +139,84 @@
   <script setup>
   import { ref, watchEffect } from 'vue';
   import { useTheme } from 'vuetify';
-  import { fundFiatWallet, getbals, sendFiat } from "@/composables/requests/fiat";
-  import { getUserInfo } from "@/composables/requests/users";
-  import {debounce} from "@/composables/mixin";
+  import { WithdrawFund } from "@/composables/requests/fiat";
+
+import { push } from 'notivue';
+
   
   const theme = useTheme()
   const isDark = computed(() =>  theme.global.current.value.dark);
   const pinia = useStore();
-  const fund_fiat_payload = ref();
-  const isloading = ref(false);
-  const loading_send_fiat = ref(false);
-  const loading_username = ref(false);
+
   const fiatUsername = ref('');
   const fiat_ammount_to_send = ref(0);
   const dialog = ref(false);
   const dialog1 = ref(false);
   const dialog2 = ref(false);
-  const userName = ref('');
-
+  const Bankname = ref('');
+  const acctName = ref('');
+  const acctNumber = ref();
+  const loading_withdrawal = ref(false);
   
   
-  const fiatToken = computed(() => {
+  const withdrawal = computed(() => {
     return pinia.state.allcountries.find(country => country.currency_name === pinia.state.preferredCurrency);
   });
+
   
-  const minimumFiatFunding = computed(() => {
-    return fiatToken.value ? fiatToken.value.minimum_fiat_funding : null;
+  const minimumWithdrawalAmmount = computed(() => {
+    return withdrawal.value ? withdrawal.value.minimum_withdrawal : null;
   });
-  
-  const maximumFiatFunding = computed(() => {
-    return fiatToken.value ? fiatToken.value.maximum_fiat_funding : null;
+
+
+  const Withdrawalfee = computed(() => {
+    return withdrawal.value ? withdrawal.value.withdrawal_percentage_fee : null;
+  });
+
+
+  const paymentGateway = computed(() => {
+    return withdrawal.value ? withdrawal.value.supported_payment_gateways : null;
   });
 
   
+  const isStripeGateway = computed(() => {
+  return paymentGateway.value && paymentGateway.value.includes('stripe');
+});
 
-  
-  // const debounced_get_user_info = debounce(get_user_info);
-  
-  watchEffect(() => {
-      if (fiatUsername.value) {
-        console.log(fiatUsername.value)
-        showSuccessIcon.value = false;
-        showFailureIcon.value = false;
-        debounce(get_user_info);
-      }
-  });
-  
+const Countryid = computed(() => {
+  return pinia.state.allcountries.find(country => country.currency_name === pinia.state.preferredCurrency);
+});
 
+
+const Withdrawal_ = async () => {
+
+    const payload = {
+    country_id: Countryid.value.id,
+    withdrawal_info: {
+        bank_name: Bankname.value,
+        account_name: acctName.value,
+        account_number: acctNumber.value
+    }
+}
+    loading_withdrawal.value = true;
+
+  try {
+    const data = await WithdrawFund(payload);
+    loading_withdrawal.value = false;
+
+    if (data.success) {
+        const user_data = data.data
+        console.log(data.data)
+ 
+    } else {
+     push.error(`${data.message}`)
+    }
+  } catch (e) {
+    loading_withdrawal.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
    
   const isChevronToggled = ref(false);
   const toggleChevron = () => {
