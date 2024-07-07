@@ -13,8 +13,8 @@
 </template>
 <script setup>
 import { useStore } from '@/stores/index'
-import { Notification ,push,  pastelTheme} from 'notivue';
-import { getSummedBalance,  currencyConverter, getTokenBalance } from "@/composables/requests/tokens";
+import { Notification, pastelTheme } from 'notivue';
+import { getSummedBalance, getTokenBalance } from "@/composables/requests/tokens";
 
 const pinia = useStore()
 

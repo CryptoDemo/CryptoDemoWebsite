@@ -78,7 +78,7 @@
                             <v-row dense >
                                 <v-col v-for="(currency, index) in pinia.state.allcountries" class="" sm="12" :key="index" >
                               
-                                  <v-list-item-title  @click="pinia.state.preferredCurrency=currency.currency_name; currencyCode = currency.currency_code"> 
+                                  <v-list-item-title  @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code"> 
                                     <div style="display: flex; justify-content: flex-start;">
                                       <span class="currency-list my-2">{{ currency.currency_name }}</span>
 
@@ -156,8 +156,6 @@ const pinia = useStore();
 const priceType = ref(true);
 
 const loading = ref();
-
-const currencyCode = ref();
 
 
 const tokenName = ref();

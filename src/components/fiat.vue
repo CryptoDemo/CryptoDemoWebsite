@@ -5,7 +5,7 @@
 
     
             <v-btn @click="dialog = true" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-                <img src="/svg/get.svg" class="me-1"/>
+                <img src="/svg/send-arrow.svg" class="me-1"/>
                 Fund
             </v-btn>
     
@@ -32,7 +32,7 @@
                             <v-list-item style="display: contents; left: 532px;">
                             <v-row dense style="max-width: 250px; height: 300px; overflow: scroll;">
                                 <v-col v-for="(currency, index) in pinia.state.allcountries" :key="index" sm="12">
-                                <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; currencyCode = currency.currency_code" style="display: flex;">
+                                <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code" style="display: flex;">
                                 
                                 <span class="currency-list my-2">{{ currency.currency_name }}</span>
                              
@@ -43,7 +43,7 @@
                         </v-list>
                     </v-menu> 
                     <v-alert class="text-subtitle-2" type="info" variant="tonal" style="border-radius: 15px; margin-top: 20px;">
-                        The minimum funding amount for {{ pinia.state.preferredCurrency }} is {{ currencyCode }}{{ formatBalance(fiatToken.minimum_fiat_funding) }}, and the maximum funding amount is {{ currencyCode }}{{ formatBalance(fiatToken.maximum_fiat_funding) }}.
+                        The minimum funding amount for {{ pinia.state.preferredCurrency }} is {{ pinia.state.Selectedcurrency_code }}{{ formatBalance(fiatToken.minimum_fiat_funding) }}, and the maximum funding amount is {{ pinia.state.Selectedcurrency_code }}{{ formatBalance(fiatToken.maximum_fiat_funding) }}.
                     </v-alert>
     
     
@@ -65,8 +65,8 @@
 
 
             <v-btn @click="dialog1 = true" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-                <img src="/svg/send-arrow.svg" class="me-1"/>
-                Get
+                <img src="/svg/get.svg" class="me-1"/>
+                Send
             </v-btn>
     
             
@@ -78,7 +78,7 @@
                         <h3 class="text-center">Send Money</h3>
                         <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Effortlessly transfer funds using our fiat currency service.</span>
                         
-                        <v-btn @click="dialog2 = true" class="mt-10" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0.8px; line-height: 20px;">
+                        <v-btn @click="dialog2 = true" class="mt-10" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0.8px; line-height: 25px; text-transform: unset;">
                             <div class="d-flex" style="align-items: center;">
                                 <h1 style="color: #2873FF;">@</h1>
                                 <div class="d-flex" style="flex-direction: column;">
@@ -95,13 +95,16 @@
                                 <v-card-text>
                                     <h3 class="text-center">Send money using Tag</h3>
                                     <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Transfer funds instantly using the user's username.</span>
-                                    <div>
+                                    <div class="position-relative">
                                         <input type="text" placeholder="@Enter Username tag" v-model="fiatUsername" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
-                                        <v-progress-circular v-if="loading_username" indeterminate color="primary"></v-progress-circular>
-                                        <v-icon v-if="showSuccessIcon" color="green-darken-2" icon="mdi-check-circle"></v-icon>
-                                        <v-icon v-else color="red-darken-2" icon="mdi-close-octagon"></v-icon>
+                                        <v-progress-circular v-if="loading_username" indeterminate color="primary" style="position: absolute; right: 10px; margin-top: 23px;"></v-progress-circular>
+                                        <v-icon v-if="showSuccessIcon" size="35" color="green-darken-1" icon="mdi-check-circle" style="position: absolute; right: 10px; margin-top: 23px;"></v-icon>
+                                        <v-icon v-if="showFailureIcon" size="35" color="red-darken-1" icon="mdi-close-octagon" style="position: absolute; right: 10px; margin-top: 23px;"></v-icon>
 
-                                        <span class="text-subtitle-2" :class="isDark ? 'text-dark':'text-light'">Enter the valid username of the receiver</span>
+                                        <span class="text-subtitle-2" :class="isDark ? 'text-dark':'text-light'" v-if="showSuccessIcon">Please confirm that the full name of this user is 
+                                            <span style="color: #2873FF; font-weight: 600;">{{ userName }}</span>
+                                        </span>
+                                        <span class="text-subtitle-2" :class="isDark ? 'text-dark':'text-light'" v-else>Enter the valid username of the receiver</span>
                                     </div>
 
                                     <div class="mt-4">
@@ -131,7 +134,6 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <div class="px-4 mb-3">
-                            <v-btn :loading="isloading" @click=fund_fiat_w() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;">Proceed</v-btn>
                             <v-btn @click="dialog1 = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;">Cancel</v-btn>
                         </div>
                     </v-card-actions>
@@ -167,7 +169,6 @@ import {debounce} from "@/composables/mixin";
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
-const currencyCode = ref();
 const fund_fiat_payload = ref();
 const isloading = ref(false);
 const loading_send_fiat = ref(false);
@@ -177,11 +178,12 @@ const fiat_ammount_to_send = ref(0);
 const dialog = ref(false);
 const dialog1 = ref(false);
 const dialog2 = ref(false);
+const userName = ref('');
 const showSuccessIcon = ref(false);
 const showFailureIcon = ref(false);
 
 const nuxtApp = useNuxtApp();
-// const totalFiatBal = computed(()=>pinia.state.Total_fiat_bal);
+
 
 const fiatToken = computed(() => {
   return pinia.state.allcountries.find(country => country.currency_name === pinia.state.preferredCurrency);
@@ -208,7 +210,7 @@ const fund_fiat_w = async()=>{
             config.icon = `${isDark.value?'https://crypto-demo-website-iobf.vercel.app/svg/Logo.svg':'https://crypto-demo-website-iobf.vercel.app/svg/Logo.svg'}`;
             
             const lamba = nuxtApp.$lamba(config);
-            const getbalsCount = 0;
+            let getbalsCount = 0;
 
             dialog.value = false;
             lamba.on('paymentVerified',()=>{
@@ -235,22 +237,27 @@ const fund_fiat_w = async()=>{
 
 const get_user_info = async () => {
     if (!fiatUsername.value) {
-    // If the username is empty, do not proceed
-    return;
-  }
-loading_username.value = true;
+        return;
+    }
+    loading_username.value = true;
 
   try {
     const data = await getUserInfo(fiatUsername.value);
     loading_username.value = false;
 
     if (data.success) {
-        showSuccessIcon.value = true;
-      
+        const user_data = data.data
+        userName.value = user_data.name;
+        console.log(user_data)
+      showSuccessIcon.value = true;
+      showFailureIcon.value = false;
     } else {
-        showFailureIcon.value = true;
+      showSuccessIcon.value = false;
+      showFailureIcon.value = true;
     }
   } catch (e) {
+    showSuccessIcon.value = false;
+    showFailureIcon.value = true;
     loading_username.value = false;
     console.log(e);
     push.error(`${e}`);
@@ -262,33 +269,40 @@ loading_username.value = true;
 watchEffect(() => {
     if (fiatUsername.value) {
       console.log(fiatUsername.value)
-        debounce(get_user_info);
+      showSuccessIcon.value = false;
+      showFailureIcon.value = false;
+      debounce(get_user_info);
     }
 });
 
 const send_Fiat = async () => {
-    loading_send_fiat.value = true;
-  const payload = {
-    recipient_username: fiatUsername.value,
-    country_id: fiatToken.value.id,
-    amount: fiat_ammount_to_send.value,
-  };
 
-  try {
-    const data = await sendFiat(payload);
-    loading_send_fiat.value = false;
-
-    if (data.success) {
-      
-      pinia.setFiat_transactions(data.data);
-   
-    } else {
-      push.error(data.message, { duration: 2000 });
-    }
-  } catch (e) {
-    console.log(e);
-    push.error(`${e}`);
+    if (!fiatUsername.value || !fiat_ammount_to_send.value) {
+    push.error("Username or amount is empty, cannot send fiat.");
+    console.warn("Username or amount is empty, cannot send fiat.");
+    return;
   }
+    loading_send_fiat.value = true;
+    const payload = {
+        recipient_username: fiatUsername.value,
+        country_id: fiatToken.value.id,
+        amount: fiat_ammount_to_send.value,
+    };
+
+    try {
+        const data = await sendFiat(payload);
+        loading_send_fiat.value = false;
+
+        if (data.success) {
+            pinia.setFiat_transactions(data.data);
+            dialog2.value = false;
+        } else {
+            push.error(data.message, { duration: 2000 });
+        }
+    } catch (e) {
+        console.log(e);
+        push.error(`${e}`);
+    }
 };
 
 

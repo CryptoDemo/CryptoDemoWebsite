@@ -4,8 +4,11 @@
        <v-container>
             <div style="margin-top: 110px; display: flex; width: 100% !important;">
                <div>
-                  <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down">
+                  <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-if="selectedScreen">
                     <Wallet-nav/>
+                   </div>
+                  <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-else>
+                    <FiatBal/>
                    </div>
                </div>
   
