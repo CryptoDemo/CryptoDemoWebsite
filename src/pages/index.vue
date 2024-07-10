@@ -1,4 +1,5 @@
 <template>
+  <div>
   
   <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
   <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
@@ -51,10 +52,6 @@
                   <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619519/bitcoin-star_h5jhpu.svg" class="yellow-coin position-absolute"/>
                   <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute"/>
 
-                <!-- <div class="mb-3" style="display: flex; justify-content: center">
-                  <span class="transact text-center" :class="isDark ? 'header-text1-dark':'header-text1-light'" style="font-size: 26px">Transact Swiftly on Demo</span>
-                </div> -->
-
                 <div class="btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'">
                   <v-btn  :class="`${transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction=true" > Buy </v-btn>
                   <v-btn :class="`${!transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction=false" >Sell</v-btn>
@@ -87,7 +84,7 @@
                         </div>
                       <div style="height: 250px; overflow: scroll">
                         <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-2">
-                          <v-list-item @click="select=item.name; pinia.state.selectedLandingCoin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
+                          <v-list-item @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
                           <div class="ml-7" style="display: flex">
                             <img width="25" class="rounded-5 me-3" :src="item.icon"/>    
                             <div>                  
@@ -328,7 +325,8 @@
           <Mobile-footer class="mobile-footer"/>
         </div>
 
-  </div>   
+  </div> 
+</div>  
 </template>
 
 <script setup>
@@ -337,14 +335,14 @@ import { useTheme } from 'vuetify';
 import {getTokens, currencyConverter} from "@/composables/requests/tokens";
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-const Paymentmethod1= ref('Select Payment method');
+
 const transaction = ref(true);
 const transaction1 = ref(true);
 const pinia = useStore()
 const pageNumber = ref(1)
 const conversionResult = ref([]);
-const select =ref("Bitcoin");
-const coin = ref ("BTC");
+const select =ref("");
+const coin = ref ("");
 const piniastoredicon = ref(null);
 const ammount_of_coin = ref();
 const Selectedcurrency =ref("USD");
@@ -412,12 +410,6 @@ const collectVals = () => {
 
 
 
-
-
-
-
-
-
 const convertCurrencies = async () => {
 
 
@@ -467,7 +459,9 @@ const toggleChevron = () => {
 
 onMounted(async () => {
   await convertCurrencies();
-  piniastoredicon.value = pinia.state?.tokenLists[7]?.icon
+  piniastoredicon.value = pinia.state?.tokenLists[1]?.icon
+  select.value = pinia.state?.tokenLists[1]?.name
+  coin.value = pinia.state?.tokenLists[1]?.symbol
   });
 
 

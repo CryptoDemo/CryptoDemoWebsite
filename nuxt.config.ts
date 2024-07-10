@@ -3,17 +3,20 @@ import vuetify from 'vite-plugin-vuetify';
 
 export default defineNuxtConfig ({
   ssr: false,
-  devtools: { enabled: false }, 
+  devtools: { enabled: false },
   srcDir: "src",
+
   build: {
     transpile: ['vuetify'],
   },
+
   css: [
       "@/assets/css/index.css",
       'notivue/notifications.css', // Only needed if using built-in notifications
       'notivue/animations.css',
      
   ],
+
   modules: [
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
@@ -37,9 +40,5 @@ export default defineNuxtConfig ({
   ],
 
   vite: {ssr:{noExternal:['vuetify']} },
-
+  compatibilityDate: '2024-07-08',
 })
-
-
-
-

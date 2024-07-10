@@ -53,4 +53,18 @@ export const getbals = async()=>{
     if(data?.success && data?.data?.length){
         pinia.setTotal_fiat_bal(data.data);
     }
+};
+
+export const setupStripe = async()=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}fiat/connect-stripe-account`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': `${pinia.state.user?.token}`
+        }
+    }).then(res => res.json());
+    return data
+
 }

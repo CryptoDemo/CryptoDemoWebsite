@@ -7,13 +7,12 @@
           :icons="outlinedIcons"
           :theme="pastelTheme"
         />
-  </Notivue>
+      </Notivue>
   </NuxtLayout>
   </v-app>
 </template>
 <script setup>
 import { useStore } from '@/stores/index'
-import { Notification, pastelTheme } from 'notivue';
 import { getSummedBalance, getTokenBalance } from "@/composables/requests/tokens";
 
 const pinia = useStore()

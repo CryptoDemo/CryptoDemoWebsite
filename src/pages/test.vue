@@ -141,18 +141,13 @@
   import { useTheme } from 'vuetify';
   import { WithdrawFund } from "@/composables/requests/fiat";
 
-import { push } from 'notivue';
 
   
   const theme = useTheme()
   const isDark = computed(() =>  theme.global.current.value.dark);
   const pinia = useStore();
 
-  const fiatUsername = ref('');
-  const fiat_ammount_to_send = ref(0);
-  const dialog = ref(false);
   const dialog1 = ref(false);
-  const dialog2 = ref(false);
   const Bankname = ref('');
   const acctName = ref('');
   const acctNumber = ref();

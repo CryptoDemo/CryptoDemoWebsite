@@ -92,27 +92,88 @@
             
                             <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
 
-                                <v-card-text>
-                                    <h3 class="text-center">Send money using Tag</h3>
-                                    <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Transfer funds instantly using the user's username.</span>
-                                    <div class="position-relative">
-                                        <input type="text" placeholder="@Enter Username tag" v-model="fiatUsername" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
-                                        <v-progress-circular v-if="loading_username" indeterminate color="primary" style="position: absolute; right: 10px; margin-top: 23px;"></v-progress-circular>
-                                        <v-icon v-if="showSuccessIcon" size="35" color="green-darken-1" icon="mdi-check-circle" style="position: absolute; right: 10px; margin-top: 23px;"></v-icon>
-                                        <v-icon v-if="showFailureIcon" size="35" color="red-darken-1" icon="mdi-close-octagon" style="position: absolute; right: 10px; margin-top: 23px;"></v-icon>
+                                <v-card-text v-if="!showPinInput">
+      <h3 class="text-center">Send money using Tag</h3>
+      <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">
+        Transfer funds instantly using the user's username.
+      </span>
+      <div class="position-relative">
+        <input 
+          type="text" 
+          placeholder="@Enter Username tag" 
+          v-model="fiatUsername" 
+          :class="isDark ? 'btn-segment' : 'btn-segment-light'" 
+          style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"
+        />
+        <v-progress-circular 
+          v-if="loading_username" 
+          indeterminate 
+          color="primary" 
+          style="position: absolute; right: 10px; margin-top: 23px;"
+        ></v-progress-circular>
+        <v-icon 
+          v-if="showSuccessIcon" 
+          size="35" 
+          color="green-darken-1" 
+          icon="mdi-check-circle" 
+          style="position: absolute; right: 10px; margin-top: 23px;"
+        ></v-icon>
+        <v-icon 
+          v-if="showFailureIcon" 
+          size="35" 
+          color="red-darken-1" 
+          icon="mdi-close-octagon" 
+          style="position: absolute; right: 10px; margin-top: 23px;"
+        ></v-icon>
 
-                                        <span class="text-subtitle-2" :class="isDark ? 'text-dark':'text-light'" v-if="showSuccessIcon">Please confirm that the full name of this user is 
-                                            <span style="color: #2873FF; font-weight: 600;">{{ userName }}</span>
-                                        </span>
-                                        <span class="text-subtitle-2" :class="isDark ? 'text-dark':'text-light'" v-else>Enter the valid username of the receiver</span>
-                                    </div>
+        <span 
+          class="text-subtitle-2" 
+          :class="isDark ? 'text-dark' : 'text-light'" 
+          v-if="showSuccessIcon"
+        >
+          Please confirm that the full name of this user is 
+          <span style="color: #2873FF; font-weight: 600;">{{ userName }}</span>
+        </span>
+        <span 
+          class="text-subtitle-2" 
+          :class="isDark ? 'text-dark' : 'text-light'" 
+          v-else
+        >
+          Enter the valid username of the receiver
+        </span>
+      </div>
 
-                                    <div class="mt-4">
-                                        <input type="number" placeholder="Enter ammount" v-model="fiat_ammount_to_send" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative; margin-top: 10px;"/>
-                                        <span class="text-subtitle-2" :class="isDark ? 'text-dark':'text-light'">The minimum ammount is
-                                            <span style="color: #2873FF; font-weight: 600;">{{ pinia.state.preferredCurrency }}{{ formatBalance(fiatToken.minimum_fiat_funding) }}</span>
-                                        </span>
-                                    </div>
+      <div class="mt-4">
+        <input 
+          type="number" 
+          placeholder="Enter amount" 
+          v-model="fiat_ammount_to_send" 
+          :class="isDark ? 'btn-segment' : 'btn-segment-light'" 
+          style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative; margin-top: 10px;"
+        />
+        <span 
+          class="text-subtitle-2" 
+          :class="isDark ? 'text-dark' : 'text-light'"
+        >
+          The minimum amount is 
+          <span style="color: #2873FF; font-weight: 600;">
+            {{ pinia.state.preferredCurrency }}{{ formatBalance(fiatToken.minimum_fiat_funding) }}
+          </span>
+        </span>
+      </div>
+    
+                                 </v-card-text>
+
+                                <v-card-text v-else>
+                                <!-- OTP Input Section -->
+                                <v-text-field
+                                    v-model="otp"
+                                    label="Enter 4-digit OTP"
+                                    maxlength="4"
+                                    type="number"
+                                    :class="isDark ? 'btn-segment' : 'btn-segment-light'"
+                                />
+                                <v-btn @click="setPin">Set PIN</v-btn>
                                 </v-card-text>
 
                                 <v-card-actions>
@@ -182,6 +243,7 @@ const dialog2 = ref(false);
 const userName = ref('');
 const showSuccessIcon = ref(false);
 const showFailureIcon = ref(false);
+const showPinInput = ref(false);
 
 const nuxtApp = useNuxtApp();
 
@@ -276,6 +338,34 @@ watchEffect(() => {
     }
 });
 
+
+const pinNotSet = computed(() => pinia.state.user.is_pin_set === null || pinia.state.user.is_pin_set === false);
+
+const onSendFiat = () => {
+      if (pinNotSet.value) {
+        showPinInput.value = true;
+      } else {
+        send_Fiat();
+      }
+    };
+
+    const setPin = async () => {
+      if (otp.value.length === 4) {
+        try {
+          // Replace this with your API call to set the PIN
+          await pinia.state.user.setPin(otp.value);
+          // Update the is_pin_set state
+          pinia.state.user.is_pin_set = true;
+          otp.value = '';
+        } catch (e) {
+          console.error('Error setting PIN:', e);
+          push.error(`Failed to set PIN: ${e}`);
+        }
+      } else {
+        push.error('OTP must be 4 digits');
+      }
+    };
+
 const send_Fiat = async () => {
 
     if (!fiatUsername.value || !fiat_ammount_to_send.value) {
@@ -295,7 +385,7 @@ const send_Fiat = async () => {
         loading_send_fiat.value = false;
 
         if (data.success) {
-            pinia.setFiat_transactions(data.data);
+            pinia.setFiat_transactions({...pinia.state.Fiat_transactions, ...data.data});
             dialog2.value = false;
         } else {
             push.error(data.message, { duration: 2000 });

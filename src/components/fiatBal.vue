@@ -59,31 +59,33 @@
   const theme = useTheme()
   const isDark = computed(() =>  theme.global.current.value.dark);
   const pinia = useStore()
-  const totalFiatBal = computed(()=>pinia.state.Total_fiat_bal);
-  console.log(totalFiatBal.value)
+
   const allCountries = pinia.state.allcountries;
   const fiatAmmount = ref();
-
-const currency = allCountries.find(country => country.currency_name === pinia.state.preferredCurrency);
-console.log(currency.id)
-
-fiatAmmount.value = totalFiatBal.value.find(f => f.country_id === currency.id);
-
-
-
-watch(() => pinia.state.preferredCurrency, (newCurrency) => {
-    const currency = allCountries.find(country => country.currency_name === newCurrency);
-    const fiat = currency ? totalFiatBal.value.find(f => f.country_id === currency.id) : null;
-    fiatAmmount.value = fiat ? fiat.balance : 0;
-    console.log(fiatAmmount.value);
-}, { immediate: true }); // `immediate` ensures it runs on initial load as well
-
-
   
-const isChevronToggled = ref(false);
-const toggleChevron = () => {
-isChevronToggled.value = !isChevronToggled.value;
-};
+
+  const totalFiatBal = computed(() => Object.values(pinia.state.Total_fiat_bal));
+  console.log(totalFiatBal.value);
+
+  const currency = allCountries.find(country => country.currency_name === pinia.state.preferredCurrency);
+  console.log(currency.id)
+
+  fiatAmmount.value = totalFiatBal.value.find(f => f.country_id === currency.id);
+  console.log (fiatAmmount.value)
+
+  watch(() => pinia.state.preferredCurrency, (newCurrency) => {
+      const currency = allCountries.find(country => country.currency_name === newCurrency);
+      const fiat = currency ? totalFiatBal.value.find(f => f.country_id === currency.id) : null;
+      fiatAmmount.value = fiat ? fiat.balance : 0;
+      console.log(fiatAmmount.value);
+  }, { immediate: true }); // `immediate` ensures it runs on initial load as well
+
+
+    
+  const isChevronToggled = ref(false);
+  const toggleChevron = () => {
+  isChevronToggled.value = !isChevronToggled.value;
+  };
 
   
   onMounted(async () => {
