@@ -92,95 +92,95 @@
             
                             <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
 
-                                <v-card-text v-if="!showPinInput">
-      <h3 class="text-center">Send money using Tag</h3>
-      <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">
-        Transfer funds instantly using the user's username.
-      </span>
-      <div class="position-relative">
-        <input 
-          type="text" 
-          placeholder="@Enter Username tag" 
-          v-model="fiatUsername" 
-          :class="isDark ? 'btn-segment' : 'btn-segment-light'" 
-          style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"
-        />
-        <v-progress-circular 
-          v-if="loading_username" 
-          indeterminate 
-          color="primary" 
-          style="position: absolute; right: 10px; margin-top: 23px;"
-        ></v-progress-circular>
-        <v-icon 
-          v-if="showSuccessIcon" 
-          size="35" 
-          color="green-darken-1" 
-          icon="mdi-check-circle" 
-          style="position: absolute; right: 10px; margin-top: 23px;"
-        ></v-icon>
-        <v-icon 
-          v-if="showFailureIcon" 
-          size="35" 
-          color="red-darken-1" 
-          icon="mdi-close-octagon" 
-          style="position: absolute; right: 10px; margin-top: 23px;"
-        ></v-icon>
+                                <v-card-text v-if="!showPinInput || showBackButton">
+                                    <h3 class="text-center">Send money using Tag</h3>
+                                    <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">
+                                        Transfer funds instantly using the user's username.
+                                    </span>
+                                    <div class="position-relative">
+                                        <input 
+                                        type="text" 
+                                        placeholder="@Enter Username tag" 
+                                        v-model="fiatUsername" 
+                                        :class="isDark ? 'btn-segment' : 'btn-segment-light'" 
+                                        style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"
+                                        />
+                                        <v-progress-circular 
+                                        v-if="loading_username" 
+                                        indeterminate 
+                                        color="primary" 
+                                        style="position: absolute; right: 10px; margin-top: 23px;"
+                                        ></v-progress-circular>
+                                        <v-icon 
+                                        v-if="showSuccessIcon" 
+                                        size="35" 
+                                        color="green-darken-1" 
+                                        icon="mdi-check-circle" 
+                                        style="position: absolute; right: 10px; margin-top: 23px;"
+                                        ></v-icon>
+                                        <v-icon 
+                                        v-if="showFailureIcon" 
+                                        size="35" 
+                                        color="red-darken-1" 
+                                        icon="mdi-close-octagon" 
+                                        style="position: absolute; right: 10px; margin-top: 23px;"
+                                        ></v-icon>
 
-        <span 
-          class="text-subtitle-2" 
-          :class="isDark ? 'text-dark' : 'text-light'" 
-          v-if="showSuccessIcon"
-        >
-          Please confirm that the full name of this user is 
-          <span style="color: #2873FF; font-weight: 600;">{{ userName }}</span>
-        </span>
-        <span 
-          class="text-subtitle-2" 
-          :class="isDark ? 'text-dark' : 'text-light'" 
-          v-else
-        >
-          Enter the valid username of the receiver
-        </span>
-      </div>
+                                        <span 
+                                        class="text-subtitle-2" 
+                                        :class="isDark ? 'text-dark' : 'text-light'" 
+                                        v-if="showSuccessIcon"
+                                        >
+                                        Please confirm that the full name of this user is 
+                                        <span style="color: #2873FF; font-weight: 600;">{{ userName }}</span>
+                                        </span>
+                                        <span 
+                                        class="text-subtitle-2" 
+                                        :class="isDark ? 'text-dark' : 'text-light'" 
+                                        v-else
+                                        >
+                                        Enter the valid username of the receiver
+                                        </span>
+                                    </div>
 
-      <div class="mt-4">
-        <input 
-          type="number" 
-          placeholder="Enter amount" 
-          v-model="fiat_ammount_to_send" 
-          :class="isDark ? 'btn-segment' : 'btn-segment-light'" 
-          style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative; margin-top: 10px;"
-        />
-        <span 
-          class="text-subtitle-2" 
-          :class="isDark ? 'text-dark' : 'text-light'"
-        >
-          The minimum amount is 
-          <span style="color: #2873FF; font-weight: 600;">
-            {{ pinia.state.preferredCurrency }}{{ formatBalance(fiatToken.minimum_fiat_funding) }}
-          </span>
-        </span>
-      </div>
+                                    <div class="mt-4">
+                                        <input 
+                                        type="number" 
+                                        placeholder="Enter amount" 
+                                        v-model="fiat_ammount_to_send" 
+                                        :class="isDark ? 'btn-segment' : 'btn-segment-light'" 
+                                        style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative; margin-top: 10px;"
+                                        />
+                                        <span 
+                                        class="text-subtitle-2" 
+                                        :class="isDark ? 'text-dark' : 'text-light'"
+                                        >
+                                        The minimum amount is 
+                                        <span style="color: #2873FF; font-weight: 600;">
+                                            {{ pinia.state.preferredCurrency }}{{ formatBalance(fiatToken.minimum_fiat_funding) }}
+                                        </span>
+                                        </span>
+                                    </div>
     
                                  </v-card-text>
 
-                                <v-card-text v-else>
+                                <v-card-text class="pin-form d-flex"  style="flex-direction: column;" v-else>
                                 <!-- OTP Input Section -->
-                                <v-text-field
-                                    v-model="otp"
-                                    label="Enter 4-digit OTP"
-                                    maxlength="4"
-                                    type="number"
-                                    :class="isDark ? 'btn-segment' : 'btn-segment-light'"
-                                />
-                                <v-btn @click="setPin">Set PIN</v-btn>
+                                <span class="text-center text-h6 text-md-h5 text-lg-h4">Set Your Transfer PIN</span>
+                                <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center;" :class="isDark ? 'text-dark':'text-light'" >For your security, please set a 4-digit PIN to authorize transfers.</h5>
+                                <v-otp-input length="4"  v-model="otp"  variant="plain" divider="•" style="margin: auto; margin-top: 10px;"></v-otp-input>
+
+                               
                                 </v-card-text>
 
                                 <v-card-actions>
                                     <v-spacer></v-spacer>
                                     <div class="px-4 mb-3">
-                                        <v-btn :loading="loading_send_fiat" @click=send_Fiat() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;">Proceed</v-btn>
-                                        <v-btn @click="dialog2 = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;">Cancel</v-btn>
+                                        <v-btn @click="continueToOtp()" :loading="loading_send_fiat" style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="!showPinInput || showBackButton">continue</v-btn>
+                                        <v-btn @click="setPin()" :loading="loading_send_fiat" style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="!showPinInput || !showBackButton">Set Pin</v-btn>
+                                        <!-- <v-btn @click="dialog2 = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;" v-else>Cancel</v-btn> -->
+                                        <v-btn @click="showBackButton = true" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;" v-if="!showPinInput || !showBackButton">Back</v-btn>
+                                        <!-- <v-btn :loading="loading_send_fiat" @click=send_Fiat() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;">Proceed</v-btn> -->
                                     </div>
 
                                 </v-card-actions>
@@ -225,7 +225,7 @@
 import { ref, watchEffect } from 'vue';
 import { useTheme } from 'vuetify';
 import { fundFiatWallet, getbals, sendFiat } from "@/composables/requests/fiat";
-import { getUserInfo } from "@/composables/requests/users";
+import { getUserInfo, set_Pin } from "@/composables/requests/users";
 import {debounce} from "@/composables/mixin";
 
 const theme = useTheme()
@@ -244,7 +244,9 @@ const userName = ref('');
 const showSuccessIcon = ref(false);
 const showFailureIcon = ref(false);
 const showPinInput = ref(false);
-
+const showBackButton = ref(false);
+const otp = ref("");
+const loading_pin = ref(false)
 const nuxtApp = useNuxtApp();
 
 
@@ -338,33 +340,33 @@ watchEffect(() => {
     }
 });
 
+const continueToOtp =() => {
+      // Hide the previous inputs and content
+      showPinInput.value = true;
+      showBackButton.value = false;
+};
 
-const pinNotSet = computed(() => pinia.state.user.is_pin_set === null || pinia.state.user.is_pin_set === false);
+const setPin = async () => {
+  loading_pin.value = true;
+  const payload = {
+    pin: otp.value,
+  }
 
-const onSendFiat = () => {
-      if (pinNotSet.value) {
-        showPinInput.value = true;
-      } else {
-        send_Fiat();
-      }
-    };
+  try {
+    const data = await set_Pin(payload);
+    if (data.success) {
+        push.success(data.message);
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
 
-    const setPin = async () => {
-      if (otp.value.length === 4) {
-        try {
-          // Replace this with your API call to set the PIN
-          await pinia.state.user.setPin(otp.value);
-          // Update the is_pin_set state
-          pinia.state.user.is_pin_set = true;
-          otp.value = '';
-        } catch (e) {
-          console.error('Error setting PIN:', e);
-          push.error(`Failed to set PIN: ${e}`);
-        }
-      } else {
-        push.error('OTP must be 4 digits');
-      }
-    };
 
 const send_Fiat = async () => {
 
@@ -373,6 +375,15 @@ const send_Fiat = async () => {
     console.warn("Username or amount is empty, cannot send fiat.");
     return;
   }
+
+  if (fiat_ammount_to_send.value > pinia.state.Total_fiat_bal) {
+        push.error("Insufficient balance to send fiat.");
+        console.warn("Insufficient balance to send fiat.");
+        return;
+    }
+
+    showPinInput.value = true;
+
     loading_send_fiat.value = true;
     const payload = {
         recipient_username: fiatUsername.value,
@@ -451,5 +462,14 @@ fill: white;
 }
 .close-btn-dark{
 fill: #10192D;
+}
+.pin-form :deep(.v-otp-input .v-field) {
+  height: 60px !important;
+  width: 60px !important;
+  justify-content: space-between !important;
+  border-radius: 15px;
+  border: 1px solid #303a46;
+  background: inherit !important;
+  border-radius: 15px;
 }
 </style>

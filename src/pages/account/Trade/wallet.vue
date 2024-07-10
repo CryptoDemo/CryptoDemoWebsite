@@ -488,6 +488,11 @@ letter-spacing: 0px;
 border: 1px solid #1B2537;
 }
 
+.notivue-notification {
+  position: relative;
+  z-index: 1000000 !important; /* Set this value higher than Vuetify modal */
+}
+
 .btn-segment-light{
 border: 1px solid #E2E8F0;
 }

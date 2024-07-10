@@ -18,7 +18,9 @@
     style="opacity: 0.2; left: 0; right: 0; display: flex; margin: auto"
     v-else
   />
-  <Header />
+  <Header/>
+
+  
   <v-container class="form-layout overflow-hidden">
     <div class="section">
       <v-row no-gutters class="">

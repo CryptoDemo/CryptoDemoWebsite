@@ -2,12 +2,16 @@
   <v-app>
     <NuxtLayout>
       <NuxtPage />
-      <Notivue v-slot="item">
-        <Notification :item="item"
-          :icons="outlinedIcons"
-          :theme="pastelTheme"
-        />
-      </Notivue>
+
+
+        <Notivue v-slot="item">
+          <Notification :item="item"
+            :icons="outlinedIcons"
+            :theme="pastelTheme"
+          />
+          <NotificationProgress :item="item" />
+        </Notivue>
+
   </NuxtLayout>
   </v-app>
 </template>

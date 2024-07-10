@@ -14,6 +14,7 @@ export default defineNuxtConfig ({
       "@/assets/css/index.css",
       'notivue/notifications.css', // Only needed if using built-in notifications
       'notivue/animations.css',
+      'notivue/notification-progress.css',
      
   ],
 
@@ -38,6 +39,14 @@ export default defineNuxtConfig ({
     },
     //...
   ],
+
+  notivue: {
+    notifications: {
+      global: {
+        duration: 5000
+      }
+    }
+  },
 
   vite: {ssr:{noExternal:['vuetify']} },
   compatibilityDate: '2024-07-08',
