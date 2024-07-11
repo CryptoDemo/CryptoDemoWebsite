@@ -1,91 +1,89 @@
 <template>
-  <img
-    src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg"
-    class="position-absolute bg-vector"
-    style="
-      opacity: 0.4;
-      left: 0;
-      height: 90%;
-      right: 0;
-      display: flex;
-      margin: auto;
-    "
-    v-if="theme.global.current.value.dark"
-  />
-  <img
-    src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg"
-    class="position-absolute bg-vector"
-    style="opacity: 0.2; left: 0; right: 0; display: flex; margin: auto"
-    v-else
-  />
-  <Header/>
+  <div>
+    <img
+      src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg"
+      class="position-absolute bg-vector"
+      style="
+        opacity: 0.4;
+        left: 0;
+        height: 90%;
+        right: 0;
+        display: flex;
+        margin: auto;
+      "
+      v-if="theme.global.current.value.dark"
+    />
+    <img
+      src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg"
+      class="position-absolute bg-vector"
+      style="opacity: 0.2; left: 0; right: 0; display: flex; margin: auto"
+      v-else
+    />
+    <Header/>
 
-  
-  <v-container class="form-layout overflow-hidden">
-    <div class="section">
-      <v-row no-gutters class="">
-        <v-col
-          dense
-          cols="md-5"
-          class="form"
-          :class="isDark ? 'form' : 'form-light'"
-          style="padding: 0px 70px"
-        >
-          <div style="margin-top: 95px">
-            <span
-              class="card-title"
-              :class="isDark ? 'card-title' : 'card-title-light'"
-              >Enable 2FA Verification</span
-            >
-            <div
-              class="card-subtitle"
-              :class="isDark ? 'card-subtitle' : 'card-subtitle-light'"
-              style="margin-top: 20px"
-            >
-              The Login 2step Verification adds an extra layer of security to
-              your account.
-            </div>
-            <span class="otp-text">Enter code</span>
-            <v-otp-input
-              :length="6"
-              v-model="otp"
-              variant="plain"
-            ></v-otp-input>
+    <v-container class="form-layout overflow-hidden">
+      <div class="section">
+        <v-row no-gutters class="">
+          <v-col
+            dense
+            cols="md-5"
+            class="form"
+            :class="isDark ? 'form' : 'form-light'"
+            style="padding: 0px 70px"
+          >
+            <div style="margin-top: 95px">
+              <span
+                class="card-title"
+                :class="isDark ? 'card-title' : 'card-title-light'"
+                >Enable 2FA Verification</span
+              >
+              <div
+                class="card-subtitle"
+                :class="isDark ? 'card-subtitle' : 'card-subtitle-light'"
+                style="margin-top: 20px"
+              >
+                The Login 2step Verification adds an extra layer of security to
+                your account.
+              </div>
+              <span class="otp-text">Enter code</span>
+              <v-otp-input
+                :length="6"
+                v-model="otp"
+                variant="plain"
+              ></v-otp-input>
 
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                align-items: baseline;
-              "
-            >
-             
-              <div class="d-flex" style="margin-top: 23px">
-               
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: baseline;
+                "
+              >
+                <div class="d-flex" style="margin-top: 23px">
+                </div>
+              </div>
+
+              <div style="margin-top: 65px">
+                <Button
+                  buttonText="Enable authentication"
+                  :loading="loading"
+                  @click="verify2FA_()"
+                />
+              </div>
+              <div class="d-flex" style="margin-top: 43px; margin-bottom: 137px">
               </div>
             </div>
+          </v-col>
 
-            <div style="margin-top: 65px">
-              <Button
-                buttonText="Enable authentication"
-                :loading="loading"
-                @click="verify2FA_()"
-              />
+          <v-col cols="7" class="flex-lg-and-up hidden-sm-and-down">
+            <div class="ma-8 carousel-styling">
+              <Carousel />
             </div>
-            <div class="d-flex" style="margin-top: 43px; margin-bottom: 137px">
-             
-            </div>
-          </div>
-        </v-col>
-
-        <v-col cols="7" class="flex-lg-and-up hidden-sm-and-down">
-          <div class="ma-8 carousel-styling">
-            <Carousel />
-          </div>
-        </v-col>
-      </v-row>
-    </div>
-  </v-container>
+          </v-col>
+        </v-row>
+      </div>
+    </v-container>
+  </div>
 </template>
 <script setup>
 import { ref } from "vue";

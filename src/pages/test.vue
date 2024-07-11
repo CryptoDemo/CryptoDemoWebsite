@@ -1,226 +1,419 @@
 <template>
   <div>
+    <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" />
+      <v-container style="margin-top: 90px;">
+        <div class="py-7 ml-3" style="display: flex; align-items: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="navigateTo('/account/trade/wallet')" style="cursor: pointer;">
+          <path d="M15 19.9181L8.47997 13.3981C7.70997 12.6281 7.70997 11.3681 8.47997 10.5981L15 4.07812" stroke="#B9D1FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="swap1 ml-2">Swap</span>
+        </div>
+          <div :class="isDark ? 'btn-segment':'btn-segment-light'" style="border-radius: 24px; padding: 37px; margin-top: 70px; margin-bottom: 925px; width: 97%; margin: auto;">
+              <div class="d-flex" style="margin-bottom: 30px;">
+                  <span class="quick-swap me-3 ">Quick Swap</span>
+                  <img src="/svg/reload.svg" class="icon1"/>
+              </div>
   
-      <div style="display: flex; justify-content: space-between; width: 100%;">
-  
-
-              <v-btn @click="dialog1 = true" class="fiat-btn" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0.8px; line-height: 25px; text-transform: unset;">
-                <div class="d-flex" style="align-items: center;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#2873FF" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-                    </svg>
-               
-                    <div class="d-flex" style="flex-direction: column;">
-                        <span class="ml-2" style="font-weight: 600; align-items: flex-start;text-align: justify;">Add a Withdrawal account</span>
-                        <span class="ml-2" style="font-weight: 400;">To receive your payment, please provide the details of your withdrawal account.</span>
-                    </div>
-                </div>
-              </v-btn>
-      
-              
-              <v-dialog v-model="dialog1" transition="dialog-bottom-transition" fullscreen>
-          
-                  <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
-  
-                      <v-card-text>
-                          <h3 class="text-center">withdrawal account information</h3>
-                          <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Effortlessly Withdraw funds using our fiat currency service.</span>
-                         
-                          <div style="display: flex; flex-direction: column; justify-content: center; margin: auto; align-items: center; margin-top: 30px;">
-                            
-                            <div class="d-flex" style="flex-direction: column; width: 70%;">
-                              <v-menu>
+              <div class="d-md-flex" style="justify-content: space-between; position: relative;">
+                  <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
+                
+                       <div class="d-flex" style="width: 12%;">   
+                        <div class="me-13" style="display: flex; flex-direction: column; z-index: 1000">
+                    
+                            <span class="have d-flex">I have :</span>
+                      
+                            <v-menu>
                                 <template v-slot:activator="{ props }">
-                                  <v-btn class="input-styling1 ml-1" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" v-bind="props"  style="box-shadow: none; height: 60px;">
-                                    <div  class="py-3" style="display: flex; cursor: pointer; position: absolute; left: 37px; align-items: center;">
-                                      <span :class="isDark ? 'text-dark':'text-light'" class="me-2" style="font-weight: 700; font-size: 16px;">{{pinia.state.Selectedcurrency_code}}</span>
-                                      <span :class="isDark ? 'text-dark':'text-light'" class="mt-" style="font-weight: 700;">{{pinia.state.preferredCurrency}}</span> 
-                                    </div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none" style="position: absolute; right: 30px; bottom: 27px;" :class="isDark ? 'svg-dark':'svg-light'">
-                                      <path d="M5.05508 5.99413C5.19232 5.99415 5.32822 5.96714 5.45502 5.91463C5.58182 5.86213 5.69705 5.78516 5.7941 5.68813L9.69409 1.78814C9.88995 1.59227 10 1.32663 10 1.04964C10 0.772651 9.88995 0.50701 9.69409 0.311147C9.49823 0.115285 9.23259 0.00523901 8.9556 0.00523901C8.67861 0.00523901 8.41296 0.115285 8.2171 0.311147L5.0531 2.71114L1.8891 0.311147C1.69324 0.115285 1.4276 0.00523901 1.1506 0.00523901C0.873613 0.00523901 0.607941 0.115285 0.412079 0.311147C0.216217 0.50701 0.106201 0.772651 0.106201 1.04964C0.106201 1.32663 0.216217 1.59227 0.412079 1.78814L4.3121 5.68813C4.4096 5.78569 4.52546 5.86297 4.65298 5.91549C4.78051 5.96801 4.91716 5.99473 5.05508 5.99413Z"/>
-                                    </svg>
-                                  </v-btn>
+                                  <button @click="toggleChevron" class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
+                                      <div class="py-3" style="display: flex;  align-items: center;  border-radius: 17px; background: inherit;">
+                                      <span class="me-2">{{ pinia.state.curency_to_swap }}</span>
+                                      </div>
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
+                                          <path d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z" fill="currentColor"/>
+                                      </svg>
+                                  </button>
                                 </template>
     
-                                <v-list :class="isDark ? 'country-dropdown1':'country-dropdown1-light'" >
-                                  <v-list-item style="width: 100%;">
-                                    <div v-for="(currency, index) in pinia.state.allcountries" class="d-flex py-1" :key="index">
-                                      <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code">
-                                          <div class="d-flex ml-4">
-                                            <span :class="isDark ? 'country-name' : 'country-name-light'">{{ currency.currency_name }}</span>
-                                          </div>
+                                  <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 16px;">
+                                    <v-list-item>
+                                      <v-list-item v-for="(currency, index) in pinia.state.allcountries" :key="index">
+                                        <v-list-item-title @click="pinia.state.curency_to_swap=currency.currency_name; currencyCode = currency.currency_code" class="d-flex"> 
+                                          <span class="me-3" style="align-items: center;"> {{currency.currency_name}} </span>
+                                        </v-list-item-title>
                                       </v-list-item>
-                                    </div>
+                                    </v-list-item>
+                                  </v-list>
+                            </v-menu>  
+                        </div>
+                      </div>
+  
+                      <div style="display: flex; justify-content: center; align-self: center ; margin-top: 17px; border-radius: 4px; height: 26px; z-index: 1000">
+                        <v-btn @click="swapAmount = mytoken.minimum_fiat_to_crypto_swap" class="me-4" :class="isDark ? 'btn-segment':'btn-segment-light'" style="height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span></v-btn>    
+                        <v-btn @click="swapAmount = selectedBalance" class="me-3" :class="isDark ? 'btn-segment':'btn-segment-light'" style="letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span></v-btn>
+                      </div>
+  
+                      <div class="number-input" style="display: flex; margin-right: 10px; flex-direction: column; z-index: 1000">
+                        <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom: 10px; display: flex;justify-content: end;">{{ formatBalance(selectedBalance) }} {{ selectedSymbol }}</span>
+                        <input type="number" v-model="swapAmount" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>    
+                      </div>
+                  </div>
+  
+                  
+                  <div @click="toggleTokens()" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark"><img src="/svg/swap.svg" width="8%"/></div> 
+  
+                  <div @click="toggleTokens()" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-else>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="90" height="85" viewBox="0 0 70 71" fill="none">
+                      <path d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z" fill="#4284FF"/>
+                      <path d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z" fill="url(#paint0_linear_5037_31025)"/>
+                      <path d="M63 35.1992C63 19.7352 50.464 7.19922 35 7.19922C19.536 7.19922 7 19.7352 7 35.1992C7 50.6632 19.536 63.1992 35 63.1992C50.464 63.1992 63 50.6632 63 35.1992Z" stroke="#fff" stroke-width="14"/>
+                      <path d="M29.167 36.3659H39.667V38.6992H35.0003V42.1992L29.167 36.3659ZM35.0003 31.6992V28.1992L40.8337 34.0326H30.3337V31.6992H35.0003Z" fill="white"/>
+                      <defs>
+                        <linearGradient id="paint0_linear_5037_31025" x1="35.0003" y1="15.3672" x2="35.0003" y2="55.0339" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#2873FF"/>
+                          <stop offset="1" stop-color="#0B6B96"/>
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                
+  
+                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
+                  <div class="d-flex">   
+                      <div class="me-13" style="display: flex; flex-direction: column; margin-left: 10px;">
+                        <span class="have">I want:</span>
+                          <v-menu>
+                              <template v-slot:activator="{ props }">
+                                <button @click="toggleChevron1" class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
+  
+                                  <div  class="py-3" style="display: flex; align-items: center;  border-radius: 17px; background: inherit;">
+                                    <span class="me-2">{{ pinia.state.fiat_currency_i_want }}</span>
+                                  </div>
+                              
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled1 }, isDark ? 'close-btn' : 'close-btn-dark']">
+                                      <path d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z" fill="currentColor"/>
+                                  </svg>
+                              
+                                </button>
+                              </template>
+  
+                              <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 16px;">
+                                  <v-list-item>
+                                    <v-list-item v-for="(item, index) in filteredCurrency_to_swap_to" :key="index">
+                                      <v-list-item-title @click="pinia.state.fiat_currency_i_want =item.currency_name; selected_tokenType_to_swap =item.symbol"  class="d-flex">
+                                        <img :src="item.icon" width="30" class="me-3"/>  
+                                        <span class="me-3" style="align-items: center;"> {{item.currency_name}} </span>
+                                      </v-list-item-title>
+                                    </v-list-item>
                                   </v-list-item>
                                 </v-list>
-                              </v-menu>
-
-                                <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
-                                  Please select the currency for withdrawal. Kindly note that withdrawals are only permitted in currencies where you have an existing balance.
-                                </span>
-                        
-                            </div>
-
-                            <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
-                              <input type="number" placeholder="Enter  ammount" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
-                            
-                              <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
-                                  Enter withdrawal ammount. The minimum withdrawal is 
-                                  <span style="color: #2873FF;">{{ pinia.state.Selectedcurrency_code }}{{ minimumWithdrawalAmmount }}</span> with a withdrwal percentage fee of
-                                  <span style="color: #2873FF;">{{ pinia.state.Selectedcurrency_code }}{{ Withdrawalfee }}</span> 
-                              </span>
-                            </div>
-
-                            <template v-if="!isStripeGateway">
-
-
-                            <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
-                              <input type="text" placeholder="Enter Bank name" v-model="Bankname" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
-                            
-                              <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
-                                  Enter Bank Name.
-                              </span>
-                            </div>
-
-                            <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
-                              <input type="text" placeholder="Enter account name" v-model="acctName" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
-                            
-                              <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
-                                  Enter account name.
-                              </span>
-                            </div>
-
-                            <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
-                              <input type="text" placeholder="Enter account number" v-model="acctNumber" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
-                            
-                              <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
-                                  Enter account number.
-                              </span>
-                            </div>
-
-                            </template>
-
-                          
-                            <v-btn @click="Withdrawal_ ()" class="primary-btn1 mt-8" v-if="!isStripeGateway" :loading="loading_withdrawal" style="width: 70%; height: 60px;"> Process withdrawal</v-btn>
-
-                            <v-btn class="primary-btn1 mt-8" v-else style="width: 70%; height: 60px;">Proceed with Stripe</v-btn>
-                
-                          </div>
+                          </v-menu>   
+                      </div>
   
-                         
-          
-                      </v-card-text>
-          
-                      <v-card-actions>
-                          <v-spacer></v-spacer>
-                          <div class="px-4 mb-3">
-                              <v-btn @click="dialog1 = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;">Cancel</v-btn>
-                          </div>
-                      </v-card-actions>
+                      
+                  </div>
+                  <div style="display: flex; flex-direction: column;">
+                      <span class="have" style="font-size: 14px; font-weight: 500; font-family: manrope; display: flex;justify-content: end;"> {{ selected_tokenType_to_swap }}</span>
+                      <input type="number"  disabled v-model="amount_to_recieve" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>  
+                      </div>
   
-                  </v-card>
-      
-              </v-dialog>
+                </div>
+       
+                </div>
+                  <div>
+                    <h5 class="quick-swap mt-2" style="font-family: manrope;">Minimum swap amount {{ currencyCode }} {{ formatBalance(mytoken.minimum_fiat_to_crypto_swap) }}</h5>
+                  </div>
   
+              <div style="display: flex; justify-content: space-between; margin-top: 55px; align-items: center;">
+              <div style="width: 41%;">
+                <v-alert v-if="FeeCard" variant="tonal" type="info" density="compact" style="font-family: Manrope;font-size: 14px;  font-style: normal;font-weight: 600;line-height: 180%; border-radius: 10px;">
+                  <span>Charges incurred for this swap transaction:</span><br>
+                    Fee id: {{ swap_fee_id }} <br>
+                    Tax fee: {{ tax_fee }} <br>
+                    Total ammount: {{ from_amount_total }} <br>
+                </v-alert>
+              </div>
   
+                <v-btn @click="executeTxn()" :loading="loading" append-icon="mdi-arrow-right" class="exchange-btn1"> Exchange </v-btn>
+            </div>
+          </div>
+      </v-container>
+    <div style="margin-top: 500px;">
   
-              
-              
-                          
-                     
-  
-  
-  
-      </div>
+      <Footer class="desktop-footer flex-lg-and-up hidden-md-and-down"/>
+      <Mobile-footer class="mobile-footer"/>
+    </div>
   </div>
   </template>
   
   <script setup>
-  import { ref, watchEffect } from 'vue';
+  import { ref } from 'vue'
   import { useTheme } from 'vuetify';
-  import { WithdrawFund } from "@/composables/requests/fiat";
-
-
+  import { swapFund } from "@/composables/requests/fiat";
+  
   
   const theme = useTheme()
   const isDark = computed(() =>  theme.global.current.value.dark);
   const pinia = useStore();
 
-  const dialog1 = ref(false);
-  const Bankname = ref('');
-  const acctName = ref('');
-  const acctNumber = ref();
-  const loading_withdrawal = ref(false);
+  const currencyCode = ref("");
+  
+  const FeeCard = ref(false);
+  
+  const ExpectedAmmount = ref();
+  
+  const currency_i_want_to_have = ref(pinia.state.fiat_currency_i_want); 
+
+  currency_i_want_to_have.value = pinia.state.allcountries[0].currency_name;
+
+  const countryID_of_currency_i_want = computed(() => pinia.state.allcountries.find(c => c.currency_name === currency_i_want_to_have.value));
+
+  console.log(countryID_of_currency_i_want.value.id)
   
   
-  const withdrawal = computed(() => {
-    return pinia.state.allcountries.find(country => country.currency_name === pinia.state.preferredCurrency);
-  });
-
+  const selected_tokenType_to_swap  = ref ('USDT')
   
-  const minimumWithdrawalAmmount = computed(() => {
-    return withdrawal.value ? withdrawal.value.minimum_withdrawal : null;
-  });
-
-
-  const Withdrawalfee = computed(() => {
-    return withdrawal.value ? withdrawal.value.withdrawal_percentage_fee : null;
-  });
-
-
-  const paymentGateway = computed(() => {
-    return withdrawal.value ? withdrawal.value.supported_payment_gateways : null;
-  });
-
+  const selectedSymbol = ref('');
   
-  const isStripeGateway = computed(() => {
-  return paymentGateway.value && paymentGateway.value.includes('stripe');
-});
+  
+  const swapAmount =ref(null);
+  
+  const loading = ref(false);
+  
+  const amount_to_recieve = ref(null);
+  
+  const swap_fee_id = ref();
+  
+  const from_amount_total = ref();
+  
+  const to_amount = ref();
+  
+  const tax_fee = ref();
+  
+  const is_balance_sufficient = ref();
 
-const Countryid = computed(() => {
-  return pinia.state.allcountries.find(country => country.currency_name === pinia.state.preferredCurrency);
-});
+  const mytoken = computed(() => pinia.state.allcountries.find(c => c.currency_name === pinia.state.curency_to_swap));
+  console.log(mytoken.value.id)
 
 
-const Withdrawal_ = async () => {
+  const selectedBalance = computed(() => {
+      const balance = pinia.state.Total_fiat_bal.find(c => c.country_id === (mytoken.value ? mytoken.value.id : null));
+      return balance ? balance.balance : 0;
+    });
 
-    const payload = {
-    country_id: Countryid.value.id,
-    withdrawal_info: {
-        bank_name: Bankname.value,
-        account_name: acctName.value,
-        account_number: acctNumber.value
+  const filteredCurrency_to_swap_to = ref([])
+  filteredCurrency_to_swap_to.value = pinia.state.allcountries.filter(c => c.currency_name != pinia.state.curency_to_swap)
+  
+  const calculateTxn = async()=>{
+      const info = {
+          action_type: "CALCULATE_FIAT_SWAP_AMOUNT",
+          from_country_id: mytoken.value.id,
+          to_country_id: mytoken.value.id,
+          amount: swapAmount.value,
+        }
+      try{
+        loading.value = true
+  
+        const data = await swapFund(info)
+  
+        if(data.success){
+          
+          loading.value = false
+          pinia.setTransactionDetails(data.data)
+  
+  
+          navigateTo('/account/Trade/success/')
+         
+          // navigateTo(/dashboard/wallet/get/`${pinia.state.transactionDetails.id}`)
+  
+  
+        }else{
+          
+          push.error(`${data.message}`, {
+          });
+          loading.value = false;
+          
+        }
+       
+  
+      }catch(e){
+         console.log(e)
+         loading.value = false;
+      }
+  
+  
     }
-}
-    loading_withdrawal.value = true;
 
-  try {
-    const data = await WithdrawFund(payload);
-    loading_withdrawal.value = false;
 
-    if (data.success) {
-        const user_data = data.data
-        console.log(data.data)
+  
+  // const toggleTokens = ()=>{
+  //   const m = selectedSymbol.value
+  //   const p = piniastoredicon.value
+  
+  //   selectedSymbol.value = selected_tokenType_to_swap.value;
+  //   piniastoredicon.value =  currency_i_want.value
+  //   selected_tokenType_to_swap.value = m
+  //   currency_i_want.value = p
+  
+  
+  
+  // }
+  
+  
  
-    } else {
-     push.error(`${data.message}`)
-    }
-  } catch (e) {
-    loading_withdrawal.value = false;
-    console.log(e);
-    push.error(`${e}`);
-  }
-};
-   
+    
+    // Watch for changes in amount_to_swap and trigger tax calculation
+    // watchEffect(() => {
+    //     if (swapAmount.value < minimumswap.value || swapAmount.value < selectedBalance.value) return;
+    //     debounce(caltax);
+    //   });
+  
+  
+  //   watch(()=>swapAmount.value,(newv)=>{
+  //     if(newv < minimumswap.value || newv < selectedBalance.value){
+  //       debounce(caltax);
+  
+  //     }
+  //     if(newv == null ){
+  //       swapAmount.value = ''
+  //     }
+  //   })
+  
   const isChevronToggled = ref(false);
   const toggleChevron = () => {
-      isChevronToggled.value = !isChevronToggled.value;
+        isChevronToggled.value = !isChevronToggled.value;
+  };
+  
+  const isChevronToggled1 = ref(false);
+  const toggleChevron1 = () => {
+        isChevronToggled1.value = !isChevronToggled1.value;
   };
   </script>
   
-  <style scoped>
-
+  <style>
+  
+  .swap1{
+  font-family: Manrope;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal; 
+  margin-left: 10px;
+  }
+  
+  .cancel1{
+  width: 258px;
+  height: 60px!important;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: var(--dark-bg, #10192D);
+  color: var(--White, var(--Colors-Base-white, #FFF));
+  text-align: center;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: capitalize;
+  letter-spacing: 0px;
+     }
+  .hidden {
+    display: none;
+  }
+  .quick-swap{
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  }
+  
+  .have{
+  font-family: Manrope;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  }
+  
+  .inputstyling2{
+  /* border-radius: 20px; */
+  background: inherit;
+  /* color: var(--White, var(--Colors-Base-white, #FFF)); */
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  box-shadow: none;
+  letter-spacing: 0px;
+  position: relative;
+  }
+  
+  .min{
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  }
+  
+  .exchange-btn1{
+  border-radius: 20px;
+  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);
+  width: 258px;
+  height: 60px !important;
+  text-align: center;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: capitalize;
+  letter-spacing: 0px;
+  color: white;
+  box-shadow: none;
+  }
+  
+  .mdi-arrow-right{
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.20) !important;
+  width: 34.928px!important;
+  height: 33.527px!important;
+  flex-shrink: 0;
+  position: absolute!important;
+  right: 18px!important;
+  }
+  .number-input :deep(.v-number-input__control){
+  display: none !important;
+  }
+  .v-number-input__control{
+    display: none !important;
+  }
+  
+  .country-dropdown{
+  border-radius: 15px;
+  border: 0.5px solid #2f3946;
+  background: #1B2537 !important;
+  backdrop-filter: blur(50px) !important;
+  height: 320px !important;
+  border-radius: 20px !important;
+  border-radius: 15px;
+  border: 0.5px solid #354356;
+  color: white;
+  margin-top: 15px;
+  box-shadow: none  !important;
+  height: 170px !important;
+  }
+  .country-dropdown-light{
+  border-radius: 15px;
+  background: #fff !important;
+  border: 1px solid #DBE8FF !important;
+  border-radius: 20px !important;
+  color: black;
+  margin-top: 15px;
+  box-shadow: none  !important;
+  height: 170px !important;
+  }
   
   .btn-segment{
   border: 1px solid #1B2537;
@@ -229,29 +422,20 @@ const Withdrawal_ = async () => {
   .btn-segment-light{
   border: 1px solid #E2E8F0;
   }
-  .txn-cards-dark {
-    background: #162138;
-    padding: 10px;
-    border-radius: 15px;
-  }
-  .txn-cards-light {
-    background: #edf3ff;
-    padding: 10px;
-    border-radius: 15px;
-  }
-  
-  .chevron-icon {
-  transition: transform 0.3s;
-  }
-  
-  .chevron-icon-rotated {
-  transform: rotate(180deg);
-  }
   
   .close-btn{
   fill: white;
+  transition: transform 0.3s ease;
   }
   .close-btn-dark{
   fill: #10192D;
+  }
+  
+  .chevron-icon {
+    transition: transform 0.3s;
+  }
+  
+  .chevron-icon-rotated {
+    transform: rotate(180deg);
   }
   </style>

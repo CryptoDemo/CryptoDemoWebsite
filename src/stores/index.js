@@ -49,9 +49,9 @@ export const useStore = defineStore('app',()=> {
       MyOffers: [],
       Fiat_transactions: [],
       Total_fiat_bal:[],
-
       selectedOfferType_from_landing: [],
-
+      curency_to_swap:"",
+      fiat_currency_i_want: "",
 
     });
   
@@ -108,6 +108,10 @@ export const useStore = defineStore('app',()=> {
       state.Fiat_transactions = payload;   
   };
 
+  const setFiat_currency_i_want = (payload) => {
+      state.fiat_currency_i_want = payload;   
+  };
+
   const setCalculatedTaxFee_for_swap = (payload) => {
       state.calculatedTaxFee_for_swap = payload;   
   };
@@ -118,6 +122,10 @@ export const useStore = defineStore('app',()=> {
 
   const setCoin_to_transfer = (payload) => {
       state.coin_to_transfer = payload;   
+  };
+
+  const setCurency_to_swap = (payload) => {
+      state.curency_to_swap = payload;   
   };
 
   const setTransferWallet = (payload) => {
@@ -214,6 +222,8 @@ export const useStore = defineStore('app',()=> {
     state.tokenLists = [],
     state.Total_fiat_bal = [],
     state.selectedLandingCoin = "",
+    state.curency_to_swap = "",
+    state.fiat_currency_i_want = ""
     state.Web3_transactions = {
       data:[],
       time:null
@@ -260,7 +270,9 @@ export const useStore = defineStore('app',()=> {
       setMarketPlace,
       setMyOffers,
       setgetNewCoinInfo,
-      saveTradingData
+      saveTradingData,
+      setCurency_to_swap,
+      setFiat_currency_i_want,
     }
 },
   {persist: {

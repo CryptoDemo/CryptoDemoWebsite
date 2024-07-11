@@ -1,6 +1,6 @@
 <template>
   <div :class="isDark ? 'profile':'profile-light'" class="wallet-nav">
-    <div class="d-flex" style="align-items: baseline; justify-content: space-between; margin-top: -30px; ">
+    <div class="d-flex" style="align-items: baseline; justify-content: space-between; margin-top: -2px; ">
       <span class="sm-num" :class="isDark ? 'country-name' : 'country-name-light'" style="font-size: 16px; font-style: normal;font-weight: 600;">Balance</span>
       <BlockChainNetwork/>
     </div>

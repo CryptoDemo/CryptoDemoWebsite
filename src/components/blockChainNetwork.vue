@@ -104,7 +104,6 @@ background: inherit;
 text-transform: unset !important;
 color: white;
 letter-spacing: 0px;
-margin-top: 28px !important;
 text-transform: capitalize;
 }
 .dropdown-btn1i-light{
@@ -115,7 +114,6 @@ text-transform: unset !important;
 color: #161D26 !important;
 letter-spacing: 0px;
 box-shadow: none;
-margin-top: 28px !important;
 }
 .close-btn{
 fill: white;

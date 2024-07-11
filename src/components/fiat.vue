@@ -164,23 +164,42 @@
     
                                  </v-card-text>
 
-                                <v-card-text class="pin-form d-flex"  style="flex-direction: column;" v-else>
-                                <!-- OTP Input Section -->
-                                <span class="text-center text-h6 text-md-h5 text-lg-h4">Set Your Transfer PIN</span>
-                                <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center;" :class="isDark ? 'text-dark':'text-light'" >For your security, please set a 4-digit PIN to authorize transfers.</h5>
-                                <v-otp-input length="4"  v-model="otp"  variant="plain" divider="•" style="margin: auto; margin-top: 10px;"></v-otp-input>
-
-                               
+                                <v-card-text v-if="showPinInput && hasPin" class="pin-form d-flex" style="flex-direction: column;">
+                                    <span class="text-center text-h6 text-md-h5 text-lg-h4">Enter Your Transfer PIN</span>
+                                    <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center;" :class="isDark ? 'text-dark' : 'text-light'">Please enter your 4-digit PIN to authorize this transaction.</h5>
+                                    <v-otp-input length="4" v-model="otp" variant="plain" divider="•" style="margin: auto; margin-top: 10px;"></v-otp-input>
                                 </v-card-text>
+
+                                <v-card-text v-if="showPinInput && !hasPin" class="pin-form d-flex"  style="flex-direction: column;">
+                                <span class="text-center text-h6 text-md-h5">Set Your Transfer PIN</span>
+                                <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center;" :class="isDark ? 'text-dark':'text-light'">For your security, please set a 4-digit PIN to authorize transfers.</h5>
+                                <v-otp-input length="4"  v-model="otp"  variant="plain" divider="•" style="margin: auto; margin-top: 10px;"></v-otp-input>
+                                </v-card-text>
+
+                                
+                                <div>
+                                    <v-card-text  class="pin-form d-flex"  style="flex-direction: column;">
+                                        <span class="text-center text-h6 text-md-h5">Reset Pin</span>
+                                        <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center;" :class="isDark ? 'text-dark':'text-light'" >For your security, please set a 4-digit PIN to authorize transfers.</h5>
+                                        <v-otp-input length="4" v-model="Newotp"  variant="plain" divider="•" style="margin-top: 10px; margin-left: 18px;"></v-otp-input>
+                                        <span class="text-subtitle-2 mb-2 mt-2 ml-4" :class="isDark ? 'text-dark':'text-light'">Enter new transfer pin</span>
+                                        <v-otp-input length="4"  v-model="Msgotp"  variant="plain" divider="•" style="margin-top: 10px;  margin-left: 18px;"></v-otp-input>
+                                        <span class="text-subtitle-2 mb-2 mt-2 ml-4" :class="isDark ? 'text-dark':'text-light'">Enter the 4-digit code sent to your email</span>
+                                     </v-card-text>
+                                    <v-btn :loading="loading_send_fiat" @click=reset_Pin() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="showPinInput && hasPin">reset pin</v-btn>
+
+                                </div>
+
 
                                 <v-card-actions>
                                     <v-spacer></v-spacer>
                                     <div class="px-4 mb-3">
                                         <v-btn @click="continueToOtp()" :loading="loading_send_fiat" style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="!showPinInput || showBackButton">continue</v-btn>
-                                        <v-btn @click="setPin()" :loading="loading_send_fiat" style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="!showPinInput || !showBackButton">Set Pin</v-btn>
+                                        <v-btn @click="setPin()" :loading="loading_send_fiat" style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="showPinInput && !hasPin">Set Pin</v-btn>
                                         <!-- <v-btn @click="dialog2 = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;" v-else>Cancel</v-btn> -->
-                                        <v-btn @click="showBackButton = true" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;" v-if="!showPinInput || !showBackButton">Back</v-btn>
-                                        <!-- <v-btn :loading="loading_send_fiat" @click=send_Fiat() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;">Proceed</v-btn> -->
+                                        <v-btn @click="goBack()" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;" v-if="showPinInput"> Back </v-btn>
+                                        <v-btn :loading="loading_send_fiat" @click=VerifyPin() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="showPinInput && hasPin">Proceed</v-btn>
+                                        <v-btn :loading="loading_send_fiat" @click=recoverPin() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="showPinInput && hasPin">reset pin</v-btn>
                                     </div>
 
                                 </v-card-actions>
@@ -224,8 +243,8 @@
 <script setup>
 import { ref, watchEffect } from 'vue';
 import { useTheme } from 'vuetify';
-import { fundFiatWallet, getbals, sendFiat } from "@/composables/requests/fiat";
-import { getUserInfo, set_Pin } from "@/composables/requests/users";
+import { fundFiatWallet, getbals, sendFiat, reset_Pin } from "@/composables/requests/fiat";
+import { getUserInfo, set_Pin, verify_Pin, Init_pin_recovery } from "@/composables/requests/users";
 import {debounce} from "@/composables/mixin";
 
 const theme = useTheme()
@@ -245,7 +264,11 @@ const showSuccessIcon = ref(false);
 const showFailureIcon = ref(false);
 const showPinInput = ref(false);
 const showBackButton = ref(false);
+const hasPin = computed(() => pinia.state.user.is_pin_set !== null && pinia.state.user.is_pin_set !== false);
+console.log(hasPin.value)
 const otp = ref("");
+const Newotp = ref("");
+const Msgotp = ref("");
 const loading_pin = ref(false)
 const nuxtApp = useNuxtApp();
 
@@ -346,6 +369,13 @@ const continueToOtp =() => {
       showBackButton.value = false;
 };
 
+
+const goBack = () => {
+  showPinInput.value = false;
+  showBackButton.value = false;
+};
+
+
 const setPin = async () => {
   loading_pin.value = true;
   const payload = {
@@ -354,6 +384,51 @@ const setPin = async () => {
 
   try {
     const data = await set_Pin(payload);
+    otp.value  = "";
+    if (data.success) {
+        push.success(data.message);
+        pinia.state.user.is_pin_set = true
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+
+const VerifyPin = async () => {
+  loading_pin.value = true;
+  const payload = {
+    pin: otp.value,
+  }
+
+  try {
+    const data = await verify_Pin(payload);
+    otp.value  = "";
+    if (data.success) {
+        push.success(data.message);
+        await send_Fiat();
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+const recoverPin = async () => {
+  loading_pin.value = true;
+
+  try {
+    const data = await Init_pin_recovery();
+  
     if (data.success) {
         push.success(data.message);
     } else {
@@ -367,6 +442,28 @@ const setPin = async () => {
   }
 };
 
+const changePin = async () => {
+  loading_pin.value = true;
+  const payload = {
+    pin: Newotp.value,
+    code: Msgotp.value,
+  }
+
+  try {
+    const data = await reset_Pin(payload);
+    otp.value  = "";
+    if (data.success) {
+        push.success(data.message);
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
 
 const send_Fiat = async () => {
 

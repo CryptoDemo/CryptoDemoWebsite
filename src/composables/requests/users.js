@@ -119,10 +119,55 @@ export const getNotifications = async(pageNumber)=>{
     return data;
 };
 
+// the following endPoints are for transfer pin
+
 export const set_Pin = async(payload)=>{
     const pinia = useStore();
-    if(!pinia.state.user?.token) return
     const data = await fetch(`${baseURL}user/pin/new`,{ 
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'x-access-token' : `${pinia.state.user?.token}`
+    },
+    body: JSON.stringify(payload)
+
+    }).then(res => res.json());
+    return data;
+};
+
+
+export const verify_Pin = async(payload)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}user/pin/verify`,{ 
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'x-access-token' : `${pinia.state.user?.token}`
+    },
+    body: JSON.stringify(payload)
+
+    }).then(res => res.json());
+    return data;
+};
+
+export const Init_pin_recovery = async(payload)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}user/pin/init-reset`,{ 
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token' : `${pinia.state.user?.token}`
+        },
+    }).then(res => res.json());
+    return data;
+};
+
+export const reset_Pin = async(payload)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}user/pin/reset`,{ 
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
