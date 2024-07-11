@@ -52,6 +52,7 @@ export const useStore = defineStore('app',()=> {
       selectedOfferType_from_landing: [],
       curency_to_swap:"",
       fiat_currency_i_want: "",
+      Fiat_swap_details: {},
 
     });
   
@@ -170,6 +171,10 @@ export const useStore = defineStore('app',()=> {
       state.TransactionDetails = payload;    
   };
 
+  const setFiat_swap_details = (payload) => {
+      state.Fiat_swap_details = payload;    
+  };
+
 
   const setMarketPlace = (payload) => {
       state.MarketPlace = payload;    
@@ -224,6 +229,7 @@ export const useStore = defineStore('app',()=> {
     state.selectedLandingCoin = "",
     state.curency_to_swap = "",
     state.fiat_currency_i_want = ""
+    state.Fiat_swap_details= ""
     state.Web3_transactions = {
       data:[],
       time:null
@@ -273,6 +279,7 @@ export const useStore = defineStore('app',()=> {
       saveTradingData,
       setCurency_to_swap,
       setFiat_currency_i_want,
+      setFiat_swap_details
     }
 },
   {persist: {

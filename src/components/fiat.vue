@@ -243,8 +243,8 @@
 <script setup>
 import { ref, watchEffect } from 'vue';
 import { useTheme } from 'vuetify';
-import { fundFiatWallet, getbals, sendFiat, reset_Pin } from "@/composables/requests/fiat";
-import { getUserInfo, set_Pin, verify_Pin, Init_pin_recovery } from "@/composables/requests/users";
+import { fundFiatWallet, getbals, sendFiat } from "@/composables/requests/fiat";
+import { getUserInfo, set_Pin, verify_Pin, Init_pin_recovery, reset_Pin} from "@/composables/requests/users";
 import {debounce} from "@/composables/mixin";
 
 const theme = useTheme()

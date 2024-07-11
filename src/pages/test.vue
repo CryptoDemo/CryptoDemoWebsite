@@ -26,7 +26,7 @@
                                 <template v-slot:activator="{ props }">
                                   <button @click="toggleChevron" class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
                                       <div class="py-3" style="display: flex;  align-items: center;  border-radius: 17px; background: inherit;">
-                                      <span class="me-2">{{ pinia.state.curency_to_swap }}</span>
+                                      <span class="me-2">{{  pinia.state.preferredCurrency }}</span>
                                       </div>
                                       <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
                                           <path d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z" fill="currentColor"/>
@@ -37,7 +37,7 @@
                                   <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 16px;">
                                     <v-list-item>
                                       <v-list-item v-for="(currency, index) in pinia.state.allcountries" :key="index">
-                                        <v-list-item-title @click="pinia.state.curency_to_swap=currency.currency_name; currencyCode = currency.currency_code" class="d-flex"> 
+                                        <v-list-item-title @click=" pinia.state.preferredCurrency=currency.currency_name; currencyCode = currency.currency_code" class="d-flex"> 
                                           <span class="me-3" style="align-items: center;"> {{currency.currency_name}} </span>
                                         </v-list-item-title>
                                       </v-list-item>
@@ -133,7 +133,7 @@
                 </v-alert>
               </div>
   
-                <v-btn @click="executeTxn()" :loading="loading" append-icon="mdi-arrow-right" class="exchange-btn1"> Exchange </v-btn>
+                <v-btn @click="calculateTxn()" :loading="loading" append-icon="mdi-arrow-right" class="exchange-btn1"> Exchange </v-btn>
             </div>
           </div>
       </v-container>
@@ -159,16 +159,16 @@
   
   const FeeCard = ref(false);
   
-  const ExpectedAmmount = ref();
   
   const currency_i_want_to_have = ref(pinia.state.fiat_currency_i_want); 
 
   currency_i_want_to_have.value = pinia.state.allcountries[0].currency_name;
+  console.log()
 
   const countryID_of_currency_i_want = computed(() => pinia.state.allcountries.find(c => c.currency_name === currency_i_want_to_have.value));
 
   console.log(countryID_of_currency_i_want.value.id)
-  
+
   
   const selected_tokenType_to_swap  = ref ('USDT')
   
@@ -191,7 +191,7 @@
   
   const is_balance_sufficient = ref();
 
-  const mytoken = computed(() => pinia.state.allcountries.find(c => c.currency_name === pinia.state.curency_to_swap));
+  const mytoken = computed(() => pinia.state.allcountries.find(c => c.currency_name === pinia.state.preferredCurrency));
   console.log(mytoken.value.id)
 
 
@@ -199,9 +199,10 @@
       const balance = pinia.state.Total_fiat_bal.find(c => c.country_id === (mytoken.value ? mytoken.value.id : null));
       return balance ? balance.balance : 0;
     });
+      console.log( selectedBalance.value)
 
   const filteredCurrency_to_swap_to = ref([])
-  filteredCurrency_to_swap_to.value = pinia.state.allcountries.filter(c => c.currency_name != pinia.state.curency_to_swap)
+  filteredCurrency_to_swap_to.value = pinia.state.allcountries.filter(c => c.currency_name !=  pinia.state.preferredCurrency)
   
   const calculateTxn = async()=>{
       const info = {
@@ -218,13 +219,50 @@
         if(data.success){
           
           loading.value = false
-          pinia.setTransactionDetails(data.data)
+          pinia.setFiat_swap_details(data.data)
+
+          amount_to_recieve.value = pinia.state.Fiat_swap_details.expected_amount
+
+          console.log(amount_to_recieve)
+
+  
+        }else{
+          
+          push.error(`${data.message}`, {
+          });
+          loading.value = false;
+          
+        }
+       
+  
+      }catch(e){
+         console.log(e)
+         loading.value = false;
+      }
   
   
-          navigateTo('/account/Trade/success/')
-         
-          // navigateTo(/dashboard/wallet/get/`${pinia.state.transactionDetails.id}`)
+    };
+
+
+  const executeTxn = async()=>{
+      const info = {
+          action_type: "CALCULATE_FIAT_SWAP_AMOUNT",
+          from_country_id: mytoken.value.id,
+          to_country_id: mytoken.value.id,
+          amount: swapAmount.value,
+        }
+      try{
+        loading.value = true
   
+        const data = await swapFund(info)
+  
+        if(data.success){
+          
+          loading.value = false
+          pinia.setFiat_swap_details(data.data)
+
+          console.log(data.data)
+
   
         }else{
           
@@ -243,8 +281,12 @@
   
     }
 
+onMounted(() => {
+ 
+}
 
-  
+);
+
   // const toggleTokens = ()=>{
   //   const m = selectedSymbol.value
   //   const p = piniastoredicon.value
