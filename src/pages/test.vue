@@ -8,14 +8,14 @@
           </svg>
           <span class="swap1 ml-2">Swap</span>
         </div>
-          <div :class="isDark ? 'btn-segment':'btn-segment-light'" style="border-radius: 24px; padding: 37px; margin-top: 70px; margin-bottom: 925px; width: 97%; margin: auto;">
+          <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; padding: 37px; margin-top: 70px; margin-bottom: 925px; width: 97%; margin: auto;">
               <div class="d-flex" style="margin-bottom: 30px;">
                   <span class="quick-swap me-3 ">Quick Swap</span>
                   <img src="/svg/reload.svg" class="icon1"/>
               </div>
   
               <div class="d-md-flex" style="justify-content: space-between; position: relative;">
-                  <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
+                  <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
                 
                        <div class="d-flex" style="width: 12%;">   
                         <div class="me-13" style="display: flex; flex-direction: column; z-index: 1000">
@@ -37,7 +37,7 @@
                                   <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 16px;">
                                     <v-list-item>
                                       <v-list-item v-for="(currency, index) in pinia.state.allcountries" :key="index">
-                                        <v-list-item-title @click=" pinia.state.preferredCurrency=currency.currency_name; currencyCode = currency.currency_code" class="d-flex"> 
+                                        <v-list-item-title @click=" pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code" class="d-flex"> 
                                           <span class="me-3" style="align-items: center;"> {{currency.currency_name}} </span>
                                         </v-list-item-title>
                                       </v-list-item>
@@ -51,17 +51,17 @@
                         <v-btn @click="swapAmount = mytoken.minimum_fiat_to_crypto_swap" class="me-4" :class="isDark ? 'btn-segment':'btn-segment-light'" style="height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span></v-btn>    
                         <v-btn @click="swapAmount = selectedBalance" class="me-3" :class="isDark ? 'btn-segment':'btn-segment-light'" style="letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span></v-btn>
                       </div>
-  
+                      
                       <div class="number-input" style="display: flex; margin-right: 10px; flex-direction: column; z-index: 1000">
-                        <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom: 10px; display: flex;justify-content: end;">{{ formatBalance(selectedBalance) }} {{ selectedSymbol }}</span>
-                        <input type="number" v-model="swapAmount" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>    
+                        <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom: 10px; display: flex; justify-content: end;">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(selectedBalance) }}</span>
+                        <input type="number" v-model="swapAmount" :class="isDark ? 'btn-segment' : 'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;" />
                       </div>
                   </div>
-  
                   
                   <div @click="toggleTokens()" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark"><img src="/svg/swap.svg" width="8%"/></div> 
   
                   <div @click="toggleTokens()" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-else>
+                  
                     <svg xmlns="http://www.w3.org/2000/svg" width="90" height="85" viewBox="0 0 70 71" fill="none">
                       <path d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z" fill="#4284FF"/>
                       <path d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z" fill="url(#paint0_linear_5037_31025)"/>
@@ -77,7 +77,7 @@
                   </div>
                 
   
-                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
+                <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'"  style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
                   <div class="d-flex">   
                       <div class="me-13" style="display: flex; flex-direction: column; margin-left: 10px;">
                         <span class="have">I want:</span>
@@ -112,15 +112,15 @@
                       
                   </div>
                   <div style="display: flex; flex-direction: column;">
-                      <span class="have" style="font-size: 14px; font-weight: 500; font-family: manrope; display: flex;justify-content: end;"> {{ selected_tokenType_to_swap }}</span>
+                      <span class="have mb-2" style="font-size: 14px; font-weight: 500; font-family: manrope; display: flex;justify-content: end;"> Expected ammount </span>
                       <input type="number"  disabled v-model="amount_to_recieve" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>  
-                      </div>
+                  </div>
   
                 </div>
        
                 </div>
                   <div>
-                    <h5 class="quick-swap mt-2" style="font-family: manrope;">Minimum swap amount {{ currencyCode }} {{ formatBalance(mytoken.minimum_fiat_to_crypto_swap) }}</h5>
+                    <h5 class="quick-swap mt-2" style="font-family: manrope;">Minimum swap amount {{ pinia.state.Selectedcurrency_code }}{{ formatBalance(mytoken.minimum_fiat_to_crypto_swap) }}</h5>
                   </div>
   
               <div style="display: flex; justify-content: space-between; margin-top: 55px; align-items: center;">
@@ -158,14 +158,10 @@
   const currencyCode = ref("");
   
   const FeeCard = ref(false);
-  
-  
-  const currency_i_want_to_have = ref(pinia.state.fiat_currency_i_want); 
 
-  currency_i_want_to_have.value = pinia.state.allcountries[0].currency_name;
-  console.log()
+  pinia.state.fiat_currency_i_want = pinia.state.allcountries[0].currency_name;
 
-  const countryID_of_currency_i_want = computed(() => pinia.state.allcountries.find(c => c.currency_name === currency_i_want_to_have.value));
+  const countryID_of_currency_i_want = computed(() => pinia.state.allcountries.find(c => c.currency_name === pinia.state.fiat_currency_i_want));
 
   console.log(countryID_of_currency_i_want.value.id)
 
@@ -203,12 +199,22 @@
 
   const filteredCurrency_to_swap_to = ref([])
   filteredCurrency_to_swap_to.value = pinia.state.allcountries.filter(c => c.currency_name !=  pinia.state.preferredCurrency)
+
+  watch(() => pinia.state.preferredCurrency, (newValue) => {
+  console.log('Updated preferredCurrency:', newValue);
+  console.log('Updated mytoken:', mytoken.value?.id);
+});
+
+watch( (newValue) => {
+  console.log('Updated countryID_of_currency_i_want:', countryID_of_currency_i_want.value?.id);
+  filteredCurrency_to_swap_to.value = pinia.state.allcountries.filter(c => c.currency_name != newValue)
+});
   
   const calculateTxn = async()=>{
       const info = {
           action_type: "CALCULATE_FIAT_SWAP_AMOUNT",
           from_country_id: mytoken.value.id,
-          to_country_id: mytoken.value.id,
+          to_country_id: countryID_of_currency_i_want.value?.id,
           amount: swapAmount.value,
         }
       try{
@@ -281,6 +287,8 @@
   
     }
 
+
+
 onMounted(() => {
  
 }
@@ -301,24 +309,6 @@ onMounted(() => {
   // }
   
   
- 
-    
-    // Watch for changes in amount_to_swap and trigger tax calculation
-    // watchEffect(() => {
-    //     if (swapAmount.value < minimumswap.value || swapAmount.value < selectedBalance.value) return;
-    //     debounce(caltax);
-    //   });
-  
-  
-  //   watch(()=>swapAmount.value,(newv)=>{
-  //     if(newv < minimumswap.value || newv < selectedBalance.value){
-  //       debounce(caltax);
-  
-  //     }
-  //     if(newv == null ){
-  //       swapAmount.value = ''
-  //     }
-  //   })
   
   const isChevronToggled = ref(false);
   const toggleChevron = () => {
@@ -458,7 +448,7 @@ onMounted(() => {
   }
   
   .btn-segment{
-  border: 1px solid #1B2537;
+  border: 1px solid  rgba(65, 69, 87, 0.6);
   }
   
   .btn-segment-light{

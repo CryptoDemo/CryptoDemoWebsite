@@ -16,6 +16,17 @@ font-size: 14px;
 font-weight: 400;
 line-height: normal;
 }
+
+.txn-cards-dark {
+  background: #162138;
+  padding: 10px;
+  border-radius: 15px;
+}
+.txn-cards-light {
+  background: #edf3ff;
+  padding: 10px;
+  border-radius: 15px;
+}
 .form-layout {
 border-radius: 2.3125rem;
 opacity: 0.8;
