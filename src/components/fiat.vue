@@ -228,14 +228,14 @@
             
             
                         
-                   
+        <FiatSwap/>       
 
 
 
-        <v-btn class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+        <!-- <v-btn class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
             <img src="/svg/arrow-swap.svg" class="me-1"/>
             Swap
-        </v-btn>
+        </v-btn> -->
     </div>
 </div>
 </template>
@@ -515,7 +515,7 @@ const toggleChevron = () => {
 .fiat-btn{
 display: flex;
 height: 132px;
-width: 32%;
+width:  260px;
 border-radius: 16px;
 justify-content: center;
 align-items: center;

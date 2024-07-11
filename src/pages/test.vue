@@ -470,6 +470,8 @@ const calculateTxn = async () => {
   }
 };
 
+
+
 const executeTxn = async () => {
   const info = {
     action_type:"EXECUTE_FIAT_SWAP",
@@ -490,7 +492,9 @@ const executeTxn = async () => {
       exchange.value = true;
       swapAmount.value = "";
       amount_to_recieve.value = "";
-      pinia.setFiat_transactions(data.data);
+      pinia.setFiat_transactions([...pinia.state.Fiat_transactions, data.data]);
+
+
       push.success(`${data.message}`)
       console.log(data.data);
     } else {
