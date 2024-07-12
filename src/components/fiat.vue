@@ -42,6 +42,7 @@
                             </v-list-item>
                         </v-list>
                     </v-menu> 
+                    
                     <v-alert class="text-subtitle-2" type="info" variant="tonal" style="border-radius: 15px; margin-top: 20px;">
                         The minimum funding amount for {{ pinia.state.preferredCurrency }} is {{ pinia.state.Selectedcurrency_code }}{{ formatBalance(fiatToken.minimum_fiat_funding) }}, and the maximum funding amount is {{ pinia.state.Selectedcurrency_code }}{{ formatBalance(fiatToken.maximum_fiat_funding) }}.
                     </v-alert>
@@ -177,7 +178,8 @@
                                 </v-card-text>
 
                                 
-                                <div>
+                                <!-- <div> -->
+                                <div v-if="showPinInput && hasPin && showResetPin">
                                     <v-card-text  class="pin-form d-flex"  style="flex-direction: column;">
                                         <span class="text-center text-h6 text-md-h5">Reset Pin</span>
                                         <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center;" :class="isDark ? 'text-dark':'text-light'" >For your security, please set a 4-digit PIN to authorize transfers.</h5>
@@ -185,8 +187,8 @@
                                         <span class="text-subtitle-2 mb-2 mt-2 ml-4" :class="isDark ? 'text-dark':'text-light'">Enter new transfer pin</span>
                                         <v-otp-input length="4"  v-model="Msgotp"  variant="plain" divider="•" style="margin-top: 10px;  margin-left: 18px;"></v-otp-input>
                                         <span class="text-subtitle-2 mb-2 mt-2 ml-4" :class="isDark ? 'text-dark':'text-light'">Enter the 4-digit code sent to your email</span>
+                                        <v-btn :loading="loading_send_fiat" @click=reset_Pin() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;">reset pin</v-btn>
                                      </v-card-text>
-                                    <v-btn :loading="loading_send_fiat" @click=reset_Pin() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="showPinInput && hasPin">reset pin</v-btn>
 
                                 </div>
 
@@ -264,6 +266,7 @@ const showSuccessIcon = ref(false);
 const showFailureIcon = ref(false);
 const showPinInput = ref(false);
 const showBackButton = ref(false);
+const showResetPin = ref(true)
 const hasPin = computed(() => pinia.state.user.is_pin_set !== null && pinia.state.user.is_pin_set !== false);
 console.log(hasPin.value)
 const otp = ref("");

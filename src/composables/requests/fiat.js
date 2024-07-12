@@ -69,6 +69,21 @@ export const getbals = async()=>{
     }
 };
 
+export const allFiatTxn = async()=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}transaction/fiat/${pageNumber}`, {
+        method: 'GET',
+        headers: {
+            'x-access-token': `${pinia.state.user?.token}`
+        },
+    }).then(res => res.json());
+
+    if(data?.success && data?.data?.length){
+        setFiat_transactions(data.data);
+    }
+};
+
 export const setupStripe = async()=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return

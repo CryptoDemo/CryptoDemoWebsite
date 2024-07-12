@@ -6,23 +6,23 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="navigateTo('/account/trade/wallet')" style="cursor: pointer;">
         <path d="M15 19.9181L8.47997 13.3981C7.70997 12.6281 7.70997 11.3681 8.47997 10.5981L15 4.07812" stroke="#B9D1FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span class="swap1 ml-2">Swap</span>
+        <span class="swap1 ml-2">Crypto Swap</span>
       </div>
-        <div :class="isDark ? 'btn-segment':'btn-segment-light'" style="border-radius: 24px; padding: 37px; margin-top: 70px; margin-bottom: 925px; width: 97%; margin: auto;">
+        <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; padding: 37px; margin-top: 70px; margin-bottom: 925px; width: 97%; margin: auto;">
             <div class="d-flex" style="margin-bottom: 30px;">
                 <span class="quick-swap me-3 ">Quick Swap</span>
                 <img src="/svg/reload.svg" class="icon1"/>
             </div>
 
             <div class="d-md-flex" style="justify-content: space-between; position: relative;">
-                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
+                <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
               
                      <div class="d-flex" style="width: 12%;">   
                       <div class="me-13" style="display: flex; flex-direction: column; z-index: 1000">
                         <span class="have">I have :</span>
                           <v-menu>
                               <template v-slot:activator="{ props }">
-                                <button @click="toggleChevron" class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
+                                <button @click="toggleChevron" class="inputstyling2" v-bind="props" style="display: flex; align-items: center; margin-top: 10px;">
                                     <div class="py-3" style="display: flex;  align-items: center;  border-radius: 17px; background: inherit;">
                                       <img :src="icon" width="30" class="me-2"/>
                                     </div>
@@ -46,7 +46,7 @@
                       </div>
                     </div>
 
-                    <div style="display: flex; justify-content: center; align-self: center ; margin-top: 17px; border-radius: 4px; height: 26px; z-index: 1000">
+                    <div style="display: flex; justify-content: center; align-self: center ; margin-top: 27px; border-radius: 4px; height: 26px; z-index: 1000">
                       <v-btn @click="swapAmount = minimumswap?.minimum_swap" class="me-4" :class="isDark ? 'btn-segment':'btn-segment-light'" style="height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span></v-btn>    
                       <v-btn @click="swapAmount = selectedBalance" class="me-3" :class="isDark ? 'btn-segment':'btn-segment-light'" style="letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span></v-btn>
                     </div>
@@ -76,13 +76,13 @@
                 </div>
               
 
-              <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
+              <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'"  style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
                 <div class="d-flex">   
                     <div class="me-13" style="display: flex; flex-direction: column; margin-left: 10px;">
                       <span class="have">I want:</span>
                         <v-menu>
                             <template v-slot:activator="{ props }">
-                              <button @click="toggleChevron1" class="inputstyling2" v-bind="props" style="display: flex; align-items: center;">
+                              <button @click="toggleChevron1" class="inputstyling2" v-bind="props" style="display: flex; align-items: center; margin-top: 8px">
 
                                 <div  class="py-3" style="display: flex; align-items: center;  border-radius: 17px; background: inherit;">
                                   <img :src="coin_to_swap" class="me-2" width="30"/>
@@ -111,7 +111,7 @@
                     
                 </div>
                 <div style="display: flex; flex-direction: column;">
-                    <span class="have" style="font-size: 14px; font-weight: 500; font-family: manrope; display: flex;justify-content: end;"> {{ selected_tokenType_to_swap }}</span>
+                    <span class="have mb-2" style="font-size: 14px; font-weight: 500; font-family: manrope; display: flex;justify-content: end;"> {{ selected_tokenType_to_swap }}</span>
                     <input type="number"  disabled v-model="amount_to_recieve" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>  
                     </div>
 
@@ -240,6 +240,11 @@ const toggleTokens = ()=>{
 
 // Calculate tax for swapping
 const caltax = async () => {
+  if (swapAmount.value > selectedBalance.value) {
+      push.error("Insufficient balance");
+      return;
+    }
+    
         const info = {
             swap_input: {
               from_token: selectedSymbol.value,
@@ -473,9 +478,9 @@ box-shadow: none  !important;
 height: 170px !important;
 }
 
-.btn-segment{
-border: 1px solid #1B2537;
-}
+.btn-segment {
+    border: 1px solid rgba(65, 69, 87, 0.6);
+  }
 
 .btn-segment-light{
 border: 1px solid #E2E8F0;

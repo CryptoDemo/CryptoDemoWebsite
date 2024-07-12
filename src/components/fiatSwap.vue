@@ -184,52 +184,29 @@
                                     <span class="me-2">{{pinia.state.fiat_currency_i_want}}</span>
                                 </div>
             
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="10"
-                                    height="7"
-                                    viewBox="0 0 10 7"
-                                    fill="none"
-                                    :class="[
-                                    'chevron-icon',
-                                    { 'chevron-icon-rotated': isChevronToggled1 },
-                                    isDark ? 'close-btn' : 'close-btn-dark',
-                                    ]"
-                                >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none" :class="['chevron-icon',{ 'chevron-icon-rotated': isChevronToggled1 },isDark ? 'close-btn' : 'close-btn-dark',]">
                                     <path
                                     d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z"
-                                    fill="currentColor"
-                                    />
+                                    fill="currentColor"/>
                                 </svg>
                                 </button>
                             </template>
-            
-                            <v-list
-                                :class="
-                                isDark ? 'country-dropdown' : 'country-dropdown-light'
-                                "
-                                style="border-radius: 16px"
-                            >
-                                <v-list-item>
-                                <v-list-item
-                                    v-for="(item, index) in filteredCurrency_to_swap_to"
-                                    :key="index"
-                                >
-                                    <v-list-item-title
-                                    @click="
-                                        pinia.state.fiat_currency_i_want =
-                                        item.currency_name;
-                                        selected_tokenType_to_swap = item.symbol;
-                                    "
-                                    class="d-flex"
-                                    >
-                                    <span class="me-3" style="align-items: center">
-                                        {{ item.currency_name }}
-                                    </span>
-                                    </v-list-item-title>
-                                </v-list-item>
+
+                            <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'">
+                                <v-list-item style="display: contents">
+                                    <v-row dense style="max-width: 200px;">
+                                    <v-col v-for="(currency, index) in filteredCurrency_to_swap_to" sm="12" :key="index">
+                                    <v-list-item @click="pinia.state.preferredCurrency = currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code;" style="display: flex;">
+                                        <div style="display: flex; align-items: center; ">
+                                        <img width="35" height="35" class="me-3" :src="currency.flag_url" style="object-fit: cover;border-radius: 30px"/> 
+                                        <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{  currency.currency_name }}</span>
+                                    </div>
+                                    </v-list-item>
+                                    </v-col>
+                                    </v-row>
                                 </v-list-item>
                             </v-list>
+            
                             </v-menu>
                         </div>
                         </div>
@@ -316,6 +293,7 @@
   pinia.state.fiat_currency_i_want = pinia.state.allcountries[0].currency_name;
   
   const countryID_of_currency_i_want = computed(() =>pinia.state.allcountries.find((c) => c.currency_name === pinia.state.fiat_currency_i_want));
+  console.log("Updated countryID_of_currency_i_want:",countryID_of_currency_i_want.value?.id);
   
   const selected_tokenType_to_swap = ref("USDT");
   
@@ -333,8 +311,10 @@
     return balance ? balance.balance : 0;
   });
   
-  const filteredCurrency_to_swap_to = ref([]);
-  filteredCurrency_to_swap_to.value = pinia.state.allcountries.filter((c) => c.currency_name != pinia.state.preferredCurrency);
+
+const filteredCurrency_to_swap_to = computed(() => pinia.state.allcountries.filter((c) => c.currency_name !== pinia.state.preferredCurrency));
+   
+
   
   watch(
     () => pinia.state.preferredCurrency,
@@ -344,15 +324,6 @@
     }
   );
   
-  watch((newValue) => {
-    console.log(
-      "Updated countryID_of_currency_i_want:",
-      countryID_of_currency_i_want.value?.id
-    );
-    filteredCurrency_to_swap_to.value = pinia.state.allcountries.filter(
-      (c) => c.currency_name != newValue
-    );
-  });
   
   const calculateTxn = async () => {
     if (swapAmount.value > selectedBalance.value) {
