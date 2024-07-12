@@ -462,7 +462,7 @@ input::-webkit-inner-spin-button {
     width: 83% !important;
   }
   .input-styling1{
-    width: 97%;
+    width: 96%;
   }
   .username-col, .img-col{
     margin-inline-end: 0px !important;

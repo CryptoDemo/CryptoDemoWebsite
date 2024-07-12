@@ -166,19 +166,7 @@ font-weight: 400 !important;
 line-height: 24px !important; /* 200% */
 box-shadow: none;
 }
-/* .delete-btn{
-border-radius: 12px !important;
-background: rgba(246, 85, 86, 0.12) !important;
-align-items: center !important;
-gap: 5px !important;
-text-transform: unset !important;
-font-feature-settings: 'clig' off, 'liga' off;
-font-family: Manrope;
-font-size: 12px !important;
-font-style: normal;
-font-weight: 400 !important;
-line-height: 24px !important; 
-} */
+
 .browser-txt{
 font-feature-settings: 'clig' off, 'liga' off;
 font-family: Manrope;
@@ -239,12 +227,12 @@ text-overflow: ellipsis;
 overflow: hidden;
 } */
 .logCaptions{
-width: 132px !important;
+width: 147px !important;
 position: relative !important;
 /* right: -9px !important; */
 }
 .logCaptions1{
-width: 235px !important;
+width: 435px !important;
 margin-left: -15px;
 }
 .logCaptions2{
