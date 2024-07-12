@@ -91,11 +91,11 @@
 
                     <div style="position: relative">
 
-                      <input type="number" id="phone" placeholder="333-4444-4444" minlength="9" maxlength="12" v-model="phoneNumber" style="font-size: 16px; font-weight: 400; height: 64px; padding-left: 100px; outline: none; width: 100%" class="input-styling1  pr-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"/>
+                      <input type="number" id="phone" placeholder="333-4444-4444"  v-model="phoneNumber" style="font-size: 16px; font-weight: 400; height: 64px; padding-left: 100px; outline: none; width: 100%" class="input-styling1 dateInput  pr-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"/>
                       
                       <v-menu transition="scale-transition">
                         <template v-slot:activator="{ props }">
-                          <v-btn @click="toggleChevron()" v-bind="props" :class="isDark ? 'wallet-border' : 'wallet-border-light'" style="box-shadow: none; height: 50px; width: 80px; background: inherit; position: absolute; left: 6px; margin-top: 7px; border-radius: 10px;">
+                          <v-btn @click="toggleChevron()" v-bind="props" class="phone-code" :class="isDark ? 'wallet-border' : 'wallet-border-light'" style="box-shadow: none; height: 50px; width: 80px; background: inherit; position: absolute; left: 6px; margin-top: 7px; border-radius: 10px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none" class="mr-2" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
                               <path d="M5.05508 5.99413C5.19232 5.99415 5.32822 5.96714 5.45502 5.91463C5.58182 5.86213 5.69705 5.78516 5.7941 5.68813L9.69409 1.78814C9.88995 1.59227 10 1.32663 10 1.04964C10 0.772651 9.88995 0.50701 9.69409 0.311147C9.49823 0.115285 9.23259 0.00523901 8.9556 0.00523901C8.67861 0.00523901 8.41296 0.115285 8.2171 0.311147L5.0531 2.71114L1.8891 0.311147C1.69324 0.115285 1.4276 0.00523901 1.1506 0.00523901C0.873613 0.00523901 0.607941 0.115285 0.412079 0.311147C0.216217 0.50701 0.106201 0.772651 0.106201 1.04964C0.106201 1.32663 0.216217 1.59227 0.412079 1.78814L4.3121 5.68813C4.4096 5.78569 4.52546 5.86297 4.65298 5.91549C4.78051 5.96801 4.91716 5.99473 5.05508 5.99413Z"/>
                             </svg>
@@ -125,7 +125,7 @@
                     <span class="number-caption ml-1 mb-1" :class="isDark ? 'text-dark':'text-light'">Enter a valid phone number for your wallet.</span>
                   </v-col>
                   <v-col :class="isDark ? 'date-input-profile-cards-dark':'date-input-profile-cards-light'">
-                   <v-date-input prepend-icon="" clearable class="dateInput"  v-model="DateOfBirth" variant="plain" style="text-transform: capitalize;"></v-date-input>
+                   <v-date-input prepend-icon="" clearable class="dateInput d-flex"   v-model="DateOfBirth" variant="plain" style="text-transform: capitalize;"></v-date-input>
                    <div style="margin-top: -21px">
                      <span class="number-caption ml-1" :class="isDark ? 'text-dark':'text-light'">Enter a valid DOB</span>
                    </div>
@@ -461,6 +461,9 @@ input::-webkit-inner-spin-button {
   .email-div{
     width: 83% !important;
   }
+  .input-styling1{
+    width: 97%;
+  }
   .username-col, .img-col{
     margin-inline-end: 0px !important;
     margin-left: 0px !important;
@@ -475,6 +478,16 @@ input::-webkit-inner-spin-button {
     margin-left: 0px !important;
   }
 
+  .dateInput{
+    width: 103% !important;
+  }
+
+  .user-inputs .v-input__control {
+    height: 64px !important;
+    border-radius: 15px;
+    width: 103% !important;
+}
+
   .settings-header{
     padding: 15px 10px;
   }
@@ -483,6 +496,9 @@ input::-webkit-inner-spin-button {
   }
   .user-inputs{
     margin-left: -8px !important;
+  }
+  .phone-code{
+    margin-top: -56px !important;
   }
 
   .truncate-username :deep(.v-input__control .v-field__input input){
