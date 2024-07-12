@@ -44,7 +44,6 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const items = [
   {icon:'/svg/profile1.svg', title: 'My profile', link:'/account/profile'},
-  {icon:'/svg/payment.svg', title: 'Payment Method', link:'#'},
   {icon:'/svg/transaction.svg', title: 'Security', link:'/account/security'},
   {icon:'/svg/settings.svg', title: 'Settings', link:'/account/settings'},
   {icon:'/svg/friend.svg', title: 'Dashboard', link:'/account/dashboard'},

@@ -42,7 +42,7 @@
                                   <h3 class="text-center">Two-Factor Authentication</h3>
                                   <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                     <div class="qr-code mt-7" v-html="twoFactorCodeUrl"></div>
-                                    <span style="font-size: 14px; font-weight: 700; margin-top: 10px; color: #2873FF;">Scan the QR code with your Google Authenticator</span>
+                                    <span class="scan-text" style="font-size: 14px; font-weight: 700; margin-top: 10px; color: #2873FF;">Scan the QR code with your Google Authenticator</span>
                                   </div>
 
                                 <div style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 5px; font-weight: 600;">
@@ -75,24 +75,24 @@
                       <div class="ml-2" style="margin-top: 42px; width: 99%;">
                           <span class="pswrd-mgt" style="font-weight: 700; font-size: 18px;">Change Password</span>
                           <div class="d-md-flex">
-                            <v-text-field class="password-styling firstPassword pl-4 me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="Enter current password" v-model="OldPassword" variant="plain">   
+                            <v-text-field class="password-styling firstPassword pl-4 me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="Enter current password" v-model="OldPassword" variant="plain" style="margin-top: 20px;">   
                               <div  class="eye-icon">
                                 <span  v-if="isToggled"  @click="togglePassword()" >
-                                  <img src="/svg/invisible.svg">
+                                  <img src="/svg/visible.svg">
                                 </span>
                                 <span v-else @click="togglePassword()">
-                                  <img src="/svg/visible.svg">
+                                  <img src="/svg/invisible.svg">
                                 </span>
                               </div>
                             </v-text-field> 
 
-                            <v-text-field class="password-styling pl-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="Enter new password" v-model="NewPassword" variant="plain">   
+                            <v-text-field class="password-styling pl-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="Enter new password" v-model="NewPassword" variant="plain" style="margin-top: 20px;">   
                               <div  class="eye-icon">
                                 <span  v-if="isToggled"  @click="togglePassword()" >
-                                  <img src="/svg/invisible.svg">
+                                  <img src="/svg/visible.svg">
                                 </span>
                                 <span v-else @click="togglePassword()">
-                                  <img src="/svg/visible.svg">
+                                  <img src="/svg/invisible.svg">
                                 </span>
                               </div>
                             </v-text-field>  
@@ -101,13 +101,13 @@
 
                           <div class="d-md-flex">
                           
-                            <v-text-field class="password-styling pl-4 me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="confirm new password" v-model="ConfirmNewPassword" variant="plain">   
+                            <v-text-field class="password-styling pl-4 me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" :type="isToggled ? 'text' : 'password'" placeholder="confirm new password" v-model="ConfirmNewPassword" variant="plain" style="margin-top: 20px;">   
                               <div  class="eye-icon">
                                 <span  v-if="isToggled"  @click="togglePassword()" >
-                                  <img src="/svg/invisible.svg">
+                                  <img src="/svg/visible.svg">
                                 </span>
                                 <span v-else @click="togglePassword()">
-                                  <img src="/svg/visible.svg">
+                                  <img src="/svg/invisible.svg">
                                 </span>
                               </div>
                             </v-text-field>  
@@ -350,7 +350,7 @@ width: 100%;
 height: 64px !important; 
 align-self: flex-end;
 border-radius: 16px;
-margin-top: 20px;
+
 } 
 
 .coin-name{
@@ -426,11 +426,14 @@ line-height: 140%; /* 17.675px */
 }
  .password-styling {
     width: 98%;
-    margin-top: 28px;
+    margin-top: 10px !important;
  }
  .primary-btn1{
   height: 50px !important;
   margin-top: 28px !important;
+ }
+ .scan-text{
+  font-size: 11px !important;
  }
 }
 </style>

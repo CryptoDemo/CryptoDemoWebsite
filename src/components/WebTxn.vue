@@ -295,10 +295,12 @@ onMounted(() => {
 
 <style scoped>
 .wallet-border {
-  border-bottom: 1px solid #1b2537;
+ border-bottom: 1px solid  #1B2537 !important;
+border:none;
 }
 .wallet-border-light {
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0 !important;
+  border:none;
 }
 .txn-cards-dark {
   background: #162138;
