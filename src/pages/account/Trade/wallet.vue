@@ -14,15 +14,11 @@
   
               <div style="width: -webkit-fill-available">
                 <div class="mt-5">
-                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="display: flex; border-radius: 10px; width: fit-content; height: 65px; align-items: center; padding: 10px;">
+                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="button-container" style="display: flex; border-radius: 10px; width: fit-content; height: 65px; align-items: center; padding: 10px;">
                   <v-btn class="me-3" :class="[selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=true" >Crypto Wallet </v-btn>
                   <v-btn :class="[!selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=false">Fiat Wallet</v-btn>
                 </div>
-<!--                 
-                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="display: flex; border-radius: 10px; width: fit-content; height: 65px; align-items: center; padding: 10px;">
-                  <v-btn class="me-3" :class="[selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=true" >Crypto Wallet </v-btn>
-                  <v-btn :class="[!selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=false">Fiat Wallet</v-btn>
-                </div> -->
+
 
                 <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; width: 97%; padding: 30px; margin-top: 30px;">
                     <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
@@ -544,7 +540,7 @@ min-width: 0px !important;
 }
 
 .wallet-btn{
-width: 154px;
+width: 48%;
 height: 42px;
 padding: 12px 58px;
 font-size: 14px;
@@ -552,12 +548,15 @@ font-style: normal;
 font-weight: 700;
 }
 .fiat-btn{
-width: 154px;
+width: 48%;
 height: 42px;
 padding: 12px 58px;
 font-size: 14px;
 font-style: normal;
 font-weight: 700;
+}
+.button-container{
+  width: 100% !important;
 }
 
 }
