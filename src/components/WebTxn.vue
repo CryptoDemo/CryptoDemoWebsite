@@ -31,8 +31,8 @@
                         <span v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" style="color: #35B233; font-weight: 600;">{{formatNumber(transaction?.details?.crypto?.transfer?.amount)}}</span>
                         <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" style="color: #91A3B0; font-weight: 600">{{formatNumber(transaction?.details?.crypto?.transfer?.amount)}}</span>
 
-                        <span v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" style="color: #35B233">{{tokenLists.find((p) => p.id === transaction?.details?.crypto?.transfer?.token_id).symbol}}</span>
-                        <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" style="color: #91A3B0">{{tokenLists.find((p) => p.id === transaction?.details.crypto?.transfer?.token_id).symbol}}</span>
+                        <span v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" style="color: #35B233">{{tokenLists.find((p) => p.id === transaction?.details?.crypto?.transfer?.token_id)?.symbol}}</span>
+                        <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" style="color: #91A3B0">{{tokenLists.find((p) => p.id === transaction?.details.crypto?.transfer?.token_id)?.symbol}}</span>
                     </div>
                     </div>
     
@@ -214,7 +214,7 @@
                 </div>
 
                 
-                <v-card-actions class="mt-8" style="display: flex; justify-content: space-between;">
+                <v-card-actions class="mt-8" style="display: flex; justify-content: space-between; align-items: center;">
                     <v-btn variant="tonal" text="Close Receipt" @click="isActive.value = false" style="text-transform: unset; letter-spacing: 0px; font-weight: 600;  width: 50%; height: 50px; border-radius: 10px !important;"></v-btn>
                     <v-btn class="primary-btn1" text="Download Receipt" style="border-radius: 10px !important; width: 50%; font-weight: 600; height: 50px; color: white;"></v-btn>
                 </v-card-actions>
@@ -324,6 +324,7 @@ border:none;
  align-items: center;
  text-align: center;
 }
+
 
 
 </style>

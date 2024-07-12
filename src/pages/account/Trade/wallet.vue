@@ -14,12 +14,15 @@
   
               <div style="width: -webkit-fill-available">
                 <div class="mt-5">
-                  <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="display: flex; border-radius: 10px; width: fit-content; height: 65px; align-items: center; padding: 10px;">
+                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="display: flex; border-radius: 10px; width: fit-content; height: 65px; align-items: center; padding: 10px;">
                   <v-btn class="me-3" :class="[selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=true" >Crypto Wallet </v-btn>
-
-
                   <v-btn :class="[!selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=false">Fiat Wallet</v-btn>
                 </div>
+<!--                 
+                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="display: flex; border-radius: 10px; width: fit-content; height: 65px; align-items: center; padding: 10px;">
+                  <v-btn class="me-3" :class="[selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=true" >Crypto Wallet </v-btn>
+                  <v-btn :class="[!selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=false">Fiat Wallet</v-btn>
+                </div> -->
 
                 <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; width: 97%; padding: 30px; margin-top: 30px;">
                     <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
@@ -58,7 +61,7 @@
                     
                     <tr @click="pinia.state.getNewCoinInfo = token.symbol; navigateTo('/account/trade/coinId')" class="token-price py-2"  :class="isDark ? 'wallet-border' : 'wallet-border-light'" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
                       <td style="display: contents;">
-                        <div class="d-flex me-7" style="align-items: center; width: 25%; overflow: hidden;">
+                        <div class="d-flex me-7" style="align-items: center; width: 25%;">
                           <img :src="token.icon" width="35" class="me-3" />
                           <div class="coin-div" style="flex-direction: column; display: flex; overflow: hidden; text-overflow: ellipsis;">
                             <span class="coin-name1 flex-lg-and-up hidden-sm-and-down"
@@ -119,26 +122,27 @@
                               </div>
                                 <div class="d-flex mt-6" style="justify-content: space-between;">
                                     <td style="display: flex; align-items: center;"> 
-                                      <div> 
-                                        <v-btn @click.once.stop="navigateTo('/account/trade/sendButton')" class="swap me-2" :class="isDark ? 'btn-segment':'btn-segment-light'">
-                                          <img src="/svg/send-arrow.svg" class="me-1"/>
+                                      <div style="width: 80px;"> 
+                                        <v-btn @click.once.stop="navigateTo('/account/trade/sendButton')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                                          <img src="/svg/get.svg" class="me-1"/>
                                           <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
                                         </v-btn>
                                       </div> 
                                     </td>
                                     <td style="display: flex; align-items: center;"> 
-                                      <div> 
-                                        <v-btn @click.prevent="navigateTo('/account/trade/getButton')" class="swap me-2" :class="isDark ? 'btn-segment':'btn-segment-light'">
-                                          <img src="/svg/get.svg" class="me-1"/>
+                                      <div style="width: 80px;"> 
+                                        <v-btn @click.prevent="navigateTo('/account/trade/getButton')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                                          <img src="/svg/send-arrow.svg" class="me-1"/>
                                           <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
                                         </v-btn>
                                       </div> 
                                     </td>
                                     <td style="display: flex; align-items: center; color: white;">
-                                      <div>
-                                    <v-btn @click.prevent="navigateTo('/account/trade/swap')"  :class="isDark ? 'btn-segment':'btn-segment-light'" class="swap">
-                                      <img src="/svg/arrow-swap.svg" class="me-1"/>
-                                      Swap</v-btn>
+                                      <div style="width: 80px;">
+                                        <v-btn @click.prevent="navigateTo('/account/trade/swap')"  :class="isDark ? 'btn-segment':'btn-segment-light'" class="swap">
+                                          <img src="/svg/arrow-swap.svg" class="me-1"/>
+                                          Swap
+                                        </v-btn>
                                    
                                       </div> 
                                     </td>
@@ -197,7 +201,7 @@
                 <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Transaction History</span>
             </div>
 
-            <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="padding: 10px; width: 97%; margin-bottom: 300px; max-height: 400px; overflow: scroll">
+            <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="txn-div" style="padding: 10px; width: 97%; margin-bottom: 300px; max-height: 400px; overflow: scroll">
               <WebTxn/>
             </div>
           
@@ -533,6 +537,27 @@ min-width: 0px !important;
 
 .coin-th{
   width: 45% !important;
+}
+
+.txn-div{
+  width: 100% !important;
+}
+
+.wallet-btn{
+width: 154px;
+height: 42px;
+padding: 12px 58px;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+}
+.fiat-btn{
+width: 154px;
+height: 42px;
+padding: 12px 58px;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
 }
 
 }
