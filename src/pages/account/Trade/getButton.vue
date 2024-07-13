@@ -370,7 +370,7 @@ input::-webkit-inner-spin-button {
     border-radius: 19px !important;
   }
   .paste-btn{
-    width: 80px !important;
+    width: 90px !important;
     height: 50px !important;
     top: 2% !important;
     border-radius: 14px !important;

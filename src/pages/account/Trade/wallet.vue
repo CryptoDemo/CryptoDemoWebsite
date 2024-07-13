@@ -546,7 +546,6 @@ min-width: 0px !important;
 .txn-div{
   width: 100% !important;
 }
-
 .wallet-btn{
 width: 48%;
 height: 42px;
@@ -566,6 +565,9 @@ font-weight: 700;
 .button-container{
   width: 100% !important;
   height: 61px !important;
+}
+.coin-price{
+  margin-top: 11px !important;
 }
 
 }
