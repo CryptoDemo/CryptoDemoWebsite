@@ -2,13 +2,13 @@
   <div>
     <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true"/>
         <v-container>
-          <div class="ml-6" style="display: flex; align-items: center; margin-bottom: 24px; margin-top: 100px;">
+          <div class="arrow-btn" style="display: flex; align-items: center; margin-bottom: 24px; margin-top: 100px; margin-left: 24px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="navigateTo('/account/trade/wallet')" style="cursor: pointer;">
           <path d="M15 19.9181L8.47997 13.3981C7.70997 12.6281 7.70997 11.3681 8.47997 10.5981L15 4.07812" stroke="#B9D1FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-         <span style="font-family: Manrope;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal; margin-left: 10px;">Send Coin</span>
+         <span  class="snd-text" style="font-family: Manrope;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal; margin-left: 10px;">Send Coin</span>
          </div>
-          <div style="margin-top: 60px; border: none; padding: 30px; width: 95%; margin: auto;" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+          <div class="snd-coin" style="margin-top: 60px; border: none; padding: 30px; width: 95%; margin: auto;" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
             <div style="display: flex; flex-direction: column;">
             <span style="margin-bottom: 34px; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600;line-height: normal;">Send Crypto</span>
             <span style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;"> Coin:</span>
@@ -55,23 +55,23 @@
                 </span>
            
                 <div style="margin-top: 18px;">  
-                   <span :class="isDark ? 'text-dark':'text-light'" style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Amount to Send</span>
+                   <span :class="isDark ? 'text-dark':'text-light'" class="hint-text" style="font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Amount to Send</span>
                 </div>
 
                  <div class="position-relative" style="margin-bottom: 31px;">
-                    <input class="px-4" placeholder="Ammount to send..." id="hiddenInput" v-model="trfAmmount" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; display: -webkit-box !important; -webkit-box-orient: vertical !important; -webkit-line-clamp: 1 !important; text-overflow: ellipsis !important; overflow: hidden !important; margin-bottom: 6px; align-items: center; height: 65px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
-                    <img :src="pinia.state.coin_to_transfer" width="35" style="top: 16%;right: 1.5%; position: absolute;"/>
+                    <input class="px-4 mobile-css"  placeholder="Ammount to send..." id="hiddenInput" v-model="trfAmmount" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; display: -webkit-box !important; -webkit-box-orient: vertical !important; -webkit-line-clamp: 1 !important; text-overflow: ellipsis !important; overflow: hidden !important; margin-bottom: 6px; align-items: center; height: 65px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
+                    <img :src="pinia.state.coin_to_transfer" class="trf-coin" width="35" style="top: 16%;right: 1.5%; position: absolute;"/>
                     <span :class="isDark ? 'text-dark':'text-light'" style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">minimum transfer limit:  {{ minimumTransfer?.minimum_transfer }}</span>
                 </div>
 
               
                 <div style="margin-top: 18px;">  
-                   <span :class="isDark ? 'text-dark':'text-light'" style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Receiver Wallet Address</span>
+                   <span :class="isDark ? 'text-dark':'text-light'" class="hint-text"  style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Receiver Wallet Address</span>
                 </div>
                  <div class="position-relative" style="margin-bottom: 32px">
-                    <input class="px-4" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" id="hiddenInput" v-model="transferWallet" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; display: -webkit-box !important; -webkit-box-orient: vertical !important; -webkit-line-clamp: 1 !important; text-overflow: ellipsis !important; overflow: hidden !important; margin-bottom: 6px; align-items: center; height: 65px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between; ">
-                    <v-btn @click="pasteText()" style="letter-spacing: 0px; width: 98px; font-family: Manrope; font-size: 16px; color: white; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 9%;right: 1.5%; position: absolute; display: flex;box-shadow: none; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Paste</v-btn>
-                    <span :class="isDark ? 'text-dark':'text-light'" style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Ensure the receiver’s wallet is a valid <span :class="isDark ? 'coin-name':'coin-name-light'"  style="font-family: Manrope;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">{{ coin }}</span> wallet address</span>
+                    <input class="px-4 mobile-css" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" id="hiddenInput" v-model="transferWallet" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; display: -webkit-box !important; -webkit-box-orient: vertical !important; -webkit-line-clamp: 1 !important; text-overflow: ellipsis !important; overflow: hidden !important; margin-bottom: 6px; align-items: center; height: 65px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between; ">
+                    <v-btn @click="pasteText()" class="paste-btn" style="letter-spacing: 0px; width: 98px; font-family: Manrope; font-size: 16px; color: white; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 9%;right: 1.5%; position: absolute; display: flex;box-shadow: none; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Paste</v-btn>
+                    <span :class="isDark ? 'text-dark':'text-light'" class="hint-text"  style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Ensure the receiver’s wallet is a valid <span :class="isDark ? 'coin-name':'coin-name-light'"  style="font-family: Manrope;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">{{ coin }}</span> wallet address</span>
                 </div>
 
             
@@ -478,6 +478,39 @@ letter-spacing: 0px;
     padding: 10px !important;
     width: 100% !important;
     height: auto !important;
+  }
+  .snd-coin{
+    width: 100% !important;
+    padding: 20px !important;
+  }
+  .arrow-btn{
+    margin-left: 0px !important;
+  }
+  .snd-text{
+    font-size: 16px !important;
+  }
+  .inputstyling1 {
+    border-radius: 19px !important;
+    width: 100% !important;
+    height: 56px !important;
+  }
+  .hint-text{
+    font-size: 14px !important;
+    display: flow;
+  }
+  .mobile-css{
+    height: 56px !important;
+    border-radius: 19px !important;
+  }
+  .paste-btn{
+    width: 80px !important;
+    height: 46px !important;
+    top: 5% !important;
+    border-radius: 14px !important;
+  }
+  .trf-coin{
+    top: 12% !important;
+    right: 3.5% !important;
   }
   }
   </style>

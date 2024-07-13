@@ -18,7 +18,15 @@
                   <v-btn class="me-3" :class="[selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=true" >Crypto Wallet </v-btn>
                   <v-btn :class="[!selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=false">Fiat Wallet</v-btn>
                 </div>
-
+<!-- 
+                <div>
+                  <div class="ma-2 mt-5 me-6 hidden-lg-and-up flex-md-and-down" v-if="selectedScreen">
+                    <Wallet-nav/>
+                   </div>
+                  <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-else>
+                    <FiatBal/>
+                   </div>
+               </div> -->
 
                 <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; width: 97%; padding: 30px; margin-top: 30px;">
                     <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
@@ -557,8 +565,9 @@ font-weight: 700;
 }
 .button-container{
   width: 100% !important;
+  height: 61px !important;
 }
 
 }
-</style>
+</style> 
   
