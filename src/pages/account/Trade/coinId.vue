@@ -28,13 +28,13 @@
                   <span class="bal" v-if="isToggled">{{ formatBalance(pinia.state.Selected_coin_Balance) }} {{ coin.symbol }}</span>
                   <span class="bal" v-else>***</span>
 
-                <div class="d-md-flex" style="align-items: center; margin-top: -13px; justify-content: space-between;">
+                <div class="d-md-flex mt-1" style="align-items: center; margin-top: -13px; justify-content: space-between;">
 
                 <div class="bal-div">
-                    <span class="currencyEquiv me-3">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(currencyEquivalent) }}</span>
+                    <span class="currencyEquiv me-3">{{ pinia.state.Selectedcurrency_code }}{{ formatBalance(currencyEquivalent) }}</span>
                 </div>
 
-                <div style="display: flex; align-items: center;">
+                <div class="btn-div" style="display: flex; align-items: center;">
               
                   <v-btn @click.prevent="navigateTo('/account/trade/sendButton')" class="send-btn me-3" :class="isDark ? 'wallet-border':'wallet-border-light'" >
                     <img src="/svg/send-arrow.svg" class="me-1"/>
@@ -243,6 +243,10 @@ border: 1px solid #E2E8F0;
 .currencyEquiv{
   font-size: 20px;
 }
+.btn-div{
+  justify-content: space-between;
 }
+}
+
 </style>
   
