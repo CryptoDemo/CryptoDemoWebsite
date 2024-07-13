@@ -52,10 +52,10 @@
                                 <v-list-item style="display: contents">
                                     <v-row dense style="max-width: 200px;">
                                     <v-col v-for="(currency, index) in pinia.state.allcountries" sm="12" :key="index">
-                                    <v-list-item @click="pinia.state.preferredCurrency = currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code;" style="display: flex;">
+                                    <v-list-item @click="pinia.state.preferredCurrency = currency?.currency_name; pinia.state.Selectedcurrency_code = currency?.currency_code;" style="display: flex;">
                                         <div style="display: flex; align-items: center; ">
-                                        <img width="35" height="35" class="me-3" :src="currency.flag_url" style="object-fit: cover;border-radius: 30px"/> 
-                                        <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{  currency.currency_name }}</span>
+                                        <img width="35" height="35" class="me-3" :src="currency?.flag_url" style="object-fit: cover;border-radius: 30px"/> 
+                                        <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{  currency?.currency_name }}</span>
                                     </div>
                                     </v-list-item>
                                     </v-col>
@@ -67,15 +67,14 @@
                         </div>
             
                         <div style="display: flex; justify-content: center; align-self: center; margin-top: 30px; border-radius: 4px; height: 26px;z-index: 1000;">
-                        <v-btn @click="swapAmount = mytoken.minimum_fiat_to_crypto_swap" class="me-4" :class="isDark ? 'btn-segment' : 'btn-segment-light'"
+                        <v-btn @click="swapAmount = mytoken?.minimum_fiat_to_crypto_swap" class="me-4" :class="isDark ? 'btn-segment' : 'btn-segment-light'"
                             style=" height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span>
                         </v-btn>
                         <v-btn
-                            @click="swapAmount = mytoken.maximum_fiat_funding"
+                            @click="swapAmount = mytoken?.maximum_fiat_funding"
                             class="me-3" :class="isDark ? 'btn-segment' : 'btn-segment-light'" style="letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span>
                         </v-btn>
                         </div>
-            
                         <div class="number-input" style="display: flex; margin-right: 10px; flex-direction: column; z-index: 1000;">
                         <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom: 10px; display: flex;justify-content: end;">{{ pinia.state.Selectedcurrency_code }}
                             {{ formatBalance(selectedBalance) }}</span>
@@ -326,7 +325,7 @@ const filteredCurrency_to_swap_to = computed(() => pinia.state.allcountries.filt
   
   
   const calculateTxn = async () => {
-    if (swapAmount.value > selectedBalance.value) {
+    if (swapAmount?.value > selectedBalance.value) {
       push.error("Insufficient balance");
       return;
     }
@@ -334,7 +333,7 @@ const filteredCurrency_to_swap_to = computed(() => pinia.state.allcountries.filt
   
     const info = {
       action_type: "CALCULATE_FIAT_SWAP_AMOUNT",
-      from_country_id: mytoken.value.id,
+      from_country_id: mytoken?.value.id,
       to_country_id: countryID_of_currency_i_want.value?.id,
       amount: swapAmount.value,
     };
@@ -346,7 +345,7 @@ const filteredCurrency_to_swap_to = computed(() => pinia.state.allcountries.filt
       if (data.success) {
         loading.value = false;
         pinia.setFiat_swap_details(data.data);
-        amount_to_recieve.value = pinia.state.Fiat_swap_details.expected_amount;
+        amount_to_recieve.value = pinia.state.Fiat_swap_details?.expected_amount;
         proccedBtn.value = true
         exchange.value = false
   

@@ -2,8 +2,8 @@
   <div class="dashboard-nav">
     <div :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'">
       <v-container style="display: flex; align-items: center;">   
-        <img src="/svg/Logo.svg" @click.prevent="navigateTo('/')" class="me-3"/>
-        <v-app-bar-title class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-title':'nav-title-light'">Demo 
+        <!-- <h2 @click.prevent="navigateTo('/')" class="me-3">Demo</h2> -->
+        <v-app-bar-title class="logoName" :class="isDark ? 'nav-title':'nav-title-light'">Demo 
           <v-text-field clearable  hide-details placeholder="Search in dashboard..." variant="plain" v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'" style="height: 55px; flex-shrink: 0; border-radius: 18px; margin-left: 20px; align-content: flex-end;"> 
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 16px; margin-right: 10px; bottom: 10px; position: relative;">
               <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -22,8 +22,8 @@
 
           <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <v-btn @click.prevent="handleButtonClick(country)" class="me-4 mt-8 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 18px; box-shadow: none; height: 52px; margin-top: px;">
-                <img :src="flag" class="me-2" width="32" height="32" style="object-fit: cover; border-radius: 30px"/>
+              <v-btn @click.prevent="handleButtonClick(country)" class="me-4 mt-8 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 18px; box-shadow: none; height: 52px;">
+                <img :src="flag" class="me-2" style="object-fit: cover; border-radius: 4px; height: 25px; width: 40px;"/>
                 <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{Countryname}}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
                   <g clip-path="url(#clip0_10476_6360)">
@@ -38,13 +38,13 @@
               </v-btn>
             </template>
 
-            <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'">
+            <v-list class="country-list" :class="isDark ? 'country-dropdown':'country-dropdown-light'">
               <v-list-item style="display: contents">
                 <v-row dense style="max-width: 250px;">
                   <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" :key="index">
                   <v-list-item @click="Countryname=item.country_code; country=item.country_name; flag= item.flag_url;" style="display: flex;">
                     <div style="display: flex; align-items: center; ">
-                      <img width="35" height="35" class="me-3" :src="item.flag_url" style="object-fit: cover;border-radius: 30px"/> 
+                      <img class="me-3" :src="item.flag_url" style="object-fit: cover; border-radius: 4px; height: 28px; width: 45px;"/> 
                       <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.country_name }}</span>
                   </div>
                   </v-list-item>
@@ -419,6 +419,15 @@ margin-top: 15px !important;
 }
 .header-nav-div{
   align-items: center !important;
+}
+.logoName{
+  margin-top: 4px !important;
+}
+.country-list{
+  margin-top: 30px;
+  position: absolute;
+  right: -15px;
+  width: max-content;
 }
 
 }
