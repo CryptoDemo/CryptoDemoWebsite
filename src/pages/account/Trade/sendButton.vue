@@ -59,7 +59,7 @@
                 </div>
 
                  <div class="position-relative" style="margin-bottom: 31px;">
-                    <input class="px-4 mobile-css"  placeholder="Ammount to send..." id="hiddenInput" v-model="trfAmmount" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; display: -webkit-box !important; -webkit-box-orient: vertical !important; -webkit-line-clamp: 1 !important; text-overflow: ellipsis !important; overflow: hidden !important; margin-bottom: 6px; align-items: center; height: 65px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
+                    <input type="number" class="px-4 mobile-css"  placeholder="Ammount to send..." id="hiddenInput" v-model="trfAmmount" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; display: -webkit-box !important; -webkit-box-orient: vertical !important; -webkit-line-clamp: 1 !important; text-overflow: ellipsis !important; overflow: hidden !important; margin-bottom: 6px; align-items: center; height: 65px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
                     <img :src="pinia.state.coin_to_transfer" class="trf-coin" width="35" style="top: 16%;right: 1.5%; position: absolute;"/>
                     <span :class="isDark ? 'text-dark':'text-light'" style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">minimum transfer limit:  {{ minimumTransfer?.minimum_transfer }}</span>
                 </div>
@@ -492,19 +492,19 @@ letter-spacing: 0px;
   .inputstyling1 {
     border-radius: 19px !important;
     width: 100% !important;
-    height: 56px !important;
+    height: 60px !important;
   }
   .hint-text{
     font-size: 14px !important;
     display: flow;
   }
   .mobile-css{
-    height: 56px !important;
+    height: 60px !important;
     border-radius: 19px !important;
   }
   .paste-btn{
     width: 80px !important;
-    height: 46px !important;
+    height: 50px !important;
     top: 5% !important;
     border-radius: 14px !important;
   }
