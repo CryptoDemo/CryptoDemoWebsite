@@ -64,7 +64,7 @@
             <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 6px;">Menu</span>    
           </div>
 
-          <div v-if="icon3"  style="display: grid; position: relative; margin-top: 27px;">
+          <div v-if="icon3" class="notify" style="display: grid; position: relative; margin-top: 27px;">
             <Notifications/>
             <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-right: 13px;">Notification</span>     
           </div>
@@ -395,7 +395,7 @@ fill: #10192D;
 .profile-nav{
 margin-inline-end: 0px !important;
 position: absolute;
-right: 30px;
+right: 92px;
 margin-top: -11px;
 }
 .profile-div{
@@ -421,9 +421,13 @@ margin-top: 15px !important;
 }
 .country-list{
   margin-top: 30px;
-  /* position: absolute;
-  right: -15px;
-  width: max-content; */
+}
+
+.notify{
+  position: absolute !important;
+  right: 54px !important;
+  margin-top: 27px !important;
+}
 }
 
 }
