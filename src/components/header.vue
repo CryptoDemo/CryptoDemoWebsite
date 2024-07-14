@@ -2,8 +2,8 @@
   <div class="dashboard-nav">
     <div :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'">
       <v-container style="display: flex; align-items: center;">   
-        <!-- <h2 @click.prevent="navigateTo('/')" class="me-3">Demo</h2> -->
-        <v-app-bar-title class="logoName" :class="isDark ? 'nav-title':'nav-title-light'">Demo 
+        <span @click.prevent="navigateTo('/')" class="logoName" :class="isDark ? 'nav-title':'nav-title-light'">Demo</span>
+        <v-app-bar-title class="logoName" :class="isDark ? 'nav-title':'nav-title-light'">
           <v-text-field clearable  hide-details placeholder="Search in dashboard..." variant="plain" v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'" style="height: 55px; flex-shrink: 0; border-radius: 18px; margin-left: 20px; align-content: flex-end;"> 
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 16px; margin-right: 10px; bottom: 10px; position: relative;">
               <path d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -18,23 +18,14 @@
         
         <div class="header-nav-div align-lg-center" style="display: flex;margin-inline-start: auto;">
           <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
-          <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
+          <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center;"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
 
           <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <v-btn @click.prevent="handleButtonClick(country)" class="me-4 mt-8 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 18px; box-shadow: none; height: 52px;">
+              <v-btn @click.prevent="handleButtonClick(country)" class="me-2 mt-8 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 15px; box-shadow: none; height: 52px;">
                 <img :src="flag" class="me-2" style="object-fit: cover; border-radius: 4px; height: 25px; width: 40px;"/>
                 <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{Countryname}}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
-                  <g clip-path="url(#clip0_10476_6360)">
-                    <path d="M12.7207 13.7951L17.6707 8.74609L19.0847 10.1884L12.7207 16.6797L6.35669 10.1884L7.77069 8.74609L12.7207 13.7951Z" fill="currentColor"/>
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_10476_6360">
-                      <rect width="24" height="24.48" fill="currentColor" transform="translate(0.719971 0.359375)"/>
-                    </clipPath>
-                  </defs>
-                </svg>
+            
               </v-btn>
             </template>
 
@@ -187,7 +178,7 @@ font-family: Manrope;
 color: #FFF;
 font-size: 20px !important;
 font-style: normal;
-font-weight: 800 !important;
+font-weight: 900 !important;
 line-height: 120%; /* 24px */
 }
 .nav-title-light{
@@ -221,7 +212,7 @@ color: #FFF;
 text-align: center;
 font-size: 16px;
 font-style: normal;
-font-weight: 800;
+font-weight: 700;
 line-height: normal;
 margin-right: 15px ;
 cursor: pointer;
@@ -425,9 +416,9 @@ margin-top: 15px !important;
 }
 .country-list{
   margin-top: 30px;
-  /* position: absolute;
+  position: absolute;
   right: -15px;
-  width: max-content; */
+  width: max-content;
 }
 
 }
