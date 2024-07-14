@@ -394,9 +394,9 @@ fill: #10192D;
 @media screen and (max-width: 600px) {
 .profile-nav{
 margin-inline-end: 0px !important;
-/* position: absolute;
+position: absolute;
 right: 30px;
-margin-top: -11px; */
+margin-top: -11px;
 }
 .profile-div{
 margin-top: 15px !important;
