@@ -59,7 +59,7 @@
             <span  class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: 3px;">Wallet</span>     
           </div>
 
-          <div class="profile-div" v-if="icon2" style="display: flex; flex-direction: column; margin-top: 27px;">
+          <div class="profile-div flex-lg-and-up flex-sm-and-down" v-if="icon2" style="display: flex; flex-direction: column; margin-top: 27px;">
             <Profile-nav  class="profile-nav me-8"/>
             <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 6px;">Menu</span>    
           </div>
@@ -394,7 +394,9 @@ fill: #10192D;
 @media screen and (max-width: 600px) {
 .profile-nav{
 margin-inline-end: 0px !important;
-
+/* position: absolute;
+right: 30px;
+margin-top: -11px; */
 }
 .profile-div{
 margin-top: 15px !important;
