@@ -240,7 +240,7 @@ top: 3%;
 bottom: 0
 } 
 .tick-icon{
-  top: 75%;
+  top: 73%;
   right: 10% ;
 }  
 .eye-icon{

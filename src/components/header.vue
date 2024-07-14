@@ -20,15 +20,15 @@
         <div class="header-nav-div align-lg-center" style="display: flex;margin-inline-start: auto;">
           <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
           <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center;"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
-
+          
           <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <v-btn @click.prevent="handleButtonClick(country)" class="me-4 mt-8 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 15px; box-shadow: none; height: 52px;">
+              <v-btn @click.prevent="handleButtonClick(country)" class="me-4 mt-8 mb-9 dropdown-btn1i"  :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 15px; box-shadow: none; height: 52px;">
                 <img :src="flag" class="me-2" style="object-fit: cover; border-radius: 4px; height: 25px; width: 40px;"/>
                 <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{Countryname}}</span>
               </v-btn>
             </template>
-
+  
             <v-list class="country-list" :class="isDark ? 'country-dropdown':'country-dropdown-light'">
               <v-list-item style="display: contents">
                 <v-row dense style="max-width: 250px;">
