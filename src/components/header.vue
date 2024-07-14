@@ -404,6 +404,7 @@ margin-top: 15px !important;
 .dropdown-btn1i{
   position: absolute;
   right: 0;
+  bottom: 3px;
   /* margin-top: 40px !important; */
 }
 .v-btn__content {
