@@ -23,7 +23,6 @@
           <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
               <v-btn @click.prevent="handleButtonClick(country)" class="me-4 mt-8 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 15px; box-shadow: none; height: 52px;">
-                <span>hi</span>
                 <img :src="flag" class="me-2" style="object-fit: cover; border-radius: 4px; height: 25px; width: 40px;"/>
                 <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{Countryname}}</span>
               </v-btn>
@@ -33,7 +32,7 @@
               <v-list-item style="display: contents">
                 <v-row dense style="max-width: 250px;">
                   <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" :key="index">
-                  <v-list-item @click="Countryname=item.country_code; country=item.country_name; flag= item.flag_url;" style="display: flex;">
+                  <v-list-item @click="Countryname=item.country_code; country=item.country_name; flag=item.flag_url;" style="display: flex;">
                     <div style="display: flex; align-items: center; ">
                       <img class="me-3" :src="item.flag_url" style="object-fit: cover; border-radius: 4px; height: 28px; width: 45px;"/> 
                       <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.country_name }}</span>
@@ -403,7 +402,9 @@ margin-top: 15px !important;
   background: inherit !important;
 }
 .dropdown-btn1i{
-  margin-top: 40px !important;
+  position: absolute;
+  right: 0;
+  /* margin-top: 40px !important; */
 }
 .v-btn__content {
   margin-top: 9px !important;
