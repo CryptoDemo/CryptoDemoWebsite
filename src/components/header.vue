@@ -22,7 +22,7 @@
 
           <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <v-btn @click.prevent="handleButtonClick(country)" class="me-2 mt-8 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 15px; box-shadow: none; height: 52px;">
+              <v-btn @click.prevent="handleButtonClick(country)" class="me-4 mt-8 mb-9 dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" style="display: flex; align-self: flex-start; border-radius: 15px; box-shadow: none; height: 52px;">
                 <img :src="flag" class="me-2" style="object-fit: cover; border-radius: 4px; height: 25px; width: 40px;"/>
                 <span class="me-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'country-text':'country-text-light'">{{Countryname}}</span>
             
