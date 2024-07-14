@@ -416,9 +416,9 @@ margin-top: 15px !important;
 }
 .country-list{
   margin-top: 30px;
-  position: absolute;
+  /* position: absolute;
   right: -15px;
-  width: max-content;
+  width: max-content; */
 }
 
 }
