@@ -60,7 +60,7 @@
           </div>
 
           <div class="profile-div flex-lg-and-up flex-sm-and-down" v-if="icon2" style="display: flex; flex-direction: column; margin-top: 27px;">
-            <Profile-nav  class="profile-nav me-8"/>
+            <Menu  class="profile-nav me-4 ml-5"/>
             <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 6px;">Menu</span>    
           </div>
 
