@@ -1,20 +1,21 @@
 <template>
   <div>
-
     <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0; height: 90%;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
-    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
-    <Header text2="New on Demo! " title="Create account" link="/authentication/register"/>
-    <v-container class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
-      <div class="section">
+    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0; height: 90%; right: 0; display: flex; margin: auto" v-else/>
+   
+    <Header @country="v => country = v" text2="Already have an account," title="Create account" link="/authentication/register"/> 
+      <v-container  class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
+        <div class="section">
         <v-row no-gutters>
           <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
-            <div>
-              <div style="margin-top: 115px;"><span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Login to Demo</span></div>
-  
-           
+            <v-form @click.prevent> 
+            <div class="" style="margin-top:150px;">
+             <span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Login to Demo</span>
+            </div>
 
-              <div class="position-relative" style="margin-top: 134px">
-                
+              <div class="position-relative" style="margin-top:180px;">
+            
+            
                 <v-text-field placeholder="Email Address" class="pr-14" variant="plain" :class="isDark ? 'input-styling':'input-styling-light'" v-model="email" style="font-size: 12px !important;">
                   <v-icon class="prepend-inner-icon ml-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 25 24" fill="none">
@@ -29,71 +30,64 @@
                   </v-icon>
   
                 </v-text-field>
-
-
-                    <div class="position-absolute tick-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
-                          <path d="M8.55756 14.3555C7.38453 14.3555 6.23785 14.0184 5.26251 13.3869C4.28717 12.7553 3.52699 11.8577 3.07809 10.8075C2.62919 9.75728 2.51173 8.60167 2.74058 7.48677C2.96943 6.37188 3.5343 5.34779 4.36375 4.544C5.19321 3.7402 6.25 3.19281 7.40049 2.97105C8.55098 2.74928 9.7435 2.8631 10.8272 3.29811C11.911 3.73312 12.8373 4.46978 13.489 5.41494C14.1407 6.3601 14.4885 7.47131 14.4885 8.60804C14.4885 10.1324 13.8636 11.5942 12.7514 12.6721C11.6391 13.7499 10.1305 14.3555 8.55756 14.3555ZM8.55756 13.206C9.49599 13.206 10.4133 12.9363 11.1936 12.4311C11.9739 11.9259 12.582 11.2078 12.9411 10.3676C13.3003 9.52743 13.3942 8.60294 13.2111 7.71103C13.0281 6.81911 12.5762 5.99984 11.9126 5.35681C11.249 4.71377 10.4036 4.27586 9.48322 4.09845C8.56283 3.92103 7.60881 4.01209 6.74182 4.3601C5.87483 4.7081 5.1338 5.29743 4.61244 6.05356C4.09108 6.80969 3.81281 7.69865 3.81281 8.60804C3.81281 9.82749 4.3127 10.997 5.20251 11.8593C6.09233 12.7216 7.29918 13.206 8.55756 13.206ZM7.96447 10.907L5.44975 8.46819L6.28403 7.65588L7.96447 9.27857L11.3253 6.03032L12.1646 6.84262L7.96447 10.907Z" fill="#C4C4C4"/>
-                        </svg>
-                    </div>
-              </div>
                 
-              <div class="position-relative">
-                  <v-text-field class="input-styling pr-14" style="margin-top:20.81px;" :type="isToggled ? 'text' : 'password'" :class="isDark ? 'input-styling':'input-styling-light'"
-                    placeholder="Password" v-model.trim="password" variant="plain">
-                    <v-icon class="prepend-inner-icon ml-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                          <g clip-path="url(#clip0_649_13096)">
-                              <path d="M14.6836 22.9448C9.1606 22.9448 4.6836 18.4678 4.6836 12.9448C4.6836 7.42182 9.1606 2.94482 14.6836 2.94482C20.2066 2.94482 24.6836 7.42182 24.6836 12.9448C24.6836 18.4678 20.2066 22.9448 14.6836 22.9448ZM14.6836 20.9448C16.8053 20.9448 18.8402 20.102 20.3405 18.6017C21.8407 17.1014 22.6836 15.0666 22.6836 12.9448C22.6836 10.8231 21.8407 8.78826 20.3405 7.28797C18.8402 5.78768 16.8053 4.94482 14.6836 4.94482C12.5619 4.94482 10.527 5.78768 9.02675 7.28797C7.52646 8.78826 6.6836 10.8231 6.6836 12.9448C6.6836 15.0666 7.52646 17.1014 9.02675 18.6017C10.527 20.102 12.5619 20.9448 14.6836 20.9448ZM13.6836 13.7368C13.1572 13.5071 12.726 13.1031 12.4624 12.5928C12.1988 12.0825 12.119 11.497 12.2363 10.9348C12.3537 10.3725 12.661 9.86784 13.1067 9.50557C13.5524 9.1433 14.1093 8.94554 14.6836 8.94554C15.258 8.94554 15.8148 9.1433 16.2605 9.50557C16.7062 9.86784 17.0135 10.3725 17.1309 10.9348C17.2482 11.497 17.1684 12.0825 16.9048 12.5928C16.6412 13.1031 16.21 13.5071 15.6836 13.7368V16.9448H13.6836V13.7368Z" fill="#C4C4C4"/>
-                          </g>
-                          <defs>
-                              <clipPath id="clip0_649_13096">
-                              <rect width="23.5355" height="24" fill="white" transform="translate(0.613289 0.944824)"/>
-                              </clipPath>
-                          </defs>
-                      </svg>
-                    </v-icon>
-                    <v-icon class="prepend-inner-icon" style="position: absolute; margin-left: 40px">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="15" viewBox="0 0 2 15" fill="none">
-                        <path opacity="0.4" d="M1.06026 1.31102V14.311" stroke="#C3CDDB" stroke-linecap="round"/>
+                <div class="position-absolute tick-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                      <path d="M8.55756 14.3555C7.38453 14.3555 6.23785 14.0184 5.26251 13.3869C4.28717 12.7553 3.52699 11.8577 3.07809 10.8075C2.62919 9.75728 2.51173 8.60167 2.74058 7.48677C2.96943 6.37188 3.5343 5.34779 4.36375 4.544C5.19321 3.7402 6.25 3.19281 7.40049 2.97105C8.55098 2.74928 9.7435 2.8631 10.8272 3.29811C11.911 3.73312 12.8373 4.46978 13.489 5.41494C14.1407 6.3601 14.4885 7.47131 14.4885 8.60804C14.4885 10.1324 13.8636 11.5942 12.7514 12.6721C11.6391 13.7499 10.1305 14.3555 8.55756 14.3555ZM8.55756 13.206C9.49599 13.206 10.4133 12.9363 11.1936 12.4311C11.9739 11.9259 12.582 11.2078 12.9411 10.3676C13.3003 9.52743 13.3942 8.60294 13.2111 7.71103C13.0281 6.81911 12.5762 5.99984 11.9126 5.35681C11.249 4.71377 10.4036 4.27586 9.48322 4.09845C8.56283 3.92103 7.60881 4.01209 6.74182 4.3601C5.87483 4.7081 5.1338 5.29743 4.61244 6.05356C4.09108 6.80969 3.81281 7.69865 3.81281 8.60804C3.81281 9.82749 4.3127 10.997 5.20251 11.8593C6.09233 12.7216 7.29918 13.206 8.55756 13.206ZM7.96447 10.907L5.44975 8.46819L6.28403 7.65588L7.96447 9.27857L11.3253 6.03032L12.1646 6.84262L7.96447 10.907Z" fill="#C4C4C4"/>
                     </svg>
-                    </v-icon>
-                </v-text-field> 
-                <div  class="position-relative">
+                </div>
+                  
+              </div> 
   
-                  <span  v-if="isToggled"  @click="togglePassword()"  class="eye-icon">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
-                      <path d="M10.3561 6.9924L6.95581 10.2237C6.51901 9.80864 6.25021 9.24028 6.25021 8.60807C6.25021 7.34363 7.32541 6.32187 8.65597 6.32187C9.32125 6.32187 9.91933 6.57731 10.3561 6.9924Z" stroke="#8E9BAE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M12.567 4.62956C11.391 3.78661 10.047 3.32681 8.656 3.32681C6.28384 3.32681 4.07295 4.65511 2.53407 6.95408C1.92927 7.85451 1.92927 9.368 2.53407 10.2684C3.06495 11.0603 3.68319 11.7436 4.35519 12.2928" stroke="#8E9BAE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M6.25021 13.4167C7.01629 13.7233 7.82941 13.8893 8.65597 13.8893C11.0281 13.8893 13.239 12.561 14.7779 10.262C15.3827 9.36161 15.3827 7.84812 14.7779 6.94769C14.5561 6.61561 14.3142 6.3027 14.0656 6.00894" stroke="#8E9BAE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M11.0147 9.05508C10.84 9.95551 10.0672 10.6899 9.11966 10.8559" stroke="#8E9BAE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M6.95581 10.2237L1.93597 14.9941" stroke="#8E9BAE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M15.376 2.22202L10.3561 6.99238" stroke="#8E9BAE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <div class="position-relative">
+                <v-text-field class="input-styling pr-14" :class="isDark ? 'input-styling':'input-styling-light'" style="margin-top:20.81px;" :type="isToggled ? 'text' : 'password'" v-model.trim="password" placeholder="Password" variant="plain">
+                  <v-icon class="prepend-inner-icon ml-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                      <g clip-path="url(#clip0_649_13096)">
+                          <path d="M14.6836 22.9448C9.1606 22.9448 4.6836 18.4678 4.6836 12.9448C4.6836 7.42182 9.1606 2.94482 14.6836 2.94482C20.2066 2.94482 24.6836 7.42182 24.6836 12.9448C24.6836 18.4678 20.2066 22.9448 14.6836 22.9448ZM14.6836 20.9448C16.8053 20.9448 18.8402 20.102 20.3405 18.6017C21.8407 17.1014 22.6836 15.0666 22.6836 12.9448C22.6836 10.8231 21.8407 8.78826 20.3405 7.28797C18.8402 5.78768 16.8053 4.94482 14.6836 4.94482C12.5619 4.94482 10.527 5.78768 9.02675 7.28797C7.52646 8.78826 6.6836 10.8231 6.6836 12.9448C6.6836 15.0666 7.52646 17.1014 9.02675 18.6017C10.527 20.102 12.5619 20.9448 14.6836 20.9448ZM13.6836 13.7368C13.1572 13.5071 12.726 13.1031 12.4624 12.5928C12.1988 12.0825 12.119 11.497 12.2363 10.9348C12.3537 10.3725 12.661 9.86784 13.1067 9.50557C13.5524 9.1433 14.1093 8.94554 14.6836 8.94554C15.258 8.94554 15.8148 9.1433 16.2605 9.50557C16.7062 9.86784 17.0135 10.3725 17.1309 10.9348C17.2482 11.497 17.1684 12.0825 16.9048 12.5928C16.6412 13.1031 16.21 13.5071 15.6836 13.7368V16.9448H13.6836V13.7368Z" fill="#C4C4C4"/>
+                      </g>
+                      <defs>
+                          <clipPath id="clip0_649_13096">
+                          <rect width="23.5355" height="24" fill="white" transform="translate(0.613289 0.944824)"/>
+                          </clipPath>
+                      </defs>
+                  </svg>
+                  </v-icon>
+                  <v-icon class="prepend-inner-icon" style="position: absolute; margin-left: 40px">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="15" viewBox="0 0 2 15" fill="none">
+                      <path opacity="0.4" d="M1.06026 1.31102V14.311" stroke="#C3CDDB" stroke-linecap="round"/>
                     </svg>
+                  </v-icon>
+              
+              </v-text-field> 
+              <div class="position-relative">  
+                  <span v-if="isToggled"  @click="togglePassword()"  class="eye-icon">
+                    <img src="/svg/visible.svg"/>
                   </span>
                   
                   <span v-else @click="togglePassword()" class="eye-icon">
-                    <img src="/svg/visible.svg">
+                    <img src="/svg/invisible.svg"/>
                   </span>
-                  
-                </div>
-                </div>
-                <NuxtLink to="/authentication/reset-password"><span class="resend-code d-flex" style="margin-top:21px; justify-content: end;">Forgot Password?</span></NuxtLink>
-                <Button :disabled="!isFormValid" :loading="loading" @click.prevent="isFormValid ? login() : null" buttonText="Continue" class="" style="margin-top: 47px; margin-bottom:206px"/>
-                
-            </div>
+              </div>
+              </div> 
+  
+              <NuxtLink to="/authentication/reset-password"><span class="resend-code d-flex" style="margin-top:21px; justify-content: end;">Forgot Password?</span></NuxtLink>
+              <Button :disabled="!isFormValid" :loading="loading" @click.prevent="isFormValid ? login() : null" buttonText="Continue" class="" style="margin-top: 47px; margin-bottom:206px"/>
+            </v-form>
           </v-col>
         
-          <v-col cols="7" class="flex-lg-and-up hidden-sm-and-down">
-              <div class="ma-8  carousel-styling">
+          <v-col md="7" class="flex-lg-and-up hidden-sm-and-down" style="opacity: 1;">
+              <div class="ma-8 carousel-styling" >
               <Carousel />
             </div>
           </v-col>
         </v-row>
-      </div>   
-    </v-container>
+       </div> 
+      <!-- </div>   -->
+      </v-container>
   </div>
 </template>
+
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
@@ -165,15 +159,32 @@ const login = async () => {
 
 </script>
 <style scoped>
+.form-layout :deep(.Notivue__notification *) {
+    box-sizing: border-box;
+    background: red !important;
+}
 
+.form-layout :deep(.v-text-field .v-field--no-label input, .v-text-field .v-field--active input) {
+    opacity: 1;
+    margin-left: 30px;
+}
 .v-btn__content {
-grid-area: content;
-justify-content: center;
-white-space: nowrap;
-width: 275.885px!important;
-font-size: 12px!important;
-font-weight: 400;
-line-height: normal;
+  grid-area: content;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  width: 275.885px!important;
+  font-size: 14px!important;
+  font-weight: 400 !important;
+  line-height: normal;
+}
+.v-btn {
+  align-items: center;  
+  font-weight: 400 !important;  
+  text-decoration: none;
+  letter-spacing: unset !important;
+  text-indent: 0! important;
+    
 }
 .carousel-styling{
 max-height: 550px;
@@ -182,48 +193,17 @@ top: 3%;
 bottom: 0
 } 
 .tick-icon{
-top: 42%;
-right: 8%;
+  top: 39%;
+  right: 10% ;
 }  
-
-.form-layout :deep(.v-text-field .v-field--no-label input, .v-text-field .v-field--active input) {
-  opacity: 1;
-  margin-left: 30px;
-}
 .eye-icon{
-bottom: 14px; 
-right: 8%;
+bottom: 16px; 
+right: 10% ;
 cursor: pointer;
 position: absolute;
-} 
-.alert-box{
-background: #161D26;
+}  
+.form-layout :deep(.v-input--plain-underlined.v-text-field .v-input__details){
+  margin-top: 10px;
 }
-.alert-box-light{
-background: #fff;
-}
-.input-styling{
-width: 298.116px !important;
-height: 64px!important;
-border-radius: 64px;
-background: inherit !important;
-border: 1px solid #1B2537;
-color: white;
-font-size: 12px;
-font-family: Manrope;
-padding-left: 20px;
-padding-right: 20px;
-}
-.input-styling-light{
-width: 298.116px;
-height: 64px!important;
-border-radius: 64px;
-border: 1px solid #DBE8FF;
-background: var(--Basic-White, #FFF) !important;
-color: #0B0E13;
-font-size: 12px;
-font-family: Manrope;
-padding-left: 20px;
-padding-right: 20px;
-}
+
 </style>

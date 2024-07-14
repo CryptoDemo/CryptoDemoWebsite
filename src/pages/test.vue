@@ -1,686 +1,209 @@
 <template>
   <div>
-    <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" />
-    <v-container style="margin-top: 90px">
-      <div class="py-7 ml-3" style="display: flex; align-items: center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          @click.prevent="navigateTo('/account/trade/wallet')"
-          style="cursor: pointer"
-        >
-          <path
-            d="M15 19.9181L8.47997 13.3981C7.70997 12.6281 7.70997 11.3681 8.47997 10.5981L15 4.07812"
-            stroke="#B9D1FF"
-            stroke-width="1.5"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <span class="swap1 ml-2">Swap</span>
-      </div>
-      <div
-        :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-        style="
-          border-radius: 24px;
-          padding: 37px;
-          margin-top: 70px;
-          margin-bottom: 925px;
-          width: 97%;
-          margin: auto;
-        "
-      >
-        <div class="d-flex" style="margin-bottom: 30px">
-          <span class="quick-swap me-3">Quick Swap</span>
-          <img src="/svg/reload.svg" class="icon1" />
-        </div>
+    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0; height: 90%;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
+    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0; height: 90%; right: 0; display: flex; margin: auto" v-else/>
+   
+    <Header @country="v => country = v" text2="Already have an account," title="Create account" link="/authentication/register"/> 
+      <v-container  class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
+        <div class="section">
+        <v-row no-gutters>
+          <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
+            <v-form @click.prevent> 
+            <div class="" style="margin-top:150px;">
+             <span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Login to Demo</span>
+            </div>
 
-        <div
-          class="d-md-flex"
-          style="justify-content: space-between; position: relative"
-        >
-          <div
-            :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
-            style="
-              border-radius: 20px;
-              width: 47%;
-              display: flex;
-              padding: 10px 20px;
-              justify-content: space-between;
-            "
-          >
-            <div class="d-flex" style="width: 12%">
-              <div
-                class="me-13"
-                style="display: flex; flex-direction: column; z-index: 1000"
-              >
-                <span class="have d-flex">I have :</span>
+              <div class="position-relative" style="margin-top:180px;">
+            
+            
+                <v-text-field placeholder="Email Address" class="pr-14" variant="plain" :class="isDark ? 'input-styling':'input-styling-light'" v-model="email" style="font-size: 12px !important;">
+                  <v-icon class="prepend-inner-icon ml-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 25 24" fill="none">
+                      <path d="M20.2258 11.9998C20.2257 10.2167 19.6413 8.48476 18.5655 7.07901C17.4898 5.67327 15.9843 4.6743 14.2882 4.24076C12.592 3.80721 10.8025 3.96393 9.20367 4.68603C7.60486 5.40813 6.28846 6.65421 5.46349 8.22641C4.63853 9.79861 4.3523 11.6068 4.65025 13.3638C4.9482 15.1209 5.81326 16.7261 7.10805 17.9245C8.40285 19.1229 10.0532 19.8458 11.7969 19.9785C13.5407 20.1112 15.2779 19.646 16.7328 18.6568L17.8213 20.3208C16.0028 21.5574 13.8312 22.139 11.6515 21.9733C9.47177 21.8076 7.40882 20.904 5.79024 19.406C4.17166 17.9081 3.09024 15.9016 2.71771 13.7053C2.34518 11.509 2.70289 9.24875 3.73404 7.28344C4.76519 5.31814 6.41066 3.76046 8.40917 2.85777C10.4077 1.95508 12.6446 1.75913 14.7648 2.30102C16.885 2.84292 18.7669 4.0916 20.1117 5.84878C21.4564 7.60596 22.1869 9.7709 22.1871 11.9998V13.4998C22.1885 14.2497 21.9536 14.9802 21.5172 15.5837C21.0807 16.1872 20.4657 16.6317 19.7627 16.8519C19.0598 17.0721 18.3061 17.0563 17.6127 16.8067C16.9192 16.5572 16.3227 16.0871 15.911 15.4658C15.2562 16.1595 14.4188 16.6456 13.4996 16.8658C12.5803 17.0859 11.6183 17.0307 10.7291 16.7068C9.83992 16.3829 9.06134 15.804 8.48693 15.0398C7.91253 14.2756 7.56673 13.3585 7.49109 12.3987C7.41545 11.4389 7.61319 10.4773 8.06054 9.62935C8.50789 8.7814 9.18583 8.08319 10.0129 7.61864C10.84 7.15408 11.781 6.94292 12.7229 7.01054C13.6648 7.07816 14.5675 7.42168 15.3226 7.99982H17.2839V13.4998C17.2839 13.8976 17.4389 14.2792 17.7147 14.5605C17.9906 14.8418 18.3648 14.9998 18.7549 14.9998C19.145 14.9998 19.5191 14.8418 19.795 14.5605C20.0709 14.2792 20.2258 13.8976 20.2258 13.4998V11.9998ZM12.3807 8.99982C11.7988 8.99982 11.23 9.17577 10.7462 9.50541C10.2624 9.83506 9.88536 10.3036 9.66269 10.8518C9.44002 11.3999 9.38176 12.0031 9.49528 12.5851C9.60879 13.167 9.88898 13.7016 10.3004 14.1211C10.7119 14.5407 11.2361 14.8264 11.8067 14.9422C12.3774 15.0579 12.9689 14.9985 13.5065 14.7715C14.0441 14.5444 14.5036 14.1599 14.8268 13.6665C15.1501 13.1732 15.3226 12.5932 15.3226 11.9998C15.3226 11.2042 15.0127 10.4411 14.4609 9.8785C13.9092 9.31589 13.1609 8.99982 12.3807 8.99982Z" fill="#C4C4C4"/>
+                    </svg>
+                  </v-icon>
 
-                <v-menu>
-                  <template v-slot:activator="{ props }">
-                    <button
-                      @click="toggleChevron"
-                      class="inputstyling2"
-                      v-bind="props"
-                      style="
-                        display: flex;
-                        align-items: center;
-                        margin-top: 13px;
-                      "
-                    >
-                      <div
-                        class="py-3"
-                        style="
-                          display: flex;
-                          align-items: center;
-                          border-radius: 17px;
-                          background: inherit;
-                        "
-                      >
-                        <span class="me-2">{{
-                          pinia.state.preferredCurrency
-                        }}</span>
-                      </div>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="7"
-                        viewBox="0 0 10 7"
-                        fill="none"
-                        :class="[
-                          'chevron-icon',
-                          { 'chevron-icon-rotated': isChevronToggled },
-                          isDark ? 'close-btn' : 'close-btn-dark',
-                        ]"
-                      >
-                        <path
-                          d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </button>
-                  </template>
-
-                  <v-list
-                    :class="
-                      isDark ? 'country-dropdown' : 'country-dropdown-light'
-                    "
-                    style="border-radius: 16px"
-                  >
-                    <v-list-item>
-                      <v-list-item
-                        v-for="(currency, index) in pinia.state.allcountries"
-                        :key="index"
-                      >
-                        <v-list-item-title
-                          @click="
-                            pinia.state.preferredCurrency =
-                              currency.currency_name;
-                            pinia.state.Selectedcurrency_code =
-                              currency.currency_code;
-                          "
-                          class="d-flex"
-                        >
-                          <span class="me-3" style="align-items: center">
-                            {{ currency.currency_name }}
-                          </span>
-                        </v-list-item-title>
-                      </v-list-item>
-                    </v-list-item>
-                  </v-list>
-                </v-menu>
+                  <v-icon class="prepend-inner-icon" style="position: absolute; margin-left: 40px">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="15" viewBox="0 0 2 15" fill="none" class="grey-line">
+                        <path opacity="0.4" d="M1.06026 1.31102V14.311" stroke="#C3CDDB" stroke-linecap="round"/>
+                    </svg>
+                  </v-icon>
+  
+                </v-text-field>
+                
+                <div class="position-absolute tick-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                      <path d="M8.55756 14.3555C7.38453 14.3555 6.23785 14.0184 5.26251 13.3869C4.28717 12.7553 3.52699 11.8577 3.07809 10.8075C2.62919 9.75728 2.51173 8.60167 2.74058 7.48677C2.96943 6.37188 3.5343 5.34779 4.36375 4.544C5.19321 3.7402 6.25 3.19281 7.40049 2.97105C8.55098 2.74928 9.7435 2.8631 10.8272 3.29811C11.911 3.73312 12.8373 4.46978 13.489 5.41494C14.1407 6.3601 14.4885 7.47131 14.4885 8.60804C14.4885 10.1324 13.8636 11.5942 12.7514 12.6721C11.6391 13.7499 10.1305 14.3555 8.55756 14.3555ZM8.55756 13.206C9.49599 13.206 10.4133 12.9363 11.1936 12.4311C11.9739 11.9259 12.582 11.2078 12.9411 10.3676C13.3003 9.52743 13.3942 8.60294 13.2111 7.71103C13.0281 6.81911 12.5762 5.99984 11.9126 5.35681C11.249 4.71377 10.4036 4.27586 9.48322 4.09845C8.56283 3.92103 7.60881 4.01209 6.74182 4.3601C5.87483 4.7081 5.1338 5.29743 4.61244 6.05356C4.09108 6.80969 3.81281 7.69865 3.81281 8.60804C3.81281 9.82749 4.3127 10.997 5.20251 11.8593C6.09233 12.7216 7.29918 13.206 8.55756 13.206ZM7.96447 10.907L5.44975 8.46819L6.28403 7.65588L7.96447 9.27857L11.3253 6.03032L12.1646 6.84262L7.96447 10.907Z" fill="#C4C4C4"/>
+                    </svg>
+                </div>
+                  
+              </div> 
+  
+              <div class="position-relative">
+                <v-text-field class="input-styling pr-14" :class="isDark ? 'input-styling':'input-styling-light'" style="margin-top:20.81px;" :type="isToggled ? 'text' : 'password'" v-model.trim="password" placeholder="Password" variant="plain">
+                  <v-icon class="prepend-inner-icon ml-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                      <g clip-path="url(#clip0_649_13096)">
+                          <path d="M14.6836 22.9448C9.1606 22.9448 4.6836 18.4678 4.6836 12.9448C4.6836 7.42182 9.1606 2.94482 14.6836 2.94482C20.2066 2.94482 24.6836 7.42182 24.6836 12.9448C24.6836 18.4678 20.2066 22.9448 14.6836 22.9448ZM14.6836 20.9448C16.8053 20.9448 18.8402 20.102 20.3405 18.6017C21.8407 17.1014 22.6836 15.0666 22.6836 12.9448C22.6836 10.8231 21.8407 8.78826 20.3405 7.28797C18.8402 5.78768 16.8053 4.94482 14.6836 4.94482C12.5619 4.94482 10.527 5.78768 9.02675 7.28797C7.52646 8.78826 6.6836 10.8231 6.6836 12.9448C6.6836 15.0666 7.52646 17.1014 9.02675 18.6017C10.527 20.102 12.5619 20.9448 14.6836 20.9448ZM13.6836 13.7368C13.1572 13.5071 12.726 13.1031 12.4624 12.5928C12.1988 12.0825 12.119 11.497 12.2363 10.9348C12.3537 10.3725 12.661 9.86784 13.1067 9.50557C13.5524 9.1433 14.1093 8.94554 14.6836 8.94554C15.258 8.94554 15.8148 9.1433 16.2605 9.50557C16.7062 9.86784 17.0135 10.3725 17.1309 10.9348C17.2482 11.497 17.1684 12.0825 16.9048 12.5928C16.6412 13.1031 16.21 13.5071 15.6836 13.7368V16.9448H13.6836V13.7368Z" fill="#C4C4C4"/>
+                      </g>
+                      <defs>
+                          <clipPath id="clip0_649_13096">
+                          <rect width="23.5355" height="24" fill="white" transform="translate(0.613289 0.944824)"/>
+                          </clipPath>
+                      </defs>
+                  </svg>
+                  </v-icon>
+                  <v-icon class="prepend-inner-icon" style="position: absolute; margin-left: 40px">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="15" viewBox="0 0 2 15" fill="none">
+                      <path opacity="0.4" d="M1.06026 1.31102V14.311" stroke="#C3CDDB" stroke-linecap="round"/>
+                    </svg>
+                  </v-icon>
+              
+              </v-text-field> 
+              <div class="position-relative">  
+                  <span v-if="isToggled"  @click="togglePassword()"  class="eye-icon">
+                    <img src="/svg/visible.svg"/>
+                  </span>
+                  
+                  <span v-else @click="togglePassword()" class="eye-icon">
+                    <img src="/svg/invisible.svg"/>
+                  </span>
               </div>
+              </div> 
+  
+              <NuxtLink to="/authentication/reset-password"><span class="resend-code d-flex" style="margin-top:21px; justify-content: end;">Forgot Password?</span></NuxtLink>
+              <Button :disabled="!isFormValid" :loading="loading" @click.prevent="isFormValid ? login() : null" buttonText="Continue" class="" style="margin-top: 47px; margin-bottom:206px"/>
+            </v-form>
+          </v-col>
+        
+          <v-col md="7" class="flex-lg-and-up hidden-sm-and-down" style="opacity: 1;">
+              <div class="ma-8 carousel-styling" >
+              <Carousel />
             </div>
-
-            <div style="display: flex; justify-content: center; align-self: center; margin-top: 30px; border-radius: 4px; height: 26px;z-index: 1000;">
-              <v-btn @click="swapAmount = mytoken.minimum_fiat_to_crypto_swap" class="me-4" :class="isDark ? 'btn-segment' : 'btn-segment-light'"
-                style=" height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span>
-              </v-btn>
-              <v-btn
-                @click="swapAmount = mytoken.maximum_fiat_funding"
-                class="me-3" :class="isDark ? 'btn-segment' : 'btn-segment-light'" style="letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span>
-              </v-btn>
-            </div>
-
-            <div class="number-input" style="display: flex; margin-right: 10px; flex-direction: column; z-index: 1000;">
-              <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom: 10px; display: flex;justify-content: end;">{{ pinia.state.Selectedcurrency_code }}
-                {{ formatBalance(selectedBalance) }}</span>
-              <input
-                type="number"
-                v-model="swapAmount"
-                :class="isDark ? 'btn-segment' : 'btn-segment-light'"
-                style="
-                  outline: none;
-                  height: 50px;
-                  padding: 10px;
-                  border-radius: 8px;
-                "/>
-            </div>
-          </div>
-
-          <div @click="toggleTokens()" style=" position: absolute; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark">
-            <img src="/svg/swap.svg" width="8%" />
-          </div>
-
-          <div
-            @click="toggleTokens()"
-            style="
-              position: absolute;
-              display: flex;
-              left: 0;
-              right: 0;
-              justify-content: center;
-              margin-top: 5px;
-            "
-            v-else
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="90"
-              height="85"
-              viewBox="0 0 70 71"
-              fill="none"
-            >
-              <path
-                d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z"
-                fill="#4284FF"
-              />
-              <path
-                d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z"
-                fill="url(#paint0_linear_5037_31025)"
-              />
-              <path
-                d="M63 35.1992C63 19.7352 50.464 7.19922 35 7.19922C19.536 7.19922 7 19.7352 7 35.1992C7 50.6632 19.536 63.1992 35 63.1992C50.464 63.1992 63 50.6632 63 35.1992Z"
-                stroke="#fff"
-                stroke-width="14"
-              />
-              <path
-                d="M29.167 36.3659H39.667V38.6992H35.0003V42.1992L29.167 36.3659ZM35.0003 31.6992V28.1992L40.8337 34.0326H30.3337V31.6992H35.0003Z"
-                fill="white"
-              />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_5037_31025"
-                  x1="35.0003"
-                  y1="15.3672"
-                  x2="35.0003"
-                  y2="55.0339"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stop-color="#2873FF" />
-                  <stop offset="1" stop-color="#0B6B96" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-
-          <div
-            :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
-            style="
-              border-radius: 20px;
-              display: flex;
-              width: 47%;
-              padding: 10px 20px;
-              justify-content: space-between;
-            "
-          >
-            <div class="d-flex">
-              <div
-                class="me-13"
-                style="display: flex; flex-direction: column; margin-left: 10px"
-              >
-                <span class="have">I want:</span>
-                <v-menu>
-                  <template v-slot:activator="{ props }">
-                    <button
-                      @click="toggleChevron1"
-                      class="inputstyling2"
-                      v-bind="props"
-                      style="
-                        display: flex;
-                        align-items: center;
-                        margin-top: 12px;
-                      "
-                    >
-                      <div
-                        class="py-3"
-                        style="
-                          display: flex;
-                          align-items: center;
-                          border-radius: 17px;
-                          background: inherit;
-                        "
-                      >
-                        <span class="me-2">{{
-                          pinia.state.fiat_currency_i_want
-                        }}</span>
-                      </div>
-
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="7"
-                        viewBox="0 0 10 7"
-                        fill="none"
-                        :class="[
-                          'chevron-icon',
-                          { 'chevron-icon-rotated': isChevronToggled1 },
-                          isDark ? 'close-btn' : 'close-btn-dark',
-                        ]"
-                      >
-                        <path
-                          d="M4.94888 6.19921C5.08612 6.19923 5.22202 6.17221 5.34882 6.11971C5.47561 6.06721 5.59084 5.99024 5.6879 5.89321L9.58789 1.99322C9.78375 1.79735 9.8938 1.53171 9.8938 1.25472C9.8938 0.977729 9.78375 0.712088 9.58789 0.516225C9.39203 0.320363 9.12639 0.210317 8.8494 0.210317C8.5724 0.210317 8.30676 0.320363 8.1109 0.516225L4.9469 2.91622L1.7829 0.516225C1.58704 0.320363 1.32139 0.210317 1.0444 0.210317C0.767412 0.210317 0.50174 0.320363 0.305878 0.516225C0.110015 0.712088 2.14471e-08 0.977729 0 1.25472C-2.1447e-08 1.53171 0.110015 1.79735 0.305878 1.99322L4.2059 5.89321C4.3034 5.99076 4.41925 6.06804 4.54678 6.12057C4.67431 6.17309 4.81096 6.19981 4.94888 6.19921Z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </button>
-                  </template>
-
-                  <v-list
-                    :class="
-                      isDark ? 'country-dropdown' : 'country-dropdown-light'
-                    "
-                    style="border-radius: 16px"
-                  >
-                    <v-list-item>
-                      <v-list-item
-                        v-for="(item, index) in filteredCurrency_to_swap_to"
-                        :key="index"
-                      >
-                        <v-list-item-title
-                          @click="
-                            pinia.state.fiat_currency_i_want =
-                              item.currency_name;
-                            selected_tokenType_to_swap = item.symbol;
-                          "
-                          class="d-flex"
-                        >
-                          <span class="me-3" style="align-items: center">
-                            {{ item.currency_name }}
-                          </span>
-                        </v-list-item-title>
-                      </v-list-item>
-                    </v-list-item>
-                  </v-list>
-                </v-menu>
-              </div>
-            </div>
-            <div style="display: flex; flex-direction: column">
-              <span
-                class="have mb-2"
-                style="
-                  font-size: 14px;
-                  font-weight: 500;
-                  font-family: manrope;
-                  display: flex;
-                  justify-content: end;
-                "
-              >
-                Expected ammount
-              </span>
-              <input
-                type="number"
-                disabled
-                v-model="amount_to_recieve"
-                :class="isDark ? 'btn-segment' : 'btn-segment-light'"
-                style="
-                  outline: none;
-                  height: 50px;
-                  padding: 10px;
-                  border-radius: 8px;"/>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="quick-swap mt-2 text-subtitle-2" :class="isDark ? 'text-dark' : 'text-light'" type="info" density="compact" style="width: 40%; border-radius: 10px; line-height: 20px;">
-            Minimum swap amount is {{ pinia.state.Selectedcurrency_code}}{{ formatBalance(mytoken.minimum_fiat_to_crypto_swap) }} and
-            the maximum swap ammount is
-            {{ pinia.state.Selectedcurrency_code}}{{ formatBalance(mytoken.maximum_fiat_funding) }}
-          </div>
-        </div>
-
-        <div style="display: flex; justify-content: end; margin-top: 55px; align-items: center;">
-
-          <v-btn @click="calculateTxn()" v-if="exchange" :loading="loading" append-icon="mdi-arrow-right" class="exchange-btn1">
-            Exchange
-          </v-btn>
-
-          <v-btn @click="executeTxn()" v-if="proccedBtn" :loading="loading" append-icon="mdi-arrow-right" class="exchange-btn1">
-            Proceed
-          </v-btn>
-
-        </div>
-      </div>
-    </v-container>
-    <div style="margin-top: 500px">
-      <Footer class="desktop-footer flex-lg-and-up hidden-md-and-down" />
-      <Mobile-footer class="mobile-footer" />
-    </div>
+          </v-col>
+        </v-row>
+       </div> 
+      <!-- </div>   -->
+      </v-container>
   </div>
 </template>
-  
-  <script setup>
-import { ref } from "vue";
-import { useTheme } from "vuetify";
-import { swapFund } from "@/composables/requests/fiat";
 
-const theme = useTheme();
-const isDark = computed(() => theme.global.current.value.dark);
+<script setup>
+import { ref } from 'vue';
+import { useTheme } from 'vuetify';
+import { signIn } from "@/composables/requests/auth";
+
+const theme = useTheme()
+const isDark = computed(() =>  theme?.global?.current.value?.dark);
+const isToggled = ref(true);
+const togglePassword = () => {
+  isToggled.value = !isToggled.value;
+};
+
+const email = ref('');
+const password = ref('');
+const alert = ref(false);
+const isFormValid = computed(() => password.value.length && validateEmail(email.value));
 const pinia = useStore();
+const loading= ref(false);
 
-const currencyCode = ref("");
-
-const proccedBtn = ref(false);
-
-const exchange = ref(true)
-
-pinia.state.fiat_currency_i_want = pinia.state.allcountries[0].currency_name;
-
-const countryID_of_currency_i_want = computed(() =>
-  pinia.state.allcountries.find(
-    (c) => c.currency_name === pinia.state.fiat_currency_i_want
-  )
-);
-
-console.log(countryID_of_currency_i_want.value.id);
-
-const selected_tokenType_to_swap = ref("USDT");
-
-
-const swapAmount = ref(null);
-
-const loading = ref(false);
-
-const amount_to_recieve = ref(null);
-
-
-const mytoken = computed(() =>
-  pinia.state.allcountries.find(
-    (c) => c.currency_name === pinia.state.preferredCurrency
-  )
-);
-
-const selectedBalance = computed(() => {
-  const balance = pinia.state.Total_fiat_bal.find(
-    (c) => c.country_id === (mytoken.value ? mytoken.value.id : null)
-  );
-  return balance ? balance.balance : 0;
-});
-
-const filteredCurrency_to_swap_to = ref([]);
-filteredCurrency_to_swap_to.value = pinia.state.allcountries.filter(
-  (c) => c.currency_name != pinia.state.preferredCurrency
-);
-
-watch(
-  () => pinia.state.preferredCurrency,
-  (newValue) => {
-    console.log("Updated preferredCurrency:", newValue);
-    console.log("Updated mytoken:", mytoken.value?.id);
-  }
-);
-
-watch((newValue) => {
-  console.log(
-    "Updated countryID_of_currency_i_want:",
-    countryID_of_currency_i_want.value?.id
-  );
-  filteredCurrency_to_swap_to.value = pinia.state.allcountries.filter(
-    (c) => c.currency_name != newValue
-  );
-});
-
-const calculateTxn = async () => {
-  if (swapAmount.value > selectedBalance.value) {
-    push.error("Insufficient balance");
-    return;
-  }
-
-
-  const info = {
-    action_type: "CALCULATE_FIAT_SWAP_AMOUNT",
-    from_country_id: mytoken.value.id,
-    to_country_id: countryID_of_currency_i_want.value?.id,
-    amount: swapAmount.value,
+const login = async () => {
+  const device = useDevice();
+  loading.value = true;
+  const userLogin = {
+    email: email.value,
+    password: password.value,
+    device_info: JSON.stringify(device)
   };
+
   try {
-    loading.value = true;
-
-    const data = await swapFund(info);
-
+    const data = await signIn(userLogin);
     if (data.success) {
-      loading.value = false;
-      pinia.setFiat_swap_details(data.data);
-      amount_to_recieve.value = pinia.state.Fiat_swap_details.expected_amount;
-      proccedBtn.value = true
-      exchange.value = false
+      // User successfully signed in
+      pinia.setUser(data.data);
 
-      console.log(amount_to_recieve);
+      if (data.message === "Please verify your email to continue") {
+        // Navigate to email verification page
+        pinia.setEmail(email.value);
+        navigateTo('/authentication/sign-up-email-verification');
+      } else if (data.message === "Please provide your 2FA code to continue") {
+        // Navigate to 2FA verification page
+        navigateTo('/authentication/2fa-verification');
+      } else {
+        // Check additional conditions before navigating to profile
+        if (pinia.state.selectedOfferType_from_landing.type === "sell") {
+          // Navigate to create sell offer page
+          navigateTo('/account/marketplace/createOffer');
+        } else if (pinia.state.selectedOfferType_from_landing.type === "buy") {
+          // Navigate to active buy offer page
+          navigateTo('/account/marketplace/activeOffers');
+        } else {
+          // Default navigation to profile if no other conditions apply
+          pinia.state.isAuthenticated = true;
+          navigateTo('/account/profile');
+        }
+      }
     } else {
-      push.error(`${data.message}`, {});
+      // Login was not successful
       loading.value = false;
+      push.error(data.message, { duration: 2000 });
     }
   } catch (e) {
     console.log(e);
+    push.error(`${e}`);
     loading.value = false;
   }
 };
 
 
 
-const executeTxn = async () => {
-  const info = {
-    action_type:"EXECUTE_FIAT_SWAP",
-    action_id: pinia.state.Fiat_swap_details.action_id,
-    from_country_id: mytoken.value.id,
-    to_country_id: countryID_of_currency_i_want.value?.id,
-    amount: swapAmount.value,
-    // expected_amount: pinia.state.Fiat_swap_details.expected_amount,
-  };
-  try {
-    loading.value = true;
-
-    const data = await swapFund(info);
-
-    if (data.success) {
-      loading.value = false;
-      proccedBtn.value = false;
-      exchange.value = true;
-      swapAmount.value = "";
-      amount_to_recieve.value = "";
-      pinia.setFiat_transactions([...pinia.state.Fiat_transactions, data.data]);
-
-
-      push.success(`${data.message}`)
-      console.log(data.data);
-    } else {
-      push.error(`${data.message}`);
-      loading.value = false;
-    }
-  } catch (e) {
-    console.log(e);
-    loading.value = false;
-  }
-};
-
-onMounted(() => {});
-
-// const toggleTokens = ()=>{
-//   const m = selectedSymbol.value
-//   const p = piniastoredicon.value
-
-//   selectedSymbol.value = selected_tokenType_to_swap.value;
-//   piniastoredicon.value =  currency_i_want.value
-//   selected_tokenType_to_swap.value = m
-//   currency_i_want.value = p
-
-// }
-
-const isChevronToggled = ref(false);
-const toggleChevron = () => {
-  isChevronToggled.value = !isChevronToggled.value;
-};
-
-const isChevronToggled1 = ref(false);
-const toggleChevron1 = () => {
-  isChevronToggled1.value = !isChevronToggled1.value;
-};
 </script>
-  
-  <style>
-.swap1 {
-  font-family: Manrope;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  margin-left: 10px;
+<style scoped>
+.form-layout :deep(.Notivue__notification *) {
+    box-sizing: border-box;
+    background: red !important;
 }
 
-.cancel1 {
-  width: 258px;
-  height: 60px !important;
-  flex-shrink: 0;
-  border-radius: 20px;
-  background: var(--dark-bg, #10192d);
-  color: var(--White, var(--Colors-Base-white, #fff));
+.form-layout :deep(.v-text-field .v-field--no-label input, .v-text-field .v-field--active input) {
+    opacity: 1;
+    margin-left: 30px;
+}
+.v-btn__content {
+  grid-area: content;
+  justify-content: center;
   text-align: center;
-  font-family: Manrope;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  text-transform: capitalize;
-  letter-spacing: 0px;
-}
-.hidden {
-  display: none;
-}
-.quick-swap {
-  font-family: Manrope;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
+  white-space: nowrap;
+  width: 275.885px!important;
+  font-size: 14px!important;
+  font-weight: 400 !important;
   line-height: normal;
 }
-
-.have {
-  font-family: Manrope;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+.v-btn {
+  align-items: center;  
+  font-weight: 400 !important;  
+  text-decoration: none;
+  letter-spacing: unset !important;
+  text-indent: 0! important;
+    
+}
+.carousel-styling{
+max-height: 550px;
+position: relative;
+top: 3%;
+bottom: 0
+} 
+.tick-icon{
+  top: 39%;
+  right: 10% ;
+}  
+.eye-icon{
+bottom: 16px; 
+right: 10% ;
+cursor: pointer;
+position: absolute;
+}  
+.form-layout :deep(.v-input--plain-underlined.v-text-field .v-input__details){
+  margin-top: 10px;
 }
 
-.inputstyling2 {
-  /* border-radius: 20px; */
-  background: inherit;
-  /* color: var(--White, var(--Colors-Base-white, #FFF)); */
-  font-family: Manrope;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  box-shadow: none;
-  letter-spacing: 0px;
-  position: relative;
-}
-
-.min {
-  font-family: Manrope;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.exchange-btn1 {
-  border-radius: 20px;
-  background: var(
-    --Primary-100,
-    linear-gradient(180deg, #2873ff 0%, #0b6b96 100%),
-    #2873ff
-  );
-  width: 258px;
-  height: 60px !important;
-  text-align: center;
-  font-family: Manrope;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  text-transform: capitalize;
-  letter-spacing: 0px;
-  color: white;
-  box-shadow: none;
-}
-
-.mdi-arrow-right {
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.2) !important;
-  width: 34.928px !important;
-  height: 33.527px !important;
-  flex-shrink: 0;
-  position: absolute !important;
-  right: 18px !important;
-}
-.number-input :deep(.v-number-input__control) {
-  display: none !important;
-}
-.v-number-input__control {
-  display: none !important;
-}
-
-.country-dropdown {
-  border-radius: 15px;
-  border: 0.5px solid #2f3946;
-  background: #1b2537 !important;
-  backdrop-filter: blur(50px) !important;
-  height: 320px !important;
-  border-radius: 20px !important;
-  border-radius: 15px;
-  border: 0.5px solid #354356;
-  color: white;
-  margin-top: 15px;
-  box-shadow: none !important;
-  height: 170px !important;
-}
-.country-dropdown-light {
-  border-radius: 15px;
-  background: #fff !important;
-  border: 1px solid #dbe8ff !important;
-  border-radius: 20px !important;
-  color: black;
-  margin-top: 15px;
-  box-shadow: none !important;
-  height: 170px !important;
-}
-
-.btn-segment {
-  border: 1px solid rgba(65, 69, 87, 0.6);
-}
-
-.btn-segment-light {
-  border: 1px solid #e2e8f0;
-}
-
-.close-btn {
-  fill: white;
-  transition: transform 0.3s ease;
-}
-.close-btn-dark {
-  fill: #10192d;
-}
-
-.chevron-icon {
-  transition: transform 0.3s;
-}
-
-.chevron-icon-rotated {
-  transform: rotate(180deg);
-}
 </style>

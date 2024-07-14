@@ -131,7 +131,7 @@ fill: #10192D;
 .nav-btn{
   background: inherit !important;
   position: relative;
-  bottom: 22%;
+  bottom: 33%;
   min-width: 0px!important;
   height: 40px !important;
 }
