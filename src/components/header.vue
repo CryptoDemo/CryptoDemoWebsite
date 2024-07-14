@@ -395,7 +395,7 @@ fill: #10192D;
 .profile-nav{
 margin-inline-end: 0px !important;
 position: absolute;
-right: 92px;
+right: 92px !important;
 margin-top: -11px;
 }
 .profile-div{
@@ -430,5 +430,5 @@ margin-top: 15px !important;
 }
 }
 
-}
+
 </style>
