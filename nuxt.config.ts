@@ -17,6 +17,14 @@ export default defineNuxtConfig ({
       'notivue/notification-progress.css',
      
   ],
+  app:{
+    head:{
+      script: [
+        {src: "/assets/js/googleTranslator.js"},
+        {src: "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit",async: true, defer: true}
+      ]
+    }
+  },
 
   modules: [
     "@pinia/nuxt",

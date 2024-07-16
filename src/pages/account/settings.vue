@@ -110,7 +110,7 @@
                               <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" cols="12" :key="index">
                               <v-list-item @click="Countrycode=item.phone_code; flag= item.flag_url;" style="display: flex;">
                                 <div class="pl-4" style="display: flex; align-items: center; ">
-                                  <img width="35" height="35" class="me-3" :src="item.flag_url" style="object-fit: cover;border-radius: 30px"/> 
+                                  <img class="me-3" :src="item.flag_url" style="object-fit: cover; border-radius: 4px; height: 28px; width: 45px;"/> 
                                   <span class="country-name ml-2" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.phone_code }}</span>
                               </div>
                               </v-list-item>
@@ -160,7 +160,7 @@ const loading = ref(false);
 const profileImg = ref(null)
 const selectedImage = ref(null);
 const phoneNumber = ref(pinia.state?.user?.phone || "");
-const DateOfBirth = ref(pinia.state?.user?.dob || "");
+const DateOfBirth = ref();
 const username_ = ref(pinia.state?.user?.username || "")
 const Countrycode = ref();
 const handleImgChange = async(event)=> await handleFileChange(event,selectedImage,profileImg.value);

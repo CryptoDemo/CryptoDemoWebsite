@@ -128,18 +128,18 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import {register_} from "@/composables/requests/auth";
-import { Notification ,push} from 'notivue';
+
 
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const name=ref("");
+const pinia = useStore();
 const email=ref("");
 const password =ref("");
 const referralcode =ref("");
-const country = ref("")
+const country = ref(pinia.state.geo.country)
 const loading = ref(false);
-const pinia = useStore();
 const isToggled = ref(true);
 const togglePassword = () => {
   isToggled.value = !isToggled.value;

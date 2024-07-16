@@ -3,7 +3,11 @@
     <v-container>
         <div class="d-flex mt-5" style="justify-content: space-between;">
           <span  :class="isDark ?  'demo-web1':'demo-web1-light'" >Demo Web</span>
-          <Language-dropdown/>
+          <!-- <Language-dropdown/> -->
+        <div style="height: 60px;">
+
+          <div id="google_translate_element"></div>
+        </div>
         </div>
       <div class="footer-bg" :class="isDark ? 'footer-bg-dark':'footer-bg-light'">
         <v-row  no-gutters style="justify-content: space-between;" sm="4" >

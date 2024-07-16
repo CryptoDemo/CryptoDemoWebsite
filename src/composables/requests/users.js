@@ -164,6 +164,19 @@ export const Init_pin_recovery = async(payload)=>{
     return data;
 };
 
+export const kyc_verification = async(payload)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}kyc/access-token`,{ 
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token' : `${pinia.state.user?.token}`
+        },
+    }).then(res => res.json());
+    return data;
+};
+
 export const reset_Pin = async(payload)=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return

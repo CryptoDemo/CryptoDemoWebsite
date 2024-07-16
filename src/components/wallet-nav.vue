@@ -13,27 +13,7 @@
           
         </div>
         
-        <!-- <v-row class="" style="display: flex; justify-content: space-between;">
-          <v-col v-for="token in pinia.state.tokenLists.slice(0, 4)" :key="token.id" class="d-flex" cols="6">
-              <div class="d-flex">
-                <div style="display: flex; align-items: center;">
-                  <v-progress-circular class="me-2"
-                    :size="30"
-                    :width="5"
-                    model-value="100"
-                    :color=token.icon_dominant_color
-                  >
-                  </v-progress-circular>
 
-                </div>
-                <div style="display: flex; flex-direction: column;">
-                  <span class="coin-perc mt-1">{{ token.symbol }}</span>
-                  <span class="sm-num" :class="isDark ? 'country-name' : 'country-name-light'" style="font-weight: 500;">{{formatBalance (token.balance) }}</span>
-                </div>
-              </div>
-            
-          </v-col>
-        </v-row> -->
   </div>
 </template>
 
@@ -48,6 +28,7 @@ const balanceData = ref(null);
 const allCountries = pinia.state.allcountries;
 const preferredCurrency = pinia.state.preferredCurrency;
 const selectedCountryId = allCountries.find(country=>country.currency_name==preferredCurrency);
+
 const chain = computed(()=>pinia.state.selectedNetwork);
 
 
@@ -68,18 +49,14 @@ const getSummedBal = async () => {
   }
 };
 
-const coinsWithBalance = computed(() => {
-  return pinia.state.tokenLists.filter(token => token.balance > 0);
-});
+watch(chain, (newChain, oldChain) => {
+      if (newChain !== oldChain) {
+        getSummedBal();
+      }
+}, { immediate: true }); 
 
-const dominantColor = computed(() => {
-  if (coinsWithBalance.value.length > 0) {
-    // Assuming tokens have a property `icon_dominant_color`
-    return coinsWithBalance.value.icon_dominant_color; // Adjust this logic to select the appropriate dominant color
-  } else {
-    return 'white';
-  }
-});
+
+
 
 onMounted(async () => {
    getSummedBal();

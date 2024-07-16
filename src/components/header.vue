@@ -85,9 +85,9 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
 const emit = defineEmits(['country'])
 const pageNumber = ref(1);
-const country = ref('Brazil');
+const country = ref('');
 const Countryname = ref('');
-const selectedCountry  = ref(Countryname);
+
 
 
 const flag = ref('');
@@ -112,8 +112,14 @@ try {
 };
 
 onMounted(()=>{{
-  flag.value = pinia.state?.allcountries[0]?.flag_url;
-  Countryname.value = pinia.state?.allcountries[0]?.country_code
+  country.value = pinia.state.geo.country;
+  console.log(country.value)
+
+  const geoCountry = computed(() =>pinia.state.allcountries.find((c) => country.value === c.country_name));
+  console.log(geoCountry?.value)
+
+  flag.value = geoCountry?.value?.flag_url;
+  Countryname.value = geoCountry?.value?.country_code
 }})
 
 const props = defineProps(

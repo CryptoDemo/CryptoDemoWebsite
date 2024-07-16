@@ -5,11 +5,7 @@
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('app',()=> {
-    const currentNavMenu = ref("home")
-    const  currentAccMenu = ref("spot")
-    const BankName = ref("")
-    const accountName = ref("")
-    const accountNumber = ref("")
+ 
 
     const state = reactive({
       selectedOfferType:"buy",
@@ -53,6 +49,7 @@ export const useStore = defineStore('app',()=> {
       curency_to_swap:"",
       fiat_currency_i_want: "",
       Fiat_swap_details: {},
+      geo:{},
 
     });
   
@@ -106,23 +103,27 @@ export const useStore = defineStore('app',()=> {
   };
 
   const setFiat_transactions = (payload) => {
-      state.Fiat_transactions = payload;   
+    state.Fiat_transactions = payload;   
   };
 
   const setFiat_currency_i_want = (payload) => {
-      state.fiat_currency_i_want = payload;   
+    state.fiat_currency_i_want = payload;   
+  };
+
+  const setGeo = (payload) => {
+    state.geo = payload;   
   };
 
   const setCalculatedTaxFee_for_swap = (payload) => {
-      state.calculatedTaxFee_for_swap = payload;   
+    state.calculatedTaxFee_for_swap = payload;   
   };
 
   const setToken_to_transfer = (payload) => {
-      state.token_to_transfer = payload;   
+    state.token_to_transfer = payload;   
   };
 
   const setCoin_to_transfer = (payload) => {
-      state.coin_to_transfer = payload;   
+    state.coin_to_transfer = payload;   
   };
 
   const setCurency_to_swap = (payload) => {
@@ -130,7 +131,7 @@ export const useStore = defineStore('app',()=> {
   };
 
   const setTransferWallet = (payload) => {
-      state.TransferWallet = payload;   
+    state.TransferWallet = payload;   
   };
 
   const setpreferredCurrency = (payload) => {
@@ -138,46 +139,46 @@ export const useStore = defineStore('app',()=> {
   };
 
   const setTokenBalance = (payload) => {
-      state.tokenBalance = payload;  
+    state.tokenBalance = payload;  
   };
 
   const setSummedBalance = (payload) => {
-      state.SummedBalance = payload;  
+    state.SummedBalance = payload;  
   };
  
 
   const setSelected_coin_Balance = (payload) => {
-      state.Selected_coin_Balance = payload;  
+    state.Selected_coin_Balance = payload;  
   };
 
   const  setSelectedcurrency_code= (payload) => {
-      state.Selectedcurrency_code = payload;  
+    state.Selectedcurrency_code = payload;  
   };
 
   const setTwoFactor = (payload) => {
-      state.twoFactor = payload;
+    state.twoFactor = payload;
   };
   
   const setTokenNetworks = (payload) => {
-      state.tokenNetworks = payload;  
+    state.tokenNetworks = payload;  
   };
 
   const setTokenLists = (payload) => {
-      state.tokenLists = payload;   
+    state.tokenLists = payload;   
   };
 
 
   const setTransactionDetails = (payload) => {
-      state.TransactionDetails = payload;    
+    state.TransactionDetails = payload;    
   };
 
   const setFiat_swap_details = (payload) => {
-      state.Fiat_swap_details = payload;    
+    state.Fiat_swap_details = payload;    
   };
 
 
   const setMarketPlace = (payload) => {
-      state.MarketPlace = payload;    
+    state.MarketPlace = payload;    
   };
 
   const setMyOffers = (payload) => {
@@ -229,7 +230,8 @@ export const useStore = defineStore('app',()=> {
     state.selectedLandingCoin = "",
     state.curency_to_swap = "",
     state.fiat_currency_i_want = ""
-    state.Fiat_swap_details= ""
+    state.Fiat_swap_details= "",
+    state.geo = {},
     state.Web3_transactions = {
       data:[],
       time:null
@@ -239,11 +241,6 @@ export const useStore = defineStore('app',()=> {
   }
 
     return {
-      currentNavMenu,
-      currentAccMenu,
-      BankName,
-      accountName,
-      accountNumber,
       state,
       setEmail,
       setUser,
@@ -279,7 +276,8 @@ export const useStore = defineStore('app',()=> {
       saveTradingData,
       setCurency_to_swap,
       setFiat_currency_i_want,
-      setFiat_swap_details
+      setFiat_swap_details,
+      setGeo
     }
 },
   {persist: {
