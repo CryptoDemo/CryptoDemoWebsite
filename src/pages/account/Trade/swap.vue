@@ -1,6 +1,6 @@
 <template>
 <div>
-  <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" />
+  <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" :wallet="true"/>
     <v-container style="margin-top: 90px;">
       <div class="py-7 ml-3" style="display: flex; align-items: center;">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="navigateTo('/account/trade/wallet')" style="cursor: pointer;">
@@ -244,7 +244,7 @@ const caltax = async () => {
       push.error("Insufficient balance");
       return;
     }
-    
+
         const info = {
             swap_input: {
               from_token: selectedSymbol.value,

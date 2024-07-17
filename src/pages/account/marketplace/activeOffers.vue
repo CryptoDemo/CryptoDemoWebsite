@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" />
+    <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true"/>
     <v-container>
       <div style="margin-top: 105px; margin-bottom: 100px; display: flex; width: 100%;">
         <div>
@@ -113,7 +113,7 @@
                               <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id" v-bind="activatorProps" class="smaller-btn">Buy Offer</v-btn>
                             </template>
     
-                          <template v-slot:default="{ isActive }">
+                          <template v-slot:default="{  }">
                             <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; box-shadow: none;">
                               <v-card-text>
                                 <h3 class="text-center py-3">View Offer</h3>

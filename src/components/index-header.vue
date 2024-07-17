@@ -8,7 +8,7 @@
 
  
           <div class="d-flex" style="position: absolute; margin-left: 150px;">
-             <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Create an offer</span> </NuxtLink></v-btn>
+             <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"> <NuxtLink to="/account/marketplace/createoffer"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Create an offer</span> </NuxtLink></v-btn>
              <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"><NuxtLink to="/account/trade/wallet"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Wallet</span> </NuxtLink></v-btn>
              <div class="text-center flex-lg-and-up hidden-sm-and-down">
               <v-menu open-on-hover>

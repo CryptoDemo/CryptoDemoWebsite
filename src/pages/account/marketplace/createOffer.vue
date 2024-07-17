@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" />
+    <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true"/>
     <div>
       <v-container style="margin-top: 80px;">
 

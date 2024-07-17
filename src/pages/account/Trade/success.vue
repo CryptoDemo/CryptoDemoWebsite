@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" />
+        <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" :wallet="true"/>
         <v-container style="margin-top: 70px;">
 
             <div  :class="isDark ? 'wallet-border' : 'wallet-border-light'" style="border-radius: 24px; padding: 37px; margin-top: 60px; margin-bottom: 525px; width: 98%;">

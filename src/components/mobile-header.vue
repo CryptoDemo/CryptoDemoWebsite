@@ -8,106 +8,113 @@
         <div style="display: flex; align-items: center; justify-content: space-between; width: fit-content;">
           
           <v-toolbar-title class="header-title" :class="isDark ? 'header-title':'header-title-light'">Demo Web</v-toolbar-title>
-          <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"  style="position: absolute; right: 0; width: 32px"/>
+          <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"  style="position: absolute; right: 9px; width: 32px"/>
         
         </div>
       </v-app-bar>
       
       <nav :class="navbarClass">
           <v-navigation-drawer v-model="drawer" location="top" :class="isDark ? 'v-navigation-drawer':'v-navigation-drawer-light'" style="padding: 15px;">
-             <v-menu style="position: relative !important; height: auto; z-index: 10000;">
-            <template v-slot:activator="{ props }">
-              <v-btn  class="me-" :class="isDark ? 'dropdown-mobile':'dropdown-mobile-light'" v-bind="props">
-                <h1 class="me-1 d-flex text-h4">{{ emoji }}</h1>
-                <span class="me-2" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{select}}</span>
-                <v-icon icon="mdi-chevron-down" style="color: #8E9BAE; position: absolute; right: 3%;"></v-icon>
-              </v-btn>
-            </template>
-  
-            <v-list  :class="isDark ? 'mobile-bg':'mobile-bg-light'" style="border-radius: 15px; max-height: 552px; border: 0.5px solid #2f3946; margin-top: 10px;">
-              <v-list-item>
-                <div @click.stop style="margin-top: 7px; margin-bottom: 15px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" style="position: absolute; top: 29px; margin-left: 19px;">
-                      <path d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z" stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <v-textarea clearable variant="text" rows="1" no-resize  placeholder="Search for Country" v-model="input" style=" border: 1px solid #64748B; height: 55px;  border-radius: 30px; padding-left: 30px; align-items: center; width: 100%;"></v-textarea>
-                   
-                </div>
-                <v-row dense style="max-width: auto; flex-direction: column;">
-                <v-col v-for="(item, index) in filteredItems?.length ? filteredItems : locations" :key="index" class="">
-                
-                    <v-list-item-title class="py-1" @click="select=item.countryName; emoji= item.emoji" style="display:flex;">
-                      <h1 class="me-2 text-h4">{{ item.emoji }}</h1>
-                      <span class="country-name" style="display: flex; align-items: center;"> {{ item.countryName }} </span>
-                    </v-list-item-title>
-                  </v-col>
-                </v-row>
-              </v-list-item>
-            </v-list>
-           
-             </v-menu> 
+            <div class="country-div" style="margin-top: 90px;">
+
+              
+                <v-menu style="position: relative !important; height: auto; z-index: 10000;">
+                   <template v-slot:activator="{ props }">
+                     <v-btn @click.prevent="handleButtonClick(country)" class="me-4 mt-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" v-bind="props" style="display: flex; align-self: flex-start;  margin-top: 90px; border-radius: 100px; box-shadow: none; height: 48px; width: 100%; display: flex; align-items: center; justify-content: normal;">
+                       <img :src="flag" class="me-2" style="object-fit: cover; border-radius: 4px; height: 25px; width: 40px;"/>
+                       <span class="me-2" :class="isDark ? 'country-text':'country-text-light'">{{Countryname}}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="position: absolute; right: 14px;">
+                          <path d="M17 14L12 9L7 14" stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                     </v-btn>
+                   </template>
+     
+                   <v-list class="country-list" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; margin-top: 40px;">
+                     <v-list-item style="display: contents">
+                      <div  @click.stop="" class="px-3 mb-4 mt-2">
+                        <v-text-field @click.stop="" clearable variant="none" v-model="input" :class="isDark ? 'search-bar':'search-bar-light'" style="height: 50px;"> </v-text-field>
+                      </div>
+                       <v-row dense style="max-width: 250px;">
+                         <v-col v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.allcountries" sm="12" :key="index">
+                         <v-list-item @click="Countryname=item.country_code; country=item.country_name; flag=item.flag_url;" style="display: flex;">
+                           <div style="display: flex; align-items: center; ">
+                             <img class="me-3" :src="item.flag_url" style="object-fit: cover; border-radius: 4px; height: 28px; width: 45px;"/> 
+                             <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.country_name }}</span>
+                         </div>
+                         </v-list-item>
+                       </v-col>
+                       </v-row>
+                     </v-list-item>
+                   </v-list>
+                </v-menu> 
+             
+            </div>
         
           <div style="margin-top: 25px;">
             <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
           </div>
+
+
           <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 17px; margin-top: 17px;">
           <nuxt-link to="/account/trade/wallet"> <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" >Wallet</v-btn> </nuxt-link>
           </div>
         
   
-              <v-menu style="position: relative; z-index: 10000;">
-                    <template v-slot:activator="{ props }">
-                        <v-btn v-bind="props" :class="isDark ? 'mobile-btn':'mobile-btn-light'">Gift Card Hub
-                          <v-icon color="primary" class="mt-1"  icon="mdi-chevron-down"></v-icon>
-                        </v-btn>
-                    </template>
-                    <div style="display: flex; align-items: center;  justify-content: end; position: relative; z-index: 1000000;">
-                    <v-list style="width: 100%;" :class="isDark ? 'card-hub':'card-hub-light'">
-                      <div>
-                      
-                        <div>
-                          <v-list-item v-for="(item, index) in items" :key="index" :style="index === 1? 'margin-bottom: 30px; margin-top: 30px' : ''">
-                            <div class="d-flex">
-                              <img :src="item.icon1" class="me-4" v-if="theme.global.current.value.dark"/>
-                              <img :src="item.icon2" class="me-4" v-else/>
-                              <div style="display: flex;">
-                                <div class="d-flex" style="flex-direction: column;">
-                                  <v-list-item-title :class="isDark ? 'icon-text1':'icon-text1-light'">{{ item.title }}</v-list-item-title>
-                                  <span class="icon-subtitle1 mt-1">{{ item.subtitle }}</span>
-                                </div>
-                                  <div style="display: flex; align-items: center;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" style="position: absolute; right: 1px;" v-if="theme.global.current.value.dark">
-                                        <path d="M10.7988 7.5L15.7988 12.5L10.7988 17.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-  
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none"  style="position: absolute; right: 1px;" v-else>
-                                      <path d="M10 7.5L15 12.5L10 17.5" stroke="#10192D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                  </div>
-                              </div>
+          <v-menu style="position: relative; z-index: 10000;">
+                <template v-slot:activator="{ props }">
+                    <v-btn v-bind="props" :class="isDark ? 'mobile-btn':'mobile-btn-light'">Gift Card Hub
+                      <v-icon color="primary" class="mt-1"  icon="mdi-chevron-down"></v-icon>
+                    </v-btn>
+                </template>
+                <div style="display: flex; align-items: center;  justify-content: end; position: relative; z-index: 1000000;">
+                <v-list style="width: 100%;" :class="isDark ? 'card-hub':'card-hub-light'">
+                  <div>
+                  
+                    <div>
+                      <v-list-item v-for="(item, index) in items" :key="index" :style="index === 1? 'margin-bottom: 30px; margin-top: 30px' : ''">
+                        <div class="d-flex">
+                          <img :src="item.icon1" class="me-4" v-if="theme.global.current.value.dark"/>
+                          <img :src="item.icon2" class="me-4" v-else/>
+                          <div style="display: flex;">
+                            <div class="d-flex" style="flex-direction: column;">
+                              <v-list-item-title :class="isDark ? 'icon-text1':'icon-text1-light'">{{ item.title }}</v-list-item-title>
+                              <span class="icon-subtitle1 mt-1">{{ item.subtitle }}</span>
                             </div>
-                      </v-list-item>
+                              <div style="display: flex; align-items: center;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" style="position: absolute; right: 1px;" v-if="theme.global.current.value.dark">
+                                    <path d="M10.7988 7.5L15.7988 12.5L10.7988 17.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none"  style="position: absolute; right: 1px;" v-else>
+                                  <path d="M10 7.5L15 12.5L10 17.5" stroke="#10192D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </div>
+                          </div>
                         </div>
-                      </div>
-                    
-                    </v-list>
+                  </v-list-item>
                     </div>
-              </v-menu>
-              <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
-                 <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Become a Vendor</v-btn>
-              </div>
+                  </div>
+                
+                </v-list>
+                </div>
+          </v-menu>
+
+          <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
+            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Become a Vendor</v-btn>
+          </div>
   
           <div style="display: flex; justify-content: flex-start; margin-top: 25px; align-items: center; margin-left: 10px;">
              <ToggleBtn class="me-3"/>
              <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> theme</span>
           </div>
-          <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px; margin-bottom: 20px; padding: 10px;">
+
+          <!-- <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px; margin-bottom: 20px; padding: 10px;"> -->
           <NuxtLink to="/authentication/login"><v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; justify-content: center; border-radius: 10px !important;">Log In</v-btn></NuxtLink> 
-          </div>
+          <!-- </div> -->
   
-          <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 30px; border-radius: 10px !important; background: #2873FF; padding: 11px;">
-          <NuxtLink to="/authentication/login"><v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; justify-content: center; border-radius: 10px !important;">Register</v-btn></NuxtLink>
-          </div>
+          <!-- <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 30px; border-radius: 10px !important; background: #2873FF; padding: 11px;"> -->
+          <NuxtLink to="/authentication/register"><v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; justify-content: center; border-radius: 10px !important;">Register</v-btn></NuxtLink>
+          <!-- </div> -->
         </v-navigation-drawer>
       </nav>
       </ClientOnly>
@@ -120,30 +127,61 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-
+import { getcountries } from "@/composables/requests/admin";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-
 const drawer = ref(false)
 const navbarClass = ref('closed');
 const ToggleMenu =() =>{
 drawer.value = !drawer.value
 navbarClass.value = drawer.value ? 'open' : 'closed';
 };
+const pinia = useStore()
+const emit = defineEmits(['country'])
+const pageNumber = ref(1);
+const country = ref('');
+const Countryname = ref('');
+const flag = ref('');
 
-const select =ref("USA")
+try {
+  const data = await getcountries(pageNumber.value);
+  if (data.success) {
+    const fetchedcountries = data.data.result;
 
-const emoji = ref("🇬🇧")
+    const storedcountriesids = pinia.state.allcountries.map(item => item.id);
+    // Check if there are any new items in the fetched data
+    const newItems = fetchedcountries.filter(item => !storedcountriesids.includes(item.id));
 
-const locations = ref([
-  { countryName: 'Argentina', emoji:"🇱🇮"},
-  { countryName: 'France', emoji:"🇸🇩"},
-  { countryName: 'Oman', emoji:"🇻🇪" },
-  { countryName: 'Russia',  emoji:"🇵🇰" },
-  { countryName: 'Saudi Arabia', emoji:"🇹🇳"},
-  { countryName: 'United States',  emoji:"🇬🇧"},
-  ]);
+    if (newItems.length > 0) {
+      console.log('fetching')
+      pinia.setallcountries([...pinia.state.allcountries, ...newItems]);
+      // flag.value = pinia.state?.allcountries[0].flag_url;
+    }
+  } else {
+    
+  }
+} catch (error) { 
+};
+
+const handleButtonClick = (country) => {
+  toggleChevron();
+  emit('country', country);
+};
+
+const isChevronToggled = ref(false);
+const toggleChevron = () => {
+      isChevronToggled.value = !isChevronToggled.value;
+};
+
+onMounted(()=>{{
+  country.value = pinia.state.geo.country;
+
+  const geoCountry = computed(() =>pinia.state.allcountries.find((c) => country.value === c.country_name));
+
+  flag.value = geoCountry?.value?.flag_url;
+  Countryname.value = geoCountry?.value?.country_code
+}})
 
 
   let input = ref("");   
@@ -381,5 +419,22 @@ nav.closed {
 nav.open {
   /* position: fixed; */
  height: 100% !important;
+}
+
+.country-list :deep(.v-text-field .v-field--no-label input, .v-text-field .v-field--active input) {
+  opacity: 1;
+  margin-top: -9px;
+}
+
+.search-bar{
+border-radius: 100px;
+border: 1px solid #64748B;
+background: #1B2537;
+}
+
+.search-bar-light{
+border-radius: 100px;
+border: 1px solid #E2E8F0;
+background: #F7F9FA;
 }
 </style>

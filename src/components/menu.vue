@@ -17,7 +17,7 @@
         </button>
       </template>
 
-      <v-list style="backdrop-filter: blur(20px)!important; border-radius: 15px;" :class="isDark ? 'menu-bg-dark':'menu-bg-light'">
+      <v-list style="backdrop-filter: blur(20px)!important; border-radius: 15px; margin-top: 20px;" :class="isDark ? 'menu-bg-dark':'menu-bg-light'">
         <v-list-item v-for="(item, i) in items" :key="i">
           <div>
             <v-btn  @click.prevent="navigateTo(item.link)" class="profile-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
@@ -42,7 +42,8 @@ const items = [
   {icon:'/svg/settings.svg', title: 'Settings', link:'/account/settings'},
   {icon:'/svg/friend.svg', title: 'Dashboard', link:'/account/dashboard'},
   {icon:'/svg/market.svg', title: 'Market Place', link:'/account/marketplace/activeOffers'},
-  {icon:'/svg/logout.svg', title: 'Wallet', link:'/account/trade/wallet'},
+  {icon:'/svg/createoffer.svg', title: 'Market Place', link:'/account/marketplace/createOffer'},
+  // {icon:'/svg/logout.svg', title: 'Wallet', link:'/account/trade/wallet'},
   {icon:'/svg/logout.svg', title: 'Log Out', link:'/authentication/login'},
 ];
 </script>

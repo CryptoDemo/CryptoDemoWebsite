@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true"/>
+    <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" :wallet="true"/>
       <div>
         <v-container>
           <div class="arrow-btn"  style="display: flex; align-items: center; margin-bottom: 24px; margin-top: 100px; margin-left: 24px;">

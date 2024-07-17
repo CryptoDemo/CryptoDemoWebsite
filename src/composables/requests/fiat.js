@@ -69,7 +69,7 @@ export const getbals = async()=>{
     }
 };
 
-export const allFiatTxn = async()=>{
+export const allFiatTxn = async(pageNumber)=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return
     const data = await fetch(`${baseURL}transaction/fiat/${pageNumber}`, {

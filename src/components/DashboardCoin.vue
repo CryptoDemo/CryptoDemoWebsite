@@ -5,7 +5,7 @@
         <div class="me-7" style="display: flex; justify-content: space-between; overflow: scroll;">
             <div v-for="(item, i) in pinia.state.tokenLists" :key="i">
                 <div class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"> 
-                    <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">{{ item.balance }} {{ pinia.state.preferredCurrency }}</span>
+                    <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(item.balance) }} {{ pinia.state.preferredCurrency }}</span>
                     <div class="mt-3 mb-3" style="display: flex; align-items: center;">
                         <img class="me-2" :src="item.icon" alt="coin" width="30"/>
                         <span class="coinName" :class="isDark ? 'text-dark':'text-light'">{{ item.name }}</span>

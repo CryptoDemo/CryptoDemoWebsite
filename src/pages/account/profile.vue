@@ -1,6 +1,6 @@
 <template>
   <div>
-     <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" />
+     <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" :wallet="true"/>
      <v-container>
         <div style="margin-top: 100px;">
             <div no-gutters style="display: flex">
@@ -39,7 +39,7 @@
             </div>
         </div>
      </v-container>
-      <div style="margin-bottom: 150px;">      
+      <div style="margin-bottom: 300px;">      
           <v-container style="display: flex; flex-direction: column;">
             <div style="display: flex; position: relative;">
               <div  class="flex-lg-and-up hidden-sm-and-down">
@@ -69,7 +69,7 @@
           
                 <v-container>
                   <v-row no-gutters style="margin-top: -25px; cursor: pointer;">
-                    <v-col @click.prevent="navigateTo('/account/trade/wallet')" >
+                    <v-col @click.prevent="navigateTo('/account/trade/wallet')" sm="4" cols="12">
                       <div class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column;">
                         <div style="display: flex; align-items: normal; justify-content: center;">
 
@@ -81,12 +81,12 @@
 
                           <span class="text-center resend-code mb-3 ml-1" style="font-size: 18px; font-weight: 600;">Wallet</span>
                         </div>
-                        <span class="text-center" style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">Crypto Balance: {{ formatBalance(pinia.state.SummedBalance)}}</span>
+                        <span class="text-center" style="font-size: 16px; font-weight: 600;">Crypto Balance: {{ formatBalance(pinia.state.SummedBalance)}}</span>
                         <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px;">View your fiat balances and make transactions seamlessly with the wallet.</span>
                       </div>
                     </v-col>
 
-                    <v-col @click.prevent="navigateTo('/account/trade/wallet')" >
+                    <v-col @click.prevent="navigateTo('/account/trade/wallet')" sm="4" cols="12">
                       <div class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column;">
                         <div style="display: flex; align-items: normal; justify-content: center;">
 
@@ -99,7 +99,7 @@
                       </div>
                     </v-col>
 
-                    <v-col @click.prevent="navigateTo('/account/trade/wallet')" >
+                    <v-col @click.prevent="navigateTo('/account/settings')" sm="4" cols="12">
                       <div class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column;">
                         <div style="display: flex; align-items: normal; justify-content: center;">
                           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16" fill="none" style="margin-top: 2px;">
@@ -114,7 +114,7 @@
 
                     <v-responsive width="100%" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"></v-responsive>
 
-                    <v-col @click.prevent="navigateTo('/account/trade/wallet')" >
+                    <v-col @click.prevent="navigateTo('/account/marketplace/createOffer')" sm="4" cols="12">
                       <div class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column;">
                         <div style="display: flex; align-items: flex-start; justify-content: center;">
                           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#2873FF" class="bi bi-database-fill" viewBox="0 0 16 16">
@@ -130,7 +130,7 @@
                       </div>
                     </v-col>
 
-                    <v-col @click.prevent="navigateTo('/account/trade/wallet')" >
+                    <v-col @click.prevent="navigateTo('/account/marketplace/activeOffers')" sm="4" cols="12">
                       <div class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column;">
                         <div style="display: flex; align-items: flex-start; justify-content: center;">
                           <img src="/svg/blue-market.svg" style="margin-right: 6px; margin-top: 2px;"/>
@@ -140,7 +140,7 @@
                       </div>
                     </v-col>
 
-                    <v-col @click.prevent="navigateTo('/account/trade/wallet')" >
+                    <v-col @click.prevent="navigateTo('/account/dashboard')" sm="4" cols="12">
                       <div class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column;">
                         <span class="text-center resend-code mb-3" style="font-size: 18px; font-weight: 600;">Dashboard</span>
                         <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">Stay on top of your investments with our intuitive dashboard, offering a complete view of your crypto portfolio at a glance.</span>

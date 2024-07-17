@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true"/>
+    <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" :wallet="true"/>
     <v-container style="display: flex;">
           <div style="margin-bottom: 113px; margin-top: 110px;display: flex;">
             <div class="me-4 flex-lg-and-up hidden-sm-and-down">
@@ -69,7 +69,7 @@
                               </v-btn>
                             </template>
 
-                            <v-list :class="isDark ? 'country-dropdown1':'country-dropdown1-light'" >
+                            <v-list class="" :class="isDark ? 'country-dropdown1':'country-dropdown1-light'" >
                               <v-list-item style="width: 100%;">
                                 <div v-for="(currency, index) in pinia.state.allcountries" class="d-flex py-1" :key="index">
                                   <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code">
@@ -342,6 +342,7 @@ box-shadow: none;
 }
 .country-dropdown1{
 border: 0.5px solid #354356;
+
 }
 .country-dropdown1-light{
 border: 1px solid #DBE8FF !important;

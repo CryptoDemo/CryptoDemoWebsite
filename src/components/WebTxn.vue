@@ -1,7 +1,12 @@
 <template>
     <div>
         <div v-if="!datainfo.length" class="no-transactions" style="height: 400px; display: flex; justify-content: center;">
-            <!-- <img src="/img/wallet-free.png" alt="No Transactions" style="width: 50%;"/> -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 14 14" fill="none">
+            <path d="M10.52 5.96684L13 3.48682L10.52 1.00684" stroke="#969696" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 3.48682H13" stroke="#969696" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3.47998 8.03369L1 10.5137L3.47998 12.9937" stroke="#969696" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 10.5137H1" stroke="#969696" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             <span style="">No transactions to display.</span>
         </div>
         <div v-for="(transaction, index) in datainfo" :key="index">

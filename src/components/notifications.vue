@@ -137,7 +137,7 @@ fill: #10192D;
   bottom: 33%;
   min-width: 0px!important;
   height: 40px !important;
-  right: 4px;
+  right: -4px;
 }
 .nav-btn :deep(.v-btn__overlay, .v-btn__underlay) {
   width: 0% !important;
