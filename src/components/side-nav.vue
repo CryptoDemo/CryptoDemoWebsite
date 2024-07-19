@@ -1,31 +1,32 @@
 <template>
-  <div class="sd-nav1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-    <div v-for="(item, i) in navigation" :key="i">
-     <div style="display: flex; justify-content: space-between;">
-      <nuxt-link :to="item.link">
-        <v-btn class="nav-options1" :class="isDark ? 'nav-options1-dark':'nav-options1-light'"> 
-          <div v-html="item.icon" class="me-2 mt-1"></div>
-          {{ item.title }}
-        </v-btn>
-    </nuxt-link>
-     </div>
-   </div>
-   </div>
+  <div>
+    <div class="sd-nav1" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+      <div v-for="(item, i) in navigation" :key="i">
+        <div style="display: flex; justify-content: space-between;">
+          <nuxt-link :to="item.link">
+            <v-btn class="nav-options1" :class="isDark ? 'nav-options1-dark':'nav-options1-light'"> 
+              <div v-html="item.icon" class="me-2 mt-1"></div>
+              {{ item.title }}
+            </v-btn>
+          </nuxt-link>
+        </div>
+      </div>
+    </div>
 
-   <div class="adv" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 32px;">
-     <div style="display: flex; justify-content: space-between;">
-       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 18 22" fill="none" class="me-3 mt-2">
-         <path d="M17 6V16C17 20 16 21 12 21H6C2 21 1 20 1 16V6C1 2 2 1 6 1H12C16 1 17 2 17 6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-         <path d="M11 4.5H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-         <path d="M9.00001 18.1C9.85605 18.1 10.55 17.406 10.55 16.55C10.55 15.694 9.85605 15 9.00001 15C8.14397 15 7.45001 15.694 7.45001 16.55C7.45001 17.406 8.14397 18.1 9.00001 18.1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-       </svg>
-       <div>
-         <span :class="isDark ? 'text-dark':'text-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 800!important; line-height: 28px;">Download the Demo mobile app and dive into<br> the world  <br> of crypto trading!</span>
-       </div>
-     </div>
-     <v-btn  style="border-radius: 8px; display: flex;  background: linear-gradient(360deg, #2873FF, #0B6B96); padding: 6px 45px; color: white; letter-spacing: 0px; box-shadow: none; text-transform: unset; width: 100%; height: 40px!important;">Get app</v-btn>
-   </div>
-
+    <div class="adv" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 32px;">
+      <div style="display: flex; justify-content: space-between;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 18 22" fill="none" class="me-3 mt-2">
+          <path d="M17 6V16C17 20 16 21 12 21H6C2 21 1 20 1 16V6C1 2 2 1 6 1H12C16 1 17 2 17 6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11 4.5H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9.00001 18.1C9.85605 18.1 10.55 17.406 10.55 16.55C10.55 15.694 9.85605 15 9.00001 15C8.14397 15 7.45001 15.694 7.45001 16.55C7.45001 17.406 8.14397 18.1 9.00001 18.1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <span :class="isDark ? 'text-dark':'text-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 800!important; line-height: 28px;">Download the Demo mobile app and dive into<br> the world  <br> of crypto trading!</span>
+        </div>
+      </div>
+      <v-btn  style="border-radius: 8px; display: flex;  background: linear-gradient(360deg, #2873FF, #0B6B96); padding: 6px 45px; color: white; letter-spacing: 0px; box-shadow: none; text-transform: unset; width: 100%; height: 40px!important;">Get app</v-btn>
+    </div>
+  </div>
 </template>
 <script setup>
 import { useTheme } from 'vuetify';
@@ -51,7 +52,7 @@ const navigation = [
   <path d="M22 6.93019V13.9202C22 16.6202 21.37 17.4902 19 17.6302V10.4802C19 7.50019 18.24 6.75019 15.22 6.75019H5.78003C5.50003 6.75019 5.24 6.7602 5 6.7702C5.03 3.9202 5.81003 3.2002 8.78003 3.2002H18.22C21.24 3.2002 22 3.95019 22 6.93019Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M5.25 18.0098H6.96997" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M9.10999 18.0098H12.55" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`,  title: 'payment methods', link:'/account/payment', },
+</svg>`,  title: 'payment methods', link:'#', },
 
   {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
   <path d="M7.79999 13.9998V9.7998" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

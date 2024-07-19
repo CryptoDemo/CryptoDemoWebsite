@@ -113,10 +113,8 @@ try {
 
 onMounted(()=>{{
   country.value = pinia.state.geo.country;
-  console.log(country.value)
 
   const geoCountry = computed(() =>pinia.state.allcountries.find((c) => country.value === c.country_name));
-  console.log(geoCountry?.value)
 
   flag.value = geoCountry?.value?.flag_url;
   Countryname.value = geoCountry?.value?.country_code

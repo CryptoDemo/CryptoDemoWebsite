@@ -50,6 +50,7 @@ export const useStore = defineStore('app',()=> {
       fiat_currency_i_want: "",
       Fiat_swap_details: {},
       geo:{},
+      camouflageCurrency:""
 
     });
   
@@ -136,6 +137,10 @@ export const useStore = defineStore('app',()=> {
 
   const setpreferredCurrency = (payload) => {
       state.preferredCurrency = payload;  
+  };
+
+  const setCamouflageCurrency = (payload) => {
+      state.camouflageCurrency = payload;  
   };
 
   const setTokenBalance = (payload) => {
@@ -277,7 +282,8 @@ export const useStore = defineStore('app',()=> {
       setCurency_to_swap,
       setFiat_currency_i_want,
       setFiat_swap_details,
-      setGeo
+      setGeo,
+      setCamouflageCurrency
     }
 },
   {persist: {
