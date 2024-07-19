@@ -83,6 +83,11 @@
                         </div>
                         <span class="text-center" style="font-size: 16px; font-weight: 600;">Crypto Balance: {{ formatBalance(pinia.state.SummedBalance)}}</span>
                         <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px;">View your fiat balances and make transactions seamlessly with the wallet.</span>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
+                          <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+                          <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
                       </div>
                     </v-col>
 
@@ -96,6 +101,10 @@
                           <span class="text-center resend-code mb-3" style="font-size: 18px; font-weight: 600;">Security</span>
                         </div>
                         <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">Secure your digital assets with top-tier encryption  ensuring your assets are always safe on our platform.</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
+                          <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+                          <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
                       </div>
                     </v-col>
 
@@ -109,6 +118,10 @@
                           <span class="text-center resend-code mb-3 ml-1" style="font-size: 18px; font-weight: 600;">Settings</span>
                         </div>
                         <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">Customize your crypto experience with our comprehensive settings options, tailored to meet your needs.</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
+                          <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+                          <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
                       </div>
                     </v-col>
 
@@ -127,6 +140,11 @@
                         </div>
 
                         <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">Craft your perfect deal with ease in our 'Create Offer' section, connecting you to the right buyers and sellers.</span>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
+                          <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+                          <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
                       </div>
                     </v-col>
 
@@ -137,6 +155,11 @@
                           <span class="text-center resend-code mb-3" style="font-size: 18px; font-weight: 600;">Market Place</span>
                         </div>
                         <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">Explore and trade in our dynamic marketplace, where the latest cryptocurrencies meet real-time market insights.</span>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
+                          <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+                          <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
                       </div>
                     </v-col>
 
@@ -154,6 +177,12 @@
                           <span class="text-center resend-code mb-3 ml-1" style="font-size: 18px; font-weight: 600;">Dashboard</span>
                         </div>
                         <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">Stay on top of your investments with our intuitive dashboard, offering a complete view of your crypto portfolio at a glance.</span>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
+                          <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+                          <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
+
                       </div>
                     </v-col>
                   </v-row>
@@ -451,6 +480,22 @@ border-bottom: 1px solid #10192D !important;
 
 .border-light{
   border-bottom: 1px solid #E2E8F0 !important;
+}
+
+.arrow1 {
+  animation: slide1 3s ease-in-out infinite;
+  margin-left: 9px;
+}
+
+@keyframes slide1 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(10px, 0);
+  }
 }
 
  @media screen and (max-width: 600px) {
