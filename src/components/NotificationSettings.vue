@@ -19,27 +19,30 @@
             <div style="display: flex; align-items: center; justify-content: space-between;">
               <span :class="isDark ? 'text-dark':'text-light'" style="margin-top: -5px;">Camouflage</span>
               
-              <v-switch v-model="dialog" inset color="#2873FF" style="padding-right: 50px;"></v-switch>
+              <v-switch v-model="isCamouflageEnabled" @click="toggleDialog" inset color="#2873FF" style="padding-right: 50px;"></v-switch>
               
-              <v-dialog v-model="dialog" width="auto">
+              <v-dialog v-model="dialog" style="width: 500px;">
                 
                 <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="padding: 20px; border-radius: 15px; width: 100%;">
-                  <span class="mb-4">Protect Your Privacy with Balance Camouflage</span>
-                  <input type="number" placeholder="Enter camouflage Balance" v-model="camouflagBalance" style="outline: none; border: 1px solid rgba(142, 155, 174, 0.5); padding: 20px; height: 55px; border-radius: 15px;"/>
+                  <span class="mb-3 text-center">Protect Your Privacy with Balance Camouflage</span>
+                  <span class="text-subtitle-2 text-center" :class="isDark ? 'text-dark':'text-light'"> Once camouflage mode is activated, you will operate with the set balance and currency for privacy until deactivated.</span>
+                  
+                  
+                  <input type="number" placeholder="Enter camouflage Balance" v-model="camouflagBalance" style="outline: none; border: 1px solid rgba(142, 155, 174, 0.5); padding: 20px; height: 55px; border-radius: 15px; margin-top: 18px;"/>
                 
                   <v-menu>
                     <template v-slot:activator="{ props }">
                       <v-btn class="input-styling1 mt-4" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" v-bind="props"  style="box-shadow: none; height: 55px;">
                         <div  class="py-3" style="display: flex; cursor: pointer; position: absolute; left: 37px; align-items: center;">
-                          <span :class="isDark ? 'text-dark':'text-light'" class="me-2" style="font-weight: 700; font-size: 16px;">{{ pinia.state.camoCurrencyCode }}</span>
+                          <span :class="isDark ? 'text-dark':'text-light'" class="me-2" style="font-weight: 700; font-size: 16px;">{{ camoCurrencyCode }}</span>
                           <span :class="isDark ? 'text-dark':'text-light'" class="mt-" style="font-weight: 700;">{{ pinia.state.camouflageCurrency }}</span> 
                         </div>
                       </v-btn>
                     </template>
 
                     <v-list class="" :class="isDark ? 'country-dropdown1':'country-dropdown1-light'" >
-                      <v-list-item style="width: 100%;">
-                        <div v-for="(currency, index) in pinia.state.allcountries" class="d-flex py-1" :key="index">
+                      <v-list-item style="display: contents">
+                        <div v-for="(currency, index) in pinia.state.allcountries" class="d-flex py-1" sm="12" :key="index">
                           <v-list-item @click="pinia.state.camouflageCurrency=currency.currency_name; camoCurrencyCode = currency.currency_code">
                               <div class="d-flex ml-4">
                                 <span :class="isDark ? 'country-name' : 'country-name-light'">{{ currency.currency_name }}</span>
@@ -51,11 +54,14 @@
                   </v-menu> 
                   <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">Enter preferred currency for camouflage</span>
 
+               
+
                   <template v-slot:actions>
-                    <v-btn class="ms-auto" text="Ok" @click="setCamo()"></v-btn>
+                    <v-btn class="ms-auto primary-btn1 mt-4" variant="tonal" @click="setCamo()" style="letter-spacing: 0px; text-transform: unset; border-radius: 10px !important; font-weight: 600;">activate Camouflage</v-btn>
                   </template>
                 </v-card>
               </v-dialog>
+
             </div>
           </tr>
 
@@ -105,14 +111,30 @@ const CountryID = ref()
 CountryID.value = pinia.state.allcountries.find(c => c.currency_name === pinia.state.camouflageCurrency);
 console.log('Selected country ID:', CountryID.value.id);
 
+const isCamouflageEnabled = computed({
+  get: () => Object.keys(pinia.state.user.camouflage || {}).length > 0,
+  set: (value) => {
+    if (!value) {
+      pinia.state.user.camouflage = {}; // Reset camouflage if switch is turned off
+    }
+  }
+});
+
+const toggleDialog = () => {
+  if (!isCamouflageEnabled.value) {
+    dialog.value = true;
+  }
+};
 
 const setCamo = async () => {
 
   const UpdateUserDetails = {
     ...pinia.state.user,
 
-    country_id: CountryID.value.id,
-    max_spend_balance: camouflagBalance.value,
+    camouflage:{
+      country_id: CountryID.value.id,
+      max_spend_balance: camouflagBalance.value,
+    }
   }
   delete UpdateUserDetails.token;
 

@@ -5,7 +5,7 @@
       </div>
         <v-table  class="mt-5" style="display: grid! important; margin-bottom: 32px; height: 440px;" >
           <thead>
-            <tr :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="tr-div" style="border-radius: 24px !important; height: 70px;  display: flex; justify-content: space-between ">
+            <tr :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="tr-div" style="border-radius: 24px !important; height: 70px;  display: flex; position: relative;">
             
 
               <th style="display: flex; align-items: center; align-self: center;">
@@ -14,7 +14,7 @@
                 </div>
               </th>
 
-            <th class="actions" style="display: flex; align-items: center; align-self: center; width: 11%;">
+            <th class="actions" style="display: flex; align-items: center; align-self: center; width: 11%; margin-left: 17px;">
                 <div class="d-flex">
                   <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Action</span>
                 </div>
@@ -24,7 +24,7 @@
                 <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Description</span>
               </th>
 
-              <th class="signedIn" style="display: flex; align-items: center; align-self: center; position: relative;right: 20px">
+              <th class="signedIn" style="display: flex; align-items: center; align-self: center; position: absolute; right: 30px">
                 <span class="activity-header" :class="isDark ? 'text-dark':'text-light'">Date</span>
               </th>
               
@@ -32,9 +32,9 @@
           </thead>
         
             <tbody>
-              <tr v-for="(item, i) in activityLogs" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5);justify-content: space-between; align-items: baseline; margin-top: 5px">
+              <tr v-for="(item, i) in activityLogs" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5); align-items: baseline; margin-top: 5px">
                 <td ><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 10px">{{i+1}}</span></td>
-                <td class="logCaptions" style="width: 19%;display: flex; align-items: center;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.title}}</span></td>
+                <td class="logCaptions" style="width: 19%;display: flex; align-items: center; margin-left: 14px;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.title}}</span></td>
                 <td class="logCaptions1" style="width: 60%;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.description}}</span></td>
                 <td><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{formatDate(item.timestamp)}}</span></td>
               </tr>
@@ -253,5 +253,9 @@ height: 60px !important;
   height: 50px !important;
   margin-top: 28px !important;
  }
+ .actions{
+  margin-left: 40px !important;
+}
+ 
 }
 </style>

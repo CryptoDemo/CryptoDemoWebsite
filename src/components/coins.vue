@@ -67,12 +67,7 @@
                   
 
                     <td class="mt-4" style="overflow: scroll; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical;-webkit-line-clamp: 1; display: flex; align-self: self-start; width: 210%;"><span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatNumber(item?.converted_value) }}</span></td>
-                      <!-- <td style="display: flex; align-items: center;"> 
-                        <v-chip 
-                        class="ma-2" color="success" variant="outlined">
-                        0.008%
-                        </v-chip> 
-                      </td> -->
+              
                   </tr>
                 </tbody>
             </v-table>
@@ -103,6 +98,7 @@ const fetchMore = async()=>{
   // fetch the new page record
   
 }
+
 try {
   const data = await getTokens(pageNumber.value);
   if(data.success) {

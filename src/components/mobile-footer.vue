@@ -11,7 +11,7 @@
 
         <v-card class="mx-auto footer-body" width="100%" :class="isDark ? 'footer-body':'footer-body-light'">
           <v-container :class="isDark ? 'footer-body':'footer-body-light'">
-            <v-list  v-model:opened="open" :class="isDark ? 'footer-list':'footer-list-light'">
+            <v-list :class="isDark ? 'footer-list':'footer-list-light'">
 
               <v-list-group v-for="(links, i) in footer" :key="i" :class="isDark ? 'border-dark':'border-light'">
                 <template v-slot:activator="{ props }">

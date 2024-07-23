@@ -106,22 +106,22 @@ const initSocketListeners = ($socketClient)=>{
             console.log('New Web3 Transaction:', message.data);
             const selectedNetworkById = pinia.state.BlockchainNetworks.find(e => e.name === pinia.state.selectedNetwork.toLowerCase())
             console.log(selectedNetworkById)
-            if(pinia.state.isAuthenticated || pinia.state.user){
-              if (selectedNetworkById && message.data.chain_id === selectedNetworkById.id) {
-                 const data_payload = ([...pinia.state.TransactionDetails, ...message.data.payload]);
-                 console.log(pinia.state.TransactionDetails)
-                 pinia.setTransactionDetails(data_payload)
+            // if(pinia.state.isAuthenticated || pinia.state.user){
+            //   if (selectedNetworkById && message.data.chain_id === selectedNetworkById.id) {
+            //      const data_payload = ([...pinia.state.TransactionDetails, ...message.data.payload]);
+            //      console.log(pinia.state.TransactionDetails)
+            //      pinia.setTransactionDetails(data_payload)
 
-                 getTokenBals()
-                 getSummedBal()
+            //      getTokenBals()
+            //      getSummedBal()
            
-                 console.log('done')
+            //      console.log('done')
     
   
-              } else {
-                console.error('Selected network or chain ID does not match:', message.data.chain_id, selectedNetworkById);
-              }
-            }
+            //   } else {
+            //     console.error('Selected network or chain ID does not match:', message.data.chain_id, selectedNetworkById);
+            //   }
+            // }
           
             break;
     

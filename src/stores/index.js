@@ -13,7 +13,6 @@ export const useStore = defineStore('app',()=> {
       isAuthenticated: false,
       code: "",
       codeInput:'',
-      isPinSet: false,
       isTwoFactorSet: false,
       email:null,
       country:null,
@@ -212,13 +211,8 @@ export const useStore = defineStore('app',()=> {
 
   const setCode = (payload) => {
       state.codeInput = payload;
-      // state.isPinSet = true;
   };
 
-
-  const verifyPin =(pin) => {
-    return pin === this.pin;
-  };
 
   
   const logout = () => {
@@ -232,17 +226,15 @@ export const useStore = defineStore('app',()=> {
     state.tokenNetworks = [],
     state.tokenLists = [],
     state.Total_fiat_bal = [],
+    state.TransactionDetails = [],
     state.selectedLandingCoin = "",
     state.curency_to_swap = "",
     state.fiat_currency_i_want = ""
     state.Fiat_swap_details= "",
     state.geo = {},
-    state.Web3_transactions = {
-      data:[],
-      time:null
-    };
+  
    
-    navigateTo('/login')
+    navigateTo('/authentication/login')
   }
 
     return {
