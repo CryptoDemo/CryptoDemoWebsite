@@ -103,7 +103,7 @@
                             </svg>
                             <span class="text-center resend-code mb-3 ml-1" style="font-size: 16px; font-weight: 600;">Dashboard</span>
                           </div>
-                          <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">View available coins, their prices, specific coin balances according to chain, and your referral code.</span>
+                          <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">View available coins, their prices, specific coin balances according to blockchain network, and your referral code.</span>
                           
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8E9BAE" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
                             <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>

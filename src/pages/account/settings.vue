@@ -46,7 +46,7 @@
                           </v-text-field>
                           
                           <div class="text-div" style="width: 300px;">
-                             <span class="number-caption" :class="isDark ? 'text-dark':'text-light'">This username is auto-generated and can be changed by the user.</span>
+                             <span class="number-caption" :class="isDark ? 'text-dark':'text-light'">This username is auto-generated and can be only once by the user.</span>
                           </div>
                         </div>
                       </div>
@@ -212,11 +212,6 @@ watchEffect(() => username_, debounce((value) => {
       // Your logic to update the username
  }, 500)); 
 
-  onMounted(async () => {
-  
-  
-    }
-  );
 
 const UpdateUserInfo = async () => {
   const dobFormatted = formatDate(DateOfBirth.value);
@@ -229,6 +224,24 @@ const UpdateUserInfo = async () => {
     username: username_.value
   }
   delete UpdateUserDetails.token;
+  delete UpdateUserDetails.badge;
+  delete UpdateUserDetails.settings.notifications.notify_me_on_new_login.last_login_device;
+  if(!UpdateUserDetails.profile_image){
+    delete UpdateUserDetails.profile_image;
+  }
+  console.log(UpdateUserDetails?.security)
+  if(UpdateUserDetails?.settings?.security?.two_fa==null){
+    delete UpdateUserDetails.settings.security;
+  }
+  if(!UpdateUserDetails.settings.preferred_currency){
+    delete UpdateUserDetails.settings.preferred_currency;
+  }
+  if(!Object.keys(UpdateUserDetails.camouflage).length){
+    delete UpdateUserDetails.camouflage;
+  }
+  if(!UpdateUserDetails.phone){
+    delete UpdateUserDetails.phone;
+  }
 
   loading.value = true;
   console.log(UpdateUserDetails)

@@ -2,7 +2,7 @@
   <div class="dashboard-nav">
     <div :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'">
       <v-container style="display: flex; align-items: center;">   
-        <span @click.prevent="navigateTo('/')" class="logoName" :class="isDark ? 'nav-title':'nav-title-light'">Demo</span>
+        <span @click.prevent="navigateTo('/')" class="logoName" :class="isDark ? 'nav-title':'nav-title-light'" style="font-family: SF Pro Display !important; font-size: 24px !important; font-style: normal; font-weight: 700 !important; line-height: normal;">Demo</span>
         <v-app-bar-title class="logoName" :class="isDark ? 'nav-title':'nav-title-light'">
 
           <v-text-field clearable  class="flex-lg-and-up hidden-sm-and-down" hide-details placeholder="Search in dashboard..." variant="plain" v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'" style="height: 55px; flex-shrink: 0; border-radius: 18px; margin-left: 20px; align-content: flex-end;"> 
@@ -101,7 +101,7 @@ try {
     const newItems = fetchedcountries.filter(item => !storedcountriesids.includes(item.id));
 
     if (newItems.length > 0) {
-      console.log('fetching')
+     
       pinia.setallcountries([...pinia.state.allcountries, ...newItems]);
       // flag.value = pinia.state?.allcountries[0].flag_url;
     }
@@ -180,20 +180,10 @@ color: black!important;
 box-shadow: none!important;
 }
 .nav-title{
-font-family: Manrope;
 color: #FFF;
-font-size: 20px !important;
-font-style: normal;
-font-weight: 900 !important;
-line-height: 120%; /* 24px */
 }
 .nav-title-light{
 color: var(--Black-80, #1B2537);
-font-family: Manrope;
-font-size: 20px;
-font-style: normal;
-font-weight: 800;
-line-height: 120%; /* 24px */
 }
 .text1{
 color: var(--Basic-White, #FFF);

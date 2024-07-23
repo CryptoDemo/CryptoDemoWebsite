@@ -4,7 +4,7 @@
    
         <v-container style="display: flex; align-items: center;">
       
-        <v-app-bar-title  :class="isDark ? 'nav-title':'nav-title-light'" >Demo Web</v-app-bar-title>
+        <v-app-bar-title  :class="isDark ? 'nav-title':'nav-title-light'" >Demo</v-app-bar-title>
 
  
           <div class="d-flex" style="position: absolute; margin-left: 150px;">
@@ -66,9 +66,9 @@
       
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn  class="me-4 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"  style="letter-spacing: 0px; display: flex;" v-bind="props">
-              <img :src="flag" class="me-2" width="32" height="32" style="object-fit: cover;border-radius: 30px"/>
-              <span class="me-2" :class="isDark ? 'nav-subtitle1':'nav-subtitle1-light'">{{select}}</span>
+            <v-btn  class="me-4 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'dropdown-btn':'dropdown-btn-light'"  style="letter-spacing: 0px; display: flex; width: 115px; height: 40px; border-radius: 10px; justify-content: center;" v-bind="props">
+              <img :src="flag" class="me-2" style="object-fit: cover; border-radius: 4px; height: 28px; width: 45px;"/>
+              <span class="me-2" :class="isDark ? 'nav-subtitle1':'nav-subtitle1-light'">{{countryCode}}</span>
               <v-icon icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
             </v-btn>
           </template>
@@ -77,10 +77,10 @@
             <v-list-item style="display: contents">
               <v-row dense style="width: 240px;">
               <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" :key="index">
-                <v-list-item @click="select=item.country_code; name=item.country_name; flag= item.flag_url" style="display: flex;">
+                <v-list-item @click="countryCode=item.country_code; countryName=item.country_name; flag= item.flag_url" style="display: flex;">
                   <div style="display: flex; align-items: center; ">
-                    <img width="35" height="35" class="me-3" :src="item.flag_url" style="object-fit: cover;border-radius: 30px"/> 
-                    <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.country_name }}</span>
+                    <img :src="item.flag_url" style="object-fit: cover; border-radius: 4px; height: 28px; width: 45px;"/> 
+                    <span class="country-name ml-2" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.country_name }}</span>
                 </div>
                 </v-list-item>
               </v-col>
@@ -106,10 +106,11 @@ import { getcountries } from "@/composables/requests/admin";
 const pinia = useStore()
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-
-const pageNumber = ref(1)
-const select =ref('Au')
-const flag = ref('')
+const pageNumber = ref(1);
+const countryCode =ref();
+const flag = ref();
+const country = ref();
+const countryName = ref();
 
 try {
   const data = await getcountries(pageNumber.value);
@@ -121,9 +122,7 @@ try {
     const newItems = fetchedcountries.filter(item => !storedcountriesids.includes(item.id));
 
     if (newItems.length > 0) {
-      console.log('fetching')
       pinia.setallcountries([...pinia.state.allcountries,...newItems]);
-      flag.value = pinia.state?.allcountries[0].flag_url;
     }
   } else {
     console.error('Unavailable')
@@ -131,7 +130,18 @@ try {
 } catch (error) {
   console.log(error);
 };
- 
+
+onMounted(()=>{{
+  country.value = pinia.state.geo.country;
+
+  const geoCountry = computed(() =>pinia.state.allcountries.find((c) => country.value === c.country_name));
+
+
+  flag.value = geoCountry?.value?.flag_url;
+
+
+  countryCode.value = geoCountry?.value?.country_code
+}})
 
 const props = defineProps(
   {
@@ -148,9 +158,7 @@ const items = [
   
 ];
 
-onMounted(()=>{{
-  flag.value = pinia.state?.allcountries[0]?.flag_url;
-}})
+
   
 </script>
 
@@ -210,24 +218,15 @@ cursor: pointer;
 }
 .dropdown-btn{
 display: flex;
-width: 111px;
-height: 40px !important;
-padding: 10px 8px;
 justify-content: space-between;
 align-items: center;
-border-radius: 100px !important;
 background: #10192D !important;
 text-transform: unset !important;
 color: white !important;
 }
 .dropdown-btn-light{
 display: flex;
-width: 111px;
-height: 40px !important;
-padding: 10px 8px;
 justify-content: space-between;
-align-items: center;
-border-radius: 100px !important;
 background: #F8FAFC !important;
 text-transform: unset !important;
 color: white !important;

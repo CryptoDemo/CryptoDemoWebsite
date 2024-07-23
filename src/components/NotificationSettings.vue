@@ -107,9 +107,10 @@ const toggleNotification = async (key, value) => {
 
 }
 
-const CountryID = ref()
+const CountryID = ref();
+console.log("camouflage currency.........",pinia.state.camouflageCurrency)
 CountryID.value = pinia.state.allcountries.find(c => c.currency_name === pinia.state.camouflageCurrency);
-console.log('Selected country ID:', CountryID.value.id);
+console.log('Selected country ID:', CountryID?.value?.id);
 
 const isCamouflageEnabled = computed({
   get: () => Object.keys(pinia.state.user.camouflage || {}).length > 0,
