@@ -144,7 +144,7 @@ const setCamo = async () => {
   if (data.success) {
 
     pinia.setUser({
-        ...pinia.state.user,
+        // ...pinia.state.user,
         camouflage: {
           ...pinia.state.user.camouflage,
           country_id: CountryID.value.id,

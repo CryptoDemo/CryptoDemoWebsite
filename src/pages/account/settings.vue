@@ -100,7 +100,7 @@
                               <path d="M5.05508 5.99413C5.19232 5.99415 5.32822 5.96714 5.45502 5.91463C5.58182 5.86213 5.69705 5.78516 5.7941 5.68813L9.69409 1.78814C9.88995 1.59227 10 1.32663 10 1.04964C10 0.772651 9.88995 0.50701 9.69409 0.311147C9.49823 0.115285 9.23259 0.00523901 8.9556 0.00523901C8.67861 0.00523901 8.41296 0.115285 8.2171 0.311147L5.0531 2.71114L1.8891 0.311147C1.69324 0.115285 1.4276 0.00523901 1.1506 0.00523901C0.873613 0.00523901 0.607941 0.115285 0.412079 0.311147C0.216217 0.50701 0.106201 0.772651 0.106201 1.04964C0.106201 1.32663 0.216217 1.59227 0.412079 1.78814L4.3121 5.68813C4.4096 5.78569 4.52546 5.86297 4.65298 5.91549C4.78051 5.96801 4.91716 5.99473 5.05508 5.99413Z"/>
                             </svg>
                             
-                            {{  Countrycode.phone_code  }}
+                            {{  Countrycode?.phone_code  }}
                           </v-btn>
                         </template>
   
@@ -108,10 +108,10 @@
                           <v-list-item style="display: contents">
                             <v-row dense style="max-width: 250px;">
                               <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" cols="12" :key="index">
-                              <v-list-item @click="Countrycode=item.phone_code; flag= item.flag_url;" style="display: flex;">
+                              <v-list-item @click="Countrycode=item?.phone_code; flag= item.flag_url;" style="display: flex;">
                                 <div class="pl-4" style="display: flex; align-items: center; ">
                                   <img class="me-3" :src="item.flag_url" style="object-fit: cover; border-radius: 4px; height: 28px; width: 45px;"/> 
-                                  <span class="country-name ml-2" :class="isDark ? 'country-name' : 'country-name-light'">{{ item.phone_code }}</span>
+                                  <span class="country-name ml-2" :class="isDark ? 'country-name' : 'country-name-light'">{{ item?.phone_code }}</span>
                               </div>
                               </v-list-item>
                             </v-col>
@@ -179,13 +179,14 @@ watch(()=> selectedImage.value,async(newval)=>{
     if(imgUrl?.uploaded_file_urls?.length){
 
       const profile_image = {profile_image: imgUrl.uploaded_file_urls[0]}
-      const update_user = {...pinia.state.user,...profile_image};
+      const update_user = {...profile_image};
       const tkn = update_user.token;
-      delete update_user.token;
+      // delete update_user.token;
 
       const data = await updateUser(update_user);  
       if (data.success) {
-        pinia.setUser({...update_user,token: tkn});
+        pinia.setUser({...pinia.state.user,...update_user});
+        push.success('Update Succesful');
       } else {
         // Display error message
         push.error(data.message, { duration: 2000 })
@@ -218,30 +219,12 @@ const UpdateUserInfo = async () => {
   const phoneNumberString = phoneNumber.value.toString();
   // if (!phoneNumber || !DateOfBirth) return;
   const UpdateUserDetails = {
-    ...pinia.state.user,
+ 
     phone: phoneNumberString,
     dob: dobFormatted,
     username: username_.value
   }
-  delete UpdateUserDetails.token;
-  delete UpdateUserDetails.badge;
-  delete UpdateUserDetails.settings.notifications.notify_me_on_new_login.last_login_device;
-  if(!UpdateUserDetails.profile_image){
-    delete UpdateUserDetails.profile_image;
-  }
-  console.log(UpdateUserDetails?.security)
-  if(UpdateUserDetails?.settings?.security?.two_fa==null){
-    delete UpdateUserDetails.settings.security;
-  }
-  if(!UpdateUserDetails.settings.preferred_currency){
-    delete UpdateUserDetails.settings.preferred_currency;
-  }
-  if(!Object.keys(UpdateUserDetails.camouflage).length){
-    delete UpdateUserDetails.camouflage;
-  }
-  if(!UpdateUserDetails.phone){
-    delete UpdateUserDetails.phone;
-  }
+
 
   loading.value = true;
   console.log(UpdateUserDetails)
@@ -266,7 +249,7 @@ const UpdateUserInfo = async () => {
 };
 
 Countrycode.value = pinia.state.allcountries.find(c => c.country_name === pinia.state.user.country);
-console.log('Selected country code:', Countrycode.value.phone_code);
+console.log('Selected country code:', Countrycode?.value?.phone_code);
 
 </script>
 <style scoped>

@@ -10,7 +10,7 @@
                 </div>
               </div>
 
-              <div class="mobile-col">
+              <div class="mobile-col me-3" style="width: 100%;">
                 <div class="security-col" style="margin-left: 28px;">
                     <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; justify-content: space-between">    
                         <span class="acct-text"> Security</span>
@@ -57,7 +57,6 @@
                                       </v-btn>
                                       <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; font-weight: 400; margin-top: 10px; display: flex; justify-content: center;">Copy and Paste this code into your Google Authenticator</span>
 
-                                      
                                         <v-alert text="A 6 digit code will be provided for you from google which will be needed when next you login"
                                         
                                           type="info" variant="tonal" style="font-size: 14px; margin-top: 20px; border-radius: 15px;"
@@ -68,8 +67,6 @@
 
                               </v-card>
                             </v-dialog>
-                           
-
                         </div>
                         
                       <div class="ml-2" style="margin-top: 42px; width: 99%;">

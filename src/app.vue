@@ -21,6 +21,14 @@ import { getSummedBalance, getTokenBalance } from "@/composables/requests/tokens
 
 const pinia = useStore()
 
+const network = pinia.state.selectedNetwork.toLowerCase();
+const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
+
+
+const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.token_networks?.find(tkn=>tkn.blockchain_id === selectedNetworkId));
+
+const symbols = tokensForSelectedNetwork.map(token => token.symbol);
+
 const getTokenBals = async () => {
  
  // Check if user is authenticated
@@ -55,7 +63,7 @@ const getTokenBals = async () => {
 };
 
 
-
+const chain = computed(()=>pinia.state.selectedNetwork);
 const getSummedBal = async () => {
   if (pinia.state.isAuthenticated) {
     try {
@@ -106,22 +114,26 @@ const initSocketListeners = ($socketClient)=>{
             console.log('New Web3 Transaction:', message.data);
             const selectedNetworkById = pinia.state.BlockchainNetworks.find(e => e.name === pinia.state.selectedNetwork.toLowerCase())
             console.log(selectedNetworkById)
-            // if(pinia.state.isAuthenticated || pinia.state.user){
-            //   if (selectedNetworkById && message.data.chain_id === selectedNetworkById.id) {
-            //      const data_payload = ([...pinia.state.TransactionDetails, ...message.data.payload]);
-            //      console.log(pinia.state.TransactionDetails)
-            //      pinia.setTransactionDetails(data_payload)
+            if(pinia.state.user?.token){
+              if (selectedNetworkById && message.data.chain_id === selectedNetworkById.id) {
 
-            //      getTokenBals()
-            //      getSummedBal()
-           
-            //      console.log('done')
+                const payloadArray = Array.isArray(message.data.payload) ? message.data.payload : [];
+
+                const data_payload = [...pinia.state.TransactionDetails, ...payloadArray];
+                // const data_payload = ([...pinia.state.TransactionDetails, ...message.data.payload]);
+                console.log(pinia.state.TransactionDetails)
+                pinia.setTransactionDetails(data_payload)
+
+                getTokenBals()
+                getSummedBal()
+          
+                console.log('done')
     
   
-            //   } else {
-            //     console.error('Selected network or chain ID does not match:', message.data.chain_id, selectedNetworkById);
-            //   }
-            // }
+              } else {
+                console.error('Selected network or chain ID does not match:', message.data.chain_id, selectedNetworkById);
+              }
+            }
           
             break;
     
@@ -187,11 +199,6 @@ const { $initSocket } = useNuxtApp();
 
 
 
-// onBeforeMount(() => {
-// convertCurrencies();
-// getTokenBals();
-// getSummedBal();
-// });
 
 
 

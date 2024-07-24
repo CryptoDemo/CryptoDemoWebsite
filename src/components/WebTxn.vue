@@ -257,7 +257,7 @@ const getWebTrans = async () => {
   try {
     const data = await getWebTransaction(pageNumber.value);
     if (data.success) {
-      datainfo.value = data.data.result;
+      datainfo.value = data?.data?.result;
 
 
       datainfo.value = filterByKey("id", [
