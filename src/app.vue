@@ -2,8 +2,6 @@
   <v-app>
     <NuxtLayout>
       <NuxtPage />
-
-
         <Notivue v-slot="item">
           <Notification :item="item"
             :icons="outlinedIcons"
@@ -16,8 +14,9 @@
   </v-app>
 </template>
 <script setup>
-import { useStore } from '@/stores/index'
+import { useStore } from '@/stores/index';
 import { getSummedBalance, getTokenBalance } from "@/composables/requests/tokens";
+
 
 const pinia = useStore()
 
@@ -198,7 +197,41 @@ const { $initSocket } = useNuxtApp();
 
 
 
+const onlineStatusMessage = ref('');
+const isOnline = ref(navigator.onLine);
 
+const updateOnlineStatus = () => {
+  isOnline.value = navigator.onLine;
+  const message = isOnline.value 
+    ? 'You are back online.' 
+    : 'You are offline. Check your internet connection.';
+  notifyUser(message);
+};
+
+const clearMessage = () => {
+  onlineStatusMessage.value = '';
+};
+
+const notifyUser = (message) => {
+    console.log(message); // Still log the message for debugging
+    onlineStatusMessage.value = message;
+    if (isOnline.value) {
+      push.success(message); // Display success notification
+    } else {
+      push.error(message); // Display error notification
+    }
+    setTimeout(clearMessage, 3000); // Clear message after 3 seconds
+  };
+
+onMounted(() => {
+  window.addEventListener('online', updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('online', updateOnlineStatus);
+  window.removeEventListener('offline', updateOnlineStatus);
+});
 
 
 
