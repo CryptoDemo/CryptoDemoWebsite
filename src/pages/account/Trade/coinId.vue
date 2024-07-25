@@ -90,13 +90,6 @@ const token = pinia.state.tokenLists.find(e => e.symbol === pinia.state.getNewCo
 
 const fetchedBalance = ref(); // Define a ref to store the fetched balance
 
-// const formatBalance = balance => {
-//   const formattedBalance = balance === 0 ? '0.00' : balance?.toFixed(3);
-//   return new Intl.NumberFormat('en-US', {
-//     minimumFractionDigits: 2,
-//     maximumFractionDigits: 3,
-//   }).format(formattedBalance);
-// };
 
 const coins = pinia.state.tokenLists;
 
@@ -151,9 +144,7 @@ const calculateCurrencyEquivalent = () => {
   const balance = parseFloat(fetchedBalance.value);
   const rate = parseFloat(conversionRate.value);
 
-
-    currencyEquivalent.value = balance * rate;
-    console.log(currencyEquivalent);
+  currencyEquivalent.value = balance * rate;
 
 };
 

@@ -22,7 +22,7 @@
 
                   <v-table class="coin-table" style="display: grid! important; background: inherit; width: 100%; height: 420px;">
                     <thead>
-                      <tr style="display: flex; margin-bottom: 8px;">
+                      <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
 
                         <th style="display: flex; align-items: center; align-self: center; width: 7%; justify-content: center;">
                           <div class="d-flex" >
@@ -30,44 +30,55 @@
                           </div>
                         </th>
 
-                        <th style="display: flex; align-items: center; align-self: center; width: 20%; justify-content: center;">
+                        <th style="display: flex; align-items: center; align-self: center; justify-content: center;">
                           <div class="d-flex" >
                             <span class="table-header-text" :class="isDark ? 'text-dark':'text-light'">Coin</span>
                           </div>
                         </th>
 
-                        <th style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 24px; width: 42%; justify-content: center;">
+                        <th style="display: flex; align-items: center; align-self: center; position: relative; justify-content: center;">
                           <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Price (USD)</span>
                         </th>
 
-                        <th style="display: flex; align-items: center; align-self: center; position: relative;right: 72px">
-                          <span></span>
+                        <th style="display: flex; align-items: center; align-self: center; position: relative;">
+                          <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'">Balance</span>
                         </th>
-                        <th style="display: flex; align-items: center; align-self: center; position: relative;right: 72px">
-                          <span></span>
-                        </th> 
+                       
                       </tr>
                     </thead>
                   
                 <tbody>
-                  <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" style="display: flex; justify-content: space-between;">
 
+
+                  <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" style="display: flex; justify-content: space-between;">
+
+                  <v-list class="d-flex" style="width: 100%; justify-content: space-between; background: inherit;">
                     
-                    <td class="mt-2 me-5" style="display: flex; align-items: center;">{{index+1}}</td>
+                    
+                    <v-list-item class="mt-2" style="display: flex; align-items: center;">{{index+1}}</v-list-item>
 
-                    <td style="display: contents;">
-                      <div class="d-flex" style="align-items: center; width: 70%;">
-                            <img :src="item.icon" width="30" class="me-3 py-5"/>
-                            <div style="flex-direction:row">
-                              <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
-                              <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
-                            </div>
+                    <v-list-item style="display: contents; position: relative; width: 34%;">
+                      <div class="d-flex" style="align-items: center;">
+                        <img :src="item.icon" width="35" class="py-5"/>
+                        <img :src="chainIcon.icon" width="15" class=" py-5" style="position: relative; right: 11px; margin-top: 16px;"/>
+                        <div style="flex-direction:row">
+                          <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
+                          <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
+                        </div>
                       </div>
-                    </td>
+                    </v-list-item>
                   
 
-                    <td class="mt-4" style="overflow: scroll; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical;-webkit-line-clamp: 1; display: flex; align-self: self-start; width: 210%;"><span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatNumber(item?.converted_value) }}</span></td>
+                    <v-list-item class="mt-4" style="overflow: scroll; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical;-webkit-line-clamp: 1; display: flex; align-self: self-start; justify-content: center; width: 18%;">
+                      <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatConvertedValue(item.converted_value) }}</span>
+                    </v-list-item>
               
+                    <v-list-item class="mt-2" style="display: flex; align-items: center; justify-content: center; width: 16%;"> 
+                      <span class="mb-4" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; font-size: 16px;"> {{formatBalance (item.balance)}} </span>
+                    </v-list-item>
+
+                  </v-list>
+
                   </tr>
                 </tbody>
             </v-table>
@@ -82,95 +93,23 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-import {getTokens, currencyConverter} from "@/composables/requests/tokens";
+
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
-const pageNumber = ref(1)
-const symbolPrice= ref()
-const conversionResult = ref([]);
-const currentPageNumber = ref(1);
-const fetchMore = async()=>{
-  // increment the pageNumber
-  currentPageNumber.value += 1;
-
-  // fetch the new page record
-  
-}
-
-try {
-  const data = await getTokens(pageNumber.value);
-  if(data.success) {
-    const fetchedTokens = data.data.result;
-
-    const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
-
-    // Check if there are any new items in the fetched data
-    const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
-
-    if (newItems.length > 0) {
-      console.log('fetching')
-      pinia.setTokenLists(fetchedTokens);
-    }
-  } else {
-    console.log('Unavailable')
-  }
-} catch (error) {
-  console.log(error);
-};
-
-watch(()=>conversionResult.value,(newVal)=>{
-  pinia.state.tokenLists.map(t=>{
-  const tokenConversion = newVal.find(tc=>tc.from== t.symbol);
-  if(tokenConversion){
-    t.converted_value = tokenConversion.value;
-  }
-});
-});
 
 
-const convertCurrencies = async () => {
+const chainIcon = pinia.state.tokenLists.find(c => c.symbol === "BNB" || c.symbol === "TRX");
 
+const formatConvertedValue = (value) => {
+      if (value < 1) {
+        return parseFloat(value).toFixed(4);
+      } else {
+        return parseFloat(value).toFixed(2);
+      }
+    };
 
-// Get the list of coins from pinia state
-
-const coins = pinia.state.tokenLists;
-
-try {
-  console.log("Starting currency conversion...");
-
-  const convertCurrency = [];
-  
-  // Loop through each coin and convert to USD
-  for (const coin of coins) {
-    convertCurrency.push({ from: coin.symbol, to: "USD" });
-  }
-
-  try {
-    const data = await currencyConverter(convertCurrency);
-    console.log(`Data received: `, data);
-
-    if (data.success) {
-      // Store the conversion result in the array
-      conversionResult.value = data.data;
-    } else {
-      console.log(`Conversion failed:`, data.message);
-    }
-  } catch (error) {
-    console.log(`Error converting:`, error);
-  }
-
-  // Optionally, store all conversion results in pinia
-  // pinia.setTokenPrices(conversionResults, addMinutes(10));
-
-} catch (error) {
-  console.log(error);
-}
-
-// Log the array to see the stored conversion results
-console.log("Conversion Results:", conversionResult.value);
-};
 
 let input = ref("");
 
@@ -188,15 +127,10 @@ const props = defineProps({
   selectedCoin: String,
 });
 
-const formatNumber = (value) => {
-  if (value == null) return '0'; // Handle null or undefined
-  return Number(value).toFixed(16); // Adjust the number of decimal places as needed
-};
 
-onMounted(async () => {
-await convertCurrencies();
 
-});
+
+
 </script>
 
 <style scoped>
@@ -252,12 +186,7 @@ font-style: normal;
 font-weight: 500;
 line-height: normal;
 }
-.active-offers-dark{
-background: var(--secondary-background, #1B2537);
-}
-.active-offers-light{
-background: var(--secondary-background, #F8FAFC);
-}
+
 .wallet-border{
 border: 0.5px solid rgba(142, 155, 174, 0.5);
 }

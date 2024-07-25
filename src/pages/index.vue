@@ -457,7 +457,7 @@ const toggleChevron = () => {
       isChevronToggled.value = !isChevronToggled.value;
 };
 
-onMounted(async () => {
+onBeforeMount(async () => {
   await convertCurrencies();
   piniastoredicon.value = pinia.state?.tokenLists[1]?.icon
   select.value = pinia.state?.tokenLists[1]?.name

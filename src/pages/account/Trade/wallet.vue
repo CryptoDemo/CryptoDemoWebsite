@@ -67,6 +67,7 @@
                       <td style="display: contents;">
                         <div class="d-flex me-7" style="align-items: center; width: 25%;">
                           <img :src="token.icon" width="35" class="me-3" />
+                          <!-- <img :src="chainIcon.icon" width="15" style="position: relative; right: 25px; margin-top: 16px;"/> -->
                           <div class="coin-div" style="flex-direction: column; display: flex; overflow: hidden; text-overflow: ellipsis;">
                             <span class="coin-name1 flex-lg-and-up hidden-sm-and-down"
                                   :class="isDark ? 'coin-name' : 'coin-name-light'"
@@ -236,6 +237,8 @@ const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.
 
 const symbols = tokensForSelectedNetwork.map(token => token.symbol);
 
+const chainIcon = pinia?.state?.tokenLists?.find(c => c.symbol === "BNB" || c.symbol === "TRX");
+// console.log("here...", chainIcon.icon)
 
 const getTokens_ = async () => {
   try {

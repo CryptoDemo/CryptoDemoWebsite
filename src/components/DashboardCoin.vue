@@ -3,9 +3,10 @@
     <div style="display: flex; max-width: 100%;">
         
         <div class="me-7" style="display: flex; justify-content: space-between; overflow: scroll;">
-            <div v-for="(item, i) in pinia.state.tokenLists" :key="i">
+            <div v-for="(item, i) in  multipliedValues" :key="i">
                 <div class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"> 
-                    <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(item.balance) }} {{ pinia.state.preferredCurrency }}</span>
+                    <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(item.product) }} {{ pinia.state.preferredCurrency }}</span>
+                    <span  :class="isDark ? 'text-dark':'text-light'">{{ formatBalance(item.balance) }} {{ item.symbol}}</span>
                     <div class="mt-3 mb-3" style="display: flex; align-items: center;">
                         <img class="me-2" :src="item.icon" alt="coin" width="30"/>
                         <span class="coinName" :class="isDark ? 'text-dark':'text-light'">{{ item.name }}</span>
@@ -20,7 +21,7 @@
                 </div>
             </div>
         </div> 
-            <!-- <AcctLevel1 style="margin-top: 10px;"/> -->
+
     </div>
 
 </template>
@@ -28,55 +29,25 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-import {getTokenBalance} from "@/composables/requests/tokens";
+
 const pinia = useStore()
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
 
-// const network = pinia.state.selectedNetwork.toLowerCase();
-// const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
 
+const multipliedValues = computed(() => {
+      return pinia.state.tokenLists.map(token => {
+        const balance = token.balance ?? 0;
+        const convertedValue = token.converted_value ?? 0;
+        return {
+          ...token,
+          product: balance * convertedValue
+        };
+      });
+    });
 
-// const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.token_networks?.find(tkn=>tkn.blockchain_id === selectedNetworkId));
-
-// const symbols = tokensForSelectedNetwork.map(token => token.symbol);
-
-// const getTokenBals = async () => {
-
-// // Check if user is authenticated
-
-// if (pinia.state.isAuthenticated) {
-//   try {
- 
-
-//     // Fetch token balance
-//     const data = await getTokenBalance(symbols);
-
-//     // Update tokens with the new balance
-//     if (data.success) {
-//         for (const token_ of data.data) {
-//           console.log(data);
-//           // Update tokenLists with the new balance
-//           const token = tokensForSelectedNetwork.find(t => t.symbol === token_);
-//           // const token = pinia.state.tokenLists.find(t => t.symbol === token_.token);
-//           if (token) {
-//           // Update token balance
-//           token.balance = (token_.balance);
-//         }
-//         }
-//     } else {
-//       console.log('Error:', data.message);
-//     }
-//   } catch (error) {
-//     console.log('Fetch error:', error);
-//   }
-// }
-// };
-
-// onMounted(async () => {
-// await getTokenBals();
-// });
+console.log("Multiplied Values:", multipliedValues);
 
 </script>
 
