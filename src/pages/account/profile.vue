@@ -5,7 +5,7 @@
         <div style="margin-top: 100px;">
             <div no-gutters style="display: flex">
               <div class="profile-section me-4" style="min-width: 98%;">
-                <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 15px">
+                <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 15px; align-items: center; background: inherit">
                   <div class="d-flex" style="position:relative ; align-items: center; justify-content: space-between;">
                     <div class="d-flex" style="align-items: center;">
                       <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="72" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start; border-radius: 55px; height: 70px;"/>     
@@ -13,12 +13,12 @@
                       <div class="unverified-div ml-3">
                         <div class="div-username1"> <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'">@{{ pinia.state.user?.username}} </span> </div>
                         
-                        <div v-if="pinia.state.user.kyc_verified === true" style="display: flex; align-items: center;">
+                        <div v-if="pinia.state.user.kyc_verified" style="display: flex; align-items: center;">
                           <span class="resend-code me-1">Verified</span>
                           <img src="/svg/verified.svg"/>
                         </div>
 
-                        <div v-if="pinia.state.user.kyc_verified === false">
+                        <div v-else>
                           <span style="color: #E65100;">Unverified</span>
                         </div>
 

@@ -1,7 +1,7 @@
 <template>
   <div>
-     <v-container>
-          <div style="margin-top: 110px; display: flex; width: 100% !important;">
+  
+    <div style="margin-top: 110px; display: flex; width: 100% !important;">
              
             <div style="width: -webkit-fill-available">
               <div>   
@@ -51,13 +51,10 @@
 
 
                   <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" style="display: flex; justify-content: space-between;">
-
-                  <v-list class="d-flex" style="width: 100%; justify-content: space-between; background: inherit;">
                     
-                    
-                    <v-list-item class="mt-2" style="display: flex; align-items: center;">{{index+1}}</v-list-item>
+                    <td class="mt-2" style="display: flex; align-items: center;">{{index+1}}</td>
 
-                    <v-list-item style="display: contents; position: relative; width: 34%;">
+                    <td style="display: contents; position: relative; width: 34%;">
                       <div class="d-flex" style="align-items: center;">
                         <img :src="item.icon" width="35" class="py-5"/>
                         <img :src="chainIcon.icon" width="15" class=" py-5" style="position: relative; right: 11px; margin-top: 16px;"/>
@@ -66,18 +63,18 @@
                           <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
                         </div>
                       </div>
-                    </v-list-item>
+                    </td>
                   
 
-                    <v-list-item class="mt-4" style="overflow: scroll; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical;-webkit-line-clamp: 1; display: flex; align-self: self-start; justify-content: center; width: 18%;">
+                    <td class="mt-4" style="overflow: scroll; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical;-webkit-line-clamp: 1; display: flex; align-self: self-start; justify-content: center; width: 27%;">
                       <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatConvertedValue(item.converted_value) }}</span>
-                    </v-list-item>
+                    </td>
               
-                    <v-list-item class="mt-2" style="display: flex; align-items: center; justify-content: center; width: 16%;"> 
+                    <td class="mt-2" style="display: flex; align-items: center; justify-content: center; width: 15%;"> 
                       <span class="mb-4" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 600; font-size: 16px;"> {{formatBalance (item.balance)}} </span>
-                    </v-list-item>
+                    </td>
 
-                  </v-list>
+          
 
                   </tr>
                 </tbody>
@@ -87,7 +84,7 @@
         </div>
       </div>
     </div>
-  </v-container>   
+
   </div>
 </template>
 <script setup>

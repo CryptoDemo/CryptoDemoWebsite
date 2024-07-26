@@ -130,8 +130,6 @@ const toggleDialog = () => {
 const setCamo = async () => {
 
   const UpdateUserDetails = {
-    ...pinia.state.user,
-
     camouflage:{
       country_id: CountryID.value.id,
       max_spend_balance: camouflagBalance.value,
@@ -144,7 +142,7 @@ const setCamo = async () => {
   if (data.success) {
 
     pinia.setUser({
-        // ...pinia.state.user,
+      
         camouflage: {
           ...pinia.state.user.camouflage,
           country_id: CountryID.value.id,

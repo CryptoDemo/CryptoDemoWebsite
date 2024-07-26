@@ -1,8 +1,8 @@
 <template>
   <div>
     
-    <div style="margin-top:150px; margin-bottom: 170px;">
-      <div class="pa-2 ma-2">
+    <div style="margin-top:150px; margin-bottom: 30px;">
+      <div>
         <div  style="display: flex; justify-content: space-between;">  
           <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
             <img src="/img/phoneHand.png" width="195" class="mb-3"/>

@@ -1,66 +1,78 @@
 <template>
   <div>
-    <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true"/>
+    <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true" />
     <v-container>
       <div style="margin-top: 105px; margin-bottom: 100px; display: flex; width: 100%;">
         <div>
           <div class="pa-2 ma-2">
-            <Sd-nav1 style="border: none;"/>
+            <Sd-nav1 style="border: none;" />
           </div>
         </div>
 
-        
+
         <div>
           <div class="px-2 ml-1">
 
-            <div class="acct-settings ml-2" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; margin-bottom: 80px; width: 100%;margin-top: 15px; border: none">
+            <div class="acct-settings ml-2" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+              style="display: flex; justify-content: space-between; margin-bottom: 80px; width: 100%;margin-top: 15px; border: none">
               <span style=" font-size: 24px; font-style: 28px; font-weight: 600; color: #5892FF;">MarketPlace</span>
-              <span class="mail-text" :class="isDark ? 'text-dark':'text-light'"> {{ pinia.state.user?.email }}</span>
-          </div>
+              <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
+            </div>
           </div>
 
           <div style="width: 780px; margin-left: 20px;">
 
             <div class="px-1" style="margin-top: 32px; margin-bottom: 25px;">
               <v-row class="px-2">
-                <v-btn class="me-4 mb-4 toggle-btn" :class="[PurchaseCrypto ? 'active-btn' : isDark ? 'inactive-btn' : 'inactive-btn-light']" @click.prevent="PurchaseCrypto = true">
+                <v-btn class="me-4 mb-4 toggle-btn"
+                  :class="[PurchaseCrypto ? 'active-btn' : isDark ? 'inactive-btn' : 'inactive-btn-light']"
+                  @click.prevent="PurchaseCrypto = true">
                   Market Offers
                 </v-btn>
-                <v-btn class="toggle-btn" :class="[PurchaseCrypto ? (isDark ? 'inactive-btn' : 'inactive-btn-light') : 'active-btn']" @click.prevent="PurchaseCrypto = false">
-                Personal Offers
+                <v-btn class="toggle-btn"
+                  :class="[PurchaseCrypto ? (isDark ? 'inactive-btn' : 'inactive-btn-light') : 'active-btn']"
+                  @click.prevent="PurchaseCrypto = false">
+                  Personal Offers
                 </v-btn>
-  
-               
-  
+
+
+
                 <div style="display: flex; margin-inline-start: auto">
                   <v-menu>
                     <template v-slot:activator="{ props }">
-                      <v-btn  class="mx-auto active-offers"  :class=" isDark ? 'active-offers-dark' : 'active-offers-light'" style="letter-spacing: 0px; box-shadow: none" v-bind="props">
-  
-                        <img width="25" class="me-2" :src="tokenIcon" style="position: absolute; left: 7%"/>
-  
+                      <v-btn class="mx-auto active-offers"
+                        :class="isDark ? 'active-offers-dark' : 'active-offers-light'"
+                        style="letter-spacing: 0px; box-shadow: none" v-bind="props">
+
+                        <img width="25" class="me-2" :src="tokenIcon" style="position: absolute; left: 7%" />
+
                         <div style="display: grid; position: absolute; margin-right: 34%;">
                           <span class="slt" style="font-weight: 600;">{{ tokenSymbol }}</span>
-                           <span v-if="!tokenSelected" style="margin-left: 60px; font-weight: 600;">All Cryptocurrencies</span>
+                          <span v-if="!tokenSelected" style="margin-left: 60px; font-weight: 600;">All
+                            Cryptocurrencies</span>
                         </div>
-  
-                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" :class="isDark ? 'close-btn' : 'close-btn-light'" style="position: absolute; display: flex; right: 15px">
-                          <path d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z"/>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6"
+                          :class="isDark ? 'close-btn' : 'close-btn-light'"
+                          style="position: absolute; display: flex; right: 15px">
+                          <path
+                            d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" />
                         </svg>
                       </v-btn>
                     </template>
-  
-                    <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
+
+                    <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+                      style="border-radius: 15px; margin-top: 10px;">
                       <v-list-item style="display: contents">
                         <v-row dense style="max-width: 280px; height: 250px; overflow: scroll;">
                           <div v-for="tokens in pinia.state.tokenLists" :key="tokens.id" style="width: 100%;">
-                          <v-list-item @click="selectToken(tokens)" style="display: flex;">
-                            <div style="display: flex; align-items: center;">
-                              <img :src="tokens.icon" width="30" class="me-2"/>
-                              <span class="currency-list">{{ tokens.name }}</span>
-                            </div>
-                          </v-list-item>
-                        </div>
+                            <v-list-item @click="selectToken(tokens)" style="display: flex;">
+                              <div style="display: flex; align-items: center;">
+                                <img :src="tokens.icon" width="30" class="me-2" />
+                                <span class="currency-list">{{ tokens.name }}</span>
+                              </div>
+                            </v-list-item>
+                          </div>
                         </v-row>
                       </v-list-item>
                     </v-list>
@@ -68,46 +80,75 @@
                 </div>
               </v-row>
             </div>
-  
-            <div v-if="PurchaseCrypto" class="offers-div" style="height: 550px; margin-bottom: 300px; overflow: scroll;">
-  
+
+            <div v-if="PurchaseCrypto" class="offers-div"
+              style="height: 550px; margin-bottom: 300px; overflow: scroll;">
+
               <div v-for="offer in filteredOffers" :key="offer.id">
 
                 <div class="py-3">
-                  <div class="px-4" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; border: none;">
+                  <div class="px-4" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+                    style="display: flex; justify-content: space-between; border: none;">
                     <div style="margin-top: 20px; margin-bottom: 10px;">
                       <div style="display: flex; align-items: center; margin-bottom: 14px">
-                      <img v-if="offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" style="width: 30px; height: 30px; border-radius: 30px;"/>
-          
-                      <v-icon v-else style="width: 20px;">mdi-account-circle</v-icon>
-              
-                      <span class="me-3 ml-2" style="font-size: 14px;">{{ offer?.user?.username }}</span>
+
+                        <span class="me-3" style="font-size: 14px; font-weight: 600;">{{ offer?.user?.username}}</span>
+
+                        <img :src="offer.sellerCountry" style="object-fit: cover; border-radius: 4px; height: 28px; width: 45px;"/>
+
                       </div>
+
+                      <div class="d-flex mb-3">
+                        <img :src="offer.trading_pair?.crypto?.token?.icon" class="me-2" width="20px" />
+                        <span class="me-1"
+                          style="color: #8e9bae; font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600;line-height: 150%;">{{
+                            offer.trading_pair?.crypto?.token?.name }}</span>
+                        <img src="/svg/arrow-up.svg" width="15" class="mb-1 me-1" />
+                      </div>
+
                       <div style="display: grid">
-                        <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Unit range values</span>
-                        <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500; line-height: normal; ">Price model</span>
-                          
-                          <div class="d-flex mb-3">
-                          <img :src="offer.trading_pair?.crypto?.token?.icon" class="me-3" width="20px" />
-                          <span class="me-1" style="color: #8e9bae; font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 600;line-height: 150%;">{{ offer.trading_pair?.crypto?.token?.name }}</span>
-      
-                          <img src="/svg/arrow-up.svg" width="15" class="mb-1 me-1" />
-                      
-                        </div>
+                        <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'"
+                          style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Minimum
+                          - Maximum buy limit</span>
+                        <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'"
+                          style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500; line-height: normal; ">Unit
+                          value</span>
+                        <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'"
+                          style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500; line-height: normal; ">Price
+                          model</span>
                       </div>
                     </div>
-      
-                    <div style="margin-top: 20px; margin-bottom: 10px; margin-block-start: auto">
-                      <div style="display: flex; flex-direction: column; margin-bottom: 14px; justify-content: flex-end;">
-                        <span v-if="offer.user?.is_verified" style="font-size: 14px; font-weight: 600; color: green; text-align-last: right; margin-bottom: 20px;">Verified</span>
+
+                    <div style="margin-bottom: 10px; margin-block-start: auto">
+                      <div
+                        style="display: flex; flex-direction: column; margin-bottom: 14px; justify-content: flex-end;">
+                        <span v-if="offer.user?.is_verified" class="resend-code"
+                          style="font-weight: 500;  text-align-last: right; margin-bottom: 11px;">Verified</span>
                         <p v-else>Unverified User</p>
-                        <span :class="isDark ? 'transfer-dark' : 'transfer-light'" style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; align-self: self-end;">Limit {{ offer?.trading_pair?.fiat?.minimum_buy_limit }} - {{ offer?.trading_pair?.fiat?.maximum_buy_limit }} {{ offer?.countryCurrencyName }}</span>
+                        <span
+                          style="display: flex; justify-content: end; margin-bottom: 11px; font-size: 14px; font-weight: 600;">
+                          {{ offer?.trading_pair?.crypto?.unit_value }} {{ offer?.trading_pair?.crypto?.token.symbol
+                          }}</span>
+                        <span :class="isDark ? 'text-dark' : 'text-light'"
+                          style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; margin-bottom: 11px; align-self: self-end;">{{
+                            formatBalance(offer?.trading_pair?.fiat?.minimum_buy_limit) }} - {{
+                            formatBalance(offer?.trading_pair?.fiat?.maximum_buy_limit) }} {{ offer?.countryCurrencyName
+                          }}</span>
+                        <span :class="isDark ? 'text-dark' : 'text-light'"
+                          style=" font-family: Manrope; margin-bottom: 11px; font-size: 14px; font-style: normal;  font-weight: 600;line-height: normal; text-align-last: right;">{{
+                            offer?.trading_pair?.fiat?.unit_value }}</span>
+                        <span :class="isDark ? 'text-dark' : 'text-light'"
+                          style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; margin-bottom: 2px; line-height: normal; align-self: self-end;"
+                          v-if="offer?.trading_pair?.fiat?.use_fixed_price">Fixed Price</span>
+                        <span :class="isDark ? 'text-dark' : 'text-light'"
+                          style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; margin-bottom: 2px; line-height: normal; align-self: self-end;"
+                          v-else>Market Price</span>
                       </div>
+
+
                       <div style="display: grid">
-                        <span :class="isDark ? 'text-dark' : 'text-light'" class="mb-3" style=" font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 600;line-height: normal; text-align-last: right;">{{ offer?.trading_pair?.fiat?.unit_value }}</span>
-                        <div style="display: flex; justify-content: end"> 
 
-
+                        <!-- <div style="display: flex; justify-content: end"> 
                         <v-dialog max-width="500">
                             <template v-slot:activator="{ props: activatorProps }">
                               <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id" v-bind="activatorProps" class="smaller-btn">Buy Offer</v-btn>
@@ -152,36 +193,35 @@
                         </v-dialog>
     
     
-                          <!-- <v-btn class="smaller-btn">{{ PurchaseCrypto ? "Buy Now" : "Sell Now" }}</v-btn> -->
-                        </div>
+                      
+                        </div> -->
+
+
                       </div>
                     </div>
                   </div>
                 </div>
-                
-                
               </div>
-                
-                <div v-if="!filteredOffers.length" style="text-align: center; margin-top: 80px; display: flex; flex-direction: column;align-items: center;">
-                  <img src="/svg/emptyState.svg" width="250"/>
-                  <span class="mt-6">No records found</span>
-                </div>
-              
-            
+
+              <div v-if="!filteredOffers.length"
+                style="text-align: center; margin-top: 80px; display: flex; flex-direction: column;align-items: center;">
+                <img src="/svg/emptyState.svg" width="250" />
+                <span class="mt-6">No records found</span>
+              </div>
+
             </div>
-            
+
             <div v-else style="height: 550px; margin-bottom: 300px; overflow: scroll;">
-              <MyOffers/>
+              <MyOffers />
             </div>
 
           </div>
-          
 
         </div>
       </div>
     </v-container>
-    <Footer class="flex-lg-and-up hidden-sm-and-down"/>
-    <Mobile-footer class="mobile-footer"/>
+    <Footer class="flex-lg-and-up hidden-sm-and-down" />
+    <Mobile-footer class="mobile-footer" />
   </div>
 </template>
 
@@ -195,7 +235,7 @@ const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore();
 const PurchaseCrypto = ref(true);
 const pageNumber = ref(1);
-const loading = ref (false);
+const loading = ref(false);
 const tokenIcon = ref();
 const tokenSymbol = ref();
 const amount_to_pay = ref();
@@ -218,7 +258,6 @@ const get_allMarket_Offers = async () => {
     const data = await getMarketOffers(pageNumber.value);
     if (data.success) {
       offers.value = data.data.result;
-      console.log(offers.value)
       loading.value = false;
 
       offers.value = offers.value.map(offer => {
@@ -255,24 +294,38 @@ watch(productID, (newVal) => {
 // Create an order
 const Buy_Offer = async () => {
   const payload = {
-      purchase_amount: amount_to_pay.value
+    purchase_amount: amount_to_pay.value
   }
   isCreating.value = true;
   try {
-      const data = await createOrder(payload, productID.value);
-      if (data.success) {
+    const data = await createOrder(payload, productID.value);
+    if (data.success) {
 
-        amount_to_pay.value = ""
-        
-      } else {
-          push.error(data.message);
-      }
-      isCreating.value = false;
-    } catch (e) {
-        console.log(e);
-        isCreating.value = false;
+      amount_to_pay.value = ""
+
+    } else {
+      push.error(data.message);
     }
-  };
+    isCreating.value = false;
+  } catch (e) {
+    console.log(e);
+    isCreating.value = false;
+  }
+};
+
+const filteredOffers = computed(() => {
+  if (!tokenSymbol.value) return offers.value;
+  return offers.value.filter(offer => offer.trading_pair?.crypto?.token?.symbol === tokenSymbol.value);
+});
+
+
+
+const matchingCountries = pinia.state.MarketPlace.map(marketplaceEntry => {
+  const sellerCountry = pinia.state.allcountries.find(country => country.country_name === marketplaceEntry.user.country)?.flag_url;
+});
+
+
+
 
 
 // const debouncedUpdate = debounce(() => {
@@ -290,15 +343,12 @@ const Buy_Offer = async () => {
 // Watch the amount_to_pay and call the debounced function
 // watch(amount_to_pay, debouncedUpdate);
 
-const filteredOffers = computed(() => {
-  if (!tokenSymbol.value) return offers.value;
-  return offers.value.filter(offer => offer.trading_pair?.crypto?.token?.symbol === tokenSymbol.value);
-});
+
 
 onMounted(() => {
-   get_allMarket_Offers();
-    }
-  );
+  get_allMarket_Offers();
+}
+);
 </script>
 
 <style scoped>
@@ -320,6 +370,7 @@ onMounted(() => {
   font-weight: 400;
   line-height: normal;
 }
+
 .coin-bg1 {
   border-radius: 15px !important;
   background: #1b2537 !important;
@@ -330,6 +381,7 @@ onMounted(() => {
   margin-top: 10px;
   border: 0.5px solid #2f3946;
 }
+
 .coin-bg1-light {
   border-radius: 15px !important;
   border: 1px solid #dbe8ff !important;
@@ -339,14 +391,17 @@ onMounted(() => {
   border: 0.5px solid #2f3946;
   box-shadow: none !important;
 }
+
 .active-offers-dark {
   background: var(--secondary-background, #1b2537);
   color: #8e9bae !important;
 }
+
 .active-offers-light {
   background: var(--secondary-background, #f8fafc);
   color: #646464 !important;
 }
+
 .offers-text {
   font-family: Manrope;
   font-size: 14px;
@@ -355,79 +410,86 @@ onMounted(() => {
   line-height: normal;
   justify-content: center;
 }
-.toggle-btn{
-text-transform: unset;
-letter-spacing: 0px;
-width: 231.714px;
-height: 50px !important;
-flex-shrink: 0;
-font-family: Manrope;
-color: white;
-width: 231.714px;
-height: 50px !important;
-font-size: 14px;
-font-style: normal;
-font-weight: 600;
-border-radius: 20px;
-line-height: normal;
-box-shadow: none;
-border: none !important;
+
+.toggle-btn {
+  text-transform: unset;
+  letter-spacing: 0px;
+  width: 231.714px;
+  height: 50px !important;
+  flex-shrink: 0;
+  font-family: Manrope;
+  color: white;
+  width: 231.714px;
+  height: 50px !important;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  border-radius: 20px;
+  line-height: normal;
+  box-shadow: none;
+  border: none !important;
 }
+
 .inactive-btn {
-background: var(--secondary-background, #1b2537);
-color: #8E9BAE; 
+  background: var(--secondary-background, #1b2537);
+  color: #8E9BAE;
 }
 
 .inactive-btn-light {
-background: #f8fafc; 
-color: #646464; 
-}
-.active-btn { 
-background: var( --Primary-100, linear-gradient(180deg, #2873ff 0%, #0b6b96 100%), #2873ff); 
-}
-.smaller-btn {
-border-radius: 8px;
-background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);
-display: flex;
-padding: 6px 16px;
-justify-content: center;
-align-items: center;
-color: #fff;
-font-family: Manrope;
-font-size: 14px;
-font-style: normal;
-font-weight: 600;
-text-transform: unset;
-letter-spacing: 0px;
-box-shadow: none;
-width: 90%;
+  background: #f8fafc;
+  color: #646464;
 }
 
-.profile-cards-dark{
-border-radius: 24px;
-background:  #10192D!important;
-height: fit-content;
-border: 1px solid #1b2537;
+.active-btn {
+  background: var(--Primary-100, linear-gradient(180deg, #2873ff 0%, #0b6b96 100%), #2873ff);
 }
-.profile-cards-light{
-border-radius: 24px;
-background: #F8FAFC!important;
-height: fit-content;
-border: 1px solid #E2E8F0;
+
+.smaller-btn {
+  border-radius: 8px;
+  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);
+  display: flex;
+  padding: 6px 16px;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  text-transform: unset;
+  letter-spacing: 0px;
+  box-shadow: none;
+  width: 90%;
+}
+
+.profile-cards-dark {
+  border-radius: 24px;
+  background: #10192D !important;
+  height: fit-content;
+  border: 1px solid #1b2537;
+}
+
+.profile-cards-light {
+  border-radius: 24px;
+  background: #F8FAFC !important;
+  height: fit-content;
+  border: 1px solid #E2E8F0;
 }
 
 .user-location {
-font-family: Manrope;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
+
 .close-btn {
-fill: white;
+  fill: white;
 }
+
 .close-btn-dark {
-fill: #10192d;
+  fill: #10192d;
 }
 
 .offers-div::-webkit-scrollbar {
@@ -435,7 +497,7 @@ fill: #10192d;
 }
 
 .offers-div {
-  -ms-overflow-style: none;  
-  scrollbar-width: none;  
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 </style>

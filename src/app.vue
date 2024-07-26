@@ -213,7 +213,7 @@ const clearMessage = () => {
 };
 
 const notifyUser = (message) => {
-    console.log(message); // Still log the message for debugging
+
     onlineStatusMessage.value = message;
     if (isOnline.value) {
       push.success(message); // Display success notification

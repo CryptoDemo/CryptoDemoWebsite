@@ -345,7 +345,6 @@ const getTokenBals = async () => {
 
         pinia.setTokenLists(updatedTokens, addMinutes(5))
 
-        console.log('Updated Tokens:', updatedTokens);
         // Optionally, you can return or use `updatedTokens` as needed
 
       } else {

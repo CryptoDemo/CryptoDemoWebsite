@@ -10,9 +10,9 @@
             </div>
 
          
-            <div style="width: 808px;">
+            <div style="width: 815px;">
                
-                <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; width: 100%; margin-left: 16px; justify-content: space-between; margin-top: 20px;">
+                <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; width: 100%; margin-left: 16px; justify-content: space-between; margin-top: 10px;">
                   <span class="acct-text"> Account Settings</span>
                   <span class="mail-text" :class="isDark ? 'text-dark':'text-light'"> {{ pinia.state.user?.email }}</span>
                 </div>
