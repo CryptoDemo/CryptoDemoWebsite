@@ -35,7 +35,7 @@
                 
                 <div style="display: flex; flex-direction: column;">
                   <span style="margin-bottom: 11px; font-weight: 600;">{{ offer.user.username }}</span>
-                  <img :src="offer.sellerCountry" style="height: 50px; width: 50px;"/>
+                  <!-- <img :src="offer.sellerCountry" style="height: 50px; width: 50px;"/> -->
                   <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Minimum - Maximum buy limit</span>
                 </div>
 

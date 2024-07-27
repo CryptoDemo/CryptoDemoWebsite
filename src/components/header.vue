@@ -66,7 +66,7 @@
 
           <div v-if="icon3" class="notify" style="display: grid; position: relative; margin-top: 27px;">
             <Notifications/>
-            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="margin-right: 13px;">Notification</span>     
+            <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="display: flex; justify-content: flex-start;">Notification</span>     
           </div>
     </div>   
     </v-container>

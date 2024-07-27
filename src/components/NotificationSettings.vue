@@ -19,7 +19,7 @@
             <div style="display: flex; align-items: center; justify-content: space-between;">
               <span :class="isDark ? 'text-dark':'text-light'" style="margin-top: -5px;">Camouflage</span>
               
-              <v-switch v-model="isCamouflageEnabled" @click="toggleDialog" inset color="#2873FF" class="v-switch-mobile" style="padding-right: 50px;"></v-switch>
+              <v-switch @click="switchDialog()" :value="switchValue" inset color="#2873FF" class="v-switch-mobile" style="padding-right: 50px;"></v-switch>
               
               <v-dialog v-model="dialog" style="width: 500px;">
                 
@@ -62,6 +62,20 @@
                 </v-card>
               </v-dialog>
 
+               <!-- Confirmation Dialog for Deactivating Camouflage -->
+                <v-dialog v-model="confirmDialog" style="width: 500px;">
+                  <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
+                    <v-card-title class="headline text-center">Confirm Deactivation</v-card-title>
+                    <v-card-text>
+                      Are you sure you want to deactivate camouflage mode?
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-btn color="primary" text @click="confirmDialog = false">Cancel</v-btn>
+                      <v-btn color="red" text @click="deactivateCamouflage()">Deactivate</v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+
             </div>
           </tr>
 
@@ -74,7 +88,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
-import { updateUser } from "@/composables/requests/users";
+import { updateUser, removeCamouflage } from "@/composables/requests/users";
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
@@ -82,6 +96,8 @@ const notificationSettings = computed(()=> pinia.state.user?.settings?.notificat
 const notifSettings = ref({});
 const camoCurrencyCode = ref();
 const dialog = ref(false);
+const confirmDialog = ref(false);
+const switchValue = ref(false);
 const camouflagBalance = ref();
 
 // if(notificationSettings.length && new Date()<expiration){
@@ -112,22 +128,21 @@ console.log("camouflage currency.........",pinia.state.camouflageCurrency)
 CountryID.value = pinia.state.allcountries.find(c => c.currency_name === pinia.state.camouflageCurrency);
 console.log('Selected country ID:', CountryID?.value?.id);
 
-const isCamouflageEnabled = computed({
-  get: () => Object.keys(pinia.state.user.camouflage || {}).length > 0,
-  set: (value) => {
-    if (!value) {
-      pinia.state.user.camouflage = {}; // Reset camouflage if switch is turned off
-    }
-  }
-});
 
-const toggleDialog = () => {
-  if (!isCamouflageEnabled.value) {
+
+
+const switchDialog = () =>{
+  if (pinia.state.user.camouflage) {
+    switchValue.value = true
+    confirmDialog.value = true;
+  } else {
     dialog.value = true;
+    switchValue.value = true;
   }
 };
 
 const setCamo = async () => {
+  dialog.value = true
   const UpdateUserDetails = {
     camouflage: {
       country_id: CountryID.value.id,
@@ -150,8 +165,9 @@ const setCamo = async () => {
           max_spend_balance: camouflagBalance.value,
         }
       });
-
+     
       dialog.value = false;
+      switchValue.value = true;
       push.success('Update Successful');
     } else {
       push.error(data.message);
@@ -161,6 +177,33 @@ const setCamo = async () => {
     push.error(`${e}`);
   }
 };
+
+const deactivateCamouflage = async () => {
+  try {
+    const data = await removeCamouflage();
+    if (data.success) {
+      // Get the existing user object from the state
+      const currentUser = pinia.state.user;
+
+      // Update the state to reflect the removal of camouflage settings
+      pinia.setUser({
+        ...currentUser,
+        camouflage: null // Set the camouflage property to null
+      });
+      switchValue.value = false;
+      confirmDialog.value = false; // Close the dialog
+      push.success('Camouflage settings removed successfully.');
+    } else {
+      push.error(data.message);
+    }
+  } catch (e) {
+    console.error('An error occurred:', e);
+    push.error('Failed to remove camouflage settings.');
+  }
+};
+
+
+
 
 
 

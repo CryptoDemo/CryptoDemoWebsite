@@ -11,7 +11,7 @@
           </div>
 
           <div style="display: flex; flex-direction: column;" v-else>
-            <span class="lg-num">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(pinia.state.user.camouflage.max_spend_balance) }}</span>
+            <span class="lg-num"> {{ formatBalance(pinia.state.user.camouflage.max_spend_balance) }}</span>
           </div>
           
         </div>
@@ -63,6 +63,9 @@ const isCamouflageEmpty = computed(() => {
   const camouflage = pinia.state.user.camouflage;
   return !camouflage || Object.keys(camouflage).length === 0;
 });
+
+// const camoflageCurrencyIcon = pinia.state.allcountries.find(c=>c.id==pinia.state?.user?.camouflage?.country_id)?.currency_code;
+// console.log(camoflageCurrencyIcon)
 
 onMounted(async () => {
    getSummedBal();

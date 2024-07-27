@@ -2,45 +2,15 @@
   <div>
      <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" :wallet="true"/>
      <v-container>
-        <div style="margin-top: 100px;">
-            <div no-gutters style="display: flex">
-              <div class="profile-section me-4" style="min-width: 98%;">
-                <div :class="isDark ? 'profile':'profile-light'" style="padding: 30px 15px; align-items: center; background: inherit">
-                  <div class="d-flex" style="position:relative ; align-items: center; justify-content: space-between;">
-                    <div class="d-flex" style="align-items: center;">
-                      <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="72" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start; border-radius: 55px; height: 70px;"/>     
-
-                      <div class="unverified-div ml-3">
-                        <div class="div-username1"> <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'">@{{ pinia.state.user?.username}} </span> </div>
-                        
-                        <div v-if="pinia.state?.user?.kyc_verified" style="display: flex; align-items: center;">
-                          <span class="resend-code me-1">Verified</span>
-                          <img src="/svg/verified.svg"/>
-                        </div>
-
-                        <div v-else>
-                          <span style="color: #E65100;">Unverified</span>
-                        </div>
-
-                      </div>
-                    </div>
-
-                    <v-btn v-if="pinia?.state?.user?.kyc_verified === false" @click="kyc_()" class="primary-btn1" style="border-radius: 10px!important;">Verify Now</v-btn>
-
-                    <img v-else :src="pinia.state?.user?.badge || '/svg/Image-grad.svg'"/>
-                    
-                  </div>
-                </div>
-              </div>
-           
-            </div>
+        <div style="margin-top: 90px;">
+            
         </div>
      </v-container>
       <div style="margin-bottom: 300px;">      
           <v-container style="display: flex; flex-direction: column;">
             <div style="display: flex; position: relative;">
               <div  class="flex-lg-and-up hidden-sm-and-down">
-                <div class="sd-nav1 position-relative" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+                <div class="sd-nav1 position-relative" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="padding: 0px; border-radius: 16px;">
                   <div :class="isDark ? 'border-dark':'border-light'" style="position: relative;top: 58px;"></div>
                     <div style="padding: 20px 24px;">
                       <span :class="isDark ? 'card-text-dark':'card-text-light'" style="text-align: center;font-family: Manrope; font-size: 16px; font-style: normal;font-weight: 700;line-height: normal;">Trading Profile</span>
@@ -59,39 +29,64 @@
                             </div>
                         </div>
                       </div>
-                      
-            
                 </div>
               </div>
           
-                <!-- <v-container> -->
-                  <div class="px-3 mr-1 grid-container">
-                    <v-row no-gutters style="margin-top: -7px; cursor: pointer;">
+               
+                  <div class="ml-2 mr-1 grid-container">
 
+                      <div class="profile-section ml-2 me-2">
+                        <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="padding: 30px 15px; align-items: center; background: inherit;">
+                          <div class="d-flex" style="position:relative ; align-items: center; justify-content: space-between;">
+                            <div class="d-flex" style="align-items: center;">
+                              <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="72" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start; border-radius: 55px; height: 70px;"/>     
+
+                              <div class="unverified-div ml-3">
+                                <div class="div-username1"> <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'">@{{ pinia.state.user?.username}} </span> </div>
+                                
+                                <div v-if="pinia.state?.user?.kyc_verified" style="display: flex; align-items: center;">
+                                  <span class="resend-code me-1">Verified</span>
+                                  <img src="/svg/verified.svg"/>
+                                </div>
+
+                                <div v-else>
+                                  <span style="color: #E65100;">Unverified</span>
+                                </div>
+
+                              </div>
+                            </div>
+
+                            
+                            <v-btn v-if="pinia?.state?.user?.kyc_verified === false" @click="kyc_()" class="primary-btn1" style="border-radius: 10px!important;">Verify Now</v-btn>
+
+                            <img v-else :src="pinia.state?.user?.badge || '/svg/Image-grad.svg'"/>
+                            
+                          </div>
+                        </div>
+                      </div>
+                  
+
+
+                    <v-row no-gutters class="mt-8" style="margin-top: -7px; cursor: pointer;">
+
+                      
                       <v-col @click.prevent="navigateTo('/account/trade/wallet')" sm="4" cols="12">
-                        <v-card hover link class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column;">
+                        <v-card hover link class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column; border-radius: 16px;">
                           <div style="display: flex; align-items: normal;">
-
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="#2873FF">
                               <path d="M22.5 12.6196V14.6796C22.5 15.2396 22.04 15.6996 21.47 15.6996H19.54C18.46 15.6996 17.47 14.9096 17.38 13.8296C17.32 13.1996 17.56 12.6096 17.98 12.1996C18.35 11.8196 18.86 11.5996 19.42 11.5996H21.47C22.04 11.5996 22.5 12.0596 22.5 12.6196Z" fill="#2873FF"/>
                               <path d="M15.88 13.9604C15.79 12.9104 16.17 11.8804 16.93 11.1304C17.57 10.4804 18.46 10.1004 19.42 10.1004H19.99C20.27 10.1004 20.5 9.87039 20.46 9.59039C20.19 7.65039 18.51 6.15039 16.5 6.15039H6.5C4.29 6.15039 2.5 7.94039 2.5 10.1504V17.1504C2.5 19.3604 4.29 21.1504 6.5 21.1504H16.5C18.52 21.1504 20.19 19.6504 20.46 17.7104C20.5 17.4304 20.27 17.2004 19.99 17.2004H19.54C17.64 17.2004 16.04 15.7804 15.88 13.9604ZM13.5 11.9004H7.5C7.09 11.9004 6.75 11.5704 6.75 11.1504C6.75 10.7304 7.09 10.4004 7.5 10.4004H13.5C13.91 10.4004 14.25 10.7404 14.25 11.1504C14.25 11.5604 13.91 11.9004 13.5 11.9004Z" fill="#2873FF"/>
                               <path d="M14.71 3.97961C14.97 4.24961 14.74 4.64961 14.36 4.64961H6.53003C5.44003 4.64961 4.42003 4.96961 3.57003 5.51961C3.18003 5.76961 2.65003 5.49961 2.84003 5.06961C3.40003 3.75961 4.71003 2.84961 6.22003 2.84961H11.84C13 2.84961 14.03 3.25961 14.71 3.97961Z" fill="#2873FF"/>
                             </svg>
-
                             <span class="text-center resend-code mb-3 ml-1" style="font-size: 16px; font-weight: 600;">Wallet</span>
                           </div>
                           <span class="" style="font-size: 16px; font-weight: 600;">Crypto Balance: {{ formatBalance(pinia.state.SummedBalance)}}</span>
                           <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px;">View your fiat balances and make transactions seamlessly with the wallet.</span>
-                          
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8E9BAE" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
-                            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
-                            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
-                          </svg>
                         </v-card>
                       </v-col>
 
                       <v-col @click.prevent="navigateTo('/account/dashboard')" sm="4" cols="12">
-                        <v-card  hover link class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column;">
+                        <v-card  hover link class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column; border-radius: 16px;">
                           <div style="display: flex; align-items: flex-start;">
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16" fill="#2873FF">
@@ -105,16 +100,13 @@
                           </div>
                           <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">View available coins, their prices, specific coin balances according to blockchain network, and your referral code.</span>
                           
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8E9BAE" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
-                            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
-                            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
-                          </svg>
+                        
 
                         </v-card>
                       </v-col>
 
                       <v-col @click.prevent="navigateTo('/account/marketplace/createOffer')" sm="4" cols="12">
-                        <v-card  hover link class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column;">
+                        <v-card  hover link class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column; border-radius: 16px;">
                           <div style="display: flex; align-items: flex-start;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#2873FF" class="bi bi-database-fill" viewBox="0 0 16 16">
                               <path d="M3.904 1.777C4.978 1.289 6.427 1 8 1s3.022.289 4.096.777C13.125 2.245 14 2.993 14 4s-.875 1.755-1.904 2.223C11.022 6.711 9.573 7 8 7s-3.022-.289-4.096-.777C2.875 5.755 2 5.007 2 4s.875-1.755 1.904-2.223"/>
@@ -127,32 +119,26 @@
 
                           <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">Craft your perfect deal with ease: create offers for the marketplace and select a fixed or market price of choice.</span>
                           
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8E9BAE" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
-                            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
-                            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
-                          </svg>
+                         
                         </v-card>
                       </v-col>
                       
                       <v-responsive width="100%" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"></v-responsive>
 
                       <v-col @click.prevent="navigateTo('/account/marketplace/activeOffers')" sm="4" cols="12">
-                        <v-card  hover link class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column;">
+                        <v-card  hover link class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column; border-radius: 16px;">
                           <div style="display: flex; align-items: flex-start;">
                             <img src="/svg/blue-market.svg" style="margin-right: 6px; margin-top: 2px;"/>
                             <span class="text-center resend-code mb-3" style="font-size: 16px; font-weight: 600;">Market Place</span>
                           </div>
                           <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">view and manage market offers, including viewing offers from other users, managing your own offers, and buying from vendors.</span>
                           
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8E9BAE" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
-                            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
-                            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
-                          </svg>
+                     
                         </v-card>
                       </v-col>
 
                       <v-col @click.prevent="navigateTo('/account/trade/wallet')" sm="4" cols="12">
-                        <v-card  hover link class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column;">
+                        <v-card  hover link class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column; border-radius: 16px;">
                           <div style="display: flex; align-items: normal;">
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="22" viewBox="0 0 18 22" fill="#2873FF" style="margin-top: 2px; margin-right: 5px;">
@@ -161,15 +147,12 @@
                             <span class="resend-code mb-3" style="font-size: 16px; font-weight: 600;">Security</span>
                           </div>
                           <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">Change your password, enable/disable two-factor authentication, and review activity logs..</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8E9BAE" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
-                            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
-                            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
-                          </svg>
+                         
                         </v-card>
                       </v-col>
 
                       <v-col @click.prevent="navigateTo('/account/settings')" sm="4" cols="12">
-                        <v-card  hover link class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column;">
+                        <v-card  hover link class="pa-4 ma-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; flex-direction: column; border-radius: 16px;">
                           <div style="display: flex; align-items: normal;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16" fill="none" style="margin-top: 2px;">
                               <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="#2873FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -178,10 +161,7 @@
                             <span class="text-center resend-code mb-3 ml-1" style="font-size: 16px; font-weight: 600;">Settings</span>
                           </div>
                           <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">change profile image, choose preferred currency, add phone number and date of birth, and enable or disable notifications.</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8E9BAE" class="bi bi-chevron-double-right mt-3 arrow1" viewBox="0 0 16 16" style="display: flex; align-self: flex-end;">
-                            <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
-                            <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
-                          </svg>
+                         
                         </v-card>
                       </v-col>
                    
@@ -191,10 +171,10 @@
                     
                     </v-row>
                   </div>
-                <!-- </v-container> -->
+                
 
         </div>
-    </v-container>
+          </v-container>
     </div>
     <Footer class="desktop-footer flex-lg-and-up hidden-md-and-down"/>
     <Mobile-footer class="mobile-footer"/>

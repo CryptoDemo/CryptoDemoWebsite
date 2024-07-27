@@ -136,6 +136,18 @@ const initSocketListeners = ($socketClient)=>{
           
             break;
     
+          case "new_web3_balance":
+            const payload = message.data?.payload;
+            const tokenLists = pinia.state.tokenLists;
+            tokenLists.map(token=>{
+              if(token.id==payload.token_id){
+                token.balance = payload.balance;
+              }
+            });
+            pinia.setTokenLists(tokenLists);
+            break;
+            
+
           case 'new_fiat_txn':
             console.log('Transfer:', message.data);
            

@@ -240,6 +240,8 @@ const symbols = tokensForSelectedNetwork.map(token => token.symbol);
 const chainIcon = pinia?.state?.tokenLists?.find(c => c.symbol === "BNB" || c.symbol === "TRX");
 // console.log("here...", chainIcon.icon)
 
+
+
 const getTokens_ = async () => {
   try {
     const data = await getTokens (pageNumber.value);
@@ -260,7 +262,6 @@ const getTokens_ = async () => {
     console.log(error);
     }
 };
-
 
 watch(() => pinia.state.selectedNetwork, async(newNetwork) => {
   if (newNetwork) {

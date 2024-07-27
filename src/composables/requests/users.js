@@ -177,6 +177,19 @@ export const kyc_verification = async(payload)=>{
     return data;
 };
 
+export const removeCamouflage = async(payload)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}user/remove-camouflage`,{ 
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token' : `${pinia.state.user?.token}`
+        },
+    }).then(res => res.json());
+    return data;
+};
+
 export const reset_Pin = async(payload)=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return
