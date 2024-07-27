@@ -108,22 +108,18 @@
 
                       <div style="display: grid">
                         <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'"
-                          style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Minimum
-                          - Maximum buy limit</span>
+                          style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Minimum - Maximum buy limit</span>
                         <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'"
-                          style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500; line-height: normal; ">Unit
-                          value</span>
+                          style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500; line-height: normal; ">Unit value</span>
                         <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'"
-                          style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500; line-height: normal; ">Price
-                          model</span>
+                          style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500; line-height: normal; ">Price model</span>
                       </div>
                     </div>
 
                     <div style="margin-bottom: 10px; margin-block-start: auto">
                       <div
                         style="display: flex; flex-direction: column; margin-bottom: 14px; justify-content: flex-end;">
-                        <span v-if="offer.user?.is_verified" class="resend-code"
-                          style="font-weight: 500;  text-align-last: right; margin-bottom: 11px;">Verified</span>
+                        <span v-if="offer.user?.is_verified" class="resend-code" style="font-weight: 500;  text-align-last: right; margin-bottom: 11px; margin-top: 16px;">Verified</span>
                         <p v-else>Unverified User</p>
                         <span
                           style="display: flex; justify-content: end; margin-bottom: 11px; font-size: 14px; font-weight: 600;">
@@ -148,10 +144,10 @@
 
                       <div style="display: grid">
 
-                        <!-- <div style="display: flex; justify-content: end"> 
+                        <div style="display: flex; justify-content: end"> 
                         <v-dialog max-width="500">
                             <template v-slot:activator="{ props: activatorProps }">
-                              <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id" v-bind="activatorProps" class="smaller-btn">Buy Offer</v-btn>
+                              <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id" v-bind="activatorProps" class="smaller-btn mt-2 mb-2">Buy Offer</v-btn>
                             </template>
     
                           <template v-slot:default="{  }">
@@ -194,7 +190,7 @@
     
     
                       
-                        </div> -->
+                        </div> 
 
 
                       </div>
@@ -459,7 +455,8 @@ onMounted(() => {
   text-transform: unset;
   letter-spacing: 0px;
   box-shadow: none;
-  width: 90%;
+  width: 100%;
+  height: 40px;
 }
 
 .profile-cards-dark {

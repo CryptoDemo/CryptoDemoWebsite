@@ -13,7 +13,7 @@
                       <div class="unverified-div ml-3">
                         <div class="div-username1"> <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'">@{{ pinia.state.user?.username}} </span> </div>
                         
-                        <div v-if="pinia.state.user.kyc_verified" style="display: flex; align-items: center;">
+                        <div v-if="pinia.state?.user?.kyc_verified" style="display: flex; align-items: center;">
                           <span class="resend-code me-1">Verified</span>
                           <img src="/svg/verified.svg"/>
                         </div>
@@ -25,9 +25,9 @@
                       </div>
                     </div>
 
-                    <v-btn v-if="pinia.state.user.kyc_verified === false" @click="kyc_()" class="primary-btn1" style="border-radius: 10px!important;">Verify Now</v-btn>
+                    <v-btn v-if="pinia?.state?.user?.kyc_verified === false" @click="kyc_()" class="primary-btn1" style="border-radius: 10px!important;">Verify Now</v-btn>
 
-                    <img v-else :src="pinia.state.user.badge || '/svg/Image-grad.svg'"/>
+                    <img v-else :src="pinia.state?.user?.badge || '/svg/Image-grad.svg'"/>
                     
                   </div>
                 </div>

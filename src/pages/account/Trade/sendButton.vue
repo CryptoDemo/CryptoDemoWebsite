@@ -205,6 +205,9 @@ const from_amount_total = ref(0);
 const tax_fee = ref(0);
 const is_balance_sufficient = ref(false);
 
+
+
+
 const calculateFee = async () => {
   // Check if any required value is missing or if the transfer amount is less than the minimum transfer amount
   if (!trfAmmount.value || (parseFloat(trfAmmount.value) < minimumTransfer.value.minimum_transfer) || !transferWallet.value) {
@@ -219,7 +222,7 @@ const calculateFee = async () => {
       to_address: transferWallet.value,
     },
   };
-  console.log(TxnInfo);
+
 
   try {
     loading.value = true;
@@ -253,6 +256,10 @@ const calculateFee = async () => {
 
 //execute transaction
 const execute = async()=>{
+  if (parseFloat(trfAmmount.value) > parseFloat(selectedTokenBalance.value)) {
+    push.error('Insufficient balance or transfer amount exceeds the available balance.');
+    return;
+  }
     const info = {
       fee_id: pinia.state.calculatedTaxFee
     }
@@ -271,7 +278,7 @@ const execute = async()=>{
         dialog1.value = false
 
         push.success('Transfer Succesful')
-
+       
 
       }else{
         

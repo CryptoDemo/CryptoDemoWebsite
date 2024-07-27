@@ -12,14 +12,14 @@
             <tr>
             <div v-for="(v,k) in notifSettings" :key="k" style="display: flex; align-items: center; justify-content: space-between;">
               <td class="notification-text capitalize" :class="isDark ? 'text-dark':'text-light'">{{ k?.split("_")?.join(" ")?.replace("notify me on ","") }}</td>
-              <td><v-switch v-model="notifSettings[k]" @input="toggleNotification(k,v)" inset color="#2873FF" style="display: flex; justify-content: center; padding-right: 50px;"></v-switch></td>
+              <td><v-switch class="v-switch-mobile" v-model="notifSettings[k]" @input="toggleNotification(k,v)" inset color="#2873FF" style="display: flex; justify-content: center; padding-right: 50px;"></v-switch></td>
             </div>
             
             
             <div style="display: flex; align-items: center; justify-content: space-between;">
               <span :class="isDark ? 'text-dark':'text-light'" style="margin-top: -5px;">Camouflage</span>
               
-              <v-switch v-model="isCamouflageEnabled" @click="toggleDialog" inset color="#2873FF" style="padding-right: 50px;"></v-switch>
+              <v-switch v-model="isCamouflageEnabled" @click="toggleDialog" inset color="#2873FF" class="v-switch-mobile" style="padding-right: 50px;"></v-switch>
               
               <v-dialog v-model="dialog" style="width: 500px;">
                 
@@ -128,39 +128,40 @@ const toggleDialog = () => {
 };
 
 const setCamo = async () => {
-
   const UpdateUserDetails = {
-    camouflage:{
+    camouflage: {
       country_id: CountryID.value.id,
       max_spend_balance: camouflagBalance.value,
     }
-  }
-  delete UpdateUserDetails.token;
+  };
 
   try {
-  const data = await updateUser(UpdateUserDetails);
-  if (data.success) {
+    const data = await updateUser(UpdateUserDetails);
+    if (data.success) {
+      // Get the existing user object from the state
+      const currentUser = pinia.state.user;
 
-    pinia.setUser({
-      
+      // Merge the existing user data with the updated camouflage data
+      pinia.setUser({
+        ...currentUser,
         camouflage: {
-          ...pinia.state.user.camouflage,
+          ...currentUser.camouflage,
           country_id: CountryID.value.id,
           max_spend_balance: camouflagBalance.value,
         }
       });
-    dialog.value = false
-    push.success('Update Succesful');
-    // loading.value = false 
-  } else{
-    push.error(data.message)
+
+      dialog.value = false;
+      push.success('Update Successful');
+    } else {
+      push.error(data.message);
+    }
+  } catch (e) {
+    console.log(e);
+    push.error(`${e}`);
   }
-}catch(e){
-  // loading.value = false 
-  console.log(e)
-  push.error(`${e}`)
-}
 };
+
 
 
 
@@ -253,7 +254,10 @@ border: 1px solid #E2E8F0;
 
 @media screen and (max-width: 600px) {
   .notification-table{
-    padding: 0px !important;
+    padding-left: 20px !important;
+  }
+  .v-switch-mobile{
+    padding-right: 20px !important;
   }
 }
 </style>

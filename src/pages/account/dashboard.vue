@@ -31,11 +31,24 @@
                 <span class="resend-code me-1">See More...</span>
               </div>
 
-                <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 100px; margin-top: 15px; margin-bottom: 30px; border-radius: 10px;">
+                <div v-for="offer in pinia.state.MarketPlace" :key="offer.id"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 100px; margin-top: 5px; margin-bottom: 30px; border-radius: 10px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
+                
+                <div style="display: flex; flex-direction: column;">
+                  <span style="margin-bottom: 11px; font-weight: 600;">{{ offer.user.username }}</span>
+                  <img :src="offer.sellerCountry" style="height: 50px; width: 50px;"/>
+                  <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Minimum - Maximum buy limit</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column;">
+                  <span v-if="offer.user?.is_verified" class="resend-code" style="font-weight: 500;  text-align-last: right; margin-bottom: 11px;">Verified</span>
+                  <span v-else>Unverified User</span>
+                  <span style="font-weight: 600;">{{formatBalance(offer?.trading_pair?.fiat?.minimum_buy_limit) }} - {{ formatBalance(offer?.trading_pair?.fiat?.maximum_buy_limit) }} {{ offer?.countryCurrencyName }} </span>
+                </div>
+
                 </div>
 
               <div>
-                <v-carousel height="400" style="border-radius: 10px;">
+                <v-carousel height="400"  cycle  :show-arrows="false" style="border-radius: 10px;">
                   <v-carousel-item v-for="(slide, i) in slides" :key="i">
   
                     <v-sheet height="100%">
@@ -79,6 +92,13 @@ const slides = ref([
     'Fourth',
   ]);
 
+
+const matchingCountries = pinia.state.MarketPlace.map(marketplaceEntry => {
+  const sellerCountry = pinia.state.allcountries.find(country => country.country_name === marketplaceEntry.user.country)?.flag_url;
+
+  console.log("newz.... ", sellerCountry)
+});
+
 const fetchBanners = async () => {
   try {
     isLoading.value = true; // Start loading indicator
@@ -88,7 +108,6 @@ const fetchBanners = async () => {
 
     // Check if the fetch was successful
     if (data.success) {
-      console.log(data)
     } else {
       console.error("Error:", data.message); // Log the error message if fetch failed
     }

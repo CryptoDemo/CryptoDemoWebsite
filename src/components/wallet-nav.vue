@@ -6,9 +6,12 @@
     </div>
         <div :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="margin-top: 25px; margin-bottom: 25px; height: 130px; position: relative; display: flex; justify-content: center; align-items: center;">
       
-          <div style="display: flex; flex-direction: column;">
+          <div style="display: flex; flex-direction: column;" v-if="isCamouflageEmpty">
             <span class="lg-num">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(pinia.state.SummedBalance) }}</span>
-            <!-- <span class="sm-num mt-2">0.0140 BTC</span> -->
+          </div>
+
+          <div style="display: flex; flex-direction: column;" v-else>
+            <span class="lg-num">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(pinia.state.user.camouflage.max_spend_balance) }}</span>
           </div>
           
         </div>
@@ -56,7 +59,10 @@ watch(chain, (newChain, oldChain) => {
 }, { immediate: true }); 
 
 
-
+const isCamouflageEmpty = computed(() => {
+  const camouflage = pinia.state.user.camouflage;
+  return !camouflage || Object.keys(camouflage).length === 0;
+});
 
 onMounted(async () => {
    getSummedBal();
