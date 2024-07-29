@@ -143,6 +143,7 @@ const isToggled = ref(true);
 const errorMessage = ref('');
 const successMessage = ref('');
 const dialog = ref(false);
+
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };
@@ -153,6 +154,7 @@ const twoFactorData = ref();
 const twoFactorCodeUrl = ref();
 
 const twoFactorCode = ref();
+
 
 const toggle2FA = async () => {
   if (!pinia.state.isTwoFactorSet) {
@@ -165,9 +167,9 @@ const toggle2FA = async () => {
 const initialize2FA = async () => {
  
   try {
-    console.log('Calling Init2fa'); // Added logging
+  
     const data = await Init2fa(); 
-    console.log('Init2fa response:', data); 
+
 
     if (data.success) {
       console.log('2FA initialization successful'); // Added logging
@@ -185,7 +187,7 @@ const initialize2FA = async () => {
     
       isEnabled.value = true;
       
-      // pinia.setTwoFactor(two_factor)
+     
     } else {
       console.log('2FA initialization failed'); // Added logging
       loading.value = false;
@@ -204,10 +206,15 @@ const terminate2FA = async () => {
 
     if (data?.success) {
       console.log('2FA terminated successfully'); // Log success
+
       pinia.state.isTwoFactorSet = false;
+
       twoFactorData.value = null;
+
       loading.value = false;
+
       isEnabled.value = false;
+      
       dialog.value = false;
     
     } else {
@@ -239,7 +246,7 @@ const UserPasswordUpdate = async () => {
   try {
   const data = await passwordUpdate(updatePassword);
   if (data.success) {
-    // pinia.setUser(user)
+  
     successMessage.value = 'password changed succesfully';
     OldPassword.value = '';
     NewPassword.value = '';

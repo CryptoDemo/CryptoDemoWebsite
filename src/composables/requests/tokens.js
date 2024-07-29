@@ -1,5 +1,6 @@
 export const getTokens = async(pageNumber)=>{
-    const data = await fetch(`${baseURL}token/all/${pageNumber}`, {
+    const pinia = useStore();
+    const data = await fetch(`${baseURL}token/by-chain/${pinia.state.selectedNetwork.toLowerCase()}/all/${pageNumber}`, {
         headers: {
             'Content-Type': 'application/json',
         }

@@ -173,7 +173,7 @@ watch(()=> selectedImage.value,async(newval)=>{
       const profile_image = {profile_image: imgUrl.uploaded_file_urls[0]}
       const update_user = {...profile_image};
       const tkn = update_user.token;
-      // delete update_user.token;
+      
 
       const data = await updateUser(update_user);  
       if (data.success) {

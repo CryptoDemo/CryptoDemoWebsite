@@ -58,8 +58,9 @@ export const useStore = defineStore('app',()=> {
       state.user = payload;
       state.isAuthenticated = true;
 
-    };
-    const updateNotificationSettings = (payload) => {
+  };
+
+  const updateNotificationSettings = (payload) => {
       const {key, value} = payload;
       // if not an object
       if(!Object.keys(state.user.settings.notifications[key]).length){
@@ -67,7 +68,7 @@ export const useStore = defineStore('app',()=> {
       }else{ // if an object
           state.user.settings.notifications[key].is_enabled = value;
       }
-    };
+  };
 
   const setSelectedNetwork = (payload) => {
       state.selectedNetwork = payload;

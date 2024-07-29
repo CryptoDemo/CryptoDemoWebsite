@@ -254,4 +254,8 @@ onUnmounted(() => {
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Manrope&family=Poppins&display=swap');
   @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+display: none !important;
+}
 </style>

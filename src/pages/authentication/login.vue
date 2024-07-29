@@ -108,6 +108,7 @@ const pinia = useStore();
 const loading= ref(false);
 
 const login = async () => {
+  pinia.setEmail(email.value)
   const device = useDevice();
   loading.value = true;
   const userLogin = {

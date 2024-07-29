@@ -80,8 +80,8 @@
               </div>
                 
 
-        </div>
-          </v-container>
+          </div>
+        </v-container>
     </div>
     <Footer class="desktop-footer flex-lg-and-up hidden-md-and-down"/>
     <Mobile-footer class="mobile-footer"/>
@@ -99,13 +99,18 @@ const pinia = useStore();
 
 const kyc_ = async () => {
 
-
   try {
     const data = await kyc_verification();
     
     if (data.success) {
-      push.success('KYC verification successful!'); // Custom success message
-      pinia.state.user.kyc_verified = true;
+      console.log(data.data)
+      if(!data.data.token){
+          push.error('Error! Acess denied')
+          return
+      }
+
+      launchWebSdk(data.data.token,pinia.state.email,pinia.state.phone,data.data.userId) 
+      // pinia.state.user.kyc_verified = true;
 
     } else {
       push.error(`Error: ${data.message}`); // Custom error message

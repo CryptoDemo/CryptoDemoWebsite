@@ -221,7 +221,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-import {getTokens, currencyConverter, getTokenBalance} from "@/composables/requests/tokens";
+import { getTokenBalance} from "@/composables/requests/tokens";
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
@@ -237,132 +237,36 @@ const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.
 
 const symbols = tokensForSelectedNetwork.map(token => token.symbol);
 
-const chainIcon = pinia?.state?.tokenLists?.find(c => c.symbol === "BNB" || c.symbol === "TRX");
+// const chainIcon = pinia?.state?.tokenLists?.find(c => c.symbol === "BNB" || c.symbol === "TRX");
 // console.log("here...", chainIcon.icon)
 
 
 
-const getTokens_ = async () => {
-  try {
-    const data = await getTokens (pageNumber.value);
-    
-    if (data.success) {
-      const fetchedTokens = data.data.result;
-      const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name.toLowerCase() === pinia.state.selectedNetwork.toLowerCase());
-      const filteredTokens = fetchedTokens.filter(token => {
-        return token.token_networks && token.token_networks.some(tkn => tkn.blockchain_id === selectedNetworkId.id)
-      })
-   
-        
-    pinia.setTokenLists(filteredTokens, addMinutes(5));
-    } else {
-        push.message(data.message, { position: 'top', timeout: 2000 });
-    }
-    } catch (error) {
-    console.log(error);
-    }
-};
-
-watch(() => pinia.state.selectedNetwork, async(newNetwork) => {
-  if (newNetwork) {
-    console.log(newNetwork)
-    await getTokens_();
-    getTokenBals();
-    convertCurrencies();
-  }
-});
 
 
-const convertCurrencies = async () => {
-  // Get the list of coins from pinia state
 
-  const coins = pinia.state.tokenLists;
-
-  try {
-
-    const convertCurrency = [];
-   
-    // Loop through each coin and convert to USD
-    for (const coin of coins) {
-      convertCurrency.push({ from: coin.symbol, to: "USD" });
-    }
-
-    try {
-      const data = await currencyConverter(convertCurrency);
-     
-
-      if (data.success) {
-        // Store the conversion result in the array
-        conversionResult.value = data.data;
-
-        // pinia.setTokenLists(...data.data, addMinutes(5))
-        
-      } else {
-        console.log(`Conversion failed:`, data.message);
-      }
-    } catch (error) {
-      console.log(`Error converting:`, error);
-    }
+// watch(() => pinia.state.selectedNetwork, async(newNetwork) => {
+//   if (newNetwork) {
+//     console.log(newNetwork)
+//     await getTokens_();
+//     getTokenBals();
+//     convertCurrencies();
+//   }
+// });
 
 
-  } catch (error) {
-    console.log(error);
-  }
-
-};
 
 
-watch(()=>conversionResult.value,(newVal)=>{
-    pinia.state.tokenLists?.map(t=>{
-    const tokenConversion = newVal.find(tc=>tc.from== t.symbol);
-    if(tokenConversion){
-      t.converted_value = tokenConversion.value;
-    }
-  });
-});
 
 
-const getTokenBals = async () => {
- 
-  // Check if user is authenticated
-  if (pinia.state.isAuthenticated)  {
-    try {
-      // Fetch token balance
-      const data = await getTokenBalance(symbols);
-
-      // Update tokens with the new balance
-      if (data.success) {
-        // Create a copy of the token list to update locally
-        const updatedTokens = pinia.state.tokenLists.map(token => {
-          const tokenData = data.data.find(t => t.token === token.symbol);
-          if (tokenData) {
-            return { ...token, balance: tokenData.balance };
-          }
-          return token;
-        });
-
-        // Update the token store with the new balances
-        // pinia.setTokenBalance(updatedTokens);
-
-        pinia.setTokenLists(updatedTokens, addMinutes(5))
-
-        // Optionally, you can return or use `updatedTokens` as needed
-
-      } else {
-        console.log('Error:', data.message);
-      }
-    } catch (error) {
-      console.log('Fetch error:', error);
-    }
-  }
-};
 
 
-onMounted(() => {
-convertCurrencies();
-getTokens_();
-getTokenBals();
-});
+
+
+// onMounted(() => {
+// convertCurrencies();
+// getTokenBals();
+// });
 
 </script>
 

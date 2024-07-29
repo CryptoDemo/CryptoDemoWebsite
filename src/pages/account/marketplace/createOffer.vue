@@ -4,7 +4,7 @@
     <div>
       <v-container style="margin-top: 80px;">
 
-        <div style="width: 95%; margin: auto; margin-bottom: 280px;">      
+        <div style="margin: auto; margin-bottom: 280px;">      
           <div class="offer-txt1 mt-10" :class="isDark ? 'card-text-dark':'card-text-light'">Create an Offer to Sell your Crypto</div>
 
           <div style="display: flex; flex-direction: column; margin-top: 56px;">
@@ -92,9 +92,9 @@
                     </v-menu> 
                   </div>
 
-                  <span class="select1i">Enter Equivalent Unit Price of {{ tokenSymbol }} in {{ pinia.state.preferredCurrency }}</span>
+                  <span v-if="!priceType" class="select1i">Enter Equivalent Unit Price of {{ tokenSymbol }} in {{ pinia.state.preferredCurrency }}</span>
                   
-                  <div style="margin-top: 8px; margin-bottom: 16px;">
+                  <div v-if="!priceType"  style="margin-top: 8px; margin-bottom: 16px;">
                     <input type="number" placeholder="Equivalent Unit Price" v-model="EquivPrice" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                       <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
                         <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
@@ -119,10 +119,45 @@
                     </v-btn>
                   </div>
 
+
+                  <span class="select1i">Select preferred payment method for this transaction</span>
+                  <div style="margin-top: 8px; margin-bottom: 16px; position: relative;">
+                    <v-menu>
+                        <template v-slot:activator="{ props }">
+                          <v-btn @click.prevent="toggleChevron()" v-bind="props" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="min-width: 70px; height: 60px; margin-top: 3px; border-radius: 15px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
+                            <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
+                            <div style="display: flex; position: absolute; right: 1%">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
+                              </svg>
+                            </div>
+                          </v-btn>
+                        </template>
+
+                        <v-list style="width: 100%; border-radius: 24px;" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  >
+                          <v-list-item>
+                            <v-row dense >
+                                <v-col v-for="(currency, index) in pinia.state.allcountries" class="" sm="12" :key="index" >
+                              
+                                  <v-list-item-title  @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code"> 
+                                    <div style="display: flex; justify-content: flex-start;">
+                                      <span class="currency-list my-2">{{ currency.currency_name }}</span>
+
+                                    </div>
+
+                                  </v-list-item-title>
+                                </v-col>
+                            </v-row>
+                          </v-list-item>
+                        </v-list>
+                    </v-menu>  
+                  </div>
+
                 <div style="display: flex; justify-content: end; margin-top: 30px;">
                   <v-btn  :disabled="!isFormValid" @click="create_offer()" class="primary-btn1" :loading="loading" style="height: 64px; width: 180px; font-weight: 600; color: white; box-shadow: none;">Create Offer</v-btn>                  
                 </div>
 
+                  
                     
                 </div>
 
@@ -148,6 +183,7 @@
 import { ref } from "vue";
 import { useTheme } from "vuetify";
 import { createOffer } from "@/composables/requests/marketplace";
+import { getPaymentMethod } from "@/composables/requests/paymentMethods";
 
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
@@ -174,7 +210,34 @@ const EquivPrice = ref();
 
 const unitPrice = ref();
 
+const pageNumber = ref(1)
 
+
+
+
+const allPaymentMethods = async () => {
+
+try {
+  const data = await getPaymentMethod(pageNumber.value);
+  if (data.success) {
+    const payment_method = data.data;
+    console.log(payment_method)
+    // const storedcountriesids = pinia.state.allcountries.map(item => item.id);
+    // Check if there are any new items in the fetched data
+    // const newItems = payment_method.filter(item => !storedcountriesids.includes(item.id));
+
+    // if (newItems.length > 0) {
+     
+      pinia.setallcountries([...pinia.state.allcountries, ...newItems]);
+      // flag.value = pinia.state?.allcountries[0].flag_url;
+    // }
+  } else {
+      push.error(`${data.message}`);
+      
+    }
+} catch (error) { 
+};
+};
 
 
 const create_offer = async () => {
@@ -235,14 +298,12 @@ const toggleChevron = () => {
 };
 
 
-// onMounted( () => {
-//   setTimeout(() => {
-//     create_offer();
+onMounted( () => {
+ 
+  allPaymentMethods();
     
-//   }, 4000);
-  
-//     }
-//   );
+    }
+  );
 </script>
 
 <style scoped>

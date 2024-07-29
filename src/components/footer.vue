@@ -333,4 +333,5 @@ backdrop-filter: blur(25px);
   width: 116px;
   object-fit: cover;
 }
+
 </style>

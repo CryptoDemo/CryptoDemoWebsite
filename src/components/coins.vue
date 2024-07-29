@@ -55,9 +55,9 @@
                     <td class="mt-2" style="display: flex; align-items: center;">{{index+1}}</td>
 
                     <td style="display: contents; position: relative; width: 34%;">
-                      <div class="d-flex" style="align-items: center;">
+                      <div class="d-flex" style="align-items: center; width: 150px; ">
                         <img :src="item.icon" width="35" class="py-5"/>
-                        <img :src="chainIcon.icon" width="15" class=" py-5" style="position: relative; right: 11px; margin-top: 16px;"/>
+                        <!-- <img :src="chainIcon.icon" width="15" class=" py-5" style="position: relative; right: 11px; margin-top: 16px;"/> -->
                         <div style="flex-direction:row">
                           <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
                           <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
@@ -90,11 +90,113 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
+import {getTokens,  getTokenBalance, currencyConverter } from "@/composables/requests/tokens";
 
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
+const isLoading = ref();
+const conversionResult = ref([]);
+const network = pinia.state.selectedNetwork.toLowerCase();
+const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
+const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.token_networks?.find(tkn=>tkn.blockchain_id === selectedNetworkId));
+const symbols = tokensForSelectedNetwork.map(token => token.symbol);
+const pageNumber = ref(1);
+// const chainIcon = pinia?.state?.tokenLists?.find(c => c.symbol === "BNB" || c.symbol === "TRX");
+const getTokens_ = async () => {
+  try {
+    const data = await getTokens(pageNumber.value, pinia.state.selectedNetwork.toLowerCase());
+
+    if (data.success) {
+      const fetchedTokens = data.data.result;
+      console.log(fetchedTokens);
+
+      // Store the fetched tokens with a 5-minute expiry time
+      pinia.setTokenLists(fetchedTokens, addMinutes(5));
+    } else {
+      // Display a message to the user if fetching tokens was unsuccessful
+      push.message(data.message, { position: 'top', timeout: 2000 });
+    }
+  } catch (error) {
+    // Log the error to the console
+    console.log(error);
+  }
+};
+
+const getTokenBals = async () => {
+ 
+ // Check if user is authenticated
+ if (pinia.state.isAuthenticated)  {
+   try {
+     // Fetch token balance
+     const data = await getTokenBalance(symbols);
+
+     // Update tokens with the new balance
+     if (data.success) {
+       // Create a copy of the token list to update locally
+       const updatedTokens = pinia.state.tokenLists.map(token => {
+         const tokenData = data.data.find(t => t.token === token.symbol);
+         if (tokenData) {
+           return { ...token, balance: tokenData.balance };
+         }
+         return token;
+       });
+
+       // Update the token store with the new balances
+       // pinia.setTokenBalance(updatedTokens);
+
+       pinia.setTokenLists(updatedTokens, addMinutes(5))
+
+       // Optionally, you can return or use `updatedTokens` as needed
+
+     } else {
+       console.log('Error:', data.message);
+     }
+   } catch (error) {
+     console.log('Fetch error:', error);
+   }
+ }
+};
+
+const convertCurrencies = async () => {
+  // Get the list of coins from pinia state
+
+  const coins = pinia.state.tokenLists;
+
+  try {
+
+    const convertCurrency = [];
+   
+    // Loop through each coin and convert to USD
+    for (const coin of coins) {
+      convertCurrency.push({ from: coin.symbol, to: "USD" });
+    }
+
+    try {
+      const data = await currencyConverter(convertCurrency);
+     
+
+      if (data.success) {
+        // Store the conversion result in the array
+        conversionResult.value = data.data;
+
+        // pinia.setTokenLists(...data.data, addMinutes(5))
+        
+      } else {
+        console.log(`Conversion failed:`, data.message);
+      }
+    } catch (error) {
+      console.log(`Error converting:`, error);
+    }
+
+
+  } catch (error) {
+    console.log(error);
+  }
+
+};
+
 
 
 const chainIcon = pinia.state.tokenLists.find(c => c.symbol === "BNB" || c.symbol === "TRX");
@@ -125,7 +227,11 @@ const props = defineProps({
 });
 
 
-
+onBeforeMount(() => {
+getTokens_();
+getTokenBals();
+convertCurrencies();
+});
 
 
 </script>
