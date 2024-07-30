@@ -26,7 +26,7 @@
             <div style="display: flex; margin-top: 24px; justify-content: space-between;">
                 <div>
                     <h3>Biographical Data, including:</h3>
-                    <ul>
+                   <ul class="list-bullets-styled">
                         <li>Name</li>
                         <li>Email Address</li>
                         <li>Phone Number</li>
@@ -38,7 +38,7 @@
 
                 <div>
                     <h3>Paxful Account Details, including:</h3>
-                    <ul>
+                   <ul class="list-bullets-styled">
                         <li>Username</li>
                         <li>User Profile Information in the “Bio” section</li>
                         <li>Profile Picture</li>
@@ -53,7 +53,7 @@
             <div style="display: flex; margin-top: 24px; justify-content: space-between;">
                 <div>
                     <h3>Paxful Account Activity, including:</h3>
-                    <ul>
+                   <ul class="list-bullets-styled">
                         <li>Trade Chat Messages (which may contain financial information if you provide it to sellers)</li>
                         <li>Trade Chat Attachments</li>
                         <li>Trade Activity</li>
@@ -72,7 +72,7 @@
 
                 <div>
                     <h3>Data relating to your Digital asset wallet, including:</h3>
-                    <ul>
+                   <ul class="list-bullets-styled">
                         <li>Private Keys</li>
                         <li>Public Keys</li>
                         <li>Wallet Balance</li>
@@ -85,7 +85,7 @@
             <div style="display: flex; margin-top: 24px; justify-content: space-between;">
                 <div>
                     <h3>Data Collected in connection with “Know Your Customer” (KYC) Compliance, including:</h3>
-                    <ul>
+                   <ul class="list-bullets-styled">
                         <li>Government-issued ID</li>
                         <li>Proof of Address</li>
                         <li>Photographs, if you elect to provide them to us</li>
@@ -95,7 +95,7 @@
 
                 <div>
                     <h3>Device and Website Usage Data, including:</h3>
-                    <ul>
+                   <ul class="list-bullets-styled">
                         <li>IP Addresses</li>
                         <li>Cookie ID and/or other device identifiers</li>
                         <li>Information relating to your access to the Website, such as device characteristics, date & time</li>
@@ -107,7 +107,7 @@
 
             <div>
                 <h3>Mobile application usage data, including:</h3>
-                <ul>
+               <ul class="list-bullets-styled">
                     <li>Session data: IP address, version of the operating system, brand and model of the device, unique identifiers of the device, browser used, information about the time the Application was accessed, name and parameters of the network connection.</li>
                     <li>Information about applications installed on the User’s device (metadata from applications): application name, application identifier and version, device identifier and checksum. Detecting malicious apps and protecting users from fraud are the main reasons for collecting information about installed apps.</li>
                     <li>Information on actions taken while using the mobile application</li>
@@ -119,7 +119,7 @@
                 <h3>How we use your data</h3>
                 <span>The business purposes for which we collect, use, retain, and share your Personal Data may include:</span>
                 <span>To provide Services through operating the Website, including to:</span>
-                <ul>
+               <ul class="list-bullets-styled">
                     <li>Register, create, and maintain your account;</li>
                     <li>Authenticate your identity and/or your access to an account, or help sellers verify your identity;</li>
                     <li>Initiate, facilitate, process, and/or execute transactions;</li>
@@ -143,7 +143,7 @@
             <div class="mt-7">
                 <h3>Sources from which we collect personal data</h3>
                 <span>We collect Personal Data from a number of sources, including</span>
-                <ul>
+               <ul class="list-bullets-styled">
                     <li><span style="font-weight: 700;">Directly from you:</span> We collect Personal Data directly from you when you use our Website or Services, communicate with us, or interact directly with us.</li>
                     <li><span style="font-weight: 700;">From service providers and/or data processors who assist us in providing the Website or the Services:</span> We may engage service providers to assist us in facilitating the Website or the Services to you, at our direction and on our behalf. These service providers may collect information about you and provide it to us.</li>
                     <li><span>From other users on the Paxful Website or from affiliates integrated with the Paxful Website or Services: </span>Other users may provide us with information about you in connection with transactions or chats. Affiliates may also provide information to us about you related to your interactions or transactions with such affiliates.</li>
@@ -159,13 +159,13 @@
             <div class="mt-7">
                 <h3>How we share data</h3>
                 <span>Under certain circumstances, we may disclose certain Personal Data with other persons. The categories of persons with whom we may share Personal Data include:</span>
-                <ul>
+               <ul class="list-bullets-styled">
                     <li>Service providers and/or data processors: We may share Personal Data with third-party service providers that perform services and functions at our direction and on our behalf. These third-party service providers may, for example, provide you with Services, verify your identity, assist in processing transactions, send you advertisements for our products and Services, or provide customer support.</li>
                     <li>Other parties to transactions, such as sellers: We may share information with the other participants to your transactions, including other users from whom you are purchasing the digital asset.</li>
                     <li>Financial institutions and other companies involved in helping you make payments in connection with transactions</li>
                     <li>Affiliates that receive referrals from our Website</li>
                     <li>Other third-parties for our business purposes or as permitted or required by law, including:
-                        <ul>
+                       <ul class="list-bullets-styled">
                         <li>To comply with any legal, regulatory, or contractual obligation, or with any legal or regulatory process (such as a valid court order or subpoena);</li>
                         <li>To establish, exercise, or defend legal claims;</li>
                         <li>In response to a request by a government agency, such as law enforcement authorities or a judicial order;</li>
@@ -185,11 +185,11 @@
 
             <div class="mt-7">
                 <h3>International transfers of data</h3>
-                <ul>
+               <ul class="list-bullets-styled">
                     <li>A cookie is a small text file that a website saves on your computer or mobile device when you visit the website.</li>
                     <li>Our Website uses cookies and tracking technologies to operate, and to target advertising that may be of interest to you. For further information, please refer to our Cookie Policy.</li>
                     <li>Paxful may partner with third-party ad networks to either display advertising on the Paxful Website or on third-party websites. These websites and third-party ad networks are not controlled by Paxful. Ad network partners use data technologies to collect information about your online activities to provide you targeted advertising based upon your interests. If you wish not to have this information used for the purpose of serving you targeted ads, you may be able to opt-out by visiting:
-                        <ul>
+                       <ul class="list-bullets-styled">
                         <li><a href="http://optout.aboutads.info/" target="_blank">http://optout.aboutads.info/</a></li>
                         <li><a href="http://optout.networkadvertising.org/" target="_blank">http://optout.networkadvertising.org/</a></li>
                         </ul>
@@ -244,7 +244,7 @@
                 <h3>European Data Protection Rights</h3>
                 <span>European law provides you with certain rights with respect to your Personal Data, including:</span>
 
-                <ul>
+               <ul class="list-bullets-styled">
                 <li>The right to request access to and rectification of your Personal Data.</li>
                 <li>The right to request that Paxful delete certain Personal Data relating to you.</li>
                 <li>The right to data portability, which includes the right to request that certain Personal Data you have provided to us be transferred from us to another data controller.</li>
@@ -256,16 +256,247 @@
 
             </div>
 
+            <div class="mt-7">
+                <h3>International Transfers</h3>
+                <span>We may transfer Personal Data relating to EEA residents to countries that have not been found by the European Commission to provide adequate protection, including the United States. For any such transfers, Paxful implements safeguards designed to ensure that your Personal Data receives an adequate level of protection. If you are located in the EEA, Paxful will only transfer your Personal Data if: the country to which the Personal Data will be transferred has been granted a European Commission adequacy decision; the recipient of the Personal Data is located in the United States and has certified to the US-EU Privacy Shield Framework; Paxful has put in place appropriate safeguards in respect of the transfer, for example by entering into EU Standard Contractual Clauses with the recipient, or; an applicable statutory exception to the GDPR general transfer prohibition applies. To obtain a copy of the mechanisms that Paxful has executed to support its transfers of personal data outside the EEA, contact us as set forth in the above “Contact Us” section.</span>
+            </div>
+
+            <div class="mt-7">
+                <h3>California Addendum</h3>
+                <span>The following disclosures apply to, and are intended exclusively for, residents of the State of California.</span>
+            </div>
+
+            <div class="mt-7">
+                <h3>Your California Privacy Rights</h3>
+                <span> To the extent that we disclose certain personally identifiable information about you to third parties who use it for their direct marketing purposes, you have a right to request further information about the recipients of your information. To exercise this right, please contact us as described in the above section titled “Contact Us.”</span>
+            </div>
+
+            <div class="mt-7">
+                <h3>Do Not Track Disclosure</h3>
+                <span>Our Website is not designed to respond to “Do Not Track” signals or requests.</span>
+            </div>
+
+            <v-row no-gutters class="mt-7" :class="isDark ? 'wallet-border':'wallet-border-light'">
+                <v-col cols="2">
+                    <v-sheet class="pa-3" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 70px; border-right: 1px solid rgba(142, 155, 174, 0.5);">
+                    <h1 class="ml-2">Facts</h1>
+                    </v-sheet>
+                </v-col>
+                <v-col cols="10">
+                    <v-sheet class="pa-3" style="height: 70px; background: inherit;">
+                    <h1 style="color: #2873FF;">What does Paxful do with your personal information?</h1>
+                    </v-sheet>
+                </v-col>
+            </v-row>
+
+            <v-row no-gutters class="mt-7" :class="isDark ? 'wallet-border':'wallet-border-light'">
+                <v-col cols="2">
+                    <v-sheet class="pa-3" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 90px; border-right: 1px solid rgba(142, 155, 174, 0.5); align-items: center;">
+                    <h1 class="ml-2">Why?</h1>
+                    </v-sheet>
+                </v-col>
+                <v-col cols="10">
+                    <v-sheet class="pa-3" style="height: 90px; background: inherit; display: flex; align-items: center;">
+                    <span>Financial companies choose how they share your personal information. Federal law gives consumers the right to limit some but not all sharing. Federal law also requires us to tell you how we collect, share, and protect your personal information. Please read this notice carefully to understand what we do.</span>
+                    </v-sheet>
+                </v-col>
+            </v-row>
+
+            <v-row no-gutters class="mt-7" :class="isDark ? 'wallet-border':'wallet-border-light'">
+                <v-col cols="2">
+                    <v-sheet class="pa-3" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 100%; display: flex; align-items: center;">
+                    <h1 class="ml-2">What?</h1>
+                    </v-sheet>
+                </v-col>
+                <v-col cols="10">
+                    <v-sheet class="pa-3" style=" background: inherit; display: flex; flex-direction: column; border-left: 1px solid rgba(142, 155, 174, 0.5);">
+                        <span> The types of personal information we collect and share depend on the product or service you have with us. This information can include:</span>
+                        <ul class="list-bullets-styled">
+                        <li>Social Security number or account balances</li>
+                        <li>Payment history or transaction history</li>
+                        <li>Credit history or credit scores</li>
+                        <span>When you are no longer our customer, we continue to share your information as described in this notice.</span>
+                        
+                    </ul>
+                    </v-sheet>
+                </v-col>
+            </v-row>
+
+            <v-row no-gutters class="mt-7" :class="isDark ? 'wallet-border':'wallet-border-light'">
+                <v-col cols="2">
+                    <v-sheet class="pa-3" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 90px; display: flex;  border-right: 1px solid rgba(142, 155, 174, 0.5); align-items: center;">
+                    <h1 class="ml-2">How?</h1>
+                    </v-sheet>
+                </v-col>
+                <v-col cols="10">
+                    <v-sheet class="pa-3" style="height: 90px; background: inherit; display: flex; align-items: center;">
+                    <span>All financial companies need to share customers' personal information to run their everyday business. In the section below, we list the reasons financial companies can share their customers' personal information; the reasons Paxful chooses to share; and whether you can limit this sharing.</span>
+                    </v-sheet>
+                </v-col>
+            </v-row>
+
+            
+            <v-table class="mt-9" :class="isDark ? 'wallet-border':'wallet-border-light'" style="background: inherit;">
+                <thead :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+                <tr>
+                    <th class="text-left" style="border-right: 1px solid rgba(142, 155, 174, 0.5); height: 70px">
+                    <span style="font-size: 16px;">Reasons we can share your personal information</span>
+                    </th>
+
+                    <th class="text-left" style="border-right: 1px solid rgba(142, 155, 174, 0.5); width: 16%;">
+                    <span style="font-size: 16px;">Does Paxful share?</span>
+                    </th>
+
+                    <th class="text-left" style="width: 23%;">
+                    <span style="font-size: 16px;">Can you limit this sharing?</span>
+                    
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr v-for="item in desserts" :key="item.name" style="height: 80px;">
+                        <td style="border-right: 1px solid rgba(142, 155, 174, 0.5);">
+                            <span style="font-size: 16px;" :class="isDark ? 'text-dark':'text-light'"> 
+                                <span style="font-weight: 700; font-size: 16px;" :class="isDark ? 'card-title':'card-title-light'">{{ item.questionBold }}</span>
+                                {{ item.question }}</span>
+                        </td>
+
+                        <td style="border-right: 1px solid rgba(142, 155, 174, 0.5);">
+                            <span style="font-size: 16px; font-weight: 700;"> {{ item.answer1 }} </span>
+                        </td>
+
+                        <td>
+                            <span style="font-size: 16px; font-weight: 700;">{{ item.answer2 }}</span>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </v-table>
+
+            <v-row no-gutters class="mt-7" :class="isDark ? 'wallet-border':'wallet-border-light'">
+                <v-col cols="2">
+                    <v-sheet class="pa-3" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 90px; display: flex;  border-right: 1px solid rgba(142, 155, 174, 0.5); align-items: center;">
+                    <h1>Questions?</h1>
+                    </v-sheet>
+                </v-col>
+                <v-col cols="10">
+                    <v-sheet class="pa-3" style="height: 90px; background: inherit; display: flex; align-items: center;">
+                    <span>Go to www.paxful.com</span>
+                    </v-sheet>
+                </v-col>
+            </v-row>
+
+
+            <v-table class="mt-9" :class="isDark ? 'wallet-border':'wallet-border-light'" style="background: inherit;">
+                <thead :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+                <tr>
+                    <th class="text-left" style="height: 70px">
+                    <span style="font-size: 16px;">What we do</span>
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr v-for="item in desserts" :key="item.name" style="height: 80px;">
+                        <td style="border-right: 1px solid rgba(142, 155, 174, 0.5);">
+                            <span style="font-size: 16px;" :class="isDark ? 'text-dark':'text-light'"> 
+                                <span style="font-weight: 700; font-size: 16px;" :class="isDark ? 'card-title':'card-title-light'">{{ item.questionBold }}</span>
+                                {{ item.question }}</span>
+                        </td>
+
+                        <td style="border-right: 1px solid rgba(142, 155, 174, 0.5);">
+                            <span style="font-size: 16px; font-weight: 700;"> {{ item.answer1 }} </span>
+                        </td>
+
+                        <td>
+                            <span style="font-size: 16px; font-weight: 700;">{{ item.answer2 }}</span>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </v-table>
+           
         </div>
    
     </v-container>
+    <Footer class="desktop-footer flex-lg-and-up hidden-md-and-down"/>
+    <Mobile-footer class="mobile-footer"/>
   </div>
 </template>
 
-<script scoped>
+<script setup>
+import { ref } from 'vue'
+import { useTheme } from 'vuetify';
 
+
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
+const pinia = useStore();
+
+const  desserts = ([
+          {
+            questionBold: 'For our everyday business purposes -',
+            question: 'such as to process your transactions, maintain your account(s), respond to court orders and legal investigations, or report to credit bureaus',
+            answer1: 'Yes',
+            answer2: 'NO',
+          },
+          {
+            questionBold: 'For our marketing purposes ',
+            question: 'to offer our products and services to you',
+            answer1: 'Yes',
+            answer2: 'NO',
+          },
+          {
+            questionBold: 'For our affiliates everyday business purposes -',
+            question: 'information about your transactions and experiences',
+            answer1: 'Yes',
+            answer2: 'NO',
+          },
+          {
+            questionBold: 'For our affiliates everyday business purposes',
+            question: '- information about your creditworthiness',
+            answer1: 'No',
+            answer2: 'We dont share',
+          },
+          {
+            questionBold: 'For nonaffiliates to market to you',
+            question: '',
+            answer1: 'No',
+            answer2: 'We dont share',
+          },
+        ]);
 </script>
 
-<style>
+<style scoped>
+.wallet-border{
+border: 0.5px solid rgba(142, 155, 174, 0.5);
+}
+.wallet-border-light{
+border: 1px solid #DBE8FF;
+}
 
+.list-bullets-styled {
+  list-style-type: none; /* Remove default list style */
+  position: relative; /* Needed for the pseudo-element positioning */
+}
+
+.list-bullets-styled li {
+  position: relative; /* Needed for the pseudo-element positioning */
+  padding-left: 20px; /* Space for the custom bullet */
+}
+
+.list-bullets-styled li:before {
+  background-color: #2873FF;
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 8px;
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+}
 </style>
