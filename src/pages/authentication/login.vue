@@ -141,7 +141,7 @@ const login = async () => {
         } else {
           // Default navigation to profile if no other conditions apply
           pinia.state.isAuthenticated = true;
-          navigateTo('/account/profile');
+          navigateTo('/account/dashboard');
         }
       }
     } else {

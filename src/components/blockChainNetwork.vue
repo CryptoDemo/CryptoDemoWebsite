@@ -18,7 +18,7 @@
               </button>
             </template>
 
-            <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 15px; height: 120px !important;">
+            <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 10px; height: 120px !important;">
               <v-list-item style="display: contents">
                 <v-row dense style="max-width: 250px; display: block;">
                   <v-col v-for="(item, index) in pinia.state.BlockchainNetworks" :key="index">
@@ -41,7 +41,7 @@ import { getBlockchain } from "@/composables/requests/tokens";
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
-const blockchainNetwork = ref("Bep20")
+
 
 
 // const selectedNetwork = ref(pinia.state.selectedNetwork);

@@ -1,6 +1,5 @@
 <template>
-  <div>
-  
+
     <div style="margin-top: 110px; display: flex; width: 100% !important;">
              
             <div style="width: -webkit-fill-available">
@@ -8,8 +7,9 @@
                  <div class="wallet-box" :class="isDark ? 'wallet-border':'wallet-border-light'" style="border-radius: 24px; width: 100%; padding: 25px; margin-top: 28px; width: 100%;">
                   <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div style="display: flex; flex-direction: column">
-                      <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: Manrope;font-size: 16px; font-style: normal; font-weight: 600">Hot Coins</span>
-                      <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 12px; font-style: normal; font-weight: 400;">Updates every 60 seconds</span>
+                      <!-- <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: Manrope;font-size: 16px; font-style: normal; font-weight: 600">Hot Coins</span> -->
+                      <!-- <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 12px; font-style: normal; font-weight: 400;">Updates every 60 seconds</span> -->
+                      <BlockChainNetwork/>
                     </div>
                     <div @click.stop style="margin-top: 4px; margin-bottom: 15px; display: flex; width: 40%; margin-inline-start: auto;">
                       <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" style="margin-left: 16px; margin-top: 20px; left: 16%; margin-right: 10px; position: relative;">
@@ -20,7 +20,9 @@
                     </div>
                   </div>
 
-                  <v-table class="coin-table" style="display: grid! important; background: inherit; width: 100%; height: 420px;">
+                
+
+                <v-table class="coin-table" style="display: grid! important; background: inherit; width: 100%; height: 420px;">
                     <thead>
                       <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
 
@@ -57,7 +59,7 @@
                     <td style="display: contents; position: relative; width: 34%;">
                       <div class="d-flex" style="align-items: center; width: 150px; ">
                         <img :src="item.icon" width="35" class="py-5"/>
-                        <!-- <img :src="chainIcon.icon" width="15" class=" py-5" style="position: relative; right: 11px; margin-top: 16px;"/> -->
+                        <img :src="chainIcon?.icon" width="15" class=" py-5" style="position: relative; right: 11px; margin-top: 16px;"/>
                         <div style="flex-direction:row">
                           <span class="coin-name1" :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height:normal">{{item.name }}</span>
                           <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down" :class="isDark ? 'text-dark':'text-light'">{{ item.symbol }}</span>
@@ -67,7 +69,7 @@
                   
 
                     <td class="mt-4" style="overflow: scroll; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical;-webkit-line-clamp: 1; display: flex; align-self: self-start; justify-content: center; width: 27%;">
-                      <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatConvertedValue(item.converted_value) }}</span>
+                      <span class="browser-txt" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatConvertedValue(item.conversionValue || 0) }}</span>
                     </td>
               
                     <td class="mt-2" style="display: flex; align-items: center; justify-content: center; width: 15%;"> 
@@ -78,26 +80,23 @@
 
                   </tr>
                 </tbody>
-            </v-table>
+                </v-table>
           </div>
 
         </div>
       </div>
     </div>
-
-  </div>
 </template>
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 import {getTokens,  getTokenBalance, currencyConverter } from "@/composables/requests/tokens";
+import BlockChainNetwork from './blockChainNetwork.vue';
 
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
-const isLoading = ref();
-const conversionResult = ref([]);
 const network = pinia.state.selectedNetwork.toLowerCase();
 const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
 const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.token_networks?.find(tkn=>tkn.blockchain_id === selectedNetworkId));
@@ -110,7 +109,6 @@ const getTokens_ = async () => {
 
     if (data.success) {
       const fetchedTokens = data.data.result;
-      console.log(fetchedTokens);
 
       // Store the fetched tokens with a 5-minute expiry time
       pinia.setTokenLists(fetchedTokens, addMinutes(5));
@@ -144,7 +142,6 @@ const getTokenBals = async () => {
        });
 
        // Update the token store with the new balances
-       // pinia.setTokenBalance(updatedTokens);
 
        pinia.setTokenLists(updatedTokens, addMinutes(5))
 
@@ -179,9 +176,20 @@ const convertCurrencies = async () => {
 
       if (data.success) {
         // Store the conversion result in the array
-        conversionResult.value = data.data;
+        const conversionMap = data.data.reduce((map, item) => {
+          map[item.from] = item.value;
+          return map;
+        }, {});
 
-        // pinia.setTokenLists(...data.data, addMinutes(5))
+        // Update the tokenLists with conversion values
+        const updatedTokenLists = coins.map(coin => ({
+          ...coin,
+          conversionValue: conversionMap[coin.symbol] || 0 // Add the conversion value
+        }));
+
+        // Store the updated tokenLists in Pinia
+        pinia.setTokenLists(updatedTokenLists, addMinutes(5));
+
         
       } else {
         console.log(`Conversion failed:`, data.message);
@@ -199,7 +207,7 @@ const convertCurrencies = async () => {
 
 
 
-const chainIcon = pinia.state.tokenLists.find(c => c.symbol === "BNB" || c.symbol === "TRX");
+const chainIcon = pinia.state.tokenLists?.find(c => c?.symbol === "BNB" || c?.symbol === "TRX");
 
 const formatConvertedValue = (value) => {
       if (value < 1) {
@@ -215,8 +223,8 @@ let input = ref("");
 const filteredItems = computed(() => {
 const searchTerm = input.value.toLowerCase();
 return pinia.state.tokenLists.filter((loc) => {
-const lowername = loc.name.toLowerCase();
-const symbol = loc.symbol.toLowerCase();
+const lowername = loc?.name?.toLowerCase();
+const symbol = loc?.symbol?.toLowerCase();
 return (
 lowername.includes(searchTerm) || symbol.includes(searchTerm)
 );
@@ -224,6 +232,15 @@ lowername.includes(searchTerm) || symbol.includes(searchTerm)
 });
 const props = defineProps({
   selectedCoin: String,
+});
+
+watch(() => pinia.state.selectedNetwork, async(newNetwork) => {
+  if (newNetwork) {
+    console.log(newNetwork)
+    await getTokens_();
+    getTokenBals();
+    convertCurrencies();
+  }
 });
 
 
