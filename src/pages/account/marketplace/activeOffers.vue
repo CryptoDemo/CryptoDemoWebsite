@@ -19,55 +19,13 @@
             <div class="d-flex">
 
          
-            <div class="px-4" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="height: 480px; margin-bottom: 300px;  padding-top: 2px;">
-               <v-row class="px-3" style="margin-top: 17px; margin-bottom: 25px; display: flex; justify-content: space-between;">
+            <div class="px-4" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="height: 480px; margin-bottom: 300px;  padding-top: 2px; width: 70%">
 
-                <div class="button-container mr-4" style="display: flex; border-radius: 10px; width: fit-content; align-items: center;">
+                <div class="button-container py-3" style="display: flex; border-radius: 10px; align-items: center; justify-content: space-between;">
                   <v-btn class="me-3" :class="[selectedScreen ? 'personalBtn' : isDark ? 'marketBtn' : 'marketBtn-light']" @click.prevent="selectedScreen=true" >Market Offers</v-btn>
                   <v-btn :class="[!selectedScreen ? 'personalBtn' : isDark ? 'marketBtn' : 'marketBtn-light']" @click.prevent="selectedScreen=false">Personal Offers</v-btn>
                 </div>
 
-
-                <div style="display: flex; margin-inline-start: auto">
-                  <v-menu>
-                    <template v-slot:activator="{ props }">
-                      <v-btn class="mx-auto marketBtn" :class="isDark ? 'active-offers-dark' : 'active-offers-light'" style="letter-spacing: 0px; box-shadow: none" v-bind="props">
-
-                        <img width="25" class="me-2" :src="tokenIcon" style="position: absolute; left: 7%" />
-
-                        <div style="display: grid; position: absolute; margin-right: 34%;">
-                          <span class="slt" style="font-weight: 600;">{{ tokenSymbol }}</span>
-                          <span v-if="!tokenSelected" style="margin-left: 60px; font-weight: 600;">All
-                            Coins</span>
-                        </div>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6"
-                          :class="isDark ? 'close-btn' : 'close-btn-light'"
-                          style="position: absolute; display: flex; right: 15px">
-                          <path
-                            d="M5.61643 5.99999C5.7553 6.00001 5.8928 5.973 6.0211 5.92049C6.14941 5.86799 6.266 5.79102 6.3642 5.69399L10.3104 1.794C10.5086 1.59813 10.62 1.33249 10.62 1.0555C10.62 0.77851 10.5086 0.512869 10.3104 0.317007C10.1122 0.121144 9.84345 0.0110984 9.56318 0.0110984C9.2829 0.0110984 9.01411 0.121144 8.81593 0.317007L5.61442 2.717L2.41292 0.317007C2.21473 0.121144 1.94594 0.0110984 1.66567 0.0110984C1.3854 0.0110984 1.11657 0.121144 0.91839 0.317007C0.720206 0.512869 0.608887 0.77851 0.608887 1.0555C0.608887 1.33249 0.720206 1.59813 0.91839 1.794L4.86464 5.69399C4.96329 5.79155 5.08052 5.86882 5.20957 5.92135C5.33861 5.97387 5.47688 6.00059 5.61643 5.99999Z" />
-                        </svg>
-                      </v-btn>
-                    </template>
-
-                    <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-                      style="border-radius: 15px; margin-top: 10px;">
-                      <v-list-item style="display: contents">
-                        <v-row dense style="max-width: 240px; height: 250px; overflow: scroll;">
-                          <div v-for="tokens in pinia.state.tokenLists" :key="tokens.id" style="width: 100%;">
-                            <v-list-item @click="selectToken(tokens)" style="display: flex;">
-                              <div style="display: flex; align-items: center;">
-                                <img :src="tokens.icon" width="30" class="me-2" />
-                                <span class="currency-list">{{ tokens.name }}</span>
-                              </div>
-                            </v-list-item>
-                          </div>
-                        </v-row>
-                      </v-list-item>
-                    </v-list>
-                  </v-menu>
-                </div>
-              </v-row> 
            
 
                <div v-if="selectedScreen" class="offers-div" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'" style=" margin-bottom: 300px; overflow: scroll;">
@@ -81,7 +39,7 @@
 
                           <span class="me-3" style="font-size: 14px; font-weight: 600;">{{ offer?.user?.username}}</span>
 
-                          <!-- <img :src="offer.sellerCountry" style="object-fit: cover; border-radius: 4px; height: 28px; width: 45px;"/> -->
+                          <!-- <img :src="offer.sellerCountry" style=" border-radius: 4px; height: 28px; width: 45px;"/> -->
 
                         </div>
 
@@ -100,6 +58,13 @@
                             style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500; line-height: normal; ">Unit value</span>
                           <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'"
                             style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500; line-height: normal; ">Price model</span>
+
+                            <div class="d-flex mt-4">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                              </svg>
+                              <span v-if="!pinia.state.user.kyc_verified" style="font-family: Manrope; font-size: 14px; font-style: normal; margin-left: 4px; font-weight: 500; line-height: normal; color: orangered ">Get Verified to purchase coin</span>
+                            </div>
                         </div>
                       </div>
 
@@ -119,7 +84,7 @@
                             }}</span>
                           <span :class="isDark ? 'text-dark' : 'text-light'"
                             style=" font-family: Manrope; margin-bottom: 11px; font-size: 14px; font-style: normal;  font-weight: 600;line-height: normal; text-align-last: right;">{{
-                              offer?.trading_pair?.fiat?.unit_value }}</span>
+                              offer?.trading_pair?.fiat?.unit_value }} {{ offer.countryCurrencyName }}</span>
                           <span :class="isDark ? 'text-dark' : 'text-light'"
                             style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; margin-bottom: 2px; line-height: normal; align-self: self-end;"
                             v-if="offer?.trading_pair?.fiat?.use_fixed_price">Fixed Price</span>
@@ -132,10 +97,12 @@
                         <div style="display: grid">
 
                           <div style="display: flex; justify-content: end"> 
+                           
+                            
                           <v-dialog max-width="500">
-                              <template v-slot:activator="{ props: activatorProps }">
-                                <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id" v-bind="activatorProps" class="smaller-btn mt-2 mb-2">Buy Offer</v-btn>
-                              </template>
+                            <template v-slot:activator="{ props: activatorProps }">
+                              <v-btn d @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id" :disabled="!pinia.state.user.kyc_verified" v-bind="activatorProps" class="smaller-btn mt-2">Buy Offer</v-btn>
+                            </template>            
       
                             <template v-slot:default="{  }">
                               <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; box-shadow: none;">
@@ -200,12 +167,13 @@
 
             </div>
 
-            <div class="ml-5" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="padding: 10px; border-radius: 10px; width: 25%;;">
+            <div class="ml-5" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="padding: 10px; border-radius: 10px; width: 30%;">
+              <span class="resend-code ml-1">Filter By:</span>
            
               <v-menu>
                 <template v-slot:activator="{ props }">
-                  <v-btn @click.prevent="toggleChevron()" v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"  style="width: fit-content; height: 50px; margin-top: 3px; border-radius: 15px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
-                    <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
+                  <v-btn @click.prevent="toggleChevron()" v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"  style="width: fit-content; height: 50px; margin-top: 8px; border-radius: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
+                    <span class="currency-list">{{ preferredTokenCurrency }}</span>
                     <div style="display: flex; position: absolute; right: 1%">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
@@ -218,8 +186,7 @@
                   <v-list-item>
                     <v-row dense >
                         <v-col v-for="(currency, index) in pinia.state.allcountries" class="" sm="12" :key="index" >
-                      
-                          <v-list-item-title  @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code"> 
+                          <v-list-item-title  @click="preferredTokenCurrency=currency.currency_name"> 
                             <div style="display: flex; justify-content: flex-start;">
                               <span class="currency-list my-2">{{ currency.currency_name }}</span>
                             </div>
@@ -231,10 +198,9 @@
                 </v-list>
               </v-menu>  
 
-
               <v-menu>
                 <template v-slot:activator="{ props }">
-                  <v-btn @click.prevent="toggleChevron()" v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"  style="width: fit-content; height: 50px; margin-top: 3px; border-radius: 15px; margin-top: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
+                  <v-btn @click.prevent="toggleChevron()" v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"  style="width: fit-content; height: 50px; margin-top: 3px; border-radius: 10px; margin-top: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
                     <span class="currency-list">{{ selectedPaymentMethod }}</span>
                     <div style="display: flex; position: absolute; right: 1%">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
@@ -243,24 +209,79 @@
                     </div>
                   </v-btn>
                 </template>
-
-                <v-list style="width: 65%; border-radius: 10px;" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  >
+                <v-list style="width: 65%; border-radius: 10px;" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
                   <v-list-item>
-                    <v-row dense >
-                        <v-col v-for="(options, index) in paymentMethods" class="" sm="12" :key="index" >
-                      
-                          <v-list-item-title  @click="selectedPaymentMethod=method;"> 
-                            <div style="display: flex; justify-content: flex-start;">
-                              <span class="currency-list my-2">{{ method }}</span>
-                            </div>
-
-                          </v-list-item-title>
-                        </v-col>
+                    <v-row dense>
+                      <v-col v-for="(method, index) in paymentMethods" :key="index" sm="12">
+                        <v-list-item @click="selectedPaymentMethod = method">
+                          <v-list-item-content>
+                            <v-list-item-title>
+                              <div style="display: flex; justify-content: flex-start;">
+                                <span class="currency-list my-2">{{ method }}</span>
+                              </div>
+                            </v-list-item-title>
+                          </v-list-item-content>
+                        </v-list-item>
+                      </v-col>
                     </v-row>
                   </v-list-item>
                 </v-list>
+
               </v-menu>  
-            
+
+              <v-menu>
+                <template v-slot:activator="{ props }">
+                  <v-btn  v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"  style="width: fit-content; height: 50px; margin-top: 3px; border-radius: 10px; margin-top: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
+                    <div class="d-flex" style="align-items: center; justify-content: space-between;">
+                      <img width="25" class="me-2" :src="tokenIcon" style="" />
+                      <span class="slt">{{ tokenSymbol }}</span>
+                      <span v-if="!tokenSelected" style="position: absolute;">All Coins</span>
+                    </div>
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']" style="position: absolute; display: flex; right: 5px">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
+                      </svg>
+                  </v-btn>
+                </template>
+
+                <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+                  style="border-radius: 15px; margin-top: 10px;">
+                  <v-list-item style="display: contents">
+                    <v-row dense style="max-width: 240px; height: 250px; overflow: scroll;">
+                      <div v-for="tokens in pinia.state.tokenLists" :key="tokens.id" style="width: 100%;">
+                        <v-list-item @click="selectToken(tokens)" style="display: flex;">
+                          <div style="display: flex; align-items: center;">
+                            <img :src="tokens.icon" width="30" class="me-2" />
+                            <span class="currency-list">{{ tokens.name }}</span>
+                          </div>
+                        </v-list-item>
+                      </div>
+                    </v-row>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+      
+              <v-radio-group v-model="selectedPriceRange" class="mt-2" style="margin-bottom: -20px;">
+                <div style="display: flex; align-items: center;">
+                  <v-radio color="info"  value="one"></v-radio>
+                  <span :class="{ 'resend-code': selectedPriceRange === 'one' }" style="font-size: 14px; font-weight: 500;">1,000 - 10,000</span>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                  <v-radio color="info"  value="two"></v-radio>
+                  <span :class="{ 'resend-code': selectedPriceRange === 'two' }" style="font-size: 14px; font-weight: 500;">10,000 - 100, 000</span>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                  <v-radio color="info" value="three"></v-radio>
+                  <span  :class="{ 'resend-code': selectedPriceRange === 'three' }" style="font-size: 14px; font-weight: 500;">100, 000 - 500, 000</span>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                  <v-radio color="info"  value="four"></v-radio>
+                  <span :class="{ 'resend-code': selectedPriceRange === 'four' }" style="font-size: 14px; font-weight: 500;">500, 000 & above</span>
+                </div>
+              </v-radio-group>
 
             
             </div>
@@ -293,15 +314,12 @@ const ammount_to_receive = ref();
 const offers = ref([]);
 const isCreating = ref();
 const tokenSelected = ref(false);
-
+const preferredTokenCurrency = ref();
 const selectedPaymentMethod = ref("Bank Transfer");
 const method = ref();
+const selectedPriceRange = ref("two");
 
-const paymentMethods = [
-  'hello', 
-  'hiii',  
-  'heyoo' 
-];
+const paymentMethods = ['Online Wallet', 'Cash Deposit',  'Bank Transfer' ];
 
 const selectToken = (tokens) => {
   tokenIcon.value = tokens.icon;
@@ -326,6 +344,7 @@ const get_allMarket_Offers = async () => {
       });
 
       offers.value = updatedOffers;
+      console.log(updatedOffers)
       pinia.setMarketPlace(updatedOffers);
 
     } else {
@@ -372,16 +391,48 @@ const Buy_Offer = async () => {
   }
 };
 
+
+const priceRanges = {
+  one: [1000, 10000],
+  two: [10000, 100000],
+  three: [100000, 500000],
+  four: [500000, Infinity]
+};
+
+
 const filteredOffers = computed(() => {
-  if (!tokenSymbol.value) return offers.value;
-  return offers.value.filter(offer => offer.trading_pair?.crypto?.token?.symbol === tokenSymbol.value);
+  return offers.value
+    // Apply token symbol filter if available
+    .filter(offer => !tokenSymbol.value || offer.trading_pair?.crypto?.token?.symbol === tokenSymbol.value)
+    
+    // Apply preferred token currency filter if available
+    .filter(offer => !preferredTokenCurrency.value || offer?.countryCurrencyName === preferredTokenCurrency.value)
+    
+    // Apply price range filter if available
+    .filter(offer => {
+      if (!selectedPriceRange.value) return true; // If no price range selected, include all offers
+      
+      const [minPrice, maxPrice] = priceRanges[selectedPriceRange.value] || [0, Infinity];
+      const minLimit = offer.trading_pair?.fiat?.minimum_buy_limit || 0;
+      const maxLimit = offer.trading_pair?.fiat?.maximum_buy_limit || Infinity;
+      return minLimit >= minPrice && maxLimit <= maxPrice;
+    });
 });
 
 
+const UserCurrencyInfo = computed(() => {
+  return pinia.state.allcountries.find(c => c.country_name === pinia.state.user.country)?.currency_name || '';
+});
+preferredTokenCurrency.value = UserCurrencyInfo.value;
 
 const matchingCountries = pinia.state.MarketPlace.map(marketplaceEntry => {
-  const sellerCountry = pinia.state.allcountries.find(country => country.country_name === marketplaceEntry.user.country)?.flag_url;
+  // Find the country in allcountries where country_name matches marketplaceEntry.user.country
+  const sellerCountry = pinia.state.allcountries.find(c => c.country_name === marketplaceEntry.user.country).flag_url;
+  
+  // Return the found country or null if not found
+  return sellerCountry || null;
 });
+
 
 const isChevronToggled = ref(false);
 const toggleChevron = () => {
@@ -415,17 +466,6 @@ onMounted(() => {
 
 <style scoped>
 
-
-/* .active-offers-dark {
-  background: var(--secondary-background, #10192D);
-  color: #8e9bae !important;
-}
-
-.active-offers-light {
-  background: var(--secondary-background, #f8fafc);
-  color: #646464 !important;
-} */
-
 .smaller-btn {
 border-radius: 8px;
 background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);
@@ -449,12 +489,10 @@ height: 40px;
 border-radius: 10px;
 background: var(--linear-card, linear-gradient(270deg, #1DA1DB -11.75%, #2873FF 119.96%));
 display: flex;
-width: 170px;
+width: 200px;
 height: 45px;
-/* padding: 12px 98px; */
 justify-content: center;
 align-items: center;
-gap: 10px;
 flex-shrink: 0;
 font-family: Manrope;
 font-size: 15px;
@@ -472,9 +510,8 @@ font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 700;
-width: 170px;
+width: 200px;
 height: 45px;
-/* padding: 12px 98px; */
 background: inherit;
 box-shadow: none;
 color: #969696;
@@ -490,7 +527,7 @@ font-size: 16px;
 font-style: normal;
 font-weight: 700;
 width: 228px;
-height: 48px;
+height: 45px;
 box-shadow: none;
 text-transform: capitalize;
 letter-spacing: 0px;
