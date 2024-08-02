@@ -57,12 +57,12 @@
 
           </div>    
 
-          <div style="margin-top: 80px; margin-bottom: 94px;">
+          <div style="margin-top: 80px; margin-bottom: 40px;">
               <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Transaction History</span>
           </div>
 
-          <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
-
+          <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="padding: 10px; margin-bottom: 300px; max-height: 400px; overflow: scroll">
+            <SingleWebTxn/>
           </div>
           
         </v-container>

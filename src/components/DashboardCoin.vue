@@ -5,10 +5,11 @@
         <div  style="display: flex; justify-content: space-between; overflow: scroll;">
             <div v-for="(item, i) in  multipliedValues" :key="i">
                 <v-card link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 16px;"> 
-                    <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(item.product) }} {{ pinia.state.preferredCurrency }}</span>
+                    <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(item.product) }} USD</span>
                     <span  :class="isDark ? 'text-dark':'text-light'">{{ formatBalance(item.balance) }} {{ item.symbol}}</span>
                     <div class="mt-3 mb-3" style="display: flex; align-items: center;">
                       <img class="me-2" :src="item.icon" alt="coin" width="30"/>
+                      <img :src="chainIcon?.icon" width="15" style="position: relative; right: 14px; margin-top: 16px;"/>
                       <span class="coinName" :class="isDark ? 'text-dark':'text-light'">{{ item.name }}</span>
                     </div>
 
@@ -30,7 +31,6 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
 
-
 const multipliedValues = computed(() => {
       return pinia.state.tokenLists.map(token => {
         const balance = token.balance ?? 0;
@@ -42,7 +42,9 @@ const multipliedValues = computed(() => {
       });
     });
 
-
+    const chainIcon = computed(() => {
+  return pinia.state.tokenLists.find(c => c?.symbol === "BNB" || c?.symbol === "TRX");
+});
 
 </script>
 

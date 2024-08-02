@@ -45,7 +45,6 @@ export const useStore = defineStore('app',()=> {
       Fiat_transactions: [],
       Total_fiat_bal:[],
       selectedOfferType_from_landing: [],
-      curency_to_swap:"",
       fiat_currency_i_want: "",
       Fiat_swap_details: {},
       geo:{},
@@ -127,9 +126,6 @@ export const useStore = defineStore('app',()=> {
     state.coin_to_transfer = payload;   
   };
 
-  const setCurency_to_swap = (payload) => {
-      state.curency_to_swap = payload;   
-  };
 
   const setTransferWallet = (payload) => {
     state.TransferWallet = payload;   
@@ -229,7 +225,6 @@ export const useStore = defineStore('app',()=> {
     state.Total_fiat_bal = [],
     state.TransactionDetails = [],
     state.selectedLandingCoin = "",
-    state.curency_to_swap = "",
     state.fiat_currency_i_want = ""
     state.Fiat_swap_details= "",
     state.geo = {},
@@ -272,7 +267,6 @@ export const useStore = defineStore('app',()=> {
       setMyOffers,
       setgetNewCoinInfo,
       saveTradingData,
-      setCurency_to_swap,
       setFiat_currency_i_want,
       setFiat_swap_details,
       setGeo,

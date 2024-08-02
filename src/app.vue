@@ -150,19 +150,22 @@ const initSocketListeners = ($socketClient)=>{
 
           case 'new_fiat_txn':
             console.log('Transfer:', message.data);
-           
-            // const fiat_trans_payload = [message.data]
-            // const data_payload = [...pinia.state.TransactionDetails,...fiat_trans_payload]
+          
+            const fiat_trans_payload = [message.data]
+            const data_payload = [...pinia.state.Fiat_transactions,...fiat_trans_payload]
              
-            // const grouped_fiat_trans = [...storedpiniavalue, ...group_trans(fiat_trans_payload)]
-            // console.log(grouped_fiat_trans)
+       
     
             break;
   
           case 'fiat_balances_updated':
             console.log('Fiat Balance:', message.data);
             pinia.setTotal_fiat_bal(message.data,addMinutes(5));
+
+            
             break;
+
+
           case 'P2P':
             console.log('P2P:', message.data);
             break;

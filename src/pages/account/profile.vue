@@ -38,7 +38,9 @@
                           <img :src="pinia.state?.user?.profile_image || '/svg/Image-grad.svg'" width="72" class="me-3 avatar" alt="avatar"  style="display: flex; align-self: flex-start; border-radius: 55px; height: 70px;"/>     
 
                           <div class="unverified-div ml-3">
-                            <div class="div-username1"> <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'">@{{ pinia.state.user?.username}} </span> </div>
+                            <div class="div-username1"> 
+                              <span class="username username1" :class="isDark ? 'card-text-dark':'card-text-light'" style="text-transform: capitalize; font-size: 18px;">@{{ pinia.state.user?.username}} </span> 
+                            </div>
                             
                             <div v-if="pinia.state?.user?.kyc_verified" style="display: flex; align-items: center;">
                               <span class="resend-code me-1">Verified</span>
@@ -56,12 +58,14 @@
                         <v-btn v-if="pinia?.state?.user?.kyc_verified === false" @click="kyc_()" class="primary-btn1" style="border-radius: 10px!important;">Verify Now</v-btn>
 
                         <img v-else :src="pinia.state?.user?.badge || '/svg/Image-grad.svg'"/>
+
+                        
                         
                       </div>
                     </div>
                   </div>
               
-
+                  <div id="sumsub-websdk-container" style="position: absolute; top: 30%; z-index: 10; display: flex; margin: auto; width: 50%; background: #F8FAFC; box-shadow: blueviolet;"></div>
 
                 <v-row no-gutters class="mt-8" style="margin-top: -7px; cursor: pointer;">
 
@@ -79,8 +83,8 @@
                 </v-row>
               </div>
                 
-
-          </div>
+              
+            </div>
         </v-container>
     </div>
     <Footer class="desktop-footer flex-lg-and-up hidden-md-and-down"/>
@@ -91,6 +95,7 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import { kyc_verification } from "@/composables/requests/users";
+import { launchWebSdk } from "@/composables/utilis/KYC";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -431,7 +436,7 @@ border-bottom: 1px solid #10192D !important;
   width: 230px !important;
   display: -webkit-box !important; 
   -webkit-box-orient: vertical !important;
-  -webkit-line-clamp: 1 !important;
+  line-clamp: 1 !important;
   text-overflow: ellipsis;
   overflow: hidden;
   }
@@ -446,7 +451,7 @@ border-bottom: 1px solid #10192D !important;
   display: -webkit-box;
   width: 90px;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
+  line-clamp: 1;
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: 14px;
@@ -463,6 +468,9 @@ border-bottom: 1px solid #10192D !important;
   .prof-card{
     margin: 0px !important;
     margin-bottom: 12px !important;
+  }
+  #sumsub-websdk-container{
+    width: 100% !important;
   }
   
  }

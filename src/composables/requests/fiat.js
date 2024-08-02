@@ -79,9 +79,7 @@ export const allFiatTxn = async(pageNumber)=>{
         },
     }).then(res => res.json());
 
-    if(data?.success && data?.data?.length){
-        setFiat_transactions(data.data);
-    }
+    return data
 };
 
 export const setupStripe = async()=>{

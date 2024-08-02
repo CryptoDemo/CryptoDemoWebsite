@@ -122,14 +122,13 @@
                   <h5 class="quick-swap mt-2" style="font-family: manrope;">Minimum swap limit : {{ minimumswap?.minimum_swap }}</h5>
                   </div>
 
-            <div style="display: flex; justify-content: space-between; margin-top: 55px; align-items: center;">
+            <div style="display: flex; justify-content: space-between; margin-top: 50px; align-items: center;">
 
-            <div style="width: 41%;">
+            <div style="width: 37%;">
               <v-alert v-if="FeeCard" variant="tonal" type="info" density="compact" style="font-family: Manrope;font-size: 14px;  font-style: normal;font-weight: 600;line-height: 180%; border-radius: 10px;">
-                <span>Charges incurred for this swap transaction:</span><br>
-                  Fee id: {{ swap_fee_id }} <br>
-                  Tax fee: {{ tax_fee }} <br>
-                  Total ammount: {{ from_amount_total }} <br>
+                <span style="font-size: 16px;">Important Notice</span><br>
+               A fee of {{ formatBalance(from_amount_total) }} will be applied for this transaction
+                   <br>
               </v-alert>
             </div>
 

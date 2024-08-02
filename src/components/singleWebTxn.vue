@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="!datainfo.length" class="no-transactions" style="height: 400px; display: flex; justify-content: center;">
+        <div v-if="!filteredTransactions.length" class="no-transactions" style="height: 400px; display: flex; justify-content: center;">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 14 14" fill="none">
             <path d="M10.52 5.96684L13 3.48682L10.52 1.00684" stroke="#969696" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M1 3.48682H13" stroke="#969696" stroke-linecap="round" stroke-linejoin="round"/>
@@ -9,7 +9,7 @@
             </svg>
             <span style="">No transactions to display.</span>
         </div>
-        <div v-for="(transaction, index) in datainfo" :key="index">
+         <div v-for="(transaction, index) in filteredTransactions" :key="index">
             <v-dialog max-width="420">
             <template v-slot:activator="{ props: activatorProps }">
                 <div v-bind="activatorProps" style="background: inherit; height: 60px; cursor: pointer;">
@@ -191,12 +191,12 @@
                 </v-card>
             </template>
             </v-dialog>
-        </div>
+        </div> 
     </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useTheme } from "vuetify";
 import { getWebTransaction } from "@/composables/requests/transaction";
 
@@ -208,39 +208,20 @@ const tokenSymbol = ref();
 const pageNumber = ref(1);
 const tokenLists = ref(pinia.state.tokenLists);
 const copied = ref(false);
-// const crypto_trans = ref();
 
-const created_at = ref();
+const datainfo = pinia.state.TransactionDetails;
 
-const datainfo = ref(pinia.state.TransactionDetails || []);
-
-tokenSymbol.value = tokenLists.value.find((p) => p.id === datainfo.token_id);
-
-const getWebTrans = async () => {
-  isloading.value = true;
-  try {
-    const data = await getWebTransaction(pageNumber.value);
-    if (data.success) {
-      datainfo.value = data?.data?.result;
+const selectedTokenId = pinia.state.tokenLists.find(t=>t.symbol==pinia.state.getNewCoinInfo).id;
 
 
-      datainfo.value = filterByKey("id", [
-        ...datainfo.value,
-        ...data.data.result,
-      ]);
-    //   pageNumber.value += 1;
-      pinia.setTransactionDetails(datainfo.value);
+const tokenIds = datainfo.map(item => item.details?.crypto?.transfer?.token_id).filter(id => id == selectedTokenId);
 
-      isloading.value = false;
-    } else {
-      push.error(`${data.message}`);
-      isloading.value = false;
-    }
-  } catch (e) {
-    console.log(e);
-    isloading.value = false;
-  }
-};
+
+const filteredTransactions = datainfo.filter(item => item.details?.crypto?.transfer?.token_id === selectedTokenId);
+
+
+
+
 
 
 const copyToClipboard = (text) => {
@@ -257,9 +238,6 @@ const copyToClipboard = (text) => {
 
 
 
-onMounted(() => {
-  getWebTrans();
-});
 </script>
 
 <style scoped>
