@@ -11,8 +11,8 @@
 
               <BlockChainNetwork />
             </div>
-            <div @click.stop
-              style="margin-top: 4px; margin-bottom: 15px; display: flex; width: 40%; margin-inline-start: auto;">
+
+            <div @click.stop class="search-div" style="margin-top: 4px; margin-bottom: 15px; display: flex; width: 40%; margin-inline-start: auto;">
               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none"
                 style="margin-left: 16px; margin-top: 19px; left: 16%; margin-right: 10px; position: relative;">
                 <path
@@ -365,10 +365,15 @@ onBeforeMount(() => {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
-.searchBar :deep(.v-textarea .v-field--no-label textarea, .v-textarea .v-field--active textarea) {
+.search-div :deep(.v-field__clearable > .v-icon){
+opacity: var(--v-medium-emphasis-opacity);
+margin-right: 15px;
+position: relative;
+bottom: 2px;
+}
+.search-div :deep(.v-textarea .v-field--no-label textarea, .v-textarea .v-field--active textarea) {
   opacity: 1;
-  bottom: 2px;
+  margin-bottom: 24px;
 }
 
 
@@ -388,16 +393,11 @@ onBeforeMount(() => {
     text-overflow: ellipsis;
   }
 
-  /* .browser-txt{
-    margin-top: 3px !important;
-  } */
   .table-header-text{
     font-weight: 600 !important;
     font-size: 14px !important;
   }
-  /* .coin-bal{
-    margin-bottom: 8px !important
-  } */
+
   .coin-width{
     width: 50% !important;
   }
@@ -414,6 +414,9 @@ onBeforeMount(() => {
   }
   .price-tr{
     margin-left: 50px;
+  }
+  .search-div{
+    width: 80% !important;
   }
   }
 
