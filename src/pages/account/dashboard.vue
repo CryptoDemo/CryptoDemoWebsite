@@ -174,7 +174,8 @@
         
           <!-- </div> -->
     </v-container>
-    <Footer/>
+    <Footer class="desktop-footer flex-lg-and-up hidden-md-and-down"/>
+    <Mobile-footer class="mobile-footer"/>
   </div>
 </template>
 

@@ -32,7 +32,7 @@
           <v-table class="coin-table"
             style="display: grid! important; background: inherit; width: 100%; height: 420px;">
             <thead>
-              <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
+              <tr class="coin-table" style="display: flex; margin-bottom: 8px; justify-content: space-between;">
 
                 <th class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center; align-self: center; width: 3%; justify-content: center;">
                   <div class="d-flex">
@@ -40,19 +40,18 @@
                   </div>
                 </th>
 
-                <th style="display: flex; align-items: center; align-self: center; justify-content: center;">
+                <th class="coin-tr" style="display: flex; align-items: center; align-self: center; justify-content: center;">
                   <div class="d-flex">
                     <span class="table-header-text" :class="isDark ? 'text-dark' : 'text-light'">Coin</span>
                   </div>
                 </th>
 
-                <th
-                  style="display: flex; align-items: center; align-self: center; position: relative; justify-content: center;">
+                <th class="price-tr" style="display: flex; align-items: center; align-self: center; position: relative; justify-content: center;">
                   <span class="table-header-text me-1" :class="isDark ? 'text-dark' : 'text-light'"
                     style="margin-left: ">Price (USD)</span>
                 </th>
 
-                <th style="display: flex; align-items: center; align-self: center; position: relative;">
+                <th class="balance-tr" style="display: flex; align-items: center; align-self: center;">
                   <span class="table-header-text me-1" :class="isDark ? 'text-dark' : 'text-light'">Balance</span>
                 </th>
 
@@ -401,6 +400,20 @@ onBeforeMount(() => {
   } */
   .coin-width{
     width: 50% !important;
+  }
+  .coin-table{
+    margin-bottom: 0px !important;
+    justify-content: flex-start !important;
+  }
+  .balance-tr{
+    position: absolute;
+    right: 8px;
+  }
+  .coin-tr{
+    margin-left: 50px;
+  }
+  .price-tr{
+    margin-left: 50px;
   }
   }
 
