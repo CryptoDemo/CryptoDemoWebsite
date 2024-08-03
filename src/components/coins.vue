@@ -8,8 +8,7 @@
           style="border-radius: 24px; width: 100%; padding: 25px; margin-top: 28px; width: 100%;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div style="display: flex; flex-direction: column">
-              <!-- <span :class="isDark ? 'coin-name':'coin-name-light'" style="font-family: Manrope;font-size: 16px; font-style: normal; font-weight: 600">Hot Coins</span> -->
-              <!-- <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 12px; font-style: normal; font-weight: 400;">Updates every 60 seconds</span> -->
+
               <BlockChainNetwork />
             </div>
             <div @click.stop
@@ -35,7 +34,7 @@
             <thead>
               <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
 
-                <th style="display: flex; align-items: center; align-self: center; width: 3%; justify-content: center;">
+                <th class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center; align-self: center; width: 3%; justify-content: center;">
                   <div class="d-flex">
                     <span class="table-header-text" :class="isDark ? 'text-dark' : 'text-light'">S/N</span>
                   </div>
@@ -67,11 +66,11 @@
                 @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')"
                 style="display: flex; justify-content: space-between;">
 
-                <td class="mt-2" :class="isDark ? 'text-dark' : 'text-light'" style="display: flex; align-items: center;">
+                <td class="mt-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark' : 'text-light'" style="display: flex; align-items: center;">
                   {{ index + 1 }}</td>
 
                 <td style="display: contents; position: relative; width: 34%;">
-                  <div class="d-flex" style="align-items: center; width: 150px; ">
+                  <div class="d-flex coin-width" style="align-items: center; width: 150px; ">
                     <img :src="item.icon" width="35" class="py-5" />
                     <img :src="chainIcon?.icon" width="15" class=" py-5"
                       style="position: relative; right: 11px; margin-top: 16px;" />
@@ -93,7 +92,7 @@
                 </td>
 
                 <td class="mt-2" style="display: flex; align-items: center; justify-content: center; width: 15%;">
-                  <span class="mb-4" :class="isDark ? 'coin-name' : 'coin-name-light'"
+                  <span class="mb-4 coin-bal" :class="isDark ? 'coin-name' : 'coin-name-light'"
                     style="font-weight: 600; font-size: 16px;"> {{ formatBalance(item.balance) }} </span>
                 </td>
 
@@ -390,5 +389,20 @@ onBeforeMount(() => {
     text-overflow: ellipsis;
   }
 
-}
+  .browser-txt{
+    margin-top: 3px !important;
+  }
+  .table-header-text{
+    font-weight: 600 !important;
+    font-size: 14px !important;
+  }
+  .coin-bal{
+    margin-bottom: 8px !important
+  }
+  .coin-width{
+    width: 50% !important;
+  }
+  }
+
+
 </style>

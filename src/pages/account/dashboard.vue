@@ -2,21 +2,21 @@
   <div>
     <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true"/>
     <v-container>
-      <div style="margin-top:100px; display: flex; width: 100%;">
-        <div class="pa-2 ma-2">
+      <!-- <div style="margin-top:100px; display: flex; width: 100%;"> -->
+        <div class="">
           <Sd-nav1/>
         </div>
          
-            <div class="mt-4 ml-2">
+            <div class="mt-4 dashboard-container" style="margin-left: 16px;">
              
-                <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; justify-content: space-between;">    
-                  <span class="partners-text"  :class="isDark ? 'text-dark':'text-light'"> Complete verification to access Demo products and services.</span>
-                  <div> <v-btn class="primary-btn" style="height: 37px !important; width: 120px; border-radius: 8px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);text-transform: capitalize; color: white; letter-spacing: 0px">Verify</v-btn> </div>
-                </div>
-
-              <div style="width: 810px;">
-                <DashboardCoin/>
+              <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; justify-content: space-between;">    
+                <span class="marketPlace" style="font-size: 24px; font-style: 28px; font-weight: 600; color: #5892FF;">Dashboard</span>
+                <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
               </div>
+
+              <!-- <div style="width: 810px;">
+                <DashboardCoin/>
+              </div> -->
            
               <div style="margin-top: -110px; margin-bottom: 30px;">
                 <Coins/>
@@ -26,23 +26,23 @@
                 <div style="display: flex; justify-content: space-between;">
                   <div style="display: flex; flex-direction: column;">
                     <span style="font-weight: 600; font-size: 16px;">Buy Offer</span>
-                    <span :class="isDark ? 'text-dark' : 'text-light'">Choose your preferred offer type to purchase</span>
+                    <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 13px;">Choose your preferred offer type</span>
                   </div>
-                  <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1">See More...</span>
+                  <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1" style="font-size: 14px;">See More...</span>
                 </div>
 
-                <v-card link @click="navigateTo('/account/marketplace/activeOffers')" v-for="offer in pinia.state.MarketPlace" :key="offer.id"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 100px; margin-top: 5px; margin-bottom: 30px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
+                <v-card link class="offer-card" @click="navigateTo('/account/marketplace/activeOffers')" v-for="offer in pinia.state.MarketPlace" :key="offer.id"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 100px; margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
                 
                   <div style="display: flex; flex-direction: column;">
                     <span style="margin-bottom: 11px; font-weight: 600;">{{ offer.user.username }}</span>
                     <!-- <img :src="offer.sellerCountry" style="height: 50px; width: 50px;"/> -->
-                    <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Minimum - Maximum buy limit</span>
+                    <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Buy limit</span>
                   </div>
 
                   <div style="display: flex; flex-direction: column;">
-                    <span v-if="offer.user?.is_verified" class="resend-code" style="font-weight: 500;  text-align-last: right; margin-bottom: 11px;">Verified</span>
-                    <span v-else>Unverified User</span>
-                    <span style="font-weight: 600;">{{formatBalance(offer?.trading_pair?.fiat?.minimum_buy_limit) }} - {{ formatBalance(offer?.trading_pair?.fiat?.maximum_buy_limit) }} {{ offer?.countryCurrencyName }} </span>
+                    <span v-if="offer.user?.is_verified" class="resend-code" style="font-weight: 500;  text-align-last: right; margin-bottom: 11px; font-size: 14px;">Verified</span>
+                    <span v-else style="color: orangered; font-size: 14px;">Unverified User</span>
+                    <span style="font-weight: 600; font-size: 14px;">{{formatBalance(offer?.trading_pair?.fiat?.minimum_buy_limit) }} - {{ formatBalance(offer?.trading_pair?.fiat?.maximum_buy_limit) }} {{ offer?.countryCurrencyName }} </span>
                   </div>
 
                 </v-card>
@@ -51,12 +51,12 @@
                 <div style="display: flex; justify-content: space-between;">
                   <div style="display: flex; flex-direction: column;">
                     <span style="font-weight: 600; font-size: 16px;">Buy Coins</span>
-                    <span :class="isDark ? 'text-dark' : 'text-light'">Choose your preferred withdrawal method</span>
+                    <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 13px;">Choose your preferred withdrawal method</span>
                   </div>
-                  <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1">See More...</span>
+                  <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1" style="font-size: 13px;">See More...</span>
                 </div>
 
-                <v-card link @click="navigateTo('/account/marketplace/activeOffers')"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
+                <v-card class="offer-card" link @click="navigateTo('/account/marketplace/activeOffers')"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
                 
                   <div style="display: flex; flex-direction: column;">
                     <span style="margin-bottom: 11px; font-weight: 600;">Bank Transfer</span>
@@ -67,7 +67,7 @@
 
                 </v-card>
 
-                <v-card link @click="navigateTo('/account/marketplace/activeOffers')"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
+                <v-card class="offer-card" link @click="navigateTo('/account/marketplace/activeOffers')"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
                 
                   <div style="display: flex; flex-direction: column;">
                     <span style="margin-bottom: 11px; font-weight: 600;">Online wallet</span>
@@ -78,7 +78,7 @@
 
                 </v-card>
 
-                <v-card link @click="navigateTo('/account/marketplace/activeOffers')"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-bottom: 30px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
+                <v-card class="offer-card" link @click="navigateTo('/account/marketplace/activeOffers')"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-bottom: 30px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
                 
                   <div style="display: flex; flex-direction: column;">
                     <span style="margin-bottom: 11px; font-weight: 600;">Cash deposit</span>
@@ -99,7 +99,7 @@
                 </v-card>
 
            
-                <v-carousel height="400"  cycle  :show-arrows="false" class="carousel-item" style="border-radius: 10px;">
+                <!-- <v-carousel height="400"  cycle  :show-arrows="false" class="carousel-item" style="border-radius: 10px;">
                   <v-carousel-item v-for="(slide, i) in slides" :key="i">
   
                     <v-sheet :style="`background: ${slide.background};`"  height="100%" style="padding-top: 20px;">
@@ -168,11 +168,11 @@
 
               <div style="margin-top: -130px;">
                   <Invite/>
-              </div>
+              </div> -->
 
               </div>
         
-          </div>
+          <!-- </div> -->
     </v-container>
     <Footer/>
   </div>
@@ -393,5 +393,14 @@ align-items: center;
 gap: 8px;
 width: 152px;
 margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+.dashboard-container{
+  margin-left: 0px !important;
+}
+.offer-card{
+  height: 80px !important;
+}
 }
 </style>

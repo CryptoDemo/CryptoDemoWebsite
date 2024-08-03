@@ -220,7 +220,7 @@
                                   formatBalance(offer?.trading_pair?.fiat?.maximum_buy_limit) }} {{ offer?.countryCurrencyName}}</span>
                               <span :class="isDark ? 'text-dark' : 'text-light'"
                                 style=" font-family: Manrope; margin-bottom: 11px; font-size: 14px; font-style: normal;  font-weight: 600;line-height: normal; text-align-last: right;">{{
-                                  offer?.trading_pair?.fiat?.unit_value }} {{ offer.countryCurrencyName }}</span>
+                                  offer?.trading_pair?.fiat?.unit_value }} {{ offer.countryCurrencyName }} </span>
                               <span :class="isDark ? 'text-dark' : 'text-light'"
                                 style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; margin-bottom: 2px; line-height: normal; align-self: self-end;"
                                 v-if="offer?.trading_pair?.fiat?.use_fixed_price">Fixed Price</span>
@@ -536,12 +536,10 @@ const filteredOffers = computed(() => {
   return offers.value
     .filter(offer => {
       const matchesTokenSymbol = !tokenSymbol.value || offer.trading_pair?.crypto?.token?.symbol === tokenSymbol.value;
-      console.log('Token Symbol Filter:', matchesTokenSymbol, offer);
       return matchesTokenSymbol;
     })
     .filter(offer => {
       const matchesPreferredTokenCurrency = !preferredTokenCurrency.value || offer?.countryCurrencyName === preferredTokenCurrency.value;
-      console.log('Preferred Token Currency Filter:', matchesPreferredTokenCurrency, offer);
       return matchesPreferredTokenCurrency;
     })
     .filter(offer => {
@@ -550,7 +548,6 @@ const filteredOffers = computed(() => {
       const minLimit = offer.trading_pair?.fiat?.minimum_buy_limit || 0;
       const maxLimit = offer.trading_pair?.fiat?.maximum_buy_limit || Infinity;
       const matchesPriceRange = minLimit >= minPrice && maxLimit <= maxPrice;
-      console.log('Price Range Filter:', matchesPriceRange, offer, { minPrice, maxPrice, minLimit, maxLimit });
       return matchesPriceRange;
     });
 });
