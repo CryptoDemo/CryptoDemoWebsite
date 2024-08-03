@@ -193,7 +193,10 @@ const pageNumber = ref(1);
 const isLoading = ref();
 const loading = ref();
 const offers = ([]);
-
+const network = pinia.state.selectedNetwork.toLowerCase();
+const selectedNetworkId = pinia.state.BlockchainNetworks.find(b => b.name == network)?.id;
+const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.token_networks?.find(tkn => tkn.blockchain_id === selectedNetworkId));
+const symbols = tokensForSelectedNetwork.map(token => token.symbol);
 
 const slides = ref([
 {

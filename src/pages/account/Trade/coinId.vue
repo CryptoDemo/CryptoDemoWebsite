@@ -8,7 +8,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="navigateTo('/account/trade/wallet')" style="cursor: pointer;">
             <path d="M15 19.9181L8.47997 13.3981C7.70997 12.6281 7.70997 11.3681 8.47997 10.5981L15 4.07812" stroke="#B9D1FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-              <img :src="coin.icon" width="35" class="me-2 ml-2"/>
+              <img :src="coin?.icon" width="35" class="me-2 ml-2"/>
               <span style="font-size: 18px; font-weight: 600;">{{ coin.name }}/</span>
               <span style="font-size: 16px; font-weight: 500;">{{pinia.state.preferredCurrency}}</span>
           </div>

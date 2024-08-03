@@ -59,8 +59,8 @@
                             </div>
 
                             <div class="d-flex">
-                                <span style="color: #007F80">{{formatNumber(transaction?.details?.crypto?.swap?.from.amount)}}</span>
-                                <span style="color: #007F80">{{tokenLists.find((p) => p.id === transaction?.details?.crypto?.swap?.from?.token_id).symbol}}</span>
+                                <span style="color: #007F80">{{formatNumber(transaction?.details?.crypto?.swap?.from?.amount)}}</span>
+                                <span style="color: #007F80">{{tokenLists.find((p) => p.id === transaction?.details?.crypto?.swap?.from?.token_id)?.symbol}}</span>
                             </div>
                         </div>
 

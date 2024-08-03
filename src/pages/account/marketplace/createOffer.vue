@@ -154,7 +154,7 @@
                   </div>
 
                 <div style="display: flex; justify-content: end; margin-top: 30px;">
-                  <v-btn  :disabled="!isFormValid" @click="create_offer()" class="primary-btn1" :loading="loading" style="height: 64px; width: 180px; font-weight: 600; color: white; box-shadow: none;">Create Offer</v-btn>                  
+                  <v-btn  :disabled="!offerRequirements" @click="create_offer()" class="primary-btn1" :loading="loading" style="height: 64px; width: 180px; font-weight: 600; color: white; box-shadow: none;">Create Offer</v-btn>                  
                 </div>
 
                   
@@ -222,15 +222,7 @@ try {
   if (data.success) {
     const payment_method = data.data;
     console.log(payment_method)
-    // const storedcountriesids = pinia.state.allcountries.map(item => item.id);
-    // Check if there are any new items in the fetched data
-    // const newItems = payment_method.filter(item => !storedcountriesids.includes(item.id));
 
-    // if (newItems.length > 0) {
-     
-      pinia.setallcountries([...pinia.state.allcountries, ...newItems]);
-      // flag.value = pinia.state?.allcountries[0].flag_url;
-    // }
   } else {
       push.error(`${data.message}`);
       
@@ -288,8 +280,8 @@ const offerInfo = {
   }
 };
 
-const isFormValid = computed(() => {
-  return tokenSymbol.value && unitPrice.value && EquivPrice.value && minAmmount.value && maxAmmount.value !== null;
+const offerRequirements = computed(() => {
+  return tokenSymbol.value && unitPrice.value && EquivPrice.value && minAmmount.value && maxAmmount.value !== null || !pinia.state.user.kyc_verified;
 });
 
 const isChevronToggled = ref(false);
