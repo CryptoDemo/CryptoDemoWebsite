@@ -389,16 +389,16 @@ onBeforeMount(() => {
     text-overflow: ellipsis;
   }
 
-  .browser-txt{
+  /* .browser-txt{
     margin-top: 3px !important;
-  }
+  } */
   .table-header-text{
     font-weight: 600 !important;
     font-size: 14px !important;
   }
-  .coin-bal{
+  /* .coin-bal{
     margin-bottom: 8px !important
-  }
+  } */
   .coin-width{
     width: 50% !important;
   }
