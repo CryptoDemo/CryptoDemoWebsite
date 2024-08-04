@@ -595,7 +595,7 @@ fill: #10192D;
   }
 
   .mobile-fiat{
-  height: 155px; 
+  height: 180px; 
   width: 100%; 
   padding: 20px;
   flex-direction: column;
