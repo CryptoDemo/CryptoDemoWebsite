@@ -26,7 +26,7 @@
                   </button>
                 </template>
     
-                <v-list style="border-radius: 10px; height: 90px !important; background: white;">
+                <v-list style="border-radius: 10px; height: 90px !important; background: white; color: black;">
                   <v-list-item style="display: contents">
                     <v-row dense style="max-width: 270px; display: block;">
                       <v-col v-for="(currency, index) in pinia.state.allcountries" :key="index">
