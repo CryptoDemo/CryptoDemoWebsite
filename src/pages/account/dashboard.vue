@@ -14,9 +14,9 @@
                 <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
               </div>
 
-              <!-- <div style="width: 810px;">
+              <div style="width: 810px;">
                 <DashboardCoin/>
-              </div> -->
+              </div>
            
               <div style="margin-top: -110px; margin-bottom: 30px;">
                 <Coins/>
@@ -98,7 +98,7 @@
                 </v-card>
 
            
-                <!-- <v-carousel height="400"  cycle  :show-arrows="false" class="carousel-item" style="border-radius: 10px;">
+                 <!-- <v-carousel height="400"  cycle  :show-arrows="false" class="carousel-item" style="border-radius: 10px;">
                   <v-carousel-item v-for="(slide, i) in slides" :key="i">
   
                     <v-sheet :style="`background: ${slide.background};`"  height="100%" style="padding-top: 20px;">
@@ -161,17 +161,15 @@
                     </v-sheet>
                   </v-carousel-item>
                 </v-carousel>
-         
+          -->
 
     
 
               <div style="margin-top: -130px;">
                   <Invite/>
-              </div> -->
+              </div> 
 
               </div>
-        
-          <!-- </div> -->
     </v-container>
     <Footer class="desktop-footer flex-lg-and-up hidden-md-and-down"/>
     <Mobile-footer class="mobile-footer"/>

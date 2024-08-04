@@ -4,10 +4,10 @@
     <div style="margin-top:150px; margin-bottom: 30px;">
       <div>
         <div  style="display: flex; justify-content: space-between;">  
-          <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+          <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="flex-lg-and-up hidden-md-and-down">
             <img src="/img/phoneHand.png" width="195" class="mb-3"/>
           </div>
-            <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 18.54px; display: flex; width: 45%; padding: 34px 18px; border: 0.5px solid rgba(142, 155, 174, 0.5); box-shadow: 0px 25.029px 18.54px 0px rgba(0, 0, 0, 0.02);">
+            <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="ref-box" style="border-radius: 18.54px; display: flex; width: 45%; padding: 34px 18px; border: 0.5px solid rgba(142, 155, 174, 0.5); box-shadow: 0px 25.029px 18.54px 0px rgba(0, 0, 0, 0.02);">
                 <div style="display: grid">
                   <div style="display: flex; align-items: center;">
                     <span class="refer-txt me-2" :class="isDark ? 'card-text-dark':'card-text-light'">Refer and Earn</span>
@@ -24,7 +24,7 @@
                   
                 </div>
             </div>
-            <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+            <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="flex-lg-and-up hidden-md-and-down">
               <qrcode-vue :value="referralCode" :size="206" level="H" style="padding: 20px;display: flex;"/>
             </div>
           </div>
@@ -104,12 +104,12 @@ font-weight: 400;
 line-height: 140%; /* 17.675px */
 }
 
-.partners-text{
-color: var(--Gray-Medium-dark, #646464);
-font-family: Manrope;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+@media only screen and (max-width: 600px) {
+.dashboard-container{
+  margin-left: 0px !important;
+}
+.ref-box{
+  width: 100% !important;
+}
 }
 </style>

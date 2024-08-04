@@ -7,9 +7,9 @@
                 <v-card link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 16px;"> 
                     <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(item.product) }} {{ pinia.state.preferredCurrency }}</span>
                     <span  :class="isDark ? 'text-dark':'text-light'">{{ formatBalance(item.balance) }} {{ item.symbol}}</span>
-                    <div class="mt-3 mb-3" style="display: flex; align-items: center;">
+                    <div class="mt-3 mb-4" style="display: flex; align-items: center;">
                       <img class="me-2" :src="item.icon" alt="coin" width="30"/>
-                      <img :src="chainIcon?.icon" width="15" style="position: relative; right: 14px; margin-top: 16px;"/>
+                      <img :src="chainIcon?.icon" width="15" style="position: relative; right: 17px; margin-top: 16px;"/>
                       <span class="coinName" :class="isDark ? 'text-dark':'text-light'">{{ item.name }}</span>
                     </div>
 
@@ -77,5 +77,16 @@ color: white !important;
 }
 .coin-name-light{
 color: #10192D;
+}
+
+@media screen and (max-width: 600px) {
+.coinbox[data-v-b31ee669] {
+    width: 200.73px;
+    flex-shrink: 0;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
 }
 </style>

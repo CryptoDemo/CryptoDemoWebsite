@@ -90,7 +90,7 @@
                     formatConvertedValue(item.conversionValue || 0) }}</span>
                 </td>
 
-                <td class="mt-2" style="display: flex; align-items: center; justify-content: center; width: 15%;">
+                <td class="mt-2 bal-td" style="display: flex; align-items: center; justify-content: center; width: 15%;">
                   <span class="mb-4 coin-bal" :class="isDark ? 'coin-name' : 'coin-name-light'"
                     style="font-weight: 600; font-size: 16px;"> {{ formatBalance(item.balance) }} </span>
                 </td>
@@ -385,7 +385,6 @@ bottom: 2px;
 
   .coin-name1 {
     font-size: 14px !important;
-    /* width: 10px !important; */
     display: -webkit-box;
     -webkit-box-orient: vertical;
     line-clamp: 1;
@@ -405,16 +404,20 @@ bottom: 2px;
     margin-bottom: 0px !important;
     justify-content: flex-start !important;
   }
-  .balance-tr{
+  .bal-td{
+    width: 20% !important;
+  }
+   /* .balance-tr{
     position: absolute;
     right: 8px;
-  }
+  } */
   .coin-tr{
-    margin-left: 50px;
+    margin-inline-start: auto;
+    padding: 0px;
   }
-  .price-tr{
+  /* .price-tr{
     margin-left: 50px;
-  }
+  }  */
   .search-div{
     width: 80% !important;
   }
