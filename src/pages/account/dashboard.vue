@@ -31,24 +31,23 @@
                   <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1" style="font-size: 14px;">See More...</span>
                 </div>
 
-                <v-card link class="offer-card" @click="navigateTo('/account/marketplace/activeOffers')" v-for="offer in pinia.state.MarketPlace" :key="offer.id"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 100px; margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: normal;">
+                <v-card link class="offer-card" @click="navigateTo('/account/marketplace/activeOffers')" v-for="offer in pinia.state.MarketPlace" :key="offer.id"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 100px; margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
                 
-                  <div style="display: flex; flex-direction: column;">
-                    <span style="margin-bottom: 11px; font-weight: 600;">{{ offer.user.username }}</span>
-                    <!-- <img :src="offer.sellerCountry" style="height: 50px; width: 50px;"/> -->
-                    <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Buy limit</span>
+                  <div style="display: flex; flex-direction: column; line-height: 30px;">
+                    <span style="font-weight: 500; font-size: 14px">{{ offer.user.username }}</span>
+                    <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px; font-style: normal;">Buy limit</span>
                   </div>
-
-                  <div style="display: flex; flex-direction: column;">
-                    <span v-if="offer.user?.is_verified" class="resend-code" style="font-weight: 500;  text-align-last: right; margin-bottom: 11px; font-size: 14px;">Verified</span>
+                  
+                  <div style="display: flex; flex-direction: column; line-height: 30px;">
+                    <span v-if="offer.user?.is_verified"  style="font-weight: 500;  text-align-last: right; font-size: 14px;">Verified</span>
                     <span v-else style="color: orangered; font-size: 14px;">Unverified User</span>
-                    <span style="font-weight: 600; font-size: 14px;">{{formatBalance(offer?.trading_pair?.fiat?.minimum_buy_limit) }} - {{ formatBalance(offer?.trading_pair?.fiat?.maximum_buy_limit) }} {{ offer?.countryCurrencyName }} </span>
+                    <span style="font-size: 14px;" :class="isDark ? 'text-dark' : 'text-light'">{{formatBalance(offer?.trading_pair?.fiat?.minimum_buy_limit) }} - {{ formatBalance(offer?.trading_pair?.fiat?.maximum_buy_limit) }} {{ offer?.countryCurrencyName }} </span>
                   </div>
 
                 </v-card>
 
 
-                <div style="display: flex; justify-content: space-between;">
+                <div style="display: flex; justify-content: space-between; align-items: center">
                   <div style="display: flex; flex-direction: column;">
                     <span style="font-weight: 600; font-size: 16px;">Buy Coins</span>
                     <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 13px;">Choose your preferred withdrawal method</span>
