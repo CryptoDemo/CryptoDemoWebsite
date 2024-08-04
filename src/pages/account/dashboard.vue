@@ -99,19 +99,19 @@
             </v-card>
 
         
-              <!-- <v-carousel height="400"  cycle  :show-arrows="false" class="carousel-item" style="border-radius: 10px;">
+              <v-carousel height="400"  cycle  :show-arrows="false" class="carousel-item" style="border-radius: 10px;">
               <v-carousel-item v-for="(slide, i) in slides" :key="i">
 
                 <v-sheet :style="`background: ${slide.background};`"  height="100%" style="padding-top: 20px;">
                   <div class="d-flex fill-height justify-center align-center">
                     <div style="display: flex; justify-content: space-between">
                       <div style="display: flex; flex-direction: column;">
-                        <span style="font-size: 32px; font-weight: 700; line-height: 140%; color: white; font-family: SF Pro Display; margin-bottom: 16px; margin-left: 28px;" :style="i === slides.length - 1 ? { marginTop: '35px', marginLeft: '0px' } : {}">
+                        <span class="carousel-title" style="font-size: 32px; font-weight: 700; line-height: 140%; color: white; font-family: SF Pro Display; margin-bottom: 16px; margin-left: 28px;" :style="i === slides.length - 1 ? { marginTop: '35px', marginLeft: '0px' } : {}">
                           {{ slide.title }}
                         </span>
                   
 
-                        <div  v-if="i === 2" style="display: flex; margin-right: 30px; margin-bottom: 12px; color: white;">
+                        <!-- <div  v-if="i === 2" style="display: flex; margin-right: 30px; margin-bottom: 12px; color: white;">
                             <span class="carousel-text">
                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M9.99996 1.66663C5.40829 1.66663 1.66663 5.40829 1.66663 9.99996C1.66663 14.5916 5.40829 18.3333 9.99996 18.3333C14.5916 18.3333 18.3333 14.5916 18.3333 9.99996C18.3333 5.40829 14.5916 1.66663 9.99996 1.66663ZM13.9833 8.08329L9.25829 12.8083C9.14163 12.925 8.98329 12.9916 8.81663 12.9916C8.64996 12.9916 8.49163 12.925 8.37496 12.8083L6.01663 10.45C5.77496 10.2083 5.77496 9.80829 6.01663 9.56663C6.25829 9.32496 6.65829 9.32496 6.89996 9.56663L8.81663 11.4833L13.1 7.19996C13.3416 6.95829 13.7416 6.95829 13.9833 7.19996C14.225 7.44163 14.225 7.83329 13.9833 8.08329Z" fill="#FAFAFA"/>
@@ -142,18 +142,19 @@
                             </svg>
                             <span class="ml-1">{{ slide.description3 }}</span>
                           </span>
-                        </div>
+                        </div> -->
 
-                        <div class="secureWallet" :style="i === slides.length - 2 || i === slides.length - 3 ? { marginLeft: '25px' } : {}">
+                        <!-- <div class="secureWallet" :style="i === slides.length - 2 || i === slides.length - 3 ? { marginLeft: '25px' } : {}">
                           <span style="color: white; font-family: SF Pro Display">Secure wallet</span>
                           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                             <path d="M15.9088 10.23V10.98C15.9088 11.1825 15.7531 11.3475 15.5454 11.355H14.4626C14.0695 11.355 13.7135 11.0625 13.6838 10.6725C13.6616 10.44 13.7506 10.2225 13.8989 10.0725C14.0324 9.92998 14.2178 9.85498 14.4181 9.85498H15.538C15.7531 9.86248 15.9088 10.0275 15.9088 10.23Z" fill="white"/>
                             <path d="M13.3426 9.51748C12.9718 9.88498 12.7938 10.4325 12.9421 11.0025C13.135 11.7 13.8099 12.1425 14.5219 12.1425H15.1671C15.5751 12.1425 15.9088 12.48 15.9088 12.8925V13.035C15.9088 14.5875 14.6554 15.855 13.1201 15.855H4.60581C3.07056 15.855 1.81714 14.5875 1.81714 13.035V7.98748C1.81714 7.06498 2.25472 6.24748 2.92964 5.73748C3.39689 5.37748 3.97539 5.16748 4.60581 5.16748H13.1201C14.6554 5.16748 15.9088 6.43498 15.9088 7.98748V8.31748C15.9088 8.72998 15.5751 9.06748 15.1671 9.06748H14.4106C13.9953 9.06748 13.6171 9.23248 13.3426 9.51748Z" fill="white"/>
                             <path d="M12.015 3.615C12.2152 3.8175 12.0446 4.1325 11.7628 4.1325L6.0668 4.125C5.74046 4.125 5.56988 3.72 5.80721 3.4875L7.00871 2.265C8.0248 1.245 9.6713 1.245 10.6874 2.265L11.9853 3.5925C11.9927 3.6 12.0075 3.6075 12.015 3.615Z" fill="white"/>
                           </svg>
-                        </div>
+                        </div> -->
                       </div>
-                      <img :src="slide.image" width="350" alt="Slide Image" :style="i === slides.length - 1 ? { width: '280px', height: '350px', borderRadius: '10px' } : {}">
+                      <!-- <img :src="slide.image" width="350" alt="Slide Image" class="slide-img" :style="i === slides.length - 1 ? { width: '280px', height: '350px', borderRadius: '10px' } : {}"> -->
+                      <img :src="slide.image" width="350" alt="Slide Image" class="slide-img">
                     
                     
 
@@ -162,7 +163,7 @@
                 </v-sheet>
               </v-carousel-item>
             </v-carousel>
-      -->
+      
 
 
 
@@ -211,7 +212,7 @@ const slides = ref([
         },
         {
           title: "FEATURES",
-          image: "/img/cryptocurency-dist.png",
+          image: "/svg/cryptocurency-dist.svg",
           description: "Multiple payment options",
           description1: "Vendor fixed prices",
           description2: "Secure Escrow hub",
@@ -404,6 +405,16 @@ margin-top: 20px;
 }
 .scroll-coin{
   width: 340px !important;
+}
+.carousel-title{
+  font-size: 17px !important;
+}
+.slide-img{
+  width: 150px;
+  height: 130px;
+}
+.carousel-item{
+  height: 200px !important;
 }
 }
 </style>

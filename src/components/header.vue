@@ -424,9 +424,9 @@ margin-top: 15px !important;
   right: 54px !important;
   margin-top: 27px !important;
 }
-.wallet-btn{
+/* .wallet-btn{
 margin-bottom: 24px;
-}
+} */
 }
 
 
