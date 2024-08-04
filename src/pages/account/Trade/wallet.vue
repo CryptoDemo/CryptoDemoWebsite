@@ -197,11 +197,11 @@
                 <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Transaction History</span>
             </div>
 
-            <div v-if="selectedScreen" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="txn-div" style="padding: 10px; margin-bottom: 300px; max-height: 400px; overflow: scroll">
+            <div v-if="selectedScreen" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="txn-div" style="padding: 10px; margin-bottom: 300px; max-height: 400px; overflow: scroll; border-radius: 10px !important;">
               <WebTxn/>
             </div>
 
-            <div v-else :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="txn-div" style="padding: 10px; margin-bottom: 300px; max-height: 400px; overflow: scroll">
+            <div v-else :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="txn-div" style="padding: 10px; margin-bottom: 300px; max-height: 400px; overflow: scroll; border-radius: 10px !important;">
               <FiatTxn/>
             </div>
           
