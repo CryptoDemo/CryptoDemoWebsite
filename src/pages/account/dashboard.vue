@@ -49,7 +49,7 @@
 
                 <div style="display: flex; justify-content: space-between; align-items: center">
                   <div style="display: flex; flex-direction: column;">
-                    <span style="font-weight:500; font-size: 16px;">Buy Coins</span>
+                    <span style="font-weight:600; font-size: 16px;">Buy Coins</span>
                     <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 13px;">Choose your preferred withdrawal method</span>
                   </div>
                   <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1" style="font-size: 13px;">See More...</span>

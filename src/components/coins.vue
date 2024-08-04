@@ -74,9 +74,7 @@
                     <img :src="chainIcon?.icon" width="15" class=" py-5"
                       style="position: relative; right: 11px; margin-top: 16px;" />
                     <div style="flex-direction:row">
-                      <span class="coin-name1" :class="isDark ? 'coin-name' : 'coin-name-light'"
-                        style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height:normal">{{ item.name
-                        }}</span>
+                      <span class="coin-name1" :class="isDark ? 'coin-name' : 'coin-name-light'" style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height:normal">{{ item.name}}</span>
                       <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down"
                         :class="isDark ? 'text-dark' : 'text-light'">{{ item.symbol }}</span>
                     </div>
@@ -84,8 +82,7 @@
                 </td>
 
 
-                <td class="mt-4"
-                  style="overflow: scroll; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical;line-clamp: 1; display: flex; align-self: self-start; justify-content: center; width: 27%;">
+                <td class="mt-4 price-td" style="overflow: scroll; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical;line-clamp: 1; display: flex; align-self: self-start; justify-content: center; width: 27%;">
                   <span class="browser-txt" :class="isDark ? 'coin-name' : 'coin-name-light'">{{
                     formatConvertedValue(item.conversionValue || 0) }}</span>
                 </td>
@@ -407,13 +404,16 @@ bottom: 2px;
   .bal-td{
     width: 20% !important;
   }
-   /* .balance-tr{
-    position: absolute;
-    right: 8px;
-  } */
+  .price-td{
+    width: 39% !important;
+  }
+   .balance-tr{
+    padding: 0px !important;
+  }
   .coin-tr{
     margin-inline-start: auto;
     padding: 0px;
+    margin-inline: auto;
   }
   /* .price-tr{
     margin-left: 50px;
