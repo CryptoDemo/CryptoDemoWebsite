@@ -6,9 +6,8 @@
       <div>
         <div class="wallet-box" :class="isDark ? 'wallet-border' : 'wallet-border-light'"
           style="border-radius: 24px; width: 100%; padding: 25px; margin-top: 28px; width: 100%;">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; flex-direction: column">
-
+          <div style="display: flex; justify-content: space-between; align-items: baseline">
+            <div  style="display: flex; flex-direction: column">
               <BlockChainNetwork />
             </div>
 
