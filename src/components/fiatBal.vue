@@ -1,16 +1,16 @@
 <template>
     
-    <div :class="isDark ? 'profile':'profile-light'" class="wallet-nav">
+    <div class="wallet-nav">
 
         <div class="d-flex" style="justify-content: space-between; align-items: center;">
 
             <div class="d-flex" style="align-items: baseline; justify-content: space-between; margin-top: -2px; ">
-              <span class="sm-num" :class="isDark ? 'country-name' : 'country-name-light'" style="font-size: 16px; font-style: normal;font-weight: 600;">Fiat Balance</span>
+              <span class="sm-num"  style="font-size: 16px; font-style: normal;font-weight: 600; color: white;">Fiat Balance</span>
             </div>
 
             <v-menu transition="slide-y-transition">
                 <template v-slot:activator="{ props }">
-                  <button class="dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: none; box-shadow: none;" @click="toggleChevron">
+                  <button class="dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: none; box-shadow: none; color: white;" @click="toggleChevron">
                     <span class="me-2" :class="isDark ? 'country-text':'country-text-light'" style="text-transform: capitalize; font-family: Manrope;">{{pinia.state.preferredCurrency}}</span>
     
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
@@ -41,10 +41,15 @@
         </div>
 
 
-          <div :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="margin-top: 25px; margin-bottom: 25px; height: 130px; position: relative; display: flex; justify-content: center; align-items: center;">
+          <div style="margin-top: 25px; margin-bottom: 25px; height: 90px; position: relative; display: flex; justify-content: center; align-items: center;">
         
-            <div style="display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; justify-content: flex-start;">
               <span class="lg-num">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(fiatAmmount) }}</span>
+
+              <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="20" height="20" viewBox="0 0 20 20" fill="none" style="cursor: pointer;">
+                <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.99987 16.8918C12.9415 16.8918 15.6832 15.1584 17.5915 12.1584C18.3415 10.9834 18.3415 9.00843 17.5915 7.83343C15.6832 4.83343 12.9415 3.1001 9.99987 3.1001C7.0582 3.1001 4.31654 4.83343 2.4082 7.83343C1.6582 9.00843 1.6582 10.9834 2.4082 12.1584C4.31654 15.1584 7.0582 16.8918 9.99987 16.8918Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
             
           </div>
@@ -59,6 +64,10 @@
   const theme = useTheme()
   const isDark = computed(() =>  theme.global.current.value.dark);
   const pinia = useStore()
+
+  const togglePassword = () => {
+  isToggled.value = !isToggled.value;
+};
 
   const allCountries = pinia.state.allcountries;
   const fiatAmmount = ref();
@@ -92,7 +101,8 @@
   
   <style scoped>
   .wallet-nav{
-  background: var(--secondary-background, #12181F);
+  background: var(--linear-card, linear-gradient(270deg, #1DA1DB -11.75%, #2873FF 119.96%));
+  filter: drop-shadow(0px 27px 20px rgba(0, 0, 0, 0.02));
   padding: 31px;
   width: 286px;
   border-radius: 15px;
@@ -108,7 +118,7 @@
   .lg-num{
   text-align: center;
   font-family: Manrope;
-  font-size: 24px;
+  font-size: 32px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;

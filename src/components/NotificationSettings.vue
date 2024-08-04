@@ -145,7 +145,7 @@ const setCamo = async () => {
   dialog.value = true
   const UpdateUserDetails = {
     camouflage: {
-      country_id: CountryID.value.id,
+      country_id: CountryID.value?.id,
       max_spend_balance: camouflagBalance.value,
     }
   };

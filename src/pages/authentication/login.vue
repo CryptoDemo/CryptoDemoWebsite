@@ -96,6 +96,7 @@ import { signIn } from "@/composables/requests/auth";
 const theme = useTheme()
 const isDark = computed(() =>  theme?.global?.current.value?.dark);
 const isToggled = ref(true);
+
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };

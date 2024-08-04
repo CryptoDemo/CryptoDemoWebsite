@@ -595,9 +595,9 @@ fill: #10192D;
   }
 
   .mobile-fiat{
-  height: 144px; 
+  height: 155px; 
   width: 100%; 
-  padding: 10px;
+  padding: 20px;
   flex-direction: column;
   background: var(--linear-card, linear-gradient(270deg, #1DA1DB -11.75%, #2873FF 119.96%));
   filter: drop-shadow(0px 27px 20px rgba(0, 0, 0, 0.02));
