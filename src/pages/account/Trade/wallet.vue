@@ -2,7 +2,7 @@
     <div>
        <Header :wallet="true" :hide="true" :icon1="true" :icon3="true"  :icon2="true"/>
        <v-container>
-            <div style="margin-top: 110px; display: flex; width: 100% !important;">
+            <div style="margin-top: 90px; display: flex; width: 100% !important;">
             
               <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-if="selectedScreen">
                 <Wallet-nav/>
