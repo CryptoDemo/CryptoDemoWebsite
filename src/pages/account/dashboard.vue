@@ -39,7 +39,7 @@
                   </div>
                   
                   <div style="display: flex; flex-direction: column; line-height: 30px;">
-                    <span v-if="offer.user?.is_verified"  style="font-weight: 500;  text-align-last: right; font-size: 14px;">Verified</span>
+                    <span v-if="offer.user?.is_verified" style="font-weight: 500;  text-align-last: right; font-size: 14px; color: #1671D9;">Verified</span>
                     <span v-else style="color: orangered; font-size: 14px;">Unverified User</span>
                     <span style="font-size: 14px;" :class="isDark ? 'text-dark' : 'text-light'">{{formatBalance(offer?.trading_pair?.fiat?.minimum_buy_limit) }} - {{ formatBalance(offer?.trading_pair?.fiat?.maximum_buy_limit) }} {{ offer?.countryCurrencyName }} </span>
                   </div>
@@ -57,9 +57,9 @@
 
                 <v-card class="offer-card" link @click="navigateTo('/account/marketplace/activeOffers')"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
                 
-                  <div style="display: flex; flex-direction: column;">
-                    <span style="margin-bottom: 11px; font-weight: 600;">Bank Transfer</span>
-                    <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Buy coin and pay with bank transfer</span>
+                  <div style="display: flex; flex-direction: column; line-height: 30px;">
+                    <span style="font-weight: 600; font-size: 14px;">Bank Transfer</span>
+                    <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;">Buy coin and pay with bank transfer</span>
                   </div>
 
                   <img src="/svg/bankTrf.svg"/>
