@@ -4,12 +4,12 @@
        <v-container>
             <div style="margin-top: 110px; display: flex; width: 100% !important;">
             
-                  <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-if="selectedScreen">
-                    <Wallet-nav/>
-                   </div>
-                  <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-else>
-                    <FiatBal/>
-                  </div>
+              <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-if="selectedScreen">
+                <Wallet-nav/>
+                </div>
+              <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-else>
+                <FiatBal/>
+              </div>
             
   
               <div style="width: -webkit-fill-available">
@@ -18,15 +18,6 @@
                   <v-btn class="me-3" :class="[selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=true" >Crypto Wallet </v-btn>
                   <v-btn :class="[!selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=false">Fiat Wallet</v-btn>
                 </div>
-<!-- 
-                <div>
-                  <div class="ma-2 mt-5 me-6 hidden-lg-and-up flex-md-and-down" v-if="selectedScreen">
-                    <Wallet-nav/>
-                   </div>
-                  <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-else>
-                    <FiatBal/>
-                   </div>
-               </div> -->
 
             <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; padding: 30px; margin-top: 30px;">
                 <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
@@ -198,7 +189,7 @@
           </v-table>
             </div>
 
-            <div v-else style="margin-top: 30px; margin-bottom: 400px;">
+            <div v-else style="margin-top: 20px; margin-bottom: 10px;">
               <Fiat/>
             </div>
 

@@ -92,7 +92,7 @@
   }
   .lg-num{
   text-align: center;
-  font-family: Manrope;
+  font-family: SF Pro Display;
   font-size: 24px;
 font-style: normal;
 font-weight: 800;
