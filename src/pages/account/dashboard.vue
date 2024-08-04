@@ -34,7 +34,7 @@
                 <v-card link class="offer-card" @click="navigateTo('/account/marketplace/activeOffers')" v-for="offer in pinia.state.MarketPlace" :key="offer.id"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 100px; margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
                 
                   <div style="display: flex; flex-direction: column; line-height: 30px;">
-                    <span style="font-weight: 500; font-size: 14px">{{ offer.user.username }}</span>
+                    <span style="font-weight: 600; font-size: 14px">{{ offer.user.username }}</span>
                     <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px; font-style: normal;">Buy limit</span>
                   </div>
                   
@@ -49,7 +49,7 @@
 
                 <div style="display: flex; justify-content: space-between; align-items: center">
                   <div style="display: flex; flex-direction: column;">
-                    <span style="font-weight: 600; font-size: 16px;">Buy Coins</span>
+                    <span style="font-weight:500; font-size: 16px;">Buy Coins</span>
                     <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 13px;">Choose your preferred withdrawal method</span>
                   </div>
                   <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1" style="font-size: 13px;">See More...</span>
@@ -68,9 +68,9 @@
 
                 <v-card class="offer-card" link @click="navigateTo('/account/marketplace/activeOffers')"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
                 
-                  <div style="display: flex; flex-direction: column;">
-                    <span style="margin-bottom: 11px; font-weight: 600;">Online wallet</span>
-                    <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Buy coin and pay from an online wallet</span>
+                  <div style="display: flex; flex-direction: column; line-height: 30px;">
+                    <span style="font-weight: 600; font-size: 14px;">Online wallet</span>
+                    <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Buy coin and pay from an online wallet</span>
                   </div>
 
                   <img src="/svg/cashDeps.svg"/>
@@ -79,9 +79,9 @@
 
                 <v-card class="offer-card" link @click="navigateTo('/account/marketplace/activeOffers')"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-bottom: 30px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
                 
-                  <div style="display: flex; flex-direction: column;">
-                    <span style="margin-bottom: 11px; font-weight: 600;">Cash deposit</span>
-                    <span class="mb-3" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Buy coin and pay with cash deposit to bank</span>
+                  <div style="display: flex; flex-direction: column; line-height: 30px;">
+                    <span style="font-weight: 600; font-size: 14px;">Cash deposit</span>
+                    <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;line-height: normal;">Buy coin and pay with cash deposit to bank</span>
                   </div>
 
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 18 18" fill="none">
