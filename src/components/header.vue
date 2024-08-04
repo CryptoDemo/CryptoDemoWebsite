@@ -429,8 +429,11 @@ margin-top: 15px !important;
 }
 .wallet-btn{
 margin-bottom: 24px;
+position: absolute !important;
+right: 20px !important;
 }
 }
+
 
 
 </style>
