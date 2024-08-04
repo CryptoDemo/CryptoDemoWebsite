@@ -86,7 +86,7 @@
                     formatConvertedValue(item.conversionValue || 0) }}</span>
                 </td>
 
-                <td class="mt-2 bal-td" style="display: flex; align-items: center; justify-content: center; width: 15%;">
+                <td class="mt-2 bal-td" style="display: flex; align-items: center; justify-content: center; width: 13%;">
                   <span class="mb-4 coin-bal" :class="isDark ? 'coin-name' : 'coin-name-light'"
                     style="font-weight: 600; font-size: 16px;"> {{ formatBalance(item.balance) }} </span>
                 </td>

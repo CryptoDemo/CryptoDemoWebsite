@@ -14,7 +14,7 @@
             <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
           </div>
 
-          <div style="width: 845px;">
+          <div class="scroll-coin" style="width: 845px;">
             <DashboardCoin/>
           </div>
         
@@ -401,6 +401,9 @@ margin-top: 20px;
 }
 .offer-card{
   height: 80px !important;
+}
+.scroll-coin{
+  width: 340px !important;
 }
 }
 </style>
