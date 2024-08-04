@@ -3,8 +3,15 @@
 
     <div style="display: flex; justify-content: space-between; width: 100%;">
 
+      <div class="mobile-fiat" style="display: flex; justify-content: space-between; width: 100%;">
+
+      <div class="hidden-md-and-up flex-sm-and-down" style="display: flex; justify-content: flex-start;">
+        <MobileFiatBal/>
+      </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: self-end; ">
     
-            <v-btn @click="dialog = true" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+            <v-btn @click="dialog = true" class="fiat-btn send-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
                 <img src="/svg/send-arrow.svg" class="me-1"/>
                 Fund
             </v-btn>
@@ -61,9 +68,6 @@
                 </v-card>
     
             </v-dialog>
-   
-
-
 
             <v-btn @click="dialog1 = true" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
                 <img src="/svg/get.svg" class="me-1"/>
@@ -223,14 +227,10 @@
     
             </v-dialog>
 
-
-
-            
-            
-                        
-        <FiatSwap/>       
-
-
+             
+            <FiatSwap/>       
+          </div>
+      </div>
 
         <!-- <v-btn class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
             <img src="/svg/arrow-swap.svg" class="me-1"/>
@@ -548,6 +548,16 @@ border: 1px solid #E2E8F0;
   border-radius: 15px;
 }
 
+.offers-cards-dark{
+background: #0D1526;
+border-radius: 10px;
+}
+
+.offers-cards-light{
+background: #edf3ff;
+border-radius: 10px;
+}
+
 .chevron-icon {
 transition: transform 0.3s;
 }
@@ -570,5 +580,28 @@ fill: #10192D;
   border: 1px solid #303a46;
   background: inherit !important;
   border-radius: 15px;
+}
+
+@media screen and (max-width: 600px) {
+  .fiat-btn {
+  height: 45px;
+  width: 100px;
+  border-radius: 12px;
+  font-size: 14px;
+  letter-spacing: 0px;
+  text-transform: unset;
+  background: #fff !important;
+  color: #10192D;
+  }
+
+  .mobile-fiat{
+  height: 144px; 
+  width: 100%; 
+  padding: 10px;
+  flex-direction: column;
+  background: var(--linear-card, linear-gradient(270deg, #1DA1DB -11.75%, #2873FF 119.96%));
+  filter: drop-shadow(0px 27px 20px rgba(0, 0, 0, 0.02));
+  border-radius: 18px;
+  }
 }
 </style>

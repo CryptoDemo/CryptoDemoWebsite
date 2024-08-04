@@ -349,7 +349,7 @@ const filteredCurrency_to_swap_to = computed(() => pinia.state.allcountries.filt
   <style scoped>
   .fiat-btn{
   display: flex;
-  height: 132px !important;
+  height: 132px;
   width: 260px;
   border-radius: 16px;
   justify-content: center;
@@ -527,6 +527,19 @@ const filteredCurrency_to_swap_to = computed(() => pinia.state.allcountries.filt
 
   50% {
     transform: translate(10px, 0);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .fiat-btn {
+  height: 45px;
+  width: 100px;
+  border-radius: 12px;
+  font-size: 14px;
+  letter-spacing: 0px;
+  text-transform: unset;
+  background: #fff !important;
+  color: #10192D;
   }
 }
   </style>

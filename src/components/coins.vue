@@ -399,7 +399,7 @@ bottom: 2px;
     justify-content: flex-start !important;
   }
   .bal-td{
-    width: 21% !important;
+    width: 23% !important;
   }
   .price-td{
     width: 39% !important;
