@@ -46,7 +46,7 @@
                 </th>
 
                 <th class="price-tr" style="display: flex; align-items: center; align-self: center; position: relative; justify-content: center;">
-                  <span class="table-header-text me-1" :class="isDark ? 'text-dark' : 'text-light'"
+                  <span class="table-header-text" :class="isDark ? 'text-dark' : 'text-light'"
                     style="margin-left: ">Price (USD)</span>
                 </th>
 
@@ -60,38 +60,36 @@
             <tbody>
 
 
-              <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index"
-                @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')"
-                style="display: flex; justify-content: space-between;">
+            <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index"
+              @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')"
+              style="display: flex; justify-content: space-between;">
 
-                <td class="mt-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark' : 'text-light'" style="display: flex; align-items: center;">
-                  {{ index + 1 }}</td>
+              <td class="mt-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark' : 'text-light'" style="display: flex; align-items: center;">
+                {{ index + 1 }}</td>
 
-                <td style="display: contents; position: relative; width: 34%;">
-                  <div class="d-flex coin-width" style="align-items: center; width: 150px; ">
-                    <img :src="item.icon" width="35" class="py-5" />
-                    <img :src="chainIcon?.icon" width="15" class=" py-5"
-                      style="position: relative; right: 11px; margin-top: 16px;" />
-                    <div style="flex-direction:row">
-                      <span class="coin-name1" :class="isDark ? 'coin-name' : 'coin-name-light'" style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height:normal">{{ item.name}}</span>
-                      <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down"
-                        :class="isDark ? 'text-dark' : 'text-light'">{{ item.symbol }}</span>
-                    </div>
+              <td style="display: contents; position: relative; width: 34%;">
+                <div class="d-flex coin-width" style="align-items: center; width: 150px; ">
+                  <img :src="item.icon" width="35" class="py-5" />
+                  <img :src="chainIcon?.icon" width="15" class=" py-5"
+                    style="position: relative; right: 11px; margin-top: 16px;" />
+                  <div style="flex-direction:row">
+                    <span class="coin-name1" :class="isDark ? 'coin-name' : 'coin-name-light'" style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height:normal">{{ item.name}}</span>
+                    <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down"
+                      :class="isDark ? 'text-dark' : 'text-light'">{{ item.symbol }}</span>
                   </div>
-                </td>
+                </div>
+              </td>
+
+              <td class="mt-4 price-td" style="overflow: scroll;  display: flex; align-self: self-start; justify-content: center; width: 27%; ">
+                <span class="browser-txt" :class="isDark ? 'coin-name' : 'coin-name-light'" style="margin-right: -13px;">{{formatConvertedValue(item.conversionValue || 0) }}</span>
+              </td>
 
 
-                <td class="mt-4 price-td" style="overflow: scroll; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical;line-clamp: 1; display: flex; align-self: self-start; justify-content: center; width: 27%;">
-                  <span class="browser-txt" :class="isDark ? 'coin-name' : 'coin-name-light'">{{
-                    formatConvertedValue(item.conversionValue || 0) }}</span>
-                </td>
+              <td class="mt-2 bal-td" style="display: flex; align-items: center; justify-content: center; width: 16%;">
+                <span class="mb-4 coin-bal" :class="isDark ? 'coin-name' : 'coin-name-light'" style="font-weight: 600; font-size: 16px; width: 10px;"> {{ formatBalance(item.balance) }} </span>
+              </td>
 
-                <td class="mt-2 bal-td" style="display: flex; align-items: center; justify-content: center; width: 13%;">
-                  <span class="mb-4 coin-bal" :class="isDark ? 'coin-name' : 'coin-name-light'"
-                    style="font-weight: 600; font-size: 16px;"> {{ formatBalance(item.balance) }} </span>
-                </td>
-
-              </tr>
+            </tr>
             </tbody>
           </v-table>
         </div>
@@ -414,9 +412,9 @@ bottom: 2px;
     padding: 0px;
     margin-inline: auto;
   }
-  /* .price-tr{
-    margin-left: 50px;
-  }  */
+  .coin-bal{
+    width: 28px !important;
+  } 
   .search-div{
     width: 80% !important;
   }
