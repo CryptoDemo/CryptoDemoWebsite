@@ -19,6 +19,10 @@
                   <v-btn :class="[!selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=false">Fiat Wallet</v-btn>
                 </div>
 
+                <div v-if="selectedScreen" class="hidden-lg-and-up flex-md-and-down mt-5">
+                  <MobilecryptoBal/>
+                </div>
+
             <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; padding: 30px; margin-top: 30px;">
                 <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
                   <thead>

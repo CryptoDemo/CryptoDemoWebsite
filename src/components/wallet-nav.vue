@@ -7,7 +7,7 @@
         <BlockChainNetwork/>
       </div>
 
-      
+
       <div  style="margin-top: 25px; margin-bottom: 25px; height: 90px;  position: relative; display: flex; justify-content: center; align-items: center;">
     
         <div style="display: flex; align-items: center; justify-content: space-between;" v-if="isCamouflageEmpty">
@@ -106,6 +106,8 @@ onMounted(async () => {
 
 });
 </script>
+
+
 
 <style scoped>
 .wallet-nav{

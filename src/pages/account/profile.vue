@@ -57,7 +57,7 @@
                         
                         <v-btn v-if="pinia?.state?.user?.kyc_verified === false" @click="kyc_()" class="primary-btn1" style="border-radius: 10px!important;">Verify Now</v-btn>
 
-                        <img v-else :src="pinia.state?.user?.badge || '/svg/Image-grad.svg'"/>
+                        <img v-else :src="pinia.state?.user?.badge || '/img/Frame 9.png'" style="width: 60px;"/>
 
                         
                         

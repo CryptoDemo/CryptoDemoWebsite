@@ -2,7 +2,7 @@
     <div>
         <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <button class="dropdown-btn1i" :class="isDark ? 'dropdown-btn1i':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none;" @click="toggleChevron">
+              <button  :class="isDark ? 'dropdown-btn1i-dark':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; width: fit-content;" @click="toggleChevron">
                 <span class="me-2" :class="isDark ? 'country-text':'country-text-light'" style="text-transform: capitalize; font-family: Manrope;">{{pinia.state.selectedNetwork}}</span>
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
@@ -97,7 +97,7 @@ margin-top: 10px !important;
 border: 1px solid #DBE8FF;
 }
 
-.dropdown-btn1i{
+.dropdown-btn1i-dark{
 flex-shrink: 0;
 border-radius: 20px !important;
 background: inherit;

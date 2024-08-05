@@ -9,9 +9,9 @@
         <MobileFiatBal/>
       </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: self-end; ">
+        <div style="display: flex; justify-content: space-between; align-items: self-end; width: 100%;">
     
-            <v-btn @click="dialog = true" class="fiat-btn send-btn me-7" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+            <v-btn @click="dialog = true" class="fiat-btn send-btn me-" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
                 <img src="/svg/send-arrow.svg" class="me-1"/>
                 Fund
             </v-btn>
@@ -69,7 +69,7 @@
     
             </v-dialog>
 
-            <v-btn @click="dialog1 = true" class="fiat-btn me-7" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+            <v-btn @click="dialog1 = true" class="fiat-btn me-" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
                 <img src="/svg/get.svg" class="me-1"/>
                 Send
             </v-btn>
