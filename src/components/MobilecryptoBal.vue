@@ -37,15 +37,15 @@
         </div>
   
         <div style="display: flex; justify-content: space-between;">
-          <v-btn @click="dialog = true" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+          <v-btn @click.prevent="navigateTo('/account/trade/getButton')" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="font-weight: 600;">
                   <img src="/svg/send-arrow.svg"/>
                   Get
           </v-btn>
-          <v-btn @click="dialog = true" class="fiat-btn send-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+          <v-btn @click.prevent="navigateTo('/account/trade/sendButton')"  class="fiat-btn send-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="font-weight: 600;">
                   <img src="/svg/get.svg"/>
                  Send
           </v-btn>
-          <v-btn @click="dialog = true" class="fiat-btn send-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+          <v-btn @click.prevent="navigateTo('/account/trade/swap')" class="fiat-btn send-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="font-weight: 600;">
                   <img src="/svg/arrow-swap.svg"/>
                   Swap
           </v-btn>
