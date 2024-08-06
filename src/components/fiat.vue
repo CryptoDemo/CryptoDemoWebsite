@@ -83,7 +83,7 @@
                 <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
 
                     <v-card-text>
-                        <h3 class="text-center">Send Money</h3>
+                        <h3 class="text-center header-txt">Send Money</h3>
                         <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Effortlessly transfer funds using our fiat currency service.</span>
                         
                         <v-card @click="dialog2 = true" class="mt-10 mb-8" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0px; line-height: 25px; text-transform: unset;">
@@ -615,5 +615,9 @@ fill: #10192D;
   .fund-alert{
     display: none;
   }
+
+  .header-txt{
+  margin-top: 20px !important;
+ }
 }
 </style>

@@ -24,7 +24,7 @@
                   <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
   
                       <v-card-text>
-                          <h3 class="text-center">withdrawal account information</h3>
+                          <h3 class="text-center header-txt">withdrawal account information</h3>
                           <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Effortlessly Withdraw funds using our fiat currency service.</span>
                          
                           <div style="display: flex; flex-direction: column; justify-content: center; margin: auto; align-items: center; margin-top: 30px;">
@@ -104,7 +104,7 @@
                           
                             <v-btn @click="Withdrawal_ ()" class="primary-btn1 mt-8 process-withdrawal" v-if="!isStripeGateway" :loading="loading_withdrawal" style="width: 70%; height: 60px;"> Process withdrawal</v-btn>
 
-                            <v-btn @click="connectToStripe()" class="primary-btn1 mt-8" v-else style="width: 70%; height: 60px;">Proceed with Stripe</v-btn>
+                            <v-btn @click="connectToStripe()" class="primary-btn1 mt-8 process-withdrawal" v-else style="width: 70%; height: 60px;">Proceed with Stripe</v-btn>
                 
                           </div>
   
@@ -267,12 +267,16 @@ const connectToStripe = async (payload) => {
 
 @media screen and (max-width: 600px) {
  .bi-circle{
-  width: 80px !important;
+  width: 57px !important;
   height: 30px !important;
  }
 
  .withdrawal-modal, .info-input, .process-withdrawal{
   width: 100% !important;
+ }
+
+ .header-txt{
+  margin-top: 20px !important;
  }
   
 }
