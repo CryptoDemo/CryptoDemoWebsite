@@ -63,7 +63,7 @@
                             </div>
 
                             <div class="d-flex mt-3 info-input" style="flex-direction: column; width: 70%;">
-                              <input type="number" placeholder="Enter  ammount" :class="isDark ? 'input-border':'input-border-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                              <input type="number" placeholder="Enter  ammount" :class="isDark ? 'input-border':'input-border-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 15px; position: relative;"/>
                             
                               <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
                                   Enter withdrawal ammount. The minimum withdrawal is 
@@ -76,7 +76,7 @@
 
 
                             <div class="d-flex mt-3 info-input" style="flex-direction: column; width: 70%;">
-                              <input type="text" placeholder="Enter Bank name" v-model="Bankname" :class="isDark ? 'input-border':'input-border-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                              <input type="text" placeholder="Enter Bank name" v-model="Bankname" :class="isDark ? 'input-border':'input-border-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 15px; position: relative;"/>
                             
                               <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
                                   Enter Bank Name.
@@ -84,7 +84,7 @@
                             </div>
 
                             <div class="d-flex mt-3 info-input" style="flex-direction: column; width: 70%;">
-                              <input type="text" placeholder="Enter account name" v-model="acctName" :class="isDark ? 'input-border':'input-border-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                              <input type="text" placeholder="Enter account name" v-model="acctName" :class="isDark ? 'input-border':'input-border-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 15px; position: relative;"/>
                             
                               <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
                                   Enter account name.
@@ -92,7 +92,7 @@
                             </div>
 
                             <div class="d-flex mt-3 info-input" style="flex-direction: column; width: 70%;">
-                              <input type="text" placeholder="Enter account number"  v-model="acctNumber" :class="isDark ? 'input-border':'input-border-light'" style="outline: none; height: 60px !important; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                              <input type="text" placeholder="Enter account number"  v-model="acctNumber" :class="isDark ? 'input-border':'input-border-light'" style="outline: none; height: 60px !important; padding: 10px; margin-top: 10px; border-radius: 15px; position: relative;"/>
                             
                               <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
                                   Enter account number.

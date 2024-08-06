@@ -43,7 +43,7 @@
                   <v-btn class="image-button social-icons me-4"  variant="text" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
                  
                   <div style="border-left: 1px solid #8E9BAE; height: 1%; padding-left: 13px; width: 200px;">
-                    <span class="icon-text" style="color: #8E9BAE;font-family: SF Pro Display; font-weight: 500; font-size: 16px;">Demo Web App now  available for download</span>
+                    <span class="icon-text" style="color: #8E9BAE;font-family: SF Pro Display; font-weight: 500; font-size: 16px;">Demo App now  available for download</span>
                   </div>
                 </div>
                   </v-col>
@@ -63,7 +63,7 @@
       <div class="footer-container"  :class="theme.global.current.value.dark?'custom-dark':'custom-light'">
         <v-container>
             <span class="footer-text2">
-              “DEMO” is a registered trademark of Paxful, Inc. Copyright © 2024 Demo Web, Inc. All Rights Reserved. Paxful Inc. has no relation to MoneyGram, Western Union, Payoneer, WorldRemit, Paxum, PayPal, Amazon, OkPay, Payza, Walmart, Reloadit, Perfect Money, WebMoney, Google Wallet, BlueBird, Serve, Square Cash, NetSpend, Chase QuickPay, Skrill, Vanilla, MyVanilla, OneVanilla, Neteller, Venmo, Apple, ChimpChange or any other payment method. We make no claims about being supported by or supporting these services. Their respective wordmarks and trademarks belong to them alone. Official mailing address: 4023 Kennett Pike #50541, Wilmington, DE 19807
+              “DEMO” is a registered trademark of Demo Inc. Copyright © 2024 Demo Web, Inc. All Rights Reserved. Paxful Inc. has no relation to MoneyGram, Western Union, Payoneer, WorldRemit, Paxum, PayPal, Amazon, OkPay, Payza, Walmart, Reloadit, Perfect Money, WebMoney, Google Wallet, BlueBird, Serve, Square Cash, NetSpend, Chase QuickPay, Skrill, Vanilla, MyVanilla, OneVanilla, Neteller, Venmo, Apple, ChimpChange or any other payment method. We make no claims about being supported by or supporting these services. Their respective wordmarks and trademarks belong to them alone. Official mailing address: 4023 Kennett Pike #50541, Wilmington, DE 19807
             </span>
         </v-container>
       </div>
