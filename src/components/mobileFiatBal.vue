@@ -3,7 +3,7 @@
         <div class="d-flex" style="justify-content: space-between; align-items: center; width: 100%;">
            
             <div style="display: flex; flex-direction: column;">
-                <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 140%;">Balance</span>
+                <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; color: white; line-height: 140%;">Balance</span>
                 <span class="lg-num my-4">{{ pinia.state.Selectedcurrency_code }} {{ formatBalance(fiatAmmount) }}</span>
             </div>   
 
@@ -11,11 +11,11 @@
             <v-menu transition="slide-y-transition">
                 <template v-slot:activator="{ props }">
                   <button  v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: none; box-shadow: none;" @click="toggleChevron">
-                    <span class="me-1" :class="isDark ? 'country-text':'country-text-light'" style="text-transform: capitalize; font-family: Manrope;">{{pinia.state.preferredCurrency}}</span>
+                    <span style="text-transform: capitalize; font-family: Manrope; color: white;">{{pinia.state.preferredCurrency}}</span>
     
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled },]">
                       <g clip-path="url(#clip0_10476_6360)">
-                        <path d="M12.7207 13.7951L17.6707 8.74609L19.0847 10.1884L12.7207 16.6797L6.35669 10.1884L7.77069 8.74609L12.7207 13.7951Z" fill="currentColor"/>
+                        <path d="M12.7207 13.7951L17.6707 8.74609L19.0847 10.1884L12.7207 16.6797L6.35669 10.1884L7.77069 8.74609L12.7207 13.7951Z" fill="#8e9bae"/>
                       </g>
                       <defs>
                         <clipPath id="clip0_10476_6360">
@@ -94,9 +94,10 @@
   text-align: center;
   font-family: SF Pro Display;
   font-size: 24px;
-font-style: normal;
-font-weight: 800;
+  font-style: normal;
+  font-weight: 800;
   line-height: normal;
+  color: white;
   }
   
   .sm-num{

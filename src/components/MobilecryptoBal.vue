@@ -3,12 +3,12 @@
   
       
         <div class="d-flex" style="align-items: baseline; justify-content: space-between; ">
-          <span class="sm-num" :class="isDark ? 'country-name' : 'country-name-light'" style="font-size: 14px; font-style: normal;font-weight: 400;">Balance</span>
+          <span class="sm-num"  style="font-size: 14px; font-style: normal; color: white;  font-weight: 400;">Balance</span>
           <BlockChainNetwork/>
         </div>
   
   
-         <div style="margin-top: 17px; margin-bottom: 17px;  position: relative; display: flex; align-items: center;">
+         <div style="margin-top: 17px; margin-bottom: 17px;  position: relative; display: flex; align-items: center; color: white;">
       
           <div style="display: flex; align-items: center; justify-content: space-between;" v-if="isCamouflageEmpty">
             <span v-if="isBalanceVisible" style="font-family: SF Pro Display; font-size: 24px; font-style: normal; font-weight: 800;"> {{ `${pinia.state.Selectedcurrency_code} ${formatBalance(pinia.state.SummedBalance)}` }} </span>
@@ -156,13 +156,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  }
-  
-  .country-name{
-  color: white !important;
-  }
-  .country-name-light{
-  color: #10192D !important;
   }
   
   .crypto-nav{

@@ -2,16 +2,16 @@
     <div>
         <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <button  :class="isDark ? 'dropdown-btn1i-dark':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; width: fit-content;" @click="toggleChevron">
-                <span class="me-2" :class="isDark ? 'country-text':'country-text-light'" style="text-transform: capitalize; font-family: Manrope;">{{pinia.state.selectedNetwork}}</span>
+              <button  class="network-btn" :class="isDark ? 'dropdown-btn1i-dark':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; width: fit-content;" @click="toggleChevron">
+                <span style="text-transform: capitalize; font-family: Manrope; color: white;">{{pinia.state.selectedNetwork}}</span>
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled },]">
                   <g clip-path="url(#clip0_10476_6360)">
-                    <path d="M12.7207 13.7951L17.6707 8.74609L19.0847 10.1884L12.7207 16.6797L6.35669 10.1884L7.77069 8.74609L12.7207 13.7951Z" fill="currentColor"/>
+                    <path d="M12.7207 13.7951L17.6707 8.74609L19.0847 10.1884L12.7207 16.6797L6.35669 10.1884L7.77069 8.74609L12.7207 13.7951Z" fill="#8e9bae"/>
                   </g>
                   <defs>
                     <clipPath id="clip0_10476_6360">
-                      <rect width="24" height="24.48" fill="currentColor" transform="translate(0.719971 0.359375)"/>
+                      <rect width="24" height="24.48" fill="#8e9bae" transform="translate(0.719971 0.359375)"/>
                     </clipPath>
                   </defs>
                 </svg>
@@ -128,5 +128,11 @@ fill: #10192D;
 
 .chevron-icon-rotated {
   transform: rotate(180deg);
+}
+
+@media only screen and (max-width: 600px) {
+.network-btn{
+width: 100% !important;
+}
 }
 </style>

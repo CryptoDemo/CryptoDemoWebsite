@@ -564,6 +564,14 @@ font-size: 14px;
 font-style: normal;
 font-weight: 700;
 }
+.fiat-btn-light{
+width: 48%;
+height: 42px;
+padding: 12px 58px;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+}
 .button-container{
   width: 100% !important;
   height: 61px !important;
