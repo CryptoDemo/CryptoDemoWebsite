@@ -106,7 +106,8 @@
                   <div class="d-flex fill-height justify-center align-center">
                     <div style="display: flex; justify-content: space-between">
                       <div style="display: flex; flex-direction: column;">
-                        <span class="carousel-title" style="font-size: 32px; font-weight: 700; line-height: 140%; color: white; font-family: SF Pro Display; margin-bottom: 16px; margin-left: 28px;" :style="i === slides.length - 1 ? { marginTop: '35px', marginLeft: '0px' } : {}">
+                        <!-- <span class="carousel-title" style="font-size: 32px; font-weight: 700; line-height: 140%; color: white; font-family: SF Pro Display; margin-bottom: 16px; margin-left: 28px;" :style="i === slides.length - 1 ? { marginTop: '35px', marginLeft: '0px' } : {}"> -->
+                        <span class="carousel-title" style="font-size: 32px; font-weight: 700; line-height: 140%; color: white; font-family: SF Pro Display; margin-bottom: 16px; margin-left: 28px;">
                           {{ slide.title }}
                         </span>
                   
@@ -144,14 +145,14 @@
                           </span>
                         </div> -->
 
-                        <!-- <div class="secureWallet" :style="i === slides.length - 2 || i === slides.length - 3 ? { marginLeft: '25px' } : {}">
+                        <div class="secureWallet ml-7">
                           <span style="color: white; font-family: SF Pro Display">Secure wallet</span>
                           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                             <path d="M15.9088 10.23V10.98C15.9088 11.1825 15.7531 11.3475 15.5454 11.355H14.4626C14.0695 11.355 13.7135 11.0625 13.6838 10.6725C13.6616 10.44 13.7506 10.2225 13.8989 10.0725C14.0324 9.92998 14.2178 9.85498 14.4181 9.85498H15.538C15.7531 9.86248 15.9088 10.0275 15.9088 10.23Z" fill="white"/>
                             <path d="M13.3426 9.51748C12.9718 9.88498 12.7938 10.4325 12.9421 11.0025C13.135 11.7 13.8099 12.1425 14.5219 12.1425H15.1671C15.5751 12.1425 15.9088 12.48 15.9088 12.8925V13.035C15.9088 14.5875 14.6554 15.855 13.1201 15.855H4.60581C3.07056 15.855 1.81714 14.5875 1.81714 13.035V7.98748C1.81714 7.06498 2.25472 6.24748 2.92964 5.73748C3.39689 5.37748 3.97539 5.16748 4.60581 5.16748H13.1201C14.6554 5.16748 15.9088 6.43498 15.9088 7.98748V8.31748C15.9088 8.72998 15.5751 9.06748 15.1671 9.06748H14.4106C13.9953 9.06748 13.6171 9.23248 13.3426 9.51748Z" fill="white"/>
                             <path d="M12.015 3.615C12.2152 3.8175 12.0446 4.1325 11.7628 4.1325L6.0668 4.125C5.74046 4.125 5.56988 3.72 5.80721 3.4875L7.00871 2.265C8.0248 1.245 9.6713 1.245 10.6874 2.265L11.9853 3.5925C11.9927 3.6 12.0075 3.6075 12.015 3.615Z" fill="white"/>
                           </svg>
-                        </div> -->
+                        </div> 
                       </div>
                       <!-- <img :src="slide.image" width="350" alt="Slide Image" class="slide-img" :style="i === slides.length - 1 ? { width: '280px', height: '350px', borderRadius: '10px' } : {}"> -->
                       <img :src="slide.image" width="350" alt="Slide Image" class="slide-img">
@@ -211,12 +212,12 @@ const slides = ref([
           background: "#FF7A5A", // Custom background color for Slide 2
         },
         {
-          title: "FEATURES",
-          image: "/svg/cryptocurency-dist.svg",
-          description: "Multiple payment options",
-          description1: "Vendor fixed prices",
-          description2: "Secure Escrow hub",
-          description3: "Free wallet",
+          title: "Trade your favourite coins at your choice price and preferred payment option.",
+          image: "/img/crypto1.png",
+          // description: "Multiple payment options",
+          // description1: "Vendor fixed prices",
+          // description2: "Secure Escrow hub",
+          // description3: "Free wallet",
           background: "#2B539A", // Custom background color for Slide 3
         },
   ]);
@@ -415,6 +416,10 @@ margin-top: 20px;
 }
 .carousel-item{
   height: 200px !important;
+}
+.secureWallet{
+  display: none;
+  
 }
 }
 </style>

@@ -208,7 +208,6 @@ const tokenSymbol = ref();
 const pageNumber = ref(1);
 const tokenLists = ref(pinia.state.tokenLists);
 const copied = ref(false);
-// const crypto_trans = ref();
 
 const created_at = ref();
 
@@ -220,24 +219,26 @@ const getWebTrans = async () => {
   isloading.value = true;
   try {
     const data = await getWebTransaction(pageNumber.value);
+
     if (data.success) {
-      datainfo.value = data?.data?.result;
+      // Merge new data with existing data and filter by key
+      const newData = [...datainfo.value, ...data.data.result];
+      datainfo.value = filterByKey("id", newData);
 
+      // Optionally update pageNumber or handle pagination
+      // pageNumber.value += 1;
 
-      datainfo.value = filterByKey("id", [
-        ...datainfo.value,
-        ...data.data.result,
-      ]);
-    //   pageNumber.value += 1;
+      // Update Pinia store with the latest data
       pinia.setTransactionDetails(datainfo.value);
-
-      isloading.value = false;
     } else {
-      push.error(`${data.message}`);
-      isloading.value = false;
+      // Display error message
+      push.error(data.message || 'An error occurred');
     }
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    // Log the error with context
+    console.error('Failed to fetch transactions:', error);
+  } finally {
+    // Ensure that the loading state is updated regardless of success or failure
     isloading.value = false;
   }
 };
@@ -253,8 +254,6 @@ const copyToClipboard = (text) => {
     console.error('Failed to copy: ', err);
   });
 }
-
-
 
 
 onMounted(() => {
