@@ -22,12 +22,12 @@
                 <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
                 <v-card-text>
                     <h3 class="text-center">Wallet Deposit</h3>
-                    <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Fund your fiat wallet in your preferred currency</span>
-                    <input type="number" placeholder="Enter  ammount" v-model="fund_fiat_payload" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                    <span class="text-center mb-2 mt-2 fund-wallet" style="display: flex; justify-content: center;">Fund your fiat wallet in your preferred currency</span>
+                    <input type="number" placeholder="Enter  ammount" v-model="fund_fiat_payload" :class="isDark ? 'input-outline':'input-outline-light'" style="outline: none; height: 60px !important; width: 100%; padding: 10px !important; margin-top: 10px; border-radius: 15px; position: relative;"/>
                 
                     <v-menu>
                         <template v-slot:activator="{ props: activatorProps }">
-                            <v-btn @click.prevent="toggleChevron()" v-bind="activatorProps" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="min-width: 70px; height: 53px; position: absolute; border-radius: 15px; box-shadow: none; right: 5.5%; margin-top: 13px; letter-spacing: 0px;  text-transform: capitalize;">
+                            <v-btn @click.prevent="toggleChevron()" class="toggle-btn" v-bind="activatorProps" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="min-width: 70px; height: 53px; position: absolute; border-radius: 15px; box-shadow: none; right: 5.5%; margin-top: 13px; letter-spacing: 0px;  text-transform: capitalize;">
                                 {{ pinia.state.preferredCurrency }}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
                                   <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
@@ -38,7 +38,7 @@
                         <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
                             <v-list-item style="display: contents; left: 532px;">
                             <v-row dense style="max-width: 250px; height: 300px; overflow: scroll;">
-                                <v-col v-for="(currency, index) in pinia.state.allcountries" :key="index" sm="12">
+                                <v-col v-for="(currency, index) in pinia.state.allcountries" :key="index">
                                 <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code" style="display: flex;">
                                 
                                 <span class="currency-list my-2">{{ currency.currency_name }}</span>
@@ -50,9 +50,12 @@
                         </v-list>
                     </v-menu> 
                     
-                    <v-alert class="text-subtitle-2" type="info" variant="tonal" style="border-radius: 15px; margin-top: 20px;">
-                        The minimum funding amount for {{ pinia.state.preferredCurrency }} is {{ pinia.state.Selectedcurrency_code }}{{ formatBalance(fiatToken.minimum_fiat_funding) }}, and the maximum funding amount is {{ pinia.state.Selectedcurrency_code }}{{ formatBalance(fiatToken.maximum_fiat_funding) }}.
-                    </v-alert>
+                    <div class="hidden-md-and-up flex-sm-and-down">
+                      <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px;">Minimum {{ pinia.state.Selectedcurrency_code }}{{ formatBalance(fiatToken.minimum_fiat_funding) }}</span>
+                    </div>
+                      <v-alert class="text-subtitle-2 fund-alert" type="info" variant="tonal" style="border-radius: 15px; margin-top: 20px;">
+                          The minimum funding amount for {{ pinia.state.preferredCurrency }} is {{ pinia.state.Selectedcurrency_code }}{{ formatBalance(fiatToken.minimum_fiat_funding) }}, and the maximum funding amount is {{ pinia.state.Selectedcurrency_code }}{{ formatBalance(fiatToken.maximum_fiat_funding) }}.
+                      </v-alert>
     
     
                 </v-card-text>
@@ -83,15 +86,15 @@
                         <h3 class="text-center">Send Money</h3>
                         <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Effortlessly transfer funds using our fiat currency service.</span>
                         
-                        <v-btn @click="dialog2 = true" class="mt-10 mb-8" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0.8px; line-height: 25px; text-transform: unset;">
+                        <v-card @click="dialog2 = true" class="mt-10 mb-8" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0px; line-height: 25px; text-transform: unset;">
                             <div class="d-flex" style="align-items: center;">
                                 <h1 style="color: #2873FF;">@</h1>
                                 <div class="d-flex" style="flex-direction: column;">
-                                    <span class="ml-2" style="font-weight: 600; align-items: flex-start;text-align: justify;">Send Money using CryptoDemo Tag</span>
-                                    <span class="ml-2" style="font-weight: 400;">Easily transfer funds globally using the crypto demo tag for instant transactions.</span>
+                                    <span class="ml-2" style="font-size: 14px; font-weight: 600; align-items: flex-start;text-align: justify;">Send Money using CryptoDemo Tag</span>
+                                    <span class="ml-2" style="font-weight: 400; font-size: 14px;">Easily transfer funds globally using the crypto demo tag for instant transactions.</span>
                                 </div>
                             </div>
-                        </v-btn>
+                        </v-card>
 
                         <v-dialog v-model="dialog2" max-width="500">
             
@@ -99,7 +102,7 @@
 
                                 <v-card-text v-if="!showPinInput || showBackButton">
                                     <h3 class="text-center">Send money using Tag</h3>
-                                    <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">
+                                    <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center; font-size: 14px;">
                                         Transfer funds instantly using the user's username.
                                     </span>
                                     <div class="position-relative">
@@ -107,7 +110,7 @@
                                         type="text" 
                                         placeholder="@Enter Username tag" 
                                         v-model="fiatUsername" 
-                                        :class="isDark ? 'btn-segment' : 'btn-segment-light'" 
+                                        :class="isDark ? 'input-outline' : 'input-outline-light'" 
                                         style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"
                                         />
                                         <v-progress-circular 
@@ -153,7 +156,7 @@
                                         type="number" 
                                         placeholder="Enter amount" 
                                         v-model="fiat_ammount_to_send" 
-                                        :class="isDark ? 'btn-segment' : 'btn-segment-light'" 
+                                        :class="isDark ? 'input-outline' : 'input-outline-light'" 
                                         style="outline: none; height: 60px; width: 100%; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative; margin-top: 10px;"
                                         />
                                         <span 
@@ -232,10 +235,7 @@
           </div>
       </div>
 
-        <!-- <v-btn class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-            <img src="/svg/arrow-swap.svg" class="me-1"/>
-            Swap
-        </v-btn> -->
+
     </div>
 </div>
 </template>
@@ -530,11 +530,11 @@ font-weight: 700;
 line-height: 140%; /* 33.6px */
 }
 
-.btn-segment{
+.input-outline{
 border: 1px solid #1B2537;
 }
 
-.btn-segment-light{
+.input-outline-light{
 border: 1px solid #E2E8F0;
 }
 .txn-cards-dark {
@@ -602,6 +602,18 @@ fill: #10192D;
   background: var(--linear-card, linear-gradient(270deg, #1DA1DB -11.75%, #2873FF 119.96%));
   filter: drop-shadow(0px 27px 20px rgba(0, 0, 0, 0.02));
   border-radius: 18px;
+  }
+
+  .fund-wallet{
+    font-size: 14px;
+  }
+
+  .toggle-btn{
+    right: 8% !important;
+  }
+
+  .fund-alert{
+    display: none;
   }
 }
 </style>

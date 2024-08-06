@@ -4,7 +4,7 @@
       <div style="display: flex; justify-content: space-between; width: 100%;">
   
 
-              <v-btn @click="dialog1 = true" class="fiat-btn" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0.8px; line-height: 25px; text-transform: unset;">
+              <v-card @click="dialog1 = true" class="fiat-btn" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0px; text-transform: unset;">
                 <div class="d-flex" style="align-items: center;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#2873FF" class="bi bi-plus-circle" viewBox="0 0 16 16">
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -12,11 +12,11 @@
                     </svg>
                
                     <div class="d-flex" style="flex-direction: column;">
-                        <span class="ml-2" style="font-weight: 600; align-items: flex-start;text-align: justify;">Add a Withdrawal account</span>
-                        <span class="ml-2" style="font-weight: 400;">To receive your payment, please provide the details of your withdrawal account.</span>
+                        <span class="ml-2" style="font-weight: 600; font-size: 14px; align-items: flex-start;text-align: justify;">Add a Withdrawal account</span>
+                        <span class="ml-2" style="font-weight: 400; font-size: 14px;">To receive your payment, please provide the details of your withdrawal account.</span>
                     </div>
                 </div>
-              </v-btn>
+              </v-card>
       
               
               <v-dialog v-model="dialog1" transition="dialog-bottom-transition" fullscreen>
