@@ -6,7 +6,7 @@
 
               <v-card @click="dialog1 = true" class="fiat-btn" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="height: 90px; width: 100%; display: flex;justify-content: normal; letter-spacing: 0px; text-transform: unset;">
                 <div class="d-flex" style="align-items: center;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#2873FF" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#2873FF" class="bi bi-plus-circle bi-circle" viewBox="0 0 16 16">
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                       <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
                     </svg>
@@ -29,7 +29,7 @@
                          
                           <div style="display: flex; flex-direction: column; justify-content: center; margin: auto; align-items: center; margin-top: 30px;">
                             
-                            <div class="d-flex" style="flex-direction: column; width: 70%;">
+                            <div class="d-flex withdrawal-modal" style="flex-direction: column; width: 70%;">
                               <v-menu>
                                 <template v-slot:activator="{ props }">
                                   <v-btn class="input-styling1 ml-1" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" v-bind="props"  style="box-shadow: none; height: 60px;">
@@ -62,8 +62,8 @@
                         
                             </div>
 
-                            <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
-                              <input type="number" placeholder="Enter  ammount" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                            <div class="d-flex mt-3 info-input" style="flex-direction: column; width: 70%;">
+                              <input type="number" placeholder="Enter  ammount" :class="isDark ? 'input-border':'input-border-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
                             
                               <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
                                   Enter withdrawal ammount. The minimum withdrawal is 
@@ -75,24 +75,24 @@
                             <template v-if="!isStripeGateway">
 
 
-                            <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
-                              <input type="text" placeholder="Enter Bank name" v-model="Bankname" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                            <div class="d-flex mt-3 info-input" style="flex-direction: column; width: 70%;">
+                              <input type="text" placeholder="Enter Bank name" v-model="Bankname" :class="isDark ? 'input-border':'input-border-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
                             
                               <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
                                   Enter Bank Name.
                               </span>
                             </div>
 
-                            <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
-                              <input type="text" placeholder="Enter account name" v-model="acctName" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                            <div class="d-flex mt-3 info-input" style="flex-direction: column; width: 70%;">
+                              <input type="text" placeholder="Enter account name" v-model="acctName" :class="isDark ? 'input-border':'input-border-light'" style="outline: none; height: 60px; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
                             
                               <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
                                   Enter account name.
                               </span>
                             </div>
 
-                            <div class="d-flex mt-3" style="flex-direction: column; width: 70%;">
-                              <input type="text" placeholder="Enter account number" v-model="acctNumber" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 60px !important; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
+                            <div class="d-flex mt-3 info-input" style="flex-direction: column; width: 70%;">
+                              <input type="text" placeholder="Enter account number"  v-model="acctNumber" :class="isDark ? 'input-border':'input-border-light'" style="outline: none; height: 60px !important; padding: 10px; margin-top: 10px; border-radius: 20px; position: relative;"/>
                             
                               <span class="text-subtitle-2 mt-1 ml-2" :class="isDark ? 'text-dark':'text-light'">
                                   Enter account number.
@@ -102,7 +102,7 @@
                             </template>
 
                           
-                            <v-btn @click="Withdrawal_ ()" class="primary-btn1 mt-8" v-if="!isStripeGateway" :loading="loading_withdrawal" style="width: 70%; height: 60px;"> Process withdrawal</v-btn>
+                            <v-btn @click="Withdrawal_ ()" class="primary-btn1 mt-8 process-withdrawal" v-if="!isStripeGateway" :loading="loading_withdrawal" style="width: 70%; height: 60px;"> Process withdrawal</v-btn>
 
                             <v-btn @click="connectToStripe()" class="primary-btn1 mt-8" v-else style="width: 70%; height: 60px;">Proceed with Stripe</v-btn>
                 
@@ -114,7 +114,7 @@
           
                       <v-card-actions>
                           <v-spacer></v-spacer>
-                          <div class="px-4 mb-3">
+                          <div class="px-4  mb-3">
                               <v-btn @click="dialog1 = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;">Cancel</v-btn>
                           </div>
                       </v-card-actions>
@@ -122,13 +122,6 @@
                   </v-card>
       
               </v-dialog>
-  
-  
-  
-              
-              
-                          
-                     
   
   
   
@@ -239,11 +232,11 @@ const connectToStripe = async (payload) => {
   <style scoped>
 
   
-  .btn-segment{
+  .input-border{
   border: 1px solid #1B2537;
   }
   
-  .btn-segment-light{
+  .input-border-light{
   border: 1px solid #E2E8F0;
   }
   .txn-cards-dark {
@@ -271,4 +264,16 @@ const connectToStripe = async (payload) => {
   .close-btn-dark{
   fill: #10192D;
   }
+
+@media screen and (max-width: 600px) {
+ .bi-circle{
+  width: 80px !important;
+  height: 30px !important;
+ }
+
+ .withdrawal-modal, .info-input, .process-withdrawal{
+  width: 100% !important;
+ }
+  
+}
   </style>
