@@ -18,20 +18,24 @@
                     <v-btn :class="[!selectedScreen ? 'wallet-btn' : isDark ? 'fiat-btn' : 'fiat-btn-light']" @click.prevent="selectedScreen=false">Closed trade</v-btn>
                 </div>
 
+                <v-alert v-if="showAlert" type="info" class="mb-4">
+                  {{ alertMessage }}
+                </v-alert>
+
                 <div class="mt-5">
 
-                    <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="padding: 20px; border-radius: 15px;">
+                    <v-card v-for="(order, index) in filteredOrders" :key="index" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="padding: 20px; border-radius: 15px; margin-bottom: 10px;">
                         <span v-if="!isFinished" style="font-size: 14px">Trade ends in <span class="resend-code">{{ minutesLeft }}:{{ secondsLeft }}</span> minutes</span>
                         <span v-else style="color: orangered; font-size: 14px;">Times Up</span>
 
                         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px; line-height: 30px;">
 
                         <div style="display: flex; flex-direction: column;" :class="isDark ? 'text-dark':'text-light'" >
-                            <span>Udochukwu Nwam</span>
+                            <span>{{ order?.offer?.user?.username }}</span>
                             <span>Trade status</span>
                             <span>My role</span>
                             <span>Trade ammount</span>
-                            <span>Crypto ammount</span>
+                            <span>Expected ammount</span>
                             <span>Payment method</span>
                         </div>
 
@@ -47,11 +51,10 @@
                             </svg>
 
 
-                            <span class="resend-code">processing</span>
-                            <span>Trade status</span>
+                            <span class="resend-code">{{ order.status }}</span>   
                             <span>Buyer</span>
-                            <span>22,000</span>
-                            <span>176 USDT</span>
+                            <span>{{ order?.bid?.fiat_amount_paid }}</span>
+                            <span>{{ order?.bid?.expected_token_quantity }}</span>
                             <span>Bank Transfer</span>
                         </div>
                     </div>
@@ -67,23 +70,65 @@
 <script setup>
 import { ref } from "vue";
 import { useTheme } from "vuetify";
+import { getmyOrders } from "@/composables/requests/marketplace";
 
 
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore();
 const selectedScreen = ref(true)
-
 const minutesLeft = ref(15);
 const secondsLeft = ref(0);
 const isFinished = ref(false);
+const pageNumber = ref(1);
 
 let interval;
+let fiveMinuteAlertShown = false;
+
+const alertMessage = ref('');
+const showAlert = ref(false);
+
+
+const getActiveOffers = async () => {
+  try {
+    // Fetch active offers
+    const data = await getmyOrders(pageNumber.value);
+    
+    // Check if the data retrieval was successful
+    if (data.success) {
+      // Log the fetched data for debugging
+      console.log('Active offers:', data.data.result);
+      pinia.setallMyOders(data.data.result)
+
+      // Process the data if needed
+      // Example: Update state or trigger further actions
+      
+    } else {
+      // Display an error message if the API response indicates a failure
+      push.error(`Error: ${data.message}`); // Custom error message
+    }
+  } catch (e) {
+    // Log the error details and show a user-friendly message
+    console.error('Unexpected error:', e);
+    push.error(`Unexpected error: ${e.message || e}`); // Detailed error message
+  }
+};
+
+const filteredOrders = computed(() => {
+  if (selectedScreen.value) {
+    // Display only non-expired (active) trades
+    return pinia.state.allMyOders.filter(order => order.status !== 'expired');
+  } else {
+    // Display only expired trades
+    return pinia.state.allMyOders.filter(order => order.status === 'expired');
+  }
+});
+
 
 // Function to update the countdown
 const updateCountdown = () => {
   const now = new Date().getTime();
-  const endTime = new Date(startTime.value).getTime() + 15 * 60000; // End time after 15 minutes
+  const endTime = new Date(startTime.value).getTime() + 15 * 60000;
 
   const distance = endTime - now;
 
@@ -92,9 +137,25 @@ const updateCountdown = () => {
     isFinished.value = true;
     minutesLeft.value = 0;
     secondsLeft.value = 0;
+
+    // Move the expired trade to closed trades if not already moved
+    pinia.state.allMyOders.forEach(order => {
+      if (order.status === 'active') {
+        order.status = 'expired';
+      }
+    });
+
     return;
-  }minutesLeft.value = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  }
+
+  minutesLeft.value = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   secondsLeft.value = Math.floor((distance % (1000 * 60)) / 1000);
+
+  if (minutesLeft.value === 5 && !fiveMinuteAlertShown) {
+    alertMessage.value = 'Only 5 minutes remaining!';
+    showAlert.value = true; // Show the alert
+    fiveMinuteAlertShown = true; // Ensure the alert is only shown once
+  }
 };
 
 // Start time
@@ -102,6 +163,7 @@ const startTime = ref(new Date().getTime());
 
 onMounted(() => {
   interval = setInterval(updateCountdown, 1000); // Update countdown every second
+  getActiveOffers()
 });
 
 onUnmounted(() => {

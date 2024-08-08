@@ -37,7 +37,6 @@
                     </div>
 
 
-
                     <div v-if="transaction.details.fiat.funding" class="mt-2"  style="display: flex; justify-content: space-between">
                         <div style="display: flex; align-items: center">
                     
@@ -59,7 +58,6 @@
                     </div>
     
 
-
                     <div v-if="transaction?.details?.fiat.swap">
                         <div class="d-flex" style="justify-content: space-between;">
                             <div style="display: flex; align-items: center">
@@ -78,6 +76,42 @@
                             <div class="d-flex">
                                 <span style="color: #007F80">{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.swap?.from_country_id).currency_code }}</span>
                                 <span style="color: #007F80">{{formatNumber(transaction?.details?.fiat?.swap?.from_amount)}}</span>
+                            </div>
+                        </div>
+           
+                    </div>
+
+                    <div v-if="transaction?.details?.fiat.exchange">
+                        <div class="d-flex" style="justify-content: space-between;">
+                            <div style="display: flex; align-items: center">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#4169E1" class="bi bi-arrow-repeat me-1 p-2 mr-2" viewBox="0 0 16 16"  :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;">
+                                        <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+                                        <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+                                    </svg>
+
+                                <div style="display: flex; flex-direction: column;">
+                                <span>P2P</span>
+                                <div class="d-flex" style="margin-bottom: 6px">
+                                    <h5 class="me-2">
+                                    {{ formattedDate(transaction.updated_at) }},
+                                    </h5>
+                                    <h5>{{ formatTime(transaction.updated_at) }}</h5>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex">
+                                <div style="display: flex; flex-direction: column;">
+                                    <div style="display:flex; justify-content: flex-end;">
+                                        <span style="color: #4169E1">{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.from_fiat.country_id)?.currency_code }}</span>
+                                        <span style="color: #4169E1">{{formatBalance(transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.from_fiat.amount)}}</span>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span style="color: #4169E1">{{ formatBalance(transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.to_crypto?.amount) }}</span>
+                                        <span style="color: #4169E1">{{ pinia.state.tokenLists.find ((c) => c.id === transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.to_crypto?.token_id)?.symbol }}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
            
@@ -160,7 +194,6 @@
                 </div>
 
 
-
                 <div v-if="transaction?.details?.fiat?.swap">
                     <div  class="d-flex py-4" style="justify-content: center;">
                         <v-chip>
@@ -214,7 +247,6 @@
                 </div>
 
 
-
                 <div v-if="transaction?.details?.fiat?.funding">
                     <div  class="d-flex py-4" style="justify-content: center;">
                         <v-chip>
@@ -256,6 +288,48 @@
 
                 </div>
 
+
+                <div v-if="transaction?.details?.fiat?.exchange">
+                    <div  class="d-flex py-4" style="justify-content: center;">
+                        <v-chip>
+                            <h4>{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.from_fiat.country_id)?.currency_code }}</h4>
+                            <h4>{{formatBalance(transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.from_fiat.amount)}}</h4>
+                        </v-chip>
+                    </div>
+    
+                    <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
+                        <div>
+                            <p style="font-size: 14px;">Date & Time:</p>
+                            <p style="font-size: 14px;">Txn ID:</p>
+                            <p style="font-size: 14px;">Status:</p>
+                        </div>
+    
+                        <div style="text-align: right;">
+                            <p style="font-size: 14px;">{{ formattedDate(transaction.updated_at) }}, {{ formatTime(transaction.updated_at) }}</p>
+                        
+                            
+                            <div class="d-flex">
+                                <p class="truncate me-1" style="font-size: 14px;width: 157px">{{ transaction?.id }}</p>
+                                <button @click="copyToClipboard(transaction?.id)" variant="plain" style=" background: inherit !important; box-shadow: none;">
+                                    <img v-if="!copied" src="/svg/copy.svg"/>
+                                    <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
+                                </button>
+                            </div>
+
+                  
+                          
+                            <p class="truncate" style="font-size: 14px; width: 187px" v-if="transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.status">
+                                <span style="color: green; font-weight: 700;" v-if="transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.status === 'fulfilled'">Successful</span>
+                                <span style="color: red; font-weight: 700;" v-else-if="transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.status === 'failed' ">Failed</span>
+                                <span style="color: orange; font-weight: 700;" v-else>Pending</span>
+                            </p>
+                       
+                        </div>
+
+                   </div> 
+
+                </div>
+
                 
                 <v-card-actions class="mt-8" style="display: flex; justify-content: space-between; align-items: center;">
                     <v-btn variant="tonal" text="Close Receipt" @click="isActive.value = false" style="text-transform: unset; letter-spacing: 0px; font-weight: 600;  width: 50%; height: 50px; border-radius: 10px !important;"></v-btn>
@@ -277,9 +351,7 @@ const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore();
 const isloading = ref(false);
-const tokenSymbol = ref();
 const pageNumber = ref(1);
-const tokenLists = ref(pinia.state.tokenLists);
 const copied = ref(false);
 // const fiat_trans = ref();
 

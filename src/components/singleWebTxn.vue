@@ -13,7 +13,7 @@
             <v-dialog max-width="420">
             <template v-slot:activator="{ props: activatorProps }">
                 <div v-bind="activatorProps" style="background: inherit; height: 60px; cursor: pointer;">
-                <div v-if="transaction?.details?.crypto" :class="isDark ? 'wallet-border' : 'wallet-border-light'">
+                <div v-if="transaction?.details?.crypto" :class="!index && ( filteredTransactions.length == 1 ) ? '' :  isDark ? 'wallet-border' : 'wallet-border-light'">
                     <div class="mt-2" v-if="transaction?.details?.crypto?.transfer" style="display: flex; justify-content: space-between">
                     <div style="display: flex; align-items: center">
                         <div v-if="transaction?.details?.crypto?.transfer">
@@ -218,10 +218,6 @@ const tokenIds = datainfo.map(item => item.details?.crypto?.transfer?.token_id).
 
 
 const filteredTransactions = datainfo.filter(item => item.details?.crypto?.transfer?.token_id === selectedTokenId);
-
-
-
-
 
 
 const copyToClipboard = (text) => {

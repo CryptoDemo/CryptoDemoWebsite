@@ -288,8 +288,6 @@ const getTokenBals = async () => {
  }
 };
 
-
-
 const convertCurrencies = async () => {
   // Get the list of coins from pinia state
 

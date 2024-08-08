@@ -61,12 +61,13 @@ const getTokenBals = async () => {
  }
 };
 
-
 const chain = computed(()=>pinia.state.selectedNetwork);
+const selectedCountryId = pinia.state.allcountries.find(country=>country.currency_name==pinia.state.preferredCurrency);
+
 const getSummedBal = async () => {
   if (pinia.state.isAuthenticated) {
     try {
-      const data = await getSummedBalance(chain.value.toLowerCase(), selectedCountryId.id)
+      const data = await getSummedBalance(chain.value.toLowerCase(), selectedCountryId?.id)
       if (data.success) {
         balanceData.value = data.data;
         pinia.setSummedBalance(data.data)
@@ -105,7 +106,7 @@ const initSocketListeners = ($socketClient)=>{
     if(pinia.state.isAuthenticated || pinia.state.user){
       $socketClient.onMessage = (event) => {
         const message = JSON.parse(event.data);
-        console.log('Message from server:', message);
+        // console.log('Message from server:', message);
     
         // Handle different types of actions
         switch (message.action) {
@@ -160,23 +161,23 @@ const initSocketListeners = ($socketClient)=>{
   
           case 'fiat_balances_updated':
             console.log('Fiat Balance:', message.data);
-            pinia.setTotal_fiat_bal(message.data,addMinutes(5));
+            pinia.setTotal_fiat_bal(message.data);
 
             
             break;
 
 
           case 'P2P':
-            console.log('P2P:', message.data);
+            // console.log('P2P:', message.data);
             break;
           case 'chatting':
-            console.log('Chatting:', message.data);
+            // console.log('Chatting:', message.data);
             break;
           case 'agent_online_availability':
-            console.log('Agent Online Availability:', message.data);
+            // console.log('Agent Online Availability:', message.data);
             break;
           default:
-            console.warn('Unknown action:', message.action);
+            // console.warn('Unknown action:', message.action);
         }
       };
     }
@@ -241,6 +242,10 @@ const notifyUser = (message) => {
 onMounted(() => {
   window.addEventListener('online', updateOnlineStatus);
   window.addEventListener('offline', updateOnlineStatus);
+});
+
+onMounted(() => {
+    getVisitorsLocation();
 });
 
 onUnmounted(() => {

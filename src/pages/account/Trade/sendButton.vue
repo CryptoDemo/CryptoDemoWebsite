@@ -77,7 +77,7 @@
                 <span :class="isDark ? 'text-dark':'text-light'" class="hint-text"  style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Ensure the receiver’s wallet is a valid <span :class="isDark ? 'coin-name':'coin-name-light'"  style="font-family: Manrope;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">{{ coin }}</span> wallet address</span>
             </div>
 
-            <v-btn @click.prevent="calculateFee()" :loading="loading" class="primary-btn1" style="width: 100%; border-radius: 17px; height: 56px; color: white; box-shadow: none; font-weight: 600; font-size: 16px; font-family: Manrope;">
+            <v-btn @click.prevent="calculateFee()" :loading="loading" :disabled="loading_send_coin" class="primary-btn1" style="width: 100%; border-radius: 17px; height: 56px; color: white; box-shadow: none; font-weight: 600; font-size: 16px; font-family: Manrope;">
             Continue
             </v-btn>
       
@@ -248,7 +248,7 @@ const execute = async()=>{
       fee_id: pinia.state.calculatedTaxFee
     }
     try{
-      // loading_send_coin.value = true
+      loading_send_coin.value = true
 
       const data = await executeTrans(info)
 
@@ -262,13 +262,13 @@ const execute = async()=>{
         dialog1.value = false
 
         push.success('Transfer Succesful')
-       
+        navigateTo('/account/trade/wallet');
 
       }else{
         
         push.error(`${data.message}`, {
         });
-        // loading_send_coin.value = false;
+        loading_send_coin.value = false;
         
       }
      
@@ -279,7 +279,7 @@ const execute = async()=>{
     }
 
 
-  };
+};
 
 
 

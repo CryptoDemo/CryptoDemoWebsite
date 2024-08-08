@@ -37,7 +37,34 @@ export const createOrder = async(payload,offer_id)=>{
 
     }).then(res => res.json());
     return data
+};
+
+export const createOrderforP2P = async(payload)=>{
+    const pinia = useStore();
+    const data = await fetch(`${baseURL}p2p-order/create-order`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': `${pinia.state.user?.token}`
+        },
+        body:JSON.stringify(payload)
+
+    }).then(res => res.json());
+    return data
 }
+
+export const getmyOrders = async(pageNumber)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}p2p-order/my-orders/${pageNumber}`,{ 
+    headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': `${pinia.state.user?.token}`
+    },
+
+    }).then(res => res.json());
+    return data;
+};
 
 export const deleteOffer = async(offer_id)=>{
     const pinia = useStore();

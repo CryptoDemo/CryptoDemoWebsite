@@ -1,4 +1,3 @@
-
 export const getWebTransaction = async(pageNumber)=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return
@@ -12,11 +11,7 @@ export const getWebTransaction = async(pageNumber)=>{
     return data;
 };
 
-// watch(() => pinia.state.selectedNetwork,() => {
-//       // Fetch transactions when network changes
-//       getWebTrans();
-//     }
-//   );
+
 
 export const calculateTxnFees = async(chain)=>{
     const pinia = useStore();

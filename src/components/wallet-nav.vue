@@ -11,7 +11,7 @@
       <div  style="margin-top: 25px; margin-bottom: 25px; height: 90px;  position: relative; display: flex; justify-content: center; align-items: center;">
     
         <div style="display: flex; align-items: center; justify-content: space-between;" v-if="isCamouflageEmpty">
-          <span class="lg-num" v-if="isBalanceVisible"> {{ `${pinia.state.Selectedcurrency_code} ${formatBalance(pinia.state.SummedBalance)}` }} </span>
+          <span class="lg-num" v-if="isBalanceVisible"> {{ `${pinia.state.Selectedcurrency_code}${formatBalance(pinia.state.SummedBalance)}` }} </span>
           <span class="lg-num" v-else>{{ generateAsterisks() }}</span>
 
           <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="20" height="20" viewBox="0 0 20 20" fill="none" style="cursor: pointer;" v-if="isToggled"  @click="togglePassword()">

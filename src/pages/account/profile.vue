@@ -2,7 +2,7 @@
   <div>
      <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" :wallet="true"/>
   
-      <div style="margin-bottom: 300px; margin-top: 140px;">      
+      <div class="div-wrap" style="margin-bottom: 300px; margin-top: 140px;">      
           <v-container style="display: flex; flex-direction: column;">
             <div style="display: flex; position: relative;">
               <div  class="flex-lg-and-up hidden-sm-and-down">
@@ -67,7 +67,7 @@
               
                   <div id="sumsub-websdk-container" style="position: absolute; top: 30%; z-index: 10; display: flex; margin: auto; width: 50%; background: #F8FAFC; box-shadow: blueviolet;"></div>
 
-                <v-row no-gutters class="mt-8" style="margin-top: -7px; cursor: pointer;">
+                <v-row no-gutters class="mt-4" style="margin-top: -7px; cursor: pointer;">
 
                   
                   <v-col v-for="(card, i) in profileCards" :key="i" @click.prevent="navigateTo(card.link)" sm="4" cols="12">
@@ -471,6 +471,9 @@ border-bottom: 1px solid #10192D !important;
   }
   #sumsub-websdk-container{
     width: 100% !important;
+  }
+  .div-wrap{
+    margin-top: 100px !important;
   }
   
  }

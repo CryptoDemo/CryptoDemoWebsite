@@ -37,6 +37,7 @@ export const useStore = defineStore('app',()=> {
       TransferWallet: "",
       SummedBalance: "",
       selected_coin_to_buy_from_marketplace: "",
+      selected_coin_to_buy_from_marketplace_userID: "",
       coin_to_transfer: "",
       Selected_coin_Balance: "",
       TransactionDetails: [],
@@ -186,6 +187,9 @@ export const useStore = defineStore('app',()=> {
       state.MyOffers = payload;    
   };
 
+  const setallMyOders = (payload) => {
+      state.allMyOders = payload;    
+  };
 
   const setallcountries = (payload) => {
     state.allcountries = payload;    
@@ -226,7 +230,10 @@ export const useStore = defineStore('app',()=> {
     state.TransactionDetails = [],
     state.selectedLandingCoin = "",
     state.fiat_currency_i_want = ""
+    state.allMyOders = []
     state.Fiat_swap_details= "",
+    state.selected_coin_to_buy_from_marketplace = "",
+    state.selected_coin_to_buy_from_marketplace_userID = "",
     state.geo = {},
   
    
@@ -265,6 +272,7 @@ export const useStore = defineStore('app',()=> {
       setSelected_coin_Balance,
       setMarketPlace,
       setMyOffers,
+      setallMyOders,
       setgetNewCoinInfo,
       saveTradingData,
       setFiat_currency_i_want,

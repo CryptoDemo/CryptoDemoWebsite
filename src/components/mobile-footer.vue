@@ -4,7 +4,7 @@
     <div class="footer-links"  :class="isDark ? 'footer-bg2':'footer-bg2-light'">
       <v-container>
        <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
-          <span :class="isDark ? 'demo-web1':'demo-web1-light'">Demo Web</span>
+          <span :class="isDark ? 'demo-web1':'demo-web1-light'">Demo</span>
           <Language-dropdown style="width: 136px;"/>
         </div>
       </v-container>
@@ -70,7 +70,7 @@
         <div class="footer-container">
         <v-container>
             <span class="footer-text2">
-              “DEMO WEB” is a registered trademark of Demo, Inc. Copyright © 2024 Demo Web, Inc. All Rights Reserved. Paxful Inc. has no relation to MoneyGram, Western Union, Payoneer, WorldRemit, Paxum, PayPal, Amazon, OkPay, Payza, Walmart, Reloadit, Perfect Money, WebMoney, Google Wallet, BlueBird, Serve, Square Cash, NetSpend, Chase QuickPay, Skrill, Vanilla, MyVanilla, OneVanilla, Neteller, Venmo, Apple, ChimpChange or any other payment method. We make no claims about being supported by or supporting these services. Their respective wordmarks and trademarks belong to them alone. Official mailing address: 4023 Kennett Pike #50541, Wilmington, DE 19807
+              “DEMO” is a registered trademark of Demo, Inc. Copyright © 2024 Demo Web, Inc. All Rights Reserved. Paxful Inc. has no relation to MoneyGram, Western Union, Payoneer, WorldRemit, Paxum, PayPal, Amazon, OkPay, Payza, Walmart, Reloadit, Perfect Money, WebMoney, Google Wallet, BlueBird, Serve, Square Cash, NetSpend, Chase QuickPay, Skrill, Vanilla, MyVanilla, OneVanilla, Neteller, Venmo, Apple, ChimpChange or any other payment method. We make no claims about being supported by or supporting these services. Their respective wordmarks and trademarks belong to them alone. Official mailing address: 4023 Kennett Pike #50541, Wilmington, DE 19807
             </span>
         </v-container>
         </div>
