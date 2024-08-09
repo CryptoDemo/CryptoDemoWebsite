@@ -100,8 +100,7 @@ const getFiatTxn = async () => {
         ...newTransactions,
       ]);
 
-      // Update local state and Pinia store
-      FiatTxnInfo.value = updatedTransactions;
+   
       pinia.setFiat_transactions(updatedTransactions);
 
       console.log('Updated Transactions:', FiatTxnInfo.value);

@@ -337,9 +337,10 @@ const get_user_info = async () => {
     if (data.success) {
         const user_data = data.data
         userName.value = user_data.name;
-        console.log(user_data)
+
       showSuccessIcon.value = true;
       showFailureIcon.value = false;
+     
     } else {
       showSuccessIcon.value = false;
       showFailureIcon.value = true;
@@ -357,7 +358,6 @@ const get_user_info = async () => {
 
 watchEffect(() => {
     if (fiatUsername.value) {
-      console.log(fiatUsername.value)
       showSuccessIcon.value = false;
       showFailureIcon.value = false;
       debounce(get_user_info);
@@ -496,6 +496,7 @@ const send_Fiat = async () => {
 
         if (data.success) {
             pinia.setFiat_transactions({...pinia.state.Fiat_transactions, ...data.data});
+            dialog1.value = false;
             dialog2.value = false;
         } else {
             push.error(data.message, { duration: 2000 });
