@@ -120,6 +120,7 @@
                             <h3 style="position: absolute; right: 7%; font-family: Manrope; font-weight: 700; font-size: 16px;">{{ pinia.state.preferredCurrency }} {{formatBalance (token.balance)}}</h3>
                             </div>
                           </div>
+                          
                             <div class="d-flex mt-6" style="justify-content: space-between;">
                                 <td style="display: flex; align-items: center;"> 
                                   <div style="width: 80px;"> 
@@ -217,151 +218,102 @@
       <Mobile-footer class="mobile-footer"/>
     </div>
   </template>
+
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 import { useTheme } from 'vuetify';
-import {getTokens,  getTokenBalance, currencyConverter } from "@/composables/requests/tokens";
-import FiatTxn from '~/components/fiatTxn.vue';
+import { getTokens, getTokenBalance, currencyConverter } from "@/composables/requests/tokens";
 
-
-const theme = useTheme()
-const isDark = computed(() =>  theme.global.current.value.dark);
-const pinia = useStore()
-const selectedScreen = ref(true)
-const network = pinia.state.selectedNetwork.toLowerCase();
-const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
-const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.token_networks?.find(tkn=>tkn.blockchain_id === selectedNetworkId));
-const symbols = tokensForSelectedNetwork.map(token => token.symbol);
+const theme = useTheme();
+const isDark = computed(() => theme.global.current.value.dark);
+const pinia = useStore();
+const selectedNetwork = ref(pinia.state.selectedNetwork.toLowerCase());
+const selectedScreen = ref(true);
 const pageNumber = ref(1);
 
 const getTokens_ = async () => {
   try {
-    const data = await getTokens(pageNumber.value, pinia.state.selectedNetwork.toLowerCase());
+    const data = await getTokens(pageNumber.value, selectedNetwork.value);
 
     if (data.success) {
       const fetchedTokens = data.data.result;
-      
-
-      // Store the fetched tokens with a 5-minute expiry time
       pinia.setTokenLists(fetchedTokens, addMinutes(5));
     } else {
-      // Display a message to the user if fetching tokens was unsuccessful
       push.message(data.message, { position: 'top', timeout: 2000 });
     }
   } catch (error) {
-    // Log the error to the console
     console.log(error);
   }
 };
 
 const getTokenBals = async () => {
- 
- // Check if user is authenticated
- if (pinia.state.isAuthenticated)  {
-   try {
-     // Fetch token balance
-     const data = await getTokenBalance(symbols);
+  if (pinia.state.isAuthenticated) {
+    try {
+      const symbols = pinia.state.tokenLists.map(token => token.symbol);
+      const data = await getTokenBalance(symbols);
 
-     // Update tokens with the new balance
-     if (data.success) {
-       // Create a copy of the token list to update locally
-       const updatedTokens = pinia.state.tokenLists.map(token => {
-         const tokenData = data.data.find(t => t.token === token.symbol);
-         if (tokenData) {
-           return { ...token, balance: tokenData.balance };
-         }
-         return token;
-       });
-
-       // Update the token store with the new balances
-
-       pinia.setTokenLists(updatedTokens, addMinutes(5))
-
-       // Optionally, you can return or use `updatedTokens` as needed
-
-     } else {
-       console.log('Error:', data.message);
-     }
-   } catch (error) {
-     console.log('Fetch error:', error);
-   }
- }
+      if (data.success) {
+        const updatedTokens = pinia.state.tokenLists.map(token => {
+          const tokenData = data.data.find(t => t.token === token.symbol);
+          if (tokenData) {
+            return { ...token, balance: tokenData.balance };
+          }
+          return token;
+        });
+        pinia.setTokenLists(updatedTokens, addMinutes(5));
+      } else {
+        console.log('Error:', data.message);
+      }
+    } catch (error) {
+      console.log('Fetch error:', error);
+    }
+  }
 };
 
 const convertCurrencies = async () => {
-  // Get the list of coins from pinia state
-
   const coins = pinia.state.tokenLists;
-
   try {
+    const convertCurrency = coins.map(coin => ({ from: coin.symbol, to: "USD" }));
+    const data = await currencyConverter(convertCurrency);
 
-    const convertCurrency = [];
-   
-    // Loop through each coin and convert to USD
-    for (const coin of coins) {
-      convertCurrency.push({ from: coin.symbol, to: "USD" });
+    if (data.success) {
+      const conversionMap = data.data.reduce((map, item) => {
+        map[item.from] = item.value;
+        return map;
+      }, {});
+      const updatedTokenLists = coins.map(coin => ({
+        ...coin,
+        conversionValue: conversionMap[coin.symbol] || 0
+      }));
+      pinia.setTokenLists(updatedTokenLists);
+    } else {
+      console.log(`Conversion failed:`, data.message);
     }
-
-    try {
-      const data = await currencyConverter(convertCurrency);
-     
-
-      if (data.success) {
-        // Store the conversion result in the array
-        const conversionMap = data.data.reduce((map, item) => {
-          map[item.from] = item.value;
-          return map;
-        }, {});
-
-        // Update the tokenLists with conversion values
-        const updatedTokenLists = coins.map(coin => ({
-          ...coin,
-          conversionValue: conversionMap[coin.symbol] || 0 // Add the conversion value
-        }));
-
-        // Store the updated tokenLists in Pinia
-        pinia.setTokenLists(updatedTokenLists);
-
-        console.log(updatedTokenLists);
-        
-
-        // pinia.setTokenLists(pinia.state.tokenLists, ...conversionResult.value, addMinutes(5))
-        
-      } else {
-        console.log(`Conversion failed:`, data.message);
-      }
-    } catch (error) {
-      console.log(`Error converting:`, error);
-    }
-
-
   } catch (error) {
-    console.log(error);
+    console.log(`Error converting:`, error);
   }
-
 };
 
-watch(() => pinia.state.selectedNetwork, async(newNetwork) => {
-  if (newNetwork) {
-    console.log(newNetwork)
+watch(() => pinia.state.selectedNetwork, async (newNetwork) => {
+  if (newNetwork.toLowerCase() !== selectedNetwork.value) {
+    selectedNetwork.value = newNetwork.toLowerCase();
     await getTokens_();
-    getTokenBals();
-    convertCurrencies();
+    await getTokenBals();
+    await convertCurrencies();
   }
 });
-
 
 const chainIcon = computed(() => {
   return pinia.state.tokenLists.find(c => c?.symbol === "BNB" || c?.symbol === "TRX");
 });
 
-
 onMounted(() => {
-convertCurrencies();
-getTokenBals();
+  getTokens_();
+  getTokenBals();
+  convertCurrencies();
 });
-
 </script>
+
 
 <style scoped>
 .swap{

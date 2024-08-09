@@ -11,8 +11,9 @@
         </div>
         <div v-for="(transaction, index) in datainfo" :key="index">
             <v-dialog max-width="420">
+
                 <template v-slot:activator="{ props: activatorProps }">
-                    <div v-bind="activatorProps" style="background: inherit; height: 60px; cursor: pointer;">
+                    <div @click="pinia.state.getSingleTxnID = transaction.id; getSingleWebTrans()"  v-bind="activatorProps" style="background: inherit; height: 60px; cursor: pointer;">
                     <div v-if="transaction?.details?.crypto" :class="isDark ? 'wallet-border' : 'wallet-border-light'">
                         <div class="mt-2" v-if="transaction?.details?.crypto?.transfer" style="display: flex; justify-content: space-between">
                         <div style="display: flex; align-items: center">
@@ -66,14 +67,6 @@
             
                         </div>
                         
-                        <div v-else-if="transaction?.details?.crypto.exchange">
-                            <p>Token Symbol:{{ transaction?.details?.crypto?.exchange?.from.token_id }}</p>
-                            <p>Tax Fee: {{ transaction.details.crypto.exchange.fees }}</p>
-                            <p>Status: {{ transaction.details.crypto.exchange.status }}</p>
-                            <p>Amount: {{ transaction.details.crypto.exchange.from.amount }}</p>
-                            <p> Sent To: {{ transaction.details.crypto.exchange.to.address }}</p>
-                            <p>Transaction Hash: {{ transaction.details.crypto.exchange.transaction_hash }}</p>
-                        </div>
                     </div>
         
 
@@ -81,6 +74,7 @@
         
                 
                 </template>
+
                 <template v-slot:default="{ isActive }">
                     <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 20px; padding: 20px">
                     <h2 class="text-center">Transaction Details</h2>
@@ -124,8 +118,8 @@
                             
                                 
                                 <p class="truncate" style="font-size: 14px; width: 157px" v-if="transaction?.details?.crypto?.transfer?.status">
-                                    <span style="color: green; font-weight: 700;" v-if="transaction?.details?.crypto?.transfer?.status?.fulfilled">Successful</span>
-                                    <span style="color: red; font-weight: 700;" v-else-if="transaction?.details?.crypto?.transfer?.status?.failed">Failed</span>
+                                    <span style="color: green; font-weight: 700;" v-if="transData?.details?.crypto?.transfer?.status?.fulfilled || transaction?.details?.crypto?.transfer?.status?.fulfilled">Successful</span>
+                                    <span style="color: red; font-weight: 700;" v-else-if="transData?.details?.crypto?.transfer?.status?.failed || transaction?.details?.crypto?.transfer?.status?.failed">Failed</span>
                                     <span style="color: orange; font-weight: 700;" v-else>Pending</span>
                                 </p>
                         
@@ -196,7 +190,7 @@
 <script setup>
 import { ref } from "vue";
 import { useTheme } from "vuetify";
-import { getWebTransaction } from "@/composables/requests/transaction";
+import { getWebTransaction, getSingleTransactions } from "@/composables/requests/transaction";
 
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
@@ -212,6 +206,10 @@ const created_at = ref();
 const datainfo = ref(pinia.state.TransactionDetails || []);
 
 
+const transData = ref(null)
+
+
+
 const getWebTrans = async () => {
   isloading.value = true;
   try {
@@ -220,7 +218,6 @@ const getWebTrans = async () => {
     if (data.success) {
       // Ensure datainfo.value is an array
       const currentData = Array.isArray(datainfo.value) ? datainfo.value : [];
-
       // Merge new data with existing data
       const newData = [...currentData, ...data.data.result];
 
@@ -245,6 +242,31 @@ const getWebTrans = async () => {
   }
 };
 
+const getSingleWebTrans = async () => {
+  isloading.value = true;
+  try {
+
+
+    const data = await getSingleTransactions(pinia.state.getSingleTxnID);
+
+    if (data.success) {
+
+      transData.value = data.data
+      
+
+      // Optionally handle any additional logic with the data here
+    } else {
+      // Display error message
+      push.error(data.message || 'An error occurred');
+    }
+  } catch (error) {
+    // Log the error with context
+    console.error('Failed to fetch transaction:', error);
+  } finally {
+    // Ensure that the loading state is updated regardless of success or failure
+    isloading.value = false;
+  }
+};
 
 
 const copyToClipboard = (text) => {

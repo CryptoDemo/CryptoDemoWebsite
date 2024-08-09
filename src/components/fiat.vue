@@ -38,7 +38,7 @@
                         <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
                             <v-list-item style="display: contents; left: 532px;">
                             <v-row dense style="max-width: 250px; height: 300px; overflow: scroll;">
-                                <v-col v-for="(currency, index) in pinia.state.allcountries" :key="index">
+                                <v-col v-for="(currency, index) in pinia.state.allcountries" :key="index" sm="12">
                                 <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code" style="display: flex;">
                                 
                                 <span class="currency-list my-2">{{ currency.currency_name }}</span>
@@ -619,5 +619,7 @@ fill: #10192D;
   .header-txt{
   margin-top: 20px !important;
  }
+
+
 }
 </style>

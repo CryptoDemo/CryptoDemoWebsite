@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div v-if="!FiatTxnInfo.length" class="no-transactions" style="height: 400px; display: flex; justify-content: center;">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 14 14" fill="none">
             <path d="M10.52 5.96684L13 3.48682L10.52 1.00684" stroke="#969696" stroke-linecap="round" stroke-linejoin="round"/>
@@ -9,6 +10,8 @@
             </svg>
             <span style="">No transactions to display.</span>
         </div>
+
+
         <div v-for="(transaction, index) in FiatTxnInfo" :key="index">
             <v-dialog max-width="420">
             <template v-slot:activator="{ props: activatorProps }">
@@ -19,10 +22,10 @@
                     <div v-if="transaction?.details?.fiat?.transfer" class="mt-2"  style="display: flex; justify-content: space-between">
                         <div style="display: flex; align-items: center">
                     
-                            <img v-if="transaction.details.fiat.transfer" src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
+                            <img src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
                         
                             <div style="display: flex; flex-direction: column">
-                                <span v-if="transaction.details.fiat.transfer">Sent</span>
+                                <span>Sent</span>
                                 <div class="d-flex" style="margin-bottom: 6px">
                                     <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
                                     <h5>{{ formatTime(transaction.created_at) }}</h5>
@@ -37,10 +40,10 @@
                     </div>
 
 
-                    <div v-if="transaction.details.fiat.funding" class="mt-2"  style="display: flex; justify-content: space-between">
+                    <div v-if="transaction?.details?.fiat?.funding" class="mt-2"  style="display: flex; justify-content: space-between">
                         <div style="display: flex; align-items: center">
                     
-                            <img v-if="transaction.details.fiat.funding" src="/svg/greenGet.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
+                            <img src="/svg/greenGet.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
                         
                             <div style="display: flex; flex-direction: column">
                                 <span>Received</span>
@@ -65,9 +68,7 @@
                                 <div style="display: flex; flex-direction: column">
                                 <span>Swap</span>
                                 <div class="d-flex" style="margin-bottom: 6px">
-                                    <h5 class="me-2">
-                                    {{ formattedDate(transaction.created_at) }},
-                                    </h5>
+                                    <h5 class="me-2">{{ formattedDate(transaction.created_at) }},</h5>
                                     <h5>{{ formatTime(transaction.created_at) }}</h5>
                                 </div>
                                 </div>
@@ -79,8 +80,11 @@
                             </div>
                         </div>
            
-                    </div>
+                    </div> 
 
+
+
+                    
                     <div v-if="transaction?.details?.fiat.exchange">
                         <div class="d-flex" style="justify-content: space-between;">
                             <div style="display: flex; align-items: center">
@@ -115,10 +119,9 @@
                             </div>
                         </div>
            
-                    </div>
+                    </div> 
 
-                    <!-- when you make a withdrwal and there is an error, quickly check here... -->
-
+                    <!-- when you make a withdrwal and there is an error, quickly check here because i have not made any withdrawal to test this section of the code... -->
 
                     <div v-if="transaction?.details?.fiat?.withdrawal">
                         <div class="d-flex" style="justify-content: space-between;">
@@ -127,9 +130,7 @@
                                 <div style="display: flex; flex-direction: column">
                                 <span>Withdrawal</span>
                                 <div class="d-flex" style="margin-bottom: 6px">
-                                    <h5 class="me-2">
-                                    {{ formattedDate(transaction.created_at) }},
-                                    </h5>
+                                    <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
                                     <h5>{{ formatTime(transaction.created_at) }}</h5>
                                 </div>
                                 </div>
@@ -141,16 +142,16 @@
                         </div>
            
                     </div>
-  
                   
                 </div>
-    
 
             </div>
     
              
             </template>
-            <template v-slot:default="{ isActive }">
+
+            
+             <template v-slot:default="{ isActive }">
                 <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 20px; padding: 20px">
                 <h2 class="text-center">Transaction Details</h2>
     
@@ -329,18 +330,18 @@
                    </div> 
 
                 </div>
-
                 
                 <v-card-actions class="mt-8" style="display: flex; justify-content: space-between; align-items: center;">
                     <v-btn variant="tonal" text="Close Receipt" @click="isActive.value = false" style="text-transform: unset; letter-spacing: 0px; font-weight: 600;  width: 50%; height: 50px; border-radius: 10px !important;"></v-btn>
                     <v-btn class="primary-btn1" text="Download Receipt" style="border-radius: 10px !important; width: 50%; font-weight: 600; height: 50px; color: white;"></v-btn>
                 </v-card-actions>
                 </v-card>
-            </template>
+            </template> 
             </v-dialog>
         </div>
     </div>
 </template>
+
 
 <script setup>
 import { ref } from "vue";
@@ -353,40 +354,47 @@ const pinia = useStore();
 const isloading = ref(false);
 const pageNumber = ref(1);
 const copied = ref(false);
-// const fiat_trans = ref();
+
 
 const created_at = ref();
 
-const FiatTxnInfo = ref(pinia.state.Fiat_transactions || []);
-
-
+const FiatTxnInfo = computed(() => pinia.state.Fiat_transactions);
 
 const getFiatTxn = async () => {
   isloading.value = true;
 
   try {
     const data = await allFiatTxn(pageNumber.value);
+
     if (data.success) {
-      FiatTxnInfo.value = data?.data?.result;
+      // Ensure both existing and new transactions are arrays
+      const existingTransactions = Array.isArray(FiatTxnInfo.value) ? FiatTxnInfo.value : [];
+      const newTransactions = Array.isArray(data.data.result) ? data.data.result : [];
 
-
-      FiatTxnInfo.value = filterByKey("id", [
-        ...FiatTxnInfo.value,
-        ...data.data.result,
+      // Merge and filter transactions by unique ID
+      const updatedTransactions = filterByKey("id", [
+        ...existingTransactions,
+        ...newTransactions,
       ]);
-    console.log( FiatTxnInfo.value)
-      pinia.setFiat_transactions(FiatTxnInfo.value);
 
-      isloading.value = false;
+      // Update local state and Pinia store
+      FiatTxnInfo.value = updatedTransactions;
+      pinia.setFiat_transactions(updatedTransactions);
+
+      console.log('Updated Transactions:', FiatTxnInfo.value);
     } else {
       push.error(`${data.message}`);
-      isloading.value = false;
     }
   } catch (e) {
-    console.log(e);
+    console.error("An error occurred while fetching transactions:", e);
+    push.error("An error occurred while fetching transactions. Please try again.");
+  } finally {
     isloading.value = false;
   }
 };
+
+
+
 
 
 const copyToClipboard = (text) => {

@@ -16,8 +16,10 @@
 <script setup>
 import { useStore } from '@/stores/index';
 import { getSummedBalance, getTokenBalance } from "@/composables/requests/tokens";
+import { allFiatTxn } from "@/composables/requests/fiat";
 
 
+const pageNumber = ref(1);
 const pinia = useStore()
 
 const network = pinia.state.selectedNetwork.toLowerCase();
@@ -78,6 +80,37 @@ const getSummedBal = async () => {
     } catch (error) {
       console.log(error)
     }
+  }
+};
+
+const FiatTxnInfo = computed(() => pinia.state.Fiat_transactions);
+const getFiatTxn = async () => {
+
+  try {
+    const data = await allFiatTxn(pageNumber.value);
+
+    if (data.success) {
+      // Ensure both existing and new transactions are arrays
+      const existingTransactions = Array.isArray(FiatTxnInfo.value) ? FiatTxnInfo.value : [];
+      const newTransactions = Array.isArray(data.data.result) ? data.data.result : [];
+
+      // Merge and filter transactions by unique ID
+      const updatedTransactions = filterByKey("id", [
+        ...existingTransactions,
+        ...newTransactions,
+      ]);
+
+      // Update local state and Pinia store
+      FiatTxnInfo.value = updatedTransactions;
+      pinia.setFiat_transactions(updatedTransactions);
+
+      console.log('Updated Transactions:', FiatTxnInfo.value);
+    } else {
+      push.error(`${data.message}`);
+    }
+  } catch (e) {
+    console.error("An error occurred while fetching transactions:", e);
+    push.error("An error occurred while fetching transactions. Please try again.");
   }
 };
 
@@ -151,12 +184,15 @@ const initSocketListeners = ($socketClient)=>{
 
           case 'new_fiat_txn':
             console.log('Transfer:', message.data);
-          
-            const fiat_trans_payload = [message.data]
-            const data_payload = [...pinia.state.Fiat_transactions,...fiat_trans_payload]
-             
-       
+
+
+            const fiat_trans_payload = Array.isArray(message.data) ? message.data : [message.data];
+
+            // Combine existing transactions with the new payload
+            const existingTransactions = Array.isArray(pinia.state.Fiat_transactions) ? pinia.state.Fiat_transactions : [];
+            const data_payload = [...existingTransactions, ...fiat_trans_payload];
     
+            getFiatTxn();
             break;
   
           case 'fiat_balances_updated':

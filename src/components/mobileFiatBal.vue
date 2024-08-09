@@ -1,6 +1,6 @@
 <template>
 
-        <div class="d-flex" style="justify-content: space-between; align-items: center; width: 100%;">
+        <div class="d-flex mobile-div" style="justify-content: space-between; align-items: center; width: 100%;">
            
             <div style="display: flex; flex-direction: column;">
                 <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; color: white; line-height: 140%;">Balance</span>
@@ -15,7 +15,7 @@
     
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled },]">
                       <g clip-path="url(#clip0_10476_6360)">
-                        <path d="M12.7207 13.7951L17.6707 8.74609L19.0847 10.1884L12.7207 16.6797L6.35669 10.1884L7.77069 8.74609L12.7207 13.7951Z" fill="#8e9bae"/>
+                        <path d="M12.7207 13.7951L17.6707 8.74609L19.0847 10.1884L12.7207 16.6797L6.35669 10.1884L7.77069 8.74609L12.7207 13.7951Z" fill="white"/>
                       </g>
                       <defs>
                         <clipPath id="clip0_10476_6360">
@@ -162,4 +162,10 @@ fill: #10192D;
 .chevron-icon-rotated {
   transform: rotate(180deg);
 }
+
+@media only screen and (min-width: 600px) {
+  .mobile-div{
+    display: none !important;
+  }
+ }
   </style>

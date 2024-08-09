@@ -43,13 +43,15 @@ export const useStore = defineStore('app',()=> {
       TransactionDetails: [],
       MarketPlace: [],
       MyOffers: [],
+      allMyOders: [],
       Fiat_transactions: [],
       Total_fiat_bal:[],
       selectedOfferType_from_landing: [],
       fiat_currency_i_want: "",
       Fiat_swap_details: {},
       geo:{},
-      camouflageCurrency:""
+      camouflageCurrency:"",
+      getSingleTxnID:"",
 
     });
   
@@ -174,6 +176,10 @@ export const useStore = defineStore('app',()=> {
     state.TransactionDetails = payload;    
   };
 
+  const setgetSingleTxnID = (payload) => {
+    state.getSingleTxnID = payload;    
+  };
+
   const setFiat_swap_details = (payload) => {
     state.Fiat_swap_details = payload;    
   };
@@ -229,9 +235,10 @@ export const useStore = defineStore('app',()=> {
     state.Total_fiat_bal = [],
     state.TransactionDetails = [],
     state.selectedLandingCoin = "",
-    state.fiat_currency_i_want = ""
-    state.allMyOders = []
-    state.Fiat_swap_details= "",
+    state.fiat_currency_i_want = "",
+    state.allMyOders = [],
+    state.Fiat_swap_details = "",
+    state.getSingleTxnID = "",
     state.selected_coin_to_buy_from_marketplace = "",
     state.selected_coin_to_buy_from_marketplace_userID = "",
     state.geo = {},

@@ -584,6 +584,7 @@ const Buy_OfferDirectly = async () => {
     if (data.success) {
       // Reset amount_to_pay to 0 or a default value appropriate for your use case
       amount_to_pay.value = 0;
+      navigateTo('/account/trade/wallet')
 
       push.success('transaction successful')
     } else {
@@ -624,6 +625,8 @@ const Buy_OfferP2P = async () => {
 
       // Notify the user of the successful order creation
       push.success('Order created successfully!');
+
+      navigateTo('/account/marketplace/trades')
     } else {
       // Display the error message to the user
       push.error(data.message || 'An error occurred while creating the order');

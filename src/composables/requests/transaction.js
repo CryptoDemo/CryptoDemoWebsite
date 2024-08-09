@@ -59,7 +59,7 @@ export const executeTrans = async(payload)=>{
 export const getSingleTransactions = async(txnId)=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return
-    const data = await fetch(`${baseURL}transaction/${transactionId}`, {
+    const data = await fetch(`${baseURL}transaction/${pinia.state.getSingleTxnID}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
