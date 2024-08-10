@@ -21,7 +21,7 @@
                     <div class="button-container py-3" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; border-radius: 10px; align-items: center;">
                       <v-btn class="me-3" :class="[selectedScreen ? 'personalBtn' : isDark ? 'marketBtn' : 'marketBtn-light']" @click.prevent="selectedScreen=true" >Market Offers</v-btn>
                       <v-btn :class="[!selectedScreen ? 'personalBtn' : isDark ? 'marketBtn' : 'marketBtn-light']" @click.prevent="selectedScreen=false">Personal Offers 
-                        <span style="background: #2873FF; padding: 10px; border-radius: 15px; margin: 10px; height: 26px; display: flex; align-items: center; font-size: 14px">{{ pinia.state.offersCount }}</span>
+                        <span style="background: #2873FF; padding: 8px; border-radius: 15px; margin: 10px; height: 23px; display: flex; align-items: center; font-size: 12px">{{ pinia.state.offersCount }}</span>
                       </v-btn>
 
                       <v-menu>
