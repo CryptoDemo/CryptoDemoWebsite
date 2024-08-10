@@ -37,6 +37,7 @@ export const useStore = defineStore('app',()=> {
       TransferWallet: "",
       SummedBalance: "",
       selected_coin_to_buy_from_marketplace: "",
+      selected_offer_from_trades: "",
       selected_coin_to_buy_from_marketplace_userID: "",
       coin_to_transfer: "",
       Selected_coin_Balance: "",
@@ -52,7 +53,7 @@ export const useStore = defineStore('app',()=> {
       geo:{},
       camouflageCurrency:"",
       getSingleTxnID:"",
-
+      offersCount:""
     });
   
   
@@ -190,7 +191,8 @@ export const useStore = defineStore('app',()=> {
   };
 
   const setMyOffers = (payload) => {
-      state.MyOffers = payload;    
+      state.MyOffers = payload; 
+      state.offersCount = payload.length;   
   };
 
   const setallMyOders = (payload) => {
@@ -233,6 +235,10 @@ export const useStore = defineStore('app',()=> {
     state.tokenNetworks = [],
     state.tokenLists = [],
     state.Total_fiat_bal = [],
+    state.MyOffers = [],
+    state.selected_coin_to_buy_from_marketplace = "",
+    state.selected_offer_from_trades = "",
+    state.selected_coin_to_buy_from_marketplace_userID = "",
     state.TransactionDetails = [],
     state.selectedLandingCoin = "",
     state.fiat_currency_i_want = "",
@@ -242,6 +248,7 @@ export const useStore = defineStore('app',()=> {
     state.selected_coin_to_buy_from_marketplace = "",
     state.selected_coin_to_buy_from_marketplace_userID = "",
     state.geo = {},
+    state.selected_offer_from_trades = "",
   
    
     navigateTo('/authentication/login')

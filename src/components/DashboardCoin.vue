@@ -2,7 +2,7 @@
 
     <div style="display: flex; max-width: 100%;">
         
-        <div  style="display: flex; justify-content: space-between; overflow: scroll;">
+        <div style="display: flex; justify-content: space-between; overflow: scroll;">
             <div v-for="(item, i) in  multipliedValues" :key="i">
                 <v-card link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 16px;"> 
                     <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(item.product) }} {{ pinia.state.preferredCurrency }}</span>

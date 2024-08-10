@@ -7,8 +7,6 @@
           <Sd-nav1 style="border: none;" />
         </div>
      
-
-
         <div class="offer-body" style="width: 100%; margin-left: 16px;">
             <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; margin-bottom: 40px; margin-top: 12px; border: none">
               <span class="marketPlace" style="font-size: 24px; font-style: 28px; font-weight: 600; color: #5892FF;">Marketplace</span>
@@ -22,7 +20,9 @@
 
                     <div class="button-container py-3" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; border-radius: 10px; align-items: center;">
                       <v-btn class="me-3" :class="[selectedScreen ? 'personalBtn' : isDark ? 'marketBtn' : 'marketBtn-light']" @click.prevent="selectedScreen=true" >Market Offers</v-btn>
-                      <v-btn :class="[!selectedScreen ? 'personalBtn' : isDark ? 'marketBtn' : 'marketBtn-light']" @click.prevent="selectedScreen=false">Personal Offers</v-btn>
+                      <v-btn :class="[!selectedScreen ? 'personalBtn' : isDark ? 'marketBtn' : 'marketBtn-light']" @click.prevent="selectedScreen=false">Personal Offers 
+                        <span style="background: #2873FF; padding: 10px; border-radius: 15px; margin: 10px; height: 26px; display: flex; align-items: center; font-size: 14px">{{ pinia.state.offersCount }}</span>
+                      </v-btn>
 
                       <v-menu>
                         <template v-slot:activator="{ props }">
@@ -527,17 +527,24 @@ const get_allMarket_Offers = async () => {
   try {
     const data = await getMarketOffers(pageNumber.value);
     if (data.success) {
-      const updatedOffers = data.data.result.map(offer => {
-        const countryId = offer.trading_pair?.fiat.country_id;
-        const countryCurrencyName = countryId 
-          ? pinia.state.allcountries.find(country => country.id === countryId)?.currency_name || 'Unknown'
-          : 'Unknown';
+      // Assuming user id is stored in pinia.state.user.id
+      const userId = pinia.state.user.id;
+      
+      // Filter out offers that belong to the user
+      const filteredOffers = data.data.result
+        .filter(offer => offer.user.id !== userId) // Adjust 'user_id' if needed
+        .map(offer => {
+          const countryId = offer.trading_pair?.fiat.country_id;
+          const countryCurrencyName = countryId 
+            ? pinia.state.allcountries.find(country => country.id === countryId)?.currency_name || 'Unknown'
+            : 'Unknown';
 
-        return { ...offer, countryCurrencyName };
-      });
+          return { ...offer, countryCurrencyName };
+        });
 
-      offers.value = updatedOffers;
-      pinia.setMarketPlace(updatedOffers);
+      offers.value = filteredOffers;
+      pinia.setMarketPlace(filteredOffers); // Update the store with filtered offers
+
     } else {
       push.error(`${data.message}`);
     }
@@ -547,6 +554,7 @@ const get_allMarket_Offers = async () => {
     loading.value = false;
   }
 };
+
 
 const offerID = computed(() => pinia.state.MarketPlace.map(item => item.id));
 
@@ -858,7 +866,8 @@ border-radius: 10px;
 .personalBtn, .marketBtn{
   width: 40% !important;
   height: 40px !important;
-  font-size: 14px;
+  font-size: 12px;
+  display: flex;
 }
 
 .offer-body, .offer-container{

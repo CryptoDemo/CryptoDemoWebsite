@@ -18,11 +18,12 @@
               </div>
               <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;">Minimum-Maximum buy limit</span>
               <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500; ">Price model</span>
+              <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500; ">Unit value</span>
             </div>
 
           </div>
 
-          <div style="margin-block-start: auto; line-height: 30px;">
+        <div style="margin-block-start: auto; line-height: 30px;">
             <div :class="isDark ? 'text-dark' : 'text-light'" style="display: flex; flex-direction: column; justify-content: flex-end;">
               <span v-if="offer.user?.is_verified" style="font-size: 14px; font-weight: 600; color: green; text-align-last: right;">Verified</span>
               <span style="font-size: 14px; font-weight: 600; color: green; text-align-last: right;" v-else>Unverified User</span>
@@ -34,6 +35,7 @@
               v-if="offer?.trading_pair?.fiat?.use_fixed_price">Fixed Price</span>
               <span  style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400;  align-self: self-end;" 
               v-else>Market Price</span>
+              <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400;  align-self: self-end;">{{ offer?.trading_pair?.fiat?.unit_value }} {{ offer.countryCurrencyName }}</span>
 
           </div>
 
@@ -41,6 +43,7 @@
 
         </div>
            
+        <v-btn @click="navigateTo('/account/marketplace/createOffer')" class="primary-btn1" style="width: 95%; display: flex; margin: auto; border-radius: 10px !important; font-weight: 600; height: 40px;">Edit offer</v-btn>
           <div style="display: flex; justify-content: end">
             <v-dialog max-width="500">
               <template v-slot:activator="{ props: activatorProps }">
@@ -86,31 +89,26 @@ const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore();
 const pageNumber = ref(1);
 const loading = ref(false);
-const personalOffers = ref(pinia.state.MyOffers || []);
+const personalOffers = computed(() => pinia.state.MyOffers || []);
 
 const offerID = ref([]);
 offerID.value = pinia.state.MarketPlace.map(item => item.id);
 
-console.log(offerID)
-
 const selectedCoinId = computed(() => pinia.state.selected_coin_to_buy_from_marketplace);
-console.log("selectedID", selectedCoinId)
 
 const productID = computed(() => offerID.value.find(id => id === selectedCoinId.value));
-console.log("product", productID)
 
 watch(productID, (newVal) => {
-  console.log(newVal)
 });
 
-const get_allMy_Offers = async () => {
 
+const get_allMy_Offers = async () => {
   try {
     const data = await personal_Offer(pageNumber.value);
     if (data.success) {
-      personalOffers.value = data.data.result;
+      let newOffers = data.data.result;
 
-      personalOffers.value = personalOffers.value.map(offer => {
+      newOffers = newOffers.map(offer => {
         const countryId = offer.trading_pair?.fiat.country_id;
         let countryCurrencyName = 'Unknown';
         if (countryId) {
@@ -120,22 +118,24 @@ const get_allMy_Offers = async () => {
         return { ...offer, countryCurrencyName };
       });
 
-      if(data?.data?.result?.length){
-      personalOffers.value = filterByKey("id",[...personalOffers.value,...data?.data?.result]);
-      pinia.setMyOffers(data.data.result);
-      pageNumber.value++;
+      if (newOffers.length) {
+        // Assuming filterByKey is a function to remove duplicates based on "id"
+        const updatedOffers = filterByKey("id", [...personalOffers.value, ...newOffers]);
+        pinia.setMyOffers(updatedOffers); // Update offers and count
+        pageNumber.value++;
+      }
 
-    }
-      console.log(personalOffers.value);
+
     } else {
       push.error(`${data.message}`);
-   
     }
   } catch (e) {
     console.log(e);
+  } finally {
     loading.value = false;
   }
 };
+
 
 const delete_My_Offers = async () => {
 
@@ -200,4 +200,12 @@ height: fit-content;
 border-radius: 10px;
 }
 
+
+@media screen and (max-width: 600px) {
+    .v-icon--size-default {
+        font-size: calc(var(--v-icon-size-multiplier)* 1.5em);
+        color: #8E9BAE;
+        margin-left: 0px !important;
+    }
+}
 </style>

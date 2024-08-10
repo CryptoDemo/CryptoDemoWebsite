@@ -7,7 +7,7 @@
         <div style="margin: auto; margin-bottom: 280px;">      
           <div class="offer-txt1 mt-10" :class="isDark ? 'card-text-dark':'card-text-light'">Create an Offer to Sell your Crypto</div>
 
-          <div style="display: flex; flex-direction: column; margin-top: 56px;">
+          <div class="trd-prc" style="display: flex; flex-direction: column; margin-top: 56px;">
               <span class="prc1">Trade Pricing</span>
               
           </div>
@@ -15,17 +15,20 @@
           <div>
           
 
-            <div class="d-md-flex" style="justify-content: space-between; margin-top: 53px; margin-bottom: 66px;">
-              <div :class="priceType ? 'box1' : 'box2'" @click="priceType = true">
-                <span :class="priceType ? 'mkt-place' : 'mkt-place1'">Market Price</span>
-                <span :class="priceType ? 'mkt-place-caption' : 'mkt-place-caption1'">Your offer's selling price will change according to the market price of Bitcoin. This price is determined by supply and demand dynamics in the marketplace.</span>
+            <div class="d-md-flex price-div" style="justify-content: space-between; margin-top: 53px; margin-bottom: 66px;">
+              <div :class="{'box1': !priceType, 'box2': priceType}" @click="setPriceType(false)">
+                <span :class="{'mkt-place': !priceType, 'mkt-place1': priceType}">Market Price</span>
+                <span :class="{'mkt-place-caption': !priceType, 'mkt-place-caption1': priceType}">
+                  Your offer's selling price will change according to the market price of Bitcoin. This price is determined by supply and demand dynamics in the marketplace.
+                </span>
               </div>
-              <div :class="priceType ? 'box2' : 'box1'" @click="priceType = false">
-                <span :class="priceType ? 'mkt-place1' : 'mkt-place'">Fixed Price</span>
-                <span :class="priceType ? 'mkt-place-caption1' : 'mkt-place-caption'">Your offer's selling price is locked when you create it, and won't change with the market price. This price does not change based on market conditions.</span>
+              <div :class="{'box2': !priceType, 'box1': priceType}" @click="setPriceType(true)">
+                <span :class="{'mkt-place1': !priceType, 'mkt-place': priceType}">Fixed Price</span>
+                <span :class="{'mkt-place-caption1': !priceType, 'mkt-place-caption': priceType}">
+                  Your offer's selling price is locked when you create it, and won't change with the market price. This price does not change based on market conditions.
+                </span>
               </div>
             </div>
-
             <div>
               <div class="position-relative">
 
@@ -92,9 +95,9 @@
                     </v-menu> 
                   </div>
 
-                  <span v-if="!priceType" class="select1i">Enter Equivalent Unit Price of {{ tokenSymbol }} in {{ pinia.state.preferredCurrency }}</span>
+                  <span v-if="priceType" class="select1i">Enter Equivalent Unit Price of {{ tokenSymbol }} in {{ pinia.state.preferredCurrency }}</span>
                   
-                  <div v-if="!priceType"  style="margin-top: 8px; margin-bottom: 16px;">
+                  <div v-if="priceType"  style="margin-top: 8px; margin-bottom: 16px;">
                     <input type="number" placeholder="Equivalent Unit Price" v-model="EquivPrice" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                       <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
                         <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
@@ -154,7 +157,7 @@
                   </div>
 
                 <div style="display: flex; justify-content: end; margin-top: 30px;">
-                  <v-btn  :disabled="!offerRequirements" @click="create_offer()" class="primary-btn1" :loading="loading" style="height: 64px; width: 180px; font-weight: 600; color: white; box-shadow: none;">Create Offer</v-btn>                  
+                  <v-btn  :disabled="!offerRequirements" @click="create_offer()" class="primary-btn1" :loading="loading" style="height: 60px; width: 180px; font-weight: 600; color: white; box-shadow: none;">Create Offer</v-btn>                  
                 </div>
 
                   
@@ -189,10 +192,13 @@ const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore();
 
-const priceType = ref(true);
+const priceType = ref(false);
+const setPriceType = (isFixedPrice) => {
+  priceType.value = isFixedPrice;
+  console.log('Price Type Updated:', priceType.value);
+};
 
 const loading = ref();
-
 
 const tokenName = ref();
 
@@ -221,7 +227,6 @@ try {
   const data = await getPaymentMethod(pageNumber.value);
   if (data.success) {
     const payment_method = data.data;
-    console.log(payment_method)
 
   } else {
       push.error(`${data.message}`);
@@ -255,6 +260,8 @@ const offerInfo = {
     active: true
 };
 
+console.log('use_fixed_price:', priceType.value);
+
   loading.value = true;
   try {
     const data = await createOffer(offerInfo);
@@ -281,7 +288,7 @@ const offerInfo = {
 };
 
 const offerRequirements = computed(() => {
-  return tokenSymbol.value && unitPrice.value && EquivPrice.value && minAmmount.value && maxAmmount.value !== null || !pinia.state.user.kyc_verified;
+  return tokenSymbol.value && unitPrice.value  && minAmmount.value && maxAmmount.value !== null || !pinia.state.user.kyc_verified;
 });
 
 const isChevronToggled = ref(false);
@@ -290,12 +297,12 @@ const toggleChevron = () => {
 };
 
 
-onMounted( () => {
+// onMounted( () => {
  
-  allPaymentMethods();
+//   allPaymentMethods();
     
-    }
-  );
+//     }
+//   );
 </script>
 
 <style scoped>
@@ -397,9 +404,27 @@ font-family: Manrope;
   }
 
   @media screen and (max-width: 600px) {
-  .box2 {
+  .box2, .box1 {
     width: 100% !important;
-    
   }
+  .offer-txt1, .prc1 {
+    font-size: 22px;
+  }
+
+  .trd-prc {
+    display: flex;
+    flex-direction: column;
+    margin-top: 19px !important;
+  }
+
+  .price-div{
+    margin-top: 20px !important;
+    margin-bottom: 25px !important;
+  }
+
+  .primary-btn1{
+    width: 100% !important;
+  }
+
 }
 </style>
