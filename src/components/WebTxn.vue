@@ -22,12 +22,14 @@
                                 <img v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
                             </div>
                             <div style="display: flex; flex-direction: column">
-                            <span v-if="transData?.details?.crypto?.transfer?.status?.fulfilled || transaction?.details?.crypto?.transfer?.status?.fulfilled">Received</span>
-                            <!-- <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'">Sent</span> -->
-                            <div class="d-flex" style="margin-bottom: 6px">
-                                <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
-                                <h5>{{ formatTime(transaction.created_at) }}</h5>
-                            </div>
+                              <span style="color: green; font-weight: 700;" v-if="transData?.details?.crypto?.transfer?.status?.fulfilled || transaction?.details?.crypto?.transfer?.status?.fulfilled">Successful</span>
+                              <span style="color: red; font-weight: 700;" v-else-if="transData?.details?.crypto?.transfer?.status?.failed || transaction?.details?.crypto?.transfer?.status?.failed">Failed</span>
+                              <span style="color: orange; font-weight: 700;" v-else>Pending</span>
+
+                              <div class="d-flex" style="margin-bottom: 6px">
+                                  <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
+                                  <h5>{{ formatTime(transaction.created_at) }}</h5>
+                              </div>
                             </div>
                         </div>
         
@@ -63,8 +65,6 @@
                                 </div>
                             </div>
 
-
-            
                         </div>
                         
                     </div>
@@ -162,7 +162,7 @@
                                   </button>
                                 </div>
                             
-                                
+
                                 <p class="truncate" style="font-size: 14px; width: 187px" v-if="transaction?.details?.crypto?.swap?.status">
                                   <v-chip color="green" v-if="transaction?.details?.crypto?.swap?.status?.fulfilled">Successful</v-chip>
                                   <v-chip color="red" v-else-if="transaction?.details?.crypto?.swap?.status?.failed">Failed</v-chip>
@@ -219,6 +219,7 @@ const getWebTrans = async () => {
     const data = await getWebTransaction(pageNumber.value, pinia.state.selectedNetwork.toLowerCase());
 
     if (data.success) {
+      console.log(data.data)
       // Ensure datainfo.value is an array
       const currentData = Array.isArray(datainfo.value) ? datainfo.value : [];
       // Merge new data with existing data

@@ -58,7 +58,7 @@
 
                               <v-list style="border-radius: 10px;" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  >
                                 <v-list-item>
-                                  <v-row dense style="max-width: 210px;">
+                                  <v-row dense style="max-width: 210px; display: block;">
                                       <v-col v-for="(currency, index) in pinia.state.allcountries" class="" :key="index" >
                                         <v-list-item-title  @click="preferredTokenCurrency=currency.currency_name"> 
                                           <div style="display: flex; justify-content: flex-start;">
@@ -86,13 +86,13 @@
                               
                               <v-list style="border-radius: 10px;" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
                                 <v-list-item>
-                                  <v-row dense style="max-width: 210px;">
+                                  <v-row dense style="max-width: 210px; display: block;">
                                     <v-col v-for="(method, index) in paymentMethods" :key="index" sm="12">
                                       <v-list-item @click="selectedPaymentMethod = method">
                                         <v-list-item-content>
                                           <v-list-item-title>
                                             <div style="display: flex; justify-content: flex-start;">
-                                              <span class="currency-list my-2">{{ method }}</span>
+                                              <span class="currency-list my-2" style="font-size: 14px;">{{ method }}</span>
                                             </div>
                                           </v-list-item-title>
                                         </v-list-item-content>
@@ -180,7 +180,12 @@
                         <div style="align-items: center; border: none; align-items: baseline; display: flex; justify-content: space-between;">
                           <div>
                             <div style="display: flex; align-items: center; line-height: 30px;">
-                              <span class="me-3" style="font-size: 14px; font-weight: 600;">{{ offer?.user?.username}}</span>
+                              <img v-if="offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" style="width: 30px; height: 30px; border-radius: 30px;" />
+                              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#8e9bae" class="bi bi-person-bounding-box" viewBox="0 0 16 16" v-else>
+                                <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                              </svg>
+                              <span class="me-3 ml-2" style="font-size: 14px; font-weight: 600;">{{ offer?.user?.username}}</span>
                               <!-- <img :src="offer.sellerCountry" style=" border-radius: 4px; height: 28px; width: 45px;"/> -->
                             </div>
   
@@ -299,7 +304,7 @@
                                         
                                         <v-list style="border-radius: 10px;" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
                                           <v-list-item>
-                                            <v-row dense style="max-width: 210px;">
+                                            <v-row dense style="max-width: 210px; display: block;">
                                               <v-col v-for="(method, index) in paymentMethods" :key="index" sm="12">
                                                 <v-list-item @click="selectedPaymentMethod = method">
                                                   <v-list-item-content>
@@ -370,17 +375,16 @@
                       </v-btn>
                     </template>
 
-                    <v-list style="border-radius: 10px;" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  >
-                      <v-list-item>
-                        <v-row dense style="max-width: 210px;">
-                            <v-col v-for="(currency, index) in pinia.state.allcountries" class="" sm="12" :key="index" >
-                              <v-list-item-title  @click="preferredTokenCurrency=currency.currency_name"> 
-                                <div style="display: flex; justify-content: flex-start;">
-                                  <span class="currency-list my-2">{{ currency.currency_name }}</span>
-                                </div>
-
-                              </v-list-item-title>
-                            </v-col>
+                    <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 15px; margin-top: 10px;">
+                      <v-list-item style="display: contents">
+                        <v-row dense style="max-width: 240px; height: 250px; overflow: scroll;">
+                          <div v-for="(currency, index) in pinia.state.allcountries" :key="index" style="width: 100%;">
+                            <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code" style="display: flex;">
+                              <div style="display: flex; align-items: center;">
+                                <span class="currency-list">{{ currency.currency_name }}</span>
+                              </div>
+                            </v-list-item>
+                          </div>
                         </v-row>
                       </v-list-item>
                     </v-list>
@@ -400,7 +404,7 @@
                     
                     <v-list style="border-radius: 10px;" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
                       <v-list-item>
-                        <v-row dense style="max-width: 210px;">
+                        <v-row dense style="max-width: 210px; display: block;">
                           <v-col v-for="(method, index) in paymentMethods" :key="index" sm="12">
                             <v-list-item @click="selectedPaymentMethod = method">
                               <v-list-item-content>
@@ -556,14 +560,7 @@ const get_allMarket_Offers = async () => {
   }
 };
 
-// const currentBuyAmount = ref(0);
-// const isBuyLimitMet = computed(() => {
-//   const minLimit = marketplace?.trading_pair?.fiat?.minimum_buy_limit;
-//   console.log(minLimit)
-//   const maxLimit = marketplace?.trading_pair?.fiat?.maximum_buy_limit;
-//   console.log(maxLimit)
-//   return currentBuyAmount.value >= minLimit && currentBuyAmount.value <= maxLimit;
-// });
+
 
 const offerID = computed(() => pinia.state.MarketPlace.map(item => item.id));
 
@@ -587,6 +584,7 @@ const Buy_OfferDirectly = async () => {
     if (data.success) {
       // Reset amount_to_pay to 0 or a default value appropriate for your use case
       amount_to_pay.value = 0;
+      pinia.setFiat_transactions({...pinia.state.Fiat_transactions, ...data.data});
       navigateTo('/account/trade/wallet')
 
       push.success('transaction successful')

@@ -32,7 +32,7 @@
           </thead>
         
             <tbody>
-              <tr v-for="(item, i) in activityLogs" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5); align-items: baseline; margin-top: 5px">
+              <tr v-for="(item, i) in activityLogs" :key="item.name" style="display: flex; border-bottom:.5px solid rgba(142,155,174,.5); align-items: baseline; margin-top: 5px; height: 105px;">
                 <td ><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'" style="margin-left: 10px">{{i+1}}</span></td>
                 <td class="logCaptions" style="width: 19%;display: flex; align-items: center; margin-left: 14px;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.title}}</span></td>
                 <td class="logCaptions1" style="width: 60%;"><span class="browser-txt" :class="isDark ? 'text-dark':'text-light'">{{item.description}}</span></td>

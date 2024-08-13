@@ -498,8 +498,7 @@ color: #10192D;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-
-  
+  margin: auto !important; 
 }
 }
 </style>

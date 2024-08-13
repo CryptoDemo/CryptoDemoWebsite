@@ -14,9 +14,15 @@
               <td class="notification-text capitalize" :class="isDark ? 'text-dark':'text-light'">{{ k?.split("_")?.join(" ")?.replace("notify me on ","") }}</td>
               <td><v-switch class="v-switch-mobile" v-model="notifSettings[k]" @input="toggleNotification(k,v)" inset color="#2873FF" style="display: flex; justify-content: center; padding-right: 50px;"></v-switch></td>
             </div>
-            
+
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <td><span :class="isDark ? 'text-dark':'text-light'" style="margin-top: -5px;">Customer Support</span></td>
+
+              <v-btn variant="tonal" style="background: #35B233; text-transform: capitalize; color: white; margin-right: 50px">Online</v-btn>
+            </div>
             
             <div style="display: flex; align-items: center; justify-content: space-between;">
+            
               <span :class="isDark ? 'text-dark':'text-light'" style="margin-top: -5px;">Camouflage</span>
               
               <v-switch @click="switchDialog()" :value="switchValue" inset color="#2873FF" class="v-switch-mobile" style="padding-right: 50px;"></v-switch>

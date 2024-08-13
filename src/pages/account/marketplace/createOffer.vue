@@ -45,8 +45,8 @@
 
                         <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
                           <v-list-item style="display: contents">
-                            <v-row dense style="max-width: 280px; height: 300px; overflow: scroll;">
-                              <v-col v-for="tokens in pinia.state.tokenLists" class="" :key="tokens.id" sm="12">
+                            <v-row dense style="height: 300px; overflow: scroll; display: flex; flex-direction: column;">
+                              <v-col v-for="tokens in pinia.state.tokenLists" class="" :key="tokens.id">
                               <v-list-item  @click="tokenName=tokens.name; tokenIcon=tokens.icon; tokenSymbol=tokens.symbol; selectedCoinID = tokens.id" style="display: flex;">
                                 <div style="display: flex; align-items: center; ">
                                   <img :src="tokens.icon" width="30" class="me-2"/>
@@ -76,19 +76,16 @@
                           </v-btn>
                         </template>
 
-                        <v-list style="width: 100%; border-radius: 24px;" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  >
-                          <v-list-item>
-                            <v-row dense >
-                                <v-col v-for="(currency, index) in pinia.state.allcountries" class="" sm="12" :key="index" >
-                              
-                                  <v-list-item-title  @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code"> 
-                                    <div style="display: flex; justify-content: flex-start;">
-                                      <span class="currency-list my-2">{{ currency.currency_name }}</span>
-
-                                    </div>
-
-                                  </v-list-item-title>
-                                </v-col>
+                        <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
+                          <v-list-item style="display: contents">
+                            <v-row dense style="overflow: scroll; display: flex; flex-direction: column;">
+                              <v-col v-for="(currency, index) in pinia.state.allcountries" :key="index">
+                              <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code">
+                                <div style="display: flex; align-items: center; ">
+                                  <span class="currency-list my-2">{{ currency.currency_name }}</span>
+                              </div>
+                              </v-list-item>
+                            </v-col>
                             </v-row>
                           </v-list-item>
                         </v-list>
@@ -219,8 +216,6 @@ const unitPrice = ref();
 const pageNumber = ref(1)
 
 
-
-
 const allPaymentMethods = async () => {
 
 try {
@@ -297,12 +292,10 @@ const toggleChevron = () => {
 };
 
 
-// onMounted( () => {
- 
-//   allPaymentMethods();
-    
-//     }
-//   );
+onMounted( () => {
+  tokenSymbol.value = pinia.state?.tokenLists[1]?.symbol  
+}
+);
 </script>
 
 <style scoped>
@@ -424,6 +417,9 @@ font-family: Manrope;
 
   .primary-btn1{
     width: 100% !important;
+  }
+  .select1i{
+    font-size: 14px;
   }
 
 }

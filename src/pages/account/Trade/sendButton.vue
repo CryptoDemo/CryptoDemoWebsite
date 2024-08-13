@@ -82,7 +82,7 @@
             </v-btn>
       
             <v-dialog v-model="dialog1" width="auto">
-              <v-card style="padding: 24px 20px 24px 20px; border-radius: 12px; width: 450px; " :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+              <v-card class="alert-card" style="padding: 24px 20px 24px 20px; border-radius: 12px; width: 450px; " :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
 
                   <div style="display: flex; justify-content: center; flex-direction: column;">
                   <span style="font-family: Manrope;font-size: 18px;font-style: normal;font-weight: 700;line-height: 140%; display: flex;justify-content: center; margin-bottom: 16px">Confirm action</span>
@@ -502,6 +502,9 @@ letter-spacing: 0px;
   .trf-coin{
     top: 12% !important;
     right: 3.5% !important;
+  }
+  .alert-card{
+    width: 100% !important;
   }
   }
   </style>
