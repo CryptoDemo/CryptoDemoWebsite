@@ -156,9 +156,7 @@ const initSocketListeners = ($socketClient)=>{
                 console.log(pinia.state.TransactionDetails)
                 pinia.setTransactionDetails(data_payload)
 
-                getTokenBals()
-                getSummedBal()
-          
+                // getSummedBal()
                 console.log('done')
     
   

@@ -91,6 +91,7 @@ const Countryname = ref('');
 
 
 const flag = ref('');
+const getallCountries = async()=>{
 try {
   const data = await getcountries(pageNumber.value);
   if (data.success) {
@@ -110,6 +111,18 @@ try {
   }
 } catch (error) { 
 };
+}
+
+const fetch_allCountries = async()=>{
+  if(pinia.state.allcountries.length){
+    return 
+  }else{
+    await Promise.allSettled([
+    getallCountries(),
+    ])
+    
+  }
+}
 
 onMounted(()=>{{
   country.value = pinia.state.geo.country;
@@ -118,6 +131,7 @@ onMounted(()=>{{
 
   flag.value = geoCountry?.value?.flag_url;
   Countryname.value = geoCountry?.value?.country_code
+  fetch_allCountries()
 }})
 
 const props = defineProps(

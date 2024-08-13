@@ -294,12 +294,39 @@ const convertCurrencies = async () => {
   }
 };
 
+const fetch_allChainNetworks = async()=>{
+ try {
+  const data = await getBlockchain();
+  if (data.success) {
+    const fetchedBlockchains = data.data;
+
+    // Extract IDs of stored blockchains
+    const storedBlockchainsIds = pinia.state.BlockchainNetworks.map(item => item.id);
+
+    // Filter out already stored blockchains from fetched data
+    const newItems = fetchedBlockchains.filter(item => !storedBlockchainsIds.includes(item.id));
+
+    if (newItems.length > 0) {
+    
+      // Update blockchainNetworks with new items
+      pinia.state.BlockchainNetworks = [...pinia.state.BlockchainNetworks, ...newItems];
+    }
+  } else {
+    console.error("API request failed:", data.message);
+  }
+} catch (error) {
+  console.error('Fetch error:', error);
+};
+};
+
+
 watch(() => pinia.state.selectedNetwork, async (newNetwork) => {
   if (newNetwork.toLowerCase() !== selectedNetwork.value) {
     selectedNetwork.value = newNetwork.toLowerCase();
     await getTokens_();
     await getTokenBals();
     await convertCurrencies();
+    await fetch_allChainNetworks();
   }
 });
 
@@ -307,10 +334,70 @@ const chainIcon = computed(() => {
   return pinia.state.tokenLists.find(c => c?.symbol === "BNB" || c?.symbol === "TRX");
 });
 
+
+const allCountries = pinia.state.allcountries;
+const preferredCurrency = pinia.state.preferredCurrency;
+const selectedCountryId = allCountries.find(country=>country.currency_name==preferredCurrency);
+  
+const chain = computed(()=>pinia.state.selectedNetwork);
+const getSummedBal = async () => {
+  if (pinia.state.isAuthenticated) {
+    try {
+      const data = await getSummedBalance(chain.value.toLowerCase(), selectedCountryId.id)
+      if (data.success) {
+        balanceData.value = data.data;
+        pinia.setSummedBalance(data.data)
+        }else {
+          console.error("Error:", data.message);
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+};
+  
+  watch(chain, (newChain, oldChain) => {
+        if (newChain !== oldChain) {
+          getSummedBal();
+        }
+  }); 
+
+
+
+const fetch_token_bals = async()=>{
+  if(pinia.state.tokenLists.length){
+    return 
+  }else{
+    await Promise.allSettled([
+      getTokens_(),
+      convertCurrencies(),
+      getTokenBals(),
+      getSummedBal(),
+    ])
+    
+  }
+
+}
+
+const fetch_Web3_txn = async()=>{
+  if(pinia.state.TransactionDetails.length){
+    return 
+  }else{
+    await Promise.allSettled([
+    getWebTrans(),
+    ])
+    
+  }
+
+}
+
 onMounted(() => {
-  getTokens_();
-  getTokenBals();
-  convertCurrencies();
+  fetch_Web3_txn();
+});
+
+onBeforeMount(() => {
+  fetch_token_bals();
 });
 </script>
 

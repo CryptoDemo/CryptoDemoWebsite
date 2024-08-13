@@ -42,10 +42,7 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
 
-
-
-// const selectedNetwork = ref(pinia.state.selectedNetwork);
-
+const fetch_allChainNetworks = async()=>{
  try {
   const data = await getBlockchain();
   if (data.success) {
@@ -67,6 +64,7 @@ const pinia = useStore()
   }
 } catch (error) {
   console.error('Fetch error:', error);
+};
 };
 
 const isChevronToggled = ref(false);

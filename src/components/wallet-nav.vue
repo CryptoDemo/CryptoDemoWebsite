@@ -57,33 +57,6 @@ const pinia = useStore()
 const balanceData = ref(null);
 const allCountries = pinia.state.allcountries;
 const preferredCurrency = pinia.state.preferredCurrency;
-const selectedCountryId = allCountries.find(country=>country.currency_name==preferredCurrency);
-
-const chain = computed(()=>pinia.state.selectedNetwork);
-
-
-const getSummedBal = async () => {
-  if (pinia.state.isAuthenticated) {
-    try {
-      const data = await getSummedBalance(chain.value.toLowerCase(), selectedCountryId.id)
-      if (data.success) {
-        balanceData.value = data.data;
-        pinia.setSummedBalance(data.data)
-        }else {
-          console.error("Error:", data.message);
-      }
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
-};
-
-watch(chain, (newChain, oldChain) => {
-      if (newChain !== oldChain) {
-        getSummedBal();
-      }
-}, { immediate: true }); 
 
 
 const isCamouflageEmpty = computed(() => {
@@ -92,7 +65,6 @@ const isCamouflageEmpty = computed(() => {
 });
 
 const camoflageCurrencyIcon = pinia.state.allcountries.find(c=>c.id==pinia.state?.user?.camouflage?.country_id)?.currency_code;
-console.log(camoflageCurrencyIcon)
 
 const generateAsterisks = () => {
   const balance = formatBalance(pinia.state.SummedBalance);
@@ -101,10 +73,6 @@ const generateAsterisks = () => {
 }
 
 
-onMounted(async () => {
-   getSummedBal();
-
-});
 </script>
 
 

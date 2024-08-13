@@ -1,7 +1,4 @@
-// myStore.js
 
-
-// import types from '@pinia/nuxt'
 import { defineStore } from 'pinia'
 
 export const useStore = defineStore('app',()=> {

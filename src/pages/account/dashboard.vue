@@ -7,17 +7,27 @@
           <Sd-nav1/>
         </div>
          
-        <div class="dashboard-container" style="margin-left: 16px;">
+        <div class="dashboard-container" style="margin-left: 16px; width: 100%;">
           
           <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; justify-content: space-between;">    
             <span class="marketPlace" style="font-size: 24px; font-style: 28px; font-weight: 600; color: #5892FF;">Dashboard</span>
             <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
           </div>
+       
+          <div style="display: flex; overflow: scroll; ">
+            <v-card v-for="(item, i) in  multipliedValues.slice(0, 3)" :key="i" link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 16px;"> 
+                <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(item.product) }} USD</span>
+                <span  :class="isDark ? 'text-dark':'text-light'">{{ formatBalance(item.balance) }} {{ item.symbol}}</span>
+                <div class="mt-3 mb-4" style="display: flex; align-items: center;">
+                  <img class="me-2" :src="item.icon" alt="coin" width="30"/>
+                  <img :src="chainIcon?.icon" width="15" style="position: relative; right: 17px; margin-top: 16px;"/>
+                  <span class="coinName" :class="isDark ? 'text-dark':'text-light'">{{ item.name }}</span>
+                </div>
 
-          <div class="scroll-coin" style="width: 845px;">
-            <DashboardCoin/>
+                <VProgressLinear :color=item.icon_dominant_color height="8" :width="15" model-value="100" rounded ></VProgressLinear>
+            </v-card>
           </div>
-        
+
 
           <div style="margin-top: -110px; margin-bottom: 30px;">
             <Coins/>
@@ -32,7 +42,7 @@
               <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1" style="font-size: 14px;">See More...</span>
             </div>
 
-            <v-card link class="offer-card" @click="navigateTo('/account/marketplace/activeOffers')" v-for="offer in pinia.state.MarketPlace" :key="offer.id"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 100px; margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
+            <v-card link class="offer-card" @click="navigateTo('/account/marketplace/activeOffers')" v-for="offer in pinia.state.MarketPlace.slice(0, 3)" :key="offer.id"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 100px; margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
             
               <div style="display: flex; flex-direction: column; line-height: 30px;">
                 <span style="font-weight: 600; font-size: 14px">{{ offer.user.username }}</span>
@@ -222,6 +232,20 @@ const slides = ref([
         },
   ]);
 
+  const multipliedValues = computed(() => {
+    return pinia.state.tokenLists.map(token => {
+      const balance = token.balance ?? 0;
+      const convertedValue = token.conversionValue ?? 0;
+      return {
+        ...token,
+        product: balance * convertedValue
+      };
+    });
+  });
+
+  const chainIcon = computed(() => {
+return pinia.state.tokenLists.find(c => c?.symbol === "BNB" || c?.symbol === "TRX");
+});
 
 const matchingCountries = pinia.state.MarketPlace.map(marketplaceEntry => {
 const sellerCountry = pinia.state.allcountries.find(country => country.country_name === marketplaceEntry.user.country)?.flag_url;
@@ -313,7 +337,6 @@ const get_allMarket_Offers = async () => {
   }
 };
 
-
 watch(()=>conversionResult.value,(newVal)=>{
     pinia.state.tokenLists?.map(t=>{
     const tokenConversion = newVal.find(tc=>tc.from== t.symbol);
@@ -324,14 +347,25 @@ watch(()=>conversionResult.value,(newVal)=>{
 });
 
 
+
+
 onMounted(() => {
-getTokenBals()
-fetchBanners();
-get_allMarket_Offers()
+  getTokenBals();
+   fetchBanners();
+  get_allMarket_Offers()
 });
 </script>
 
 <style scoped>
+.coinbox{
+width: 226.73px;
+flex-shrink: 0;
+padding: 24px;
+display: flex;
+flex-direction: column;
+margin-top: 10px;
+}
+
 .partners-text{
 font-family: Manrope;
 font-size: 16px;
@@ -397,6 +431,36 @@ width: 152px;
 margin-top: 20px;
 }
 
+.coinbox{
+width: 226.73px;
+flex-shrink: 0;
+padding: 24px;
+display: flex;
+flex-direction: column;
+margin-top: 10px;
+}
+.balance{
+color: var(--White, var(--Colors-Base-white, #FFF));
+font-family: Manrope;
+font-size: 26px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+.coinName{
+font-family: Manrope;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.coin-name{
+color: white !important;
+}
+.coin-name-light{
+color: #10192D;
+}
+
 @media only screen and (max-width: 600px) {
 .dashboard-container{
   margin-left: 0px !important;
@@ -419,6 +483,22 @@ margin-top: 20px;
 }
 .secureWallet{
   display: none;
+}
+
+.coinbox[data-v-b31ee669] {
+  width: 200.73px;
+  flex-shrink: 0;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.carousel-item :deep(.mdi-circle){
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
   
 }
 }

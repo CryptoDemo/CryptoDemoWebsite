@@ -22,8 +22,8 @@
                                 <img v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
                             </div>
                             <div style="display: flex; flex-direction: column">
-                            <span v-if="transaction.details.crypto.transfer.transfer_type == 'IN'">Received</span>
-                            <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'">Sent</span>
+                            <span v-if="transData?.details?.crypto?.transfer?.status?.fulfilled || transaction?.details?.crypto?.transfer?.status?.fulfilled">Received</span>
+                            <!-- <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'">Sent</span> -->
                             <div class="d-flex" style="margin-bottom: 6px">
                                 <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
                                 <h5>{{ formatTime(transaction.created_at) }}</h5>
@@ -155,17 +155,18 @@
                                 <p class="truncate" style="font-size: 14px;width: 187px">{{ transaction?.user_id }}</p>
                                 
                                 <div class="d-flex">
-                                    <p class="truncate me-1" style="font-size: 14px;width: 157px">{{ transaction.details.crypto.swap.transaction_hash }}</p>
-                                    <button @click="copyToClipboard(transaction?.details?.crypto?.swap?.transaction_hash)" variant="plain" style=" background: inherit !important; box-shadow: none;">
-                                        <img v-if="!copied" src="/svg/copy.svg"/>
-                                        <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
-                                    </button>
+                                  <p class="truncate me-1" style="font-size: 14px;width: 157px">{{ transaction.details.crypto.swap.transaction_hash }}</p>
+                                  <button @click="copyToClipboard(transaction?.details?.crypto?.swap?.transaction_hash)" variant="plain" style=" background: inherit !important; box-shadow: none;">
+                                      <img v-if="!copied" src="/svg/copy.svg"/>
+                                      <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
+                                  </button>
                                 </div>
                             
+                                
                                 <p class="truncate" style="font-size: 14px; width: 187px" v-if="transaction?.details?.crypto?.swap?.status">
-                                    <v-chip color="green" v-if="transaction?.details?.crypto?.swap?.status?.fulfilled">Successful</v-chip>
-                                    <v-chip color="red" v-else-if="transaction?.details?.crypto?.swap?.status?.failed">Failed</v-chip>
-                                    <v-chip color="orange" v-else>Pending</v-chip>
+                                  <v-chip color="green" v-if="transaction?.details?.crypto?.swap?.status?.fulfilled">Successful</v-chip>
+                                  <v-chip color="red" v-else-if="transaction?.details?.crypto?.swap?.status?.failed">Failed</v-chip>
+                                  <v-chip color="orange" v-else>Pending</v-chip>
                                 </p>
                         
                         </div>
@@ -212,8 +213,10 @@ const transData = ref(null)
 
 const getWebTrans = async () => {
   isloading.value = true;
+  console.log('Fetching data for network:', pinia.state.selectedNetwork.toLowerCase());
+  datainfo.value = [];
   try {
-    const data = await getWebTransaction(pageNumber.value, pinia.state.selectedNetwork);
+    const data = await getWebTransaction(pageNumber.value, pinia.state.selectedNetwork.toLowerCase());
 
     if (data.success) {
       // Ensure datainfo.value is an array
@@ -221,8 +224,11 @@ const getWebTrans = async () => {
       // Merge new data with existing data
       const newData = [...currentData, ...data.data.result];
 
-      // Filter merged data by key
-      datainfo.value = filterByKey("id", newData);
+      if (newData.length === 0) {
+        datainfo.value = []; // Set empty array
+      } else {
+        datainfo.value = filterByKey("id", newData);
+      }
 
       // Optionally update pageNumber or handle pagination
       // pageNumber.value += 1;
@@ -241,6 +247,15 @@ const getWebTrans = async () => {
     isloading.value = false;
   }
 };
+
+watch(() => pinia.state.selectedNetwork.toLowerCase(),
+  (newNetwork) => {
+    if (newNetwork) {
+      getWebTrans();
+    }
+  },
+  { immediate: true } // Optional: Call immediately on initial setup
+);
 
 const getSingleWebTrans = async () => {
   isloading.value = true;
@@ -280,9 +295,20 @@ const copyToClipboard = (text) => {
   });
 }
 
+const fetch_Web3_txn = async()=>{
+  if(pinia.state.TransactionDetails.length){
+    return 
+  }else{
+    await Promise.allSettled([
+    getWebTrans(),
+    ])
+    
+  }
+
+}
 
 onMounted(() => {
-  getWebTrans();
+  fetch_Web3_txn();
 });
 </script>
 

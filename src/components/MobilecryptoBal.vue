@@ -75,31 +75,6 @@
   
   const chain = computed(()=>pinia.state.selectedNetwork);
   
-  
-  const getSummedBal = async () => {
-    if (pinia.state.isAuthenticated) {
-      try {
-        const data = await getSummedBalance(chain.value.toLowerCase(), selectedCountryId.id)
-        if (data.success) {
-          balanceData.value = data.data;
-          pinia.setSummedBalance(data.data)
-          }else {
-            console.error("Error:", data.message);
-        }
-  
-      } catch (error) {
-        console.log(error)
-      }
-    }
-  };
-  
-  watch(chain, (newChain, oldChain) => {
-        if (newChain !== oldChain) {
-          getSummedBal();
-        }
-  }, { immediate: true }); 
-  
-  
   const isCamouflageEmpty = computed(() => {
     const camouflage = pinia.state.user.camouflage;
     return !camouflage || Object.keys(camouflage).length === 0;
@@ -114,11 +89,7 @@
     return '*'.repeat(balanceLength);
   }
   
-  
-  onMounted(async () => {
-     getSummedBal();
-  
-  });
+
   </script>
   
   

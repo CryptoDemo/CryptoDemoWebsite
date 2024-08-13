@@ -115,9 +115,21 @@
   isChevronToggled.value = !isChevronToggled.value;
   };
 
-  
+
+  const fetch_fiat_bals = async()=>{
+  if(pinia.state.Total_fiat_bal.length){
+    return 
+  }else{
+    await Promise.allSettled([
+      getbals(),
+    ])
+    
+  }
+
+}
+
   onMounted(async () => {
-    getbals();
+    fetch_fiat_bals();
   });
   </script>
   

@@ -224,7 +224,7 @@
                         'expired-text': order.status === 'expired',
                         'active-text': order.status !== 'expired',
                       }"
-                      >{{ order.status }}</span
+                       style="text-transform: capitalize; color: orangered !important;">{{ order.status }}</span
                     >
                     <span>Buyer</span>
                     <div>
@@ -251,7 +251,7 @@
 
             <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="width: 40%; display: flex; margin: auto; border-radius: 16px;">
               <v-card-text>
-                <span class="resend-code mb-3" style="font-size: 16px; font-weight: 600; display: flex; justify-content: center;">Paid but the Order got cancelled or expired?</span>
+                <span class="mb-3" style="font-size: 20px; font-weight: 600; display: flex; justify-content: center;">Paid but the Order got cancelled or expired?</span>
                 <ul class="list-bullets-styled">
                         <li>Prepare Proof of Payment</li>
                         <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">Provide a screenshot or any evidence  of payment you have.</span>
@@ -390,7 +390,7 @@ onMounted(() => {
 }
 
 .expired-text {
-  color: orangered !important;
+  color: grey !important;
   font-size: 14px;
   font-weight: 600;
 }

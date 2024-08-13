@@ -122,7 +122,7 @@ const getTokens_ = async () => {
       const fetchedTokens = data.data.result;
 
       // Store the fetched tokens with a 5-minute expiry time
-      pinia.setTokenLists(fetchedTokens, addMinutes(5));
+      pinia.setTokenLists(fetchedTokens);
 
       // Convert currencies after updating token balances
       await convertCurrencies();
@@ -162,7 +162,7 @@ const getTokenBals = async () => {
 
         // Update the token store with the new balances
 
-        pinia.setTokenLists(updatedTokensBals, addMinutes(5))
+        pinia.setTokenLists(updatedTokensBals)
 
         // Optionally, you can return or use `updatedTokens` as needed
 
@@ -175,9 +175,9 @@ const getTokenBals = async () => {
   }
 };
 
+
 const convertCurrencies = async () => {
   // Get the list of coins from pinia state
-
   const coins = pinia.state.tokenLists;
 
   try {
@@ -191,7 +191,6 @@ const convertCurrencies = async () => {
 
     try {
       const data = await currencyConverter(convertCurrency);
-
 
       if (data.success) {
         // Store the conversion result in the array
@@ -223,6 +222,7 @@ const convertCurrencies = async () => {
   }
 
 };
+
 
 const chainIcon = computed(() => {
   return pinia.state.tokenLists.find(c => c?.symbol === "BNB" || c?.symbol === "TRX");
@@ -256,18 +256,34 @@ const props = defineProps({
 
 watch(() => pinia.state.selectedNetwork, async (newNetwork) => {
   if (newNetwork) {
-    console.log(newNetwork)
-    await getTokens_();
-    getTokenBals();
-    convertCurrencies();
+    pinia.state.tokenLists = []
+    await Promise.allSettled([
+      getTokens_(),
+      convertCurrencies(),
+      getTokenBals()
+    ])
   }
-});
+})
+
+
+const fetch_token_bals = async()=>{
+  if(pinia.state.tokenLists.length){
+    return 
+  }else{
+    await Promise.allSettled([
+      getTokens_(),
+      convertCurrencies(),
+      getTokenBals()
+    ])
+    
+  }
+
+}
+
 
 
 onBeforeMount(() => {
-  getTokens_();
-  getTokenBals();
-  convertCurrencies();
+  fetch_token_bals();
 });
 
 
