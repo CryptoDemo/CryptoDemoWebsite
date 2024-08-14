@@ -268,13 +268,16 @@
                                   <v-btn @click="buyDirectlyDialog = true" :disabled="isButtonDisabled" style="width: 100%; height: 50px; margin-bottom: 10px; font-weight: 600; border: 1px solid var(--Primary-80, #5892FF); background: inherit; border-radius: 16px; color: #2873FF; letter-spacing: 0px; text-transform: unset;">Buy directly using fiat wallet</v-btn>
                                   
                                   <v-dialog v-model="buyDirectlyDialog" width="auto">
-                                    <v-card max-width="400">
-                                      <span></span>
+                                    <v-card max-width="400" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; padding: 15px;">
+                                      <span class="text-center" style="font-size: 16px; font-weight: 600;">Confirm Transaction</span>
+                                      <span style="font-size: 14px;">By clicking the confirm button, {{ offer?.countryCurrencyName }}{{ formatBalance(amount_to_pay) }} will be deducted from your fiat balance and you will receive 
+                                       <span style="font-weight: 600;"> {{ ammount_to_receive }} {{ offer.trading_pair?.crypto?.token?.name }} </span>
+                                      </span> 
                                       <template v-slot:actions>
 
-                                        <v-btn class="ms-auto" @click="dialog = false"></v-btn>
+                                        <v-btn class="ms-auto" @click="buyDirectlyDialog = false" style="text-transform: capitalize; letter-spacing: 0px; font-weight: 600; background: grey; border-radius: 8px !important;  width: 80px;">Cancel</v-btn>
 
-                                        <v-btn @click="Buy_OfferDirectly()">Buy</v-btn>
+                                        <v-btn @click="Buy_OfferDirectly()" class="primary-btn1" style="text-transform: capitalize; letter-spacing: 0px; font-weight: 600; width: 80px; border-radius: 8px !important">Confirm</v-btn>
 
                                       </template>
                                     </v-card>
