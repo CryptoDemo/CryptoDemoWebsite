@@ -8,7 +8,7 @@
             <div style="display: flex; align-items: center; line-height: 30px;">
               <img v-if="offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" style="width: 30px; height: 30px; border-radius: 30px;" />
               <v-icon v-else style="width: 20px;">mdi-account-circle</v-icon>
-              <span class="me-3 ml-2" style="font-size: 14px;">{{ offer?.user?.username }}</span>
+              <span class="me-3 ml-2" style="font-size: 14px; text-transform: capitalize; font-weight: 600;">{{ offer?.user?.username }}</span>
             </div>
 
             <div style="display: flex; flex-direction: column; line-height: 30px;">
@@ -25,16 +25,16 @@
 
         <div style="margin-block-start: auto; line-height: 30px;">
             <div :class="isDark ? 'text-dark' : 'text-light'" style="display: flex; flex-direction: column; justify-content: flex-end;">
-              <span v-if="offer.user?.is_verified" style="font-size: 14px; font-weight: 600; color: green; text-align-last: right;">Verified</span>
+              <span class="resend-code" v-if="offer.user?.is_verified" style="font-size: 14px; font-weight: 600; text-align-last: right;">Verified</span>
               <span style="font-size: 14px; font-weight: 600; color: green; text-align-last: right;" v-else>Unverified User</span>
               <span style="display: flex; justify-content: end; font-size: 14px; font-weight: 600;"> {{ offer?.trading_pair?.crypto?.unit_value }} {{ offer?.trading_pair?.crypto?.token.symbol }}</span>
               <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; align-self: self-end;">{{
                   formatBalance(offer?.trading_pair?.fiat?.minimum_buy_limit) }} - {{formatBalance(offer?.trading_pair?.fiat?.maximum_buy_limit) }} {{ offer?.countryCurrencyName}}
               </span>
-              <span style="font-family: Manrope; font-size: 14px;font-style: normal; font-weight: 400;  align-self: self-end;"
-              v-if="offer?.trading_pair?.fiat?.use_fixed_price">Fixed Price</span>
-              <span  style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400;  align-self: self-end;" 
-              v-else>Market Price</span>
+              <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px;font-style: normal; font-weight: 400;  align-self: self-end;"
+                v-if="offer?.trading_pair?.fiat?.use_fixed_price">Fixed Price</span>
+                <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400;  align-self: self-end;" 
+                v-else>Market Price</span>
               <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400;  align-self: self-end;">{{ offer?.trading_pair?.fiat?.unit_value }} {{ offer.countryCurrencyName }}</span>
 
           </div>
@@ -96,10 +96,10 @@ offerID.value = pinia.state.MarketPlace.map(item => item.id);
 
 const selectedCoinId = computed(() => pinia.state.selected_coin_to_buy_from_marketplace);
 
-const productID = computed(() => offerID.value.find(id => id === selectedCoinId.value));
+// const productID = computed(() => offerID.value.find(id => id === selectedCoinId.value));
 
-watch(productID, (newVal) => {
-});
+// watch(productID, (newVal) => {
+// });
 
 
 const get_allMy_Offers = async () => {
@@ -140,10 +140,9 @@ const get_allMy_Offers = async () => {
 const delete_My_Offers = async () => {
 
   try {
-    const data = await deleteOffer(productID.value);
+    const data = await deleteOffer(pinia.state.selected_coin_to_buy_from_marketplace);
     if (data.success) {
       personalOffers.value = data.data;
-      console.log(personalOffers.value);
       await get_allMy_Offers()
       pinia.setMyOffers(data.data);
     } else {

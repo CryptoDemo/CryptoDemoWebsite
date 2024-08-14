@@ -18,7 +18,7 @@
                 </div> 
                 
                 <div class="mt-4 btn-div" style="display: flex; justify-content: end;">
-                    <v-btn @click.prevent="navigateTo('/account/marketplace/activeOffers')" class="primary-btn1" style="width: 258px; height: 60px; color: white; box-shadow: none; font-size: 16px;">Back to MarketPlace</v-btn>
+                    <v-btn @click.prevent="navigateTo('/account/marketplace/activeOffers')" class="primary-btn1" style="height: 60px; color: white; box-shadow: none; font-size: 16px;">Back to MarketPlace</v-btn>
                 </div>
             </div>  
         </v-container>

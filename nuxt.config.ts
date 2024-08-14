@@ -48,6 +48,11 @@ export default defineNuxtConfig ({
     //...
   ],
 
+  intercom: {
+    // Required
+    appId: "lwqnsoko"
+  },
+
   notivue: {
     notifications: {
       global: {

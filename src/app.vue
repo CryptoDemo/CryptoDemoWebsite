@@ -2,6 +2,7 @@
   <v-app>
     <NuxtLayout>
       <NuxtPage />
+    
         <Notivue v-slot="item">
           <Notification :item="item"
             :icons="outlinedIcons"

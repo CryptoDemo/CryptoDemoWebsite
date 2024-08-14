@@ -15,11 +15,7 @@
               <td><v-switch class="v-switch-mobile" v-model="notifSettings[k]" @input="toggleNotification(k,v)" inset color="#2873FF" style="display: flex; justify-content: center; padding-right: 50px;"></v-switch></td>
             </div>
 
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-              <td><span :class="isDark ? 'text-dark':'text-light'" style="margin-top: -5px;">Customer Support</span></td>
-
-              <v-btn variant="tonal" style="background: #35B233; text-transform: capitalize; color: white; margin-right: 50px">Online</v-btn>
-            </div>
+         
             
             <div style="display: flex; align-items: center; justify-content: space-between;">
             
@@ -95,6 +91,8 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import { updateUser, removeCamouflage } from "@/composables/requests/users";
+import intercom from '@intercom/messenger-js-sdk';
+
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
@@ -184,6 +182,7 @@ const setCamo = async () => {
   }
 };
 
+
 const deactivateCamouflage = async () => {
   try {
     const data = await removeCamouflage();
@@ -208,14 +207,22 @@ const deactivateCamouflage = async () => {
   }
 };
 
-
-
-
-
-
+const activate_chat = ()=>{
+  const activate = intercom({
+      app_id:'lwqnsoko',
+      user_id:pinia.state.user.id,
+      email:pinia.state.user.email,
+      name:pinia.state.user.name,
+      created_at:pinia.state.user.created_at,
+      hide_default_launcher: true,
+      custom_launcher_selector:'#my_custom_link'
+  })
+  return activate
+}
 
   onBeforeMount(()=>{
     setupNotificationSettings();
+    activate_chat();
   });
 </script>
 

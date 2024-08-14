@@ -16,13 +16,13 @@
           
 
             <div class="d-md-flex price-div" style="justify-content: space-between; margin-top: 53px; margin-bottom: 66px;">
-              <div :class="{'box1': !priceType, 'box2': priceType}" @click="setPriceType(false)">
+              <div :class="{'box1': !priceType, 'box2': priceType}" >
                 <span :class="{'mkt-place': !priceType, 'mkt-place1': priceType}">Market Price</span>
                 <span :class="{'mkt-place-caption': !priceType, 'mkt-place-caption1': priceType}">
                   Your offer's selling price will change according to the market price of Bitcoin. This price is determined by supply and demand dynamics in the marketplace.
                 </span>
               </div>
-              <div :class="{'box2': !priceType, 'box1': priceType}" @click="setPriceType(true)">
+              <div :class="{'box2': !priceType, 'box1': priceType}" >
                 <span :class="{'mkt-place1': !priceType, 'mkt-place': priceType}">Fixed Price</span>
                 <span :class="{'mkt-place-caption1': !priceType, 'mkt-place-caption': priceType}">
                   Your offer's selling price is locked when you create it, and won't change with the market price. This price does not change based on market conditions.
@@ -94,8 +94,8 @@
 
                   <span v-if="priceType" class="select1i">Enter Equivalent Unit Price of {{ tokenSymbol }} in {{ pinia.state.preferredCurrency }}</span>
                   
-                  <div v-if="priceType"  style="margin-top: 8px; margin-bottom: 16px;">
-                    <input type="number" placeholder="Equivalent Unit Price" v-model="EquivPrice" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
+                  <div v-if="priceType" style="margin-top: 8px; margin-bottom: 16px;">
+                    <input type="number" placeholder="Equivalent Unit Price" v-model="EquivPrice" :disabled="!priceType" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                       <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
                         <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
                       </v-btn>
@@ -190,10 +190,14 @@ const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore();
 
 const priceType = ref(false);
+
 const setPriceType = (isFixedPrice) => {
   priceType.value = isFixedPrice;
-  console.log('Price Type Updated:', priceType.value);
+  if (isFixedPrice) { // Set to 0 only if market
+    EquivPrice.value = 0;
+  }
 };
+
 
 const loading = ref();
 
@@ -246,28 +250,23 @@ const offerInfo = {
         },
         fiat: {
           country_id: countryId,
-          unit_value: EquivPrice.value,
+          unit_value: priceType.value  ? EquivPrice.value : 0.00,
           minimum_buy_limit: minAmmount.value,
           maximum_buy_limit: maxAmmount.value,
           use_fixed_price: priceType.value 
         },
-    },
-    active: true
-};
+      },
+      active: true
+    };
+    console.log('offer:', offerInfo);
+    console.log('Price Type Set To:', priceType.value);
 
-console.log('use_fixed_price:', priceType.value);
 
   loading.value = true;
   try {
     const data = await createOffer(offerInfo);
     if (data.success) {
-      tokenName.value = '';
-      tokenIcon.value = '';
-      tokenSymbol.value = '';
-      unitPrice.value = ""; 
-      EquivPrice.value = ""; 
-      minAmmount.value = ""; 
-      maxAmmount.value = "";
+     
 
       navigateTo('/account/marketplace/success/')
       loading.value = false;
@@ -280,7 +279,20 @@ console.log('use_fixed_price:', priceType.value);
     console.log(e);
     loading.value = false;
   }
+  tokenName.value = '';
+      tokenIcon.value = '';
+      tokenSymbol.value = '';
+      unitPrice.value = ""; 
+      EquivPrice.value = ""; 
+      minAmmount.value = ""; 
+      maxAmmount.value = "";
 };
+
+watch(priceType, (newValue) => {
+  if (newValue) {
+    EquivPrice.value = 0;
+  }
+});
 
 const offerRequirements = computed(() => {
   return tokenSymbol.value && unitPrice.value  && minAmmount.value && maxAmmount.value !== null || !pinia.state.user.kyc_verified;
@@ -297,6 +309,8 @@ onMounted( () => {
 }
 );
 </script>
+
+
 
 <style scoped>
 
