@@ -388,6 +388,18 @@ font-weight: 600;
 line-height: 120%; /* 28.8px */
 }
 
+.v-overlay__scrim {
+  pointer-events: auto;
+  background: #636970!important;
+  border-radius: inherit;
+  bottom: 0;
+  left: 0;
+  opacity: var(--v-overlay-opacity, 0.32);
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
 
 @media screen and (max-width: 600px) {
   .frame-1{
