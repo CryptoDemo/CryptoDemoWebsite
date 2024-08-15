@@ -185,40 +185,25 @@
                     <span>Order ID</span>
                   </div>
 
-                  <div
-                    style="
-                      display: flex;
-                      flex-direction: column;
-                      align-items: end;
-                    "
-                    :class="isDark ? 'text-dark' : 'text-light'"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      fill="currentColor"
-                      class="bi bi-chat-left-text-fill"
-                      viewBox="0 0 16 16"
-                      style="cursor: pointer"
-                    >
-                      <defs>
-                        <linearGradient
-                          id="chatGradient"
-                          x1="0%"
-                          y1="0%"
-                          x2="100%"
-                          y2="100%"
-                        >
-                          <stop offset="0%" stop-color="#2873FF" />
-                          <stop offset="100%" stop-color="#0B6B96" />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        fill="url(#chatGradient)"
-                        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"
-                      />
-                    </svg>
+                  <div style="display: flex; flex-direction: column; align-items: end;" :class="isDark ? 'text-dark' : 'text-light'">
+                    
+                    <button @click="navigateTo('/account/marketplace/tradechat'); pinia.state.selected_trade_ID = order?.id" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="border-radius: 5px !important; height: fit-content !important; height: 38px; position: relative; z-index: 100;">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        class="bi bi-chat-left-text-fill"
+                        viewBox="0 0 16 16"
+                        style="cursor: pointer">
+                        <defs>
+                          <linearGradient id="chatGradient" x1="0%" y1="0%" x2="100%" y2="100%"> <stop offset="0%" stop-color="#2873FF" /> <stop offset="100%" stop-color="#0B6B96" />
+                          </linearGradient>
+                        </defs>
+                        <path fill="url(#chatGradient)" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+                      </svg>
+                    </button>
+
+
                     <span
                       :class="{
                         'expired-text': order.status === 'expired',
@@ -324,7 +309,7 @@ const filteredOrders = computed(() => {
   } else {
     // Display only expired trades
     return pinia.state?.allMyOders.filter(
-      (order) => order.status === "expired" || "expired" 
+      (order) => order.status === "expired" || "cancelled" 
     );
   }
 });
@@ -430,4 +415,17 @@ onMounted(() => {
   top: 10px;
   width: 12px;
 }
+
+.txn-cards-dark {
+  background: #162138;
+  padding: 10px;
+  border-radius: 15px;
+}
+.txn-cards-light {
+  background: #edf3ff;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+
 </style>

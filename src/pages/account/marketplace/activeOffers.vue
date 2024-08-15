@@ -690,10 +690,7 @@ const filteredOffers = computed(() => {
     });
 });
 
-const matchingCountries = pinia.state.MarketPlace.map(marketplaceEntry => {
-  const country = pinia.state.allcountries.find(c => c.country_name === marketplaceEntry.user.country);
-  return country ? country.flag_url : null;
-});
+
 
 const resetFilters = () => {
   tokenSymbol.value = ''; // or default value

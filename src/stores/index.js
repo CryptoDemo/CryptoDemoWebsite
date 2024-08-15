@@ -36,6 +36,7 @@ export const useStore = defineStore('app',()=> {
       selected_coin_to_buy_from_marketplace: "",
       selected_offer_from_trades: "",
       selected_coin_to_buy_from_marketplace_userID: "",
+      selected_trade_ID: "",
       coin_to_transfer: "",
       Selected_coin_Balance: "",
       TransactionDetails: [],
@@ -50,7 +51,8 @@ export const useStore = defineStore('app',()=> {
       geo:{},
       camouflageCurrency:"",
       getSingleTxnID:"",
-      offersCount:""
+      offersCount:"",
+      chat_messages: [],
     });
   
   
@@ -211,8 +213,11 @@ export const useStore = defineStore('app',()=> {
   };
 
   const setCountry = (payload) => {
-      state.country = payload;
-      
+      state.country = payload;    
+  };
+
+  const setChat_messages = (payload) => {
+      state.chat_messages = payload;    
   };
 
   const setCode = (payload) => {
@@ -246,7 +251,8 @@ export const useStore = defineStore('app',()=> {
     state.selected_coin_to_buy_from_marketplace_userID = "",
     state.geo = {},
     state.selected_offer_from_trades = "",
-  
+    state.selected_trade_ID = "",
+    state.chat_messages = [],
    
     navigateTo('/authentication/login')
   }
@@ -289,7 +295,8 @@ export const useStore = defineStore('app',()=> {
       setFiat_currency_i_want,
       setFiat_swap_details,
       setGeo,
-      setCamouflageCurrency
+      setCamouflageCurrency,
+      setChat_messages,
     }
 },
   {persist: {
