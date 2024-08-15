@@ -55,7 +55,7 @@
         </div>
 
 
-          <div class="ma-2" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 0px 24px 24px 24px; padding: 30px; width: 60%;">
+          <div class="ma-2 custom-msg" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 0px 24px 24px 24px; padding: 30px; width: 60%;">
             
               <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;letter-spacing: 0.1px;">
                   <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600; line-height: 24px; letter-spacing: 0.1px;"> You're buying {{ selectedCoin.bid.expected_token_quantity }} {{ selectedCoin?.offer?.trading_pair?.crypto?.token?.name }}  for {{ formatBalance(selectedCoin?.bid?.fiat_amount_paid) }} 
@@ -378,23 +378,6 @@ font-size: 14px;
 font-weight: 600;
 }
 
-.v-dialog--fullscreen > .v-overlay__content > .v-card, .v-dialog--fullscreen > .v-overlay__content > .v-sheet, .v-dialog--fullscreen > .v-overlay__content > form > .v-card, .v-dialog--fullscreen > .v-overlay__content > form > .v-sheet {
-min-height: 70%;
-width: 50% !important;
-border-radius: 0;
-display: flex;
-margin-block-start: auto;
-padding: 40px;
-}
-
-.v-dialog--fullscreen > .v-overlay__content > .v-card, .v-dialog--fullscreen > .v-overlay__content > .v-sheet, .v-dialog--fullscreen > .v-overlay__content > form > .v-card, .v-dialog--fullscreen > .v-overlay__content > form > .v-sheet {
-min-width: 80%;
-border-radius: 0;
-border-top-right-radius: 40px;
-border-top-left-radius: 40px;
-display: flex;
-align-self: center;
-}
 
 .txn-cards-dark {
   background: #162138;
@@ -413,13 +396,8 @@ align-self: center;
 }
 
 @media screen and (max-width: 600px) {
-  .v-dialog--fullscreen > .v-overlay__content > .v-card, .v-dialog--fullscreen > .v-overlay__content > .v-sheet, .v-dialog--fullscreen > .v-overlay__content > form > .v-card, .v-dialog--fullscreen > .v-overlay__content > form > .v-sheet {
-min-width: 100%;
-border-radius: 0;
-border-top-right-radius: 40px;
-border-top-left-radius: 40px;
-display: flex;
-align-self: center;
+.custom-msg{
+  width: 100% !important;
 }
 }
 </style>
