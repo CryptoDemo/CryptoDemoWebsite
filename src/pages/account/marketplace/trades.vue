@@ -6,7 +6,7 @@
         <Sd-nav1 style="border: none" />
       </div>
 
-      <div class="ml-4" style="width: 100%">
+      <div class="trades-div" style="width: 100%; margin-left: 16px;">
         <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
           style="display: flex; justify-content: space-between;
             margin-bottom: 40px;
@@ -187,7 +187,7 @@
 
                   <div style="display: flex; flex-direction: column; align-items: end;" :class="isDark ? 'text-dark' : 'text-light'">
                     
-                    <button @click="navigateTo('/account/marketplace/tradechat'); pinia.state.selected_trade_ID = order?.id" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="border-radius: 5px !important; height: fit-content !important; height: 38px; position: relative; z-index: 100;">
+                    <button @click="navigateTo('/account/marketplace/tradechat'); pinia.state.selected_trade_ID = order?.id" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="chat-btn" style="border-radius: 5px !important; height: fit-content !important; height: 38px; position: relative; z-index: 100;">
                       <svg xmlns="http://www.w3.org/2000/svg"
                         width="20"
                         height="20"
@@ -234,7 +234,7 @@
               </v-card>
             </template>
 
-            <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="width: 40%; display: flex; margin: auto; border-radius: 16px; padding: 30px;">
+            <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="chat-modal-info" style="width: 40%; display: flex; margin: auto; border-radius: 16px; padding: 30px;">
               <v-card-text>
                 <span class="mb-5" style="font-size: 20px; font-weight: 600; display: flex; justify-content: center;">Paid but the Order got cancelled or expired?</span>
                 <ul class="list-bullets-styled">
@@ -427,5 +427,57 @@ onMounted(() => {
   border-radius: 15px;
 }
 
+@media only screen and (max-width: 600px) {
+
+.wallet-btn{
+width: 48%;
+height: 42px;
+padding: 12px 58px;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+}
+.fiat-btn{
+width: 48%;
+height: 42px;
+padding: 12px 58px;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+}
+.fiat-btn-light{
+width: 48%;
+height: 42px;
+padding: 12px 58px;
+font-size: 14px;
+font-style: normal;
+font-weight: 700;
+}
+.button-container{
+  width: 100% !important;
+  height: 61px !important;
+}
+.trades-div{
+  margin-left: 0px !important;
+}
+.expired-text {
+  font-size: 12px !important;
+}
+.chat-btn{
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.chat-modal-info{
+  width: 100% !important;
+  display: flex !important;
+  margin: auto;
+  border-radius: 16px !important;
+  padding: 10px !important;
+}
+
+
+}
 
 </style>

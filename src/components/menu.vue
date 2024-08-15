@@ -66,6 +66,7 @@ const items = [
   {icon:'/svg/friend.svg', title: 'Dashboard', link:'/account/dashboard'},
   {icon:'/svg/market.svg', title: 'Market Place', link:'/account/marketplace/activeOffers'},
   {icon:'/svg/createoffer.svg', title: 'Create Offers', link:'/account/marketplace/createOffer'},
+  {icon:'/svg/createoffer.svg', title: 'Trades', link:'/account/marketplace/trades'},
   {icon:'/svg/profile1.svg', title: 'My profile', link:'/account/profile'},
   {icon:'/svg/security.svg', title: 'Security', link:'/account/security'},
   {icon:'/svg/settings.svg', title: 'Settings', link:'/account/settings'},
