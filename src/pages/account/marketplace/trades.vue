@@ -249,21 +249,21 @@
               </v-card>
             </template>
 
-            <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="width: 40%; display: flex; margin: auto; border-radius: 16px;">
+            <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="width: 40%; display: flex; margin: auto; border-radius: 16px; padding: 30px;">
               <v-card-text>
-                <span class="mb-3" style="font-size: 20px; font-weight: 600; display: flex; justify-content: center;">Paid but the Order got cancelled or expired?</span>
+                <span class="mb-5" style="font-size: 20px; font-weight: 600; display: flex; justify-content: center;">Paid but the Order got cancelled or expired?</span>
                 <ul class="list-bullets-styled">
                         <li>Prepare Proof of Payment</li>
                         <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">Provide a screenshot or any evidence  of payment you have.</span>
                         <li class="mt-5">Request crypto Transfer</li>
                         <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">Send it to the seller and request for a crypto transfer via Demo pay in the chat</span>
-                        <v-btn class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 50%; height: 40px;">Request crypto transfer</v-btn>
+                        <v-btn class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 100%; height: 45px;">Request crypto transfer</v-btn>
                         <li class="mt-5">Place New Order</li>
                         <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">If the seller does not respond, place a new order of the same ammount you paid. Tap "Transferred", notify seller immeadiately after the order is created </span>
-                        <v-btn class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 50%; height: 40px;">Place new order</v-btn>
+                        <v-btn class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 100%; height: 45px;">Place new order</v-btn>
                         <li class="mt-5">Send Dispute</li>
                         <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">Send a dispute and explain clearly the issue(s) using clear proof of payments.</span>
-                        <v-btn class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 50%; height: 40px;">Send dispute</v-btn>
+                        <v-btn class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 100%; height: 45px;">Send dispute</v-btn>
                       </ul> 
 
               </v-card-text>
@@ -324,7 +324,7 @@ const filteredOrders = computed(() => {
   } else {
     // Display only expired trades
     return pinia.state?.allMyOders.filter(
-      (order) => order.status === "expired"
+      (order) => order.status === "expired" || "expired" 
     );
   }
 });
