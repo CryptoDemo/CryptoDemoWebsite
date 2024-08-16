@@ -135,7 +135,7 @@
               <v-card
                 link
                 v-bind="activatorProps"
-                @click.prevent="pinia.state.selected_offer_from_trades = order?.id"
+                @click.prevent="openDialog(order)"
                 v-for="(order, index) in filteredOrders"
                 :key="index"
                 :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
@@ -234,8 +234,16 @@
               </v-card>
             </template>
 
-            <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="chat-modal-info" style="width: 40%; display: flex; margin: auto; border-radius: 16px; padding: 30px;">
-              <v-card-text>
+            <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="chat-modal-info" style="width: 540px; display: flex; margin: auto; border-radius: 16px; padding: 30px;">
+            
+              <v-card-text v-if="selectedOrder?.status === 'processing'">
+                <span style="display: flex; justify-content: center; font-weight: 600;">Do you want to cancel this trade?</span>
+                <div class="mt-4" style="display: flex;  justify-content: center;">
+                  <v-btn style="background: orangered; width: 50%; height: 40px; border-radius: 10px;">Cancel</v-btn>
+                </div>
+              </v-card-text>
+              
+              <v-card-text v-else>
                 <span class="mb-5" style="font-size: 20px; font-weight: 600; display: flex; justify-content: center;">Paid but the Order got cancelled or expired?</span>
                 <ul class="list-bullets-styled">
                         <li>Prepare Proof of Payment</li>
@@ -253,10 +261,10 @@
 
               </v-card-text>
 
-              <!-- <v-card-actions>
+              <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn text="Close Dialog" @click="dialog = false"></v-btn>
-              </v-card-actions> -->
+              </v-card-actions>
 
             </v-card>
           </v-dialog>
@@ -278,9 +286,15 @@ const pinia = useStore();
 const selectedScreen = ref(true);
 const pageNumber = ref(1);
 const dialog = ref(false);
-
 const alertMessage = ref("");
 const showAlert = ref(false);
+
+const selectedOrder = ref(null)
+
+const openDialog = (order) => {
+  selectedOrder.value = order
+  dialog.value = true
+}
 
 const getActiveOffers = async () => {
   try {
@@ -309,7 +323,7 @@ const filteredOrders = computed(() => {
   } else {
     // Display only expired trades
     return pinia.state?.allMyOders.filter(
-      (order) => order.status === "expired" || "cancelled" 
+      (order) => order.status === "expired" 
     );
   }
 });
