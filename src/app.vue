@@ -200,8 +200,30 @@ const initSocketListeners = ($socketClient)=>{
             
             break;
 
+            case 'new_chat_message':
 
-          case 'P2P':
+            console.log('P2P_new_chat_message:', message.data);
+            const arr = Array.isArray(message.data) ? message.data : [message.data];
+
+            const messageIndex = pinia.state.chat_messages.findIndex(msg => msg.created_at === arr.created_at);
+
+            // console.log('web',messageIndex)
+            if (messageIndex != -1) {
+              pinia.state.chat_messages[messageIndex] = [...arr];
+              console.log(pinia.state.chat_messages[messageIndex])
+            }
+
+            console.log(pinia.state.chat_messages)
+
+            
+            pinia.state.chat_messages.push(...arr)
+            // const new_chat_messages =  pinia.state.new_chat_messages.filter(message => !message.seen);
+            // pinia.setNewChatMessages(new_chat_messages)
+
+            break;
+
+          case 'user_online_status':
+            pinia.setOnlineCheck(message.data)
             // console.log('P2P:', message.data);
             break;
           case 'chatting':

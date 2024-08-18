@@ -52,7 +52,9 @@ export const useStore = defineStore('app',()=> {
       camouflageCurrency:"",
       getSingleTxnID:"",
       offersCount:"",
+      OnlineCheck:"",
       chat_messages: [],
+      new_chat_messages: [],
     });
   
   
@@ -107,6 +109,10 @@ export const useStore = defineStore('app',()=> {
 
   const setFiat_transactions = (payload) => {
     state.Fiat_transactions = payload;   
+  };
+
+  const setNewChatMessages = (payload) => {
+    state.new_chat_messages = payload;   
   };
 
   const setFiat_currency_i_want = (payload) => {
@@ -198,6 +204,10 @@ export const useStore = defineStore('app',()=> {
       state.allMyOders = payload;    
   };
 
+  const setOnlineCheck = (payload) => {
+      state.OnlineCheck = payload;    
+  };
+
   const setallcountries = (payload) => {
     state.allcountries = payload;    
 };
@@ -252,7 +262,9 @@ export const useStore = defineStore('app',()=> {
     state.geo = {},
     state.selected_offer_from_trades = "",
     state.selected_trade_ID = "",
+    state.OnlineCheck = "",
     state.chat_messages = [],
+    state.new_chat_messages = [],
    
     navigateTo('/authentication/login')
   }
@@ -297,6 +309,8 @@ export const useStore = defineStore('app',()=> {
       setGeo,
       setCamouflageCurrency,
       setChat_messages,
+      setNewChatMessages,
+      setOnlineCheck,
     }
 },
   {persist: {
