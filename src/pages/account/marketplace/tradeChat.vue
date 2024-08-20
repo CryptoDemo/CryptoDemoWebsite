@@ -3,20 +3,26 @@
     <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true" />
 
     <v-container class="d-flex">
-      <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="flex-lg-and-up hidden-sm-and-down" style="width: 400px; margin-top: 100px; padding: 20px; margin-right: 24px; border-radius: 10px !important;">
+      <!-- <v-btn @click="dialog = true">
+      Open Dialog
+    </v-btn> -->
+
+    <!-- <v-dialog v-model="dialog"> -->
+
+      <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"  class="flex-lg-and-up hidden-sm-and-down" style="width: 400px; margin-top: 100px; padding: 20px; margin-right: 24px; border-radius: 10px !important;">
         
         <div style="display: flex; align-items: center" v-if="selectedCoin?.status !== 'expired'">
           <img src="/svg/Ellipse-active.svg"/>
           <span class="ml-2" style="font-weight: 600; color: #35B233;"> This trade is Active</span>
         </div>
-
+  
         <div style="display: flex; align-items: center" v-else>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="orangered" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
             <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
           </svg>
           <span style="color: orangered; font-weight: 600; margin-left: 4px;">This trade is Expired</span>
         </div>
-
+  
         <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#64748B" class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
@@ -28,12 +34,12 @@
             Keep trades within Demo. Some users may ask you to trade outside the Demo platform. This is against our Terms of Services and likely a scam attempt. You must insist on keeping all trade conversations within Demo, note that we cannot help or support you if you are scammed during such trades. 
           </span>
         </div>
-
+  
       <v-alert type="info" variant="tonal" class="d-flex mt-4" style="border-radius: 10px; padding: 8px; font-size: 14px;">
           <span class="warning-text">Please, make a payment of {{ formatBalance(selectedCoin?.bid?.fiat_amount_paid) }} <span>{{ pinia.state.allcountries.find((c) => c.id === selectedCoin.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span>
            using Bank Transfer. {{ selectedCoin.bid.expected_token_quantity }} {{ selectedCoin?.offer?.trading_pair?.crypto?.token?.name }} will be added to your Crypto wallet</span>
       </v-alert>
-
+  
         <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#64748B" class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
@@ -43,7 +49,7 @@
           </div>
           <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'"> Make your payment, We recommend the buyer uploads a screenshot of the transaction, featuring the transaction reference number, as proof of payment.</span>
         </div>
-
+  
         <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4 mb-4">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#64748B" class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
@@ -56,9 +62,11 @@
           <v-btn @click="toggleDispute()" class="primary-btn1 mt-2" style="width: 100%; height: 40px; border-radius: 10px !important; font-weight: 600; font-size: 16px; color: white;">Register Dispute</v-btn>
           </span>
         </div>
-
-
+  
+  
       </div>
+    <!-- </v-dialog> -->
+
 
 
       <div class="chat-headings messages-container" ref="scrollContainer" > 
@@ -73,7 +81,7 @@
               <img :src="selectedCoin?.offer?.user?.profile_image || '/img/Bitcoin.png'" class="mr-2" style="width: 40px; height: 40px; border-radius: 40px;"/>
               <div class="d-flex" style="flex-direction: column;">
                 <div v-if="pinia.state?.user?.kyc_verified" style="display: flex; align-items: center">
-                    <span style="font-size: 16px; font-style: normal; font-weight: 600;">{{ selectedCoin?.offer?.user?.username }}</span>
+                    <span class="resend-code" style="font-size: 16px; font-style: normal; font-weight: 600;">{{ selectedCoin?.offer?.user?.username }}</span>
                     <img src="/svg/verified.svg" />
                 </div>
                 <span :style="{ color: pinia.state.OnlineCheck.is_online ? 'green' : 'grey', fontSize: '12px', fontStyle: 'normal', fontWeight: '400' }">
@@ -157,7 +165,7 @@
                     <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;  letter-spacing: 0.1px;">{{ i.message }}</span>
                   </div>
                   <img v-if="i.file_url" @click="open_Image(i.id)" :src="i.file_url" height="250" width="250" class="mt-5"/>
-                  <span style="font-family: Manrope; font-size: 12px; font-style: normal;font-weight: 400; color: #A4A8AB">{{ formatTime (i.created_at)  }}</span>
+                  <span style="font-family: Manrope; font-size: 12px; font-style: normal;font-weight: 400; color: #A4A8AB">{{ formatTime(i.created_at)  }}</span>
               </div>
   
           
@@ -263,7 +271,7 @@
 
 
 
-          <div v-else style="margin-top: 120px; width: 805px;">
+          <div v-else style="margin-top: 120px; width: 805px;" class="dispute-div">
             <span :class="isDark ? 'text-dark' : 'text-light'"><span style="font-weight: 600; font-size: 16px; color: white;">Use this form to report any trade disputes.</span> Provide details of the issue and we will be in touch soon.</span>
             <div class="mt-4">
               <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">Describe the trade dispute</span>
@@ -745,6 +753,9 @@ font-weight: 600;
   left: 0 !important;
   right: 0 !important;
   padding: 18px !important;
+}
+.dispute-div{
+  width: 100% !important;
 }
 
 }
