@@ -22,7 +22,6 @@ export const useStore = defineStore('app',()=> {
       preferredCurrency: "USD",
       Selectedcurrency_code:"$",
       tokenLists:[],
-      tokenBalance:null,
       allcountries: [],
       selectedToken: 'USDT',
       UserFaqs:[],
@@ -148,9 +147,6 @@ export const useStore = defineStore('app',()=> {
       state.camouflageCurrency = payload;  
   };
 
-  const setTokenBalance = (payload) => {
-    state.tokenBalance = payload;  
-  };
 
   const setSummedBalance = (payload) => {
     state.SummedBalance = payload;  
@@ -281,7 +277,6 @@ export const useStore = defineStore('app',()=> {
       setNotificationLogs,
       setTokenNetworks,
       setTokenLists,
-      setTokenBalance,
       setallcountries,
       updateNotificationSettings,
       setFAQs,

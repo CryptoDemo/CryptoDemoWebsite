@@ -226,6 +226,12 @@ const initSocketListeners = ($socketClient)=>{
             pinia.setOnlineCheck(message.data)
             // console.log('P2P:', message.data);
             break;
+
+          case 'new_p2p_dispute':
+            // pinia.setOnlineCheck(message.data)
+            // console.log('P2P:', message.data);
+            break;
+            
           case 'chatting':
             // console.log('Chatting:', message.data);
             break;

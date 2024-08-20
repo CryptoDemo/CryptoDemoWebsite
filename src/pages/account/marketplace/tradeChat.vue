@@ -29,16 +29,10 @@
           </span>
         </div>
 
-        <div class="d-flex mt-4" style="border-radius: 12px; border: 1px solid  #303A46; background: #64748B; padding: 10px">
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
-              <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1z"/>
-              <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
-            </svg>
-          </div>
-          <span class="warning-text ml-3">Please, make a payment of {{ formatBalance(selectedCoin?.bid?.fiat_amount_paid) }} <span>{{ pinia.state.allcountries.find((c) => c.id === selectedCoin.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span>
+      <v-alert type="info" variant="tonal" class="d-flex mt-4" style="border-radius: 10px; padding: 8px; font-size: 14px;">
+          <span class="warning-text">Please, make a payment of {{ formatBalance(selectedCoin?.bid?.fiat_amount_paid) }} <span>{{ pinia.state.allcountries.find((c) => c.id === selectedCoin.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span>
            using Bank Transfer. {{ selectedCoin.bid.expected_token_quantity }} {{ selectedCoin?.offer?.trading_pair?.crypto?.token?.name }} will be added to your Crypto wallet</span>
-        </div>
+      </v-alert>
 
         <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4">
           <div>
@@ -47,7 +41,7 @@
               <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
             </svg>
           </div>
-          <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'"> Make your payment, Upload proof of payment and Wait for your trade partner to confirm your payment.</span>
+          <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'"> Make your payment, We recommend the buyer uploads a screenshot of the transaction, featuring the transaction reference number, as proof of payment.</span>
         </div>
 
         <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4 mb-4">
@@ -70,9 +64,11 @@
       <div class="chat-headings messages-container" ref="scrollContainer" > 
     
       
-        <div :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'"> 
+        <div class="name-div" :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'"> 
 
-          <div style="position: relative; display: flex; width: 47%; justify-content: space-between;">
+          
+
+          <div style="position: relative; display: flex; justify-content: space-between; width: 800px;">
             <div class="d-flex">
               <img :src="selectedCoin?.offer?.user?.profile_image || '/img/Bitcoin.png'" class="mr-2" style="width: 40px; height: 40px; border-radius: 40px;"/>
               <div class="d-flex" style="flex-direction: column;">
@@ -87,7 +83,7 @@
               </div>
             </div>
 
-            <!-- <div class="d-flex" style="align-items: center;">          
+            <div class="d-flex" style="align-items: center;">          
 
                   <v-menu v-model="menu" :close-on-content-click="false">
                     <template v-slot:activator="{ props }">
@@ -98,22 +94,40 @@
 
                       <span class="text-center" style="font-family: Manrope; display: block; font-size: 16px; font-style: normal; font-weight: 600; line-height: 150%;">Payment Details</span>
                         
-                      <div style="display: flex; justify-content: center; align-items: center;">
-                        <div style="display: grid; margin-top: 12px">
+                      <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: grid; line-height: 30px;">
                           <span class="trade-text">Ammount to Pay</span>
-                          <span class="trade-text">Minimum-Maximum buy limit</span>
+                          <span class="trade-text">Limit</span>
+                          <span class="trade-text">Name</span>
+                          <span class="trade-text">Bank account Number</span>
+                          <span class="trade-text">Bank Name</span>
+                          <span class="trade-text">Payment Method</span>
                         </div>
-                        <div style="display: grid; margin-top: 12px">
+                        <div style="display: grid; line-height: 30px;">
                           <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'">{{ formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}</span>
-                          <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'">{{ selectedCoin?.offer.trading_pair?.fiat?.minimum_buy_limit }} - {{ selectedCoin?.offer.trading_pair?.fiat?.maximum_buy_limit }}</span>
+                          <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'">{{ formatBalance(selectedCoin?.offer.trading_pair?.fiat?.minimum_buy_limit) }} - {{ formatBalance(selectedCoin?.offer.trading_pair?.fiat?.maximum_buy_limit) }}</span>
+                          <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'"> {{ selectedCoin?.offer.user.name }}</span>
+                          <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'">Live Chat</span>
+                          <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'"> Live Chat </span>
+                          <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'"> Bank Transfer </span>
                         </div>
                       </div>
+
+                      <v-alert type="info" variant="tonal" style="font-size: 14px; border-radius: 10px; margin-top: 10px; padding: 10px">
+                        Never release Cryptocurrency before actually receiving the payment! Do Not trust anyone who ask you to releasde coin before payment
+                      </v-alert>
+
+                      <v-btn @click="release_order()" class="primary-btn1 mt-4" style="width: 100%; height: 45px; border-radius: 10px !important; font-weight: 600">Release Coin</v-btn>
                     </v-card>
+
+
                 </v-menu>
 
-            </div> -->
+            </div>
           </div> 
         </div>
+
+
 
         <div  style="height: 580px; max-height: 700px; overflow-y: auto; position: relative;">
 
@@ -130,7 +144,7 @@
                     <span>{{ pinia.state.allcountries.find((c) => c.id === selectedCoin.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span>
                       via Bank Transfer.  </span>
                     <div style="display: grid" :class="isDark ? 'text-dark' : 'text-light'">
-                    <span class="mb-1 mt-2">1. Before paying, carefully read the terms of the trade of the advertiser. make sure to use the specified payment method stated in the Ad.</span>
+                    <span class="mb-1 mt-2">Before paying, carefully read the terms of the trade of the advertiser. make sure to use the specified payment method stated in the Ad.</span>
                     </div>
                 </span>
             </div>
@@ -142,15 +156,16 @@
                   <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 0px 24px 24px 24px; display: flex; width: 30%; padding: 20px; color: #fff;">
                     <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;  letter-spacing: 0.1px;">{{ i.message }}</span>
                   </div>
+                  <img v-if="i.file_url" @click="open_Image(i.id)" :src="i.file_url" height="250" width="250" class="mt-5"/>
                   <span style="font-family: Manrope; font-size: 12px; font-style: normal;font-weight: 400; color: #A4A8AB">{{ formatTime (i.created_at)  }}</span>
               </div>
   
           
               <div class="receiver-msg" style="display: flex; flex-direction: column; align-items: flex-end; margin-top: 15px;"  v-if="i.sender_id == pinia.state.user.id">
-                  <div style="border-radius: 24px 24px 0px 24px; border: 1px solid #2873FF; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); display: flex; width: 400px; padding: 20px; color: #fff;">
+                  <div class="receiver-msg" style="border-radius: 24px 24px 0px 24px; border: 1px solid #2873FF; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); display: flex; width: 400px; padding: 20px; color: #fff;">
                     <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;  letter-spacing: 0.1px;">{{ i.message }}</span>
                   </div>
-                  <img v-if="i.file_url" @click="open_Image(i.id)" :src="i.file_url" height="50" width="50"/>
+                  <img v-if="i.file_url" @click="open_Image(i.id)" :src="i.file_url" height="250" width="250" class="mt-5 msg-img"/>
                   <div style="display: flex; align-items: center;">
                     <span style="font-family: Manrope; font-size: 12px; font-style: normal;font-weight: 400; color: #A4A8AB;margin-right: 4px;">{{ formatTime (i.created_at) }}</span>
                     <svg v-if="i.isSendng" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#888888" d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9,9,0,0,1,12,21Z"/><rect width="2" height="7" x="11" y="6" fill="#888888" rx="1"><animateTransform attributeName="transform" dur="9s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></rect><rect width="2" height="9" x="11" y="11" fill="#888888" rx="1"><animateTransform attributeName="transform" dur="20s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></rect></svg>
@@ -167,7 +182,7 @@
             
             <div class="dialog-div" style="position: relative; margin-top: 0px;">
               <!-- <div class="chat-border" style="margin-top: 15px;"></div> -->
-              <div class="msg-div" style="display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 65px; left: 35%; right: 9%; width: 55%; padding: 0 15px; box-sizing: border-box;">
+              <div class="msg-div"  :class="isDark ? 'footer' : 'footer-light'" style="display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 35px; left: 35%; right: 9%; width: 55%; height: 70px; padding: 0 15px; box-sizing: border-box;">
                   
                 <v-dialog v-model="dialog" transition="dialog-bottom-transition" fullscreen>
   
@@ -181,14 +196,12 @@
                       </v-btn>
                   </template>
   
-                  <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="padding: 30px;">
+                  <v-card class="img-dialog-card" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="padding: 30px;">
                     
-                    <v-btn icon="mdi-close" @click="dialog = false" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="display: flex;margin-left: auto;"></v-btn>
-                    <span style="font-size: 32px; font-weight: 600; display: flex; justify-content: center;">Upload File</span>
-                  
-   
+                    <v-btn icon="mdi-close" @click="dialog = false" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="display: flex;margin-left: auto; justify-content: right;"></v-btn>
+                    <span class="upload-txt" style="font-size: 32px; font-weight: 600; display: flex; justify-content: center;">Upload File</span>
                     
-                    <div  @click="trigerInput()" style="display: flex; flex-direction: column; margin: auto;"  >
+                    <div @click="trigerInput()" style="display: flex; flex-direction: column; margin: auto;"  >
                       <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 16 16" style="display: flex; align-self: center;">
                         <defs>
                           <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -199,7 +212,7 @@
                         <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2z" fill="url(#gradient1)"/>
                       </svg>
 
-                      <img v-if="preview" style="width: 100px;height: 100px;" :src="preview"/>
+                      <img v-if="preview" style="width: 400px;height: 400px;" :src="preview"/>
                       
                       <input ref="fileInput"  @change="onFileChange" type="file" style="display: none;" >
                       <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 18px;">Drag and drop files here or 
@@ -234,7 +247,7 @@
   
   
   
-                <textarea type="text" class="px-3" v-model="message" style="background: inherit !important; width: 100%; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px; font-size: 14px;"/>
+                <textarea type="text" class="px-3" v-model="message" style="background: inherit !important; width: 100%; height: 50px; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px; font-size: 14px;"/>
   
                 <v-btn @click.prevent="send_message()" class="ml-5" style="border-radius: 17px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); backdrop-filter: blur(10.5px); width: 48.08px; height: 48px">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
@@ -274,7 +287,7 @@
 <script setup>
 import { ref, computed, onMounted} from "vue";
 import { useTheme } from "vuetify";
-import { getMessages, sendMessages } from "@/composables/requests/chats";
+import { getMessages, sendMessages, releaseOder } from "@/composables/requests/chats";
 import { compressImage } from "@/composables/mixin";
 import {uploadUserFile} from "@/composables/requests/file";
 
@@ -345,6 +358,7 @@ const selectAutoMsg = (msg) => {
 const selectedCoinId = pinia.state.selected_trade_ID;
 
 const selectedCoin = computed(() =>  pinia.state.allMyOders.find(item => item.id === selectedCoinId));
+console.log(selectedCoin)
 
 const get_allchat = async () => {
   try {
@@ -375,7 +389,7 @@ const send_message = async () => {
 if(!message.value.trim().length && myfile.value == null) return isSendng.value = false
 
 isSendng.value = true
-
+dialog.value = false
 
 if(myfile.value){
   const compressedImg = await compressImage(myfile.value)
@@ -496,7 +510,37 @@ const checkUserOnlineStatus = ()=>{
   }
 }
 
+const release_order = async () => {
 
+const payload = {
+  offer_id: selectedCoinId,
+  expected_token_quantity: selectedCoin.value.bid.expected_token_quantity,
+  fiat_amount_paid: selectedCoin.value.bid.fiat_amount_paid,
+  buyer_id: selectedCoin.value.buyer_id
+};
+
+console.log(payload)
+    
+  try {
+    const data = await releaseOder(payload);
+    if (data.success) {
+      loading.value = false;
+      push.success('Transaction succesful')
+
+    } else {
+      push.error(`${data.message}`);
+      loading.value = false;
+      push.error("transaction failed")
+    }
+  } catch (e) {
+    console.log(e);
+    loading.value = false;
+  }
+};
+
+
+const imageZoom = ref();
+const show_image = ref();
 
 const open_Image = (id)=>{
   const item = pinia.state.chat_messages.find(e => e.id === id)
@@ -602,6 +646,16 @@ color: black!important;
 box-shadow: none!important;
 }
 
+.footer{
+background: rgba(6, 10, 29, 0.60)!important;
+backdrop-filter: blur(50px) !important;
+}
+
+.footer-light {
+background: rgba(255, 255, 255, 0.60) !important;
+backdrop-filter: blur(50px);
+}
+
 .trade-text{
 font-size: 14px;
 font-weight: 600;
@@ -628,6 +682,9 @@ font-weight: 600;
   font-size: 14px;
 }
 
+.v-alert__prepend {
+  margin-inline-end: 8px;
+}
 .v-dialog--fullscreen > .v-overlay__content {
   border-radius: 0;
   margin: 0;
@@ -648,14 +705,23 @@ font-weight: 600;
 @media screen and (max-width: 600px) {
 .custom-msg{
   width: 81% !important;
+  padding: 15px !important;
 }
 .msg-div{
   width: 100% !important;
   right: 0 !important;
   left: 0 !important;
+  bottom: 0 !important;
 }
 .receiver-msg{
   width: 220px !important;
+  margin-inline-start: auto !important;
+}
+.img-dialog-card{
+  padding: 20px !important;
+}
+.upload-txt{
+  font-size: 20px !important;
 }
 .v-dialog--fullscreen > .v-overlay__content {
   border-radius: 0;
@@ -671,6 +737,16 @@ font-weight: 600;
   margin-inline-start: auto !important;
 
 }
+.msg-img{
+  width: 150px !important;
+  height: 150px !important;
+}
+.name-div{
+  left: 0 !important;
+  right: 0 !important;
+  padding: 18px !important;
+}
+
 }
 
 </style>
