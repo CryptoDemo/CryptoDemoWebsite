@@ -753,7 +753,6 @@ font-weight: 600;
   width: 82% !important;
   margin-inline-start: auto !important;
   border-radius: 16px 16px 0px !important;
-  padding: 15px !important;
   margin-top: 0px !important;
 }
 .sender-msg{
