@@ -137,7 +137,7 @@
 
 
 
-        <div  style="height: 580px; max-height: 700px; overflow-y: auto; position: relative;">
+        <div  style="height: 580px; max-height: 700px; overflow-y: auto; overflow-x: hidden; position: relative;">
 
           <div v-if="!showTextarea">
 
