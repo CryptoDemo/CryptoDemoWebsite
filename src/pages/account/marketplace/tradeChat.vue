@@ -279,7 +279,7 @@
   
   
   
-                <textarea type="text" class="px-3" v-model="message" style="background: inherit !important; width: 100%; height: 50px; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px; font-size: 14px;"/>
+                <textarea type="text" placeholder="Type a message..." class="px-3" v-model="message" style="background: inherit !important; width: 100%; height: 50px; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px; font-size: 14px;"/>
   
                 <button @click.prevent="send_message()" class="ml-5" style="border-radius: 10px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); backdrop-filter: blur(10.5px); width: fit-content; padding: 10px; display: flex; align-items: center;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
@@ -750,7 +750,7 @@ font-weight: 600;
   bottom: 0 !important;
 }
 .receiver-msg{
-  width: 220px !important;
+  width: 82% !important;
   margin-inline-start: auto !important;
   border-radius: 16px 16px 0px !important;
   padding: 15px !important;
