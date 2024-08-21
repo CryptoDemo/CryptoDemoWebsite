@@ -81,7 +81,7 @@
               <img :src="selectedCoin?.offer?.user?.profile_image || '/img/Bitcoin.png'" class="mr-2" style="width: 40px; height: 40px; border-radius: 40px;"/>
               <div class="d-flex" style="flex-direction: column;">
                 <div v-if="pinia.state?.user?.kyc_verified" style="display: flex; align-items: center">
-                    <span class="resend-code" style="font-size: 16px; font-style: normal; font-weight: 600;">{{ selectedCoin?.offer?.user?.username }}</span>
+                    <span style="font-size: 16px; font-style: normal; font-weight: 600;">{{ selectedCoin?.offer?.user?.username }}</span>
                     <img src="/svg/verified.svg" />
                 </div>
                 <span :style="{ color: pinia.state.OnlineCheck.is_online ? 'green' : 'grey', fontSize: '12px', fontStyle: 'normal', fontWeight: '400' }">
@@ -122,7 +122,7 @@
                       </div>
 
                       <v-alert type="info" variant="tonal" style="font-size: 14px; border-radius: 10px; margin-top: 10px; padding: 10px">
-                        Never release Cryptocurrency before actually receiving the payment! Do Not trust anyone who ask you to releasde coin before payment
+                        Never release Cryptocurrency before actually receiving the payment! Do Not trust anyone who ask you to release coin before payment
                       </v-alert>
 
                       <v-btn @click="release_order()" class="primary-btn1 mt-4" style="width: 100%; height: 45px; border-radius: 10px !important; font-weight: 600">Release Coin</v-btn>
@@ -161,7 +161,7 @@
             <div v-for="i in pinia.state.chat_messages" :key="i.id">
   
               <div style="display: flex; margin-top: 15px; flex-direction: column;" v-if="i.sender_id !== pinia.state.user.id">
-                  <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 0px 24px 24px 24px; display: flex; width: 30%; padding: 20px; color: #fff;">
+                  <div class="sender-msg" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 0px 24px 24px 24px; display: flex; width: 30%; padding: 20px; color: #fff;">
                     <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;  letter-spacing: 0.1px;">{{ i.message }}</span>
                   </div>
                   <img v-if="i.file_url" @click="open_Image(i.id)" :src="i.file_url" height="250" width="250" class="mt-5"/>
@@ -192,7 +192,7 @@
               <!-- <div class="chat-border" style="margin-top: 15px;"></div> -->
               <div class="msg-div"  :class="isDark ? 'footer' : 'footer-light'" style="display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 35px; left: 35%; right: 9%; width: 55%; height: 70px; padding: 0 15px; box-sizing: border-box;">
                   
-                <v-dialog v-model="dialog" transition="dialog-bottom-transition" fullscreen>
+               <v-dialog v-model="dialog" transition="dialog-bottom-transition" fullscreen>
   
                   <template v-slot:activator="{ props: activatorProps }">
                     
@@ -235,6 +235,7 @@
                   </v-card>
                 </v-dialog>
   
+                
                 <v-btn @click="autoMsgs = true" :disabled="selectedCoin?.status == 'expired'" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="me-5" style="border-radius: 10px; backdrop-filter: blur(10.5px); min-width: 50px; height: 48px">
                   <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="currentColor">
                           <path d="M9.09302 9.19922V5.19922H11.093V9.19922H15.093V11.1992H11.093V15.1992H9.09302V11.1992H5.09302V9.19922H9.09302ZM10.093 20.1992C4.57002 20.1992 0.0930176 15.7222 0.0930176 10.1992C0.0930176 4.67622 4.57002 0.199219 10.093 0.199219C15.616 0.199219 20.093 4.67622 20.093 10.1992C20.093 15.7222 15.616 20.1992 10.093 20.1992ZM10.093 18.1992C12.2147 18.1992 14.2496 17.3564 15.7499 15.8561C17.2502 14.3558 18.093 12.321 18.093 10.1992C18.093 8.07749 17.2502 6.04266 15.7499 4.54236C14.2496 3.04207 12.2147 2.19922 10.093 2.19922C7.97129 2.19922 5.93645 3.04207 4.43616 4.54236C2.93587 6.04266 2.09302 8.07749 2.09302 10.1992C2.09302 12.321 2.93587 14.3558 4.43616 15.8561C5.93645 17.3564 7.97129 18.1992 10.093 18.1992Z" fill="white"/>
@@ -257,12 +258,12 @@
   
                 <textarea type="text" class="px-3" v-model="message" style="background: inherit !important; width: 100%; height: 50px; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px; font-size: 14px;"/>
   
-                <v-btn @click.prevent="send_message()" class="ml-5" style="border-radius: 17px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); backdrop-filter: blur(10.5px); width: 48.08px; height: 48px">
+                <button @click.prevent="send_message()" class="ml-5" style="border-radius: 10px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); backdrop-filter: blur(10.5px); width: fit-content; padding: 10px; display: flex; align-items: center;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                     <path d="M16.2896 3.68937C20.1059 2.41937 22.1794 4.49937 20.9173 8.30937L18.0826 16.7994C16.1794 22.5094 13.0542 22.5094 11.1511 16.7994L10.3097 14.2794L7.78547 13.4394C2.06598 11.5394 2.06598 8.42937 7.78547 6.51937L12.3931 4.98937" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M10.4998 13.8478L14.0857 10.2578" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                </v-btn>
+                </button>
   
               </div>
   
@@ -724,6 +725,14 @@ font-weight: 600;
 .receiver-msg{
   width: 220px !important;
   margin-inline-start: auto !important;
+  border-radius: 16px 16px 0px !important;
+  padding: 15px !important;
+  margin-top: 0px !important;
+}
+.sender-msg{
+  width: 60% !important;
+  padding: 15px !important;
+  flex-wrap: nowrap !important;
 }
 .img-dialog-card{
   padding: 20px !important;
