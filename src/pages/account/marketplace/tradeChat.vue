@@ -3,11 +3,7 @@
     <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true" />
 
     <v-container class="d-flex">
-      <!-- <v-btn @click="dialog = true">
-      Open Dialog
-    </v-btn> -->
 
-    <!-- <v-dialog v-model="dialog"> -->
 
       <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"  class="flex-lg-and-up hidden-sm-and-down" style="width: 400px; margin-top: 100px; padding: 20px; margin-right: 24px; border-radius: 10px !important;">
         
@@ -65,75 +61,143 @@
   
   
       </div>
-    <!-- </v-dialog> -->
-
 
 
       <div class="chat-headings messages-container" ref="scrollContainer" > 
     
       
-        <div class="name-div" :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'"> 
+      <div class="name-div" :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'"> 
 
-          
+        
 
-          <div style="position: relative; display: flex; justify-content: space-between; width: 800px;">
-            <div class="d-flex">
-              <img :src="selectedCoin?.offer?.user?.profile_image || '/img/Bitcoin.png'" class="mr-2" style="width: 40px; height: 40px; border-radius: 40px;"/>
-              <div class="d-flex" style="flex-direction: column;">
-                <div v-if="pinia.state?.user?.kyc_verified" style="display: flex; align-items: center">
-                    <span style="font-size: 16px; font-style: normal; font-weight: 600;">{{ selectedCoin?.offer?.user?.username }}</span>
-                    <img src="/svg/verified.svg" />
-                </div>
-                <span :style="{ color: pinia.state.OnlineCheck.is_online ? 'green' : 'grey', fontSize: '12px', fontStyle: 'normal', fontWeight: '400' }">
-                  {{ pinia.state.OnlineCheck.is_online ? 'Online' : 'Offline' }}
-                </span>
-
+        <div style="position: relative; display: flex; justify-content: space-between; width: 800px;">
+          <div class="d-flex">
+            <img :src="selectedCoin?.offer?.user?.profile_image || '/img/Bitcoin.png'" class="mr-2" style="width: 40px; height: 40px; border-radius: 40px;"/>
+            <div class="d-flex" style="flex-direction: column;">
+              <div v-if="pinia.state?.user?.kyc_verified" style="display: flex; align-items: center">
+                  <span style="font-size: 16px; font-style: normal; font-weight: 600;">{{ selectedCoin?.offer?.user?.username }}</span>
+                  <img src="/svg/verified.svg" />
               </div>
+              <span :style="{ color: pinia.state.OnlineCheck.is_online ? 'green' : 'grey', fontSize: '12px', fontStyle: 'normal', fontWeight: '400' }">
+                {{ pinia.state.OnlineCheck.is_online ? 'Online' : 'Offline' }}
+              </span>
+
             </div>
+          </div>
 
-            <div class="d-flex" style="align-items: center;">          
+          <div class="d-flex" style="align-items: center;">          
 
-                  <v-menu v-model="menu" :close-on-content-click="false">
-                    <template v-slot:activator="{ props }">
-                      <v-btn v-bind="props" class="primary-btn1" style="border-radius: 10px !important; font-weight: 600; color: white;">View Payment details</v-btn>
-                    </template>
+                <v-menu v-model="menu" :close-on-content-click="false">
+                  <template v-slot:activator="{ props }">
+                    <v-btn v-bind="props" class="primary-btn1" style="border-radius: 10px !important; font-weight: 600; color: white;">View Payment details</v-btn>
+                  </template>
 
-                    <v-card width="330" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 16px; padding: 20px; border: 1px solid  #303A46; margin-top: 20px;">
+                  <v-card width="330" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 16px; padding: 20px; border: 1px solid  #303A46; margin-top: 20px;">
 
-                      <span class="text-center" style="font-family: Manrope; display: block; font-size: 16px; font-style: normal; font-weight: 600; line-height: 150%;">Payment Details</span>
-                        
-                      <div style="display: flex; align-items: center; justify-content: space-between;">
-                        <div style="display: grid; line-height: 30px;">
-                          <span class="trade-text">Ammount to Pay</span>
-                          <span class="trade-text">Limit</span>
-                          <span class="trade-text">Name</span>
-                          <span class="trade-text">Bank account Number</span>
-                          <span class="trade-text">Bank Name</span>
-                          <span class="trade-text">Payment Method</span>
-                        </div>
-                        <div style="display: grid; line-height: 30px;">
-                          <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'">{{ formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}</span>
-                          <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'">{{ formatBalance(selectedCoin?.offer.trading_pair?.fiat?.minimum_buy_limit) }} - {{ formatBalance(selectedCoin?.offer.trading_pair?.fiat?.maximum_buy_limit) }}</span>
-                          <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'"> {{ selectedCoin?.offer.user.name }}</span>
-                          <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'">Live Chat</span>
-                          <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'"> Live Chat </span>
-                          <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'"> Bank Transfer </span>
-                        </div>
+                    <span class="text-center" style="font-family: Manrope; display: block; font-size: 16px; font-style: normal; font-weight: 600; line-height: 150%;">Payment Details</span>
+                      
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                      <div style="display: grid; line-height: 30px;">
+                        <span class="trade-text">Ammount to Pay</span>
+                        <span class="trade-text">Limit</span>
+                        <span class="trade-text">Name</span>
+                        <span class="trade-text">Bank account Number</span>
+                        <span class="trade-text">Bank Name</span>
+                        <span class="trade-text">Payment Method</span>
                       </div>
+                      <div style="display: grid; line-height: 30px;">
+                        <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'">{{ formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}</span>
+                        <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'">{{ formatBalance(selectedCoin?.offer.trading_pair?.fiat?.minimum_buy_limit) }} - {{ formatBalance(selectedCoin?.offer.trading_pair?.fiat?.maximum_buy_limit) }}</span>
+                        <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'"> {{ selectedCoin?.offer.user.name }}</span>
+                        <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'">Live Chat</span>
+                        <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'"> Live Chat </span>
+                        <span style="font-size: 14px; display: flex;justify-content: flex-end;" :class="isDark ? 'text-dark' : 'text-light'"> Bank Transfer </span>
+                      </div>
+                    </div>
 
-                      <v-alert type="info" variant="tonal" style="font-size: 14px; border-radius: 10px; margin-top: 10px; padding: 10px">
-                        Never release Cryptocurrency before actually receiving the payment! Do Not trust anyone who ask you to release coin before payment
-                      </v-alert>
+                    <v-alert type="info" variant="tonal" style="font-size: 14px; border-radius: 10px; margin-top: 10px; padding: 10px">
+                      Never release Cryptocurrency before actually receiving the payment! Do Not trust anyone who ask you to release coin before payment
+                    </v-alert>
 
-                      <v-btn @click="release_order()" class="primary-btn1 mt-4" style="width: 100%; height: 45px; border-radius: 10px !important; font-weight: 600">Release Coin</v-btn>
-                    </v-card>
+                    <v-btn @click="release_order()" class="primary-btn1 mt-4" style="width: 100%; height: 45px; border-radius: 10px !important; font-weight: 600">Release Coin</v-btn>
+                  </v-card>
 
 
-                </v-menu>
+              </v-menu>
 
+          </div>
+        </div> 
+      </div>
+
+
+      <div style="position: absolute;width: 600px;">
+        <v-layout class="hidden-lg-and-up flex-sm-and-down" style="height: 500px; width: 100%;">
+            <v-navigation-drawer v-model="drawer" temporary :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 10px !important">
+              
+            <div style="display: flex; align-items: center" v-if="selectedCoin?.status !== 'expired'">
+              <img src="/svg/Ellipse-active.svg"/>
+              <span class="ml-2" style="font-weight: 600; color: #35B233;"> This trade is Active</span>
             </div>
-          </div> 
-        </div>
+        
+            <div style="display: flex; align-items: center" v-else>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="orangered" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+              </svg>
+              <span style="color: orangered; font-weight: 600; margin-left: 4px;">This trade is Expired</span>
+            </div>
+      
+            <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#64748B" class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
+                  <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1z"/>
+                  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+                </svg>
+              </div>
+              <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'"> 
+                Keep trades within Demo. Some users may ask you to trade outside the Demo platform. This is against our Terms of Services and likely a scam attempt. You must insist on keeping all trade conversations within Demo, note that we cannot help or support you if you are scammed during such trades. 
+              </span>
+            </div>
+        
+            <v-alert type="info" variant="tonal" class="d-flex mt-4" style="border-radius: 10px; padding: 8px; font-size: 14px;">
+                <span class="warning-text">Please, make a payment of {{ formatBalance(selectedCoin?.bid?.fiat_amount_paid) }} <span>{{ pinia.state.allcountries.find((c) => c.id === selectedCoin.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span>
+                using Bank Transfer. {{ selectedCoin.bid.expected_token_quantity }} {{ selectedCoin?.offer?.trading_pair?.crypto?.token?.name }} will be added to your Crypto wallet</span>
+            </v-alert>
+        
+            <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#64748B" class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
+                  <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1z"/>
+                  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+                </svg>
+              </div>
+              <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'"> Make your payment, We recommend the buyer uploads a screenshot of the transaction, featuring the transaction reference number, as proof of payment.</span>
+            </div>
+      
+            <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4 mb-4">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#64748B" class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
+                  <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1z"/>
+                  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+                </svg>
+              </div>
+              <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'"> 
+              In case of any form of dispute, click on the dispute  
+              <v-btn @click="toggleDispute()" class="primary-btn1 mt-2" style="width: 100%; height: 40px; border-radius: 10px !important; font-weight: 600; font-size: 16px; color: white;">Register Dispute</v-btn>
+              </span>
+            </div>
+            
+            </v-navigation-drawer>
+            
+            <v-main>
+              <div class="d-flex justify-center align-center Position-relative">
+                <v-btn color="primary" @click.stop="drawer = !drawer">
+                Toggle
+              </v-btn>
+            </div>
+          </v-main>
+        </v-layout>
+      </div>
+
 
 
 
@@ -315,7 +379,7 @@ const menu = ref (false);
 const fileInputRef = ref(null);
 const dialog = ref();
 const autoMsgs = ref();
-const isMessageSent = ref(null);
+const drawer = ref(null);
 const showTextarea = ref(false);
 const onlineStatusInvterval = ref();
 const refreshingMessagesInterval = ref();
@@ -708,6 +772,10 @@ font-weight: 600;
   margin-inline-start: auto !important;
 
 }
+
+/* .v-navigation-drawer {
+  width: 80% !important;
+} */
 
 
 
