@@ -361,7 +361,7 @@
 
 
 
-                <!-- <textarea type="text" placeholder="Type a message..." class="px-3" v-model="message" style="background: inherit !important; width: 100%; height: 50px; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px; font-size: 14px;" /> -->
+                <textarea type="text" placeholder="Type a message..."  v-model="message" style="background: inherit !important; width: 100%; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px; font-size: 14px;" />
 
                 <button @click.prevent="send_message()" class="ml-5"
                   style="border-radius: 10px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); backdrop-filter: blur(10.5px); width: fit-content; padding: 10px; display: flex; align-items: center;">
@@ -890,6 +890,12 @@ const scrollToBottom = () => {
 .trade-text {
   font-size: 14px;
   font-weight: 600;
+}
+
+textarea {
+  padding-top: 15px; /* Adjust top padding to vertically align the text */
+  width: 100%; /* Full width */
+  box-sizing: border-box; /* Include padding in width/height calculation */
 }
 
 
