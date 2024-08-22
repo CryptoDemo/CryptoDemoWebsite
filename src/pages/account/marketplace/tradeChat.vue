@@ -110,7 +110,6 @@
             </div>
 
             <div class="d-flex" style="align-items: center;">
-
               <v-menu v-model="menu" :close-on-content-click="false">
                 <template v-slot:activator="{ props }">
                   <v-btn v-bind="props" class="primary-btn1" style="border-radius: 10px !important; font-weight: 600; color: white;">View Payment details</v-btn>
@@ -161,8 +160,8 @@
 
 
               </v-menu>
-
             </div>
+
           </div>
 
           <v-dialog max-width="500">
@@ -289,7 +288,7 @@
             <div class="dialog-div" style="position: relative; margin-top: 0px;">
               <!-- <div class="chat-border" style="margin-top: 15px;"></div> -->
               <div class="msg-div" :class="isDark ? 'footer' : 'footer-light'"
-                style="display: flex; justify-content: space-between; align-items: center;  bottom: 35px; left: 35%; right: 9%; width: 55%; height: 70px; padding: 0 15px; box-sizing: border-box;">
+                style="display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 35px; left: 35%; right: 9%; width: 55%; height: 70px; padding: 0 15px; box-sizing: border-box;">
 
                 <v-dialog v-model="dialog" transition="dialog-bottom-transition" fullscreen>
 
@@ -359,7 +358,7 @@
                   </v-card>
                 </v-dialog>
 
-                <textarea type="text" placeholder="Type a message..."  v-model="message" style="background: inherit !important; width: 100%; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px; font-size: 14px;" />
+                <textarea type="text" placeholder="Type a message..."  v-model="message" style="background: inherit !important; width: 100%; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px;" />
 
                 <button @click.prevent="send_message()" class="ml-5"
                   style="border-radius: 10px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); backdrop-filter: blur(10.5px); width: fit-content; padding: 10px; display: flex; align-items: center;">
