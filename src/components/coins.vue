@@ -81,12 +81,12 @@
               </td>
 
               <td class="mt-4 price-td" style="overflow: scroll;  display: flex; align-self: self-start; justify-content: center; width: 27%; ">
-                <span class="browser-txt" :class="isDark ? 'coin-name' : 'coin-name-light'" style="margin-right: -13px;">{{formatConvertedValue(item.conversionValue || 0) }}</span>
+                <span class="browser-txt price-bal" :class="isDark ? 'coin-name' : 'coin-name-light'" style="margin-right: -13px;">{{formatConvertedValue(item.conversionValue || 0) }}</span>
               </td>
 
 
               <td class="mt-2 bal-td" style="display: flex; align-items: center; justify-content: center; width: 16%;">
-                <span class="mb-4 coin-bal" :class="isDark ? 'coin-name' : 'coin-name-light'" style="font-weight: 600; font-size: 16px; width: 10px;"> {{ formatBalance(item.balance) }} </span>
+                <span class="coin-bal" :class="isDark ? 'coin-name' : 'coin-name-light'" style="font-weight: 600; font-size: 16px; width: 10px; margin-bottom: 16px;"> {{ formatBalance(item.balance) }} </span>
               </td>
 
             </tr>
@@ -430,7 +430,11 @@ bottom: 2px;
   }
   .coin-bal{
     width: 28px !important;
-  } 
+    margin-bottom: 10px !important;
+  }
+  .price-bal{
+    margin-top: 2px;
+  }
   .search-div{
     width: 80% !important;
   }
