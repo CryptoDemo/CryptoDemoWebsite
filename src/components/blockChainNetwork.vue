@@ -2,7 +2,7 @@
     <div>
         <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <button  class="network-btn" :class="isDark ? 'dropdown-btn1i-dark':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; width: fit-content;" @click="toggleChevron">
+              <button class="network-btn" :class="isDark ? 'dropdown-btn1i-dark':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; width: fit-content;" @click="toggleChevron">
                 <span style="text-transform: capitalize; font-family: Manrope; color: white;">{{pinia.state.selectedNetwork}}</span>
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled },]">
@@ -23,7 +23,7 @@
                 <v-row dense style="max-width: 250px; display: block;">
                   <v-col v-for="(item, index) in pinia.state.BlockchainNetworks" :key="index">
                   <v-list-item @click="pinia.state.selectedNetwork = item.name;" style="display: flex;">
-                      <span style="text-transform: capitalize; color: white">{{ item.name }}</span>
+                      <span style="text-transform: capitalize;">{{ item.name }}</span>
                   </v-list-item>
                 </v-col>
                 </v-row>
@@ -78,7 +78,7 @@ const toggleChevron = () => {
 flex-shrink: 0;
 background: #1B2537 !important;
 text-transform: unset !important;
-color: white;
+color: white !important;
 letter-spacing: 0px;
 margin-top: 10px !important;
 border: 0.5px solid #2f3946;
@@ -88,7 +88,7 @@ flex-shrink: 0;
 border-radius: 20px;
 text-transform: unset !important;
 background: #F8FAFC !important;
-color: #060A1D;
+color: #060A1D !important;
 letter-spacing: 0px;
 box-shadow: none;
 margin-top: 10px !important;
@@ -100,7 +100,7 @@ flex-shrink: 0;
 border-radius: 20px !important;
 background: inherit;
 text-transform: unset !important;
-color: white;
+color: white !important;
 letter-spacing: 0px;
 text-transform: capitalize;
 }
