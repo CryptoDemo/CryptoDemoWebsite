@@ -216,20 +216,12 @@
             <div class="ma-2 custom-msg" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
               style="border-radius: 0px 24px 24px 24px; padding: 30px; width: 60%;">
 
-              <span
-                style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;letter-spacing: 0.1px;">
-                <span
-                  style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600; line-height: 24px; letter-spacing: 0.1px;">
-                  You're buying {{ selectedCoin.bid.expected_token_quantity }} {{
-                    selectedCoin?.offer?.trading_pair?.crypto?.token?.name }} for {{
-                    formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}
-                  <span>{{ pinia.state.allcountries.find((c) => c.id ===
-                    selectedCoin.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span>
-                  via Bank Transfer. </span>
+              <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;letter-spacing: 0.1px;">
+                <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600; line-height: 24px; letter-spacing: 0.1px;">
+                  You're buying {{ selectedCoin.bid.expected_token_quantity }} {{selectedCoin?.offer?.trading_pair?.crypto?.token?.name }} for {{formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}
+                  <span>{{ pinia.state.allcountries.find((c) => c.id === selectedCoin.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span> via Bank Transfer. </span>
                 <div style="display: grid" :class="isDark ? 'text-dark' : 'text-light'">
-                  <span class="mb-1 mt-2">Before paying, carefully read the terms of the trade of the advertiser. make
-                    sure to
-                    use the specified payment method stated in the Ad.</span>
+                  <span class="mb-1 mt-2">Before paying, carefully read the terms of the trade of the advertiser. make sure to use the specified payment method stated in the Ad.</span>
                 </div>
               </span>
             </div>
@@ -303,26 +295,18 @@
 
                   <template v-slot:activator="{ props: activatorProps }">
 
-                    <v-btn class="me-5" v-bind="activatorProps" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
-                      style="border-radius: 10px; backdrop-filter: blur(10.5px); min-width: 50px; height: 48px">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                        class="bi bi-image" viewBox="0 0 16 16">
+                    <v-btn class="me-5" v-bind="activatorProps" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="border-radius: 10px; backdrop-filter: blur(10.5px); min-width: 50px; height: 48px">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
                         <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
-                        <path
-                          d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z" />
+                        <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z" />
                       </svg>
                     </v-btn>
                   </template>
 
-                  <v-card class="img-dialog-card" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-                    style="padding: 30px;">
+                  <v-card class="img-dialog-card" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="padding: 30px;">
 
-                    <v-btn icon="mdi-close" @click="dialog = false"
-                      :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
-                      style="display: flex;margin-left: auto; justify-content: right;"></v-btn>
-                    <span class="upload-txt"
-                      style="font-size: 32px; font-weight: 600; display: flex; justify-content: center;">Upload
-                      File</span>
+                    <v-btn icon="mdi-close" @click="dialog = false" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="display: flex;margin-left: auto; justify-content: right;"></v-btn>
+                    <span class="upload-txt" style="font-size: 32px; font-weight: 600; display: flex; justify-content: center;">Upload File</span>
 
                     <div @click="trigerInput()" style="display: flex; flex-direction: column; margin: auto;">
                       <svg v-if="!preview" xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 16 16"
@@ -346,8 +330,7 @@
 
                     </div>
 
-                    <v-btn @click="send_message()" class="primary-btn1 mt-3"
-                      style="width: 100; height: 60px; position: relative; width: 100%;">Upload file</v-btn>
+                    <v-btn @click="send_message()" class="primary-btn1 mt-3" style="width: 100; height: 60px; position: relative; width: 100%;">Upload file</v-btn>
 
                   </v-card>
                 </v-dialog>
@@ -378,7 +361,7 @@
 
 
 
-                <textarea type="text" placeholder="Type a message..." class="px-3" v-model="message" style="background: inherit !important; width: 100%; height: 50px; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px; font-size: 14px;" />
+                <!-- <textarea type="text" placeholder="Type a message..." class="px-3" v-model="message" style="background: inherit !important; width: 100%; height: 50px; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px; font-size: 14px;" /> -->
 
                 <button @click.prevent="send_message()" class="ml-5"
                   style="border-radius: 10px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); backdrop-filter: blur(10.5px); width: fit-content; padding: 10px; display: flex; align-items: center;">
@@ -948,6 +931,14 @@ const scrollToBottom = () => {
   display: flex !important;
   margin-inline-start: auto !important;
 
+}
+
+.chevron-icon {
+  transition: transform 0.3s;
+}
+
+.chevron-icon-rotated {
+  transform: rotate(180deg);
 }
 
 .close-btn {
