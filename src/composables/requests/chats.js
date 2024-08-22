@@ -38,3 +38,17 @@ export const releaseOder = async(payload)=>{
     return data
  };
 
+export const createDispute = async(payload)=>{
+    const pinia = useStore();
+    const data = await fetch(`${baseURL}p2p-disputes/create-dispute`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': `${pinia.state.user?.token}`
+        },
+        body:JSON.stringify(payload)
+
+      }).then(res => res.json());
+    return data
+ };
+

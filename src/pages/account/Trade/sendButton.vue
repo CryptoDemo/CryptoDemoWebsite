@@ -405,7 +405,6 @@ const toggleChevron = () => {
   background: inherit;
   }
   .profile-cards-light{
-  /* border: #DBE8FF !important; */
   background: inherit;
   }
   .coin-name{
