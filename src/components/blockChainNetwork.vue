@@ -23,7 +23,7 @@
                 <v-row dense style="max-width: 250px; display: block;">
                   <v-col v-for="(item, index) in pinia.state.BlockchainNetworks" :key="index">
                   <v-list-item @click="pinia.state.selectedNetwork = item.name;" style="display: flex;">
-                      <span style="text-transform: capitalize;">{{ item.name }}</span>
+                      <span style="text-transform: capitalize; color: white">{{ item.name }}</span>
                   </v-list-item>
                 </v-col>
                 </v-row>
