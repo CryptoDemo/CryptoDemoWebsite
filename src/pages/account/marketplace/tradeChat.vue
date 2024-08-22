@@ -289,7 +289,7 @@
             <div class="dialog-div" style="position: relative; margin-top: 0px;">
               <!-- <div class="chat-border" style="margin-top: 15px;"></div> -->
               <div class="msg-div" :class="isDark ? 'footer' : 'footer-light'"
-                style="display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 35px; left: 35%; right: 9%; width: 55%; height: 70px; padding: 0 15px; box-sizing: border-box;">
+                style="display: flex; justify-content: space-between; align-items: center;  bottom: 35px; left: 35%; right: 9%; width: 55%; height: 70px; padding: 0 15px; box-sizing: border-box;">
 
                 <v-dialog v-model="dialog" transition="dialog-bottom-transition" fullscreen>
 
@@ -358,8 +358,6 @@
                     </v-list>
                   </v-card>
                 </v-dialog>
-
-
 
                 <textarea type="text" placeholder="Type a message..."  v-model="message" style="background: inherit !important; width: 100%; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px; font-size: 14px;" />
 
