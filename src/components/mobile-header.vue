@@ -144,25 +144,39 @@ const country = ref('');
 const Countryname = ref('');
 const flag = ref('');
 
-try {
-  const data = await getcountries(pageNumber.value);
-  if (data.success) {
-    const fetchedcountries = data.data.result;
-
-    const storedcountriesids = pinia.state.allcountries.map(item => item.id);
-    // Check if there are any new items in the fetched data
-    const newItems = fetchedcountries.filter(item => !storedcountriesids.includes(item.id));
-
-    if (newItems.length > 0) {
-      console.log('fetching')
-      pinia.setallcountries([...pinia.state.allcountries, ...newItems]);
-      // flag.value = pinia.state?.allcountries[0].flag_url;
+onMounted(async () => {
+  // Only fetch if the countries list in the store is empty
+  if (pinia.state.allcountries.length === 0) {
+    try {
+      const data = await getcountries(pageNumber.value);
+      
+      if (data.success) {
+        const fetchedcountries = data.data.result;
+        const storedcountriesids = pinia.state.allcountries.map(item => item.id);
+        
+        // Check if there are any new items in the fetched data
+        const newItems = fetchedcountries.filter(item => !storedcountriesids.includes(item.id));
+        
+        if (newItems.length > 0) {
+          pinia.setallcountries([...pinia.state.allcountries, ...newItems]);
+        }
+      } else {
+        console.error('Unavailable');
+      }
+    } catch (error) {
+      console.log(error);
     }
-  } else {
-    
   }
-} catch (error) { 
-};
+
+  // Handle the country and flag logic
+country.value = pinia.state.geo.country;
+
+const geoCountry = computed(() =>pinia.state.allcountries.find((c) => country.value === c.country_name));
+
+flag.value = geoCountry?.value?.flag_url;
+Countryname.value = geoCountry?.value?.country_code
+});
+
 
 const handleButtonClick = (country) => {
   toggleChevron();
@@ -174,14 +188,7 @@ const toggleChevron = () => {
       isChevronToggled.value = !isChevronToggled.value;
 };
 
-onMounted(()=>{{
-  country.value = pinia.state.geo.country;
 
-  const geoCountry = computed(() =>pinia.state.allcountries.find((c) => country.value === c.country_name));
-
-  flag.value = geoCountry?.value?.flag_url;
-  Countryname.value = geoCountry?.value?.country_code
-}})
 
 
   let input = ref("");   

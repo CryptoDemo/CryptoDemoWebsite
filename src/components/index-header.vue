@@ -8,7 +8,9 @@
 
  
           <div class="d-flex" style="position: absolute; margin-left: 150px;">
-             <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"> <NuxtLink to="/account/marketplace/createoffer"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Create an offer</span> </NuxtLink></v-btn>
+             <v-btn @click.prevent="navigateToOffers()" class="header-link flex-lg-and-up hidden-sm-and-down"> 
+               <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Create an offer</span>
+            </v-btn>
              <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"><NuxtLink to="/account/trade/wallet"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Wallet</span> </NuxtLink></v-btn>
              <div class="text-center flex-lg-and-up hidden-sm-and-down">
               <v-menu open-on-hover>
@@ -112,36 +114,46 @@ const flag = ref();
 const country = ref();
 const countryName = ref();
 
-try {
-  const data = await getcountries(pageNumber.value);
-  if (data.success) {
-    const fetchedcountries = data.data.result;
-
-    const storedcountriesids = pinia.state.allcountries.map(item => item.id);
-    // Check if there are any new items in the fetched data
-    const newItems = fetchedcountries.filter(item => !storedcountriesids.includes(item.id));
-
-    if (newItems.length > 0) {
-      pinia.setallcountries([...pinia.state.allcountries,...newItems]);
+onMounted(async () => {
+  // Only fetch if the countries list in the store is empty
+  if (pinia.state.allcountries.length === 0) {
+    try {
+      const data = await getcountries(pageNumber.value);
+      
+      if (data.success) {
+        const fetchedcountries = data.data.result;
+        const storedcountriesids = pinia.state.allcountries.map(item => item.id);
+        
+        // Check if there are any new items in the fetched data
+        const newItems = fetchedcountries.filter(item => !storedcountriesids.includes(item.id));
+        
+        if (newItems.length > 0) {
+          pinia.setallcountries([...pinia.state.allcountries, ...newItems]);
+        }
+      } else {
+        console.error('Unavailable');
+      }
+    } catch (error) {
+      console.log(error);
     }
-  } else {
-    console.error('Unavailable')
   }
-} catch (error) {
-  console.log(error);
-};
 
-onMounted(()=>{{
+  // Handle the country and flag logic
   country.value = pinia.state.geo.country;
-
-  const geoCountry = computed(() =>pinia.state.allcountries.find((c) => country.value === c.country_name));
-
-
+  const geoCountry = computed(() => pinia.state.allcountries.find((c) => country.value === c.country_name));
   flag.value = geoCountry?.value?.flag_url;
+  countryCode.value = geoCountry?.value?.country_code;
+});
 
 
-  countryCode.value = geoCountry?.value?.country_code
-}})
+const navigateToOffers = () => {
+  // Perform the check for user login
+  if (pinia.state.user.token) {
+    navigateTo('/account/marketplace/createOffer');
+  } else {
+    navigateTo('/authentication/login');
+  }
+}
 
 const props = defineProps(
   {

@@ -523,7 +523,6 @@ border-radius: 16px;
 justify-content: center;
 align-items: center;
 flex-shrink: 0;
-color: var(--Gray-Light, #D8D8D8);
 font-family: Manrope;
 font-size: 24px;
 font-style: normal;

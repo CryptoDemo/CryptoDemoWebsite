@@ -3,7 +3,7 @@
 
     <div class="wallet-nav flex-lg-and-up hidden-md-and-down">
       <div class="d-flex" style="align-items: baseline; justify-content: space-between; margin-top: -2px; ">
-        <span class="sm-num" :class="isDark ? 'country-name' : 'country-name-light'" style="font-size: 16px; font-style: normal;font-weight: 600;">Balance</span>
+        <span class="sm-num" :class="isDark ? 'country-name' : 'country-name-light'" style="font-size: 16px; font-style: normal;font-weight: 600; color: white !important;">Balance</span>
         <BlockChainNetwork/>
       </div>
 
@@ -100,16 +100,17 @@ font-size: 32px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
+color: white;
 }
 
 .sm-num{
-color: var(--White, var(--Colors-Base-white, #FFF));
 text-align: center;
 font-family: Manrope;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+color: white !important;
 }
 
 .coin-perc{

@@ -4,19 +4,26 @@
     <div class="faq-div" style="margin-bottom: 88px; margin-top: 40px;">
         <span  class="section2-titlei2" :class="isDark ? 'section2-titlei':'section2-titlei-light'" >We know you have some questions for us.</span>
      </div>    
-    <v-expansion-panels variant="popout" style="display: contents !important;">
-             <div  v-for="(item, index) in UserFaqs" :key="index"> 
-                <v-expansion-panel class="expansion-panel" :class="isDark ? 'expansion-panel':'expansion-panel-light'"  >
-                    <v-expansion-panel-title expand-icon="mdi-plus" collapse-icon="mdi-close">
-                        <img src="/svg/paper-fold.svg" class="me-4"/>
-                       <span :class="isDark ? 'title-text':'title-text-light'"> {{item.question}} </span>
-                    </v-expansion-panel-title>
-                    <v-expansion-panel-text>
-                        <span class="answer-text">{{item.answer}}</span>
-                    </v-expansion-panel-text>
-                </v-expansion-panel>
-                </div>
-         </v-expansion-panels>
+     <v-expansion-panels variant="popout" style="display: contents !important;">
+    <div v-for="(item, index) in (isLoading ? skeletonArray : UserFaqs)" :key="index"> 
+      <v-expansion-panel class="expansion-panel" :class="isDark ? 'expansion-panel' : 'expansion-panel-light'">
+        <v-expansion-panel-title expand-icon="mdi-plus" collapse-icon="mdi-close">
+          <img v-if="!isLoading" src="/svg/paper-fold.svg" class="me-4" />
+          <v-skeleton-loader v-if="isLoading" type="image" class="me-4"></v-skeleton-loader>
+          <span :class="isDark ? 'title-text' : 'title-text-light'">
+            <template v-if="!isLoading">{{ item.question }}</template>
+            <v-skeleton-loader v-else type="text" class="w-75"></v-skeleton-loader>
+          </span>
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+          <template v-if="!isLoading">
+            <span class="answer-text">{{ item.answer }}</span>
+          </template>
+          <v-skeleton-loader v-else type="text" class="w-100"></v-skeleton-loader>
+        </v-expansion-panel-text>
+      </v-expansion-panel>
+    </div>
+  </v-expansion-panels>
   
 
 </div>
@@ -25,7 +32,7 @@
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 import { getFAQs } from "@/composables/requests/admin";
-import {filterByKey,formatDate} from "@/composables/mixin";
+import {filterByKey} from "@/composables/mixin";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -35,30 +42,36 @@ const currentPageNumber = ref(1);
 const totalPages = ref(2);
 const isLoading = ref();
 
-const UserFaqs = ref([{
-        "id": "8272...",
-        "question": "what is...",
-        "answer": "Crypto demo is..."
-}] || pinia.state.UserFaqs || []);
+const UserFaqs = ref(pinia.state.UserFaqs || []);
 
-const fetchFaqs = async()=>{
-  try{
+const skeletonArray = Array(5).fill({}); // Temporary skeleton items
+
+const fetchFaqs = async () => {
+  try {
     isLoading.value = true;
-    const result = await getFAQs (currentPageNumber.value);
-  
+    const result = await getFAQs(currentPageNumber.value);
     totalPages.value = result?.data?.total_pages || totalPages.value;
-  
-    if(result?.data?.result?.length){
-      UserFaqs.value = filterByKey("id",[...UserFaqs.value,...result?.data?.result]);
+
+    if (result?.data?.result?.length) {
+      UserFaqs.value = filterByKey('id', [...UserFaqs.value, ...result?.data?.result]);
       pinia.setFAQs(UserFaqs.value);
     }
-  }catch(e){
+  } catch (e) {
     push.error(`Error: ${e.message}`);
-  };
-}
+  } finally {
+    isLoading.value = false;
+  }
+};
 
-onMounted(()=>{
-  fetchFaqs();
+
+onMounted(() => {
+  // Check if UserFaqs is empty in Pinia store
+  if (pinia.state.UserFaqs && pinia.state.UserFaqs.length > 0) {
+    UserFaqs.value = pinia.state.UserFaqs;
+    isLoading.value = false; // Skip loading as data is already present
+  } else {
+    fetchFaqs(); // Call the API if no data is present in the Pinia store
+  }
 });
 
 </script>

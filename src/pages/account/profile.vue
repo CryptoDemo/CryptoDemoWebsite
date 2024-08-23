@@ -147,9 +147,7 @@ const profileCards = [
 
 ];
 
-onMounted(() => {
-    getVisitorsLocation();
-});
+
 </script>
 <style scoped>
 .profile{

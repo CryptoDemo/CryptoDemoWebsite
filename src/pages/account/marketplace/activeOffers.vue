@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true" />
-    <v-container style="display: flex; margin-top: 110px;">
+    <v-container class="mkt-ctxn" style="display: flex; margin-top: 110px;">
      
         <div class="pa-2 flex-lg-and-up hidden-sm-and-down">
           <Sd-nav1 style="border: none;" />
@@ -46,8 +46,8 @@
                             <v-menu>
                               <template v-slot:activator="{ props }">
                                 <v-btn @click.prevent="toggleChevron()" v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"  style="width: fit-content; height: 50px; margin-top: 8px; border-radius: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
-                                  <span class="currency-list">{{ preferredTokenCurrency }}</span>
-                                  <span v-if="!preferredTokenCurrency" class="currency-list">All currencies</span>
+                                  <span class="currency-list">{{ currency_to_filterBy }}</span>
+                                  <span v-if="!currency_to_filterBy" class="currency-list">All currencies</span>
                                   <div style="display: flex; position: absolute; right: 1%">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
@@ -60,7 +60,7 @@
                                 <v-list-item>
                                   <v-row dense style="max-width: 210px; display: block;">
                                       <v-col v-for="(currency, index) in pinia.state.allcountries" class="" :key="index" >
-                                        <v-list-item-title  @click="preferredTokenCurrency=currency.currency_name"> 
+                                        <v-list-item-title  @click="currency_to_filterBy=currency.currency_name"> 
                                           <div style="display: flex; justify-content: flex-start;">
                                             <span class="currency-list my-2">{{ currency.currency_name }}</span>
                                           </div>
@@ -241,7 +241,7 @@
                                   <span style="font-size: 14px;">By continuing, you will be buying <span style="font-weight: 600;">{{ offer.trading_pair?.crypto?.token?.name }}</span> from {{ offer?.user?.username }}</span>
                                   <input type="number" placeholder="Enter Ammount to pay" v-model="amount_to_pay" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%; margin-top: 10px; padding-left: 15px;"/>
                         
-                                  <v-btn style="min-width: 70px; height: 56px; position: absolute; margin-top: 12px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 26px; letter-spacing: 0px;  text-transform: capitalize;"> 
+                                  <v-btn :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="min-width: 70px; height: 56px; position: absolute; margin-top: 12px; border-radius: 15px; box-shadow: none; right: 26px; letter-spacing: 0px;  text-transform: capitalize;"> 
                                     <span class="currency-list"> {{ offer?.countryCurrencyName }} </span>
                                   </v-btn>
 
@@ -253,7 +253,7 @@
                                   <span style="font-weight: 600; font-size: 14px;">Expected ammount you will receive</span>
                                   <input type="number" disabled placeholder="Ammount to receive" v-model="ammount_to_receive" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%; margin-top: 10px; padding-left: 15px;"/>
                           
-                                  <v-btn style="min-width: 70px; height: 56px; position: absolute; margin-top: 12px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 26px; letter-spacing: 0px;  text-transform: capitalize;"> 
+                                  <v-btn :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="min-width: 70px; height: 56px; position: absolute; margin-top: 12px; border-radius: 15px; box-shadow: none; right: 26px; letter-spacing: 0px;  text-transform: capitalize;"> 
                                     <img :src="offer.trading_pair?.crypto?.token?.icon" width="30px" />
                                   </v-btn>
 
@@ -265,7 +265,7 @@
                                 </v-card-text>
       
                                 <div class="px-5 mb-3" style="justify-content: space-between;">
-                                  <v-btn @click="buyDirectlyDialog = true" :disabled="isButtonDisabled" style="width: 100%; height: 50px; margin-bottom: 10px; font-weight: 600; border: 1px solid var(--Primary-80, #5892FF); background: inherit; border-radius: 16px; color: #2873FF; letter-spacing: 0px; text-transform: unset;">Buy directly using fiat wallet</v-btn>
+                                  <v-btn @click="buyDirectlyDialog = true" :disabled="isButtonDisabled" style="width: 100%; height: 50px; margin-bottom: 10px; font-weight: 600; border: 1px solid  #5892FF; background: inherit; border-radius: 16px; color: #2873FF; letter-spacing: 0px; text-transform: unset;">Buy directly using fiat wallet</v-btn>
                                   
                                   <v-dialog v-model="buyDirectlyDialog" width="auto">
                                     <v-card max-width="400" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; padding: 15px;">
@@ -275,15 +275,15 @@
                                       </span> 
                                       <template v-slot:actions>
 
-                                        <v-btn class="ms-auto" @click="buyDirectlyDialog = false" style="text-transform: capitalize; letter-spacing: 0px; font-weight: 600; background: grey; border-radius: 8px !important;  width: 80px;">Cancel</v-btn>
+                                        <v-btn class="ms-auto" @click="buyDirectlyDialog = false" style="text-transform: capitalize; letter-spacing: 0px; font-weight: 600; background: grey; border-radius: 8px !important;  width: 80px; color: white;">Cancel</v-btn>
 
-                                        <v-btn @click="Buy_OfferDirectly()" class="primary-btn1" style="text-transform: capitalize; letter-spacing: 0px; font-weight: 600; width: 80px; border-radius: 8px !important">Confirm</v-btn>
+                                        <v-btn @click="Buy_OfferDirectly()" class="primary-btn1" style="text-transform: capitalize; letter-spacing: 0px; font-weight: 600; width: 80px; border-radius: 8px !important; color: white;">Confirm</v-btn>
 
                                       </template>
                                     </v-card>
                                   </v-dialog>
 
-                                  <v-btn class="primary-btn1" @click="sellerDialog = true" :disabled="isButtonDisabled" style="width: 100%; height: 50px; margin-bottom: 10px; font-weight: 600;">Chat with seller</v-btn>
+                                  <v-btn class="primary-btn1" @click="sellerDialog = true" :disabled="isButtonDisabled" style="width: 100%; height: 50px; margin-bottom: 10px; font-weight: 600; color: white">Chat with seller</v-btn>
 
                                   <v-dialog v-model="sellerDialog" max-width="500">
                                     <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="padding: 20px; border-radius: 10px;">
@@ -380,8 +380,8 @@
                   <v-menu>
                     <template v-slot:activator="{ props }">
                       <v-btn @click.prevent="toggleChevron()" v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"  style="width: fit-content; height: 50px; margin-top: 8px; border-radius: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
-                        <span class="currency-list">{{ preferredTokenCurrency }}</span>
-                        <span v-if="!preferredTokenCurrency" class="currency-list">All currencies</span>
+                        <span class="currency-list">{{ currency_to_filterBy }}</span>
+                        <span v-if="!currency_to_filterBy" class="currency-list">All currencies</span>
                         <div style="display: flex; position: absolute; right: 1%">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
                               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
@@ -394,7 +394,7 @@
                       <v-list-item style="display: contents">
                         <v-row dense style="max-width: 240px; height: 250px; overflow: scroll;">
                           <div v-for="(currency, index) in pinia.state.allcountries" :key="index" style="width: 100%;">
-                            <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code" style="display: flex;">
+                            <v-list-item @click="currency_to_filterBy=currency.currency_name;" style="display: flex;">
                               <div style="display: flex; align-items: center;">
                                 <span class="currency-list">{{ currency.currency_name }}</span>
                               </div>
@@ -537,6 +537,7 @@ const paymentMethods = ['Online Wallet', 'Cash Deposit', 'Bank Transfer'];
 const sellerDialog = ref(false);
 const marketplace  = pinia.state.MarketPlace;
 const buyDirectlyDialog = ref();
+const currency_to_filterBy = ref()
 
 
 const selectToken = (tokens) => {
@@ -677,7 +678,7 @@ const filteredOffers = computed(() => {
       return matchesTokenSymbol;
     })
     .filter(offer => {
-      const matchesPreferredTokenCurrency = !preferredTokenCurrency.value || offer?.countryCurrencyName === preferredTokenCurrency.value;
+      const matchesPreferredTokenCurrency = !currency_to_filterBy.value || offer?.countryCurrencyName === currency_to_filterBy.value;
       return matchesPreferredTokenCurrency;
     })
     .filter(offer => {
@@ -998,7 +999,11 @@ border-radius: 10px;
 }
 
 .marketPlace{
-  font-size: 20px !important;
+  font-size: 18px !important;
+}
+
+.mkt-ctxn{
+  margin-top: 90px !important;
 }
 
 }

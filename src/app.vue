@@ -307,7 +307,10 @@ onMounted(() => {
 });
 
 onMounted(() => {
-    getVisitorsLocation();
+  // Check if geo information exists in Pinia store
+  if (!pinia.state.geo || Object.keys(pinia.state.geo).length === 0) {
+    getVisitorsLocation(); // Fetch location only if geo is empty
+  }
 });
 
 onUnmounted(() => {

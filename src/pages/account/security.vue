@@ -30,8 +30,7 @@
                                 </div>
                             </div>
 
-                            
-                            
+                                                      
                             <v-btn @click="toggle2FA()" :class="{ 'primary-btn1': isEnabled, 'toggled': !isEnabled }" class="tggle-btn" style="width: 100px; height: 60px;">
                               {{ isEnabled ? 'Enable' : 'Disable' }}
                             </v-btn>
@@ -52,16 +51,12 @@
                                   <div style="display: flex; flex-direction: column; position: relative;">
                                     <input class="copy-link-box pl-4 mt-4" :class="isDark ? 'text-dark':'text-light'" disabled  v-model="twoFactorCode" style="align-content: baseline; width: 80%; margin: auto;"/>
                                       <v-btn @click="copyToClipboard(twoFactorCode)" variant="plain" style=" background: inherit !important; box-shadow: none; position: absolute; right: 8%; margin-top: 5.5%;">
-                                        <img v-if="!copied" src="/svg/copy.svg"/>
+                                        <img v-if="!copied" class="copied-img" src="/svg/copy.svg"/>
                                         <h4 style="color: green; font-weight: 400; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</h4>
                                       </v-btn>
                                       <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; font-weight: 400; margin-top: 10px; display: flex; justify-content: center;">Copy and Paste this code into your Google Authenticator</span>
 
-                                        <v-alert text="A 6 digit code will be provided for you from google which will be needed when next you login"
-                                        
-                                          type="info" variant="tonal" style="font-size: 14px; margin-top: 20px; border-radius: 15px;"
-                                        ></v-alert>
-                                    
+                                      <v-alert class="flex-lg-and-up hidden-sm-and-down" text="A 6 digit code will be provided for you from google which will be needed when next you login" type="info" variant="tonal" style="font-size: 14px; margin-top: 20px; border-radius: 15px;"></v-alert> 
                                   </div>
                                 </v-card-text>
 
@@ -230,8 +225,6 @@ const terminate2FA = async () => {
   }
 };
 
-
-
 const UserPasswordUpdate = async () => {
   if (NewPassword.value !== ConfirmNewPassword.value) {
     errorMessage.value = 'New Passwords does not match';
@@ -265,7 +258,7 @@ const UserPasswordUpdate = async () => {
 
 watch([NewPassword, ConfirmNewPassword], () => {
       errorMessage.value = '';
-    });
+});
 
 const copied = ref(false);
 
@@ -279,6 +272,7 @@ const copyToClipboard = (text) => {
     console.error('Failed to copy: ', err);
   });
 }
+
 </script>
 <style>
 
@@ -391,7 +385,6 @@ display: flex;
 align-items: center;
 align-self: stretch; 
 height: 51px; 
-width: 100%;
 outline: none;
 position: relative;
 color: #AEB4BF;
@@ -416,8 +409,8 @@ line-height: 140%; /* 17.675px */
   font-weight: 700;
   }
   .pswrd-mgt {
-    font-size: 14px;
-    font-weight: 600;
+  font-size: 14px;
+  font-weight: 600;
  }
  .second-text {
   font-size: 12px;
@@ -429,8 +422,8 @@ line-height: 140%; /* 17.675px */
   margin-top: 16px !important;
 }
  .password-styling {
-    width: 98%;
-    margin-top: 10px !important;
+  width: 98%;
+  margin-top: 10px !important;
  }
  .primary-btn1{
   height: 50px !important;
@@ -439,5 +432,26 @@ line-height: 140%; /* 17.675px */
  .scan-text{
   font-size: 11px !important;
  }
+ .copy-link-box{
+  width: 100% !important;
+  white-space: nowrap !important;   
+  overflow: hidden !important;  
+  text-overflow: ellipsis !important; 
+  display: inline-block !important;
+  display: -webkit-box !important; 
+  -webkit-box-orient: vertical !important; 
+  -webkit-line-clamp: 1 !important;
+  line-clamp: 1 !important;
+  padding-right: 60px;
+ }
+ .acct-text{
+  font-size: 18px !important;
+ }
+ .copied-img{
+  position: absolute;
+  right: 0;
+  margin-top: 20px;
+ }
+ 
 }
 </style>
