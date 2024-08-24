@@ -8,17 +8,17 @@
         </svg>
         <span class="swap1 ml-2">Crypto Swap</span>
       </div>
-        <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; padding: 37px; margin-top: 70px; margin-bottom: 925px; width: 97%; margin: auto;">
+        <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="ctnx-div" style="border-radius: 24px; padding: 37px; margin-top: 70px; margin-bottom: 925px; width: 97%; margin: auto;">
             <div class="d-flex" style="margin-bottom: 30px;">
                 <span class="quick-swap me-3 ">Quick Swap</span>
                 <img src="/svg/reload.svg" class="icon1"/>
             </div>
 
             <div class="d-md-flex" style="justify-content: space-between; position: relative;">
-                <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
+                <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" class="swap-div" style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
               
-                     <div class="d-flex" style="width: 12%;">   
-                      <div class="me-13" style="display: flex; flex-direction: column; z-index: 1000">
+                     <div class="d-flex swap-container" style="width: 12%;">   
+                      <div class="me-13 swap-container" style="display: flex; flex-direction: column; z-index: 1000">
                         <span class="have">I have :</span>
                           <v-menu>
                               <template v-slot:activator="{ props }">
@@ -46,9 +46,9 @@
                       </div>
                     </div>
 
-                    <div style="display: flex; justify-content: center; align-self: center ; margin-top: 27px; border-radius: 4px; height: 26px; z-index: 1000">
-                      <v-btn @click="swapAmount = minimumswap?.minimum_swap" class="me-4" :class="isDark ? 'btn-segment':'btn-segment-light'" style="height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span></v-btn>    
-                      <v-btn @click="swapAmount = selectedBalance" class="me-3" :class="isDark ? 'btn-segment':'btn-segment-light'" style="letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span></v-btn>
+                    <div class="min-max-ctnx" style="display: flex; justify-content: center; align-self: center ; margin-top: 27px; border-radius: 4px; height: 26px; z-index: 1000">
+                      <v-btn @click="swapAmount = minimumswap?.minimum_swap" class="me-4 min-max" :class="isDark ? 'btn-segment':'btn-segment-light'" style="height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span></v-btn>    
+                      <v-btn @click="swapAmount = selectedBalance" class="me-3  min-max" :class="isDark ? 'btn-segment':'btn-segment-light'" style="letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span></v-btn>
                     </div>
 
                     <div class="number-input" style="display: flex; margin-right: 10px; flex-direction: column; z-index: 1000">
@@ -58,7 +58,9 @@
                 </div>
 
                 
-                <div @click="toggleTokens()" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark"><img src="/svg/swap.svg" width="8%"/></div> 
+                <div @click="toggleTokens()" class="flex-lg-and-up hidden-sm-and-down" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark">
+                  <img src="/svg/swap.svg" width="8%"/>
+                </div> 
 
                 <div @click="toggleTokens()" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-else>
                   <svg xmlns="http://www.w3.org/2000/svg" width="90" height="85" viewBox="0 0 70 71" fill="none">
@@ -76,9 +78,9 @@
                 </div>
               
 
-              <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'"  style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
-                <div class="d-flex">   
-                    <div class="me-13" style="display: flex; flex-direction: column; margin-left: 10px;">
+              <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" class="swap-div" style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
+                <div class="d-flex swap-container">   
+                    <div class="me-13 swap-container" style="display: flex; flex-direction: column; margin-left: 10px;">
                       <span class="have">I want:</span>
                         <v-menu>
                             <template v-slot:activator="{ props }">
@@ -499,5 +501,36 @@ fill: #10192D;
 
 .chevron-icon-rotated {
   transform: rotate(180deg);
+}
+
+@media only screen and (max-width: 600px) {
+.swap-div{
+  width: 100% !important;
+  padding: 10px 10px !important;
+  margin-top: 20px !important;
+}
+.min-max{
+  height: fit-content !important;
+  margin-top: 0px !important;
+  margin-inline-end: 9px !important;
+}
+.btn-segment{
+  margin-bottom: 0px !important;
+}
+.ctnx-div{
+  padding: 15px !important; 
+  margin-top: 70px; 
+  width: 100% !important; 
+}
+.swap-container{
+  margin-inline-end: 0px !important;
+  width: fit-content !important;
+}
+.number-input{
+  margin-right: 0px !important;
+}
+.min-max-ctnx{
+  margin-top: 18px !important;
+}
 }
 </style>
