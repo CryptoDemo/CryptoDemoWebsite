@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="min-max-ctnx" style="display: flex; justify-content: center; align-self: center ; margin-top: 27px; border-radius: 4px; height: 26px; z-index: 1000">
-                      <v-btn @click="swapAmount = minimumswap?.minimum_swap" class="me-4 min-max" :class="isDark ? 'btn-segment':'btn-segment-light'" style="height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span></v-btn>    
+                      <v-btn @click="swapAmount = minimumswap?.minimum_swap" class="me-4 min-max min-btn" :class="isDark ? 'btn-segment':'btn-segment-light'" style="height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span></v-btn>    
                       <v-btn @click="swapAmount = selectedBalance" class="me-3  min-max" :class="isDark ? 'btn-segment':'btn-segment-light'" style="letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span></v-btn>
                     </div>
 
@@ -507,7 +507,7 @@ fill: #10192D;
 .swap-div{
   width: 100% !important;
   padding: 10px 10px !important;
-  margin-top: 20px !important;
+  margin-top: 40px !important;
 }
 .min-max{
   height: fit-content !important;
@@ -531,6 +531,9 @@ fill: #10192D;
 }
 .min-max-ctnx{
   margin-top: 18px !important;
+}
+.min-btn{
+margin-left: 10px !important;
 }
 }
 </style>
