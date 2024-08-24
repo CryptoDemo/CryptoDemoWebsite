@@ -525,6 +525,7 @@ fill: #10192D;
   padding: 15px !important; 
   margin-top: 70px; 
   width: 100% !important; 
+  border-radius: 15px !important;
 }
 .swap-container{
   margin-inline-end: 0px !important;
@@ -544,6 +545,9 @@ margin-left: 10px !important;
 }
 .mobile-swap-width{
   width: 65px !important;
+}
+.exchange-btn1{
+  width: 100% !important;
 }
 }
 </style>
