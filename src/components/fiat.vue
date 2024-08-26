@@ -100,7 +100,7 @@
             
                             <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="send-fiat-dialog" style="border-radius: 20px; position: relative;">
 
-                                <v-card-text v-if="!showPinInput || showBackButton">
+                                <v-card-text>
                                     <h3 class="text-center">Send money using Tag</h3>
                                     <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center; font-size: 14px;">
                                         Transfer funds instantly using the user's username.
@@ -390,6 +390,7 @@ const setPin = async () => {
     push.error(`${e}`);
   }
 };
+
 
 
 const VerifyPin = async () => {

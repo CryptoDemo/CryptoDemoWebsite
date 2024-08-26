@@ -212,7 +212,7 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import { passwordUpdate, Init2fa, Remove2fa } from "@/composables/requests/users";
-import { set_Pin, verify_Pin, Init_pin_recovery, reset_Pin} from "@/composables/requests/users";
+import { set_Pin, Init_pin_recovery, reset_Pin} from "@/composables/requests/users";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -390,29 +390,6 @@ const setPin = async () => {
   }
 };
 
-
-const VerifyPin = async () => {
-  loading_pin.value = true;
-  const payload = {
-    pin: otp.value,
-  }
-
-  try {
-    const data = await verify_Pin(payload);
-    otp.value  = "";
-    if (data.success) {
-        push.success(data.message);
-        await send_Fiat();
-    } else {
-    loading_pin.value = false;
-      push.error(data.message);
-    }
-  } catch (e) {
-    loading_pin.value = false;
-    console.log(e);
-    push.error(`${e}`);
-  }
-};
 
 const recoverPin = async () => {
   loading_pin.value = true;

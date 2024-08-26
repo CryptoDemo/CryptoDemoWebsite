@@ -77,37 +77,73 @@
                 <span :class="isDark ? 'text-dark':'text-light'" class="hint-text"  style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Ensure the receiver’s wallet is a valid <span :class="isDark ? 'coin-name':'coin-name-light'"  style="font-family: Manrope;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">{{ coin }}</span> wallet address</span>
             </div>
 
-            <v-btn @click.prevent="calculateFee()" :loading="loading" :disabled="loading_send_coin" class="primary-btn1" style="width: 100%; border-radius: 17px; height: 56px; color: white; box-shadow: none; font-weight: 600; font-size: 16px; font-family: Manrope;">
+            <v-btn @click.prevent="checkInputs()" :loading="loading" :disabled="loading_send_coin" class="primary-btn1" style="width: 100%; border-radius: 17px; height: 56px; color: white; box-shadow: none; font-weight: 600; font-size: 16px; font-family: Manrope;">
             Continue
             </v-btn>
+
       
             <v-dialog v-model="dialog1" width="auto">
-              <v-card class="alert-card" style="padding: 24px 20px 24px 20px; border-radius: 12px; width: 450px; " :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+              <v-card class="alert-card" style="padding: 24px 20px 24px 20px; border-radius: 12px; width: 450px; border: none;" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
 
-                  <div style="display: flex; justify-content: center; flex-direction: column;">
-                  <span style="font-family: Manrope;font-size: 18px;font-style: normal;font-weight: 700;line-height: 140%; display: flex;justify-content: center; margin-bottom: 16px">Confirm action</span>
-                  <v-alert  variant="tonal" type="info" density="compact" style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600; line-height: 170%; border-radius: 10px;">
-                  
-                    <span>A tax fee of {{ tax_fee }}  applies, resulting in a total deduction of {{ from_amount_total }} from your account</span>
-                      
-                  
-                </v-alert>
-                  <span style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600;line-height: 150%; margin-top: 20px;">By clicking the confirm button you will be sending a non refundable ammount of <span style="font-weight: 600; font-size: 16px;">{{ trfAmmount }} {{  token_id  }}</span> to {{ transferWallet }}.
-                  </span>
+                  <div v-if="!showOtp" style="display: flex; justify-content: center; flex-direction: column;">
+                    <span style="font-family: Manrope;font-size: 18px;font-style: normal;font-weight: 700;line-height: 140%; display: flex;justify-content: center; margin-bottom: 16px">Confirm action</span>
+                    <v-alert  variant="tonal" type="info" density="compact" style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600; line-height: 170%; border-radius: 10px;">
+                    
+                      <span>A tax fee of {{ tax_fee }}  applies, resulting in a total deduction of {{ from_amount_total }} from your account</span>        
+                    
+                    </v-alert>
+                    <span style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600;line-height: 150%; margin-top: 20px;">By clicking the confirm button you will be sending a non refundable ammount of <span style="font-weight: 600; font-size: 16px;">{{ trfAmmount }} {{  token_id  }}</span> to {{ transferWallet }}.
+                    </span>
                   </div>
+
+                      <!-- Set New Pin -->
+                      <div v-if="showOtp && !hasPin">
+                        <h3 class="text-center">Set Transaction Pin</h3>
+                        <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Create a 4-digit transaction pin</span>
+                        
+                        <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
+                          <v-otp-input v-model="newPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                          <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Set transaction pin</span>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
+                          <v-otp-input v-model="confirmPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                          <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">re-enter transaction pin</span>
+                        </div>
+
+                        <v-btn @click="setNewPin()" :loading="loading" class="primary-btn1" style=" height: 50px; border-radius: 10px !important; font-weight: 600; width: 100%; color: #fff;">
+                          Set Pin
+                        </v-btn>
+                      </div>
+
+                      <!-- Enter Pin for users who have a pin -->
+                    <div v-if="showOtp && hasPin">
+
+                      <h3 class="text-center">Enter Transaction Pin</h3>
+                      <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Enter transfer pin to authorize this transaction</span>
+
+                
+                      <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
+                        <v-otp-input v-model="PinOtp" class="mx-auto"  length="4" variant="underlined"></v-otp-input>
+                      </div>
+                
+                      <v-btn @click="VerifyPin()" :loading="loading" class="primary-btn1" style=" height: 50px; border-radius: 10px !important; font-weight: 600; width: 100%; color: #fff;">Proceed</v-btn>
+              
+                    </div>
                   
                     <div class="mt-3">
-                      <v-btn  @click="dialog1 = false" rounded="lg" variant="tonal" class="confirm-txn" style="margin-top: 8px; color: white;  width: 100%; height: 50px">
+                      <v-btn v-if="!showOtp" @click="dialog1 = false" rounded="lg" variant="tonal" class="confirm-txn" style="margin-top: 8px; color: white;  width: 100%; height: 50px">
                           Cancel
                       </v-btn>
 
-                      <v-btn @click.prevent="execute()" rounded="lg" variant="tonal" :loading="loading_send_coin" class="confirm-txn mt-3" style="margin-top: 8px; width: 100%; height: 50px">
+                      <v-btn v-if="!showOtp" @click="handleConfirm()" rounded="lg" variant="tonal" :loading="loading_send_coin" class="confirm-txn mt-3" style="margin-top: 8px; width: 100%; height: 50px">
                           Confirm
                       </v-btn>
                     </div>
             
               </v-card>
             </v-dialog>
+
 
           </div>
         </v-container>
@@ -122,22 +158,26 @@
   import { ref } from 'vue'
   import { useTheme } from 'vuetify';
   import { calculateTxnFees, executeTrans } from "@/composables/requests/transaction";
-  import { getTokenBalance } from "@/composables/requests/tokens";
+  import {  verify_Pin, set_Pin} from "@/composables/requests/users";
   
   const theme = useTheme()
   const isDark = computed(() => theme.global.current.value.dark);
   const pinia = useStore()
+  const hasPin = computed(() => pinia.state.user.is_pin_set !== null && pinia.state.user.is_pin_set !== false);
   const dialog =  ref(false);
   const dialog1 =  ref(false);
   const transferWallet = ref(pinia.state.TransferWallet || "");
   const trfAmmount = ref();
   const loading = ref(false);
+  const loading_pin = ref(false);
   const minimumTransfer = ref(null);
   const loading_send_coin = ref();
-
+  const PinOtp = ref("");
+  const newPinOtp = ref("");
+  const confirmPinOtp = ref("");
   const network = computed(()=>pinia.state.selectedNetwork.toLowerCase());
   const coin =  ref();
-  
+  const showOtp = ref(false)
 
   const selectedNetworkId = computed(()=>pinia.state.BlockchainNetworks.find(b=>b.name==network.value)?.id);
   const tokensForSelectedNetwork = computed(()=>pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId.value)));
@@ -190,8 +230,6 @@ const tax_fee = ref(0);
 const is_balance_sufficient = ref(false);
 
 
-
-
 const calculateFee = async () => {
   // Check if any required value is missing or if the transfer amount is less than the minimum transfer amount
   if (!trfAmmount.value || (parseFloat(trfAmmount.value) < minimumTransfer.value.minimum_transfer) || !transferWallet.value) {
@@ -237,7 +275,6 @@ const calculateFee = async () => {
 };
 
 
-
 //execute transaction
 const execute = async()=>{
   if (parseFloat(trfAmmount.value) > parseFloat(selectedTokenBalance.value)) {
@@ -281,7 +318,101 @@ const execute = async()=>{
 
 };
 
+const VerifyPin = async () => {
+  loading_pin.value = true;
+  const payload = {
+    pin: PinOtp.value,
+  }
 
+  try {
+    const data = await verify_Pin(payload);
+    PinOtp.value  = "";
+    if (data.success) {
+        await execute();
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+const checkInputs = async () => {
+  // Validate inputs
+  if (!trfAmmount.value || (parseFloat(trfAmmount.value) < minimumTransfer.value.minimum_transfer) || !transferWallet.value) {
+    push.error('Required fields are missing or transfer amount is below minimum.');
+    return;
+  }
+
+  // Calculate the fee before opening the dialog
+  await calculateFee();
+
+  // Open the dialog after fee calculation
+  dialog1.value = true;
+};
+
+const setNewPin = () => {
+  // Check if the pins match before clearing the values
+  if (newPinOtp.value !== confirmPinOtp.value) {
+    // Handle pin mismatch (show an alert or message)
+    push.error("Pins do not match. Please try again.");
+    return;
+  }
+
+  // Logic to save the new pin
+  hasPin.value = true;
+
+  // Call the function to save the pin to the backend
+  setPin(newPinOtp.value); // Pass the new pin to the setPin function
+
+  // Clear the pin fields after the pin is successfully set
+  newPinOtp.value = "";
+  confirmPinOtp.value = "";
+};
+
+
+const setPin = async () => {
+  loading_pin.value = true;
+  const payload = {
+    pin: newPinOtp.value,
+  }
+
+  try {
+    const data = await set_Pin(payload);
+
+    if (data.success) {
+        push.success(data.message);
+        execute();
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+const handleConfirm = () => {
+  // Clear previous information
+  showOtp.value = true;
+  if (!hasPin.value) {
+    showOtp.value = true; // Show the set pin step
+  } else {
+    showOtp.value = true; // Show the enter pin step
+  }
+  // Optionally, you might want to clear other state variables here
+}
+
+watch(dialog1, (newVal) => {
+  if (!newVal) {
+    showOtp.value = false; // Reset OTP view when dialog is closed
+  }
+});
 
 watch(transferWallet, (newVal) => {
   pinia.setTransferWallet(newVal);
