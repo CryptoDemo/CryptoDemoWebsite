@@ -8,7 +8,7 @@
       <v-dialog v-model="dialog" transition="dialog-bottom-transition" fullscreen>
         <v-card style="border-radius: 20px; position: relative; background: #060A1D;">
           
-          <div style="width: 85%; display: flex; justify-content: center; align-self: center; flex-direction: column;"> 
+          <div class="swap-container" style="width: 85%; display: flex; justify-content: center; align-self: center; flex-direction: column;"> 
   
             <v-card-text>
               <div class="py-7 ml-3" style="display: flex; align-items: center; justify-content: center; flex-direction: column">
@@ -17,17 +17,16 @@
               </div>
 
 
-                <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 24px;  padding: 37px; margin-top: 70px; margin-bottom: 925px;  width: 97%; margin: auto; ">
+                <div class="ctnx-div" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 24px;  padding: 37px; margin-top: 70px; margin-bottom: 925px;  width: 97%; margin: auto; ">
                     <div class="d-flex" style="margin-bottom: 30px">
                     <span class="quick-swap me-3">Quick Swap</span>
                     <img src="/svg/reload.svg" class="icon1" />
                     </div>
             
                     <div class="d-md-flex" style="justify-content: space-between; position: relative">
-                    <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style=" border-radius: 20px; width: 47%; display: flex; padding: 10px 20px; justify-content: space-between;">
+                    <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="swap-div" style=" border-radius: 20px; width: 47%; display: flex; padding: 10px 20px; justify-content: space-between;">
                         <div class="d-flex" style="width: 12%">
-                        <div
-                            class="me-13" style="display: flex; flex-direction: column; z-index: 1000">
+                        <div class="me-13" style="display: flex; flex-direction: column; z-index: 1000">
                             <span class="have d-flex">I have :</span>
             
                             <v-menu>
@@ -70,8 +69,7 @@
                         <v-btn @click="swapAmount = mytoken?.minimum_fiat_to_crypto_swap" class="me-4" :class="isDark ? 'btn-segment' : 'btn-segment-light'"
                             style=" height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span>
                         </v-btn>
-                        <v-btn
-                            @click="swapAmount = mytoken?.maximum_fiat_funding"
+                        <v-btn @click="swapAmount = mytoken?.maximum_fiat_funding"
                             class="me-3" :class="isDark ? 'btn-segment' : 'btn-segment-light'" style="letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span>
                         </v-btn>
                         </div>
@@ -91,11 +89,16 @@
                         </div>
                     </div>
             
-                    <div @click="toggleTokens()" style=" position: absolute; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark">
+                    <div @click="toggleTokens()" class="flex-lg-and-up hidden-sm-and-down" style=" position: absolute; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark">
                         <img src="/svg/swap.svg" width="8%" />
                     </div>
+
+
+                    <div @click="toggleTokens()" class="hidden-lg-and-up flex-sm-and-down mobile-swap" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark">
+                      <img src="/svg/mobileSwap.svg" class="mobile-swap-width"/>
+                    </div>
             
-                    <div @click="toggleTokens()" style="position: absolute; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-else>
+                    <div @click="toggleTokens()" class="flex-lg-and-up hidden-sm-and-down" style="position: absolute; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-else>
                         <svg xmlns="http://www.w3.org/2000/svg" width="90" height="85" viewBox="0 0 70 71" fill="none">
                         <path
                             d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z"
@@ -119,7 +122,7 @@
                         </svg>
                     </div>
             
-                    <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="border-radius: 20px; display: flex; width: 47%; padding: 10px 20px; justify-content: space-between;">
+                    <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="swap-div" style="border-radius: 20px; display: flex; width: 47%; padding: 10px 20px; justify-content: space-between;">
                         <div class="d-flex">
                         <div class="me-13"  style="display: flex; flex-direction: column; margin-left: 10px">
                             <span class="have">I want:</span>
@@ -540,5 +543,48 @@ const filteredCurrency_to_swap_to = computed(() => pinia.state.allcountries.filt
   background: #fff !important;
   color: #10192D;
   }
+
+  .swap-container{
+    margin-inline-end: 0px !important;
+    width: 100% !important;
+  }
+
+  .swap-div{
+  width: 100% !important;
+  padding: 10px 10px !important;
+  margin-top: 40px !important;
+}
+.min-max{
+  height: fit-content !important;
+  margin-top: 0px !important;
+  margin-inline-end: 9px !important;
+}
+.btn-segment{
+  margin-bottom: 0px !important;
+}
+.ctnx-div{
+  padding: 15px !important; 
+  margin-top: 70px; 
+  width: 100% !important; 
+  border-radius: 15px !important;
+}
+.number-input{
+  margin-right: 0px !important;
+}
+.min-max-ctnx{
+  margin-top: 18px !important;
+}
+.min-btn{
+margin-left: 10px !important;
+}
+.mobile-swap{
+  top: 36% !important;
+}
+.mobile-swap-width{
+  width: 65px !important;
+}
+.exchange-btn1{
+  width: 100% !important;
+}
 }
   </style>

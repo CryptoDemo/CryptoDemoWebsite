@@ -37,7 +37,7 @@
     
                         <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
                             <v-list-item style="display: contents; left: 532px;">
-                            <v-row dense style="max-width: 250px; height: 300px; overflow: scroll;">
+                            <v-row dense style="max-width: 250px; height: 300px; overflow: scroll; display: flex;flex-direction: column;">
                                 <v-col v-for="(currency, index) in pinia.state.allcountries" :key="index" sm="12">
                                 <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code" style="display: flex;">
                                 
@@ -62,9 +62,9 @@
     
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <div class="px-4 mb-3">
-                        <v-btn :loading="isloading" @click=fund_fiat_w() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;">Proceed</v-btn>
-                        <v-btn @click="dialog = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;">Cancel</v-btn>
+                    <div class="mb-3 d-flex">
+                        <v-btn :loading="isloading" @click=fund_fiat_w() style="letter-spacing: 0px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;">Proceed</v-btn>
+                        <v-btn @click="dialog = false" style="letter-spacing: 0px; font-weight: 600; text-transform: unset; font-size: 16px;">Cancel</v-btn>
                     </div>
     
                 </v-card-actions>
@@ -96,9 +96,9 @@
                             </div>
                         </v-card>
 
-                        <v-dialog v-model="dialog2" max-width="500">
+                        <v-dialog v-model="dialog2" max-width="400">
             
-                            <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
+                            <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="send-fiat-dialog" style="border-radius: 20px; position: relative;">
 
                                 <v-card-text v-if="!showPinInput || showBackButton">
                                     <h3 class="text-center">Send money using Tag</h3>
@@ -133,15 +133,7 @@
                                         icon="mdi-close-octagon" 
                                         style="position: absolute; right: 10px; margin-top: 23px;"
                                         ></v-icon>
-
-                                        <span 
-                                        class="text-subtitle-2" 
-                                        :class="isDark ? 'text-dark' : 'text-light'" 
-                                        v-if="showSuccessIcon"
-                                        >
-                                        Please confirm that the full name of this user is 
-                                        <span style="color: #2873FF; font-weight: 600;">{{ userName }}</span>
-                                        </span>
+                                        <span v-if="showSuccessIcon" style="color: #2873FF; font-weight: 600; font-size: 14px;">{{ userName }}</span>     
                                         <span 
                                         class="text-subtitle-2" 
                                         :class="isDark ? 'text-dark' : 'text-light'" 
@@ -175,38 +167,38 @@
                                 <v-card-text v-if="showPinInput && hasPin &&  !showResetPinForm" class="pin-form d-flex" style="flex-direction: column;">
                                     <span class="text-center text-h6 text-md-h5">Enter Your Transfer PIN</span>
                                     <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center;" :class="isDark ? 'text-dark' : 'text-light'">Please enter your 4-digit PIN to authorize this transaction.</h5>
-                                    <v-otp-input length="4" v-model="otp" variant="plain" divider="•" style="margin: auto; margin-top: 10px;"></v-otp-input>
+                                    <v-otp-input length="4" v-model="otp" variant="plain"  style="margin: auto; margin-top: 10px;"></v-otp-input>
                                 </v-card-text>
 
                                 <v-card-text v-if="showPinInput && !hasPin" class="pin-form d-flex"  style="flex-direction: column;">
                                 <span class="text-center text-h6 text-md-h5">Set Your Transfer PIN</span>
-                                <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center;" :class="isDark ? 'text-dark':'text-light'">For your security, please set a 4-digit PIN to authorize transfers.</h5>
-                                <v-otp-input length="4"  v-model="otp"  variant="plain" divider="•" style="margin: auto; margin-top: 10px;"></v-otp-input>
+                                <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center; font-size: 14px !important" :class="isDark ? 'text-dark':'text-light'">For your security, please set a 4-digit PIN to authorize transfers.</h5>
+                                <v-otp-input length="4"  v-model="otp"  variant="plain"  style="margin: auto; margin-top: 10px;"></v-otp-input>
                                 </v-card-text>
 
                         
                                 <div v-if="showPinInput && hasPin &&  showResetPinForm">
-                                    <v-card-text  class="pin-form d-flex"  style="flex-direction: column;">
-                                        <span class="text-center text-h6 text-md-h5">Reset Pin</span>
-                                        <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center;" :class="isDark ? 'text-dark':'text-light'" >For your security, please set a 4-digit PIN to authorize transfers.</h5>
-                                        <v-otp-input length="4" v-model="Newotp"  variant="plain" divider="•" style="margin-top: 10px; margin-left: 18px;"></v-otp-input>
-                                        <span class="text-subtitle-2 mb-2 mt-2 ml-4" :class="isDark ? 'text-dark':'text-light'">Enter new transfer pin</span>
-                                        <v-otp-input length="4"  v-model="Msgotp"  variant="plain" divider="•" style="margin-top: 10px;  margin-left: 18px;"></v-otp-input>
-                                        <span class="text-subtitle-2 mb-2 mt-2 ml-4" :class="isDark ? 'text-dark':'text-light'">Enter the 4-digit code sent to your email</span>
-                                        <v-btn :loading="loading_send_fiat" @click=changePin() style="letter-spacing: 0px; background: inherit; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;">Reset pin</v-btn>
-                                     </v-card-text>
+                                  <v-card-text  class="pin-form d-flex" style="flex-direction: column; font-size: 14px">
+                                      <span class="text-center text-h6 text-md-h5">Reset Pin</span>
+                                      <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center; font-size: 14px" :class="isDark ? 'text-dark':'text-light'" >For your security, please set a 4-digit PIN to authorize transfers.</h5>
+                                      <v-otp-input length="4" v-model="Newotp"  variant="plain" style="margin-top: 10px; margin-left: 18px; display: flex; margin: auto;"></v-otp-input>
+                                      <span class="mb-2 mt-2 text-center" :class="isDark ? 'text-dark':'text-light'">Enter new transfer pin</span>
+                                      <v-otp-input length="4"  v-model="Msgotp"  variant="plain" style="margin-top: 10px;  margin-left: 18px; display: flex; margin: auto;"></v-otp-input>
+                                      <span class="mb-2 mt-2 text-center" :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px">Enter the 4-digit code sent to your email</span>
+                                  </v-card-text>
                                 </div>
 
 
-                                <v-card-actions>
+                                <v-card-actions style="display: flex; margin: auto;">
                                     <v-spacer></v-spacer>
-                                    <div class="px-4 mb-3">
+                                    <div class="px-4 mb-3 d-flex" style="justify-content: center;">
                                         <v-btn @click="continueToOtp()" :loading="loading_send_fiat" style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="!showPinInput || showBackButton">continue</v-btn>
                                         <v-btn @click="setPin()" :loading="loading_send_fiat" style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="showPinInput && !hasPin">Set Pin</v-btn>
                                         <!-- <v-btn @click="dialog2 = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;" v-else>Cancel</v-btn> -->
-                                        <v-btn :loading="loading_send_fiat" @click=recoverPin() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="showPinInput && hasPin">Recover pin</v-btn>
-                                        <v-btn @click="goBack()" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;" v-if="showPinInput"> Back </v-btn>
+                                        <v-btn :loading="loading_send_fiat" @click=recoverPin() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="showPinInput && hasPin &&  !showResetPinForm">Recover pin</v-btn>
+                                        <v-btn :loading="loading_send_fiat" @click=changePin() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="showPinInput && hasPin &&  showResetPinForm">Reset pin</v-btn>
                                         <v-btn :loading="loading_send_fiat" @click=VerifyPin() style="letter-spacing: 0px; width: 100px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;" v-if="showPinInput && hasPin">Proceed</v-btn>
+                                        <v-btn @click="goBack()" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;" v-if="showPinInput"> Back </v-btn>
                                     </div>
 
                                 </v-card-actions>
@@ -266,7 +258,6 @@ const showPinInput = ref(false);
 const showBackButton = ref(false);
 const showResetPinForm = ref(false)
 const hasPin = computed(() => pinia.state.user.is_pin_set !== null && pinia.state.user.is_pin_set !== false);
-console.log(hasPin.value)
 const otp = ref("");
 const Newotp = ref("");
 const Msgotp = ref("");
@@ -456,6 +447,8 @@ const changePin = async () => {
     otp.value  = "";
     if (data.success) {
         push.success(data.message);
+        Msgotp.value = "";
+        Newotp.value = "";
     } else {
     loading_pin.value = false;
       push.error(data.message);
@@ -498,6 +491,8 @@ const send_Fiat = async () => {
             pinia.setFiat_transactions({...pinia.state.Fiat_transactions, ...data.data});
             dialog1.value = false;
             dialog2.value = false;
+            fiatUsername.value = "";
+            fiat_ammount_to_send.value = "";
         } else {
             push.error(data.message, { duration: 2000 });
         }
@@ -619,7 +614,6 @@ fill: #10192D;
   .header-txt{
   margin-top: 20px !important;
  }
-
 
 }
 </style>

@@ -16,53 +16,138 @@
                         <span class="acct-text"> Security</span>
                         <span class="mail-text" :class="isDark ? 'text-dark':'text-light'">{{ pinia.state.user?.email }}</span>  
                     </div>
-                    <span class="setup-text ml-2 d-flex" style="font-size: 18px;">Setup your 2FA and make your account more secure</span>
                     <section>
                       
-                        <div style="margin-top:35px !important; display:flex; justify-content: space-between;">
-                            <div class="d-flex">
-                              <img src="/svg/2fa-dark.svg" class="me-3" style="display: flex; align-self: start;" v-if="theme.global.current.value.dark"/>
-                              <img src="/svg/lock-circle (1).svg" class="me-3" style="display: flex; align-self: start;" v-else/>
+                      <div style="margin-top:35px !important; display:flex; justify-content: space-between;">
+                          <div class="d-flex">
+                            <img src="/svg/2fa-dark.svg" class="me-3" style="display: flex; align-self: start;" v-if="theme.global.current.value.dark"/>
+                            <img src="/svg/lock-circle (1).svg" class="me-3" style="display: flex; align-self: start;" v-else/>
 
-                                <div style="display: grid;">
-                                  <span class="pswrd-mgt" :class="isDark ? 'coin-name':'coin-name-light'">Login 2-Step Verification</span>
-                                  <span class="second-text" :class="isDark ? 'text-dark':'text-light'" style="margin-top: 4px;">The Login 2step Verification adds an extra layer of security to your account. </span>
-                                </div>
-                            </div>
+                              <div style="display: grid;">
+                                <span class="pswrd-mgt" :class="isDark ? 'coin-name':'coin-name-light'">Login 2-Step Verification</span>
+                                <span class="second-text" :class="isDark ? 'text-dark':'text-light'" style="margin-top: 4px;">The Login 2step Verification adds an extra layer of security to your account. </span>
+                              </div>
+                          </div>
 
-                                                      
-                            <v-btn @click="toggle2FA()" :class="{ 'primary-btn1': isEnabled, 'toggled': !isEnabled }" class="tggle-btn" style="width: 100px; height: 60px;">
-                              {{ isEnabled ? 'Enable' : 'Disable' }}
-                            </v-btn>
-                       
-                            <v-dialog v-model="dialog" max-width="500">
-                              <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
-                                <v-card-text>
-                                  <h3 class="text-center">Two-Factor Authentication</h3>
-                                  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                    <div class="qr-code mt-7" v-html="twoFactorCodeUrl"></div>
-                                    <span class="scan-text" style="font-size: 14px; font-weight: 700; margin-top: 10px; color: #2873FF;">Scan the QR code with your Google Authenticator</span>
-                                  </div>
-
-                                <div style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 5px; font-weight: 600;">
-                                  <span style="font-size: 14px;">Or</span>
+                                                    
+                          <v-btn @click="toggle2FA()" :class="{ 'primary-btn1': isEnabled, 'toggled': !isEnabled }" class="tggle-btn" style="width: 100px; height: 60px;">
+                            {{ isEnabled ? 'Enable' : 'Disable' }}
+                          </v-btn>
+                      
+                          <v-dialog v-model="dialog" max-width="500">
+                            <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
+                              <v-card-text>
+                                <h3 class="text-center">Two-Factor Authentication</h3>
+                                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                  <div class="qr-code mt-7" v-html="twoFactorCodeUrl"></div>
+                                  <span class="scan-text" style="font-size: 14px; font-weight: 700; margin-top: 10px; color: #2873FF;">Scan the QR code with your Google Authenticator</span>
                                 </div>
 
-                                  <div style="display: flex; flex-direction: column; position: relative;">
-                                    <input class="copy-link-box pl-4 mt-4" :class="isDark ? 'text-dark':'text-light'" disabled  v-model="twoFactorCode" style="align-content: baseline; width: 80%; margin: auto;"/>
-                                      <v-btn @click="copyToClipboard(twoFactorCode)" variant="plain" style=" background: inherit !important; box-shadow: none; position: absolute; right: 8%; margin-top: 5.5%;">
-                                        <img v-if="!copied" class="copied-img" src="/svg/copy.svg"/>
-                                        <h4 style="color: green; font-weight: 400; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</h4>
-                                      </v-btn>
-                                      <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; font-weight: 400; margin-top: 10px; display: flex; justify-content: center;">Copy and Paste this code into your Google Authenticator</span>
+                              <div style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 5px; font-weight: 600;">
+                                <span style="font-size: 14px;">Or</span>
+                              </div>
 
-                                      <v-alert class="flex-lg-and-up hidden-sm-and-down" text="A 6 digit code will be provided for you from google which will be needed when next you login" type="info" variant="tonal" style="font-size: 14px; margin-top: 20px; border-radius: 15px;"></v-alert> 
-                                  </div>
-                                </v-card-text>
+                                <div style="display: flex; flex-direction: column; position: relative;">
+                                  <input class="copy-link-box pl-4 mt-4" :class="isDark ? 'text-dark':'text-light'" disabled  v-model="twoFactorCode" style="align-content: baseline; width: 80%; margin: auto;"/>
+                                    <v-btn @click="copyToClipboard(twoFactorCode)" variant="plain" style=" background: inherit !important; box-shadow: none; position: absolute; right: 8%; margin-top: 5.5%;">
+                                      <img v-if="!copied" class="copied-img" src="/svg/copy.svg"/>
+                                      <h4 style="color: green; font-weight: 400; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</h4>
+                                    </v-btn>
+                                    <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; font-weight: 400; margin-top: 10px; display: flex; justify-content: center;">Copy and Paste this code into your Google Authenticator</span>
 
-                              </v-card>
-                            </v-dialog>
-                        </div>
+                                    <v-alert class="flex-lg-and-up hidden-sm-and-down" text="A 6 digit code will be provided for you from google which will be needed when next you login" type="info" variant="tonal" style="font-size: 14px; margin-top: 20px; border-radius: 15px;"></v-alert> 
+                                </div>
+                              </v-card-text>
+
+                            </v-card>
+                          </v-dialog>
+                      </div>
+                      
+                      <div style="margin-top:35px !important; display:flex; justify-content: space-between;">
+                          <div class="d-flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="me-3">
+                              <path d="M9 11V10C9 8.34 9.5 7 12 7C14.5 7 15 8.34 15 10V11" stroke="#8e9bae" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M12 14.6004C12.3314 14.6004 12.6 14.3318 12.6 14.0004C12.6 13.669 12.3314 13.4004 12 13.4004C11.6686 13.4004 11.4 13.669 11.4 14.0004C11.4 14.3318 11.6686 14.6004 12 14.6004Z" stroke="#8e9bae" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M14.5 17H9.5C7.5 17 7 16.5 7 14.5V13.5C7 11.5 7.5 11 9.5 11H14.5C16.5 11 17 11.5 17 13.5V14.5C17 16.5 16.5 17 14.5 17Z" stroke="#8e9bae" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#8e9bae" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                              <div style="display: grid;">
+                                <span class="pswrd-mgt" :class="isDark ? 'coin-name':'coin-name-light'">Set Transaction Pin</span>
+                                <span class="second-text" :class="isDark ? 'text-dark':'text-light'" style="margin-top: 4px;">The  4-digit transaction PIN adds an extra layer of security to your account. </span>
+                              </div>
+                          </div>
+
+                                                    
+                          <v-btn @click="pindialog = true" class="primary-btn1" style="width: 100px; height: 60px;">
+                            Set pin
+                          </v-btn>
+                      
+                          <v-dialog v-model="pindialog" max-width="500">
+                            <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
+                              <v-card-text>
+                              <h3 class="text-center">Set Transaction Pin</h3>
+                              <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Set transfer pin to authorize transactions</span>
+
+                        
+                              <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
+                                <v-otp-input v-model="setPinOtp" class="mx-auto" divider="•" length="4" variant="outlined"></v-otp-input>
+                              </div>
+                        
+                              <v-btn  @click="setPin()" :loading="loading" class="primary-btn1" style=" height: 50px; border-radius: 10px !important; font-weight: 600; width: 100%; color: #fff;">Set Pin</v-btn>
+                          
+                              </v-card-text>
+
+                            </v-card>
+                          </v-dialog>
+                          
+                      </div>
+                      
+                      <div style="margin-top:35px !important; display:flex; justify-content: space-between;">
+                          <div class="d-flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="me-3">
+                              <path d="M9 11V10C9 8.34 9.5 7 12 7C14.5 7 15 8.34 15 10V11" stroke="#8e9bae" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M12 14.6004C12.3314 14.6004 12.6 14.3318 12.6 14.0004C12.6 13.669 12.3314 13.4004 12 13.4004C11.6686 13.4004 11.4 13.669 11.4 14.0004C11.4 14.3318 11.6686 14.6004 12 14.6004Z" stroke="#8e9bae" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M14.5 17H9.5C7.5 17 7 16.5 7 14.5V13.5C7 11.5 7.5 11 9.5 11H14.5C16.5 11 17 11.5 17 13.5V14.5C17 16.5 16.5 17 14.5 17Z" stroke="#8e9bae" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#8e9bae" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                              <div style="display: grid;">
+                                <span class="pswrd-mgt" :class="isDark ? 'coin-name':'coin-name-light'">Recover Transaction Pin</span>
+                                <span class="second-text" :class="isDark ? 'text-dark':'text-light'" style="margin-top: 4px;">Click on the reset pin button to change transaction pin. </span>
+                              </div>
+                          </div>
+
+                                                    
+                          <v-btn @click="recoverPindialog = true; recoverPin()" class="primary-btn1" style="width: 100px; height: 60px;">
+                            Reset pin
+                          </v-btn>
+                      
+                          <v-dialog v-model="recoverPindialog" max-width="500">
+                            <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
+                              <v-card-text>
+                              <h3 class="text-center">Set Transaction Pin</h3>
+                              <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Set transfer pin to authorize transactions</span>
+
+                        
+                              <div style="display: flex; flex-direction: column;">
+                                <v-otp-input v-model="Newotp" divider="•" length="4" class="mx-auto" variant="outlined"></v-otp-input>  
+                                <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Enter new transfer pin here</span>
+                              </div>
+                          
+                              <div style="display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 15px;">
+                                <v-otp-input v-model="Msgotp" divider="•" length="4" class="mx-auto" variant="outlined"></v-otp-input>
+                                <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Enter the 4 digit pin sent to your email</span>
+                              </div>
+
+                              <v-btn  @click="changePin()" :loading="loading" class="primary-btn1" style=" height: 50px; border-radius: 10px !important; font-weight: 600; width: 100%; color: #fff;">Reset pin</v-btn>
+                          
+                              </v-card-text>
+
+                            </v-card>
+                          </v-dialog>
+                          
+                      </div>
                         
                       <div class="ml-2" style="margin-top: 42px; width: 99%;">
                           <span class="pswrd-mgt" style="font-weight: 700; font-size: 18px;">Change Password</span>
@@ -109,6 +194,8 @@
                           <p v-if="errorMessage" style="color: red; font-size: 14px;">{{ errorMessage }}</p>
                           <p v-if="successMessage" style="color: #35B233; font-size: 14px;">{{ successMessage }}</p>
                       </div>
+
+
                     </section>
                     <div style="margin-bottom: 220px;">
                       <ActivityLog/>
@@ -125,7 +212,7 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import { passwordUpdate, Init2fa, Remove2fa } from "@/composables/requests/users";
-
+import { set_Pin, verify_Pin, Init_pin_recovery, reset_Pin} from "@/composables/requests/users";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -138,6 +225,13 @@ const isToggled = ref(true);
 const errorMessage = ref('');
 const successMessage = ref('');
 const dialog = ref(false);
+const pindialog = ref(false);
+const recoverPindialog = ref(false);
+const loading_pin = ref(false)
+const setPinOtp = ref("");
+const Newotp = ref("");
+const Msgotp = ref("");
+
 
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
@@ -273,6 +367,98 @@ const copyToClipboard = (text) => {
   });
 }
 
+const setPin = async () => {
+  loading_pin.value = true;
+  const payload = {
+    pin: setPinOtp.value,
+  }
+
+  try {
+    const data = await set_Pin(payload);
+    setPinOtp.value  = "";
+    if (data.success) {
+        push.success(data.message);
+        pinia.state.user.is_pin_set = true
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+
+const VerifyPin = async () => {
+  loading_pin.value = true;
+  const payload = {
+    pin: otp.value,
+  }
+
+  try {
+    const data = await verify_Pin(payload);
+    otp.value  = "";
+    if (data.success) {
+        push.success(data.message);
+        await send_Fiat();
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+const recoverPin = async () => {
+  loading_pin.value = true;
+  
+  try {
+    const data = await Init_pin_recovery();
+    
+    if (data.success) {
+      push.success('a 4-digit pin has been sent to your mail');
+    } else {
+      loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+const changePin = async () => {
+  loading_pin.value = true;
+  const payload = {
+    pin: Newotp.value,
+    code: Msgotp.value,
+  }
+
+  try {
+    const data = await reset_Pin(payload);
+    Newotp.value  = "";
+    Msgotp.value  = "";
+    if (data.success) {
+        push.success(data.message);
+        Msgotp.value = "";
+        Newotp.value = "";
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
 </script>
 <style>
 
@@ -330,7 +516,7 @@ margin-top: 16px;
 }
 .pswrd-mgt{
 font-family: Manrope;
-font-size: 20px;
+font-size: 16px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
@@ -356,6 +542,16 @@ color: white !important;
 }
 .coin-name-light{
 color: #10192D;
+}
+
+.pin-form :deep(.v-otp-input .v-field) {
+  height: 60px !important;
+  width: 60px !important;
+  justify-content: space-between !important;
+  border-radius: 15px;
+  border: 1px solid #303a46;
+  background: inherit !important;
+  border-radius: 15px;
 }
 
 ::-webkit-input-placeholder {
