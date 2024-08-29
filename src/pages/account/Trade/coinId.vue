@@ -4,13 +4,12 @@
     <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" :wallet="true"/>
     <div>
         <v-container>
-          <div style="display: flex; align-items: center; margin-bottom: 44px; margin-top: 100px;">
+          <div style="display: flex; align-items: center; margin-bottom: 44px; margin-top: 120px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="navigateTo('/account/trade/wallet')" style="cursor: pointer;">
             <path d="M15 19.9181L8.47997 13.3981C7.70997 12.6281 7.70997 11.3681 8.47997 10.5981L15 4.07812" stroke="#B9D1FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
               <img :src="coin?.icon" width="35" class="me-2 ml-2"/>
-              <span style="font-size: 18px; font-weight: 600;">{{ coin.name }}/USD</span>
-              <!-- <span style="font-size: 16px; font-weight: 500;">{{pinia.state.preferredCurrency}}</span> -->
+              <span style="font-size: 18px; font-weight: 600;">{{ coin.name }}/{{ pinia.state.preferredCurrency }}</span>
           </div>
           <div class="coin-ctn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="width: 100%; height: 250px;border-radius: 24px; padding: 45px;">
               <div style="display: flex; flex-direction: column;">
@@ -140,13 +139,18 @@ const fetchConversionRate = async () => {
 };
 
 const currencyEquivalent = ref(0);
-const calculateCurrencyEquivalent = () => {
-  const balance = parseFloat(fetchedBalance.value);
-  const rate = parseFloat(conversionRate.value);
 
+const calculateCurrencyEquivalent = () => {
+  const balance = parseFloat(fetchedBalance.value) || 0;
+  const rate = parseFloat(conversionRate.value) || 0;
+
+  // Calculate the currency equivalent
   currencyEquivalent.value = balance * rate;
 
+  // Log the balance, rate, and the resulting currency equivalent
+  console.log(`Balance: ${balance}, Rate: ${rate}, Currency Equivalent: ${currencyEquivalent.value}`);
 };
+
 
 
 onBeforeMount(async() => {

@@ -35,10 +35,10 @@
                       </th>
 
                       <th class="me-7 price-th" style="display: flex; align-items: center; align-self: center; position: relative;  width: 12%;">
-                        <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Price (USD)</span>
+                        <span class="table-header-text me-1"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Price ({{ pinia.state.preferredCurrency }})</span>
                       </th>
                       <th class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center; align-self: center; position: relative; margin-right: 21px">
-                        <span class="table-header-text"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Balance</span>
+                        <span class="table-header-text"  :class="isDark ? 'text-dark':'text-light'" style="margin-left: ">Quantity</span>
                       </th>
                       
                       <th class="me-5" style="display: flex; align-items: center; align-self: center; position: relative; width: 27%;">
@@ -59,7 +59,7 @@
               <tbody>
                 
                 <tr @click="pinia.state.getNewCoinInfo = token.symbol; navigateTo('/account/trade/coinId')" class="token-price py-2"  :class="isDark ? 'wallet-border' : 'wallet-border-light'" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
-                  <td style="display: contents;">
+                  <td style="display: contents; cursor: pointer;">
                     <div class="d-flex me-7" style="align-items: center; width: 25%;">
                       <img :src="token.icon" width="35" class="me-3" />
                       <img :src="chainIcon?.icon" width="15" style="position: relative; right: 25px; margin-top: 16px;"/>
@@ -78,9 +78,9 @@
                     </div>
                   </td>
 
-                  <td class="mt-2" style="display: flex; align-items: center; width: 22%;"><span class="browser-txt coin-price" style="display: flex; align-self: start; margin-top: 3px;" :class="isDark ? 'coin-name':'coin-name-light'">{{ token?.conversionValue }}</span></td>
+                  <td class="mt-2" style="display: flex; align-items: center; width: 21%; cursor: pointer;"><span class="browser-txt coin-price" style="display: flex; align-self: start; margin-top: 3px;" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(token?.conversionRate) }}</span></td>
 
-                  <td style="display: flex; align-items: end; width: 16%;">
+                  <td style="display: flex; align-items: end; width: 15%; cursor: pointer;">
                     <span class="browser-txt mb-2 flex-md-and-up hidden-sm-and-down" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 700; display: flex; align-self: center;"> 
                       {{formatBalance(token.balance) }}
                     </span>
@@ -237,11 +237,23 @@ const getTokens_ = async () => {
 
     if (data.success) {
       const fetchedTokens = data.data.result;
-      pinia.setTokenLists(fetchedTokens, addMinutes(5));
+
+      // Store the fetched tokens with a 5-minute expiry time
+      pinia.setTokenLists(fetchedTokens);
+
+      // Convert currencies after updating token balances
+      await convertCurrencies();
+
+
+      // Update token balances 
+      await getTokenBals();
+
     } else {
+      // Display a message to the user if fetching tokens was unsuccessful
       push.message(data.message, { position: 'top', timeout: 2000 });
     }
   } catch (error) {
+    // Log the error to the console
     console.log(error);
   }
 };
@@ -272,52 +284,63 @@ const getTokenBals = async () => {
 
 const convertCurrencies = async () => {
   const coins = pinia.state.tokenLists;
+
+  // Prepare the list of currency conversions
+  const convertCurrency = coins.map(coin => ({
+    from: coin.symbol,
+    to: pinia.state.preferredCurrency
+  }));
+
+  console.log(convertCurrency)
   try {
-    const convertCurrency = coins.map(coin => ({ from: coin.symbol, to: "USD" }));
     const data = await currencyConverter(convertCurrency);
 
     if (data.success) {
-      const conversionMap = data.data.reduce((map, item) => {
-        map[item.from] = item.value;
-        return map;
-      }, {});
-      const updatedTokenLists = coins.map(coin => ({
-        ...coin,
-        conversionValue: conversionMap[coin.symbol] || 0
-      }));
-      pinia.setTokenLists(updatedTokenLists);
+      // Map the conversion rate to each token
+      const updatedTokens = coins.map(coin => {
+        const rateData = data.data.find(item => item.from === coin.symbol);
+        return {
+          ...coin,
+          conversionRate: rateData ? rateData.value : null // Add conversionRate to token
+        };
+      });
+
+      console.log(updatedTokens)
+      // Update the Pinia state with the new token list including conversion rates
+      pinia.setTokenLists(updatedTokens);
     } else {
-      console.log(`Conversion failed:`, data.message);
+      console.log("Conversion failed:", data.message);
     }
   } catch (error) {
-    console.log(`Error converting:`, error);
+    console.log("Error converting currencies:", error);
   }
 };
 
-const fetch_allChainNetworks = async()=>{
- try {
-  const data = await getBlockchain();
-  if (data.success) {
-    const fetchedBlockchains = data.data;
 
-    // Extract IDs of stored blockchains
-    const storedBlockchainsIds = pinia.state.BlockchainNetworks.map(item => item.id);
+// const fetch_allChainNetworks = async()=>{
+//  try {
+//   const data = await getBlockchain();
+//   if (data.success) {
+//     const fetchedBlockchains = data.data;
 
-    // Filter out already stored blockchains from fetched data
-    const newItems = fetchedBlockchains.filter(item => !storedBlockchainsIds.includes(item.id));
+//     // Extract IDs of stored blockchains
+//     const storedBlockchainsIds = pinia.state.BlockchainNetworks.map(item => item.id);
 
-    if (newItems.length > 0) {
+//     // Filter out already stored blockchains from fetched data
+//     const newItems = fetchedBlockchains.filter(item => !storedBlockchainsIds.includes(item.id));
+
+//     if (newItems.length > 0) {
     
-      // Update blockchainNetworks with new items
-      pinia.state.BlockchainNetworks = [...pinia.state.BlockchainNetworks, ...newItems];
-    }
-  } else {
-    console.error("API request failed:", data.message);
-  }
-} catch (error) {
-  console.error('Fetch error:', error);
-};
-};
+//       // Update blockchainNetworks with new items
+//       pinia.state.BlockchainNetworks = [...pinia.state.BlockchainNetworks, ...newItems];
+//     }
+//   } else {
+//     console.error("API request failed:", data.message);
+//   }
+// } catch (error) {
+//   console.error('Fetch error:', error);
+// };
+// };
 
 
 watch(() => pinia.state.selectedNetwork, async (newNetwork) => {
@@ -326,7 +349,7 @@ watch(() => pinia.state.selectedNetwork, async (newNetwork) => {
     await getTokens_();
     await getTokenBals();
     await convertCurrencies();
-    await fetch_allChainNetworks();
+    // await fetch_allChainNetworks();
   }
 });
 

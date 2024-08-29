@@ -82,7 +82,7 @@
             </v-btn>
 
       
-            <v-dialog v-model="dialog1" width="auto">
+            <v-dialog v-model="dialog1" width="450">
               <v-card class="alert-card" style="padding: 24px 20px 24px 20px; border-radius: 12px; width: 450px; border: none;" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
 
                   <div v-if="!showOtp" style="display: flex; justify-content: center; flex-direction: column;">
@@ -111,7 +111,7 @@
                           <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">re-enter transaction pin</span>
                         </div>
 
-                        <v-btn @click="setNewPin()" :loading="loading" class="primary-btn1" style=" height: 50px; border-radius: 10px !important; font-weight: 600; width: 100%; color: #fff;">
+                        <v-btn @click="setNewPin()" :loading="loading" variant="tonal"  style="height: 45px; border-radius: 10px; color: #2873FF; font-weight: 600; width: 100%; letter-spacing: 0px;">
                           Set Pin
                         </v-btn>
                       </div>
@@ -127,7 +127,7 @@
                         <v-otp-input v-model="PinOtp" class="mx-auto"  length="4" variant="underlined"></v-otp-input>
                       </div>
                 
-                      <v-btn @click="VerifyPin()" :loading="loading" class="primary-btn1" style=" height: 50px; border-radius: 10px !important; font-weight: 600; width: 100%; color: #fff;">Proceed</v-btn>
+                      <v-btn @click="VerifyPin()" :loading="loading" variant="tonal" style=" height: 45px; border-radius: 10px; color: #2873FF; font-weight: 600; width: 100%; letter-spacing: 0px;">Proceed</v-btn>
               
                     </div>
                   
@@ -372,7 +372,6 @@ const setNewPin = () => {
   newPinOtp.value = "";
   confirmPinOtp.value = "";
 };
-
 
 const setPin = async () => {
   loading_pin.value = true;

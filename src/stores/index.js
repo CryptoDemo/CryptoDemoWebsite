@@ -44,6 +44,7 @@ export const useStore = defineStore('app',()=> {
       allMyOders: [],
       Fiat_transactions: [],
       Total_fiat_bal:[],
+      ConvertedPriceValue:[],
       selectedOfferType_from_landing: [],
       fiat_currency_i_want: "",
       Fiat_swap_details: {},
@@ -173,6 +174,9 @@ export const useStore = defineStore('app',()=> {
     state.tokenLists = payload;   
   };
 
+  const setConvertedPriceValue = (payload) => {
+    state.ConvertedPriceValue = payload;   
+  };
 
   const setTransactionDetails = (payload) => {
     state.TransactionDetails = payload;    
@@ -243,6 +247,7 @@ export const useStore = defineStore('app',()=> {
     state.tokenNetworks = [],
     state.tokenLists = [],
     state.Total_fiat_bal = [],
+    state.ConvertedPriceValue = [],
     state.MyOffers = [],
     state.selected_coin_to_buy_from_marketplace = "",
     state.selected_offer_from_trades = "",
@@ -306,6 +311,7 @@ export const useStore = defineStore('app',()=> {
       setChat_messages,
       setNewChatMessages,
       setOnlineCheck,
+      setConvertedPriceValue,
     }
 },
   {persist: {

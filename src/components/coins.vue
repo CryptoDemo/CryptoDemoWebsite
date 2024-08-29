@@ -8,7 +8,7 @@
           style="border-radius: 24px; width: 100%; padding: 25px; margin-top: 28px; width: 100%;">
           <div style="display: flex; justify-content: space-between; align-items: baseline">
             <div  style="display: flex; flex-direction: column">
-              <BlockChainNetwork />
+              <BlockChain/>
             </div>
 
             <div @click.stop class="search-div" style="margin-top: 4px; margin-bottom: 15px; display: flex; width: 40%; margin-inline-start: auto;">
@@ -47,11 +47,11 @@
 
                 <th class="price-tr" style="display: flex; align-items: center; align-self: center; position: relative; justify-content: center;">
                   <span class="table-header-text" :class="isDark ? 'text-dark' : 'text-light'"
-                    style="margin-left: ">Price (USD)</span>
+                    style="margin-left: ">Price ({{ pinia.state.preferredCurrency }})</span>
                 </th>
 
                 <th class="balance-tr" style="display: flex; align-items: center; align-self: center;">
-                  <span class="table-header-text me-1" :class="isDark ? 'text-dark' : 'text-light'">Balance</span>
+                  <span class="table-header-text me-1" :class="isDark ? 'text-dark' : 'text-light'">Quantity</span>
                 </th>
 
               </tr>
@@ -81,7 +81,7 @@
               </td>
 
               <td class="mt-4 price-td" style="overflow: scroll;  display: flex; align-self: self-start; justify-content: center; width: 27%; ">
-                <span class="browser-txt price-bal" :class="isDark ? 'coin-name' : 'coin-name-light'" style="margin-right: -13px;">{{formatConvertedValue(item.conversionValue || 0) }}</span>
+                <span class="browser-txt price-bal" :class="isDark ? 'coin-name' : 'coin-name-light'" style="margin-right: -13px;">{{formatConvertedValue(item.conversionRate || 0) }}</span>
               </td>
 
 
@@ -177,51 +177,44 @@ const getTokenBals = async () => {
 
 
 const convertCurrencies = async () => {
-  // Get the list of coins from pinia state
   const coins = pinia.state.tokenLists;
 
+  // Prepare the list of currency conversions
+  const convertCurrency = coins.map(coin => ({
+    from: coin.symbol,
+    to: pinia.state.preferredCurrency
+  }));
+
+  console.log(convertCurrency)
   try {
+    const data = await currencyConverter(convertCurrency);
 
-    const convertCurrency = [];
-
-    // Loop through each coin and convert to USD
-    for (const coin of coins) {
-      convertCurrency.push({ from: coin.symbol, to: "USD" });
-    }
-
-    try {
-      const data = await currencyConverter(convertCurrency);
-
-      if (data.success) {
-        // Store the conversion result in the array
-        const conversionMap = data.data.reduce((map, item) => {
-          map[item.from] = item.value;
-          return map;
-        }, {});
-
-        // Update the tokenLists with conversion values
-        const updatedTokenLists = coins.map(coin => ({
+    if (data.success) {
+      // Map the conversion rate to each token
+      const updatedTokens = coins.map(coin => {
+        const rateData = data.data.find(item => item.from === coin.symbol);
+        return {
           ...coin,
-          conversionValue: conversionMap[coin.symbol] || 0 // Add the conversion value
-        }));
+          conversionRate: rateData ? rateData.value : null // Add conversionRate to token
+        };
+      });
 
-        // Store the updated tokenLists in Pinia
-        pinia.setTokenLists(updatedTokenLists, addMinutes(5));
-
-
-      } else {
-        console.log(`Conversion failed:`, data.message);
-      }
-    } catch (error) {
-      console.log(`Error converting:`, error);
+      console.log(updatedTokens)
+      // Update the Pinia state with the new token list including conversion rates
+      pinia.setTokenLists(updatedTokens);
+    } else {
+      console.log("Conversion failed:", data.message);
     }
-
-
   } catch (error) {
-    console.log(error);
+    console.log("Error converting currencies:", error);
   }
-
 };
+
+
+
+
+
+
 
 
 const chainIcon = computed(() => {
@@ -284,6 +277,7 @@ const fetch_token_bals = async()=>{
 
 onBeforeMount(() => {
   fetch_token_bals();
+  convertCurrencies();
 });
 
 

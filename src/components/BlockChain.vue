@@ -2,19 +2,19 @@
     <div>
         <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <v-btn  :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; width: 100%; box-shadow: none; margin-top: 15px; letter-spacing: 0px;" @click="toggleChevron">
+              <button v-bind="props" variant="text" style="display: flex; align-self: flex-start; width: 100%; box-shadow: none; margin-top: 15px; letter-spacing: 0px;" @click="toggleChevron">
                 <span class="me-2" :class="isDark ? 'country-text':'country-text-light'" style="text-transform: capitalize; font-family: Manrope; font-size: 16px;">{{pinia.state.selectedNetwork}}</span>
 
-                <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']" style="position: absolute;
-    right: 14px;"></v-icon>
+                <!-- <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']" style="position: absolute; right: 14px;"></v-icon> -->
 
-              </v-btn>
+              </button>
             </template>
 
-            <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 15px; height: 120px !important;">
+
+            <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 10px; height: 120px !important; background: white;">
               <v-list-item style="display: contents">
-                <v-row dense>
-                  <v-col v-for="(item, index) in pinia.state.BlockchainNetworks" :key="index" cols="12">
+                <v-row dense style="max-width: 250px; display: block;">
+                  <v-col v-for="(item, index) in pinia.state.BlockchainNetworks" :key="index">
                   <v-list-item @click="pinia.state.selectedNetwork = item.name;" style="display: flex;">
                       <span style="text-transform: capitalize;">{{ item.name }}</span>
                   </v-list-item>

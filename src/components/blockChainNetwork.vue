@@ -2,7 +2,7 @@
     <div>
         <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <button class="network-btn" :class="isDark ? 'dropdown-btn1i-dark':'dropdown-btn1i-light'" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; width: fit-content;" @click="toggleChevron">
+              <button class="network-btn" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; width: fit-content;" @click="toggleChevron">
                 <span style="text-transform: capitalize; font-family: Manrope; color: white;">{{pinia.state.selectedNetwork}}</span>
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled },]">
@@ -18,7 +18,7 @@
               </button>
             </template>
 
-            <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 10px; height: 120px !important;">
+            <v-list  style="border-radius: 10px; height: 120px !important; background: white; color: black;">
               <v-list-item style="display: contents">
                 <v-row dense style="max-width: 250px; display: block;">
                   <v-col v-for="(item, index) in pinia.state.BlockchainNetworks" :key="index">
@@ -66,6 +66,10 @@ const fetch_allChainNetworks = async()=>{
   console.error('Fetch error:', error);
 };
 };
+
+onMounted(() => {
+  fetch_allChainNetworks();
+});
 
 const isChevronToggled = ref(false);
 const toggleChevron = () => {

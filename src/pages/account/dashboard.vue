@@ -13,20 +13,35 @@
             <span class="marketPlace" style="font-size: 24px; font-style: 28px; font-weight: 600; color: #5892FF;">Dashboard</span>
             <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
           </div>
-       
-          <div style="display: flex; overflow: scroll; ">
-            <v-card v-for="(item, i) in  multipliedValues.slice(0, 3)" :key="i" link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 16px;"> 
-                <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(item.product) }} USD</span>
-                <span  :class="isDark ? 'text-dark':'text-light'">{{ formatBalance(item.balance) }} {{ item.symbol}}</span>
+     
+          <div style="display: flex; justify-content: space-between; overflow-x: auto;">
+            <div v-for="(item, i) in multipliedValues.slice(0, 3)" :key="i">
+              <v-card link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 16px;"> 
+                <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">
+                  {{ formatBalance(item.product) }} {{ pinia.state.preferredCurrency }}
+                </span>
+                <span :class="isDark ? 'text-dark':'text-light'">
+                  {{ formatBalance(item.balance) }} 
+                  <span style="margin-left: 4px;">{{ item.symbol }}</span>
+                </span>
+
                 <div class="mt-3 mb-4" style="display: flex; align-items: center;">
                   <img class="me-2" :src="item.icon" alt="coin" width="30"/>
-                  <img :src="chainIcon?.icon" width="15" style="position: relative; right: 17px; margin-top: 16px;"/>
+                  <img v-if="chainIcon?.icon" :src="chainIcon.icon" width="15" style="position: relative; right: 17px; margin-top: 16px;"/>
                   <span class="coinName" :class="isDark ? 'text-dark':'text-light'">{{ item.name }}</span>
                 </div>
 
-                <VProgressLinear :color=item.icon_dominant_color height="8" :width="15" model-value="100" rounded ></VProgressLinear>
-            </v-card>
+                <VProgressLinear 
+                  :color="item.icon_dominant_color || '#2873FF'" 
+                  height="8" 
+                  :width="15" 
+                  model-value="100" 
+                  rounded 
+                />
+              </v-card>
+            </div>
           </div>
+ 
 
 
           <div style="margin-top: -110px; margin-bottom: 30px;">
@@ -195,7 +210,7 @@ import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import { getBanners } from '@/composables/requests/admin'
 import { getMarketOffers } from "@/composables/requests/marketplace";
-import { getTokenBalance } from "@/composables/requests/tokens";
+import { getTokenBalance, currencyConverter } from "@/composables/requests/tokens";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -230,20 +245,67 @@ const slides = ref([
           // description3: "Free wallet",
           background: "#2B539A", // Custom background color for Slide 3
         },
-  ]);
+]);
 
-  const multipliedValues = computed(() => {
-    return pinia.state.tokenLists.map(token => {
-      const balance = token.balance ?? 0;
-      const convertedValue = token.conversionValue ?? 0;
-      return {
-        ...token,
-        product: balance * convertedValue
-      };
-    });
+const conversionRate = ref([]); // Initialize as an empty array to store conversion rates
+
+const convertCurrencies = async () => {
+  // Get the list of coins from Pinia state
+  const coins = pinia.state.tokenLists;
+
+  try {
+    const convertCurrency = [];
+
+    // Prepare the list of currency conversions
+    for (const coin of coins) {
+      convertCurrency.push({ from: coin.symbol, to: pinia.state.preferredCurrency });
+    }
+
+    // Fetch conversion rates
+    try {
+      const data = await currencyConverter(convertCurrency);
+
+      if (data.success) {
+        // Map conversion results to the conversionRate array
+        conversionRate.value = data.data.map(item => ({
+          from: item.from,
+          rate: item.value
+        }));
+
+      } else {
+        console.log("Conversion failed:", data.message);
+      }
+    } catch (error) {
+      console.log("Error converting:", error);
+    }
+  } catch (error) {
+    console.log("Error fetching coins:", error);
+  }
+};
+
+
+const multipliedValues = computed(() => {
+  // Convert conversionRate array to a map for easy lookup
+  const rateMap = conversionRate.value.reduce((map, item) => {
+    map[item.from] = item.rate; // Assuming rate is the correct property
+    return map;
+  }, {});
+
+  return pinia.state.tokenLists.map(token => {
+    const balance = token.balance ?? 0;
+    const rate = rateMap[token.symbol] ?? 0; // Lookup the rate from the map
+    const product = balance * rate;
+
+    return {
+      ...token,
+      product // Attach the calculated product to the token object
+    };
   });
+});
 
-  const chainIcon = computed(() => {
+
+
+const chainIcon = computed(() => {
 return pinia.state.tokenLists.find(c => c?.symbol === "BNB" || c?.symbol === "TRX");
 });
 
@@ -307,8 +369,6 @@ const fetchBanners = async () => {
   }
 };
 
-
-
 const get_allMarket_Offers = async () => {
   loading.value = true;
   try {
@@ -351,7 +411,8 @@ watch(()=>conversionResult.value,(newVal)=>{
 
 onMounted(() => {
   getTokenBals();
-   fetchBanners();
+  convertCurrencies();
+  fetchBanners();
   get_allMarket_Offers()
 });
 </script>
@@ -442,7 +503,7 @@ margin-top: 10px;
 .balance{
 color: var(--White, var(--Colors-Base-white, #FFF));
 font-family: Manrope;
-font-size: 26px;
+font-size: 20px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;

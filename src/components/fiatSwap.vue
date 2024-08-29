@@ -20,12 +20,11 @@
                 <div class="ctnx-div" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 24px;  padding: 37px; margin-top: 70px; margin-bottom: 925px;  width: 97%; margin: auto; ">
                     <div class="d-flex" style="margin-bottom: 30px">
                     <span class="quick-swap me-3">Quick Swap</span>
-                    <img src="/svg/reload.svg" class="icon1" />
                     </div>
             
                     <div class="d-md-flex" style="justify-content: space-between; position: relative">
                     <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="swap-div" style=" border-radius: 20px; width: 47%; display: flex; padding: 10px 20px; justify-content: space-between;">
-                        <div class="d-flex" style="width: 12%">
+                        <div class="d-flex swp-dv" style="width: 12%">
                         <div class="me-13" style="display: flex; flex-direction: column; z-index: 1000">
                             <span class="have d-flex">I have :</span>
             
@@ -89,7 +88,7 @@
                         </div>
                     </div>
             
-                    <div @click="toggleTokens()" class="flex-lg-and-up hidden-sm-and-down" style=" position: absolute; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark">
+                    <div @click="toggleTokens()" class="flex-lg-and-up hidden-sm-and-down" style=" position: absolute; display: flex; left: 0; right: 0; justify-content: center; margin-top: 3px;" v-if="theme.global.current.value.dark">
                         <img src="/svg/swap.svg" width="8%" />
                     </div>
 
@@ -586,5 +585,12 @@ margin-left: 10px !important;
 .exchange-btn1{
   width: 100% !important;
 }
+.quick-swap{
+  width: 100% !important;
+}
+.swp-dv{
+  
+}
+
 }
   </style>
