@@ -11,18 +11,21 @@
               <BlockChain/>
             </div>
 
-            <div @click.stop class="search-div" style="margin-top: 4px; margin-bottom: 15px; display: flex; width: 40%; margin-inline-start: auto;">
+            <div @click.stop class="search-div" style="margin-top: 3px; margin-bottom: 15px; display: flex; width: 40%; margin-inline-start: auto;">
               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none"
-                style="margin-left: 16px; margin-top: 19px; left: 16%; margin-right: 10px; position: relative;">
+                style="margin-left: 16px; margin-top: 19px; left: 13%; margin-right: 10px; position: relative;">
                 <path
                   d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z"
                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="currentColor" stroke-width="1.5"
                   stroke-linecap="round" stroke-linejoin="round" />
               </svg>
-              <v-textarea clearable class="custom-height" variant="plain" rows="1" no-resize
+
+
+              <input type="search" v-model="input" style="border: 1px solid #64748B; height: 55px; border-radius: 15px; padding-left: 45px; padding-right: 10px; outline: none; align-items: center; width: 80%;">
+              <!-- <v-textarea clearable class="custom-height" variant="plain" rows="1" no-resize
                 placeholder="Search for Coins..." v-model="input"
-                style="border: 1px solid #64748B; height: 55px; border-radius: 15px; padding-left: 45px; padding-right: 15px; align-items: center; width: 50%;"></v-textarea>
+                style="border: 1px solid #64748B; height: 55px; border-radius: 15px; padding-left: 45px; padding-right: 15px; align-items: center; width: 50%;"></v-textarea> -->
             </div>
           </div>
 
@@ -286,6 +289,10 @@ onBeforeMount(() => {
 
 
 <style scoped>
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: auto;
+  cursor: pointer;
+}
 .swap {
   border-radius: 16px;
   box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
@@ -369,7 +376,7 @@ onBeforeMount(() => {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-.search-div :deep(.v-field__clearable > .v-icon){
+/* .search-div :deep(.v-field__clearable > .v-icon){
 opacity: var(--v-medium-emphasis-opacity);
 margin-right: 15px;
 position: relative;
@@ -378,7 +385,7 @@ bottom: 2px;
 .search-div :deep(.v-textarea .v-field--no-label textarea, .v-textarea .v-field--active textarea) {
   opacity: 1;
   margin-bottom: 24px;
-}
+} */
 
 
 @media screen and (max-width: 600px) {
