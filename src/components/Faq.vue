@@ -47,14 +47,16 @@ const UserFaqs = ref(pinia.state.UserFaqs || []);
 const skeletonArray = Array(5).fill({}); // Temporary skeleton items
 
 const fetchFaqs = async () => {
-  try {
-    isLoading.value = true;
-    const result = await getFAQs(currentPageNumber.value);
-    totalPages.value = result?.data?.total_pages || totalPages.value;
+  isLoading.value = true;
 
-    if (result?.data?.result?.length) {
-      UserFaqs.value = filterByKey('id', [...UserFaqs.value, ...result?.data?.result]);
-      pinia.setFAQs(UserFaqs.value);
+  try {
+    const { data } = await getFAQs(currentPageNumber.value);
+    totalPages.value = data?.total_pages || totalPages.value;
+
+    if (data?.result?.length) {
+      const updatedFaqs = filterByKey('id', [...UserFaqs.value, ...data.result]);
+      UserFaqs.value = updatedFaqs;
+      pinia.setFAQs(updatedFaqs);
     }
   } catch (e) {
     push.error(`Error: ${e.message}`);
@@ -62,6 +64,7 @@ const fetchFaqs = async () => {
     isLoading.value = false;
   }
 };
+
 
 
 onMounted(() => {
@@ -175,7 +178,7 @@ line-height: 140%; /* 28px */
 }
 .v-expansion-panel-title--active > .v-expansion-panel-title__overlay, .v-expansion-panel-title[aria-haspopup=menu][aria-expanded=true] > .v-expansion-panel-title__overlay {
 background: rgb(182, 190, 213) !important;
-min-height: 113px ;
+min-height: 130px ;
 position: absolute;
 /* padding: 85px !important; */
 opacity: 0.4;

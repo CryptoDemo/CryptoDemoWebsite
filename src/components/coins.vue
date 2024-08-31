@@ -23,9 +23,6 @@
 
 
               <input type="search" v-model="input" style="border: 1px solid #64748B; height: 55px; border-radius: 15px; padding-left: 45px; padding-right: 10px; outline: none; align-items: center; width: 80%;">
-              <!-- <v-textarea clearable class="custom-height" variant="plain" rows="1" no-resize
-                placeholder="Search for Coins..." v-model="input"
-                style="border: 1px solid #64748B; height: 55px; border-radius: 15px; padding-left: 45px; padding-right: 15px; align-items: center; width: 50%;"></v-textarea> -->
             </div>
           </div>
 
@@ -70,7 +67,7 @@
               <td class="mt-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark' : 'text-light'" style="display: flex; align-items: center;">
                 {{ index + 1 }}</td>
 
-              <td style="display: contents; position: relative; width: 34%;">
+              <td style="display: contents; position: relative; width: 34%; cursor: pointer;">
                 <div class="d-flex coin-width" style="align-items: center; width: 150px; ">
                   <img :src="item.icon" width="35" class="py-5" />
                   <img :src="chainIcon?.icon" width="15" class=" py-5"
@@ -83,12 +80,12 @@
                 </div>
               </td>
 
-              <td class="mt-4 price-td" style="overflow: scroll;  display: flex; align-self: self-start; justify-content: center; width: 27%; ">
+              <td class="mt-4 price-td" style="overflow: scroll;  display: flex; align-self: self-start; justify-content: center; width: 27%; cursor: pointer;">
                 <span class="browser-txt price-bal" :class="isDark ? 'coin-name' : 'coin-name-light'" style="margin-right: -13px;">{{formatConvertedValue(item.conversionRate || 0) }}</span>
               </td>
 
 
-              <td class="mt-2 bal-td" style="display: flex; align-items: center; justify-content: center; width: 16%;">
+              <td class="mt-2 bal-td" style="display: flex; align-items: center; justify-content: center; width: 16%; cursor: pointer;">
                 <span class="coin-bal" :class="isDark ? 'coin-name' : 'coin-name-light'" style="font-weight: 600; font-size: 16px; width: 10px; margin-bottom: 16px;"> {{ formatBalance(item.balance) }} </span>
               </td>
 

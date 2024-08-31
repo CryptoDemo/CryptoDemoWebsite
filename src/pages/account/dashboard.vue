@@ -250,36 +250,36 @@ const slides = ref([
 const conversionRate = ref([]); // Initialize as an empty array to store conversion rates
 
 const convertCurrencies = async () => {
-  // Get the list of coins from Pinia state
   const coins = pinia.state.tokenLists;
 
+  // Prepare the list of currency conversions
+  const convertCurrency = coins.map(coin => ({
+    from: coin.symbol,
+    to: pinia.state.preferredCurrency
+  }));
+
+  console.log(convertCurrency)
   try {
-    const convertCurrency = [];
+    const data = await currencyConverter(convertCurrency);
 
-    // Prepare the list of currency conversions
-    for (const coin of coins) {
-      convertCurrency.push({ from: coin.symbol, to: pinia.state.preferredCurrency });
-    }
+    if (data.success) {
+      // Map the conversion rate to each token
+      const updatedTokens = coins.map(coin => {
+        const rateData = data.data.find(item => item.from === coin.symbol);
+        return {
+          ...coin,
+          conversionRate: rateData ? rateData.value : null // Add conversionRate to token
+        };
+      });
 
-    // Fetch conversion rates
-    try {
-      const data = await currencyConverter(convertCurrency);
-
-      if (data.success) {
-        // Map conversion results to the conversionRate array
-        conversionRate.value = data.data.map(item => ({
-          from: item.from,
-          rate: item.value
-        }));
-
-      } else {
-        console.log("Conversion failed:", data.message);
-      }
-    } catch (error) {
-      console.log("Error converting:", error);
+      console.log(updatedTokens)
+      // Update the Pinia state with the new token list including conversion rates
+      pinia.setTokenLists(updatedTokens);
+    } else {
+      console.log("Conversion failed:", data.message);
     }
   } catch (error) {
-    console.log("Error fetching coins:", error);
+    console.log("Error converting currencies:", error);
   }
 };
 
@@ -302,7 +302,6 @@ const multipliedValues = computed(() => {
     };
   });
 });
-
 
 
 const chainIcon = computed(() => {
