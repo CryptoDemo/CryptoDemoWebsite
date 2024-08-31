@@ -2,7 +2,7 @@
 <div>
   <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" :wallet="true"/>
     <v-container style="margin-top: 90px;">
-      <div class="py-7 ml-3" style="display: flex; align-items: center;">
+      <div class="py-7 ml-3 nav-chevron" style="display: flex; align-items: center;">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="navigateTo('/account/trade/wallet')" style="cursor: pointer;">
         <path d="M15 19.9181L8.47997 13.3981C7.70997 12.6281 7.70997 11.3681 8.47997 10.5981L15 4.07812" stroke="#B9D1FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -11,10 +11,9 @@
         <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="ctnx-div" style="border-radius: 24px; padding: 37px; margin-top: 70px; margin-bottom: 925px; width: 97%; margin: auto;">
             <div class="d-flex" style="margin-bottom: 30px;">
                 <span class="quick-swap me-3 ">Quick Swap</span>
-                <img src="/svg/reload.svg" class="icon1"/>
             </div>
 
-            <div class="d-md-flex" style="justify-content: space-between; position: relative;">
+            <div v-if="!showOtp" class="d-md-flex" style="justify-content: space-between; position: relative;">
                 <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" class="swap-div" style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
               
                      <div class="d-flex swap-container" style="width: 12%;">   
@@ -123,24 +122,61 @@
 
               </div>
      
-              </div>
-                <div>
-                  <h5 class="quick-swap mt-2" style="font-family: manrope;">Minimum swap limit : {{ minimumswap?.minimum_swap }}</h5>
-                  </div>
-
-            <div style="display: flex; justify-content: space-between; margin-top: 50px; align-items: center;">
-
-            <div style="width: 37%;">
-              <v-alert v-if="FeeCard" variant="tonal" type="info" density="compact" style="font-family: Manrope;font-size: 14px;  font-style: normal;font-weight: 600;line-height: 180%; border-radius: 10px;">
-                <span style="font-size: 16px;">Important Notice</span><br>
-               A fee of {{ formatBalance(from_amount_total) }} will be applied for this transaction
-                   <br>
-              </v-alert>
             </div>
 
-              <v-btn @click="executeTxn()" :loading="loading" append-icon="mdi-arrow-right" class="exchange-btn1"> Exchange </v-btn>
+            <div v-if="!showOtp">
+              <h5 class="quick-swap mt-2" style="font-family: manrope; font-size: 14px;">Minimum swap limit : {{ minimumswap?.minimum_swap }}</h5>
+            </div>
+
+            <div v-if="!showOtp" class="d-md-flex" style="justify-content: space-between; margin-top: 50px; align-items: center;">
+
+              <div class="alert-div" style="width: 37%;">
+                <v-alert v-if="FeeCard" variant="tonal" type="info" density="compact" style="font-family: Manrope;font-size: 14px;  font-style: normal;font-weight: 600;line-height: 180%; border-radius: 10px;">
+                  <span style="font-size: 16px;">Important Notice</span><br>
+                A fee of {{ formatBalance(from_amount_total) }} will be applied for this transaction
+                    <br>
+                </v-alert>
+              </div>
+
+              <v-btn @click="continueToOtp()" :loading="loading" append-icon="mdi-arrow-right" class="exchange-btn1"> Continue </v-btn>
+            </div>
+
+                <!-- Set New Pin -->
+                <div v-if="showOtp && !hasPin">
+                  <h3 class="text-center">Set Transaction Pin</h3>
+                  <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Create a 4-digit transaction pin</span>
+                  
+                  <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
+                    <v-otp-input v-model="newPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                    <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Set transaction pin</span>
+                  </div>
+
+                  <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
+                    <v-otp-input v-model="confirmPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                    <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">re-enter transaction pin</span>
+                  </div>
+
+                  <v-btn @click="setNewPin()" :loading="loading" variant="tonal"  style="height: 45px; border-radius: 10px; color: #2873FF; font-weight: 600; width: 100%; letter-spacing: 0px;">
+                    Set Pin
+                  </v-btn>
+                </div>
+
+                <!-- Enter Pin for users who have a pin -->
+              <div v-if="showOtp && hasPin">
+
+                <h3 class="text-center">Enter Transaction Pin</h3>
+                <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Enter transfer pin to authorize this transaction</span>
+
+          
+                <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
+                  <v-otp-input v-model="PinOtp" class="mx-auto"  length="4" variant="underlined"></v-otp-input>
+                </div>
+          
+                <v-btn @click="VerifyPin()" :loading="loading" variant="tonal" style=" height: 45px; border-radius: 10px; color: #2873FF; font-weight: 600; width: 100%; letter-spacing: 0px;">Proceed</v-btn>
+        
+              </div>
           </div>
-        </div>
+     
     </v-container>
   <div style="margin-top: 500px;">
 
@@ -154,7 +190,7 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import { calculateTxnFees, executeTrans } from "@/composables/requests/transaction";
-
+import {  verify_Pin, set_Pin} from "@/composables/requests/users";
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -163,7 +199,7 @@ const pinia = useStore();
 
 const FeeCard = ref(false);
 
-const ExpectedAmmount = ref();
+const hasPin = computed(() => pinia.state.user.is_pin_set !== null && pinia.state.user.is_pin_set !== false);
 
 const piniastoredicon = ref(null);
 
@@ -200,6 +236,15 @@ const tax_fee = ref();
 
 const is_balance_sufficient = ref();
 
+const PinOtp = ref("");
+
+const newPinOtp = ref("");
+
+const confirmPinOtp = ref("");
+
+const showOtp = ref(false)
+
+const loading_pin = ref(false)
 
 mytoken.value = pinia.state.tokenLists.find(c => c.symbol ===  pinia.state.getNewCoinInfo )
 const selectedNetwork = pinia.state.BlockchainNetworks.find(e => e.name.toLowerCase() === pinia.state.selectedNetwork.toLowerCase())
@@ -237,8 +282,6 @@ const toggleTokens = ()=>{
   piniastoredicon.value =  coin_to_swap.value
   selected_tokenType_to_swap.value = m
   coin_to_swap.value = p
-
-
 
 }
 
@@ -346,6 +389,82 @@ const caltax = async () => {
     }
   })
 
+const continueToOtp = () => {
+  // Clear previous information
+  showOtp.value = true;
+  if (!hasPin.value) {
+    showOtp.value = true; // Show the set pin step
+  } else {
+    showOtp.value = true; // Show the enter pin step
+  }
+  // Optionally, you might want to clear other state variables here
+}
+
+const VerifyPin = async () => {
+  loading_pin.value = true;
+  const payload = {
+    pin: PinOtp.value,
+  }
+
+  try {
+    const data = await verify_Pin(payload);
+    PinOtp.value  = "";
+    if (data.success) {
+        await executeTxn();
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+
+const setNewPin = () => {
+  // Check if the pins match before clearing the values
+  if (newPinOtp.value !== confirmPinOtp.value) {
+    // Handle pin mismatch (show an alert or message)
+    push.error("Pins do not match. Please try again.");
+    return;
+  }
+
+  // Logic to save the new pin
+  hasPin.value = true;
+
+  // Call the function to save the pin to the backend
+  setPin(newPinOtp.value); // Pass the new pin to the setPin function
+
+  // Clear the pin fields after the pin is successfully set
+  newPinOtp.value = "";
+  confirmPinOtp.value = "";
+};
+
+const setPin = async () => {
+  loading_pin.value = true;
+  const payload = {
+    pin: newPinOtp.value,
+  }
+
+  try {
+    const data = await set_Pin(payload);
+
+    if (data.success) {
+        push.success(data.message);
+        execute();
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
 const isChevronToggled = ref(false);
 const toggleChevron = () => {
       isChevronToggled.value = !isChevronToggled.value;
@@ -355,6 +474,8 @@ const isChevronToggled1 = ref(false);
 const toggleChevron1 = () => {
       isChevronToggled1.value = !isChevronToggled1.value;
 };
+
+
 </script>
 
 <style>
@@ -548,6 +669,14 @@ margin-left: 10px !important;
 }
 .exchange-btn1{
   width: 100% !important;
+  border-radius: 15px !important;
+}
+.alert-div{
+  width: 100% !important;
+  margin-bottom: 15px !important;
+}
+.nav-chevron{
+  margin-left: 0px !important;
 }
 }
 </style>
