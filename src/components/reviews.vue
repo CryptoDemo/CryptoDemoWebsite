@@ -1,290 +1,333 @@
 <template>
-  <div>
-      <div class="reverse" :class="isDark ? 'reviews':'reviews-light'" >
-        <v-row no-gutters>
-            <v-col cols="12" sm="6" md="6" class="order-last order-sm-first">
-                <div class="layouti">
-                    <v-btn class="wrapper" style="width: 115px; height: 36px;">
-                        <img src="/svg/comment-2-text.svg" class="me-2"/>
-                        <span :class="isDark ? 'feedback':'feedback-light'">Feedback</span>
-                    </v-btn>
-                    <span class="buy1i" :class="isDark ? 'valuable-feedback':'valuable-feedback-light'">Valuable feedback</span>
-                    <span class="feedback-subtitle">Our feedback system highlights reliable, experienced users, helping you to trade smoothly.</span>
+    <div :class="isDark ? 'reviews':'reviews-light'">
+          <v-row no-gutters>
+              <v-col cols="12" sm="6" md="6" class="order-last order-sm-first">
+                <div class="fdb-div" style="display: flex; flex-direction: column; align-items: flex-start; margin: auto; margin-top: 120px; padding-left: 42px;">
+                  <v-btn style="background: rgba(40, 115, 255, 0.10); width: 115px; height: 36px; margin-bottom: 25px; box-shadow: none; border-radius: 18px; text-transform: unset;">
+                    <img src="/svg/comment-2-text.svg" class="me-2"/>
+                    <span :class="isDark ? 'feedback':'feedback-light'">Feedback</span>
+                  </v-btn>
+                  <span class="mb-2 valuable-feedback" :class="isDark ? 'valuable-feedback':'valuable-feedback-light'">Valuable feedback</span>
+                  <span class="feedback-subtitle">Our feedback system highlights reliable, experienced users,<span> helping you to trade smoothly.</span></span>
                 </div>
-            </v-col>
-            <v-col cols="12" sm="6" style="display: flex; justify-content: flex-end;">
-                <div class="position-relative">
-              
-                <div class="img-reviews position-relative">
-                     <div  :class="isDark ? 'gradient1i':'gradient1i-light'"></div>
-
-                    <div v-for="(review, i) in reviews" :key="i" class="position-relative review-cards" :class="isDark ? 'review-cards':'review-cards-light'" :style=" i === 0? 'right: 40px; margin-bottom: 20px; height: 100px; margin-top: 40px' : ''">
-                        <div>
-                            <div style="display: flex; justify-content: space-between;">
-                            <div style="display: flex;">    
-                                <img :src="review.img" :alt="review.alt" class="me-4" :class="isDark ? 'img-avt':'img-avt-light'"/>
-                                <div style="display: flex; flex-direction: column; align-self: center;">
-                                    <span class="review-name" :class="isDark ? 'review-name':'review-name-light'">{{ review.name }}</span>
-                                    <div class="d-flex">
-                                        <span class="location-txt me-3">{{ review.location }}</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="4" height="5" viewBox="0 0 4 5" fill="none" class="me-3 mt-2" style="display: flex; align-self: center;">
-                                            <circle cx="2" cy="2.37598" r="2" fill="#64748B"/>
-                                        </svg>
-                                        <span class="location-txt">{{ review.date }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                                <div class="blue-box" style="border-radius: 100px; background: #2873FF; padding: 10px; height: 27px !important; width: 81px; display: flex; align-self: center; position: absolute; right: 18px"></div>
-                            </div>
-                            <div>
-                                <img :src="review.textlines" class="mt-4" style="max-width: 100%;" v-if="theme.global.current.value.dark"/>
-                                <img :src="review.textlines1" class="mt-5" style="max-width: 100%;"  v-else/>
-                            </div>
-                            </div>
-                           
-                     </div>
-
-
-                
+              </v-col>
+  
+  
+              <v-col cols="12" sm="6" style="display: flex;">
+                  <div class="testimonial-container">
+                    <div v-for="(testimonial, index) in testimonials"
+                      :key="index"
+                      :class="['testimonial-card review-cards', index === activeIndex ? 'card-active' : 'card-inactive', isDark ? 'review-cards' : 'review-cards-light']">
+                      <div class="d-flex" style="align-items: center; width: 100%; justify-content: space-between;">
+                        <div class="d-flex">
+                          <img :src="testimonial.image" alt="profile"   width="50"/>
+                          <div class="ml-2 mt-3" style=" display: flex; flex-direction: column; align-items: flex-start;">
+                            <span class="review-name" :class="isDark ? 'review-name':'review-name-light'">{{ testimonial.name }}</span>
+                            <span class="timeZone">{{ testimonial.time }}</span>
+                          </div>
+                        </div>
+  
+                        <div style="border-radius: 100px; background: #2873FF; width: 82px; padding: 10px; display: flex; justify-content: center;">
+                          <div style="border-radius: 100px; background: #5892FF; width: 40px; height: 6.169px;">
+  
+                          </div>
+                        </div>
+  
+                      </div>
+                      <p class="testimonial-text">{{ testimonial.text }}</p>
+                      <small>{{ testimonial.location }}</small>
                     </div>
-                
-                </div>
-            </v-col>   
-        </v-row>
+                  </div>
+              </v-col>
+          </v-row>
     </div>
-  </div>
-</template>
+  </template>
+  
+  <script setup>
+  import { ref, onMounted } from 'vue';
+  import { useTheme } from 'vuetify';
+  
+  
+  const theme = useTheme()
+  const isDark = computed(() =>  theme.global.current.value.dark);
+  
+  const testimonials = ref([
+    {
+      name: 'Bonaventure Okoli',
+      time: '14th October, 2024',
+      text: 'I have used several crypto apps, but this one stands out for its simplicity and reliability. Trading is straightforward, and the app provides real-time data, so Im always updated on market trends. Plus, I love the built-in wallet—it feels secure and is easy to manage.',
+      location: 'Portland, PDX',
+      image: '/img/Frame 20.png'
+    },
+    {
+      name: 'Samuel Emenike',
+      time: '12th June, 2024',
+      text: 'What I like most about this app is the smooth user experience. Whether I am buying, selling, or transferring crypto, it’s fast and intuitive. The low transaction fees are a huge bonus, and the app’s customer support has been top-notch whenever I needed help.',
+      location: 'Philadelphia, PHI',
+      image: '/img/Frame 19.png'
+    },
+    {
+      name: 'Oscar Nwam',
+      time: '4th November, 2024',
+      text: 'I love how this app lets me keep track of all my cryptocurrencies in one place. The portfolio tracker is incredibly detailed, showing me performance over time, and the security features, like two-factor authentication, give me peace of mind.',
+      location: 'Houston, HOU',
+      image: '/img/Frame 23.png'
+    },
+    {
+      name: 'Stephen Steph',
+      time: '7th September, 2024',
+      text: 'This app has really transformed how I interact with the crypto world. From real-time price alerts to detailed analytics, I feel much more in control of my investments.',
+      location: 'Washington, D.C., DC',
+      image: '/img/Frame 23.png'
+    },
+    {
+      name: 'InHouse Codes',
+      time: '17th September, 2024',
+      text: 'I love how easy it is to swap between different cryptocurrencies. The exchange rates are competitive, and the transactions are processed quickly. Plus, the customer service is responsive and helped me when I had an issue with my wallet.',
+      location: 'San Francisco, SF',
+      image: '/img/Frame 23.png'
+    }
+  ]);
+  
+  const activeIndex = ref(0);
+  
+  onMounted(() => {
+    setInterval(() => {
+      activeIndex.value = (activeIndex.value + 1) % testimonials.value.length;
+    }, 5000); // Change testimonial every 3 seconds
+  });
+  </script>
+  
+  
+  <style scoped>
+  @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+  .testimonial-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 375px; /* Adjust as needed */
+    overflow: hidden;
+  }
+  
+  .testimonial-card {
+    position: absolute;
+    width: 80%;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+  }
+  
+  .card-active {
+    z-index: 2;
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .card-inactive {
+    z-index: 1;
+    transform: translateY(100px);
+    opacity: 0.1;
+    margin-left: 70px;
+  }
+  
+  .testimonial-card img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  .testimonial-card p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: #8E9BAE;
+  }
+  
+  .testimonial-text {
+    text-align: left; 
+    width: 100%; 
+  }
+  
+  .testimonial-card small {
+    font-size: 0.9rem;
+    color: #8E9BAE;
+    font-weight: 700;
+  }
+  
+  .reviews{
+  border-radius: 15px;
+  border: 0.5px solid #2f3946 !important;
+  background: #10192D;
+  margin-top: 24px;
+  overflow: hidden;
+  }
+  .reviews-light{
+  border-radius: 15px;
+  background: linear-gradient(270deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);
+  overflow: hidden;
+  margin-top: 24px;
+  }
+  
+  .review-cards{
+  border-radius: 15px;
+  border: 0.5px solid #2f3946;
+  background: #1B2537;
+  box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
+  }
+  
+  .review-cards-light{
+  border-radius: 15px;
+  background: #FFF;
+  box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
+  border: 1px #DBE8FF !important;
+  }
+  
+  .review-name{
+  color: var(--Colors-Base-white, #FFF);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 22.4px */
+  display: flex;
+  align-items: center;
+  }
+  .review-name-light{
+  color: #1B2537;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 22.4px */
+  display: flex;
+  align-items: center;
+  }
+  .timeZone{
+  color: #8E9BAE;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 16.8px */
+  }
+  .valuable-feedback{
+  background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  font-family: "SF Pro Display" !important;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600 !important;
+  line-height: 120%; /* 38.4px */
+  display: flex;
+  height: 38px;
+  flex-direction: column;
+  justify-content: center;
+  }
+  .valuable-feedback-light{
+  background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.50) 97.69%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  font-family: "SF Pro Display" !important;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%; /* 38.4px */
+  display: flex;
+  height: 38px;
+  flex-direction: column;
+  justify-content: center;
+  }
+  .review-name{
+  color: var(--Colors-Base-white, #FFF);
+  font-family: "SF Pro Display" !important;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 22.4px */
+  display: flex;
+  align-items: center;
+  }
+  .review-name-light{
+  color: #1B2537;
+  font-family: "SF Pro Display" !important;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 22.4px */
+  display: flex;
+  align-items: center;
+  }
+  .feedback-subtitle{
+  color: #64748B;
+  font-family: "SF Pro Display" !important;
+  font-size: 16px !important;
+  font-style: normal;
+  font-weight: 400 !important;
+  line-height: 140% !important; /* 22.4px */
+  letter-spacing: 0.32px !important;
+  }
+  .feedback{
+  color: var(--Colors-Base-white, #FFF);
+  text-align: center;
+  font-family: "SF Pro Display" !important;
+  font-size: 14px !important;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100% !important; /* 14px */
+  letter-spacing: 0.14px;
+  
+  }
+  .feedback-light{
+  color: #1B2537;
+  text-align: center;
+  font-family: "SF Pro Display";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 14px */
+  letter-spacing: 0.14px;
+  }
 
-<script setup>
-
-import { useTheme } from 'vuetify';
-
-
-const theme = useTheme()
-const isDark = computed(() =>  theme.global.current.value.dark);
-
-const reviews = [
-   {
-     img:'/svg/user-avatar.svg', name:'Frank Tom', alt:'avatar', location: 'In Netherland', date:'4th, August', 
-   } ,
-
-   {
-     img:'/svg/user-avatar.svg', name:'Okoli Bona', alt:'avatar', location: 'In Germany', date:'25th, December', textlines:'/svg/textLines.svg', textlines1:'/svg/linetext-light.svg',
-   } 
-];
-</script>
-
-<style scoped>
-@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
-.reviews{
-border-radius: 15px;
-border: 0.5px solid #2f3946 !important;
-background: #10192D;
-display: flex;
-align-items: center;
-gap: 2px;
-margin-top: 24px;
-margin-bottom: 24px;
-/* padding: 0 10px; */
-width: 100%;
-height: 374px;
-overflow: hidden;
+@media screen and (max-width: 600px) {
+.review-cards {
+width: 90% !important;
+display: flex !important;
+margin-bottom: 20px !important;
+margin-top: 10px !important;
 }
-.reviews-light{
-border-radius: 15px;
-background: linear-gradient(270deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);
-display: flex;
-align-items: center;
-gap: 2px;
-margin-top: 24px;
-margin-bottom: 24px;
-width: 100%;
-height: 374px;
-overflow: hidden;
-}
-.gradient1i{
-border-radius: 15px; 
-background: linear-gradient(180deg, rgba(16, 25, 45, 0.00) 0%, #10192D 100%); 
-height: 55.662px;
-position: absolute; 
-bottom: 0; 
-z-index: 1; 
-width: -webkit-fill-available;
-}
-.gradient1i-light{
-border-radius: 15px;
-background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 0%, #F8FAFC 100%);
-height: 55.662px;
-position: absolute; 
-bottom: 0; 
-z-index: 1; 
-opacity: 0.8;
-width: 100%;
-}
-.img-avt{
-border-radius: 100px;
-background: #10192D;
-display: flex;
+.testimonial-card img[data-v-49a2254d] {
 width: 50px;
 height: 50px;
-padding: 10px;
-justify-content: center;
-align-items: center;
-gap: 10px;
+border-radius: 50%;
+margin-bottom: 15px;
 }
-.img-avt-light{
-border-radius: 100px;
-background: #DBE8FF;
-display: flex;
-width: 50px;
-height: 50px;
-padding: 10px;
-justify-content: center;
-align-items: center;
-gap: 10px;
+.fdb-div{
+padding-left: 22px !important;
+margin-top: 50px !important;
+margin-bottom: 30px !important;
 }
-.wrapper{
-border-radius: 100px;
-background: rgba(40, 115, 255, 0.10);
-display: flex;
-padding: 8px;
-align-items: center;
-gap: 8px;
-box-shadow: none;
-letter-spacing: 0px;
-text-transform: capitalize;
-}
-.feedback{
-color: var(--Colors-Base-white, #FFF);
-text-align: center;
-font-family: "SF Pro Display" !important;
-font-size: 14px !important;
-font-style: normal;
-font-weight: 600;
-line-height: 100% !important; /* 14px */
-letter-spacing: 0.14px;
-
-}
-.feedback-light{
-color: #1B2537;
-text-align: center;
-font-family: "SF Pro Display";
-font-size: 14px;
-font-style: normal;
-font-weight: 600;
-line-height: 100%; /* 14px */
-letter-spacing: 0.14px;
-}
-.layouti{
-display: flex;
-width: 499px;
-height: 375px;
-padding: 30px 40px;
-flex-direction: column;
-justify-content: center;
-align-items: flex-start;
-gap: 25px;
-flex-shrink: 0;
-}
-.valuable-feedback{
-background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-text-align: center;
-font-family: "SF Pro Display" !important;
-font-size: 32px;
-font-style: normal;
-font-weight: 600 !important;
-line-height: 120%; /* 38.4px */
-display: flex;
-height: 38px;
-flex-direction: column;
-justify-content: center;
-}
-.valuable-feedback-light{
-background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.50) 97.69%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-text-align: center;
-font-family: "SF Pro Display" !important;
-font-size: 32px;
-font-style: normal;
-font-weight: 600;
-line-height: 120%; /* 38.4px */
-display: flex;
-height: 38px;
-flex-direction: column;
-justify-content: center;
-}
-.review-name{
-color: var(--Colors-Base-white, #FFF);
-font-family: Manrope;
-font-size: 16px;
-font-style: normal;
-font-weight: 700;
-line-height: 140%; /* 22.4px */
-display: flex;
-align-items: center;
-}
-.review-name-light{
-color: #1B2537;
-font-family: Manrope;
-font-size: 16px;
-font-style: normal;
-font-weight: 700;
-line-height: 140%; /* 22.4px */
-display: flex;
-align-items: center;
-}
-.feedback-subtitle{
-color: #64748B;
-font-family: "SF Pro Display" !important;
-font-size: 16px !important;
-font-style: normal;
-font-weight: 400 !important;
-line-height: 140% !important; /* 22.4px */
-letter-spacing: 0.32px !important;
-/* width: 357px; */
+.valuable-feedback {
+font-size: 24px !important;
 }
 
-
-.review-cards{
-border-radius: 15px;
-border: 0.5px solid #2f3946;
-background: #1B2537;
-box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
-display: flex;
-width: 458px;
-padding: var(--spacing-3xl, 24px);
-flex-direction: column;
-align-items: flex-start;
-gap: var(--spacing-4xl, 32px);
-position: relative;
-margin-right: 45px;
+.feedback-subtitle {
+width: 100% !important;
 }
 
-.review-cards-light{
-border-radius: 15px;
-background: #FFF;
-box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
-display: flex;
-width: 458px;
-padding: var(--spacing-3xl, 24px);
-flex-direction: column;
-align-items: flex-start;
-gap: var(--spacing-4xl, 32px);
-position: relative;
-border: none !important;
 }
-.location-txt{
-color: #8E9BAE;
-font-family: Manrope;
-font-size: 12px;
-font-style: normal;
-font-weight: 500;
-line-height: 140%; /* 16.8px */
-margin-top: 5px;
-}
-</style>
+  </style>
