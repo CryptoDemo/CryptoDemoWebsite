@@ -106,5 +106,19 @@ export const personal_Offer = async(pageNumber)=>{
         return data;
  };
 
+ export const cancelOrderforP2P = async(payload)=>{
+    const pinia = useStore();
+    const data = await fetch(`${baseURL}p2p-order/cancel-order/${pinia.state.selected_trade_ID_from_active_trade}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': `${pinia.state.user?.token}`
+        },
+        body:JSON.stringify(payload)
+
+    }).then(res => res.json());
+    return data
+}
+
 
     

@@ -48,6 +48,7 @@ margin-bottom: 40px;
 margin-top: 110px;
 padding: 20px !important;
 opacity: 1;
+height: 100%;
 }
 .form {
 flex-shrink: 0; 
@@ -56,7 +57,7 @@ background: var(--secondary-background, #10192D);
 display: flex;
 justify-content: center;
 align-items: center;
-height: 680px;
+height: 100%;
 }
 .form-light{
 flex-shrink: 0; 

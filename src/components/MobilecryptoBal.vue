@@ -37,11 +37,11 @@
         </div>
   
         <div style="display: flex; justify-content: space-between;">
-          <v-btn @click.prevent="navigateTo('/account/trade/getButton')" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="font-weight: 600;">
+          <v-btn @click.prevent="navigateTo('/account/trade/getCoin')" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="font-weight: 600;">
                   <img src="/svg/send-arrow.svg"/>
                   Get
           </v-btn>
-          <v-btn @click.prevent="navigateTo('/account/trade/sendButton')"  class="fiat-btn send-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="font-weight: 600;">
+          <v-btn @click.prevent="navigateTo('/account/trade/sendCoin')"  class="fiat-btn send-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="font-weight: 600;">
                   <img src="/svg/get.svg"/>
                  Send
           </v-btn>

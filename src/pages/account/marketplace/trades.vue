@@ -206,14 +206,14 @@
 
                     <span
                       :class="{
-                        'expired-text': order.status === 'expired',
+                        'expired-text': order.status === 'expired ',
                         'active-text': order.status !== 'expired',
                       }"
-                       style="text-transform: capitalize; color: orangered !important;">{{ order.status }}</span
+                       style="text-transform: capitalize; color: orangered !important; font-weight: 600">{{ order.status }}</span
                     >
                     <span>Buyer</span>
                     <div>
-                      <span>{{ order?.bid?.fiat_amount_paid }}</span>
+                      <span>{{ formatBalance(order?.bid?.fiat_amount_paid) }}</span>
                       <span>{{
                         pinia.state.allcountries.find(
                           (c) =>
@@ -239,7 +239,7 @@
               <v-card-text v-if="selectedOrder?.status === 'processing'">
                 <span style="display: flex; justify-content: center; font-weight: 600;">Do you want to cancel this trade?</span>
                 <div class="mt-4" style="display: flex;  justify-content: center;">
-                  <v-btn style="background: orangered; width: 50%; height: 40px; border-radius: 10px;">Cancel</v-btn>
+                  <v-btn @click="cancelMyOrder()" style="background: orangered; width: 50%; height: 40px; border-radius: 10px;">Cancel</v-btn>
                 </div>
               </v-card-text>
               
@@ -278,7 +278,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useTheme } from "vuetify";
-import { getmyOrders } from "@/composables/requests/marketplace";
+import { getmyOrders, cancelOrderforP2P } from "@/composables/requests/marketplace";
 
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
@@ -291,8 +291,11 @@ const showAlert = ref(false);
 
 const selectedOrder = ref(null)
 
+
 const openDialog = (order) => {
   selectedOrder.value = order
+  pinia.state.selected_trade_ID_from_active_trade = order.id
+  console.log(selectedOrder.value)
   dialog.value = true
 }
 
@@ -314,19 +317,40 @@ const getActiveOffers = async () => {
   }
 };
 
+const cancelMyOrder = async () => {
+
+  const payload = {
+    order_id: pinia.state.selected_trade_ID_from_active_trade,
+  }
+  try {
+  
+    const data = await cancelOrderforP2P(payload);
+
+    // Check if the data retrieval was successful
+    if (data.success) {
+      dialog.value = false
+      console.log(data.data.result);
+    } else {
+      push.error(`Error: ${data.message}`); // Custom error message
+    }
+  } catch (e) {
+    console.error("Unexpected error:", e);
+    push.error(`Unexpected error: ${e.message || e}`); // Detailed error message
+  }
+};
+
+
 const filteredOrders = computed(() => {
+  
   if (selectedScreen.value) {
-    // Display only non-expired (active) trades
-    return pinia.state?.allMyOders.filter(
-      (order) => order.status !== "expired"
-    );
+    // Display only non-expired and non-canceled (active) trades
+    return pinia.state?.allMyOders.filter((order) => order.status !== "expired" && order.status !== "canceled");
   } else {
-    // Display only expired trades
-    return pinia.state?.allMyOders.filter(
-      (order) => order.status === "expired" 
-    );
+    // Display only expired or canceled trades
+    return pinia.state?.allMyOders.filter((order) => order.status === "expired" || order.status === "canceled");
   }
 });
+
 
 onMounted(() => {
   getActiveOffers();

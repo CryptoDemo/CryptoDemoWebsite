@@ -35,13 +35,13 @@
 
                 <div class="btn-div" style="display: flex; align-items: center;">
               
-                  <v-btn @click.prevent="navigateTo('/account/trade/sendButton')" class="send-btn me-3" :class="isDark ? 'wallet-border':'wallet-border-light'" >
+                  <v-btn @click.prevent="navigateTo('/account/trade/sendCoin')" class="send-btn me-3" :class="isDark ? 'wallet-border':'wallet-border-light'" >
                     <img src="/svg/send-arrow.svg" class="me-1"/>
                     <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
                   </v-btn>
           
 
-                  <v-btn @click.prevent="navigateTo('/account/trade/getButton')" class="send-btn me-3" :class="isDark ? 'wallet-border':'wallet-border-light'">
+                  <v-btn @click.prevent="navigateTo('/account/trade/getCoin')" class="send-btn me-3" :class="isDark ? 'wallet-border':'wallet-border-light'">
                     <img src="/svg/get.svg" class="me-1"/>
                     <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
                   </v-btn>

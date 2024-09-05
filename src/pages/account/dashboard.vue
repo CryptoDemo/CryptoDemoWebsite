@@ -13,34 +13,52 @@
             <span class="marketPlace" style="font-size: 24px; font-style: 28px; font-weight: 600; color: #5892FF;">Dashboard</span>
             <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
           </div>
+
+
      
-          <div style="display: flex; justify-content: space-between; overflow-x: auto;">
-            <div v-for="(item, i) in multipliedValues.slice(0, 3)" :key="i">
-              <v-card link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 16px;"> 
-                <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">
-                  {{ formatBalance(item.product) }} {{ pinia.state.preferredCurrency }}
-                </span>
-                <span :class="isDark ? 'text-dark':'text-light'">
-                  {{ formatBalance(item.balance) }} 
-                  <span style="margin-left: 4px;">{{ item.symbol }}</span>
-                </span>
+         <div style="display: flex; justify-content: space-between; overflow-x: auto;">
+            <!-- Check if data is loaded, otherwise show skeleton loaders -->
+            <template v-if="multipliedValues && multipliedValues.length > 0">
+              <div v-for="(item, i) in multipliedValues.slice(0, 3)" :key="i">
+                <v-card link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 16px;">
+                  <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">
+                    {{ formatBalance(item.product) }} {{ pinia.state.preferredCurrency }}
+                  </span>
+                  <span :class="isDark ? 'text-dark':'text-light'">
+                    {{ formatBalance(item.balance) }}
+                    <span style="margin-left: 4px;">{{ item.symbol }}</span>
+                  </span>
 
-                <div class="mt-3 mb-4" style="display: flex; align-items: center;">
-                  <img class="me-2" :src="item.icon" alt="coin" width="30"/>
-                  <img v-if="chainIcon?.icon" :src="chainIcon.icon" width="15" style="position: relative; right: 17px; margin-top: 16px;"/>
-                  <span class="coinName" :class="isDark ? 'text-dark':'text-light'">{{ item.name }}</span>
-                </div>
+                  <div class="mt-3 mb-4" style="display: flex; align-items: center;">
+                    <img class="me-2" :src="item.icon" alt="coin" width="30" />
+                    <img v-if="chainIcon?.icon" :src="chainIcon.icon" width="15" style="position: relative; right: 17px; margin-top: 16px;" />
+                    <span class="coinName" :class="isDark ? 'text-dark':'text-light'">{{ item.name }}</span>
+                  </div>
 
-                <VProgressLinear 
-                  :color="item.icon_dominant_color || '#2873FF'" 
-                  height="8" 
-                  :width="15" 
-                  model-value="100" 
-                  rounded 
+                  <v-progress-linear 
+                    :color="item.icon_dominant_color || '#2873FF'" 
+                    height="8" 
+                    :width="15" 
+                    model-value="100" 
+                    rounded 
+                  />
+                </v-card>
+              </div>
+            </template>
+
+            <!-- Skeleton Loader when data is loading -->
+            <template v-else>
+              <div v-for="i in 3" :key="i">
+                <v-skeleton-loader 
+                  type="card" 
+                  class="me-4" 
+                  style="border-radius: 16px; height: 200px; width: 200px;"
+                  :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
                 />
-              </v-card>
-            </div>
+              </div>
+            </template>
           </div>
+
  
 
 

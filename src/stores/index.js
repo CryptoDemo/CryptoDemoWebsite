@@ -55,6 +55,7 @@ export const useStore = defineStore('app',()=> {
       OnlineCheck:"",
       chat_messages: [],
       new_chat_messages: [],
+      selected_trade_ID_from_active_trade:""
     });
   
   
@@ -264,6 +265,7 @@ export const useStore = defineStore('app',()=> {
     state.selected_offer_from_trades = "",
     state.selected_trade_ID = "",
     state.OnlineCheck = "",
+    state.selected_trade_ID_from_active_trade = "",
     state.chat_messages = [],
     state.new_chat_messages = [],
    

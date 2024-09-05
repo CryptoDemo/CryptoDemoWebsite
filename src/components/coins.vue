@@ -12,7 +12,7 @@
             </div>
 
             <div @click.stop class="search-div" style="margin-top: 3px; margin-bottom: 15px; display: flex; width: 40%; margin-inline-start: auto;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none"
+              <svg xmlns="http://www.w3.org/2000/svg" class="searchIcon" width="21" height="21" viewBox="0 0 21 21" fill="none"
                 style="margin-left: 16px; margin-top: 19px; left: 13%; margin-right: 10px; position: relative;">
                 <path
                   d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z"
@@ -212,11 +212,6 @@ const convertCurrencies = async () => {
 
 
 
-
-
-
-
-
 const chainIcon = computed(() => {
   return pinia.state.tokenLists.find(c => c?.symbol === "BNB" || c?.symbol === "TRX");
 });
@@ -373,16 +368,6 @@ input[type="search"]::-webkit-search-cancel-button {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-/* .search-div :deep(.v-field__clearable > .v-icon){
-opacity: var(--v-medium-emphasis-opacity);
-margin-right: 15px;
-position: relative;
-bottom: 2px;
-}
-.search-div :deep(.v-textarea .v-field--no-label textarea, .v-textarea .v-field--active textarea) {
-  opacity: 1;
-  margin-bottom: 24px;
-} */
 
 
 @media screen and (max-width: 600px) {
@@ -435,6 +420,9 @@ bottom: 2px;
   }
   .search-div{
     width: 80% !important;
+  }
+  .searchIcon{
+    left: 17% !important;
   }
   }
 

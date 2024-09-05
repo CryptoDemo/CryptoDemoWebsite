@@ -9,11 +9,11 @@
         <v-row no-gutters>
           <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
             <v-form @click.prevent> 
-            <div class="" style="margin-top:150px;">
+            <div class="" style="margin-top:45px;">
              <span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Login to Demo</span>
             </div>
 
-              <div class="position-relative" style="margin-top:180px;">
+              <div class="position-relative" style="margin-top:110px;">
             
             
                 <v-text-field placeholder="Email Address" class="pr-14" variant="plain" :class="isDark ? 'input-styling':'input-styling-light'" v-model="email" style="font-size: 12px !important;">
@@ -70,9 +70,11 @@
                   </span>
               </div>
               </div> 
+
+              <HCaptcha :siteKey="siteKey" class="mt-7"/>
   
               <NuxtLink to="/authentication/reset-password"><span class="resend-code d-flex" style="margin-top:21px; justify-content: end;">Forgot Password?</span></NuxtLink>
-              <Button :disabled="!isFormValid" :loading="loading" @click.prevent="isFormValid ? login() : null" buttonText="Continue" class="" style="margin-top: 47px; margin-bottom:206px"/>
+              <Button :disabled="!isFormValid" :loading="loading" @click.prevent="isFormValid ? login() : null" buttonText="Continue" class="" style="margin-top: 47px; margin-bottom:106px"/>
             </v-form>
           </v-col>
         
@@ -92,11 +94,12 @@
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 import { signIn } from "@/composables/requests/auth";
+import HCaptcha from '~/components/HCaptcha.vue'
 
 const theme = useTheme()
 const isDark = computed(() =>  theme?.global?.current.value?.dark);
 const isToggled = ref(true);
-
+const siteKey = ref('691a65d2-c3b2-4f70-8236-e56ce68c63ba')
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };
@@ -112,6 +115,18 @@ const login = async () => {
   pinia.setEmail(email.value)
   const device = useDevice();
   loading.value = true;
+
+  // Fetch hCaptcha response token from the form
+  const hCaptchaToken = document.querySelector('[name="h-captcha-response"]').value;
+
+  if (!hCaptchaToken) {
+    // Display error if hCaptcha is not completed
+    push.error('Please complete the hCaptcha challenge.', { duration: 2000 });
+    loading.value = false;
+    return;
+  }
+
+
   const userLogin = {
     email: email.value,
     password: password.value,

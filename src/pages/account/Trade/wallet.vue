@@ -132,7 +132,7 @@
                                 </td>
                                 <td style="display: flex; align-items: center;"> 
                                   <div style="width: 80px;"> 
-                                    <v-btn @click.prevent="navigateTo('/account/trade/getButton')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                                    <v-btn @click.prevent="navigateTo('/account/trade/getCoin')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
                                       <img src="/svg/send-arrow.svg" class="me-1"/>
                                       <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
                                     </v-btn>
@@ -163,7 +163,7 @@
             
                     <td class="flex-md-and-up hidden-sm-and-down me-3" style="display: flex; align-items: center; color: white;"> 
                       <div>  
-                        <v-btn @click.prevent="navigateTo('/account/trade/sendButton')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                        <v-btn @click.prevent="navigateTo('/account/trade/sendCoin')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
                           <img src="/svg/send-arrow.svg" class="me-1"/>
                           <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
                         </v-btn>
@@ -172,7 +172,7 @@
 
                     <td class=" flex-md-and-up hidden-sm-and-down me-3" style="display: flex; align-items: center; color: white;">
                         <div> 
-                        <v-btn @click.prevent="navigateTo('/account/trade/getButton')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                        <v-btn @click.prevent="navigateTo('/account/trade/getCoin')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
                           <img src="/svg/get.svg" class="me-1"/>
                           <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
                         </v-btn>

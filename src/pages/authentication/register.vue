@@ -104,6 +104,8 @@
                     </svg>
                     </v-icon>
                 </v-text-field> 
+
+                <HCaptcha :siteKey="siteKey" class="mt-7"/>
                 
                   <NuxtLink to="/authentication/sign-up-email-verification">  
                     <Button buttonText="Continue" :loading="loading"  @click.prevent="register()" class="mt-7"/>
@@ -128,7 +130,7 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import {register_} from "@/composables/requests/auth";
-
+import HCaptcha from '~/components/HCaptcha.vue'
 
 
 const theme = useTheme()
@@ -141,6 +143,7 @@ const referralcode =ref("");
 const country = ref(pinia.state.geo.country)
 const loading = ref(false);
 const isToggled = ref(true);
+const siteKey = ref('691a65d2-c3b2-4f70-8236-e56ce68c63ba');
 const togglePassword = () => {
   isToggled.value = !isToggled.value;
 };
@@ -180,6 +183,18 @@ const register = async () => {
 
   loading.value = true;
   const device = useDevice();
+
+
+  // Fetch hCaptcha response token from the form
+  const hCaptchaToken = document.querySelector('[name="h-captcha-response"]').value;
+
+  if (!hCaptchaToken) {
+    // Display error if hCaptcha is not completed
+    push.error('Please complete the hCaptcha challenge.', { duration: 2000 });
+    loading.value = false;
+    return;
+  }
+
   const registerInfo = {
     name: name.value,
     email: email.value,
