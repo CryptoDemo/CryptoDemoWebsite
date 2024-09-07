@@ -42,8 +42,7 @@
           style="border-radius: 10px; padding: 8px; font-size: 14px;">
           <span class="warning-text">Please, make a payment of {{ formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}
             <span>{{ pinia.state.allcountries.find((c) => c.id ===
-              selectedCoin.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span>
-            using Bank Transfer. {{ selectedCoin.bid.expected_token_quantity }} {{
+              selectedCoin?.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span>using Bank Transfer. {{ selectedCoin?.bid?.expected_token_quantity }} {{
               selectedCoin?.offer?.trading_pair?.crypto?.token?.name }} will be added to your Crypto wallet</span>
         </v-alert>
 
@@ -217,8 +216,8 @@
 
               <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;letter-spacing: 0.1px;">
                 <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600; line-height: 24px; letter-spacing: 0.1px;">
-                  You're buying {{ selectedCoin.bid.expected_token_quantity }} {{selectedCoin?.offer?.trading_pair?.crypto?.token?.name }} for {{formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}
-                  <span>{{ pinia.state.allcountries.find((c) => c.id === selectedCoin.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span> via Bank Transfer. </span>
+                  You're buying {{ selectedCoin?.bid?.expected_token_quantity }} {{selectedCoin?.offer?.trading_pair?.crypto?.token?.name }} for {{formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}
+                  <span>{{ pinia.state.allcountries.find((c) => c.id === selectedCoin?.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span> via Bank Transfer. </span>
                 <div style="display: grid" :class="isDark ? 'text-dark' : 'text-light'">
                   <span class="mb-1 mt-2">Before paying, carefully read the terms of the trade of the advertiser. make sure to use the specified payment method stated in the Ad.</span>
                 </div>
@@ -288,7 +287,7 @@
             <div class="dialog-div" style="position: relative; margin-top: 0px;">
               <!-- <div class="chat-border" style="margin-top: 15px;"></div> -->
               <div class="msg-div" :class="isDark ? 'footer' : 'footer-light'"
-                style="display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 35px; left: 35%; right: 9%; width: 55%; height: 70px; padding: 0 15px; box-sizing: border-box;">
+                style="display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 55px; left: 35%; right: 9%; width: 55%; height: 70px; padding: 0 15px; box-sizing: border-box;">
 
                 <v-dialog v-model="dialog" transition="dialog-bottom-transition" fullscreen>
 
@@ -360,8 +359,8 @@
 
                 <textarea type="text" placeholder="Type a message..."  v-model="message" style="background: inherit !important; width: 100%; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px;" />
 
-                <button @click.prevent="send_message()" class="ml-5"
-                  style="border-radius: 10px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); backdrop-filter: blur(10.5px); width: fit-content; padding: 10px; display: flex; align-items: center;">
+                <button type="button" @click.prevent.stop="send_message()" class="ml-5 position-relative"
+                  style="border-radius: 10px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); backdrop-filter: blur(10.5px); width: fit-content; padding: 10px; display: flex; align-items: center; z-index: 100;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                     <path
                       d="M16.2896 3.68937C20.1059 2.41937 22.1794 4.49937 20.9173 8.30937L18.0826 16.7994C16.1794 22.5094 13.0542 22.5094 11.1511 16.7994L10.3097 14.2794L7.78547 13.4394C2.06598 11.5394 2.06598 8.42937 7.78547 6.51937L12.3931 4.98937"
@@ -371,7 +370,7 @@
                   </svg>
                 </button>
 
-              </div>
+              </div> 
 
             </div>
           </div>
@@ -464,7 +463,9 @@ import { useTheme } from "vuetify";
 import { getMessages, sendMessages, releaseOder, createDispute } from "@/composables/requests/chats";
 import { compressImage } from "@/composables/mixin";
 import { uploadUserFile } from "@/composables/requests/file";
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
 
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
@@ -478,7 +479,7 @@ const chatDate = ref('Today, 8:26 AM')
 const myfile = ref(null);
 const menu = ref(false);
 const fileInputRef = ref(null);
-const dialog = ref();
+const dialog = ref(false);
 const autoMsgs = ref();
 const disputeMsg = ref();
 const showTextarea = ref(false);
@@ -534,28 +535,79 @@ const selectedCoinId = pinia.state.selected_trade_ID;
 const selectedCoin = computed(() => pinia.state.allMyOders.find(item => item.id === selectedCoinId));
 console.log(selectedCoin)
 
-const get_allchat = async () => {
-  try {
-    const data = await getMessages(pageNumber.value);
-    if (data.success) {
-      const messages = data.data.result
-      let arr = [...messages];
-      let alldata = arr;
-      alldata.sort((a, b) => a.ordering_number - b.ordering_number);
-      pinia.setChat_messages(alldata)
+// const get_allchat = async () => {
+//   try {
+//     const data = await getMessages(pageNumber.value);
+//     if (data.success) {
+//       const messages = data.data.result
+//       let arr = [...messages];
+//       let alldata = arr;
+//       alldata.sort((a, b) => a.ordering_number - b.ordering_number);
+//       pinia.setChat_messages(alldata)
 
+//     } else {
+//       push.error(`${data.message}`);
+//     }
+//   } catch (e) {
+//     console.log(e);
+//   } finally {
+//     loading.value = false;
+//   }
+// };
+
+// In your Vue component or script
+
+
+
+const get_allchat = async () => {
+  loading.value = true;
+
+  try {
+    // Fetch messages in the main thread
+    const data = await getMessages(pageNumber.value);
+
+    if (data.success) {
+      // Create a new Worker
+      const worker = new Worker('/worker/index.js');
+
+      // Send the messages to the worker for processing (e.g., sorting)
+      worker.postMessage({ messages: data.data.result });
+
+      // Handle the response from the worker
+      worker.onmessage = (event) => {
+        const { success, messages, message } = event.data;
+
+        if (success) {
+          // Update Pinia with sorted messages
+          pinia.setChat_messages(messages);
+        } else {
+          push.error(message);
+        }
+
+        // Clean up the worker
+        worker.terminate();
+        loading.value = false;
+      };
+
+      // Handle errors in the worker
+      worker.onerror = (error) => {
+        console.error('Worker error:', error);
+        worker.terminate();
+        loading.value = false;
+      };
     } else {
-      push.error(`${data.message}`);
+      push.error(data.message);
+      loading.value = false;
     }
   } catch (e) {
     console.log(e);
-  } finally {
     loading.value = false;
   }
 };
 
 
-console.log(selectedCoin.value)
+
+
 
 const send_message = async () => {
 
@@ -717,6 +769,7 @@ const create_Dispute = async () => {
     loading.value = false;
   }
 };
+
 const release_order = async () => {
 
   const payload = {
@@ -786,6 +839,8 @@ onMounted(() => {
   get_allchat();
   checkUserOnlineStatus();
   window.scrollTo(1000, 1000);
+  const defaultMessage = route.query.message || ''; // Use the query param if available
+  message.value = defaultMessage;
 });
 
 

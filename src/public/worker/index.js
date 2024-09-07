@@ -1,29 +1,19 @@
 // fetchWorker.js
 
-self.addEventListener('message', async (event) => {
-  
-    const { symbol } = event.data;
+self.onmessage = (event) => {
+  const { messages } = event.data;
 
-    console.log(symbol)
-    
-    try {
-      const destination = `https://api.binance.com/api/v3/ticker/24hr?symbols=${symbol}`;
-      console.log(destination)
-      const response = await fetch(`https://reverseproxy-pid1.onrender.com/proxy?destination=${destination}`, {
-        headers: { 'Accept': 'application/json' }
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch symbol price');
-      }
-      
-      const data = await response.json();
-      self.postMessage(data);
-      
-    } catch (error) {
-      console.error('Error fetching symbol price:', error);
-      self.postMessage({ error: error.message });
-    }
+  // Sort the messages by ordering_number
+  let arr = [...messages];
+  let alldata = arr.sort((a, b) => a.ordering_number - b.ordering_number);
 
-  });
+  // Send sorted messages back to the main thread
+  self.postMessage({ success: true, messages: alldata });
+
+  console.log('Web Worker sent sorted messages.');
+};
+
+
+
+
   

@@ -114,6 +114,15 @@ const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.
 const symbols = tokensForSelectedNetwork.map(token => token.symbol);
 const pageNumber = ref(1);
 
+// Helper function to update token balances
+const updateTokenBalances = (tokens, balances) => {
+  return tokens.map(token => {
+    const tokenData = balances.find(t => t.token === token.symbol);
+    return tokenData ? { ...token, balance: tokenData.balance } : token;
+  });
+};
+
+// Main function to fetch tokens and update balances/conversions
 const getTokens_ = async () => {
   try {
     const data = await getTokens(pageNumber.value, pinia.state.selectedNetwork.toLowerCase());
@@ -127,9 +136,10 @@ const getTokens_ = async () => {
       // Convert currencies after updating token balances
       await convertCurrencies();
 
-
-      // Update token balances 
-      await getTokenBals();
+      // Update token balances
+      setTimeout(async () => {
+        await getTokenBals();
+      }, 2000); 
 
     } else {
       // Display a message to the user if fetching tokens was unsuccessful
@@ -137,37 +147,26 @@ const getTokens_ = async () => {
     }
   } catch (error) {
     // Log the error to the console
-    console.log(error);
+    console.log("Error fetching tokens:", error);
   }
 };
 
+// Function to fetch token balances
 const getTokenBals = async () => {
-
-  // Check if user is authenticated
   if (pinia.state.isAuthenticated) {
     try {
-      // Fetch token balance
+      // Fetch token balances
       const data = await getTokenBalance(symbols);
 
-      // Update tokens with the new balance
       if (data.success) {
-        // Create a copy of the token list to update locally
-        const updatedTokensBals = pinia.state.tokenLists.map(token => {
-          const tokenData = data.data.find(t => t.token === token.symbol);
-          if (tokenData) {
-            return { ...token, balance: tokenData.balance };
-          }
-          return token;
-        });
+        // Update the tokens with the new balance
+        const updatedTokensBals = updateTokenBalances(pinia.state.tokenLists, data.data);
 
-        // Update the token store with the new balances
-
-        pinia.setTokenLists(updatedTokensBals)
-
-        // Optionally, you can return or use `updatedTokens` as needed
+        // Force state change by creating a new reference
+        pinia.setTokenLists([...updatedTokensBals]); // Spread to create a new array reference
 
       } else {
-        console.log('Error:', data.message);
+        console.log('Error fetching balances:', data.message);
       }
     } catch (error) {
       console.log('Fetch error:', error);
@@ -176,6 +175,7 @@ const getTokenBals = async () => {
 };
 
 
+// Function to convert currencies for each token
 const convertCurrencies = async () => {
   const coins = pinia.state.tokenLists;
 
@@ -185,7 +185,6 @@ const convertCurrencies = async () => {
     to: pinia.state.preferredCurrency
   }));
 
-  console.log(convertCurrency)
   try {
     const data = await currencyConverter(convertCurrency);
 
@@ -199,9 +198,9 @@ const convertCurrencies = async () => {
         };
       });
 
-      console.log(updatedTokens)
       // Update the Pinia state with the new token list including conversion rates
       pinia.setTokenLists(updatedTokens);
+
     } else {
       console.log("Conversion failed:", data.message);
     }
@@ -209,6 +208,7 @@ const convertCurrencies = async () => {
     console.log("Error converting currencies:", error);
   }
 };
+
 
 
 
@@ -247,8 +247,6 @@ watch(() => pinia.state.selectedNetwork, async (newNetwork) => {
     pinia.state.tokenLists = []
     await Promise.allSettled([
       getTokens_(),
-      convertCurrencies(),
-      getTokenBals()
     ])
   }
 })
@@ -260,8 +258,6 @@ const fetch_token_bals = async()=>{
   }else{
     await Promise.allSettled([
       getTokens_(),
-      convertCurrencies(),
-      getTokenBals()
     ])
     
   }
@@ -272,7 +268,6 @@ const fetch_token_bals = async()=>{
 
 onBeforeMount(() => {
   fetch_token_bals();
-  convertCurrencies();
 });
 
 

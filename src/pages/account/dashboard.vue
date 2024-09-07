@@ -290,7 +290,6 @@ const convertCurrencies = async () => {
           rate: item.value
         }));
 
-        await getTokenBals()
 
       } else {
         console.log("Conversion failed:", data.message);

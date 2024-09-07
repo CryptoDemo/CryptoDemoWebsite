@@ -55,7 +55,6 @@ export const useStore = defineStore('app',()=> {
       OnlineCheck:"",
       chat_messages: [],
       new_chat_messages: [],
-      selected_trade_ID_from_active_trade:""
     });
   
   
@@ -187,6 +186,10 @@ export const useStore = defineStore('app',()=> {
     state.getSingleTxnID = payload;    
   };
 
+  const setSelected_trade_ID = (payload) => {
+    state.selected_trade_ID = payload;    
+  };
+
   const setFiat_swap_details = (payload) => {
     state.Fiat_swap_details = payload;    
   };
@@ -265,7 +268,6 @@ export const useStore = defineStore('app',()=> {
     state.selected_offer_from_trades = "",
     state.selected_trade_ID = "",
     state.OnlineCheck = "",
-    state.selected_trade_ID_from_active_trade = "",
     state.chat_messages = [],
     state.new_chat_messages = [],
    
@@ -314,6 +316,7 @@ export const useStore = defineStore('app',()=> {
       setNewChatMessages,
       setOnlineCheck,
       setConvertedPriceValue,
+      setSelected_trade_ID,
     }
 },
   {persist: {

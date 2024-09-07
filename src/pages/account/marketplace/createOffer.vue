@@ -415,7 +415,7 @@ font-family: Manrope;
     width: 100% !important;
   }
   .offer-txt1, .prc1 {
-    font-size: 22px;
+    font-size: 21px;
   }
 
   .trd-prc {

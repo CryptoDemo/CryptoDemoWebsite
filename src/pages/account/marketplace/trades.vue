@@ -57,35 +57,11 @@
           {{ alertMessage }}
         </v-alert>
 
-        <div
-          class="mt-5"
-          style="height: 500px; overflow-y: scroll; margin-bottom: 150px"
-        >
-          <div
-            v-if="!filteredOrders.length"
-            style="
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              margin: auto;
-              margin-top: 70px;
-            ">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="60"
-              height="60"
-              viewBox="0 0 24 24"
-              fill="none"
-              style="display: flex; align-self: center"
-            >
+        <div class="mt-5" style="height: 500px; overflow-y: scroll; margin-bottom: 150px">
+          <div v-if="!filteredOrders.length" style="display: flex; flex-direction: column; justify-content: center; margin: auto; margin-top: 70px; ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" style="display: flex; align-self: center">
               <defs>
-                <linearGradient
-                  id="gradient1"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
+                <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#2873FF" />
                   <stop offset="100%" stop-color="#0B6B96" />
                 </linearGradient>
@@ -122,12 +98,7 @@
             </svg>
 
             <span class="text-center">No active trades available.</span>
-            <span
-              @click="navigateTo('/account/marketplace/activeOffers')"
-              class="text-decoration-underline text-subtitle-2 text-center cursor-pointer"
-              :class="isDark ? 'text-dark' : 'text-light'"
-              >Perform trades to see them here</span
-            >
+            <span @click="navigateTo('/account/marketplace/activeOffers')" class="text-decoration-underline text-subtitle-2 text-center cursor-pointer" :class="isDark ? 'text-dark' : 'text-light'">Perform trades to see them here</span>
           </div>
 
           <v-dialog v-model="dialog">
@@ -250,7 +221,7 @@
                         <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">Provide a screenshot or any evidence  of payment you have.</span>
                         <li class="mt-5">Request crypto Transfer</li>
                         <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">Send it to the seller and request for a crypto transfer via Demo pay in the chat</span>
-                        <v-btn class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 100%; height: 45px;">Request crypto transfer</v-btn>
+                        <v-btn  @click="navigateTo('/account/marketplace/tradechat?message=Hi, i have paid but the order has been cancelled by the system, please credit me.');" class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 100%; height: 45px;">Request crypto transfer</v-btn>
                         <li class="mt-5">Place New Order</li>
                         <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">If the seller does not respond, place a new order of the same ammount you paid. Tap "Transferred", notify seller immeadiately after the order is created </span>
                         <v-btn class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 100%; height: 45px;">Place new order</v-btn>
@@ -295,7 +266,7 @@ const selectedOrder = ref(null)
 const openDialog = (order) => {
   selectedOrder.value = order
   pinia.state.selected_trade_ID_from_active_trade = order.id
-  console.log(selectedOrder.value)
+  pinia.state.selected_trade_ID = order?.id
   dialog.value = true
 }
 
