@@ -13,35 +13,25 @@
             <span class="marketPlace" style="font-size: 24px; font-style: 28px; font-weight: 600; color: #5892FF;">Dashboard</span>
             <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
           </div>
-
-
-     
+    
          <div style="display: flex; justify-content: space-between; overflow-x: auto;">
             <!-- Check if data is loaded, otherwise show skeleton loaders -->
             <template v-if="multipliedValues && multipliedValues.length > 0">
               <div v-for="(item, i) in multipliedValues.slice(0, 3)" :key="i">
-                <v-card link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 16px;">
+                <v-card link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
                   <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">
                     {{ formatBalance(item.product) }} {{ pinia.state.preferredCurrency }}
                   </span>
-                  <span :class="isDark ? 'text-dark':'text-light'">
+                  <span class="mt-2" :class="isDark ? 'text-dark':'text-light'">
                     {{ formatBalance(item.balance) }}
                     <span style="margin-left: 4px;">{{ item.symbol }}</span>
                   </span>
 
                   <div class="mt-3 mb-4" style="display: flex; align-items: center;">
                     <img class="me-2" :src="item.icon" alt="coin" width="30" />
-                    <img v-if="chainIcon?.icon" :src="chainIcon.icon" width="15" style="position: relative; right: 17px; margin-top: 16px;" />
+                    <img v-if="chainIcon?.icon" :src="chainIcon?.icon" width="15" style="position: relative; right: 17px; margin-top: 16px;" />
                     <span class="coinName" :class="isDark ? 'text-dark':'text-light'">{{ item.name }}</span>
                   </div>
-
-                  <v-progress-linear 
-                    :color="item.icon_dominant_color || '#2873FF'" 
-                    height="8" 
-                    :width="15" 
-                    model-value="100" 
-                    rounded 
-                  />
                 </v-card>
               </div>
             </template>
@@ -58,9 +48,6 @@
               </div>
             </template>
           </div>
-
- 
-
 
           <div style="margin-top: -110px; margin-bottom: 30px;">
             <Coins/>
@@ -142,7 +129,7 @@
             </v-card>
 
         
-              <v-carousel height="400"  cycle  :show-arrows="false" class="carousel-item" style="border-radius: 10px;">
+            <v-carousel height="400"  cycle  :show-arrows="false" class="carousel-item" style="border-radius: 10px;">
               <v-carousel-item v-for="(slide, i) in slides" :key="i">
 
                 <v-sheet :style="`background: ${slide.background};`"  height="100%" style="padding-top: 20px;">
@@ -438,7 +425,7 @@ onMounted(() => {
 
 <style scoped>
 .coinbox{
-width: 226.73px;
+width: 256.73px;
 flex-shrink: 0;
 padding: 24px;
 display: flex;
@@ -511,34 +498,41 @@ width: 152px;
 margin-top: 20px;
 }
 
-.coinbox{
-width: 226.73px;
-flex-shrink: 0;
-padding: 24px;
-display: flex;
-flex-direction: column;
-margin-top: 10px;
-}
 .balance{
 color: var(--White, var(--Colors-Base-white, #FFF));
 font-family: Manrope;
-font-size: 20px;
+font-size: 22px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
 }
 .coinName{
 font-family: Manrope;
-font-size: 14px;
+font-size: 16px;
 font-style: normal;
-font-weight: 400;
+font-weight: 500;
 line-height: normal;
+margin-left: -8px;
 }
 .coin-name{
 color: white !important;
 }
 .coin-name-light{
 color: #10192D;
+}
+
+.carousel-item :deep(.v-carousel__controls) {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  list-style-type: none;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  background: none !important;
+  color: rgb(51 143 220);
 }
 
 @media only screen and (max-width: 600px) {

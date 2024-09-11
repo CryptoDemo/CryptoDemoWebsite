@@ -403,21 +403,21 @@ const fetch_token_bals = async()=>{
 
 }
 
-const fetch_Web3_txn = async()=>{
-  if(pinia.state.TransactionDetails.length){
-    return 
-  }else{
-    await Promise.allSettled([
-    getWebTrans(),
-    ])
+// const fetch_Web3_txn = async()=>{
+//   if(pinia.state.TransactionDetails.length){
+//     return 
+//   }else{
+//     await Promise.allSettled([
+//     getWebTrans(),
+//     ])
     
-  }
+//   }
 
-}
+// }
 
-onMounted(() => {
-  fetch_Web3_txn();
-});
+// onMounted(() => {
+//   fetch_Web3_txn();
+// });
 
 onBeforeMount(() => {
   fetch_token_bals();

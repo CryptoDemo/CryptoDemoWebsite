@@ -95,6 +95,16 @@
               <img :src="selectedCoin?.offer?.user?.profile_image || '/img/Bitcoin.png'" class="mr-2"
                 style="width: 40px; height: 40px; border-radius: 40px;" />
               <div class="d-flex" style="flex-direction: column;">
+
+                <!-- <div style="display: flex; align-items: center; line-height: 30px;">
+                  <img v-if="selectedCoin?.offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" style="width: 30px; height: 30px; border-radius: 30px;" />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#8e9bae" class="bi bi-person-bounding-box" viewBox="0 0 16 16" v-else>
+                    <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                  </svg>
+                  <span class="me-3 ml-2" style="font-size: 14px; font-weight: 600; text-transform: capitalize">{{ offer?.user?.username}}</span>
+                </div> -->
+
                 <div v-if="pinia.state?.user?.kyc_verified" style="display: flex; align-items: center">
                   <span style="font-size: 16px; font-style: normal; font-weight: 600;">{{
                     selectedCoin?.offer?.user?.username }}</span>
@@ -208,7 +218,7 @@
             <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
               style="border-radius: 12px; width: 90px; height: 46px; margin: auto; margin-top: 80px; margin-bottom: 25px">
               <span
-                style="font-size: 10px;  font-weight: 400; line-height: 26px;  display: flex; justify-content: center; padding-top: 12px ">{{ chatDate }}</span>
+                style="font-size: 10px;  font-weight: 400; line-height: 26px;  display: flex; justify-content: center; padding-top: 12px ">{{ chatTime }}</span>
             </div>
 
             <div class="ma-2 custom-msg" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
@@ -444,7 +454,7 @@
             </div>
 
             <div style="margin-top: 20px;">
-              <v-btn @click="create_Dispute()" class="primary-btn1" style="border-radius: 10px !important; width: 100%; height: 55px; font-weight: 600;">Create dispute</v-btn>
+              <v-btn @click="create_Dispute()" class="primary-btn1" style="border-radius: 10px !important; width: 100%; height: 55px; font-weight: 600;">Create Dispute</v-btn>
             </div>
           </div>
 
@@ -475,7 +485,7 @@ const loading = ref();
 const message = ref('');
 const file_url = ref(null);
 const preview = ref();
-const chatDate = ref('Today, 8:26 AM')
+const chatTime = ref('')
 const myfile = ref(null);
 const menu = ref(false);
 const fileInputRef = ref(null);
@@ -535,78 +545,51 @@ const selectedCoinId = pinia.state.selected_trade_ID;
 const selectedCoin = computed(() => pinia.state.allMyOders.find(item => item.id === selectedCoinId));
 console.log(selectedCoin)
 
-// const get_allchat = async () => {
-//   try {
-//     const data = await getMessages(pageNumber.value);
-//     if (data.success) {
-//       const messages = data.data.result
-//       let arr = [...messages];
-//       let alldata = arr;
-//       alldata.sort((a, b) => a.ordering_number - b.ordering_number);
-//       pinia.setChat_messages(alldata)
-
-//     } else {
-//       push.error(`${data.message}`);
-//     }
-//   } catch (e) {
-//     console.log(e);
-//   } finally {
-//     loading.value = false;
-//   }
-// };
-
-// In your Vue component or script
-
-
+const worker = new Worker('/worker/index.js'); // Path to your Web Worker
 
 const get_allchat = async () => {
-  loading.value = true;
-
   try {
-    // Fetch messages in the main thread
-    const data = await getMessages(pageNumber.value);
+    loading.value = true; // Set loading to true before starting
 
-    if (data.success) {
-      // Create a new Worker
-      const worker = new Worker('/worker/index.js');
+    // Fetch messages from API
+    const response = await getMessages(pageNumber.value);
+    if (response.success) {
+      const messages = response.data.result;
 
-      // Send the messages to the worker for processing (e.g., sorting)
-      worker.postMessage({ messages: data.data.result });
+      // Ensure messages is an array before sending to the worker
+      if (!Array.isArray(messages)) {
+        throw new Error('Fetched messages data is not an array');
+      }
 
-      // Handle the response from the worker
+      // Handle worker response
       worker.onmessage = (event) => {
-        const { success, messages, message } = event.data;
-
-        if (success) {
-          // Update Pinia with sorted messages
-          pinia.setChat_messages(messages);
+        if (event.data.success && event.data.type === 'sortMessages') {
+          const sortedMessages = event.data.messages;
+          pinia.setChat_messages(sortedMessages); // Update state with sorted messages
         } else {
-          push.error(message);
+          console.error('Worker failed to sort messages:', event.data.message);
         }
-
-        // Clean up the worker
-        worker.terminate();
-        loading.value = false;
       };
 
-      // Handle errors in the worker
+      // Handle worker errors
       worker.onerror = (error) => {
-        console.error('Worker error:', error);
-        worker.terminate();
-        loading.value = false;
+        console.error('Worker error:', error.message);
       };
+
+      // Send messages to the worker for sorting
+      worker.postMessage({
+        type: 'sortMessages',
+        messages: messages,
+      });
     } else {
-      push.error(data.message);
-      loading.value = false;
+      push.error(`${response.message}`);
     }
   } catch (e) {
     console.log(e);
-    loading.value = false;
+  } finally {
+    loading.value = false; // Set loading to false after completion
   }
 };
-
-
-
 
 
 const send_message = async () => {
@@ -701,7 +684,7 @@ const checkUserOnlineStatus = () => {
     const nuxtApp = useNuxtApp();
     const $socketClient = nuxtApp.vueApp.config.globalProperties?.$socketClient;
     if ($socketClient?.instance?.readyState != 1) return;
-    const id = selectedCoin.value.buyer_id === pinia.state.user.id ? selectedCoin.value.seller_id : selectedCoin.value.buyer_id
+    const id = selectedCoin.value?.buyer_id === pinia.state.user.id ? selectedCoin.value?.seller_id : selectedCoin.value?.buyer_id
     let message = {
       check_online_status: {
         user_id: id,
@@ -826,13 +809,18 @@ const open_Image = (id) => {
   show_image.value = true
 }
 
-// const triggerFileUpload = () => {
-//   document.getElementById('file-upload').click();
-// };
 
 const isChevronToggled = ref(false);
 const toggleChevron = () => {
   isChevronToggled.value = !isChevronToggled.value;
+};
+
+const formatChatTime = (date) => {
+  return date.toLocaleTimeString('en-US', { 
+    hour: '2-digit', 
+    minute: '2-digit', 
+    second: '2-digit' 
+  });
 };
 
 onMounted(() => {
@@ -841,6 +829,8 @@ onMounted(() => {
   window.scrollTo(1000, 1000);
   const defaultMessage = route.query.message || ''; // Use the query param if available
   message.value = defaultMessage;
+  const now = new Date();
+  chatTime.value = formatChatTime(now);
 });
 
 

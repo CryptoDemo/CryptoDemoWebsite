@@ -210,44 +210,55 @@ const datainfo = ref(pinia.state.TransactionDetails || []);
 const transData = ref(null)
 
 
+const worker = new Worker('/worker/index.js'); // Path to your worker file
+
+
 
 const getWebTrans = async () => {
   isloading.value = true;
-  console.log('Fetching data for network:', pinia.state.selectedNetwork.toLowerCase());
   datainfo.value = [];
+
   try {
     const data = await getWebTransaction(pageNumber.value, pinia.state.selectedNetwork.toLowerCase());
-
     if (data.success) {
-      console.log(data.data)
-      // Ensure datainfo.value is an array
-      const currentData = Array.isArray(datainfo.value) ? datainfo.value : [];
-      // Merge new data with existing data
-      const newData = [...currentData, ...data.data.result];
-
-      if (newData.length === 0) {
-        datainfo.value = []; // Set empty array
-      } else {
-        datainfo.value = filterByKey("id", newData);
-      }
-
-      // Optionally update pageNumber or handle pagination
-      // pageNumber.value += 1;
-
-      // Update Pinia store with the latest data
-      pinia.setTransactionDetails(datainfo.value);
+      const result = data.data.result;
+      worker.postMessage({
+        type: 'prepareTransaction',
+        data: result,
+      });
     } else {
-      // Display error message
-      push.error(data.message || 'An error occurred');
+      push.error(result.message || 'An error occurred');
     }
   } catch (error) {
-    // Log the error with context
-    console.error('Failed to fetch transactions:', error);
-  } finally {
-    // Ensure that the loading state is updated regardless of success or failure
-    isloading.value = false;
+    push.error('An error occurred while fetching transactions');
   }
+
+  worker.onmessage = (event) => {
+    const { success, type, result, message } = event.data;
+
+    if (type === 'prepareTransaction') {
+      if (success) {
+        const currentData = Array.isArray(datainfo.value) ? datainfo.value : [];
+        const newData = [...currentData, ...result];
+        datainfo.value = newData.length ? filterByKey("id", newData) : [];
+        pinia.setTransactionDetails(datainfo.value);
+      } else {
+        push.error(message || 'An error occurred');
+      }
+    }
+
+    isloading.value = false;
+  };
+
+  worker.onerror = (error) => {
+    console.error('Worker error:', error);
+    push.error('An error occurred in the worker');
+    isloading.value = false;
+  };
 };
+
+
+
 
 watch(() => pinia.state.selectedNetwork.toLowerCase(),
   (newNetwork) => {
@@ -296,17 +307,33 @@ const copyToClipboard = (text) => {
   });
 }
 
-const fetch_Web3_txn = async()=>{
-  if(pinia.state.TransactionDetails.length){
-    return 
-  }else{
-    await Promise.allSettled([
-    getWebTrans(),
-    ])
-    
+const fetch_Web3_txn = async () => {
+  if (pinia.state.TransactionDetails.length) {
+    return; // No need to fetch if details already exist
   }
 
-}
+  try {
+    const results = await Promise.allSettled([
+    getWebTrans(),
+    ]);
+
+    // Handle results
+    results.forEach(result => {
+      if (result.status === 'fulfilled') {
+        // Process successful result
+        console.log('Fetch successful:', result.value);
+      } else {
+        // Handle error
+        console.error('Fetch failed:', result.reason);
+      }
+    });
+
+  } catch (error) {
+    // Handle unexpected errors
+    console.error('An unexpected error occurred:', error);
+  }
+};
+
 
 onMounted(() => {
   fetch_Web3_txn();
