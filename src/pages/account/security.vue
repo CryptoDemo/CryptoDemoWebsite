@@ -30,7 +30,7 @@
                           </div>
 
                                                     
-                          <v-btn @click="toggle2FA()" :class="{ 'primary-btn1': isEnabled, 'toggled': !isEnabled }" class="tggle-btn" style="width: 100px; height: 60px;">
+                          <v-btn @click="toggle2FA()" :class="{ 'primary-btn1': isEnabled, 'toggled': !isEnabled }" class="tggle-btn" style="width: 100px; height: 60px; font-weight: 600">
                             {{ isEnabled ? 'Enable' : 'Disable' }}
                           </v-btn>
                       
@@ -79,8 +79,8 @@
                           </div>
 
                                                     
-                          <v-btn @click="pindialog = true" class="primary-btn1" style="width: 100px; height: 60px;">
-                            Set pin
+                          <v-btn @click="pindialog = true" class="primary-btn1" style="width: 100px; height: 60px; font-weight: 600">
+                            Set Pin
                           </v-btn>
                       
                           <v-dialog v-model="pindialog" max-width="500">
@@ -119,8 +119,8 @@
                           </div>
 
                                                     
-                          <v-btn @click="recoverPindialog = true; recoverPin()" class="primary-btn1" style="width: 100px; height: 60px;">
-                            Reset pin
+                          <v-btn @click="recoverPindialog = true; recoverPin()" class="primary-btn1" style="width: 100px; height: 60px; font-weight: 600;">
+                            Reset Pin
                           </v-btn>
                       
                           <v-dialog v-model="recoverPindialog" max-width="500">
@@ -131,12 +131,12 @@
 
                         
                               <div style="display: flex; flex-direction: column;">
-                                <v-otp-input v-model="Newotp" divider="•" length="4" class="mx-auto" variant="outlined"></v-otp-input>  
+                                <v-otp-input v-model="Newotp" length="4" class="mx-auto" variant="underlined"></v-otp-input>  
                                 <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Enter new transfer pin here</span>
                               </div>
                           
                               <div style="display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 15px;">
-                                <v-otp-input v-model="Msgotp" divider="•" length="4" class="mx-auto" variant="outlined"></v-otp-input>
+                                <v-otp-input v-model="Msgotp" length="4" class="mx-auto" variant="underlined"></v-otp-input>
                                 <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Enter the 4 digit pin sent to your email</span>
                               </div>
 
