@@ -24,7 +24,7 @@
           <span :class="isDark ? 'text-dark':'text-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 800!important; line-height: 28px;">Download the Demo mobile app and dive into<br> the world  <br> of crypto trading!</span>
         </div>
       </div>
-      <v-btn  style="border-radius: 8px; display: flex;  background: linear-gradient(360deg, #2873FF, #0B6B96); padding: 6px 45px; color: white; letter-spacing: 0px; box-shadow: none; text-transform: unset; width: 100%; height: 40px!important;">Get app</v-btn>
+      <v-btn  style="border-radius: 8px; display: flex;  background: linear-gradient(360deg, #2873FF, #0B6B96); padding: 6px 45px; color: white; letter-spacing: 0px; box-shadow: none; text-transform: unset; width: 100%; height: 40px!important; font-weight: 600;">Get App</v-btn>
     </div>
   </div>
 </template>

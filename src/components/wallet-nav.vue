@@ -43,6 +43,8 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import { getSummedBalance } from "@/composables/requests/tokens";
+
+
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const isToggled = ref(true);
@@ -59,6 +61,22 @@ const allCountries = pinia.state.allcountries;
 const preferredCurrency = pinia.state.preferredCurrency;
 
 
+const getSummedBal = async () => {
+    if (pinia.state.isAuthenticated) {
+      try {
+        const data = await getSummedBalance(pinia.state.selectedNetwork.toLowerCase())
+        if (data.success) {
+          pinia.setSummedBalance(data.data)
+          }else {
+            console.error("Error:", data.message);
+        }
+ 
+      } catch (error) {
+        console.log(error)
+      }
+    }
+};
+
 const isCamouflageEmpty = computed(() => {
   const camouflage = pinia.state.user.camouflage;
   return !camouflage || Object.keys(camouflage).length === 0;
@@ -72,6 +90,9 @@ const generateAsterisks = () => {
   return '*'.repeat(balanceLength);
 }
 
+// onMounted(() => {
+//   getSummedBal();
+// });
 
 </script>
 

@@ -67,8 +67,25 @@ const fetch_allChainNetworks = async()=>{
 };
 };
 
+const fetch_chainNetworks = async () => {
+  if (pinia.state.BlockchainNetworks.length) {
+    return; // No need to fetch if details already exist
+  }
+
+  try {
+    const results = await Promise.allSettled([
+    fetch_allChainNetworks(),
+    ]);
+
+  } catch (error) {
+    // Handle unexpected errors
+    console.error('An unexpected error occurred:', error);
+  }
+};
+
+
 onMounted(() => {
-  fetch_allChainNetworks();
+  fetch_chainNetworks();
 });
 
 const isChevronToggled = ref(false);

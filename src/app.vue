@@ -11,7 +11,7 @@
           <NotificationProgress :item="item" />
         </Notivue>
 
-        <div style="display: flex; align-items: center; flex-direction: column; cursor: pointer; position: fixed; bottom: 50px; right: 10px;">
+        <div class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center; flex-direction: column; cursor: pointer; position: fixed; bottom: 50px; right: 10px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-wechat" viewBox="0 0 16 16" id="my_custom_link" @click.prevent="activate_chat();">
               <defs>
                 <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">

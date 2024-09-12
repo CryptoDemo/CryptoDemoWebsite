@@ -127,7 +127,7 @@
                 <NotificationSettings />
                 
               <div class="d-flex" style="justify-content: end; margin-top: 16px;">
-                <v-btn class="primary-btn1" :loading="loading" style="height: 60px; width:150px; color: white; box-shadow: none;" @click="UpdateUserInfo()">Update bio</v-btn>
+                <v-btn class="primary-btn1" :loading="loading" style="height: 60px; width:150px; color: white; box-shadow: none; font-weight: 600" @click="UpdateUserInfo()">Update Bio</v-btn>
               </div>
               </div>
             </div>

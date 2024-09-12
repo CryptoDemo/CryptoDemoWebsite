@@ -205,7 +205,7 @@
               </v-card>
             </template>
 
-            <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="chat-modal-info" style="width: 540px; display: flex; margin: auto; border-radius: 16px; padding: 30px;">
+            <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="chat-modal-info" style="width: 540px; display: flex; margin: auto; border-radius: 16px; padding: 30px; position: relative;">
             
               <v-card-text v-if="selectedOrder?.status === 'processing'">
                 <span style="display: flex; justify-content: center; font-weight: 600;">Do you want to cancel this trade?</span>
@@ -232,10 +232,10 @@
 
               </v-card-text>
 
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn text="Close Dialog" @click="dialog = false"></v-btn>
-              </v-card-actions>
+              <!-- <v-card-actions> -->
+                <!-- <v-spacer></v-spacer> -->
+                <!-- <v-btn text="Close Dialog" @click="dialog = false"></v-btn> -->
+              <!-- </v-card-actions> -->
 
             </v-card>
           </v-dialog>

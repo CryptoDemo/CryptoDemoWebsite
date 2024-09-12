@@ -16,6 +16,21 @@
           
 
             <div class="d-md-flex price-div" style="justify-content: space-between; margin-top: 53px; margin-bottom: 66px;">
+              <div :class="{'box1': !priceType, 'box2': priceType}" @click="setPriceType(false)">
+                <span :class="{'mkt-place': !priceType, 'mkt-place1': priceType}">Market Price</span>
+                <span :class="{'mkt-place-caption': !priceType, 'mkt-place-caption1': priceType}">
+                  Your offer's selling price will change according to the market price of Bitcoin. This price is determined by supply and demand dynamics in the marketplace.
+                </span>
+              </div>
+              <div :class="{'box2': !priceType, 'box1': priceType}" @click="setPriceType(true)">
+                <span :class="{'mkt-place1': !priceType, 'mkt-place': priceType}">Fixed Price</span>
+                <span :class="{'mkt-place-caption1': !priceType, 'mkt-place-caption': priceType}">
+                  Your offer's selling price is locked when you create it, and won't change with the market price. This price does not change based on market conditions.
+                </span>
+              </div>
+            </div>
+
+            <!-- <div class="d-md-flex price-div" style="justify-content: space-between; margin-top: 53px; margin-bottom: 66px;">
               <div :class="{'box1': !priceType, 'box2': priceType}" >
                 <span :class="{'mkt-place': !priceType, 'mkt-place1': priceType}">Market Price</span>
                 <span :class="{'mkt-place-caption': !priceType, 'mkt-place-caption1': priceType}">
@@ -28,7 +43,9 @@
                   Your offer's selling price is locked when you create it, and won't change with the market price. This price does not change based on market conditions.
                 </span>
               </div>
-            </div>
+            </div> -->
+
+
             <div>
               <div class="position-relative">
 
@@ -119,7 +136,7 @@
                     </v-btn>
                   </div>
 
-
+<!-- 
                   <span class="select1i">Select preferred payment method for this transaction</span>
                   <div style="margin-top: 8px; margin-bottom: 16px; position: relative;">
                     <v-menu>
@@ -151,7 +168,7 @@
                           </v-list-item>
                         </v-list>
                     </v-menu>  
-                  </div>
+                  </div> -->
 
                 <div style="display: flex; justify-content: end; margin-top: 30px;">
                   <v-btn  :disabled="!offerRequirements" @click="create_offer()" class="primary-btn1" :loading="loading" style="height: 60px; width: 180px; font-weight: 600; color: white; box-shadow: none;">Create Offer</v-btn>                  

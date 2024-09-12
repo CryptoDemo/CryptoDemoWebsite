@@ -162,7 +162,7 @@
                               </div>
                             </v-radio-group>
 
-                            <v-btn @click="resetFilters()" class="primary-btn1" style="width: 100%; color: white; border-radius: 8px !important;">Clear filters</v-btn>
+                            <v-btn @click="resetFilters()" class="primary-btn1" style="width: 100%; color: white; border-radius: 8px !important; font-weight: 600;">Clear Filters</v-btn>
                     
                         </v-list>
                       </v-menu>
@@ -265,7 +265,7 @@
                                 </v-card-text>
       
                                 <div class="px-5 mb-3" style="justify-content: space-between;">
-                                  <v-btn @click="buyDirectlyDialog = true" :disabled="isButtonDisabled" style="width: 100%; height: 50px; margin-bottom: 10px; font-weight: 600; border: 1px solid  #5892FF; background: inherit; border-radius: 16px; color: #2873FF; letter-spacing: 0px; text-transform: unset;">Buy directly using fiat wallet</v-btn>
+                                  <v-btn @click="buyDirectlyDialog = true" :disabled="isButtonDisabled" style="width: 100%; height: 50px; margin-bottom: 10px; font-weight: 600; border: 1px solid  #5892FF; background: inherit; border-radius: 16px; color: #2873FF; letter-spacing: 0px; text-transform: unset;">Buy Directly Using Fiat Wallet</v-btn>
                                   
                                   <v-dialog v-model="buyDirectlyDialog" width="auto">
                                     <v-card max-width="400" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; padding: 15px;">
@@ -283,7 +283,7 @@
                                     </v-card>
                                   </v-dialog>
 
-                                  <v-btn class="primary-btn1" @click="sellerDialog = true" :disabled="isButtonDisabled" style="width: 100%; height: 50px; margin-bottom: 10px; font-weight: 600; color: white">Chat with seller</v-btn>
+                                  <v-btn class="primary-btn1" @click="sellerDialog = true" :disabled="isButtonDisabled" style="width: 100%; height: 50px; margin-bottom: 10px; font-weight: 600; color: white">Chat With Seller</v-btn>
 
                                   <v-dialog v-model="sellerDialog" max-width="500">
                                     <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="padding: 20px; border-radius: 10px;">
@@ -495,7 +495,7 @@
                     </div>
                   </v-radio-group>
 
-                  <v-btn @click="resetFilters()" class="primary-btn1" style="width: 100%; color: white; border-radius: 8px !important;">Clear filters</v-btn>
+                  <v-btn @click="resetFilters()" class="primary-btn1" style="width: 100%; color: white; border-radius: 8px !important; font-weight: 600;">Clear Filters</v-btn>
                 
                 </div>
 
@@ -526,7 +526,7 @@ const tokenIcon = ref();
 const tokenSymbol = ref();
 const amount_to_pay = ref();
 const ammount_to_receive = ref();
-const offers = ref([]);
+const offers = computed(() => pinia.state.MarketPlace);
 const isCreating = ref(false);
 const tokenSelected = ref(false);
 const preferredTokenCurrency = ref();
@@ -535,7 +535,7 @@ const method = ref();
 const selectedPriceRange = ref();
 const paymentMethods = ['Online Wallet', 'Cash Deposit', 'Bank Transfer'];
 const sellerDialog = ref(false);
-const marketplace  = pinia.state.MarketPlace;
+const marketplace  = pinia.state.MarketPlace || [];
 const buyDirectlyDialog = ref();
 const currency_to_filterBy = ref()
 
@@ -809,13 +809,11 @@ const clearInputs = () => {
 };
 
 
-
  const isChevronToggled = ref(false);
  const toggleChevron = () => {
    isChevronToggled.value = !isChevronToggled.value;
  };
  
-
 
 watch(()=>amount_to_pay.value, (newValue) => {
   if(newValue){
@@ -824,9 +822,23 @@ watch(()=>amount_to_pay.value, (newValue) => {
   }
 });
 
+const fetch_Market_Offers = async()=>{
+  if(pinia.state.MarketPlace.length){
+    return 
+  }else{
+    await Promise.allSettled([
+    get_allMarket_Offers(),
+    ])
+    
+  }
+
+}
+
+
 onMounted(() => {
-  get_allMarket_Offers();
+  fetch_Market_Offers();
 });
+
 </script>
 
 <style scoped>

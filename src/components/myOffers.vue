@@ -155,9 +155,21 @@ const delete_My_Offers = async () => {
   }
 };
 
+const fetch_My_Offers = async()=>{
+  if(pinia.state.MyOffers.length){
+    return 
+  }else{
+    await Promise.allSettled([
+    get_allMy_Offers(),
+    ])
+    
+  }
+
+}
+
 onMounted(() => {
 
-  get_allMy_Offers();
+  fetch_My_Offers();
 
 });
 </script>

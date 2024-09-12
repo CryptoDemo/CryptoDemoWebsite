@@ -59,7 +59,7 @@
                
 
                   <template v-slot:actions>
-                    <v-btn class="ms-auto primary-btn1 mt-4" variant="tonal" @click="setCamo()" style="letter-spacing: 0px; text-transform: unset; border-radius: 10px !important; font-weight: 600;">activate Camouflage</v-btn>
+                    <v-btn class="ms-auto primary-btn1 mt-4" variant="tonal" @click="setCamo()" style="letter-spacing: 0px; text-transform: unset; border-radius: 10px !important; font-weight: 600;">Activate Camouflage</v-btn>
                   </template>
                 </v-card>
               </v-dialog>
