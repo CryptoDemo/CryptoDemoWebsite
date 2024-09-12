@@ -162,4 +162,14 @@ position: absolute;
 .password-hint span {
   color: green;
 }
+
+
+@media screen and (max-width: 600px) {
+.eye-icon[data-v-4e2de975] {
+    bottom: 16px;
+    right: 10%;
+    cursor: pointer;
+    position: absolute;
+  }
+}
 </style>
