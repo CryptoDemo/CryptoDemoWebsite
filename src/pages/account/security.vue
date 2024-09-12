@@ -91,7 +91,7 @@
 
                         
                               <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
-                                <v-otp-input v-model="setPinOtp" class="mx-auto" divider="•" length="4" variant="outlined"></v-otp-input>
+                                <v-otp-input v-model="setPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
                               </div>
                         
                               <v-btn  @click="setPin()" :loading="loading" class="primary-btn1" style=" height: 50px; border-radius: 10px !important; font-weight: 600; width: 100%; color: #fff;">Set Pin</v-btn>
