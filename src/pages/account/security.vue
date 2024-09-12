@@ -90,8 +90,9 @@
                               <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Set transfer pin to authorize transactions</span>
 
                         
-                              <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
+                              <div style="display: flex; flex-direction: column; margin-top: 8px; margin-bottom: 20px;">
                                 <v-otp-input v-model="setPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                                <v-otp-input v-model="ConfirmsetPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
                               </div>
                         
                               <v-btn  @click="setPin()" :loading="loading" class="primary-btn1" style=" height: 50px; border-radius: 10px !important; font-weight: 600; width: 100%; color: #fff;">Set Pin</v-btn>
@@ -229,6 +230,7 @@ const pindialog = ref(false);
 const recoverPindialog = ref(false);
 const loading_pin = ref(false)
 const setPinOtp = ref("");
+const ConfirmsetPinOtp = ref("");
 const Newotp = ref("");
 const Msgotp = ref("");
 
@@ -369,18 +371,35 @@ const copyToClipboard = (text) => {
 
 const setPin = async () => {
   loading_pin.value = true;
+
+  // Check if either of the PIN fields is empty
+  if (!setPinOtp.value || !ConfirmsetPinOtp.value) {
+    loading_pin.value = false;
+    push.error('Please enter both PIN and confirm PIN');
+    return;
+  }
+
+  // Check if the PINs match
+  if (setPinOtp.value !== ConfirmsetPinOtp.value) {
+    loading_pin.value = false;
+    push.error('PINs do not match');
+    return;
+  }
+
   const payload = {
     pin: setPinOtp.value,
   }
 
   try {
     const data = await set_Pin(payload);
-    setPinOtp.value  = "";
+    setPinOtp.value = "";
+    ConfirmsetPinOtp.value = ""; // Clear confirm pin as well
+
     if (data.success) {
-        push.success(data.message);
-        pinia.state.user.is_pin_set = true
+      push.success(data.message);
+      pinia.state.user.is_pin_set = true;
     } else {
-    loading_pin.value = false;
+      loading_pin.value = false;
       push.error(data.message);
     }
   } catch (e) {
@@ -389,6 +408,7 @@ const setPin = async () => {
     push.error(`${e}`);
   }
 };
+
 
 
 const recoverPin = async () => {
