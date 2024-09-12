@@ -60,22 +60,35 @@ const balanceData = ref(null);
 const allCountries = pinia.state.allcountries;
 const preferredCurrency = pinia.state.preferredCurrency;
 
+const countryID = computed(() => {
+      // Check if allcountries and preferredCurrency are available
+      return pinia.state.allcountries?.length > 0 
+        ? pinia.state.allcountries.find(c => c.currency_name === pinia.state.preferredCurrency)?.id 
+        : undefined;
+    });
+console.log('Country ID:', countryID.value);
+
 
 const getSummedBal = async () => {
-    if (pinia.state.isAuthenticated) {
-      try {
-        const data = await getSummedBalance(pinia.state.selectedNetwork.toLowerCase())
-        if (data.success) {
-          pinia.setSummedBalance(data.data)
-          }else {
-            console.error("Error:", data.message);
+      if (pinia.state.isAuthenticated) {
+        try {
+          // Ensure countryID.value is defined before making the request
+          if (countryID.value) {
+            const data = await getSummedBalance(pinia.state.selectedNetwork.toLowerCase(), countryID.value);
+            
+            if (data.success) {
+              pinia.setSummedBalance(data.data);
+            } else {
+              console.error("Error:", data.message);
+            }
+          } else {
+            console.warn('Country ID is not defined');
+          }
+        } catch (error) {
+          console.error('Error fetching summed balance:', error);
         }
- 
-      } catch (error) {
-        console.log(error)
       }
-    }
-};
+    };
 
 const isCamouflageEmpty = computed(() => {
   const camouflage = pinia.state.user.camouflage;
@@ -90,9 +103,27 @@ const generateAsterisks = () => {
   return '*'.repeat(balanceLength);
 }
 
-// onMounted(() => {
-//   getSummedBal();
-// });
+const fetch_Web3_Balance = async () => {
+  if (pinia.state.SummedBalance.length) {
+    return; // No need to fetch if details already exist
+  }
+
+  try {
+    const results = await Promise.allSettled([
+    getSummedBal(),
+    ]);
+
+
+  } catch (error) {
+    // Handle unexpected errors
+    console.error('An unexpected error occurred:', error);
+  }
+};
+
+
+onMounted(() => {
+  fetch_Web3_Balance();
+});
 
 </script>
 
@@ -117,7 +148,7 @@ border: 1px solid #E2E8F0;
 .lg-num{
 text-align: center;
 font-family: Manrope;
-font-size: 32px;
+font-size: 28px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;

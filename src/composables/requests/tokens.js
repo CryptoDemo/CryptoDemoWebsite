@@ -42,10 +42,7 @@ export const getSummedBalance = async(chain, countryId)=>{
             'x-access-token': `${pinia.state.user?.token}`
         }
     }).then(res => res.json());
-
-    if(data?.success && data?.data?.length){
-        pinia.setSummedBalance(data.data);
-    }
+    return data
 };
 
 export const getWalletAddress = async(chain)=>{
