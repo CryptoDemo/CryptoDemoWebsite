@@ -74,6 +74,13 @@ onMounted(() => {
 
 
 const VerifyEmail = async () => {
+    // Check if OTP is empty
+    if (!otp.value || otp.value.trim() === '') {
+    loading.value = false;
+    push.error('Invalid Otp')
+    // You can also add an error message or alert here if needed
+    return;
+  }
   loading.value = true;
   const changePasskey = {
     email: pinia.state.email,
