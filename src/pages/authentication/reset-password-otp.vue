@@ -1,48 +1,50 @@
 <template>
-  <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0; height: 90%;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
-  <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
-  <Header/>
-  <v-container class="form-layout overflow-hidden">
-    <div class="section">
-    <v-row no-gutters  class="">
+    <div>
+    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0; height: 90%;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
+    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
+    <Header/>
+    <v-container class="form-layout overflow-hidden">
+      <div class="section">
+      <v-row no-gutters  class="">
 
-      <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 90px;">
-        <div style="margin-top: 95px;">
-        
-          <span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Reset Your Password</span>
-            <div class="card-subtitle" :class="isDark ? 'card-subtitle':'card-subtitle-light'" style="margin-top:20px;">Enter the code we've sent to <span><b> 
-              {{ pinia.state.email }}</b></span> Didn't receive the code? 
-            </div>
-          <span class="otp-text">Enter code</span>
-          <v-otp-input :length="4"  v-model="otp"  variant="plain"></v-otp-input>
+        <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 90px;">
+          <div style="margin-top: 55px;">
           
-          <div style="display: flex; justify-content: space-between; align-items: baseline;">
-          <div class="code-validation-text">
-            <span>Valid for {{ OtpCountdown }} seconds</span>
+            <span class="card-title" :class="isDark ? 'card-title':'card-title-light'">Reset Your Password</span>
+              <div class="card-subtitle" :class="isDark ? 'card-subtitle':'card-subtitle-light'" style="margin-top:20px;">Enter the code we've sent to <span><b> 
+                {{ pinia.state.email }}</b></span> Didn't receive the code? 
+              </div>
+            <span class="otp-text">Enter code</span>
+            <v-otp-input :length="4"  v-model="otp"  variant="plain"></v-otp-input>
+            
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <div class="code-validation-text">
+              <span>Valid for {{ OtpCountdown }} seconds</span>
+            </div>
+            <div class="d-flex" style="margin-top:23px;">
+              <v-btn class="resend-code-btn" variant="plain"  :disabled="!timerFinished" @click.prevent="resendCode()">Resend code</v-btn>
+            </div>
           </div>
-          <div class="d-flex" style="margin-top:23px;">
-            <v-btn class="resend-code-btn" variant="plain"  :disabled="!timerFinished" @click.prevent="resendCode()">Resend code</v-btn>
-          </div>
-        </div>
 
-          <div style="margin-top:65px;">
-            <Button buttonText="Next"  :loading="loading" @click="VerifyEmail()"/>
+            <div style="margin-top:65px;">
+              <Button buttonText="Next"  :loading="loading" @click="VerifyEmail()"/>
+            </div>
+          <div class="d-flex" style="margin-top:43px; margin-bottom: 137px">
+            <img src="/svg/arrow-left.svg" class="me-3" />
+            <small><NuxtLink to="/authentication/login"><span class="login-text">Back to login</span></NuxtLink></small>
+          </div>      
           </div>
-         <div class="d-flex" style="margin-top:43px; margin-bottom: 137px">
-          <img src="/svg/arrow-left.svg" class="me-3" />
-          <small><NuxtLink to="/authentication/login"><span class="login-text">Back to login</span></NuxtLink></small>
-        </div>      
-        </div>
-      </v-col>
-     
-      <v-col cols="7" class="flex-lg-and-up hidden-sm-and-down">
-          <div class="ma-8  carousel-styling">
-          <Carousel />
-        </div>
-      </v-col>
-    </v-row>
-  </div>   
-  </v-container>
+        </v-col>
+      
+        <v-col cols="7" class="flex-lg-and-up hidden-sm-and-down">
+            <div class="ma-8  carousel-styling">
+            <Carousel />
+          </div>
+        </v-col>
+      </v-row>
+    </div>   
+    </v-container>
+  </div>
 </template>
 <script setup>
 import { ref } from 'vue'
