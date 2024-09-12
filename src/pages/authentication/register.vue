@@ -197,7 +197,7 @@ const register = async () => {
 
   const registerInfo = {
     name: name.value,
-    email: email.value,
+    email: email.value.toLowerCase(),
     password: password.value,
     referralcode: referralcode.value,
     country: country.value,

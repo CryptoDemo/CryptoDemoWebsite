@@ -128,7 +128,7 @@ const login = async () => {
 
 
   const userLogin = {
-    email: email.value,
+    email: email.value.toLowerCase(),
     password: password.value,
     device_info: JSON.stringify(device)
   };
