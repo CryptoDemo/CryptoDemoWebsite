@@ -53,7 +53,7 @@
                   <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute"/>
 
                 <div class="btn-segment" :class="isDark ? 'btn-segment':'btn-segment-light'">
-                  <v-btn  :class="`${transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction=true" > Buy </v-btn>
+                  <v-btn :class="`${transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction=true" > Buy </v-btn>
                   <v-btn :class="`${!transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction=false" >Sell</v-btn>
                 </div>
 
@@ -150,48 +150,8 @@
       </section>
     </div>
 
-    <v-container class=" position-relative">
-      <div class=""> 
-        <img src="/svg/Ellipse 2813.svg"  class="position-absolute blue-ellipse1" style="right:0; bottom: 65%;"/>
-          <div class="section2i section2" :class="isDark ? 'section2':'section2-light'">
-            <span class="section2-subtitle card-sub1">TRADE YOUR COIN LIKE A FOREX EXPERT</span>
-            <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Over 350 ways to buy and sell Bitcoin.</span>
-            <span class="explore-trade">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
-            <div class="mx-auto btn-segment2" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
-
-              <v-btn :class="`${transaction1 ? 'buy-btn btn-seg1': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction1=true" style="border-radius: 41px !important; height: 40px !important;">
-                <span>{{transaction1 ?  'Sell✨' : 'Sell' }}</span>
-              </v-btn>
-              <v-btn :class="`${!transaction1 ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction1=false" style="border-radius: 41px !important; height: 40px !important;" >
-              <span>{{transaction1 ?  'Buy' : 'Buy✨' }}</span>
-              </v-btn>
-            </div>
-          </div>
-      
-          <div class="card-layout1">
-              <v-row align="center" justify="center">
-                <v-col v-for="(variant, i) in variants"   sm="4" :key="i" cols="12">
-                  <v-card  :class="isDark ? 'card-layout':'card-layout-light'" bg-color="#10192D"  color="white" variant="text">
-                      <v-card-item style="padding: 0px !important">
-                          <div>
-                              <div class="">
-                                <img :src="variant.cardImages"/>
-                              </div>
-                              <div :class="isDark ? 'card-header':'card-header-light'">
-                                {{ variant.title }}
-                              </div>
-                              <div  :class="isDark ? 'text-caption':'text-caption-light'">{{transaction1? variant.textCaption : variant.textCaption1}}</div>
-                              <div style="margin-top: 18px; display: inline-flex;">
-                                <NuxtLink to="#"><span class="sell-btc-text me-2" style="color: #2873FF !important">Sell your bitcoin</span></NuxtLink>   
-                                <img src="/svg/blue-arrow.svg" class=""/>
-                              </div>
-                          </div>
-                      </v-card-item>
-                  </v-card>
-                </v-col>
-              </v-row>
-          </div>
-      </div>
+    <v-container class=" position-relative"> 
+      <LazyPaymentOptions />
     </v-container>
 
       <v-container class=" position-relative section2ii" >
@@ -204,7 +164,7 @@
           <Frame/>
           
           <div style="margin-top: -5px;">
-            <Reviews/>
+            <LazyReviews/>
           </div>
           
           <v-row no-gutters class="mt-7">
@@ -311,7 +271,7 @@
         </div>
 
         <v-container style="margin-top: 70px">
-          <Faq/>
+          <LazyFaq/>
             
         </v-container>
 
@@ -347,6 +307,8 @@ const coin = ref ("");
 const piniastoredicon = ref(null);
 const ammount_of_coin = ref();
 const Selectedcurrency =ref("USD");
+
+const LazyPaymentOptions = defineAsyncComponent(() => import('@/components/payment-options.vue'));
 
 
   try {
@@ -624,74 +586,6 @@ z-index: 10;
 position: absolute;
 bottom: 0;
 }
-.btn-segment{
-display: flex;
-height: 48px;
-padding: 8px 4px;
-justify-content: center;
-align-items: center;
-align-self: stretch;
-border-radius: 16px;
-background: var(--Main-Greyscale-90, #10192D);
-}
-.btn-segment-light{
-display: flex;
-width: 511px;
-height: 48px;
-padding: 6.43px 3.215px;
-justify-content: center;
-align-items: center;
-align-self: stretch;
-border-radius: 12.86px;
-background: var(--Main-Greyscale-5, #F8FAFC);
-}
-.buy-btn{
-display: flex;
-height: 40px;
-padding: 8px;
-border-radius: 12px;
-justify-content: center;
-align-items: center;
-gap: 10px;
-flex: 1 0 0;
-font-family: "SF Pro Display";
-border: 1px solid rgba(40, 115, 255, 0.33);
-background: #060A1D;
-color: var(--Main-Primary-100, #2873FF);
-text-transform: unset!important;
-letter-spacing: 0px!important;
-}
-.buy-btn-light{
-border-radius: 12px;
-background: var(--Others-White, #FFF);
-box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02) !important;
-display: flex;
-height: 40px;
-padding: 8px;
-font-family: "SF Pro Display";
-justify-content: center;
-align-items: center;
-gap: 8.037px;
-flex: 1 0 0;
-border: unset;
-text-transform: unset!important;
-letter-spacing: 0px!important;
-}
-.sell-btn{
-display: flex;
-border-radius: 12px;
-background: inherit !important;
-border: unset;
-box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02) !important;
-justify-content: center;
-align-items: center;
-gap: 15px;
-flex: 1 0 0;
-color: var(--Main-Greyscale-40, #8E9BAE);
-background: inherit;
-box-shadow: none !important;
-text-transform: unset!important;
-}
 
 .coin-dropdown{
 display: flex;
@@ -935,25 +829,6 @@ backdrop-filter: blur(44.04999923706055px);
 margin-top: 170px;
 }
 
-.section2-title-light{
-text-align: center;
-font-family: "SF Pro Display";
-font-size: 64px;
-font-style: normal;
-font-weight: 700;
-line-height: 120%; /* 76.8px */
-letter-spacing: -1.92px;
-background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.5) 97.69%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-/* width: 688.35px; */
-display: flex;
-justify-content: center;
-/* margin-top: 40px !important; */
-/* margin-bottom: 40px !important; */
-margin: auto;
-}
 .section2-subtitle{
 color: #38BDF8;
 text-align: center;
@@ -979,9 +854,6 @@ font-style: normal;
 font-weight: 600;
 line-height: 140%; /* 22.4px */
 letter-spacing: 0.8px;
-/* display: flex; */
-/* justify-content: center; */
-/* align-items: center; */
 margin-top: 173.66px;
 letter-spacing: 0.8px;
 text-transform: uppercase;
@@ -998,23 +870,7 @@ margin-top: 173.66px;
 letter-spacing: 0.8px;
 text-transform: uppercase;
 }
-.section2-title{
-text-align: center;
-font-family: "SF Pro Display";
-font-size: 64px;
-font-style: normal;
-font-weight: 700;
-line-height: 120%; /* 76.8px */
-letter-spacing: -1.92px;
-background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-width: 688.35px;
-display: flex;
-justify-content: center;
-margin: auto;
-}
+
 .section2-title1{
 text-align: center;
 font-family: "SF Pro Display";
@@ -1026,7 +882,6 @@ letter-spacing: -1.92px;
 width: 688.35px;
 display: flex;
 justify-content: center;
-/* margin: auto; */
 }
 .section2-title-light{
 text-align: center;
@@ -1059,52 +914,8 @@ width: 690px;
 display: flex;
 margin: auto;
 }
-.card-layout{
-display: flex;
-height: 263px;
-padding: var(--spacing-2xl, 20px);
-flex-direction: column;
-justify-content: space-between;
-align-items: flex-start;
-flex: 1 0 0;
-border-radius: 15px;
-border: 0.5px solid #2f3946 !important;
-background: #10192D;
-}
-.card-layout-light{
-display: flex;
-height: 263px;
-padding: var(--spacing-2xl, 20px);
-flex-direction: column;
-justify-content: space-between;
-align-items: flex-start;
-flex: 1 0 0;
-border-radius: 15px;
-border: 0.5px solid #F8FAFC !important;
-background: #F8FAFC;
-}
-.text-caption{
-color: #8E9BAE;
-font-family: "SF Pro Display";
-font-size: 16px !important;
-font-style: normal;
-font-weight: 400!important;
-line-height: 140%; /* 22.4px */
-letter-spacing: 0.32px!important;
-margin-top: 8px;
-cursor: pointer;
-}
-.text-caption-light{
-color: #64748B;
-font-family: "SF Pro Display";
-font-size: 16px !important;
-font-style: normal;
-font-weight: 400!important;
-line-height: 140%; /* 22.4px */
-letter-spacing: 0.32px!important;
-margin-top: 8px;
-cursor: pointer;
-}
+
+
 .green-coin{
 display: flex;
 right: 2%;
@@ -1135,46 +946,8 @@ margin-left: 120px;
 top: 190px;
 }
 
-.sell-btc-text{
-color: white !important;
-text-align: center;
-font-family: "SF Pro Display";
-font-size: 16px;
-font-style: normal;
-font-weight: 600;
-line-height: 100%; /* 16px */
-letter-spacing: 0.16px;
 
-}
-.sell-btc-text-light{
-color: #1B2537 !important;
-text-align: center;
-font-family: "SF Pro Display";
-font-size: 16px;
-font-style: normal;
-font-weight: 600;
-line-height: 100%; /* 16px */
-letter-spacing: 0.16px;
 
-}
-.card-header{
-color: var(--Colors-Base-white, #FFF);
-font-family: "SF Pro Display";
-font-size: 24px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-margin-top: 36px;
-}
-.card-header-light{
-color: var(--Colors-Base-black, #000);
-font-family: "SF Pro Display";
-font-size: 24px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-margin-top: 36px;
-}
 
 .Demo-header{
 -webkit-text-stroke-width: 1;
@@ -1288,20 +1061,6 @@ letter-spacing: 0.72px;
 width: 612px;
 display: flex;
 justify-content: flex-start;
-}
-.explore-trade{
-color: #8E9BAE;
-font-family: "SF Pro Display";
-font-size: 24px;
-font-style: normal;
-font-weight: 400;
-line-height: 140%; /* 33.6px */
-letter-spacing: 0.72px;
-width: 690px;
-display: flex;
-justify-content: center;
-text-align: center;
-margin: auto;
 }
 
 .country-dropdown{

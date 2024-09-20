@@ -39,6 +39,40 @@ line-height: normal;
   padding: 10px;
   border-radius: 15px;
 }
+
+.language-dark {
+  border-radius: 15px;
+  background: #10192D !important;
+  height: 60px;
+}
+.language-light {
+  border-radius: 15px;
+  background: #F8FAFC !important;
+  height: 60px;
+}
+
+.btn-segment{
+  display: flex;
+  height: 48px;
+  padding: 8px 4px;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 16px;
+  background: var(--Main-Greyscale-90, #10192D);
+  }
+  .btn-segment-light{
+  display: flex;
+  width: 511px;
+  height: 48px;
+  padding: 6.43px 3.215px;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 12.86px;
+  background: var(--Main-Greyscale-5, #F8FAFC);
+  }
+
 .form-layout {
 border-radius: 2.3125rem;
 opacity: 0.8;
@@ -94,6 +128,113 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
+.sell-btc-text{
+  color: white !important;
+  text-align: center;
+  font-family: "SF Pro Display";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 16px */
+  letter-spacing: 0.16px;
+  }
+
+  .section2-title{
+  text-align: center;
+  font-family: "SF Pro Display";
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 76.8px */
+  letter-spacing: -1.92px;
+  background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: 688.35px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  }
+
+  .section2-title-light{
+  text-align: center;
+  font-family: "SF Pro Display";
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 76.8px */
+  letter-spacing: -1.92px;
+  background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.5) 97.69%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  }
+
+
+.buy-btn{
+  display: flex;
+  height: 40px;
+  padding: 8px;
+  border-radius: 12px !important;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  font-family: "SF Pro Display";
+  border: 1px solid rgba(40, 115, 255, 0.33) !important;
+  background: #060A1D !important;
+  color: var(--Main-Primary-100, #2873FF) !important;
+  text-transform: unset!important;
+  letter-spacing: 0px!important;
+  }
+  .buy-btn-light{
+  background: var(--Others-White, #FFF) !important;
+  box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02) !important;
+  display: flex;
+  height: 40px;
+  padding: 8px;
+  font-family: "SF Pro Display";
+  justify-content: center;
+  align-items: center;
+  gap: 8.037px;
+  flex: 1 0 0;
+  border: unset !important;
+  text-transform: unset!important;
+  letter-spacing: 0px!important;
+  }
+  .sell-btn{
+  display: flex;
+  border-radius: 12px;
+  background: inherit !important;
+  border: unset;
+  box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02) !important;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex: 1 0 0;
+  color: var(--Main-Greyscale-40, #8E9BAE) !important;
+  background: inherit;
+  box-shadow: none !important;
+  text-transform: unset!important;
+  border: none !important;
+  }
+
+  .sell-btc-text-light{
+  color: #1B2537 !important;
+  text-align: center;
+  font-family: "SF Pro Display";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 16px */
+  letter-spacing: 0.16px;
+  }
+
 .card-title {
 font-family: Manrope;
 width: 344.74px;

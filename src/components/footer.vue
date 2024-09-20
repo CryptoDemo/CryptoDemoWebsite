@@ -4,14 +4,10 @@
         <div class="d-flex mt-5" style="justify-content: space-between;">
           <span  :class="isDark ?  'demo-web1':'demo-web1-light'" >Demo</span>
 
+          <div>
+            <!-- <LanguageDropdown/> -->
+          </div>
 
-
-        <div style="height: 60px;">
-
-          <div id="google_translate_element"></div>
-
-          
-        </div>
         </div>
       <div class="footer-bg" :class="isDark ? 'footer-bg-dark':'footer-bg-light'">
         <v-row  no-gutters style="justify-content: space-between;" sm="4" >
@@ -27,14 +23,14 @@
           </div>
         </v-row>    
       </div>
-        <div class="d-flex" style="justify-content: space-between; margin-top: 64px; display: flex">
-          <div style="display: flex; align-items: center">
-            <ToggleBtn  class="me-3" />
-            <span :class="isDark ? 'Switch-text':'Switch-text-light'">{{ isDark? 'Switch to light theme' : 'Switch to dark theme' }}</span>
-          </div>
 
-    
+      <div class="d-flex" style="justify-content: space-between; margin-top: 64px; display: flex">
+        <div style="display: flex; align-items: center">
+          <ToggleBtn  class="me-3" />
+          <span :class="isDark ? 'Switch-text':'Switch-text-light'">{{ isDark? 'Switch to light theme' : 'Switch to dark theme' }}</span>
         </div>
+      </div>
+
     </v-container>
       <div class="footer-icon"  :class="isDark ? 'footer-icon-dark':'footer-icon-light'" style="margin-top: 50px">
         <v-container>
@@ -77,9 +73,11 @@ import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 import intercom from '@intercom/messenger-js-sdk';
 
+
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
+
 
 
 
@@ -334,5 +332,9 @@ backdrop-filter: blur(25px);
   width: 116px;
   object-fit: cover;
 }
-
+.v-theme--DarkThemeConfig.footer-wrapper :deep(.google-translate-select-dropdown__menu.dark-mode) {
+  background-color: #10192d; /* Dark background color */
+  border: 1px solid #333; /* Dark border color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Dark shadow */
+}
 </style>

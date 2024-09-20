@@ -20,6 +20,8 @@
         <div class="header-nav-div align-lg-center" style="display: flex;margin-inline-start: auto;">
           <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
           <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center;"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
+
+          <LanguageDropdown v-if="newUserLanguage"/>
           
           <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
@@ -146,7 +148,7 @@ const props = defineProps(
   icon3:Boolean,
   hide: Boolean,
   flagDropdown: Boolean,
-
+  newUserLanguage: Boolean,
   }  
 ) ;  
 

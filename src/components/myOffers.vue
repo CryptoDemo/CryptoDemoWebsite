@@ -6,7 +6,7 @@
 
           <div>
             <div style="display: flex; align-items: center; line-height: 30px;">
-              <img v-if="offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" style="width: 30px; height: 30px; border-radius: 30px;" />
+              <img v-if="offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" style="width: 25px; height: 25px; border-radius: 30px;" />
               <v-icon v-else style="width: 20px;">mdi-account-circle</v-icon>
               <span class="me-3 ml-2" style="font-size: 14px; text-transform: capitalize; font-weight: 600;">{{ offer?.user?.username }}</span>
             </div>
@@ -47,7 +47,7 @@
           <div style="display: flex; justify-content: end">
             <v-dialog max-width="500">
               <template v-slot:activator="{ props: activatorProps }">
-                <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id" v-bind="activatorProps" class="smaller-btn">Delete offer</v-btn>
+                <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id" v-bind="activatorProps" variant="outlined" color="red" class="smaller-btn mt-2">Delete offer</v-btn>
               </template>
 
               <template v-slot:default>
@@ -155,21 +155,11 @@ const delete_My_Offers = async () => {
   }
 };
 
-const fetch_My_Offers = async()=>{
-  if(pinia.state.MyOffers.length){
-    return 
-  }else{
-    await Promise.allSettled([
-    get_allMy_Offers(),
-    ])
-    
-  }
 
-}
 
 onMounted(() => {
 
-  fetch_My_Offers();
+get_allMy_Offers();
 
 });
 </script>
@@ -177,7 +167,7 @@ onMounted(() => {
 <style scoped>
 .smaller-btn {
 border-radius: 8px;
-background: red;
+color: red;
 display: flex;
 padding: 6px 16px;
 justify-content: center;

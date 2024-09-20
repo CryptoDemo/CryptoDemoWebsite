@@ -55,6 +55,10 @@ export const useStore = defineStore('app',()=> {
       OnlineCheck:"",
       chat_messages: [],
       new_chat_messages: [],
+      storeBanners: [],
+      PaymentMethod: [],
+      usernameChanged:"false",
+      preferredLanguage:"English",
     });
   
   
@@ -75,16 +79,31 @@ export const useStore = defineStore('app',()=> {
   };
 
   const setSelectedNetwork = (payload) => {
-      state.selectedNetwork = payload;
-      
+      state.selectedNetwork = payload;    
   };
 
   const setEmail = (payload) => {
       state.email = payload;    
   };
 
+  const CheckusernameChange = (payload) => {
+      state.usernameChanged = payload;    
+  };
+
+  const setPaymentMethod = (payload) => {
+      state.PaymentMethod = payload;    
+  };
+
+  const setpreferredLanguage = (payload) => {
+      state.preferredLanguage = payload;    
+  };
+
   const setselectedLandingCoin = (payload) => {
       state.selectedLandingCoin = payload;    
+  };
+
+  const setStoredBanners = (payload) => {
+      state.storeBanners = payload;    
   };
 
   const setFAQs = (payload) => {
@@ -317,6 +336,10 @@ export const useStore = defineStore('app',()=> {
       setOnlineCheck,
       setConvertedPriceValue,
       setSelected_trade_ID,
+      setStoredBanners,
+      CheckusernameChange,
+      setpreferredLanguage,
+      setPaymentMethod,
     }
 },
   {persist: {

@@ -11,8 +11,8 @@
           <NotificationProgress :item="item" />
         </Notivue>
 
-        <div class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center; flex-direction: column; cursor: pointer; position: fixed; bottom: 50px; right: 10px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-wechat" viewBox="0 0 16 16" id="my_custom_link" @click.prevent="activate_chat();">
+        <div @click.prevent="activate_chat();" id="my_custom_link" class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center; flex-direction: column; cursor: pointer; position: fixed; bottom: 50px; right: 10px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-wechat" viewBox="0 0 16 16" id="my_custom_link">
               <defs>
                 <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" style="stop-color:#00C6FF;stop-opacity:1" />
@@ -23,7 +23,7 @@
               <path fill="url(#gradient1)" d="M0 6.826c0 1.455.781 2.765 2.001 3.656a.385.385 0 0 1 .143.439l-.161.6-.1.373a.5.5 0 0 0-.032.14.19.19 0 0 0 .193.193q.06 0 .111-.029l1.268-.733a.6.6 0 0 1 .308-.088q.088 0 .171.025a6.8 6.8 0 0 0 1.625.26 4.5 4.5 0 0 1-.177-1.251c0-2.936 2.785-5.02 5.824-5.02l.15.002C10.587 3.429 8.392 2 5.796 2 2.596 2 0 4.16 0 6.826m4.632-1.555a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0m3.875 0a.77.77 0 1 1-1.54 0 .77.77 0 0 1 1.54 0"/>
             </svg>
             <span class="footer-links" style="font-size: 14px;display: flex; ">Help Centre</span>
-          </div>
+        </div>
 
   </NuxtLayout>
   </v-app>
@@ -37,13 +37,15 @@ import intercom from '@intercom/messenger-js-sdk';
 const pageNumber = ref(1);
 const pinia = useStore();
 
+
+
 const activate_chat = ()=>{
   const activate = intercom({
       app_id:'lwqnsoko',
-      user_id:pinia.state.user.id,
-      email:pinia.state.user.email,
-      name:pinia.state.user.name,
-      created_at:pinia.state.user.created_at,
+      user_id:pinia?.state?.user?.id,
+      email:pinia?.state?.user?.email,
+      name:pinia?.state?.user?.name,
+      created_at:pinia?.state?.user?.created_at,
       hide_default_launcher: true,
       custom_launcher_selector:'#my_custom_link'
   })

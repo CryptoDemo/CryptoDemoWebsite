@@ -5,7 +5,7 @@
       <v-container>
        <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
           <span :class="isDark ? 'demo-web1':'demo-web1-light'">Demo</span>
-          <Language-dropdown style="width: 136px;"/>
+          <LanguageDropdown style="width: 136px;"/>
         </div>
       </v-container>
 

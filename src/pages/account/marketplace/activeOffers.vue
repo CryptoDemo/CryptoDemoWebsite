@@ -16,7 +16,7 @@
 
             <div class="d-flex">
          
-                <div class="offer-container" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="height: 480px; margin-bottom: 300px;  padding-top: 2px; width: 70%; overflow: scroll; padding-left: 16px; padding-right: 16px">
+                <div class="offer-container" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="margin-bottom: 300px;  padding-top: 2px; width: 70%; overflow: scroll; padding-left: 16px; padding-right: 16px">
 
                     <div class="button-container py-3" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; border-radius: 10px; align-items: center;">
                       <v-btn class="me-3" :class="[selectedScreen ? 'personalBtn' : isDark ? 'marketBtn' : 'marketBtn-light']" @click.prevent="selectedScreen=true" >Market Offers</v-btn>
@@ -135,32 +135,7 @@
                               </v-list>
                             </v-menu>
                     
-                            <v-radio-group v-model="selectedPriceRange" class="mt-2" style="margin-bottom: -20px;">
-                              <div style="display: flex; align-items: center;">
-                                <v-radio color="info"  value="one"></v-radio>
-                                <span :class="{ 'resend-code': selectedPriceRange === 'one' }" style="font-size: 14px; font-weight: 500;">1,000 & below</span>
-                              </div>
-
-                              <div style="display: flex; align-items: center;">
-                                <v-radio color="info"  value="two"></v-radio>
-                                <span :class="{ 'resend-code': selectedPriceRange === 'two' }" style="font-size: 14px; font-weight: 500;">1,000 - 10,000</span>
-                              </div>
-
-                              <div style="display: flex; align-items: center;">
-                                <v-radio color="info"  value="three"></v-radio>
-                                <span :class="{ 'resend-code': selectedPriceRange === 'three' }" style="font-size: 14px; font-weight: 500;">10,000 - 100, 000</span>
-                              </div>
-
-                              <div style="display: flex; align-items: center;">
-                                <v-radio color="info" value="four"></v-radio>
-                                <span  :class="{ 'resend-code': selectedPriceRange === 'four' }" style="font-size: 14px; font-weight: 500;">100, 000 - 500, 000</span>
-                              </div>
-
-                              <div style="display: flex; align-items: center;">
-                                <v-radio color="info"  value="five"></v-radio>
-                                <span :class="{ 'resend-code': selectedPriceRange === 'five' }" style="font-size: 14px; font-weight: 500;">500, 000 & above</span>
-                              </div>
-                            </v-radio-group>
+                           
 
                             <v-btn @click="resetFilters()" class="primary-btn1" style="width: 100%; color: white; border-radius: 8px !important; font-weight: 600;">Clear Filters</v-btn>
                     
@@ -194,17 +169,18 @@
                             </div>
   
                             <div style="display: flex; flex-direction: column; line-height: 30px;">
-                              <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;">Minimum-Maximum buy limit</span>
-                              <span class="hidden-lg-and-up flex-sm-and-down" :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;font-weight: 500;">buy limit</span>
-                              <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500;  ">Unit value</span>
-                              <span  :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 500;  ">Price model</span>
+                              <span class="flex-lg-and-up hidden-sm-and-down mkt-values" :class="isDark ? 'text-dark' : 'text-light'">Minimum-Maximum buy limit</span>
+                              <span class="hidden-lg-and-up flex-sm-and-down mkt-values" :class="isDark ? 'text-dark' : 'text-light'">buy limit</span>
+                              <span :class="isDark ? 'text-dark' : 'text-light'" class="mkt-values">Unit value</span>
+                              <span :class="isDark ? 'text-dark' : 'text-light'" class="mkt-values">Price model</span>
+                              <span :class="isDark ? 'text-dark' : 'text-light'" class="mkt-values">Payment Method</span>
   
-                                <div class="d-flex">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16" v-if="!pinia.state.user.kyc_verified">
-                                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                                  </svg>
-                                  <span v-if="!pinia.state.user.kyc_verified" style="font-family: Manrope; font-size: 14px; font-style: normal; margin-left: 4px; font-weight: 500;  color: orangered ">Get Verified to purchase coin</span>
-                                </div>
+                              <div class="d-flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16" v-if="!pinia.state.user.kyc_verified">
+                                  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                </svg>
+                                <span v-if="!pinia.state.user.kyc_verified" style="font-family: Manrope; font-size: 14px; font-style: normal; margin-left: 4px; font-weight: 500;  color: orangered ">Get Verified to purchase coin</span>
+                              </div>
                             </div>
   
                           </div>
@@ -224,6 +200,12 @@
                               v-if="offer?.trading_pair?.fiat?.use_fixed_price">Fixed Price</span>
                             <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400;  align-self: self-end;" 
                             v-else>Market Price</span>
+
+                            <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px;font-style: normal; font-weight: 400;  align-self: self-end;">
+                              {{ offer?.trading_pair?.fiat?.payment_methods?.join(', ') || 'Bank transfer' }}
+
+                            </span>
+
                           </div>
                         </div>
                      
@@ -250,14 +232,14 @@
                                   </span>
 
                                 <div class="mt-5">
-                                  <span style="font-weight: 600; font-size: 14px;">Expected ammount you will receive</span>
+                                  <span style="font-weight: 600; font-size: 14px;">Expected amount you will receive</span>
                                   <input type="number" disabled placeholder="Ammount to receive" v-model="ammount_to_receive" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%; margin-top: 10px; padding-left: 15px;"/>
                           
                                   <v-btn :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="min-width: 70px; height: 56px; position: absolute; margin-top: 12px; border-radius: 15px; box-shadow: none; right: 26px; letter-spacing: 0px;  text-transform: capitalize;"> 
                                     <img :src="offer.trading_pair?.crypto?.token?.icon" width="30px" />
                                   </v-btn>
 
-                                  <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">You will receive this ammount in 
+                                  <span style="font-size: 14px;" :class="isDark ? 'text-dark':'text-light'">You will receive this amount in 
                                     <span style="font-weight: 600; font-size: 14px;" :class="isDark ? 'card-title':'card-title--light'">{{ offer.trading_pair?.crypto?.token?.symbol }}</span>
                                   </span>
                                 </div>
@@ -361,14 +343,14 @@
                       </div> 
 
                     <div v-if="!filteredOffers.length"
-                      style="text-align: center; margin-top: 80px; display: flex; flex-direction: column;align-items: center;">
-                      <img src="/svg/blue-market.svg" width="150" />
-                      <span class="mt-6" :class="isDark ? 'text-dark' : 'text-light'">No records found</span>
+                      style="text-align: center;  display: flex; flex-direction: column;align-items: center; height: 410px">
+
+                      <span class="d-flex" :class="isDark ? 'text-dark' : 'text-light'" style="margin: auto;">No records found</span>
                     </div>
 
                   </div> 
 
-                  <div v-else style="height: 550px; margin-bottom: 300px; overflow: scroll;">
+                  <div v-else style="margin-bottom: 300px; overflow: scroll;">
                     <MyOffers />
                   </div>
 
@@ -421,11 +403,11 @@
                       <v-list-item>
                         <v-row dense style="max-width: 210px; display: block;">
                           <v-col v-for="(method, index) in paymentMethods" :key="index" sm="12">
-                            <v-list-item @click="selectedPaymentMethod = method">
+                            <v-list-item @click="selectedPaymentMethod = method.name">
                               <v-list-item-content>
                                 <v-list-item-title>
                                   <div style="display: flex; justify-content: flex-start;">
-                                    <span class="currency-list my-2">{{ method }}</span>
+                                    <span class="currency-list my-2">{{ method.name }}</span>
                                   </div>
                                 </v-list-item-title>
                               </v-list-item-content>
@@ -467,35 +449,74 @@
                       </v-list-item>
                     </v-list>
                   </v-menu>
-          
-                  <v-radio-group v-model="selectedPriceRange" class="mt-2" style="margin-bottom: -20px;">
-                    <div style="display: flex; align-items: center;">
-                      <v-radio color="info"  value="one"></v-radio>
-                      <span :class="{ 'resend-code': selectedPriceRange === 'one' }" style="font-size: 14px; font-weight: 500;">1,000 & below</span>
-                    </div>
 
-                    <div style="display: flex; align-items: center;">
-                      <v-radio color="info"  value="two"></v-radio>
-                      <span :class="{ 'resend-code': selectedPriceRange === 'two' }" style="font-size: 14px; font-weight: 500;">1,000 - 10,000</span>
-                    </div>
+                  <v-menu>
+                    <template v-slot:activator="{ props }">
+                      <v-btn  v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"  style="width: fit-content; height: 50px; margin-top: 3px; border-radius: 10px; margin-top: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
+                        <div class="d-flex" style="align-items: center; justify-content: space-between;">
+                          <span class="slt">{{ selectedLimitLabel }}</span>
+                          <span v-if="!selectedLimitLabel" style="position: absolute;">Select Buy Limit</span>
+                        </div>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']" style="position: absolute; display: flex; right: 5px">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
+                          </svg>
+                      </v-btn>
+                    </template>
 
-                    <div style="display: flex; align-items: center;">
-                      <v-radio color="info"  value="three"></v-radio>
-                      <span :class="{ 'resend-code': selectedPriceRange === 'three' }" style="font-size: 14px; font-weight: 500;">10,000 - 100, 000</span>
-                    </div>
+                    <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 15px; margin-top: 10px;">
+                      <v-list-item style="display: contents">
+                        <v-row dense style="max-width: 240px; height: 250px; overflow: scroll;">
+                          <div v-for="(range, index) in priceLimits" :key="index" style="width: 100%;">
 
-                    <div style="display: flex; align-items: center;">
-                      <v-radio color="info" value="four"></v-radio>
-                      <span  :class="{ 'resend-code': selectedPriceRange === 'four' }" style="font-size: 14px; font-weight: 500;">100, 000 - 500, 000</span>
-                    </div>
+                            <v-list-item @click="setSelectedLimit(range)" style="display: flex;">
+                              
+                              <span class="currency-list">{{ range.min }} - {{ range.max === Infinity ? 'Infinity' : range.max }}</span>
+                         
+                            </v-list-item>
+                          </div>
+                        </v-row>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
 
-                    <div style="display: flex; align-items: center;">
-                      <v-radio color="info"  value="five"></v-radio>
-                      <span :class="{ 'resend-code': selectedPriceRange === 'five' }" style="font-size: 14px; font-weight: 500;">500, 000 & above</span>
-                    </div>
-                  </v-radio-group>
+                  <v-menu>
+                    <template v-slot:activator="{ props }">
+                      <v-btn v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"
+                            style="width: fit-content; height: 50px; margin-top: 3px; border-radius: 10px; margin-top: 10px; box-shadow: none; letter-spacing: 0px; width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
+                        
+                        <div class="d-flex" style="align-items: center; justify-content: space-between;">
+                          <span class="slt">{{ selectedPriceType }}</span>
+                          <span v-if="!selectedPriceType" style="position: absolute;">Select price type</span>
+                        </div>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']"
+                            style="position: absolute; display: flex; right: 5px">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
+                        </svg>
+                        
+                      </v-btn>
+                    </template>
 
-                  <v-btn @click="resetFilters()" class="primary-btn1" style="width: 100%; color: white; border-radius: 8px !important; font-weight: 600;">Clear Filters</v-btn>
+                    <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 15px; margin-top: 10px;">
+                      <v-list-item style="display: contents">
+                        <v-row dense style="max-width: 240px; overflow-y: scroll;">
+                          <div v-for="(price, index) in priceType" :key="index" style="width: 100%;">
+                            <v-list-item @click="selectedPriceType = price" style="display: flex;">
+                              <div style="display: flex; flex-direction: column">
+                                <span class="currency-list">{{ price }}</span>
+                              </div>
+                            </v-list-item>
+                          </div>
+                        </v-row>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
+
+
+                  <v-btn @click="resetFilters()" class="primary-btn1 mt-3" style="width: 100%; color: white; border-radius: 8px !important; font-weight: 600;">Clear Filters</v-btn>
                 
                 </div>
 
@@ -514,6 +535,7 @@ import { useTheme } from "vuetify";
 import { getMarketOffers } from "@/composables/requests/marketplace";
 import { createOrder, createOrderforP2P } from "@/composables/requests/marketplace";
 import { currencyConverter } from "@/composables/requests/tokens";
+import { getPaymentMethod } from "@/composables/requests/paymentMethods";
 
 
 const theme = useTheme();
@@ -531,9 +553,12 @@ const isCreating = ref(false);
 const tokenSelected = ref(false);
 const preferredTokenCurrency = ref();
 const selectedPaymentMethod = ref("Bank Transfer");
+const selectedLimit = ref("");
 const method = ref();
 const selectedPriceRange = ref();
-const paymentMethods = ['Online Wallet', 'Cash Deposit', 'Bank Transfer'];
+const selectedPriceType = ref();
+const paymentMethods = computed(() => pinia.state.PaymentMethod);
+const priceType = ['Fixed Price', 'Market Price'];
 const sellerDialog = ref(false);
 const marketplace  = pinia.state.MarketPlace || [];
 const buyDirectlyDialog = ref();
@@ -546,40 +571,67 @@ const selectToken = (tokens) => {
   tokenSelected.value = true;
 };
 
+const selectedLimitLabel = computed(() => {
+  if (!selectedLimit.value) return '';
+  const { min, max } = selectedLimit.value;
+  return `${min} - ${max === Infinity ? 'Infinity' : max}`;
+});
+
+const setSelectedLimit = (range) =>{
+  selectedLimit.value = range;
+}
+
 const get_allMarket_Offers = async () => {
-  loading.value = true;
+  loading.value = true; // Start loading indicator
   try {
-    const data = await getMarketOffers(pageNumber.value);
+    const data = await getMarketOffers(pageNumber.value); // Fetch market offers
+
+    console.log(data)
+
     if (data.success) {
-      // Assuming user id is stored in pinia.state.user.id
-      const userId = pinia.state.user.id;
-      
-      // Filter out offers that belong to the user
+      // Retrieve the current user ID from Pinia store
+      const userId = pinia.state.user.id; // Ensure 'pinia' and 'user' state are correctly set up
+
+      // Filter and map offers that do not belong to the current user
       const filteredOffers = data.data.result
-        .filter(offer => offer.user.id !== userId) // Adjust 'user_id' if needed
+        .filter(offer => {
+          const isOwnOffer = offer.user.id === userId;
+
+          return !isOwnOffer; // Filter out user's own offers
+        })
         .map(offer => {
-          const countryId = offer.trading_pair?.fiat.country_id;
-          const countryCurrencyName = countryId 
+          // Extract country ID from the offer's trading pair (if available)
+          const countryId = offer.trading_pair?.fiat?.country_id;
+
+          // Get the currency name from the country ID, or 'Unknown' if not found
+          const countryCurrencyName = countryId
             ? pinia.state.allcountries.find(country => country.id === countryId)?.currency_name || 'Unknown'
             : 'Unknown';
 
-          return { ...offer, countryCurrencyName };
+
+          // Return the modified offer object with the currency name added
+          return {
+            ...offer,
+            countryCurrencyName, // Add the currency name to each offer
+          };
         });
 
+      // Update the offers in the current component
       offers.value = filteredOffers;
-      pinia.setMarketPlace(filteredOffers); // Update the store with filtered offers
+
+      // Optionally, update the Pinia store with the filtered offers
+      pinia.setMarketPlace(filteredOffers); // Ensure that setMarketPlace is a defined action in your Pinia store
 
     } else {
+      // Handle any error returned by the API
       push.error(`${data.message}`);
     }
   } catch (e) {
-    console.error('Failed to fetch market offers:', e);
+    console.error('Failed to fetch market offers:', e); // Log any error during the API request
   } finally {
-    loading.value = false;
+    loading.value = false; // Stop loading indicator
   }
 };
-
-
 
 const offerID = computed(() => pinia.state.MarketPlace.map(item => item.id));
 
@@ -661,34 +713,69 @@ const Buy_OfferP2P = async () => {
   }
 };
 
+const getPayment_meths = async () => {
+  try {
+    // Fetch active offers
+    const data = await getPaymentMethod(pageNumber.value);
 
+    console.log(data)
 
-const priceRanges = {
-  one: [0, 10000], // Assuming 'below' is meant to be 0 or a similar value
-  two: [1000, 10000],
-  three: [10000, 100000],
-  four: [100000, 500000],
-  five: [500000, Infinity]
+    // Check if the data retrieval was successful
+    if (data.success) {
+      pinia.setPaymentMethod(data.data.result);
+      console.log(data.data.result);
+    } else {
+      push.error(`Error: ${data.message}`); // Custom error message
+    }
+  } catch (e) {
+    console.error("Unexpected error:", e);
+    push.error(`Unexpected error: ${e.message || e}`); // Detailed error message
+  }
 };
 
+const priceLimits = [
+  { min: 0, max: 10000 },
+  { min: 1000, max: 10000 },
+  { min: 10000, max: 100000 },
+  { min: 100000, max: 500000 },
+  { min: 500000, max: Infinity },
+];
+
+
 const filteredOffers = computed(() => {
-  return offers.value
-    .filter(offer => {
-      const matchesTokenSymbol = !tokenSymbol.value || offer.trading_pair?.crypto?.token?.symbol === tokenSymbol.value;
-      return matchesTokenSymbol;
-    })
-    .filter(offer => {
-      const matchesPreferredTokenCurrency = !currency_to_filterBy.value || offer?.countryCurrencyName === currency_to_filterBy.value;
-      return matchesPreferredTokenCurrency;
-    })
-    .filter(offer => {
-      if (!selectedPriceRange.value) return true;
-      const [minPrice, maxPrice] = priceRanges[selectedPriceRange.value] || [0, Infinity];
+  return offers.value.filter(offer => {
+    // Check if tokenSymbol matches or if no tokenSymbol is provided
+    const matchesTokenSymbol = !tokenSymbol.value || offer.trading_pair?.crypto?.token?.symbol === tokenSymbol.value;
+    
+    // Check if currency_to_filterBy matches or if no currency_to_filterBy is provided
+    const matchesPreferredTokenCurrency = !currency_to_filterBy.value || offer?.countryCurrencyName === currency_to_filterBy.value;
+    
+    // Check if the offer's price range is within the selectedPriceRange
+    const matchesPriceRange = !selectedLimit.value || (() => {
+      const { min, max } = selectedLimit.value || { min: 0, max: Infinity };
       const minLimit = offer.trading_pair?.fiat?.minimum_buy_limit || 0;
       const maxLimit = offer.trading_pair?.fiat?.maximum_buy_limit || Infinity;
-      const matchesPriceRange = minLimit >= minPrice && maxLimit <= maxPrice;
-      return matchesPriceRange;
-    });
+      
+      // Ensure the offer's range intersects with the selected price range
+      return minLimit <= max && maxLimit >= min;
+    })();
+    
+    // Check if the price type matches or if no price type is selected
+    const matchesPriceType = selectedPriceType.value === undefined || 
+                             (selectedPriceType.value === 'Fixed price' && offer.trading_pair?.fiat?.use_fixed_price === true) ||
+                             (selectedPriceType.value === 'Market price' && offer.trading_pair?.fiat?.use_fixed_price === false);
+
+                             const paymentMethods = offer.trading_pair?.fiat?.payment_methods || [];
+    const matchesPaymentMethod = (!selectedPaymentMethod.value && !paymentMethods.length) ||
+                                 (selectedPaymentMethod.value === 'Bank Transfer' && (!paymentMethods.length || paymentMethods.includes('Bank transfer'))) ||
+                                 (paymentMethods.map(method => method.toLowerCase()).includes(selectedPaymentMethod.value.toLowerCase()));
+
+   
+    // Return true only if all conditions are met
+    return matchesTokenSymbol && matchesPreferredTokenCurrency && matchesPriceRange && matchesPriceType && matchesPaymentMethod;
+  });
+
+  
 });
 
 
@@ -696,7 +783,8 @@ const filteredOffers = computed(() => {
 const resetFilters = () => {
   tokenSymbol.value = ''; // or default value
   preferredTokenCurrency.value = ''; // or default value
-  selectedPriceRange.value = ''; // or default value
+  selectedLimit.value = ''; // or default value
+  selectedPaymentMethod.value = "";
 };
 
 
@@ -822,21 +910,10 @@ watch(()=>amount_to_pay.value, (newValue) => {
   }
 });
 
-const fetch_Market_Offers = async()=>{
-  if(pinia.state.MarketPlace.length){
-    return 
-  }else{
-    await Promise.allSettled([
-    get_allMarket_Offers(),
-    ])
-    
-  }
-
-}
-
-
-onMounted(() => {
-  fetch_Market_Offers();
+  
+  onMounted(() => {
+  get_allMarket_Offers();
+  getPayment_meths()
 });
 
 </script>
@@ -917,6 +994,13 @@ border: 1px solid #1B2537;
 .notivue-notification {
   position: relative;
   z-index: 1000000 !important; /* Set this value higher than Vuetify modal */
+}
+
+.mkt-values{
+font-family: Manrope; 
+font-size: 14px; 
+font-style: normal;  
+font-weight: 500
 }
 
 
