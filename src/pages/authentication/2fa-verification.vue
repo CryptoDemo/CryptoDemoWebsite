@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="section">
     <img
       src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg"
       class="position-absolute bg-vector"
