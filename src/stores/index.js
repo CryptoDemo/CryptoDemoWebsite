@@ -57,6 +57,7 @@ export const useStore = defineStore('app',()=> {
       new_chat_messages: [],
       storeBanners: [],
       PaymentMethod: [],
+      selectedPaymentMethod_from_indexPage: "",
       usernameChanged:"false",
       preferredLanguage:"English",
     });
@@ -287,6 +288,7 @@ export const useStore = defineStore('app',()=> {
     state.selected_offer_from_trades = "",
     state.selected_trade_ID = "",
     state.OnlineCheck = "",
+    state.selectedPaymentMethod_from_indexPage = "",
     state.chat_messages = [],
     state.new_chat_messages = [],
    

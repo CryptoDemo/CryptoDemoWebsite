@@ -401,7 +401,7 @@
                     
                     <v-list style="border-radius: 10px;" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
                       <v-list-item>
-                        <v-row dense style="max-width: 210px; display: block;">
+                        <v-row dense style="max-width: 210px; display: block; height: 250px; overflow: scroll;">
                           <v-col v-for="(method, index) in paymentMethods" :key="index" sm="12">
                             <v-list-item @click="selectedPaymentMethod = method.name">
                               <v-list-item-content>
@@ -552,7 +552,7 @@ const offers = computed(() => pinia.state.MarketPlace);
 const isCreating = ref(false);
 const tokenSelected = ref(false);
 const preferredTokenCurrency = ref();
-const selectedPaymentMethod = ref("Bank Transfer");
+const selectedPaymentMethod = computed (() => pinia.state.selectedPaymentMethod_from_indexPage || "Bank Transfer");
 const selectedLimit = ref("");
 const method = ref();
 const selectedPriceRange = ref();
@@ -713,25 +713,7 @@ const Buy_OfferP2P = async () => {
   }
 };
 
-const getPayment_meths = async () => {
-  try {
-    // Fetch active offers
-    const data = await getPaymentMethod(pageNumber.value);
 
-    console.log(data)
-
-    // Check if the data retrieval was successful
-    if (data.success) {
-      pinia.setPaymentMethod(data.data.result);
-      console.log(data.data.result);
-    } else {
-      push.error(`Error: ${data.message}`); // Custom error message
-    }
-  } catch (e) {
-    console.error("Unexpected error:", e);
-    push.error(`Unexpected error: ${e.message || e}`); // Detailed error message
-  }
-};
 
 const priceLimits = [
   { min: 0, max: 10000 },
@@ -911,9 +893,8 @@ watch(()=>amount_to_pay.value, (newValue) => {
 });
 
   
-  onMounted(() => {
+onMounted(() => {
   get_allMarket_Offers();
-  getPayment_meths()
 });
 
 </script>
@@ -991,9 +972,10 @@ letter-spacing: 0px;
 border: 1px solid #1B2537;
 }
 
-.notivue-notification {
-  position: relative;
-  z-index: 1000000 !important; /* Set this value higher than Vuetify modal */
+
+.currency-list{
+  font-family: Manrope;
+  font-size: 14px; 
 }
 
 .mkt-values{

@@ -30,19 +30,19 @@
       </div>
       <div class="card-layout1">
             <v-row align="center" justify="center">
-              <v-col v-for="(variant, i) in variants"   sm="4" :key="i" cols="12">
+              <v-col v-for="(method, index) in paymentMethods.slice(0, 9)" :key="index" sm="4" cols="12">
                 <v-card  :class="isDark ? 'card-layout':'card-layout-light'" bg-color="#10192D"  color="white" variant="text">
                     <v-card-item style="padding: 0px !important">
                         <div>
                             <div class="">
-                              <img :src="variant.cardImages"/>
+                              <img src="/svg/Featured icon (4).svg"/>
                             </div>
                             <div :class="isDark ? 'card-header':'card-header-light'">
-                              {{ variant.title }}
+                              {{ method.name  }}
                             </div>
-                            <div  :class="isDark ? 'text-caption':'text-caption-light'">{{transaction1? variant.textCaption : variant.textCaption1}}</div>
-                            <button @click="Nav_marketPlace()" style="margin-top: 18px; display: inline-flex;">
-                              <span class="sell-btc-text me-2" style="color: #2873FF !important">Sell your bitcoin</span>  
+                            <!-- <div  :class="isDark ? 'text-caption':'text-caption-light'">{{transaction1? variant.textCaption : variant.textCaption1}}</div> -->
+                            <button @click="Nav_marketPlace(); pinia.state.selectedPaymentMethod_from_indexPage = method.name" style="margin-top: 18px; display: inline-flex;">
+                              <span class="sell-btc-text me-2" style="color: #2873FF !important">Buy Crypto</span>  
                               <img src="/svg/blue-arrow.svg" class=""/>
                             </button>
                         </div>
@@ -58,10 +58,15 @@
 <script setup>
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
+import { getPaymentMethod } from "@/composables/requests/paymentMethods";
+
+
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
 const transaction1 = ref(true);
+const paymentMethods = computed(() => pinia.state.PaymentMethod);
+const pageNumber = ref(1);
 
 const Nav_marketPlace = () => {
   // Perform the check for user login
@@ -72,6 +77,26 @@ const Nav_marketPlace = () => {
   }
 }
 
+const getPayment_meths = async () => {
+  try {
+    // Fetch active offers
+    const data = await getPaymentMethod(pageNumber.value);
+
+    console.log(data)
+
+    // Check if the data retrieval was successful
+    if (data.success) {
+      pinia.setPaymentMethod(data.data.result);
+      console.log(data.data.result);
+    } else {
+      push.error(`Error: ${data.message}`); // Custom error message
+    }
+  } catch (e) {
+    console.error("Unexpected error:", e);
+    push.error(`Unexpected error: ${e.message || e}`); // Detailed error message
+  }
+};
+
 const variants = [
 { cardImages: '/svg/Featured icon.svg', title:'Bank transfer', textCaption:'Our guided bank transfer trades make it even easier to sell Bitcoin and receive payment.', textCaption1:'Our guided bank transfer trades makes it even easier to Buy Bitcoin.'}, 
 { cardImages: '/svg/Featured icon (1).svg', title:'Cash payment' , textCaption:'Happy to accept cash? Then you can do just that.', textCaption1:'Happy to accept cash? Then you can do just that.'}, 
@@ -80,6 +105,10 @@ const variants = [
 { cardImages: '/svg/Featured icon (4).svg', title:'Digital currencies' , textCaption:'Use Tether, Ethereum, Litecoin, and more to sell Bitcoin.', textCaption1:'Use Tether, Ethereum, Litecoin, and more to buy Bitcoin.'}, 
 { cardImages: '/svg/Featured icon (5).svg', title:'Goods and services' , textCaption:'Use Bitcoin to pay for goods and services from around the world.', textCaption1:'Use Bitcoin to Buy  goods and services from around the world.'}, 
 ];
+
+onMounted(() => {
+  getPayment_meths()
+});
 
 </script>
 

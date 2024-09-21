@@ -3,7 +3,7 @@
     <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0; height: 90%;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
     <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0; height: 90%; right: 0; display: flex; margin: auto" v-else/>
    
-    <Header @country="v => country = v" text2="Already have an account," title="Create account" link="/authentication/register" :flagDropdown="true"/> 
+    <Header @country="v => country = v" text2="Already have an account," title="Create account" link="/authentication/register" :newUserLanguage="true" :flagDropdown="true"/> 
       <v-container  class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
         <div class="section">
         <v-row no-gutters>

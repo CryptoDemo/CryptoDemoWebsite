@@ -5,7 +5,7 @@
           <span  :class="isDark ?  'demo-web1':'demo-web1-light'" >Demo</span>
 
           <div>
-            <!-- <LanguageDropdown/> -->
+            <LanguageDropdown/>
           </div>
 
         </div>
