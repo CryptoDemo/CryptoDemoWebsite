@@ -171,6 +171,11 @@
 
             <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="chat-modal-info" style="width: 540px; display: flex; margin: auto; border-radius: 16px; padding: 30px; position: relative;">
             
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16"  @click="dialog = false"  style="cursor: pointer; display: flex; margin-inline-start: auto; margin-bottom: 8px">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+              </svg>
+
               <v-card-text v-if="selectedOrder?.status === 'processing'">
                 <span style="display: flex; justify-content: center; font-weight: 600;">Do you want to cancel this trade?</span>
                 <div class="mt-4" style="display: flex;  justify-content: center;">
@@ -179,27 +184,28 @@
               </v-card-text>
               
               <v-card-text v-else>
+               
+                
                 <span class="mb-5" style="font-size: 20px; font-weight: 600; display: flex; justify-content: center;">Paid but the Order got cancelled or expired?</span>
+               
                 <ul class="list-bullets-styled">
                         <li>Prepare Proof of Payment</li>
                         <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">Provide a screenshot or any evidence  of payment you have.</span>
                         <li class="mt-5">Request crypto Transfer</li>
                         <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">Send it to the seller and request for a crypto transfer via Demo pay in the chat</span>
-                        <v-btn  @click="navigateTo('/account/marketplace/tradechat?message=Hi, i have paid but the order has been cancelled by the system, please credit me.');" class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 100%; height: 45px;">Request crypto transfer</v-btn>
+                        <v-btn @click="navigateTo('/account/marketplace/tradechat?message=Hi, i have paid but the order has been cancelled by the system, please credit me.');" class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 100%; height: 45px;">Request crypto transfer</v-btn>
                         <li class="mt-5">Place New Order</li>
+                        
                         <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">If the seller does not respond, place a new order of the same ammount you paid. Tap "Transferred", notify seller immeadiately after the order is created </span>
-                        <v-btn class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 100%; height: 45px;">Place new order</v-btn>
+                        <v-btn @click="navigateTo('/account/marketplace/activeOffers')" class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 100%; height: 45px;">Place new order</v-btn>
                         <li class="mt-5">Send Dispute</li>
+
                         <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">Send a dispute and explain clearly the issue(s) using clear proof of payments.</span>
-                        <v-btn class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 100%; height: 45px;">Send dispute</v-btn>
-                      </ul> 
+                        <v-btn @click="navigateTo('/account/marketplace/tradeChat')" class="primary-btn1 mt-1" style="border-radius: 8px !important; font-weight: 600; width: 100%; height: 45px;">Send dispute</v-btn>
+                </ul> 
 
               </v-card-text>
 
-              <!-- <v-card-actions> -->
-                <!-- <v-spacer></v-spacer> -->
-                <!-- <v-btn text="Close Dialog" @click="dialog = false"></v-btn> -->
-              <!-- </v-card-actions> -->
 
             </v-card>
           </v-dialog>
