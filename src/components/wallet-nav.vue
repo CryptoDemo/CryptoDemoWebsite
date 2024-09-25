@@ -91,7 +91,7 @@ const getSummedBal = async () => {
     };
 
 const isCamouflageEmpty = computed(() => {
-  const camouflage = pinia.state.user.camouflage;
+  const camouflage = pinia.state.user?.camouflage;
   return !camouflage || Object.keys(camouflage).length === 0;
 });
 

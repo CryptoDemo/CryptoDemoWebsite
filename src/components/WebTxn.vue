@@ -10,12 +10,12 @@
             <span style="">No transactions to display.</span>
         </div>
 
-        <v-infinite-scroll  @load="fetchMore" :disabled="!hasMoreData" style="overflow-y: scroll">
-          <!-- <v-infinite-scroll :on-infinite="fetchMoreData" v-bind="containerProps"> -->
+        <!-- <v-infinite-scroll  @load="fetchMore" :disabled="!hasMoreData" style="overflow-y: scroll"> -->
+      
             <div v-bind="containerProps" style="height: 400px">
               <div v-bind="wrapperProps" class="list-wrapper">
                 <!-- <template v-for="(transaction, index) in list" :key="index"> -->
-                <div v-for="(transaction, index) in list" :key="index">
+                <div v-for="transaction in list" :key="transaction.id">
                   <div>
                       <v-dialog max-width="420">
                        
@@ -198,7 +198,8 @@
               <!-- </template> -->
               </div>
             </div>
-        </v-infinite-scroll>
+     
+        <!-- </v-infinite-scroll> -->
 
 
     </div>
@@ -336,20 +337,20 @@ const getWebTrans = async () => {
       };
  };
 
-const fetchMore = async ({ done }) => {
-  if (!hasMoreData.value) {
-    done();
-    return; // Stop fetching if no more data
-  }
+// const fetchMore = async ({ done }) => {
+//   if (!hasMoreData.value) {
+//     done();
+//     return; // Stop fetching if no more data
+//   }
 
-  // Increment the pageNumber
-  pageNumber.value += 1;
+//   // Increment the pageNumber
+//   pageNumber.value += 1;
 
-  // Fetch the new page record
-  await getWebTrans();
+//   // Fetch the new page record
+//   await getWebTrans();
 
-  done('ok');
-};
+//   done('ok');
+// };
 
 
 
