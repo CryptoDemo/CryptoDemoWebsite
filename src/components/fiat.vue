@@ -308,9 +308,10 @@ const continueToOtp = () => {
     return;
   }
 
-  if (fiatToken.value.minimum_fiat_funding > loading_send_fiat.value || showFailureIcon.value ) {
-    return;
-  }
+  // if (fiatToken.value.minimum_fiat_funding > loading_send_fiat.value || showFailureIcon.value ) {
+  //   push.error('Insufficient fund.');
+  //   return;
+  // }
 
 
   // Proceed to show PIN input based on whether the user has a PIN
