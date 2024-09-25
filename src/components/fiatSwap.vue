@@ -13,7 +13,7 @@
             <v-card-text>
               <div class="py-7 ml-3" style="display: flex; align-items: center; justify-content: center; flex-direction: column">
                 <span class="swap1">Real-Time Currency Exchange Hub</span>
-                <span class="mt-4">Your Trusted Gateway to Seamless and Secure Currency Exchange Solutions</span>
+                <span class="mt-4 trusted-gt">Your Trusted Gateway to Seamless and Secure Currency Exchange Solutions</span>
               </div>
 
 
@@ -65,18 +65,22 @@
                         </div>
             
                         <div style="display: flex; justify-content: center; align-self: center; margin-top: 30px; border-radius: 4px; height: 26px;z-index: 1000;">
-                        <v-btn @click="swapAmount = mytoken?.minimum_fiat_to_crypto_swap" class="me-4" :class="isDark ? 'btn-segment' : 'btn-segment-light'"
+                        <v-btn @click="swapAmount = mytoken?.minimum_fiat_to_crypto_swap" class="me-4 min-btn" :class="isDark ? 'btn-segment' : 'btn-segment-light'"
                             style=" height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span>
                         </v-btn>
+
                         <v-btn @click="swapAmount = mytoken?.maximum_fiat_funding"
                             class="me-3" :class="isDark ? 'btn-segment' : 'btn-segment-light'" style="letter-spacing: 0px; text-transform: capitalize; height: 26px; background: inherit; box-shadow: none;"><span class="min">Max</span>
                         </v-btn>
+
                         </div>
+
+
                         <div class="number-input" style="display: flex; margin-right: 10px; flex-direction: column; z-index: 1000;">
                         <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom: 10px; display: flex;justify-content: end;">{{ pinia.state.Selectedcurrency_code }}
                             {{ formatBalance(selectedBalance) }}</span>
-                        <input
-                            type="number"
+                        
+                        <input type="number"
                             v-model="swapAmount"
                             :class="isDark ? 'btn-segment' : 'btn-segment-light'"
                             style="
@@ -184,10 +188,45 @@
                         Exchange
                     </v-btn>
             
-                    <v-btn @click="executeTxn()" v-if="proccedBtn" :loading="loading" class="exchange-btn1">
+                    <v-btn @click="handleConfirm()" v-if="proceedBtn" :loading="loading" class="exchange-btn1">
                         <v-icon icon="mdi-arrow-right"></v-icon>
                         Proceed
                     </v-btn>
+
+                      <!-- Set New Pin -->
+                    <div v-if="showOtp && !hasPin">
+                      <h3 class="text-center">Set Transaction Pin</h3>
+                      <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Create a 4-digit transaction pin</span>
+                      
+                      <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
+                        <v-otp-input v-model="newPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                        <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Set transaction pin</span>
+                      </div>
+
+                      <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
+                        <v-otp-input v-model="confirmPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                        <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">re-enter transaction pin</span>
+                      </div>
+
+                      <v-btn @click="setNewPin()" :loading="loading" variant="tonal"  style="height: 45px; border-radius: 10px; color: #2873FF; font-weight: 600; width: 100%; letter-spacing: 0px;">
+                        Set Pin
+                      </v-btn>
+                    </div>
+
+                      <!-- Enter Pin for users who have a pin -->
+                    <div v-if="showOtp && hasPin">
+
+                      <h3 class="text-center">Enter Transaction Pin</h3>
+                      <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Enter transfer pin to authorize this transaction</span>
+
+                
+                      <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
+                        <v-otp-input v-model="PinOtp" class="mx-auto"  length="4" variant="underlined"></v-otp-input>
+                      </div>
+                
+                      <v-btn @click="VerifyPin()" :loading="loading" variant="tonal" style=" height: 45px; border-radius: 10px; color: #2873FF; font-weight: 600; width: 100%; letter-spacing: 0px;">Proceed</v-btn>
+              
+                    </div>
             
                     </div>
                 </div>
@@ -212,14 +251,21 @@
   import { ref } from "vue";
   import { useTheme } from "vuetify";
   import { swapFund } from "@/composables/requests/fiat";
+  import {  verify_Pin, set_Pin} from "@/composables/requests/users";
   
   const theme = useTheme();
   const isDark = computed(() => theme.global.current.value.dark);
   const pinia = useStore();
+
+  const PinOtp = ref("");
+
+  const newPinOtp = ref("");
+
+  const confirmPinOtp = ref("");
   
   const dialog = ref(false);
   
-  const proccedBtn = ref(false);
+  const proceedBtn = ref(false);
   
   const exchange = ref(true)
 
@@ -233,7 +279,12 @@
   
   const amount_to_recieve = ref(null);
   
-  
+  const hasPin = computed(() => pinia.state.user.is_pin_set !== null && pinia.state.user.is_pin_set !== false);
+
+  const showOtp = ref(false)
+
+  const loading_pin  = ref(false)
+
   const mytoken = computed(() =>pinia.state.allcountries.find((c) => c.currency_name === pinia.state.preferredCurrency));
   
   const selectedBalance = computed(() => {
@@ -244,86 +295,159 @@
 
 const filteredCurrency_to_swap_to = computed(() => pinia.state.allcountries.filter((c) => c.currency_name !== pinia.state.preferredCurrency));
    
-
-  
   watch(
     () => pinia.state.preferredCurrency,
     (newValue) => {
     }
   );
   
-  
-  const calculateTxn = async () => {
-    if (swapAmount?.value > selectedBalance.value) {
-      push.error("Insufficient balance");
-      return;
-    }
-  
-  
-    const info = {
-      action_type: "CALCULATE_FIAT_SWAP_AMOUNT",
-      from_country_id: mytoken?.value.id,
-      to_country_id: countryID_of_currency_i_want.value?.id,
-      amount: swapAmount.value,
-    };
-    try {
-      loading.value = true;
-  
-      const data = await swapFund(info);
-  
-      if (data.success) {
-        loading.value = false;
-        pinia.setFiat_swap_details(data.data);
-        amount_to_recieve.value = pinia.state.Fiat_swap_details?.expected_amount;
-        proccedBtn.value = true
-        exchange.value = false
+const calculateTxn = async () => {
+  if (swapAmount?.value > selectedBalance.value) {
+    push.error("Insufficient balance");
+    return;
+  }
 
-      } else {
-        push.error(`${data.message}`, {});
-        loading.value = false;
-      }
-    } catch (e) {
-      console.log(e);
+
+  const info = {
+    action_type: "CALCULATE_FIAT_SWAP_AMOUNT",
+    from_country_id: mytoken?.value.id,
+    to_country_id: countryID_of_currency_i_want.value?.id,
+    amount: swapAmount.value,
+  };
+  try {
+    loading.value = true;
+
+    const data = await swapFund(info);
+
+    if (data.success) {
+      loading.value = false;
+      pinia.setFiat_swap_details(data.data);
+      amount_to_recieve.value = pinia.state.Fiat_swap_details?.expected_amount;
+      proceedBtn.value = true
+      exchange.value = false
+
+    } else {
+      push.error(`${data.message}`, {});
       loading.value = false;
     }
+  } catch (e) {
+    console.log(e);
+    loading.value = false;
+  }
+};
+
+const executeTxn = async () => {
+  const info = {
+    action_type:"EXECUTE_FIAT_SWAP",
+    action_id: pinia.state.Fiat_swap_details.action_id,
+    from_country_id: mytoken.value.id,
+    to_country_id: countryID_of_currency_i_want.value?.id,
+    amount: swapAmount.value,
+    // expected_amount: pinia.state.Fiat_swap_details.expected_amount,
   };
-  
-  
-  
-  const executeTxn = async () => {
-    const info = {
-      action_type:"EXECUTE_FIAT_SWAP",
-      action_id: pinia.state.Fiat_swap_details.action_id,
-      from_country_id: mytoken.value.id,
-      to_country_id: countryID_of_currency_i_want.value?.id,
-      amount: swapAmount.value,
-      // expected_amount: pinia.state.Fiat_swap_details.expected_amount,
-    };
-    try {
-      loading.value = true;
-  
-      const data = await swapFund(info);
-  
-      if (data.success) {
-        loading.value = false;
-        proccedBtn.value = false;
-        exchange.value = true;
-        swapAmount.value = "";
-        amount_to_recieve.value = "";
-        pinia.setFiat_transactions([...pinia.state.Fiat_transactions, data.data]);
-  
-  
-        push.success(`${data.message}`)
-      } else {
-        push.error(`${data.message}`);
-        loading.value = false;
-      }
-    } catch (e) {
-      console.log(e);
+  try {
+    loading.value = true;
+
+    const data = await swapFund(info);
+
+    if (data.success) {
+      loading.value = false;
+      proceedBtn.value = false;
+      exchange.value = true;
+      swapAmount.value = "";
+      amount_to_recieve.value = "";
+      dialog.value = false
+      showOtp.value = false;
+      pinia.setFiat_transactions([...pinia.state.Fiat_transactions, data.data]);
+
+
+      push.success(`${data.message}`)
+    } else {
+      push.error(`${data.message}`);
       loading.value = false;
     }
-  };
+  } catch (e) {
+    console.log(e);
+    loading.value = false;
+  }
+};
+
+  const VerifyPin = async () => {
+  loading_pin.value = true;
+  const payload = {
+  pin: PinOtp.value,
+  }
+
+  try {
+    const data = await verify_Pin(payload);
+    PinOtp.value  = "";
+    if (data.success) {
+        await executeTxn();
+    } else {
+    loading_pin.value = false;
+    dialog.value = false
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+const setNewPin = () => {
+  // Check if the pins match before clearing the values
+  if (newPinOtp.value !== confirmPinOtp.value) {
+    // Handle pin mismatch (show an alert or message)
+    push.error("Pins do not match. Please try again.");
+    return;
+  }
+
+  // Logic to save the new pin
+  hasPin.value = true;
+
+  // Call the function to save the pin to the backend
+  setPin(newPinOtp.value); // Pass the new pin to the setPin function
+
+  // Clear the pin fields after the pin is successfully set
+  newPinOtp.value = "";
+  confirmPinOtp.value = "";
+};
+
+const setPin = async () => {
+  loading_pin.value = true;
+  const payload = {
+    pin: newPinOtp.value,
+  }
+
+  try {
+    const data = await set_Pin(payload);
+
+    if (data.success) {
+        push.success(data.message);
+        execute();
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
   
+const handleConfirm = () => {
+  // Clear previous information
+  showOtp.value = true;
+  proceedBtn.value = false; // Hide the "Proceed" button after clicking
+  if (!hasPin.value) {
+    showOtp.value = true; // Show the set pin step
+  } else {
+    showOtp.value = true; // Show the enter pin step
+  }
+  // Optionally, you might want to clear other state variables here
+}
   onMounted(() => {});
   
   // const toggleTokens = ()=>{
@@ -588,8 +712,18 @@ margin-left: 10px !important;
 .quick-swap{
   width: 100% !important;
 }
-.swp-dv{
-  
+.swap1{
+  display: flex;
+  margin: auto;
+}
+
+.trusted-gt{
+  display: flex;
+  text-align: center;
+}
+
+.min-btn{
+  margin-left: 26px !important;
 }
 
 }

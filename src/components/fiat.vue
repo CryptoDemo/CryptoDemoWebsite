@@ -183,7 +183,7 @@
 import { ref, watchEffect } from 'vue';
 import { useTheme } from 'vuetify';
 import { fundFiatWallet, getbals, sendFiat } from "@/composables/requests/fiat";
-import { getUserInfo, set_Pin, verify_Pin, reset_Pin} from "@/composables/requests/users";
+import { getUserInfo, set_Pin, verify_Pin} from "@/composables/requests/users";
 import {debounce} from "@/composables/mixin";
 
 const theme = useTheme()
@@ -288,6 +288,8 @@ const get_user_info = async () => {
     console.log(e);
   }
 };
+
+
 
 // const debounced_get_user_info = debounce(get_user_info);
 

@@ -28,6 +28,7 @@
           </v-btn>
         </div>
       </div>
+      
       <div class="card-layout1">
             <v-row align="center" justify="center">
               <v-col v-for="(method, index) in paymentMethods.slice(0, 9)" :key="index" sm="4" cols="12">
