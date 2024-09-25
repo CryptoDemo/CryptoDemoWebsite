@@ -33,5 +33,9 @@ const handleGoogleTranslateSelect = async (language) => {
 </script>
 
 <style scoped>
-
+@media screen and (max-width: 600px) {
+  .language-select{
+  margin-right: 31px !important;
+}
+}
 </style>

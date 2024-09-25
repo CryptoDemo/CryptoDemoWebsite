@@ -31,6 +31,7 @@ export default defineNuxtConfig ({
     'notivue/nuxt',
     '@nuxtjs/device',
     '@lambahq/nuxt',
+    '@vueuse/nuxt',
     async(options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', config => {
         // @ts-expect-error

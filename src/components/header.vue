@@ -21,7 +21,9 @@
           <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
           <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center;"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
 
-          <LanguageDropdown v-if="newUserLanguage"/>
+          <div class="language-select">
+            <LanguageDropdown v-if="newUserLanguage"/>
+          </div>
           
           <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
@@ -448,6 +450,13 @@ margin-bottom: 24px;
 position: absolute !important;
 right: 13px !important;
 top: 26%;
+}
+.text2{
+  margin-right: 70px;
+}
+
+.language-select{
+  margin-right: 50px !important;
 }
 }
 

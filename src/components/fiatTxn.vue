@@ -362,6 +362,36 @@ const created_at = ref();
 
 const FiatTxnInfo = computed(() => pinia.state.Fiat_transactions);
 
+// const getFiatTxn = async () => {
+//   isloading.value = true;
+
+//   try {
+//     const data = await allFiatTxn(pageNumber.value);
+
+//     if (data.success) {
+//       // Ensure both existing and new transactions are arrays
+//       const existingTransactions = Array.isArray(FiatTxnInfo.value) ? FiatTxnInfo.value : [];
+//       const newTransactions = Array.isArray(data.data.result) ? data.data.result : [];
+
+//       // Merge and filter transactions by unique ID
+//       const updatedTransactions = filterByKey("id", [
+//         ...existingTransactions,
+//         ...newTransactions,
+//       ]);
+
+//       pinia.setFiat_transactions(updatedTransactions);
+
+//     } else {
+//       push.error(`${data.message}`);
+//     }
+//   } catch (e) {
+//     console.error("An error occurred while fetching transactions:", e);
+//     push.error("An error occurred while fetching transactions. Please try again.");
+//   } finally {
+//     isloading.value = false;
+//   }
+// };
+
 const getFiatTxn = async () => {
   isloading.value = true;
 
@@ -379,8 +409,12 @@ const getFiatTxn = async () => {
         ...newTransactions,
       ]);
 
-      pinia.setFiat_transactions(updatedTransactions);
+      // Sort by timestamp (replace 'createdAt' with the actual timestamp field)
+      updatedTransactions.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+      // Update the transactions in Pinia store
+      pinia.setFiat_transactions(updatedTransactions);
+      
     } else {
       push.error(`${data.message}`);
     }
@@ -391,7 +425,6 @@ const getFiatTxn = async () => {
     isloading.value = false;
   }
 };
-
 
 
 

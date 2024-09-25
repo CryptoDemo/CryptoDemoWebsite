@@ -607,6 +607,21 @@ const send_message = async () => {
     file_url.value = fileUrls.uploaded_file_urls[0];
   }
 
+    // Check if the file is a video
+    if (myfile.value) {
+    const fileType = myfile.value.type;
+
+    // List of allowed MIME types (excluding video types)
+    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+    if (!allowedMimeTypes.includes(fileType)) {
+      // If the file is a video or any other disallowed type, abort the upload
+      console.log("Videos are not allowed to be sent.");
+      isSendng.value = false;
+      return;
+    }
+  }
+
   const main_payload = {
     id_: new Date(),
     receiver_id: selectedCoin.value.buyer_id === pinia.state.user.id ? selectedCoin.value.seller_id : selectedCoin.value.buyer_id,
@@ -935,9 +950,10 @@ const scrollToBottom = () => {
 }
 
 textarea {
-  padding-top: 15px; /* Adjust top padding to vertically align the text */
+  padding-top: 10px; /* Adjust top padding to vertically align the text */
   width: 100%; /* Full width */
   box-sizing: border-box; /* Include padding in width/height calculation */
+  padding-left: 10px;
 }
 
 
