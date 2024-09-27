@@ -227,61 +227,7 @@ const datainfo = ref(pinia.state.TransactionDetails || []);
 const transData = ref(null)
 
 
-// const fetchMore = async ({done}) => {
-//   // Increment the pageNumber
-//   pageNumber.value += 1;
-
-//   // Fetch the new page record
-//   await getWebTrans();
-
-
-//   done('ok');
-// };
-
 const worker = new Worker('/worker/index.js'); // Path to your worker file
-
-// const getWebTrans = async () => {
-//   isloading.value = true;
-
-//   try {
-//     const data = await getWebTransaction(pageNumber.value, pinia.state.selectedNetwork.toLowerCase());
-//     if (data.success) {
-//       const result = data.data.result;
-//       worker.postMessage({
-//         type: 'prepareTransaction',
-//         data: result,
-//       });
-//     } else {
-//       push.error(result.message || 'An error occurred');
-//     }
-//   } catch (error) {
-//     push.error('An error occurred while fetching transactions');
-//   }
-
-//   worker.onmessage = (event) => {
-//     const { success, type, result, message } = event.data;
-
-//     if (type === 'prepareTransaction') {
-//       if (success) {
-//         const currentData = Array.isArray(datainfo.value) ? datainfo.value : [];
-//         const newData = [...currentData, ...result];
-//         datainfo.value = newData.length ? filterByKey("id", newData) : [];
-//         pinia.setTransactionDetails(datainfo.value);
-
-//       } else {
-//         push.error(message || 'An error occurred');
-//       }
-//     }
-
-//     isloading.value = false;
-//   };
-
-//   worker.onerror = (error) => {
-//     console.error('Worker error:', error);
-//     push.error('An error occurred in the worker');
-//     isloading.value = false;
-//   };
-// };
 
 let hasMoreData = ref(true);
 const getWebTrans = async () => {

@@ -161,7 +161,7 @@
               <span class="section2-titleii" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-bottom: 88px;">Welcome to a financial system for the 100%.</span>
            </div>
 
-          <Frame/>
+          <LazyFrame/>
           
           <div style="margin-top: -5px;">
             <LazyReviews/>

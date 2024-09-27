@@ -17,157 +17,114 @@
           <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
         </div>
 
-        <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-          class="button-container"
-          style="
-            display: flex;
-            border-radius: 10px;
-            width: fit-content;
-            height: 65px;
-            align-items: center;
-            padding: 10px;
-          "
-        >
-          <v-btn
-            class="me-3"
-            :class="[
-              selectedScreen
-                ? 'wallet-btn'
-                : isDark
-                ? 'fiat-btn'
-                : 'fiat-btn-light',
-            ]"
-            @click.prevent="selectedScreen = true"
-            >Active trade
+        <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="button-container" style=" display: flex; border-radius: 10px; width: fit-content; height: 65px; align-items: center; padding: 10px; ">
+          
+          <v-btn class="me-3" :class="[ selectedScreen? 'wallet-btn': isDark? 'fiat-btn': 'fiat-btn-light',]" 
+                @click.prevent="selectedScreen = true">Active trade
           </v-btn>
+
           <v-btn
-            :class="[
-              !selectedScreen
-                ? 'wallet-btn'
-                : isDark
-                ? 'fiat-btn'
-                : 'fiat-btn-light',
-            ]"
-            @click.prevent="selectedScreen = false"
-            >Closed trade</v-btn
-          >
+            :class="[!selectedScreen? 'wallet-btn' : isDark? 'fiat-btn' : 'fiat-btn-light',
+            ]" @click.prevent="selectedScreen = false">Closed trade
+          </v-btn>
         </div>
 
-        <v-alert v-if="showAlert" type="info" class="mb-4">
-          {{ alertMessage }}
-        </v-alert>
+        <v-alert v-if="showAlert" type="info" class="mb-4">{{ alertMessage }} </v-alert>
 
         <div class="mt-5">
           <div v-if="!filteredOrders.length" style="display: flex; flex-direction: column; justify-content: center; margin: auto; margin: auto; height: 420px;">
             
-
             <span class="text-center">No active trades available.</span>
             <span @click="navigateTo('/account/marketplace/activeOffers')" class="text-decoration-underline text-subtitle-2 text-center cursor-pointer" :class="isDark ? 'text-dark' : 'text-light'">Perform trades to see them here</span>
           </div>
 
           <v-dialog v-model="dialog">
             <template v-slot:activator="{ props: activatorProps }">
-              <v-card
-                link
-                v-bind="activatorProps"
-                @click.prevent="openDialog(order)"
-                v-for="(order, index) in filteredOrders"
-                :key="index"
-                :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-                style="padding: 20px; border-radius: 15px; margin-bottom: 10px"
-              >
-                <span style="font-size: 14px">
-                  Trade time span
-                  <span
-                    :class="{
-                      'expired-text': order.status === 'expired',
-                      'active-text': order.status !== 'expired',
-                    }"
-                    style="font-size: 14px"
+              <div style="overflow-y: auto;" v-if="filteredOrders && filteredOrders.length">
+              <v-virtual-scroll :items="filteredOrders" item-height="150"> <!-- Adjust item-height based on your card height -->
+                <template v-slot="{ item: order, index }">
+                  <v-card
+                    link
+                    v-bind="activatorProps"
+                    @click.prevent="openDialog(order)"
+                    :key="index"
+                    :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+                    style="padding: 20px; border-radius: 15px; margin-bottom: 10px"
                   >
-                    {{ formattedDate(order.created_at) }},
-                    {{ formatTime(order.created_at) }} -
-                    {{ formatTime(order.expires_in) }}
-                  </span>
-                </span>
+                    <span style="font-size: 14px">
+                      Trade time span
+                      <span
+                        :class="{
+                          'expired-text': order.status === 'expired',
+                          'active-text': order.status !== 'expired',
+                        }"
+                        style="font-size: 14px"
+                      >
+                        {{ formattedDate(order.created_at) }},
+                        {{ formatTime(order.created_at) }} -
+                        {{ formatTime(order.expires_in) }}
+                      </span>
+                    </span>
 
-                <div
-                  style="
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    font-size: 14px;
-                    line-height: 30px;
-                  "
-                >
-                  <div
-                    style="display: flex; flex-direction: column"
-                    :class="isDark ? 'text-dark' : 'text-light'"
-                  >
-                    <div
-                      v-if="pinia.state?.user?.kyc_verified"
-                      style="display: flex; align-items: center"
-                    >
-                      <span>{{ order?.offer?.user?.username }}</span>
-                      <img src="/svg/verified.svg" />
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px; line-height: 30px;">
+                      <div style="display: flex; flex-direction: column" :class="isDark ? 'text-dark' : 'text-light'">
+                        <div v-if="pinia.state?.user?.kyc_verified" style="display: flex; align-items: center">
+                          <span>{{ order?.offer?.user?.username }}</span>
+                          <img src="/svg/verified.svg" />
+                        </div>
+
+                        <span>Trade status</span>
+                        <span>My role</span>
+                        <span>Trade amount</span>
+                        <span>Expected amount</span>
+                        <span>Payment method</span>
+                        <span>Order ID</span>
+                      </div>
+
+                      <div style="display: flex; flex-direction: column; align-items: end;" :class="isDark ? 'text-dark' : 'text-light'">
+                        <button @click="navigateTo('/account/marketplace/tradechat'); pinia.state.selected_trade_ID = order?.id"
+                          :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
+                          class="chat-btn"
+                          style="border-radius: 5px !important; height: fit-content !important; height: 38px; position: relative; z-index: 100;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat-left-text-fill" viewBox="0 0 16 16" style="cursor: pointer">
+                            <defs>
+                              <linearGradient id="chatGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#2873FF" />
+                                <stop offset="100%" stop-color="#0B6B96" />
+                              </linearGradient>
+                            </defs>
+                            <path fill="url(#chatGradient)" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+                          </svg>
+                        </button>
+
+                        <span
+                          :class="{
+                            'expired-text': order.status === 'expired ',
+                            'active-text': order.status !== 'expired',
+                          }"
+                          style="text-transform: capitalize; color: orangered !important; font-weight: 600"
+                        >
+                          {{ order.status }}
+                        </span>
+                        <span>Buyer</span>
+                        <div>
+                          <span>{{ formatBalance(order?.bid?.fiat_amount_paid) }}</span>
+                          <span>{{ pinia.state.allcountries.find((c) => c.id === order.offer?.trading_pair?.fiat.country_id)?.currency_name }}</span>
+                        </div>
+                        <div>
+                          <span>{{ order?.bid?.expected_token_quantity }}</span>
+                          <span class="ml-1">{{ order.offer?.trading_pair?.crypto.token?.symbol }}</span>
+                        </div>
+                        <span>Bank Transfer</span>
+                        <span style="font-size: 14px">{{ order?.id }}</span>
+                      </div>
                     </div>
-
-                    <span>Trade status</span>
-                    <span>My role</span>
-                    <span>Trade amount</span>
-                    <span>Expected amount</span>
-                    <span>Payment method</span>
-                    <span>Order ID</span>
-                  </div>
-
-                  <div style="display: flex; flex-direction: column; align-items: end;" :class="isDark ? 'text-dark' : 'text-light'">
-                    
-                    <button @click="navigateTo('/account/marketplace/tradechat'); pinia.state.selected_trade_ID = order?.id" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="chat-btn" style="border-radius: 5px !important; height: fit-content !important; height: 38px; position: relative; z-index: 100;">
-                      <svg xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        class="bi bi-chat-left-text-fill"
-                        viewBox="0 0 16 16"
-                        style="cursor: pointer">
-                        <defs>
-                          <linearGradient id="chatGradient" x1="0%" y1="0%" x2="100%" y2="100%"> <stop offset="0%" stop-color="#2873FF" /> <stop offset="100%" stop-color="#0B6B96" />
-                          </linearGradient>
-                        </defs>
-                        <path fill="url(#chatGradient)" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
-                      </svg>
-                    </button>
-
-
-                    <span
-                      :class="{
-                        'expired-text': order.status === 'expired ',
-                        'active-text': order.status !== 'expired',
-                      }"
-                       style="text-transform: capitalize; color: orangered !important; font-weight: 600">{{ order.status }}</span
-                    >
-                    <span>Buyer</span>
-                    <div>
-                      <span>{{ formatBalance(order?.bid?.fiat_amount_paid) }}</span>
-                      <span>{{
-                        pinia.state.allcountries.find(
-                          (c) =>
-                            c.id === order.offer?.trading_pair?.fiat.country_id
-                        )?.currency_name
-                      }}</span>
-                    </div>
-                    <div>
-                      <span>{{ order?.bid?.expected_token_quantity }}</span>
-                      <span class="ml-1">{{
-                        order.offer?.trading_pair?.crypto.token?.symbol
-                      }}</span>
-                    </div>
-                    <span>Bank Transfer</span>
-                    <span style="font-size: 14px">{{ order?.id }}</span>
-                  </div>
-                </div>
-              </v-card>
+                  </v-card>
+                </template>
+              </v-virtual-scroll>
+              </div>
             </template>
+
 
             <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="chat-modal-info" style="width: 540px; display: flex; margin: auto; border-radius: 16px; padding: 30px; position: relative;">
             

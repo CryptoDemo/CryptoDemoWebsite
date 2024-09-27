@@ -73,36 +73,36 @@
                             </v-menu>  
 
                             <v-menu>
-                              <template v-slot:activator="{ props }">
-                                <v-btn @click.prevent="toggleChevron()" v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"  style="width: fit-content; height: 50px; margin-top: 3px; border-radius: 10px; margin-top: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
-                                  <span class="currency-list">{{ selectedPaymentMethod }}</span>
-                                  <div style="display: flex; position: absolute; right: 1%">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
-                                    </svg>
+                    <template v-slot:activator="{ props }">
+                      <v-btn @click.prevent="toggleChevron()" v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"  style="width: fit-content; height: 50px; margin-top: 3px; border-radius: 10px; margin-top: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
+                        <span class="currency-list">{{ selectedPaymentMethod }}</span>
+                        <div style="display: flex; position: absolute; right: 1%">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
+                          </svg>
+                        </div>
+                      </v-btn>
+                    </template>
+                    
+                    <v-list style="border-radius: 10px;" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
+                      <v-list-item>
+                        <v-row dense style="max-width: 210px; display: block; height: 250px; overflow: scroll;">
+                          <v-col v-for="(method, index) in paymentMethods" :key="index" sm="12">
+                            <v-list-item @click="selectedPaymentMethod = method.name">
+                              <v-list-item-content>
+                                <v-list-item-title>
+                                  <div style="display: flex; justify-content: flex-start;">
+                                    <span class="currency-list my-2">{{ method.name }}</span>
                                   </div>
-                                </v-btn>
-                              </template>
-                              
-                              <v-list style="border-radius: 10px;" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
-                                <v-list-item>
-                                  <v-row dense style="max-width: 210px; display: block;">
-                                    <v-col v-for="(method, index) in paymentMethods" :key="index" sm="12">
-                                      <v-list-item @click="selectedPaymentMethod = method">
-                                        <v-list-item-content>
-                                          <v-list-item-title>
-                                            <div style="display: flex; justify-content: flex-start;">
-                                              <span class="currency-list my-2" style="font-size: 14;">{{ method }}</span>
-                                            </div>
-                                          </v-list-item-title>
-                                        </v-list-item-content>
-                                      </v-list-item>
-                                    </v-col>
-                                  </v-row>
-                                </v-list-item>
-                              </v-list>
+                                </v-list-item-title>
+                              </v-list-item-content>
+                            </v-list-item>
+                          </v-col>
+                        </v-row>
+                      </v-list-item>
+                    </v-list>
 
-                            </v-menu>  
+                            </v-menu>   
 
                             <v-menu>
                               <template v-slot:activator="{ props }">
@@ -556,7 +556,7 @@ const selectedPaymentMethod = computed (() => pinia.state.selectedPaymentMethod_
 const selectedLimit = ref("");
 const method = ref();
 const selectedPriceRange = ref();
-const selectedPriceType = ref();
+const selectedPriceType = ref("");
 const paymentMethods = computed(() => pinia.state.PaymentMethod);
 const priceType = ['Fixed Price', 'Market Price'];
 const sellerDialog = ref(false);
@@ -714,7 +714,6 @@ const Buy_OfferP2P = async () => {
 };
 
 
-
 const priceLimits = [
   { min: 0, max: 10000 },
   { min: 1000, max: 10000 },
@@ -742,15 +741,18 @@ const filteredOffers = computed(() => {
       return minLimit <= max && maxLimit >= min;
     })();
     
-    // Check if the price type matches or if no price type is selected
-    const matchesPriceType = selectedPriceType.value === undefined || 
-                             (selectedPriceType.value === 'Fixed price' && offer.trading_pair?.fiat?.use_fixed_price === true) ||
-                             (selectedPriceType.value === 'Market price' && offer.trading_pair?.fiat?.use_fixed_price === false);
+     // Check if the price type matches or if no price type is selected
+     const matchesPriceType = !selectedPriceType.value || 
+        (selectedPriceType.value.toLowerCase() === 'fixed price' && offer.trading_pair?.fiat?.use_fixed_price === true) ||
+        (selectedPriceType.value.toLowerCase() === 'market price' && offer.trading_pair?.fiat?.use_fixed_price === false);
 
-                             const paymentMethods = offer.trading_pair?.fiat?.payment_methods || [];
+
+      console.log('Offer:', offer.trading_pair?.fiat?.use_fixed_price, 'Selected Price Type:', selectedPriceType.value, 'Matches:', matchesPriceType);
+      //check if payment method matches
+    const paymentMethods = offer.trading_pair?.fiat?.payment_methods || [];
     const matchesPaymentMethod = (!selectedPaymentMethod.value && !paymentMethods.length) ||
-                                 (selectedPaymentMethod.value === 'Bank Transfer' && (!paymentMethods.length || paymentMethods.includes('Bank transfer'))) ||
-                                 (paymentMethods.map(method => method.toLowerCase()).includes(selectedPaymentMethod.value.toLowerCase()));
+    (selectedPaymentMethod.value === 'Bank Transfer' && (!paymentMethods.length || paymentMethods.includes('Bank transfer'))) ||
+    (paymentMethods.map(method => method.toLowerCase()).includes(selectedPaymentMethod.value.toLowerCase()));
 
    
     // Return true only if all conditions are met
@@ -762,11 +764,13 @@ const filteredOffers = computed(() => {
 
 
 
+
 const resetFilters = () => {
   tokenSymbol.value = ''; // or default value
-  preferredTokenCurrency.value = ''; // or default value
-  selectedLimit.value = ''; // or default value
-  selectedPaymentMethod.value = "";
+  currency_to_filterBy.value = ''; // or default value
+  selectedLimit.value = { min: 0, max: Infinity }; // Reset to default or null, depending on your use case
+  selectedPaymentMethod.value = ""; // or default value
+  selectedPriceType.value = undefined; // Reset price type filter
 };
 
 
@@ -898,6 +902,8 @@ onMounted(() => {
 });
 
 </script>
+
+
 
 <style scoped>
 
