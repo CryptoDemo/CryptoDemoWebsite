@@ -30,21 +30,6 @@
               </div>
             </div>
 
-            <!-- <div class="d-md-flex price-div" style="justify-content: space-between; margin-top: 53px; margin-bottom: 66px;">
-              <div :class="{'box1': !priceType, 'box2': priceType}" >
-                <span :class="{'mkt-place': !priceType, 'mkt-place1': priceType}">Market Price</span>
-                <span :class="{'mkt-place-caption': !priceType, 'mkt-place-caption1': priceType}">
-                  Your offer's selling price will change according to the market price of Bitcoin. This price is determined by supply and demand dynamics in the marketplace.
-                </span>
-              </div>
-              <div :class="{'box2': !priceType, 'box1': priceType}" >
-                <span :class="{'mkt-place1': !priceType, 'mkt-place': priceType}">Fixed Price</span>
-                <span :class="{'mkt-place-caption1': !priceType, 'mkt-place-caption': priceType}">
-                  Your offer's selling price is locked when you create it, and won't change with the market price. This price does not change based on market conditions.
-                </span>
-              </div>
-            </div> -->
-
 
             <div>
               <div class="position-relative">
@@ -53,6 +38,7 @@
                   <span class="select1i">Enter Unit Price and preferred Cryptocurrency to use for this transaction</span>
                   <div style="margin-top: 8px; margin-bottom: 16px; position: relative;">
                     <input type="number" placeholder="Enter an amount" v-model="unitPrice" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; border-radius: 15px; padding-right: 25px!important; position: relative; width: 100%;  padding-left: 15px;"/>
+                   
                     <v-menu>
                         <template v-slot:activator="{ props }">
                           <v-btn v-bind="props" style="min-width: 70px; height: 53px; position: absolute; top: 4px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 0; letter-spacing: 0px;  text-transform: capitalize;"> 
@@ -60,9 +46,9 @@
                           </v-btn>
                         </template>
 
-                        <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
-                          <v-list-item style="display: contents">
-                            <v-row dense style="height: 300px; overflow: scroll; display: flex; flex-direction: column;">
+                        <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; margin-top: 10px; max-height: 300px; overflow-y: auto; width: 250px;">
+                          <v-list-item style="display: contents;">
+                            <v-row dense style="display: flex; flex-direction: column;">
                               <v-col v-for="tokens in pinia.state.tokenLists" class="" :key="tokens.id">
                               <v-list-item  @click="tokenName=tokens.name; tokenIcon=tokens.icon; tokenSymbol=tokens.symbol; selectedCoinID = tokens.id" style="display: flex;">
                                 <div style="display: flex; align-items: center; ">
@@ -93,7 +79,7 @@
                           </v-btn>
                         </template>
 
-                        <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
+                        <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; margin-top: 10px;">
                           <v-list-item style="display: contents">
                             <v-row dense style="overflow: scroll; display: flex; flex-direction: column;">
                               <v-col v-for="(currency, index) in pinia.state.allcountries" :key="index">
@@ -112,7 +98,7 @@
                   <span v-if="priceType" class="select1i">Enter Equivalent Unit Price of {{ tokenSymbol }} in {{ pinia.state.preferredCurrency }}</span>
                   
                   <div v-if="priceType" style="margin-top: 8px; margin-bottom: 16px;">
-                    <input type="number" placeholder="Equivalent Unit Price" v-model="EquivPrice" :disabled="!priceType" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
+                    <input type="number" placeholder="0" v-model="EquivPrice" :disabled="!priceType" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                       <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
                         <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
                       </v-btn>
@@ -120,7 +106,7 @@
 
                   <span class="select1i">Enter Minimum Ammount</span>
                   <div style="margin-top: 8px; margin-bottom: 16px;">
-                    <input type="number" placeholder="Enter Minimum Ammount" v-model="minAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
+                    <input type="number" placeholder="0" v-model="minAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                   
                       <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
                         <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
@@ -129,7 +115,7 @@
 
                   <span class="select1i">Enter Maximum Ammount</span>
                   <div style="margin-top: 8px; margin-bottom: 16px;">
-                    <input type="number" placeholder="Enter Maximum Ammount" v-model="maxAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
+                    <input type="number" placeholder="0" v-model="maxAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                   
                     <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
                       <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>

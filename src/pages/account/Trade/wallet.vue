@@ -24,7 +24,7 @@
                 </div>
 
             <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; padding: 30px; margin-top: 30px;">
-                <v-table  style="display: grid! important; background: inherit; width: 100%; height: 420px;">
+              <v-table  style="display: grid! important; background: inherit; width: 100%; height: auto;">
                   <thead>
                     <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
 
@@ -191,7 +191,7 @@
                   </div>
                 </tr>
               </tbody>
-          </v-table>
+              </v-table>
             </div>
 
             <div v-else style="margin-top: 20px; margin-bottom: 10px;">
@@ -202,11 +202,11 @@
                 <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Transaction History</span>
             </div>
 
-            <div v-if="selectedScreen" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="txn-div" style="padding: 10px; margin-bottom: 300px; max-height: 400px; overflow: scroll; border-radius: 10px !important;">
+            <div v-if="selectedScreen" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="txn-div" style="padding: 10px; margin-bottom: 300px; overflow: scroll; border-radius: 10px !important;">
               <WebTxn/>
             </div>
 
-            <div v-else :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="txn-div" style="padding: 10px; margin-bottom: 300px; max-height: 400px; overflow: scroll; border-radius: 10px !important;">
+            <div v-else :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="txn-div" style="padding: 10px; margin-bottom: 300px;  overflow: scroll; border-radius: 10px !important;">
               <FiatTxn/>
             </div>
           

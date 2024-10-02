@@ -67,12 +67,17 @@
             <div style="display: flex; flex-direction: column; line-height: 30px;">
               <span style="font-weight: 600; font-size: 14px">{{ offer.user.username }}</span>
               <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px; font-style: normal;">Buy limit</span>
+              <div class="d-flex" style="line-height: 30px;">
+                <img :src="offer.trading_pair?.crypto?.token?.icon" class="me-2" width="20px" />
+                <span class="me-1" style="color: #8e9bae; font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600;">{{offer.trading_pair?.crypto?.token?.name }}</span>
+              </div>
             </div>
             
             <div style="display: flex; flex-direction: column; line-height: 30px;">
               <span v-if="offer.user?.is_verified" style="font-weight: 500;  text-align-last: right; font-size: 14px; color: #1671D9;">Verified</span>
               <span v-else style="color: orangered; font-size: 14px;">Unverified User</span>
-              <span style="font-size: 14px;" :class="isDark ? 'text-dark' : 'text-light'">{{formatBalance(offer?.trading_pair?.fiat?.minimum_buy_limit) }} - {{ formatBalance(offer?.trading_pair?.fiat?.maximum_buy_limit) }} {{ offer?.countryCurrencyName }} </span>
+              <span style="font-size: 14px;" :class="isDark ? 'text-dark' : 'text-light'">{{formatBalance(offer?.trading_pair?.fiat?.minimum_buy_limit) }} - {{ formatBalance(offer?.trading_pair?.fiat?.maximum_buy_limit) }} {{ offer?.countryCurrencyName }} </span>  
+              <span :class="isDark ? 'text-dark' : 'text-light'" style=" font-family: Manrope; font-size: 14px; font-style: normal;  font-weight: 600; text-align-last: right;">{{offer?.trading_pair?.fiat?.unit_value }} {{ offer.countryCurrencyName }} </span>
             </div>
 
           </v-card>
@@ -149,6 +154,7 @@ const paymentMethods = computed(() => pinia.state.PaymentMethod);
 const offers = ([]);
 const slides = computed(() => pinia.state.storeBanners);
 const network = pinia.state.selectedNetwork.toLowerCase();
+const marketPlace = computed(() => pinia.state.MarketPlace);
 const selectedNetworkId = pinia.state.BlockchainNetworks.find(b => b.name == network)?.id;
 const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.token_networks?.find(tkn => tkn.blockchain_id === selectedNetworkId));
 const symbols = tokensForSelectedNetwork.map(token => token.symbol);
@@ -240,10 +246,20 @@ const chainIcon = computed(() => {
 return pinia.state.tokenLists.find(c => c?.symbol === "BNB" || c?.symbol === "TRX");
 });
 
-const matchingCountries = pinia.state.MarketPlace.map(marketplaceEntry => {
-const sellerCountry = pinia.state.allcountries.find(country => country.country_name === marketplaceEntry.user.country)?.flag_url;
+const sellerCountries =  marketPlace.value.map((market) => {
+  const sellerCountry = pinia.state.allcountries.find(
+    (country) => country.id === market?.trading_pair?.fiat?.country_id
+  )?.currency_name
+;
 
+  return sellerCountry ? sellerCountry : null; // Return null if country is not found
 });
+
+// Logging the seller's country information
+console.log(sellerCountries);
+
+
+
 
 
 const getTokenBals = async () => {
@@ -283,30 +299,54 @@ if (pinia.state.isAuthenticated) {
 
 
 const get_allMarket_Offers = async () => {
-  loading.value = true;
+  loading.value = true; // Start loading indicator
   try {
-    const data = await getMarketOffers(pageNumber.value);
-    if (data.success) {
-      offers.value = data.data.result;
-      loading.value = false;
+    const data = await getMarketOffers(pageNumber.value); // Fetch market offers
 
-      offers.value = offers.value.map(offer => {
-        const countryId = offer.trading_pair?.fiat.country_id;
-        let countryCurrencyName = 'Unknown';
-        if (countryId) {
-          const country = pinia.state.allcountries.find(country => country.id === countryId);
-          countryCurrencyName = country?.currency_name || 'Unknown';
-        }
-        return { ...offer, countryCurrencyName };
-      });
-      pinia.setMarketPlace(data.data.result)
+    console.log(data)
+
+    if (data.success) {
+      // Retrieve the current user ID from Pinia store
+      const userId = pinia.state.user.id; // Ensure 'pinia' and 'user' state are correctly set up
+
+      // Filter and map offers that do not belong to the current user
+      const filteredOffers = data.data.result
+        .filter(offer => {
+          const isOwnOffer = offer.user.id === userId;
+
+          return !isOwnOffer; // Filter out user's own offers
+        })
+        .map(offer => {
+          // Extract country ID from the offer's trading pair (if available)
+          const countryId = offer.trading_pair?.fiat?.country_id;
+
+          // Get the currency name from the country ID, or 'Unknown' if not found
+          const countryCurrencyName = countryId
+            ? pinia.state.allcountries.find(country => country.id === countryId)?.currency_name || 'Unknown'
+            : 'Unknown';
+
+
+          // Return the modified offer object with the currency name added
+          return {
+            ...offer,
+            countryCurrencyName, // Add the currency name to each offer
+          };
+        });
+
+      // Update the offers in the current component
+      offers.value = filteredOffers;
+
+      // Optionally, update the Pinia store with the filtered offers
+      pinia.setMarketPlace(filteredOffers); // Ensure that setMarketPlace is a defined action in your Pinia store
+
     } else {
+      // Handle any error returned by the API
       push.error(`${data.message}`);
-      loading.value = false;
     }
   } catch (e) {
-    console.log(e);
-    loading.value = false;
+    console.error('Failed to fetch market offers:', e); // Log any error during the API request
+  } finally {
+    loading.value = false; // Stop loading indicator
   }
 };
 
@@ -460,9 +500,7 @@ color: #10192D;
 .dashboard-container{
   margin-left: 0px !important;
 }
-.offer-card{
-  height: 80px !important;
-}
+
 .scroll-coin{
   width: 340px !important;
 }

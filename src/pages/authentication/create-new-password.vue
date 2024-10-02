@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.4; left: 0; height: 90%;  right: 0; display: flex; margin: auto" v-if="theme.global.current.value.dark"/>
-    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg" class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto" v-else/>
+  <div class="section">
+    <LoginBG/>
     <Header/>
     <v-container class="form-layout overflow-hidden">
       <div class="section">
@@ -9,16 +8,14 @@
 
         <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">
           <div style="margin-top: 55px;">
-            <span class="card-title">Create new password</span>
-              <span class="password-subtitle" style="margin-bottom:39px;">Choose a strong password that meets all requirements.</span>
+            <div style="display: flex; flex-direction: column;">
+              <span class="card-title">Create new password</span>
+                <span class="card-subtitle" :class="isDark ? 'card-subtitle':'card-subtitle-light'" style="margin-bottom:39px;">Choose a strong password that meets all requirements.</span>
+            </div>
           
                 <div class="position-relative" style="margin-top: 27px;">
                   <span style="color: #C3CDDB;font-family: Manrope; font-size: 12px; font-style: normal; font-weight: 700; line-height: 150%;">New Password </span>
-                <v-text-field class="input-styling" style="margin-top:8px;" :type="isToggled ? 'text' : 'password'"
-                  placeholder="Password"
-                  v-model.trim="password" variant="plain"  persistent-hint :rules="Passwordrules">
-
-                  
+                <v-text-field class="input-styling" style="margin-top:8px;" :type="isToggled ? 'text' : 'password'" placeholder="Password" v-model.trim="password" variant="plain"  persistent-hint :rules="Passwordrules">               
                   <v-icon class="prepend-inner-icon ml-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                       <g clip-path="url(#clip0_649_13096)">
@@ -31,17 +28,13 @@
                       </defs>
                     </svg>
                   </v-icon>
+
                   <v-icon class="prepend-inner-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="2" height="15" viewBox="0 0 2 15" fill="none">
                     <path opacity="0.4" d="M1.06026 1.31102V14.311" stroke="#C3CDDB" stroke-linecap="round"/>
                   </svg>
                 </v-icon>
-                <!-- <ul>
-                  <li v-for="(rule, index) in Passwordrules" :key="index" :class="{ 'text--red': !rule.valid, 'text--green': rule.valid }">
-                    <v-icon>{{ rule.valid ? 'mdi-check' : 'mdi-close' }}</v-icon> {{ rule.text }}
-                  </li>
-                </ul> -->
-                <!-- <div class="password-hint" hint="passwordHint"></div> -->
+
                 </v-text-field> 
               <div  class="position-relative">
 
@@ -62,10 +55,11 @@
                 
               </div>
               </div>
+
             <div style="margin-top:65px;">
             <NuxtLink to="/authentication/login"> <Button buttonText="Continue"  :disabled="!isFormValid" @click.prevent="isFormValid ? login() : null"/></NuxtLink>
             </div> 
-              <div class="d-flex" style="margin-top:43px; margin-bottom: 287px">
+              <div class="d-flex" style="margin-top:43px; margin-bottom: 130px">
                 <img src="/svg/arrow-left.svg" class="me-3" />
                 <small><NuxtLink to="/authentication/login"><span class="login-text">Back to login</span></NuxtLink></small>
               </div>
@@ -145,7 +139,7 @@ watch(password, (newValue) => {
 .carousel-styling{
 max-height: 550px;
 position: relative;
-top: 8%;
+top: 3%;
 bottom: 0
 } 
 .eye-icon{

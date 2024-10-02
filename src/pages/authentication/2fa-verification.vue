@@ -1,66 +1,23 @@
 <template>
   <div class="section">
-    <img
-      src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg"
-      class="position-absolute bg-vector"
-      style="
-        opacity: 0.4;
-        left: 0;
-        height: 90%;
-        right: 0;
-        display: flex;
-        margin: auto;
-      "
-      v-if="theme.global.current.value.dark"
-    />
-    <img
-      src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg"
-      class="position-absolute bg-vector"
-      style="opacity: 0.2; left: 0; right: 0; display: flex; margin: auto"
-      v-else
-    />
+    <LoginBG/>
     <Header/>
 
     <v-container class="form-layout overflow-hidden">
       <div class="section">
         <v-row no-gutters class="">
-          <v-col
-            dense
-            cols="md-5"
-            class="form"
-            :class="isDark ? 'form' : 'form-light'"
-            style="padding: 0px 70px"
-          >
-            <div style="margin-top: 95px">
-              <span
-                class="card-title"
-                :class="isDark ? 'card-title' : 'card-title-light'"
-                >Enable 2FA Verification</span
-              >
-              <div
-                class="card-subtitle"
-                :class="isDark ? 'card-subtitle' : 'card-subtitle-light'"
-                style="margin-top: 20px"
-              >
-                The Login 2step Verification adds an extra layer of security to
-                your account.
+          <v-col dense cols="md-5" class="form" :class="isDark ? 'form' : 'form-light'" style="padding: 0px 70px">
+            <div style="margin-top: 55px">
+              <span class="card-title" :class="isDark ? 'card-title' : 'card-title-light'">Enable 2FA Verification</span>
+              <div class="card-subtitle" :class="isDark ? 'card-subtitle' : 'card-subtitle-light'" style="margin-top: 20px">
+                The Login 2step Verification adds an extra layer of security to your account.
               </div>
               <span class="otp-text">Enter code</span>
-              <v-otp-input
-                :length="6"
-                v-model="otp"
-                variant="plain"
-              ></v-otp-input>
 
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: baseline;
-                "
-              >
-                <div class="d-flex" style="margin-top: 23px">
-                </div>
+              <v-otp-input :length="6" v-model="otp" variant="plain" @input="onOtpChange"></v-otp-input>
+
+              <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <div class="d-flex" style="margin-top: 23px"> </div>
               </div>
 
               <div style="margin-top: 65px">
@@ -70,7 +27,7 @@
                   @click="verify2FA_()"
                 />
               </div>
-              <div class="d-flex" style="margin-top: 43px; margin-bottom: 137px">
+              <div class="d-flex" style="margin-top: 43px; margin-bottom: 140px">
               </div>
             </div>
           </v-col>
@@ -107,6 +64,7 @@ const verify2FA_ = async () => {
     email: pinia.state.email,
     code: otp.value,
   };
+
   console.log(verify_otp);
   try {
     const data = await Verify2FA(verify_otp);
@@ -116,14 +74,24 @@ const verify2FA_ = async () => {
     } else {
       loading.value = false;
       push.error(data.message);
+      otp.value = "";
     }
+
   } catch (e) {
     loading.value = false;
     console.log(e);
     push.error(`${e}`);
   }
 };
+
+const onOtpChange = () => {
+  if (otp.value.length === 6) {  // Adjust this if your OTP length is different
+    verify2FA_();
+  }
+};
 </script>
+
+
 <style scoped>
 .carousel-styling {
   max-height: 550px;

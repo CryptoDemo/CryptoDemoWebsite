@@ -28,10 +28,10 @@
           </v-btn>
         </div>
       </div>
-      
+
       <div class="card-layout1">
             <v-row align="center" justify="center">
-              <v-col v-for="(method, index) in paymentMethods.slice(0, 9)" :key="index" sm="4" cols="12">
+              <v-col v-for="(method, index) in paymentMethods.slice(0, 6)" :key="index" sm="4" cols="12">
                 <v-card  :class="isDark ? 'card-layout':'card-layout-light'" bg-color="#10192D"  color="white" variant="text">
                     <v-card-item style="padding: 0px !important">
                         <div>

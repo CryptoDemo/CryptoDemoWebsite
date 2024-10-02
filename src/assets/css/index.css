@@ -287,16 +287,7 @@ height: 2.87369rem;
 margin-top: 13.33px;
 margin-bottom: 50.24px!important;
 }
-.password-subtitle {
-color: var(--Gray-Medium-light, #969696);
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 150%; /* 18px */
-margin-top: 16px;
-display: flex;
-align-items: center;
-}
+
 .input-styling{
 width: 298.116px !important;
 height: 64px!important;

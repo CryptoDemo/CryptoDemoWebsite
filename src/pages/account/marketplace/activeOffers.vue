@@ -288,6 +288,7 @@
 
                                       
                                       <span style="font-size: 14px; margin-top: 15px; margin-top: 10px">Select Payment method</span>
+
                                       <v-menu>
                                         <template v-slot:activator="{ props }">
                                           <v-btn @click.prevent="toggleChevron()" v-bind="props" :class="isDark ? 'txn-cards-dark':'txn-cards-light'"  style="width: fit-content; height: 50px; margin-top: 2px; border-radius: 10px; margin-top: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
@@ -300,9 +301,9 @@
                                           </v-btn>
                                         </template>
                                         
-                                        <v-list style="border-radius: 10px;" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
+                                        <v-list style="border-radius: 10px;" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" >
                                           <v-list-item>
-                                            <v-row dense style="max-width: 210px; display: block;">
+                                            <v-row dense style="display: block;">
                                               <v-col v-for="(method, index) in paymentMethods" :key="index" sm="12">
                                                 <v-list-item @click="selectedPaymentMethod = method">
                                                   <v-list-item-content>
@@ -398,25 +399,21 @@
                         </div>
                       </v-btn>
                     </template>
-                    
-                    <v-list style="border-radius: 10px;" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
-                      <v-list-item>
-                        <v-row dense style="max-width: 210px; display: block; height: 250px; overflow: scroll;">
-                          <v-col v-for="(method, index) in paymentMethods" :key="index" sm="12">
-                            <v-list-item @click="selectedPaymentMethod = method.name">
-                              <v-list-item-content>
-                                <v-list-item-title>
-                                  <div style="display: flex; justify-content: flex-start;">
-                                    <span class="currency-list my-2">{{ method.name }}</span>
-                                  </div>
-                                </v-list-item-title>
-                              </v-list-item-content>
+
+                    <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 15px; margin-top: 10px; margin-top: 10px; max-height: 300px; overflow-y: auto; width: 225px;">
+                      <v-list-item style="display: contents">
+                        <v-row dense>
+                          <div v-for="(method, index) in paymentMethods" :key="index" sm="12" style="width: 100%;">
+                            <v-list-item @click="selectedPaymentMethod = method.name" style="display: flex;">
+                              <div style="display: flex; align-items: center;">
+                                <span class="currency-list">{{ method.name }}</span>
+                              </div>
                             </v-list-item>
-                          </v-col>
+                          </div>
                         </v-row>
                       </v-list-item>
-                    </v-list>
-
+                    </v-list> 
+                    
                   </v-menu>  
 
                   <v-menu>
@@ -434,9 +431,9 @@
                       </v-btn>
                     </template>
 
-                    <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 15px; margin-top: 10px;">
+                    <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 15px; margin-top: 10px; margin-top: 10px; max-height: 300px; overflow-y: auto; width: 225px;">
                       <v-list-item style="display: contents">
-                        <v-row dense style="max-width: 240px; height: 250px; overflow: scroll;">
+                        <v-row dense>
                           <div v-for="tokens in pinia.state.tokenLists" :key="tokens.id" style="width: 100%;">
                             <v-list-item @click="selectToken(tokens)" style="display: flex;">
                               <div style="display: flex; align-items: center;">
@@ -535,7 +532,7 @@ import { useTheme } from "vuetify";
 import { getMarketOffers } from "@/composables/requests/marketplace";
 import { createOrder, createOrderforP2P } from "@/composables/requests/marketplace";
 import { currencyConverter } from "@/composables/requests/tokens";
-import { getPaymentMethod } from "@/composables/requests/paymentMethods";
+
 
 
 const theme = useTheme();
