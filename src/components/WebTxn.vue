@@ -12,22 +12,19 @@
 
         <!-- <v-infinite-scroll  @load="fetchMore" :disabled="!hasMoreData" style="overflow-y: scroll"> -->
    
-                <!-- <div v-for="transaction in datainfo" :key="transaction.id"> -->
-                  <!-- <div> -->
-              <v-virtual-scroll :items="datainfo" :key="datainfo.id" item-height="600">
-                <template v-slot:item="{ item: transaction }">
-                  <div> <!-- Use a unique identifier for the key -->
-                    <v-dialog max-width="420">
-                      
+                <div v-for="transaction in datainfo" :key="transaction.id">
+                  <div>
+              <!-- <v-virtual-scroll :items="datainfo" :key="transaction.id"> -->
+                <!-- <template v-slot:item="{ item: transaction }" > -->
+                    <v-dialog  max-width="420">   
                         <template v-slot:activator="{ props: activatorProps }">
-                      
-                            <div @click="pinia.state.getSingleTxnID = transaction.id; getSingleWebTrans()"  v-bind="activatorProps" style="background: inherit; height: auto; cursor: pointer;">
+                          <div @click="pinia.state.getSingleTxnID = transaction.id; getSingleWebTrans()"   v-bind="activatorProps" style="background: inherit; height: auto; cursor: pointer;">
                             <div v-if="transaction.details?.crypto" :class="isDark ? 'wallet-border' : 'wallet-border-light'">
-                                <div class="mt-2" v-if="transaction.details?.crypto?.transfer" style="display: flex; justify-content: space-between">
+                              <div class="mt-2" v-if="transaction.details?.crypto?.transfer" style="display: flex; justify-content: space-between">
                                 <div style="display: flex; align-items: center">
                                     <div v-if="transaction?.details?.crypto?.transfer">
-                                        <img v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" src="/svg/greenGet.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
-                                        <img v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
+                                      <img v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" src="/svg/greenGet.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
+                                      <img v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
                                     </div>
                                     <div style="display: flex; flex-direction: column">
                                       <span style="color: green; font-weight: 700;" v-if="transData?.details?.crypto?.transfer?.status?.fulfilled || transaction?.details?.crypto?.transfer?.status?.fulfilled">Successful</span>
@@ -106,44 +103,39 @@
                                     </div>
                 
                                     <div style="text-align: right;">
-                                        <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{ formatTime(transaction.created_at) }}</p>
-                                        <p style="font-size: 14px;">{{transaction?.details?.crypto?.transfer?.fees.find((p) => p.recipient_type === "TOTAL" ).amount}}</p>
-                
-                                        <p class="truncate" style="font-size: 14px;width: 157px">{{ transaction?.details?.crypto?.transfer?.to_address }}</p>
+                                      <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{ formatTime(transaction.created_at) }}</p>
+                                      <p style="font-size: 14px;">{{transaction?.details?.crypto?.transfer?.fees.find((p) => p.recipient_type === "TOTAL" ).amount}}</p>
+              
+                                      <p class="truncate" style="font-size: 14px;width: 157px">{{ transaction?.details?.crypto?.transfer?.to_address }}</p>
                                         
                                         <div class="d-flex">
-                                            <p class="truncate" style="font-size: 14px;width: 134px">{{ transaction?.details?.crypto.transfer?.transaction_hash }}</p>
+                                          <p class="truncate" style="font-size: 14px;width: 134px">{{ transaction?.details?.crypto.transfer?.transaction_hash }}</p>
                                             <button @click="copyToClipboard(transaction?.details?.crypto?.transfer?.transaction_hash)" variant="plain" style=" background: inherit !important; box-shadow: none;">
-                                            <img v-if="!copied" src="/svg/copy.svg"/>
-                                            <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
-                                        </button>
+                                              <img v-if="!copied" src="/svg/copy.svg"/>
+                                              <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
+                                            </button>
                                         </div>
                                         <div v-if="transaction?.details?.crypto?.transfer?.transfer_type">
                                             <v-chip v-if="transaction.details.crypto.transfer.transfer_type == 'IN'"  color="green" style="font-size: 14px; border-radius: 20px;"> IN </v-chip>
                                             <v-chip v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'"  color="orange" style="font-size: 14px; border-radius: 20px"> OUT </v-chip>
                                         </div>
-
-                                    
-                                        
+                                     
                                         <p class="truncate" style="font-size: 14px; width: 157px" v-if="transaction?.details?.crypto?.transfer?.status">
-                                            <span style="color: green; font-weight: 700;" v-if="transData?.details?.crypto?.transfer?.status?.fulfilled || transaction?.details?.crypto?.transfer?.status?.fulfilled">Successful</span>
-                                            <span style="color: red; font-weight: 700;" v-else-if="transData?.details?.crypto?.transfer?.status?.failed || transaction?.details?.crypto?.transfer?.status?.failed">Failed</span>
-                                            <span style="color: orange; font-weight: 700;" v-else>Pending</span>
-                                        </p>
-                                
+                                          <span style="color: green; font-weight: 700;" v-if="transData?.details?.crypto?.transfer?.status?.fulfilled || transaction?.details?.crypto?.transfer?.status?.fulfilled">Successful</span>
+                                          <span style="color: red; font-weight: 700;" v-else-if="transData?.details?.crypto?.transfer?.status?.failed || transaction?.details?.crypto?.transfer?.status?.failed">Failed</span>
+                                          <span style="color: orange; font-weight: 700;" v-else>Pending</span>
+                                        </p>   
                                 </div>
-
                             </div>
-
-                            </div>
+                          </div>
 
 
 
                             <div v-if="transaction?.details?.crypto?.swap">
                                 <div  class="d-flex py-4" style="justify-content: center;">
                                     <v-chip>
-                                        <h4 class="me-1">{{(transaction?.details?.crypto?.swap?.from.amount)}}</h4>
-                                        <h4>{{tokenLists.find((p) => p.id === transaction?.details?.crypto?.swap?.from?.token_id)?.symbol }}</h4>
+                                      <h4 class="me-1">{{(transaction?.details?.crypto?.swap?.from.amount)}}</h4>
+                                      <h4>{{tokenLists.find((p) => p.id === transaction?.details?.crypto?.swap?.from?.token_id)?.symbol }}</h4>
                                     </v-chip>
                                 </div>
                 
@@ -192,11 +184,11 @@
                             </v-card>
                         </template>
                     </v-dialog>
-                  </div>
-                </template>
-              </v-virtual-scroll>
-                
-                <!-- </div> -->
+            
+                <!-- </template> -->
+              <!-- </v-virtual-scroll> -->
+                </div>
+                </div>
         
    
      
