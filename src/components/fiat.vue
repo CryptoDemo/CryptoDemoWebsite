@@ -35,9 +35,9 @@
                             </v-btn>
                         </template>
     
-                        <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
-                            <v-list-item style="display: contents; left: 532px;">
-                            <v-row dense style="max-width: 250px; height: 300px; overflow: scroll; display: flex;flex-direction: column;">
+                        <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; max-height: 300px; width: 250px;">
+                            <v-list-item style="display: contents;">
+                            <v-row dense style="overflow: scroll; display: flex;flex-direction: column;">
                                 <v-col v-for="(currency, index) in pinia.state.allcountries" :key="index" sm="12">
                                 <v-list-item @click="pinia.state.preferredCurrency=currency.currency_name; pinia.state.Selectedcurrency_code = currency.currency_code" style="display: flex;">
                                 
@@ -80,9 +80,14 @@
             
             <v-dialog v-model="dialog1" transition="dialog-bottom-transition" fullscreen>
         
-                <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
-
-                    <v-card-text>
+              <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 20px; position: relative;">
+                
+                
+                <v-card-text class="card-width" style="width: 80%; margin: auto;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-x-circle mt-5" viewBox="0 0 16 16" @click="dialog1 = false" style="display: flex; margin-inline-start: auto; cursor: pointer">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                  </svg>
                         <h3 class="text-center header-txt">Send Money</h3>
                         <span class="text-center mb-2 mt-2" style="display: flex; justify-content: center;">Effortlessly transfer funds using our fiat currency service.</span>
                         
@@ -158,12 +163,6 @@
         
                     </v-card-text>
         
-                    <v-card-actions style="min-height: 0px;">
-                        <!-- <v-spacer></v-spacer> -->
-                        <div class="px-4 mb-3">
-                            <v-btn @click="dialog1 = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;">Cancel</v-btn>
-                        </div>
-                    </v-card-actions>
 
                 </v-card>
     
@@ -551,6 +550,10 @@ fill: #10192D;
 
   .header-txt{
   margin-top: 20px !important;
+ }
+
+ .card-width{
+  width: 100% !important;
  }
 
 }

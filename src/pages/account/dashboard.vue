@@ -182,7 +182,6 @@ const fetchBanners = async () => {
   }
 };
 
-
 const conversionRate = ref([]); // Initialize as an empty array to store conversion rates
 
 const convertCurrencies = async () => {
@@ -238,8 +237,6 @@ const multipliedValues = computed(() => {
     };
   });
 });
-
-
 
 
 const chainIcon = computed(() => {

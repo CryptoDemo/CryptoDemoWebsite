@@ -8,13 +8,13 @@
         </svg>
         <span class="swap1 ml-2">Crypto Swap</span>
       </div>
-        <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="ctnx-div" style="border-radius: 24px; padding: 37px; margin-top: 70px; margin-bottom: 925px; width: 97%; margin: auto;">
+        <div :class="isDark ? 'profile-cards-dark':'profile-cards-light'" class="ctnx-div" style="border-radius: 24px; padding: 37px; margin-top: 70px; margin-bottom: 925px; width: 100%; margin: auto;">
             <div class="d-flex" style="margin-bottom: 30px;">
                 <span class="quick-swap me-3 ">Quick Swap</span>
             </div>
 
             <div v-if="!showOtp" class="d-md-flex" style="justify-content: space-between; position: relative;">
-                <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" class="swap-div" style="border-radius: 20px; width: 47%; display: flex;  padding: 10px 20px; justify-content: space-between;">
+                <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" class="swap-div" style="border-radius: 20px;  display: flex;  padding: 10px 20px; justify-content: space-between;">
               
                      <div class="d-flex swap-container" style="width: 12%;">   
                       <div class="me-13 swap-container" style="display: flex; flex-direction: column; z-index: 1000">
@@ -30,17 +30,22 @@
                                     </svg>
                                 </button>
                               </template>
-  
-                                <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 16px;">
-                                  <v-list-item>
-                                    <v-list-item v-for="(item, index) in pinia.state.tokenLists" :key="index">
-                                      <v-list-item-title @click="select=item.name; selectedSymbol=item.symbol; icon =item.icon; selectedBalance =item.balance" class="d-flex">
-                                        <img :src="item.icon" width="30" class="me-3"/>  
-                                        <span class="me-3" style="align-items: center;"> {{item.name}} </span>
-                                      </v-list-item-title>
+
+
+                              <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; margin-top: 10px; max-height: 300px; overflow-y: auto; width: 250px;">
+                                <v-list-item style="display: contents;">
+                                  <v-row dense style="display: flex; flex-direction: column;">
+                                    <v-col v-for="(item, index) in pinia.state.tokenLists" :key="index">
+                                    <v-list-item @click="select=item.name; selectedSymbol=item.symbol; icon =item.icon; selectedBalance =item.balance" style="display: flex;">
+                                      <div style="display: flex; align-items: center; ">
+                                        <img :src="item.icon" width="30" class="me-3"/>
+                                        <span class="currency-list my-2">{{item.name}}</span>
+                                    </div>
                                     </v-list-item>
-                                  </v-list-item>
-                                </v-list>
+                                  </v-col>
+                                  </v-row>
+                                </v-list-item>
+                              </v-list>
                           </v-menu>  
                       </div>
                     </div>
@@ -81,9 +86,9 @@
                 </div>
                -->
 
-              <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" class="swap-div" style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
+              <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" class="swap-div" style="border-radius: 20px; display: flex; padding: 10px 20px; justify-content: space-between; width: 60%;">
                 <div class="d-flex swap-container">   
-                    <div class="me-13 swap-container" style="display: flex; flex-direction: column; margin-left: 10px;">
+                    <div class="swap-container" style="display: flex; flex-direction: column;">
                       <span class="have">I want:</span>
                         <v-menu>
                             <template v-slot:activator="{ props }">
@@ -100,14 +105,19 @@
                               </button>
                             </template>
 
-                            <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 16px;">
-                                <v-list-item>
-                                  <v-list-item v-for="(item, index) in filteredToken_to_swap_to" :key="index">
-                                    <v-list-item-title @click="select=item.name; coin_to_swap =item.icon; selected_tokenType_to_swap =item.symbol"  class="d-flex">
-                                      <img :src="item.icon" width="30" class="me-3"/>  
-                                      <span class="me-3" style="align-items: center;"> {{item.name}} </span>
-                                    </v-list-item-title>
-                                  </v-list-item>
+
+                            <v-list :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px; margin-top: 10px; max-height: 300px; overflow-y: auto; width: 250px;">
+                                <v-list-item style="display: contents;">
+                                  <v-row dense style="display: flex; flex-direction: column;">
+                                    <v-col v-for="(item, index) in filteredToken_to_swap_to" :key="index">
+                                    <v-list-item @click="select=item.name; coin_to_swap =item.icon; selected_tokenType_to_swap =item.symbol" style="display: flex;">
+                                      <div style="display: flex; align-items: center; ">
+                                        <img :src="item.icon" width="30" class="me-3"/>
+                                        <span class="currency-list my-2">{{item.name}}</span>
+                                    </div>
+                                    </v-list-item>
+                                  </v-col>
+                                  </v-row>
                                 </v-list-item>
                               </v-list>
                         </v-menu>   
@@ -115,12 +125,12 @@
 
                     
                 </div>
-                <div style="display: flex; flex-direction: column;">
+                <div style="display: flex; flex-direction: column; width: 88%;">
                     <span class="have mb-2" style="font-size: 14px; font-weight: 500; font-family: manrope; display: flex;justify-content: end;"> {{ selected_tokenType_to_swap }}</span>
                     <input type="number"  disabled v-model="amount_to_recieve" :class="isDark ? 'btn-segment':'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>  
-                    </div>
+                </div>
 
-              </div>
+              </div> 
      
             </div>
 
@@ -579,30 +589,6 @@ display: none !important;
   display: none !important;
 }
 
-.country-dropdown{
-border-radius: 15px;
-border: 0.5px solid #2f3946;
-background: #1B2537 !important;
-backdrop-filter: blur(50px) !important;
-height: 320px !important;
-border-radius: 20px !important;
-border-radius: 15px;
-border: 0.5px solid #354356;
-color: white;
-margin-top: 15px;
-box-shadow: none  !important;
-height: 170px !important;
-}
-.country-dropdown-light{
-border-radius: 15px;
-background: #fff !important;
-border: 1px solid #DBE8FF !important;
-border-radius: 20px !important;
-color: black;
-margin-top: 15px;
-box-shadow: none  !important;
-height: 170px !important;
-}
 
 .btn-segment {
     border: 1px solid rgba(65, 69, 87, 0.6);
