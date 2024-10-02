@@ -14,19 +14,40 @@
    
                 <div v-for="transaction in datainfo" :key="transaction.id">
                   <div>
-              <!-- <v-virtual-scroll :items="datainfo" :key="transaction.id"> -->
-                <!-- <template v-slot:item="{ item: transaction }" > -->
+     
                     <v-dialog  max-width="420">   
                         <template v-slot:activator="{ props: activatorProps }">
                           <div @click="pinia.state.getSingleTxnID = transaction.id; getSingleWebTrans()"   v-bind="activatorProps" style="background: inherit; height: auto; cursor: pointer;">
                             <div v-if="transaction.details?.crypto" :class="isDark ? 'wallet-border' : 'wallet-border-light'">
+                             
                               <div class="mt-2" v-if="transaction.details?.crypto?.transfer" style="display: flex; justify-content: space-between">
                                 <div style="display: flex; align-items: center">
                                     <div v-if="transaction?.details?.crypto?.transfer">
-                                      <img v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" src="/svg/greenGet.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
-                                      <img v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
+                                      
+                                      <div v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" class="d-flex">
+                                        <img src="/svg/greenGet.svg" class="me-2 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
+                                        <div class="d-flex">
+                                          <span>Received</span>
+                                          <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
+                                          <h5>{{ formatTime(transaction.created_at) }}</h5>
+                                        </div>
+
+                                      </div>
+
+                                      <div v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" class="d-flex mb-2" style="align-items: center">
+                                        <img  src="/svg/transfer.svg" class="me-2 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
+                                        <div class="d-flex" style="flex-direction: column;">
+
+                                          <span>Sent</span>
+                                          <div class="d-flex">
+                                            <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
+                                            <h5>{{ formatTime(transaction.created_at) }}</h5>
+                                          </div>
+                                        </div>
+                                      </div>
                                     </div>
-                                    <div style="display: flex; flex-direction: column">
+                                    
+                                    <!-- <div style="display: flex; flex-direction: column">
                                       <span style="color: green; font-weight: 700;" v-if="transData?.details?.crypto?.transfer?.status?.fulfilled || transaction?.details?.crypto?.transfer?.status?.fulfilled">Successful</span>
                                       <span style="color: red; font-weight: 700;" v-else-if="transData?.details?.crypto?.transfer?.status?.failed || transaction?.details?.crypto?.transfer?.status?.failed">Failed</span>
                                       <span style="color: orange; font-weight: 700;" v-else>Pending</span>
@@ -35,7 +56,7 @@
                                           <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
                                           <h5>{{ formatTime(transaction.created_at) }}</h5>
                                       </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                 
                                 <div class="d-flex">
@@ -52,7 +73,7 @@
                                 <div v-if="transaction?.details?.crypto.swap">
                                     <div class="d-flex" style="justify-content: space-between;">
                                         <div style="display: flex; align-items: center">
-                                            <img src="/svg/newSwap.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
+                                            <img src="/svg/newSwap.svg" class="me-2 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
                                             <div style="display: flex; flex-direction: column">
                                             <span>Swap</span>
                                             <div class="d-flex" style="margin-bottom: 6px">
@@ -185,8 +206,7 @@
                         </template>
                     </v-dialog>
             
-                <!-- </template> -->
-              <!-- </v-virtual-scroll> -->
+   
                 </div>
                 </div>
         

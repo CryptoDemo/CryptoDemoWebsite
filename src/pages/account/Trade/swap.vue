@@ -57,15 +57,15 @@
                 </div>
 
                 
-                <div @click="toggleTokens()" class="flex-lg-and-up hidden-sm-and-down" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark">
+                <!-- <div @click="toggleTokens()" class="flex-lg-and-up hidden-sm-and-down" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark">
                   <img src="/svg/swap.svg" width="8%"/>
-                </div> 
+                </div>  -->
 
-                <div @click="toggleTokens()" class="hidden-lg-and-up flex-sm-and-down mobile-swap" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark">
+                <!-- <div @click="toggleTokens()" class="hidden-lg-and-up flex-sm-and-down mobile-swap" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark">
                   <img src="/svg/mobileSwap.svg" class="mobile-swap-width"/>
-                </div>
+                </div> -->
 
-                <div @click="toggleTokens()" class="flex-lg-and-up hidden-sm-and-down" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-else>
+                <!-- <div @click="toggleTokens()" class="flex-lg-and-up hidden-sm-and-down" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-else>
                   <svg xmlns="http://www.w3.org/2000/svg" width="90" height="85" viewBox="0 0 70 71" fill="none">
                     <path d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z" fill="#4284FF"/>
                     <path d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z" fill="url(#paint0_linear_5037_31025)"/>
@@ -79,7 +79,7 @@
                     </defs>
                   </svg>
                 </div>
-              
+               -->
 
               <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" class="swap-div" style="border-radius: 20px; display: flex; width: 47%;  padding: 10px 20px; justify-content: space-between;">
                 <div class="d-flex swap-container">   

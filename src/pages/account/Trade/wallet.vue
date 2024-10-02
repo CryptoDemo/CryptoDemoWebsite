@@ -24,7 +24,7 @@
                 </div>
 
             <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; padding: 30px; margin-top: 30px;">
-              <v-table  style="display: grid! important; background: inherit; width: 100%; height: auto;">
+              <v-table  style="display: grid! important; background: inherit; width: 100%; max-height: 400px;">
                   <thead>
                     <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
 
