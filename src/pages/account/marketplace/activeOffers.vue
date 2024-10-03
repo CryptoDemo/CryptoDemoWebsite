@@ -3,12 +3,12 @@
     <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true" />
     <v-container class="mkt-ctxn" style="display: flex; margin-top: 110px;">
      
-        <div class="pa-2 flex-lg-and-up hidden-sm-and-down">
+        <div class="flex-lg-and-up hidden-sm-and-down">
           <Sd-nav1 style="border: none;" />
         </div>
      
         <div class="offer-body" style="width: 100%; margin-left: 16px;">
-            <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; margin-bottom: 40px; margin-top: 12px; border: none">
+            <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; margin-bottom: 40px; border: none">
               <span class="marketPlace" style="font-size: 24px; font-style: 28px; font-weight: 600; color: #5892FF;">Marketplace</span>
               <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
             </div>
@@ -221,7 +221,7 @@
                                 <v-card-text>
                                   <h3 class="text-center py-3">View Offer</h3>
                                   <span style="font-size: 14px;">By continuing, you will be buying <span style="font-weight: 600;">{{ offer.trading_pair?.crypto?.token?.name }}</span> from {{ offer?.user?.username }}</span>
-                                  <input type="number" placeholder="Enter Ammount to pay" v-model="amount_to_pay" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%; margin-top: 10px; padding-left: 15px;"/>
+                                  <input type="number" placeholder="Enter Amount to pay" v-model="amount_to_pay" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%; margin-top: 10px; padding-left: 15px;"/>
                         
                                   <v-btn :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="min-width: 70px; height: 56px; position: absolute; margin-top: 12px; border-radius: 15px; box-shadow: none; right: 26px; letter-spacing: 0px;  text-transform: capitalize;"> 
                                     <span class="currency-list"> {{ offer?.countryCurrencyName }} </span>
@@ -233,7 +233,7 @@
 
                                 <div class="mt-5">
                                   <span style="font-weight: 600; font-size: 14px;">Expected amount you will receive</span>
-                                  <input type="number" disabled placeholder="Ammount to receive" v-model="ammount_to_receive" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%; margin-top: 10px; padding-left: 15px;"/>
+                                  <input type="number" disabled placeholder="Amount to receive" v-model="ammount_to_receive" :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%; margin-top: 10px; padding-left: 15px;"/>
                           
                                   <v-btn :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="min-width: 70px; height: 56px; position: absolute; margin-top: 12px; border-radius: 15px; box-shadow: none; right: 26px; letter-spacing: 0px;  text-transform: capitalize;"> 
                                     <img :src="offer.trading_pair?.crypto?.token?.icon" width="30px" />
@@ -274,8 +274,8 @@
                                       <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" style="font-size: 14px; display: flex; justify-content: space-between; padding: 10px;">
 
                                         <div :class="isDark ? 'text-dark':'text-light'" style="display: flex; flex-direction: column; line-height: 30px">
-                                          <span> Ammount to pay </span>
-                                          <span> Ammount to receive </span>
+                                          <span> Amount to pay </span>
+                                          <span> Amount to receive </span>
                                           <span> Payment time limit </span>
                                         </div>
 
@@ -289,37 +289,49 @@
                                       
                                       <span style="font-size: 14px; margin-top: 15px; margin-top: 10px">Select Payment method</span>
 
-                                      <v-menu>
-                                        <template v-slot:activator="{ props }">
-                                          <v-btn @click.prevent="toggleChevron()" v-bind="props" :class="isDark ? 'txn-cards-dark':'txn-cards-light'"  style="width: fit-content; height: 50px; margin-top: 2px; border-radius: 10px; margin-top: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
-                                            <span class="currency-list">{{ selectedPaymentMethod }}</span>
-                                            <div style="display: flex; position: absolute; right: 1%">
-                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
-                                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
-                                              </svg>
-                                            </div>
-                                          </v-btn>
-                                        </template>
-                                        
-                                        <v-list style="border-radius: 10px;" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" >
-                                          <v-list-item>
-                                            <v-row dense style="display: block;">
-                                              <v-col v-for="(method, index) in paymentMethods" :key="index" sm="12">
-                                                <v-list-item @click="selectedPaymentMethod = method">
+                                        <v-menu>
+                                          <template v-slot:activator="{ props }">
+                                            <v-btn
+                                              @click.prevent="toggleChevron"
+                                              v-bind="props"
+                                              :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
+                                              style="width: fit-content; height: 50px; margin-top: 2px; border-radius: 10px; margin-top: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"
+                                            >
+                                              <span class="currency-list">{{ selectedPaymentMethod }}</span>
+                                              <div style="display: flex; position: absolute; right: 1%">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled.value }, isDark ? 'close-btn' : 'close-btn-dark']">
+                                                  <path
+                                                    fill-rule="evenodd"
+                                                    clip-rule="evenodd"
+                                                    d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z"
+                                                  />
+                                                </svg>
+                                              </div>
+                                            </v-btn>
+                                          </template>
+                                          
+
+                                          <v-list style="border-radius: 10px; max-height: 120px" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
+                                            <v-list-item v-for="(item, index) in marketplace" :key="index">
+                                              <v-row dense style="display: block;">
+                                                <v-col sm="12">
                                                   <v-list-item-content>
                                                     <v-list-item-title>
                                                       <div style="display: flex; justify-content: flex-start;">
-                                                        <span class="currency-list my-2">{{ method }}</span>
+                                                        <span class="currency-list my-2"> 
+                                                          
+                                                          {{ selectedCoinId === item.id? (item?.trading_pair?.fiat?.payment_methods?.length? item.trading_pair.fiat.payment_methods.join(', '): 'Bank transfer'): '' }}
+                                                        </span>
                                                       </div>
                                                     </v-list-item-title>
                                                   </v-list-item-content>
-                                                </v-list-item>
-                                              </v-col>
-                                            </v-row>
-                                          </v-list-item>
-                                        </v-list>
-
-                                      </v-menu> 
+                                                </v-col>
+                                              </v-row>
+                                            </v-list-item>
+                                          </v-list>
+                                        </v-menu>
+                                     
+                                      
 
                                       <span style="font-size: 14px; margin-top: 6px; font-weight: 600">Please read the advisers terms before placing order.</span>
                                       <ul class="list-bullets-styled my-3" :class="isDark ? 'text-dark':'text-light'">
@@ -578,57 +590,6 @@ const setSelectedLimit = (range) =>{
   selectedLimit.value = range;
 }
 
-const get_allMarket_Offers = async () => {
-  loading.value = true; // Start loading indicator
-  try {
-    const data = await getMarketOffers(pageNumber.value); // Fetch market offers
-
-    console.log(data)
-
-    if (data.success) {
-      // Retrieve the current user ID from Pinia store
-      const userId = pinia.state.user.id; // Ensure 'pinia' and 'user' state are correctly set up
-
-      // Filter and map offers that do not belong to the current user
-      const filteredOffers = data.data.result
-        .filter(offer => {
-          const isOwnOffer = offer.user.id === userId;
-
-          return !isOwnOffer; // Filter out user's own offers
-        })
-        .map(offer => {
-          // Extract country ID from the offer's trading pair (if available)
-          const countryId = offer.trading_pair?.fiat?.country_id;
-
-          // Get the currency name from the country ID, or 'Unknown' if not found
-          const countryCurrencyName = countryId
-            ? pinia.state.allcountries.find(country => country.id === countryId)?.currency_name || 'Unknown'
-            : 'Unknown';
-
-
-          // Return the modified offer object with the currency name added
-          return {
-            ...offer,
-            countryCurrencyName, // Add the currency name to each offer
-          };
-        });
-
-      // Update the offers in the current component
-      offers.value = filteredOffers;
-
-      // Optionally, update the Pinia store with the filtered offers
-      pinia.setMarketPlace(filteredOffers); // Ensure that setMarketPlace is a defined action in your Pinia store
-
-    } else {
-      // Handle any error returned by the API
-      push.error(`${data.message}`);
-    }
-  } catch (e) {
-    console.error('Failed to fetch market offers:', e); // Log any error during the API request
-  } finally {
-    loading.value = false; // Stop loading indicator
-  }
-};
 
 const offerID = computed(() => pinia.state.MarketPlace.map(item => item.id));
 
@@ -760,8 +721,6 @@ const filteredOffers = computed(() => {
 });
 
 
-
-
 const resetFilters = () => {
   tokenSymbol.value = ''; // or default value
   currency_to_filterBy.value = ''; // or default value
@@ -880,8 +839,13 @@ const clearInputs = () => {
 };
 
 
+
  const isChevronToggled = ref(false);
  const toggleChevron = () => {
+   isChevronToggled.value = !isChevronToggled.value;
+ };
+
+ const togglePaymentChevron = () => {
    isChevronToggled.value = !isChevronToggled.value;
  };
  
@@ -895,7 +859,7 @@ watch(()=>amount_to_pay.value, (newValue) => {
 
   
 onMounted(() => {
-  get_allMarket_Offers();
+  // get_allMarket_Offers();
 });
 
 </script>

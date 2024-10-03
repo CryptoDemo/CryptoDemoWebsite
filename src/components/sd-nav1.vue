@@ -17,10 +17,10 @@
 
            
           </div>
-          <div v-for="(nav, i) in activeNavigation" :key="i" :class="nav.isActive ? 'nav-options2:focus' : ''">
+          <div v-for="(nav, i) in activeNavigation" :key="i">
             <router-link :to="nav.link">
-            <v-btn class="nav-options2" :class="isDark ? 'text-dark':'text-light'"> 
-              <div v-html="nav.icon" class="me-2" :class="isDark ? 'dashboard-btn':'dashboard-btn-dark'"></div>
+            <v-btn class="nav-options2" :class="[isDark ? 'text-dark' : 'text-light', isActive(nav.link) ? 'active-button' : '']"> 
+              <div v-html="nav.icon" class="me-2"></div>
               {{ nav.title }}
             </v-btn>
           </router-link>      
@@ -36,8 +36,8 @@ import { useRouter } from 'vue-router';
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore()
-const isSelected = ref(false);
-const navigation = ref([
+
+const activeNavigation = ref([
      {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
           <path d="M10.5 19.9V4.1C10.5 2.6 9.86 2 8.27 2H4.23C2.64 2 2 2.6 2 4.1V19.9C2 21.4 2.64 22 4.23 22H8.27C9.86 22 10.5 21.4 10.5 19.9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M22 10.9V4.1C22 2.6 21.36 2 19.77 2H15.73C14.14 2 13.5 2.6 13.5 4.1V10.9C13.5 12.4 14.14 13 15.73 13H19.77C21.36 13 22 12.4 22 10.9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -92,12 +92,9 @@ const navigation = ref([
 
 const route = useRoute();
 
-const activeNavigation = computed(() => {
-      return navigation.value.map(item => {
-        item.isActive = route.path === item.link;
-        return item;
-      });
-    });
+const isActive = (link) => {
+  return route.path === link;
+};
 
   </script>
   
@@ -131,7 +128,7 @@ const activeNavigation = computed(() => {
   font-weight: 400;
   line-height: normal;
   }
-  .nav-options2:focus {
+  .active-button {
   background:#2873FF !important;  
   border-radius: 22px;
   width: 199px;

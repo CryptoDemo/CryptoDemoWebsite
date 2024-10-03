@@ -79,7 +79,7 @@
                           </div>
 
                                                     
-                          <v-btn @click="pindialog = true" class="primary-btn1" style="width: 100px; height: 60px; font-weight: 600">
+                          <v-btn @click="pindialog = true" class="primary-btn1" style="width: 100px; height: 60px; font-weight: 600; color: white">
                             Set Pin
                           </v-btn>
                       
@@ -95,7 +95,7 @@
                                 <v-otp-input v-model="ConfirmsetPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
                               </div>
                         
-                              <v-btn  @click="setPin()" :loading="loading" class="primary-btn1" style=" height: 50px; border-radius: 10px !important; font-weight: 600; width: 100%; color: #fff;">Set Pin</v-btn>
+                              <v-btn  @click="setPin()" :loading="loading" class="primary-btn1" style=" height: 50px; border-radius: 10px !important; font-weight: 600; width: 100%; color: white;">Set Pin</v-btn>
                           
                               </v-card-text>
 
@@ -120,7 +120,7 @@
                           </div>
 
                                                     
-                          <v-btn @click="recoverPindialog = true; recoverPin()" class="primary-btn1" style="width: 100px; height: 60px; font-weight: 600;">
+                          <v-btn @click="recoverPindialog = true; recoverPin()" class="primary-btn1" style="width: 100px; height: 60px; font-weight: 600; color: white;">
                             Reset Pin
                           </v-btn>
                       

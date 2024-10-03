@@ -138,7 +138,7 @@ export const useStore = defineStore('app',()=> {
   const setFiat_currency_i_want = (payload) => {
     state.fiat_currency_i_want = payload;   
   };
-
+  
   const setGeo = (payload) => {
     state.geo = payload;   
   };

@@ -302,7 +302,6 @@ input[type="search"]::-webkit-search-cancel-button {
 .v-table .v-table__wrapper>table>tbody>tr:not(:last-child)>td,
 .v-table .v-table__wrapper>table>tbody>tr:not(:last-child)>th {
   border: none !important;
-  color: var(--Gray-Medium-light, #969696);
   font-feature-settings: 'clig' off, 'liga' off;
   font-family: Manrope;
   font-size: 14px;
@@ -334,7 +333,6 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .table-header-text {
-  color: var(--Gray-Medium-light, #969696);
   font-family: Manrope;
   font-size: 16px;
   font-style: normal;

@@ -23,7 +23,7 @@ export const getFAQs = async(pageNumber)=>{
 export const getBanners = async(pageNumber)=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return
-    const data = await fetch(`${baseURL}app-banner/${pageNumber}`,{ 
+    const data = await fetch(`${baseURL}app-banner/all/${pageNumber}`,{ 
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

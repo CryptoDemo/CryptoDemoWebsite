@@ -1,18 +1,13 @@
 <template>
   <div>
     <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true"/>
-    <v-container class="d-flex" style="margin-top: 100px">
-      <div class="pa-2 flex-lg-and-up hidden-sm-and-down">
+    <v-container class="d-flex" style="margin-top: 110px">
+      <div class="flex-lg-and-up hidden-sm-and-down">
         <Sd-nav1 style="border: none" />
       </div>
 
       <div class="trades-div" style="width: 100%; margin-left: 16px;">
-        <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-          style="display: flex; justify-content: space-between;
-            margin-bottom: 40px;
-            margin-top: 12px;
-            border: none;">
-
+        <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; margin-bottom: 40px; border: none;">
           <span style=" font-size: 24px; font-style: 28px; font-weight: 600;color: #5892ff;">Trade</span>
           <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
         </div>
@@ -128,10 +123,12 @@
 
             <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="chat-modal-info" style="width: 540px; display: flex; margin: auto; border-radius: 16px; padding: 30px; position: relative;">
             
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16"  @click="dialog = false"  style="cursor: pointer; display: flex; margin-inline-start: auto; margin-bottom: 8px">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
-              </svg>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16"  @click="dialog = false"  style="cursor: pointer; display: flex; margin-inline-start: auto;">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                </svg>
+              </div>
 
               <v-card-text v-if="selectedOrder?.status === 'processing'">
                 <span style="display: flex; justify-content: center; font-weight: 600;">Do you want to cancel this trade?</span>

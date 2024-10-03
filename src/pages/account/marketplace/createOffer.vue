@@ -104,7 +104,7 @@
                       </v-btn>
                   </div>
 
-                  <span class="select1i">Enter Minimum Ammount</span>
+                  <span class="select1i">Enter minimum amount</span>
                   <div style="margin-top: 8px; margin-bottom: 16px;">
                     <input type="number" placeholder="0" v-model="minAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                   
@@ -113,7 +113,7 @@
                       </v-btn>
                   </div>
 
-                  <span class="select1i">Enter Maximum Ammount</span>
+                  <span class="select1i">Enter maximum amount</span>
                   <div style="margin-top: 8px; margin-bottom: 16px;">
                     <input type="number" placeholder="0" v-model="maxAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                   
