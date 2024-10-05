@@ -1,468 +1,469 @@
 <template>
-  <div>
+  <div style="overflow: hidden;  height: 100vh;">
     <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true" />
-
-    <v-container class="d-flex">
-
-
-      <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="flex-lg-and-up hidden-sm-and-down" style="width: 400px; margin-top: 95px; padding: 20px; margin-right: 24px; border-radius: 10px !important;">
-
-        <div style="display: flex; align-items: center" v-if="selectedCoin?.status !== 'expired'">
-          <img src="/svg/Ellipse-active.svg" />
-          <span class="ml-2" style="font-weight: 600; color: #35B233;"> This trade is Active</span>
-        </div>
-
-        <div style="display: flex; align-items: center" v-else>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="orangered"
-            class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
-            <path
-              d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-          </svg>
-          <span style="color: orangered; font-weight: 600; margin-left: 4px;">This trade is Expired</span>
-        </div>
-
-        <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4">
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#64748B"
-              class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
-              <path
-                d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1z" />
-              <path
-                d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
-            </svg>
-          </div>
-          <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'">
-            Keep trades within Demo. Some users may ask you to trade outside the Demo platform. This is against our
-            Terms of Services and likely a scam attempt. You must insist on keeping all trade conversations within Demo,
-            note that we cannot help or support you if you are scammed during such trades.
-          </span>
-        </div>
-
-        <v-alert type="info" variant="tonal" class="d-flex mt-4"
-          style="border-radius: 10px; padding: 8px; font-size: 14px;">
-          <span class="warning-text">Please, make a payment of {{ formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}
-            <span>{{ pinia.state.allcountries.find((c) => c.id ===
-              selectedCoin?.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span>using Bank Transfer. {{ selectedCoin?.bid?.expected_token_quantity }} {{
-              selectedCoin?.offer?.trading_pair?.crypto?.token?.name }} will be added to your Crypto wallet</span>
-        </v-alert>
-
-        <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4">
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#64748B"
-              class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
-              <path
-                d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1z" />
-              <path
-                d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
-            </svg>
-          </div>
-          <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'"> Make your payment, We recommend
-            the buyer uploads a screenshot of the transaction, featuring the transaction reference number, as proof of
-            payment.</span>
-        </div>
-
-        <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4 mb-4">
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#64748B"
-              class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
-              <path
-                d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1z" />
-              <path
-                d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
-            </svg>
-          </div>
-          <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'">
-            In case of any form of dispute, click on the dispute
-            <v-btn @click="toggleDispute()" class="primary-btn1 mt-2"
-              style="width: 100%; height: 40px; border-radius: 10px !important; font-weight: 600; font-size: 16px; color: white;">Register
-              Dispute</v-btn>
-          </span>
-        </div>
+      <div style="overflow-y: auto; width: 100%; height: 100vh;">
+        <v-container class="d-flex">
 
 
-      </div>
+          <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="flex-lg-and-up hidden-sm-and-down" style="width: 400px; overflow-y: scroll !important; margin-top: 95px; padding: 20px; margin-right: 24px; border-radius: 10px !important;">
 
-
-      <div class="chat-headings messages-container" ref="scrollContainer">
-
-
-        <div class="name-div" :class="isDark ? 'Dashboard-navbar' : 'Dashboard-navbar-light'">
-
-
-
-          <div style="position: relative; display: flex; justify-content: space-between; width: 800px;">
-            <div class="d-flex">
-              <img :src="selectedCoin?.offer?.user?.profile_image || '/img/Bitcoin.png'" class="mr-2"
-                style="width: 40px; height: 40px; border-radius: 40px;" />
-              <div class="d-flex" style="flex-direction: column;">
-
-                <!-- <div style="display: flex; align-items: center; line-height: 30px;">
-                  <img v-if="selectedCoin?.offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" style="width: 30px; height: 30px; border-radius: 30px;" />
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#8e9bae" class="bi bi-person-bounding-box" viewBox="0 0 16 16" v-else>
-                    <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                  </svg>
-                  <span class="me-3 ml-2" style="font-size: 14px; font-weight: 600; text-transform: capitalize">{{ offer?.user?.username}}</span>
-                </div> -->
-
-                <div v-if="pinia.state?.user?.kyc_verified" style="display: flex; align-items: center">
-                  <span style="font-size: 16px; font-style: normal; font-weight: 600;">{{
-                    selectedCoin?.offer?.user?.username }}</span>
-                  <img src="/svg/verified.svg" />
-                </div>
-                <span
-                  :style="{ color: pinia.state.OnlineCheck.is_online ? 'green' : 'grey', fontSize: '12px', fontStyle: 'normal', fontWeight: '400' }">
-                  {{ pinia.state.OnlineCheck.is_online ? 'Online' : 'Offline' }}
-                </span>
-
-              </div>
+            <div style="display: flex; align-items: center" v-if="selectedCoin?.status !== 'expired'">
+              <img src="/svg/Ellipse-active.svg" />
+              <span class="ml-2" style="font-weight: 600; color: #35B233;"> This trade is Active</span>
             </div>
 
-            <div class="d-flex" style="align-items: center;">
-              <v-menu v-model="menu" :close-on-content-click="false">
-                <template v-slot:activator="{ props }">
-                  <v-btn v-bind="props" class="primary-btn1" style="border-radius: 10px !important; font-weight: 600; color: white;">View Payment details</v-btn>
+            <div style="display: flex; align-items: center" v-else>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="orangered"
+                class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                <path
+                  d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+              </svg>
+              <span style="color: orangered; font-weight: 600; margin-left: 4px;">This trade is Expired</span>
+            </div>
+
+            <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#64748B"
+                  class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
+                  <path
+                    d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1z" />
+                  <path
+                    d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                </svg>
+              </div>
+              <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'">
+                Keep trades within Demo. Some users may ask you to trade outside the Demo platform. This is against our
+                Terms of Services and likely a scam attempt. You must insist on keeping all trade conversations within Demo,
+                note that we cannot help or support you if you are scammed during such trades.
+              </span>
+            </div>
+
+            <v-alert type="info" variant="tonal" class="d-flex mt-4"
+              style="border-radius: 10px; padding: 8px; font-size: 14px;">
+              <span class="warning-text">Please, make a payment of {{ formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}
+                <span>{{ pinia.state.allcountries.find((c) => c.id ===
+                  selectedCoin?.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span>using Bank Transfer. {{ selectedCoin?.bid?.expected_token_quantity }} {{
+                  selectedCoin?.offer?.trading_pair?.crypto?.token?.name }} will be added to your Crypto wallet</span>
+            </v-alert>
+
+            <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#64748B"
+                  class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
+                  <path
+                    d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1z" />
+                  <path
+                    d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                </svg>
+              </div>
+              <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'"> Make your payment, We recommend
+                the buyer uploads a screenshot of the transaction, featuring the transaction reference number, as proof of
+                payment.</span>
+            </div>
+
+            <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="d-flex mt-4 mb-4">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#64748B"
+                  class="bi bi-exclamation-octagon" viewBox="0 0 16 16">
+                  <path
+                    d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1z" />
+                  <path
+                    d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                </svg>
+              </div>
+              <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'">
+                In case of any form of dispute, click on the dispute
+                <v-btn @click="toggleDispute()" class="primary-btn1 mt-2"
+                  style="width: 100%; height: 40px; border-radius: 10px !important; font-weight: 600; font-size: 16px; color: white;">Register
+                  Dispute</v-btn>
+              </span>
+            </div>
+
+
+          </div>
+
+
+          <div class="chat-headings messages-container" ref="scrollContainer">
+
+
+            <div class="name-div" :class="isDark ? 'Dashboard-navbar' : 'Dashboard-navbar-light'">
+
+
+
+              <div style="position: relative; display: flex; justify-content: space-between; width: 800px;">
+                <div class="d-flex">
+                  <img :src="selectedCoin?.offer?.user?.profile_image || '/img/Bitcoin.png'" class="mr-2"
+                    style="width: 40px; height: 40px; border-radius: 40px;" />
+                  <div class="d-flex" style="flex-direction: column;">
+
+                    <!-- <div style="display: flex; align-items: center; line-height: 30px;">
+                      <img v-if="selectedCoin?.offer?.user?.profile_image" :src="offer.user.profile_image" alt="img" style="width: 30px; height: 30px; border-radius: 30px;" />
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#8e9bae" class="bi bi-person-bounding-box" viewBox="0 0 16 16" v-else>
+                        <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                      </svg>
+                      <span class="me-3 ml-2" style="font-size: 14px; font-weight: 600; text-transform: capitalize">{{ offer?.user?.username}}</span>
+                    </div> -->
+
+                    <div v-if="pinia.state?.user?.kyc_verified" style="display: flex; align-items: center">
+                      <span style="font-size: 16px; font-style: normal; font-weight: 600;">{{
+                        selectedCoin?.offer?.user?.username }}</span>
+                      <img src="/svg/verified.svg" />
+                    </div>
+                    <span
+                      :style="{ color: pinia.state.OnlineCheck.is_online ? 'green' : 'grey', fontSize: '12px', fontStyle: 'normal', fontWeight: '400' }">
+                      {{ pinia.state.OnlineCheck.is_online ? 'Online' : 'Offline' }}
+                    </span>
+
+                  </div>
+                </div>
+
+                <div class="d-flex" style="align-items: center;">
+                  <v-menu v-model="menu" :close-on-content-click="false">
+                    <template v-slot:activator="{ props }">
+                      <v-btn v-bind="props" class="primary-btn1" style="border-radius: 10px !important; font-weight: 600; color: white;">View Payment details</v-btn>
+                    </template>
+
+                    <v-card width="330" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+                      style="border-radius: 16px; padding: 20px; border: 1px solid  #303A46; margin-top: 20px;">
+
+                      <span class="text-center" style="font-family: Manrope; display: block; font-size: 16px; font-style: normal; font-weight: 600; line-height: 150%;">Payment Details</span>
+
+                      <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: grid; line-height: 30px;">
+                          <span class="trade-text">Ammount to Pay</span>
+                          <span class="trade-text">Limit</span>
+                          <span class="trade-text">Name</span>
+                          <span class="trade-text">Bank account Number</span>
+                          <span class="trade-text">Bank Name</span>
+                          <span class="trade-text">Payment Method</span>
+                        </div>
+                        <div style="display: grid; line-height: 30px;">
+                          <span style="font-size: 14px; display: flex;justify-content: flex-end;"
+                            :class="isDark ? 'text-dark' : 'text-light'">{{
+                              formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}</span>
+                          <span style="font-size: 14px; display: flex;justify-content: flex-end;"
+                            :class="isDark ? 'text-dark' : 'text-light'">{{
+                              formatBalance(selectedCoin?.offer.trading_pair?.fiat?.minimum_buy_limit) }} - {{
+                              formatBalance(selectedCoin?.offer.trading_pair?.fiat?.maximum_buy_limit) }}</span>
+                          <span style="font-size: 14px; display: flex;justify-content: flex-end;"
+                            :class="isDark ? 'text-dark' : 'text-light'"> {{ selectedCoin?.offer.user.name }}</span>
+                          <span style="font-size: 14px; display: flex;justify-content: flex-end;"
+                            :class="isDark ? 'text-dark' : 'text-light'">Live Chat</span>
+                          <span style="font-size: 14px; display: flex;justify-content: flex-end;"
+                            :class="isDark ? 'text-dark' : 'text-light'"> Live Chat </span>
+                          <span style="font-size: 14px; display: flex;justify-content: flex-end;"
+                            :class="isDark ? 'text-dark' : 'text-light'"> Bank Transfer </span>
+                        </div>
+                      </div>
+
+                      <v-alert type="info" variant="tonal"
+                        style="font-size: 14px; border-radius: 10px; margin-top: 10px; padding: 10px">
+                        Never release Cryptocurrency before actually receiving the payment! Do Not trust anyone who ask you to release coin before payment
+                      </v-alert>
+
+                      <v-btn @click="release_order()" class="primary-btn1 mt-4" style="width: 100%; height: 45px; border-radius: 10px !important; font-weight: 600; color: white;">Release Coin</v-btn>
+                      <v-btn @click="toggleDispute()" class="primary-btn1 mt-2 hidden-lg-and-up flex-sm-and-down" style="width: 100%; height: 45px; border-radius: 10px !important; font-weight: 600; font-size: 14px; color: white;">
+                        Register Dispute</v-btn>
+                    </v-card>
+
+
+                  </v-menu>
+                </div>
+
+              </div>
+
+              <v-dialog max-width="500">
+                <template v-slot:activator="{ props: activatorProps }">
+                  <span v-bind="activatorProps" class="hidden-lg-and-up flex-sm-and-down resend-code py-4" variant="text"
+                    style="position: fixed; top: 60%; z-index: 100; letter-spacing: 0px; color: #2873FF; text-transform: capitalize; font-size: 14px; display: flex;align-items: center;">
+                    Trading Terms
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                      <path
+                        d="M5.94043 13.7807L10.2871 9.43404C10.8004 8.9207 10.8004 8.0807 10.2871 7.56737L5.94043 3.2207"
+                        stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
                 </template>
 
-                <v-card width="330" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-                  style="border-radius: 16px; padding: 20px; border: 1px solid  #303A46; margin-top: 20px;">
+                <template v-slot:default="{ isActive }">
+                  <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 10px;">
+                    <v-card-text>
+                      <span class="mb-4" style="font-weight: 600; display: flex; justify-content: center;">Risk
+                        Notice!!</span>
+                      <span style="font-size: 13px;"> Keep trades within Demo. Some users may ask you to trade outside the
+                        Demo platform. This is against our Terms of Services and likely a scam attempt. You must insist on
+                        keeping all trade conversations within Demo, note that we cannot help or support you if you are
+                        scammed during such trades.</span>
+                    </v-card-text>
 
-                  <span class="text-center" style="font-family: Manrope; display: block; font-size: 16px; font-style: normal; font-weight: 600; line-height: 150%;">Payment Details</span>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
 
-                  <div style="display: flex; align-items: center; justify-content: space-between;">
-                    <div style="display: grid; line-height: 30px;">
-                      <span class="trade-text">Ammount to Pay</span>
-                      <span class="trade-text">Limit</span>
-                      <span class="trade-text">Name</span>
-                      <span class="trade-text">Bank account Number</span>
-                      <span class="trade-text">Bank Name</span>
-                      <span class="trade-text">Payment Method</span>
+                      <v-btn @click="isActive.value = false" class="primary-btn1"
+                        style="width: 100%; height: 45px; font-weight: 600; border-radius: 10px !important">I
+                        understand</v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </template>
+              </v-dialog>
+            </div>
+
+
+            <div v-if="!showTextarea" style="height: 580px; max-height: 700px; overflow-y: auto; overflow-x: hidden; position: relative;">
+
+              <div>
+
+                <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+                  style="border-radius: 12px; width: 90px; height: 46px; margin: auto; margin-top: 80px; margin-bottom: 25px">
+                  <span
+                    style="font-size: 10px;  font-weight: 400; line-height: 26px;  display: flex; justify-content: center; padding-top: 12px ">{{ chatTime }}</span>
+                </div>
+
+                <div class="ma-2 custom-msg" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+                  style="border-radius: 0px 24px 24px 24px; padding: 30px; width: 60%;">
+
+                  <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;letter-spacing: 0.1px;">
+                    <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600; line-height: 24px; letter-spacing: 0.1px;">
+                      You're buying {{ selectedCoin?.bid?.expected_token_quantity }} {{selectedCoin?.offer?.trading_pair?.crypto?.token?.name }} for {{formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}
+                      <span>{{ pinia.state.allcountries.find((c) => c.id === selectedCoin?.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span> via Bank Transfer. </span>
+                    <div style="display: grid" :class="isDark ? 'text-dark' : 'text-light'">
+                      <span class="mb-1 mt-2">Before paying, carefully read the terms of the trade of the advertiser. make sure to use the specified payment method stated in the Ad.</span>
                     </div>
-                    <div style="display: grid; line-height: 30px;">
-                      <span style="font-size: 14px; display: flex;justify-content: flex-end;"
-                        :class="isDark ? 'text-dark' : 'text-light'">{{
-                          formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}</span>
-                      <span style="font-size: 14px; display: flex;justify-content: flex-end;"
-                        :class="isDark ? 'text-dark' : 'text-light'">{{
-                          formatBalance(selectedCoin?.offer.trading_pair?.fiat?.minimum_buy_limit) }} - {{
-                          formatBalance(selectedCoin?.offer.trading_pair?.fiat?.maximum_buy_limit) }}</span>
-                      <span style="font-size: 14px; display: flex;justify-content: flex-end;"
-                        :class="isDark ? 'text-dark' : 'text-light'"> {{ selectedCoin?.offer.user.name }}</span>
-                      <span style="font-size: 14px; display: flex;justify-content: flex-end;"
-                        :class="isDark ? 'text-dark' : 'text-light'">Live Chat</span>
-                      <span style="font-size: 14px; display: flex;justify-content: flex-end;"
-                        :class="isDark ? 'text-dark' : 'text-light'"> Live Chat </span>
-                      <span style="font-size: 14px; display: flex;justify-content: flex-end;"
-                        :class="isDark ? 'text-dark' : 'text-light'"> Bank Transfer </span>
+                  </span>
+                </div>
+
+
+                <div v-for="i in pinia.state.chat_messages" :key="i.id">
+
+                  <div style="display: flex; margin-top: 15px; flex-direction: column;"
+                    v-if="i.sender_id !== pinia.state.user.id">
+                    <div class="sender-msg" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+                      style="border-radius: 0px 24px 24px 24px; display: flex; width: 30%; padding: 20px; color: #fff;">
+                      <span
+                        style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;  letter-spacing: 0.1px;">{{
+                        i.message }}</span>
                     </div>
+                    <img v-if="i.file_url" @click="open_Image(i.id)" :src="i.file_url" height="250" width="250"
+                      class="mt-5" />
+                    <span
+                      style="font-family: Manrope; font-size: 12px; font-style: normal;font-weight: 400; color: #A4A8AB">{{
+                        formatTime(i.created_at) }}</span>
                   </div>
 
-                  <v-alert type="info" variant="tonal"
-                    style="font-size: 14px; border-radius: 10px; margin-top: 10px; padding: 10px">
-                    Never release Cryptocurrency before actually receiving the payment! Do Not trust anyone who ask you to release coin before payment
-                  </v-alert>
 
-                  <v-btn @click="release_order()" class="primary-btn1 mt-4" style="width: 100%; height: 45px; border-radius: 10px !important; font-weight: 600; color: white;">Release Coin</v-btn>
-                  <v-btn @click="toggleDispute()" class="primary-btn1 mt-2 hidden-lg-and-up flex-sm-and-down" style="width: 100%; height: 45px; border-radius: 10px !important; font-weight: 600; font-size: 14px; color: white;">
-                    Register Dispute</v-btn>
-                </v-card>
-
-
-              </v-menu>
-            </div>
-
-          </div>
-
-          <v-dialog max-width="500">
-            <template v-slot:activator="{ props: activatorProps }">
-              <span v-bind="activatorProps" class="hidden-lg-and-up flex-sm-and-down resend-code py-4" variant="text"
-                style="position: fixed; top: 60%; z-index: 100; letter-spacing: 0px; color: #2873FF; text-transform: capitalize; font-size: 14px; display: flex;align-items: center;">
-                Trading Terms
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                  <path
-                    d="M5.94043 13.7807L10.2871 9.43404C10.8004 8.9207 10.8004 8.0807 10.2871 7.56737L5.94043 3.2207"
-                    stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
-              </span>
-            </template>
-
-            <template v-slot:default="{ isActive }">
-              <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 10px;">
-                <v-card-text>
-                  <span class="mb-4" style="font-weight: 600; display: flex; justify-content: center;">Risk
-                    Notice!!</span>
-                  <span style="font-size: 13px;"> Keep trades within Demo. Some users may ask you to trade outside the
-                    Demo platform. This is against our Terms of Services and likely a scam attempt. You must insist on
-                    keeping all trade conversations within Demo, note that we cannot help or support you if you are
-                    scammed during such trades.</span>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-
-                  <v-btn @click="isActive.value = false" class="primary-btn1"
-                    style="width: 100%; height: 45px; font-weight: 600; border-radius: 10px !important">I
-                    understand</v-btn>
-                </v-card-actions>
-              </v-card>
-            </template>
-          </v-dialog>
-        </div>
-
-
-        <div v-if="!showTextarea" style="height: 580px; max-height: 700px; overflow-y: auto; overflow-x: hidden; position: relative;">
-
-          <div>
-
-            <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-              style="border-radius: 12px; width: 90px; height: 46px; margin: auto; margin-top: 80px; margin-bottom: 25px">
-              <span
-                style="font-size: 10px;  font-weight: 400; line-height: 26px;  display: flex; justify-content: center; padding-top: 12px ">{{ chatTime }}</span>
-            </div>
-
-            <div class="ma-2 custom-msg" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-              style="border-radius: 0px 24px 24px 24px; padding: 30px; width: 60%;">
-
-              <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;letter-spacing: 0.1px;">
-                <span style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600; line-height: 24px; letter-spacing: 0.1px;">
-                  You're buying {{ selectedCoin?.bid?.expected_token_quantity }} {{selectedCoin?.offer?.trading_pair?.crypto?.token?.name }} for {{formatBalance(selectedCoin?.bid?.fiat_amount_paid) }}
-                  <span>{{ pinia.state.allcountries.find((c) => c.id === selectedCoin?.offer?.trading_pair?.fiat.country_id)?.currency_name}}</span> via Bank Transfer. </span>
-                <div style="display: grid" :class="isDark ? 'text-dark' : 'text-light'">
-                  <span class="mb-1 mt-2">Before paying, carefully read the terms of the trade of the advertiser. make sure to use the specified payment method stated in the Ad.</span>
-                </div>
-              </span>
-            </div>
-
-
-            <div v-for="i in pinia.state.chat_messages" :key="i.id">
-
-              <div style="display: flex; margin-top: 15px; flex-direction: column;"
-                v-if="i.sender_id !== pinia.state.user.id">
-                <div class="sender-msg" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-                  style="border-radius: 0px 24px 24px 24px; display: flex; width: 30%; padding: 20px; color: #fff;">
-                  <span
-                    style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;  letter-spacing: 0.1px;">{{
-                    i.message }}</span>
-                </div>
-                <img v-if="i.file_url" @click="open_Image(i.id)" :src="i.file_url" height="250" width="250"
-                  class="mt-5" />
-                <span
-                  style="font-family: Manrope; font-size: 12px; font-style: normal;font-weight: 400; color: #A4A8AB">{{
-                    formatTime(i.created_at) }}</span>
-              </div>
-
-
-              <div class="receiver-msg"
-                style="display: flex; flex-direction: column; align-items: flex-end; margin-top: 15px;"
-                v-if="i.sender_id == pinia.state.user.id">
-                <div class="receiver-msg"
-                  style="border-radius: 24px 24px 0px 24px; border: 1px solid #2873FF; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); display: flex; width: 400px; padding: 20px; color: #fff;">
-                  <span
-                    style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;  letter-spacing: 0.1px;">{{
-                    i.message }}</span>
-                </div>
-                <img v-if="i.file_url" @click="open_Image(i.id)" :src="i.file_url" height="250" width="250"
-                  class="mt-5 msg-img" />
-                <div style="display: flex; align-items: center;">
-                  <span
-                    style="font-family: Manrope; font-size: 12px; font-style: normal;font-weight: 400; color: #A4A8AB;margin-right: 4px;">{{
-                      formatTime(i.created_at) }}</span>
-                  <svg v-if="i.isSendng" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-                    <path fill="#888888"
-                      d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9,9,0,0,1,12,21Z" />
-                    <rect width="2" height="7" x="11" y="6" fill="#888888" rx="1">
-                      <animateTransform attributeName="transform" dur="9s" repeatCount="indefinite" type="rotate"
-                        values="0 12 12;360 12 12" />
-                    </rect>
-                    <rect width="2" height="9" x="11" y="11" fill="#888888" rx="1">
-                      <animateTransform attributeName="transform" dur="20s" repeatCount="indefinite" type="rotate"
-                        values="0 12 12;360 12 12" />
-                    </rect>
-                  </svg>
-                  <div v-else>
-                    <svg class="relative" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                      fill="none">
-                      <path d="M5 12L10 17L20 7" stroke="gray" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-dasharray="48" stroke-dashoffset="48" id="checkmark" />
-                      <path d="M5 12L10 17L20 7" stroke="gray" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-dasharray="48" stroke-dashoffset="48" id="checkmark" />
-                    </svg>
+                  <div class="receiver-msg"
+                    style="display: flex; flex-direction: column; align-items: flex-end; margin-top: 15px;"
+                    v-if="i.sender_id == pinia.state.user.id">
+                    <div class="receiver-msg"
+                      style="border-radius: 24px 24px 0px 24px; border: 1px solid #2873FF; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); display: flex; width: 400px; padding: 20px; color: #fff;">
+                      <span
+                        style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; line-height: 24px;  letter-spacing: 0.1px;">{{
+                        i.message }}</span>
+                    </div>
+                    <img v-if="i.file_url" @click="open_Image(i.id)" :src="i.file_url" height="250" width="250"
+                      class="mt-5 msg-img" />
+                    <div style="display: flex; align-items: center;">
+                      <span
+                        style="font-family: Manrope; font-size: 12px; font-style: normal;font-weight: 400; color: #A4A8AB;margin-right: 4px;">{{
+                          formatTime(i.created_at) }}</span>
+                      <svg v-if="i.isSendng" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                        <path fill="#888888"
+                          d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9,9,0,0,1,12,21Z" />
+                        <rect width="2" height="7" x="11" y="6" fill="#888888" rx="1">
+                          <animateTransform attributeName="transform" dur="9s" repeatCount="indefinite" type="rotate"
+                            values="0 12 12;360 12 12" />
+                        </rect>
+                        <rect width="2" height="9" x="11" y="11" fill="#888888" rx="1">
+                          <animateTransform attributeName="transform" dur="20s" repeatCount="indefinite" type="rotate"
+                            values="0 12 12;360 12 12" />
+                        </rect>
+                      </svg>
+                      <div v-else>
+                        <svg class="relative" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                          fill="none">
+                          <path d="M5 12L10 17L20 7" stroke="gray" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-dasharray="48" stroke-dashoffset="48" id="checkmark" />
+                          <path d="M5 12L10 17L20 7" stroke="gray" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-dasharray="48" stroke-dashoffset="48" id="checkmark" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
 
-            <div class="dialog-div" style="position: relative; margin-top: 0px;">
-              <!-- <div class="chat-border" style="margin-top: 15px;"></div> -->
-              <div class="msg-div" :class="isDark ? 'footer' : 'footer-light'"
-                style="display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 55px; left: 35%; right: 9%; width: 55%; height: 70px; padding: 0 15px; box-sizing: border-box;">
+                <div class="dialog-div" style="position: relative; margin-top: 0px;">
+                  <!-- <div class="chat-border" style="margin-top: 15px;"></div> -->
+                  <div class="msg-div" :class="isDark ? 'footer' : 'footer-light'"
+                    style="display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 55px; left: 35%; right: 9%; width: 55%; height: 70px; padding: 0 15px; box-sizing: border-box;">
 
-                <v-dialog v-model="dialog" transition="dialog-bottom-transition" fullscreen>
+                    <v-dialog v-model="dialog" transition="dialog-bottom-transition" fullscreen>
 
-                  <template v-slot:activator="{ props: activatorProps }">
+                      <template v-slot:activator="{ props: activatorProps }">
 
-                    <v-btn class="me-5" v-bind="activatorProps" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="border-radius: 10px; backdrop-filter: blur(10.5px); min-width: 50px; height: 48px">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
-                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
-                        <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z" />
+                        <v-btn class="me-5" v-bind="activatorProps" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="border-radius: 10px; backdrop-filter: blur(10.5px); min-width: 50px; height: 48px">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
+                            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                            <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1z" />
+                          </svg>
+                        </v-btn>
+                      </template>
+
+                      <v-card class="img-dialog-card" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="padding: 30px;">
+
+                        <v-btn icon="mdi-close" @click="dialog = false" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="display: flex;margin-left: auto; justify-content: right;"></v-btn>
+                        <span class="upload-txt" style="font-size: 32px; font-weight: 600; display: flex; justify-content: center;">Upload File</span>
+
+                        <div @click="trigerInput()" style="display: flex; flex-direction: column; margin: auto;">
+                          <svg v-if="!preview" xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 16 16"
+                            style="display: flex; align-self: center;">
+                            <defs>
+                              <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#2873FF; stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#0B6B96; stop-opacity:1" />
+                              </linearGradient>
+                            </defs>
+                            <path
+                              d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2z"
+                              fill="url(#gradient1)" />
+                          </svg>
+
+                          <img v-if="preview" class="send-img" style="width: 400px;height: 400px;" :src="preview" />
+
+                          <input ref="fileInput" @change="onFileChange" type="file" style="display: none;">
+                          <span v-if="!preview" :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 18px;">Drag and drop files here or select from your computer
+                          </span>
+
+                        </div>
+
+                        <v-btn @click="send_message()" class="primary-btn1 mt-3" style="width: 100; height: 60px; position: relative; width: 100%;">Upload file</v-btn>
+
+                      </v-card>
+                    </v-dialog>
+
+
+                    <v-btn @click="autoMsgs = true" :disabled="selectedCoin?.status == 'expired'"
+                      :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="me-5"
+                      style="border-radius: 10px; backdrop-filter: blur(10.5px); min-width: 50px; height: 48px">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
+                        fill="currentColor">
+                        <path
+                          d="M9.09302 9.19922V5.19922H11.093V9.19922H15.093V11.1992H11.093V15.1992H9.09302V11.1992H5.09302V9.19922H9.09302ZM10.093 20.1992C4.57002 20.1992 0.0930176 15.7222 0.0930176 10.1992C0.0930176 4.67622 4.57002 0.199219 10.093 0.199219C15.616 0.199219 20.093 4.67622 20.093 10.1992C20.093 15.7222 15.616 20.1992 10.093 20.1992ZM10.093 18.1992C12.2147 18.1992 14.2496 17.3564 15.7499 15.8561C17.2502 14.3558 18.093 12.321 18.093 10.1992C18.093 8.07749 17.2502 6.04266 15.7499 4.54236C14.2496 3.04207 12.2147 2.19922 10.093 2.19922C7.97129 2.19922 5.93645 3.04207 4.43616 4.54236C2.93587 6.04266 2.09302 8.07749 2.09302 10.1992C2.09302 12.321 2.93587 14.3558 4.43616 15.8561C5.93645 17.3564 7.97129 18.1992 10.093 18.1992Z"
+                          fill="white" />
                       </svg>
                     </v-btn>
+
+                    <v-dialog v-model="autoMsgs" width="auto">
+                      <v-card max-width="500" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+                        style="border-radius: 15px;">
+                        <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
+                          <v-list-item v-for="(msg, index) in autoMessages" :key="index" @click="selectAutoMsg(msg)"
+                            style="padding: 15px;">
+                            <v-list-item-title>{{ msg }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-card>
+                    </v-dialog>
+
+                    <textarea type="text" placeholder="Type a message..."  v-model="message" style="background: inherit !important; width: 100%; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px;" />
+
+                    <button type="button" @click.prevent.stop="send_message()" class="ml-5 position-relative"
+                      style="border-radius: 10px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); backdrop-filter: blur(10.5px); width: fit-content; padding: 10px; display: flex; align-items: center; z-index: 100;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                        <path
+                          d="M16.2896 3.68937C20.1059 2.41937 22.1794 4.49937 20.9173 8.30937L18.0826 16.7994C16.1794 22.5094 13.0542 22.5094 11.1511 16.7994L10.3097 14.2794L7.78547 13.4394C2.06598 11.5394 2.06598 8.42937 7.78547 6.51937L12.3931 4.98937"
+                          stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M10.4998 13.8478L14.0857 10.2578" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                      </svg>
+                    </button>
+
+                  </div> 
+
+                </div>
+              </div>
+
+            </div>
+
+
+            <div v-else style="height: 600px; max-height: 700px;">
+              <div style="margin-top: 120px; width: 800px;" class="dispute-div">
+                <span :class="isDark ? 'text-dark' : 'text-light'"><span
+                    style="font-weight: 600; font-size: 16px; color: white;">Use this form to report any trade disputes.</span>  Provide details of the issue and we will be in touch soon.</span>
+
+                <v-menu transition="slide-y-transition">
+                  <template v-slot:activator="{ props }">
+                    <v-btn :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" v-bind="props"
+                      style="display: flex; border-radius: 10px; box-shadow: none; width: 100%; height: 50px; letter-spacing: 0px; text-transform: capitalize; font-weight: 600; margin-top: 10px; justify-content: space-between;">
+                      <span class="me-2" :class="isDark ? 'country-text' : 'country-text-light'">{{ disputeType }}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']"
+                        style="position: absolute;right: 8px;">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
+                      </svg>
+                    </v-btn>
+
                   </template>
 
-                  <v-card class="img-dialog-card" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="padding: 30px;">
+                  <v-list class="country-list" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+                    style="width: 54%; display: flex; margin-inline-start: auto; margin-right: 156px; margin-top: 10px; border-radius: 10px;">
+                    <v-list-item style="display: contents">
+                      <v-row dense style="height: 400px; overflow-y: scroll;">
+                        <v-col v-for="(item, index) in disputeTitles" sm="12" :key="index">
+                          <v-list-item @click="disputeType = item.dispute_name;" style="display: flex; width: max-content;">
 
-                    <v-btn icon="mdi-close" @click="dialog = false" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" style="display: flex;margin-left: auto; justify-content: right;"></v-btn>
-                    <span class="upload-txt" style="font-size: 32px; font-weight: 600; display: flex; justify-content: center;">Upload File</span>
+                            <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{item.dispute_name}}</span>
 
-                    <div @click="trigerInput()" style="display: flex; flex-direction: column; margin: auto;">
-                      <svg v-if="!preview" xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 16 16"
-                        style="display: flex; align-self: center;">
-                        <defs>
-                          <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#2873FF; stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#0B6B96; stop-opacity:1" />
-                          </linearGradient>
-                        </defs>
-                        <path
-                          d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2z"
-                          fill="url(#gradient1)" />
-                      </svg>
+                          </v-list-item>
+                        </v-col>
+                      </v-row>
+                    </v-list-item>
+                  </v-list>
 
-                      <img v-if="preview" class="send-img" style="width: 400px;height: 400px;" :src="preview" />
+                </v-menu>
 
-                      <input ref="fileInput" @change="onFileChange" type="file" style="display: none;">
-                      <span v-if="!preview" :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 18px;">Drag and drop files here or select from your computer
-                      </span>
+                <div class="mt-4">
+                  <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">Describe the trade dispute</span>
+                  <textarea v-model="disputeMsg" style="outline: none; width: 100%; height: 115px; margin-bottom: 20px" placeholder=""
+                    :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"></textarea>
+                </div>
 
-                    </div>
-
-                    <v-btn @click="send_message()" class="primary-btn1 mt-3" style="width: 100; height: 60px; position: relative; width: 100%;">Upload file</v-btn>
-
-                  </v-card>
-                </v-dialog>
-
-
-                <v-btn @click="autoMsgs = true" :disabled="selectedCoin?.status == 'expired'"
-                  :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="me-5"
-                  style="border-radius: 10px; backdrop-filter: blur(10.5px); min-width: 50px; height: 48px">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
-                    fill="currentColor">
+                <div @click="trigerInput()" style="display: flex; flex-direction: column; margin: auto;">
+                  <svg xmlns="http://www.w3.org/2000/svg" v-if="!preview" width="70" height="70" viewBox="0 0 16 16"
+                    style="display: flex; align-self: center;">
+                    <defs>
+                      <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#2873FF; stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#0B6B96; stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
                     <path
-                      d="M9.09302 9.19922V5.19922H11.093V9.19922H15.093V11.1992H11.093V15.1992H9.09302V11.1992H5.09302V9.19922H9.09302ZM10.093 20.1992C4.57002 20.1992 0.0930176 15.7222 0.0930176 10.1992C0.0930176 4.67622 4.57002 0.199219 10.093 0.199219C15.616 0.199219 20.093 4.67622 20.093 10.1992C20.093 15.7222 15.616 20.1992 10.093 20.1992ZM10.093 18.1992C12.2147 18.1992 14.2496 17.3564 15.7499 15.8561C17.2502 14.3558 18.093 12.321 18.093 10.1992C18.093 8.07749 17.2502 6.04266 15.7499 4.54236C14.2496 3.04207 12.2147 2.19922 10.093 2.19922C7.97129 2.19922 5.93645 3.04207 4.43616 4.54236C2.93587 6.04266 2.09302 8.07749 2.09302 10.1992C2.09302 12.321 2.93587 14.3558 4.43616 15.8561C5.93645 17.3564 7.97129 18.1992 10.093 18.1992Z"
-                      fill="white" />
+                      d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2z"
+                      fill="url(#gradient1)" />
                   </svg>
-                </v-btn>
 
-                <v-dialog v-model="autoMsgs" width="auto">
-                  <v-card max-width="500" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-                    style="border-radius: 15px;">
-                    <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'">
-                      <v-list-item v-for="(msg, index) in autoMessages" :key="index" @click="selectAutoMsg(msg)"
-                        style="padding: 15px;">
-                        <v-list-item-title>{{ msg }}</v-list-item-title>
-                      </v-list-item>
-                    </v-list>
-                  </v-card>
-                </v-dialog>
+                  <img v-if="preview" style="width: 200px;height: 200px; display: flex; margin: auto;" :src="preview" />
 
-                <textarea type="text" placeholder="Type a message..."  v-model="message" style="background: inherit !important; width: 100%; border: 1px solid rgba(142, 155, 174, 0.50); outline: none; border-radius: 10px;" />
+                  <input ref="fileInput" @change="onFileChange" type="file" style="display: none;">
 
-                <button type="button" @click.prevent.stop="send_message()" class="ml-5 position-relative"
-                  style="border-radius: 10px; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF); backdrop-filter: blur(10.5px); width: fit-content; padding: 10px; display: flex; align-items: center; z-index: 100;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                    <path
-                      d="M16.2896 3.68937C20.1059 2.41937 22.1794 4.49937 20.9173 8.30937L18.0826 16.7994C16.1794 22.5094 13.0542 22.5094 11.1511 16.7994L10.3097 14.2794L7.78547 13.4394C2.06598 11.5394 2.06598 8.42937 7.78547 6.51937L12.3931 4.98937"
-                      stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M10.4998 13.8478L14.0857 10.2578" stroke="white" stroke-width="1.5" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </button>
+                  <span :class="isDark ? 'text-dark' : 'text-light'" v-if="!preview"
+                    style="font-size: 14px; display: flex; justify-content: center;">Drag and drop files here or select from your computer</span>
+                </div>
 
-              </div> 
+                <div style="margin-top: 20px;">
+                  <v-btn @click="create_Dispute()" class="primary-btn1" style="border-radius: 10px !important; width: 100%; height: 55px; font-weight: 600;">Create Dispute</v-btn>
+                </div>
+              </div>
+
 
             </div>
+
           </div>
-
-        </div>
-
-
-        <div v-else style="height: 600px; max-height: 700px;">
-          <div style="margin-top: 120px; width: 800px;" class="dispute-div">
-            <span :class="isDark ? 'text-dark' : 'text-light'"><span
-                style="font-weight: 600; font-size: 16px; color: white;">Use this form to report any trade disputes.</span>  Provide details of the issue and we will be in touch soon.</span>
-
-            <v-menu transition="slide-y-transition">
-              <template v-slot:activator="{ props }">
-                <v-btn :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" v-bind="props"
-                  style="display: flex; border-radius: 10px; box-shadow: none; width: 100%; height: 50px; letter-spacing: 0px; text-transform: capitalize; font-weight: 600; margin-top: 10px; justify-content: space-between;">
-                  <span class="me-2" :class="isDark ? 'country-text' : 'country-text-light'">{{ disputeType }}</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']"
-                    style="position: absolute;right: 8px;">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
-                  </svg>
-                </v-btn>
-
-              </template>
-
-              <v-list class="country-list" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-                style="width: 54%; display: flex; margin-inline-start: auto; margin-right: 156px; margin-top: 10px; border-radius: 10px;">
-                <v-list-item style="display: contents">
-                  <v-row dense style="height: 400px; overflow-y: scroll;">
-                    <v-col v-for="(item, index) in disputeTitles" sm="12" :key="index">
-                      <v-list-item @click="disputeType = item.dispute_name;" style="display: flex; width: max-content;">
-
-                        <span class="country-name" :class="isDark ? 'country-name' : 'country-name-light'">{{item.dispute_name}}</span>
-
-                      </v-list-item>
-                    </v-col>
-                  </v-row>
-                </v-list-item>
-              </v-list>
-
-            </v-menu>
-
-            <div class="mt-4">
-              <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px;">Describe the trade dispute</span>
-              <textarea v-model="disputeMsg" style="outline: none; width: 100%; height: 115px; margin-bottom: 20px" placeholder=""
-                :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"></textarea>
-            </div>
-
-            <div @click="trigerInput()" style="display: flex; flex-direction: column; margin: auto;">
-              <svg xmlns="http://www.w3.org/2000/svg" v-if="!preview" width="70" height="70" viewBox="0 0 16 16"
-                style="display: flex; align-self: center;">
-                <defs>
-                  <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#2873FF; stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#0B6B96; stop-opacity:1" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2z"
-                  fill="url(#gradient1)" />
-              </svg>
-
-              <img v-if="preview" style="width: 200px;height: 200px; display: flex; margin: auto;" :src="preview" />
-
-              <input ref="fileInput" @change="onFileChange" type="file" style="display: none;">
-
-              <span :class="isDark ? 'text-dark' : 'text-light'" v-if="!preview"
-                style="font-size: 14px; display: flex; justify-content: center;">Drag and drop files here or select from your computer</span>
-            </div>
-
-            <div style="margin-top: 20px;">
-              <v-btn @click="create_Dispute()" class="primary-btn1" style="border-radius: 10px !important; width: 100%; height: 55px; font-weight: 600;">Create Dispute</v-btn>
-            </div>
-          </div>
-
-
-        </div>
-
+        </v-container>
       </div>
-    </v-container>
   </div>
 
 </template>
@@ -895,6 +896,7 @@ const scrollToBottom = () => {
 .chat-headings {
   margin-top: 100px;
   margin-bottom: 16px;
+  flex-grow: 1;
 }
 
 .chat-border {

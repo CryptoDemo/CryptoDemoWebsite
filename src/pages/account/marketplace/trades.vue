@@ -12,16 +12,12 @@
           <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
         </div>
 
-        <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="button-container" style=" display: flex; border-radius: 10px; width: fit-content; height: 65px; align-items: center; padding: 10px; ">
+        <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="button-container" style=" display: flex; border-radius: 10px; width: fit-content; height: 65px; align-items: center; padding: 10px; ">  
           
-          <v-btn class="me-3" :class="[ selectedScreen? 'wallet-btn': isDark? 'fiat-btn': 'fiat-btn-light',]" 
-                @click.prevent="selectedScreen = true">Active trade
-          </v-btn>
-
-          <v-btn
-            :class="[!selectedScreen? 'wallet-btn' : isDark? 'fiat-btn' : 'fiat-btn-light',
-            ]" @click.prevent="selectedScreen = false">Closed trade
-          </v-btn>
+          <v-btn class="me-3" :class="[ selectedScreen? 'wallet-btn': isDark? 'fiat-btn': 'fiat-btn-light',]" @click.prevent="pinia.state.SelectedScreen_for_Trades = true">Active trade</v-btn>
+          
+          <v-btn :class="[!selectedScreen? 'wallet-btn' : isDark? 'fiat-btn' : 'fiat-btn-light', ]" @click.prevent="pinia.state.SelectedScreen_for_Trades = false">Closed trade</v-btn>
+        
         </div>
 
         <v-alert v-if="showAlert" type="info" class="mb-4">{{ alertMessage }} </v-alert>
@@ -46,8 +42,8 @@
                     :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
                     style="padding: 20px; border-radius: 15px; margin-bottom: 10px"
                   >
-                    <span style="font-size: 14px">
-                      Trade time span
+                    <span style="font-size: 14px; font-weight: 600;">
+                      Trade Duration: 
                       <span
                         :class="{
                           'expired-text': order.status === 'expired',
@@ -178,7 +174,7 @@ import { getmyOrders, cancelOrderforP2P } from "@/composables/requests/marketpla
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore();
-const selectedScreen = ref(true);
+const selectedScreen = computed(()=>pinia.state.SelectedScreen_for_Trades);
 const pageNumber = ref(1);
 const dialog = ref(false);
 const alertMessage = ref("");

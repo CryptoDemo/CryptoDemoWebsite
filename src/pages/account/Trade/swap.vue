@@ -614,6 +614,12 @@ fill: #10192D;
   transform: rotate(180deg);
 }
 
+@media only screen and (min-width: 600px) {
+  .swap-div{
+  width: 100% !important;
+}
+}
+
 @media only screen and (max-width: 600px) {
 .swap-div{
   width: 100% !important;

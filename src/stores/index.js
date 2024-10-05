@@ -53,12 +53,13 @@ export const useStore = defineStore('app',()=> {
       getSingleTxnID:"",
       offersCount:"",
       OnlineCheck:"",
+      SelectedScreen_for_Trades: true,
       chat_messages: [],
       new_chat_messages: [],
       storeBanners: [],
       PaymentMethod: [],
       selectedPaymentMethod_from_indexPage: "",
-      usernameChanged:"false",
+      usernameChanged: false,
       preferredLanguage:"English",
     });
   
@@ -141,6 +142,10 @@ export const useStore = defineStore('app',()=> {
   
   const setGeo = (payload) => {
     state.geo = payload;   
+  };
+
+  const setSelectedScreen_for_Trades = (payload) => {
+    state.SelectedScreen_for_Trades = payload;   
   };
 
   const setCalculatedTaxFee_for_swap = (payload) => {
@@ -288,6 +293,7 @@ export const useStore = defineStore('app',()=> {
     state.selected_offer_from_trades = "",
     state.selected_trade_ID = "",
     state.OnlineCheck = "",
+    state.SelectedScreen_for_Trades = "true",
     state.selectedPaymentMethod_from_indexPage = "",
     state.chat_messages = [],
     state.new_chat_messages = [],
@@ -342,6 +348,7 @@ export const useStore = defineStore('app',()=> {
       CheckusernameChange,
       setpreferredLanguage,
       setPaymentMethod,
+      setSelectedScreen_for_Trades,
     }
 },
   {persist: {
