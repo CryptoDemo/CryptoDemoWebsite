@@ -15,7 +15,7 @@
 
 
 
-          <v-table class="coin-table" style="display: grid! important; background: inherit; width: 100%; height: auto;">
+          <v-table class="coin-table" style="display: grid! important; background: inherit; width: 100%; height: auto; padding-bottom: 20px;">
             <thead>
               <div class="px-15 py-8 table-caption" style="display: flex; align-items: center;">
 
@@ -26,7 +26,7 @@
 
                 <div @click.stop class="search-div" style="margin-top: 3px; margin-bottom: 15px; display: flex; width: 40%; margin-inline-start: auto;">
                 <svg xmlns="http://www.w3.org/2000/svg" class="searchIcon" width="21" height="21" viewBox="0 0 21 21" fill="none"
-                  style="margin-left: 16px; margin-top: 19px; left: 13%; margin-right: 10px; position: relative;">
+                  style="margin-left: 16px; margin-top: 19px; left: 15%; margin-right: 10px; position: relative;">
                   <path
                     d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z"
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
