@@ -97,9 +97,6 @@
                     </div>
 
 
-                    <div @click="toggleTokens()" class="hidden-lg-and-up flex-sm-and-down mobile-swap" style="position: absolute ; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-if="theme.global.current.value.dark">
-                      <img src="/svg/mobileSwap.svg" class="mobile-swap-width"/>
-                    </div>
             
                     <div @click="toggleTokens()" class="flex-lg-and-up hidden-sm-and-down" style="position: absolute; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-else>
                         <svg xmlns="http://www.w3.org/2000/svg" width="90" height="85" viewBox="0 0 70 71" fill="none">
