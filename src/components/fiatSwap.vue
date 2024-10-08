@@ -90,11 +90,11 @@
                   </div>
 
                   <div style="display: flex; justify-content: center;">
-                    <div @click="toggleTokens()" class="swap-btn" style="display: flex; justify-content: center; margin-top: 3px;" v-if="theme.global.current.value.dark">
+                    <div @click="toggleTokens()" class="swap-btn" style="display: flex; justify-content: center; margin-top: 3px; cursor: pointer" v-if="theme.global.current.value.dark">
                         <img src="/svg/swap.svg" width="100px" />
                     </div>
             
-                    <div @click="toggleTokens()" class="swap-btn" style="position: absolute; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-else>
+                    <div @click="toggleTokens()" class="swap-btn" style="display: flex; justify-content: center; margin-top: 5px; cursor: pointer;" v-else>
                       <img src="/svg/toggle-btn.svg"/>
                     </div>
                   </div>
@@ -260,11 +260,15 @@ const selectedBalance = computed(() => {
 
 const filteredCurrency_to_swap_to = computed(() => pinia.state.allcountries.filter((c) => c.currency_name !== pinia.state.preferredCurrency));
  
-watch(
-  () => pinia.state.preferredCurrency,
+watch(() => pinia.state.preferredCurrency,
   (newValue) => {
+    // Clear the inputs when preferredCurrency changes
+    amount_to_recieve.value = ""; // Clear amount to receive
+    swapAmount.value = ""; // Clear swap amount
   }
 );
+
+
 
 const calculateTxn = async () => {
 if (swapAmount?.value > selectedBalance.value) {
@@ -415,16 +419,14 @@ if (!hasPin.value) {
 }
 onMounted(() => {});
 
-// const toggleTokens = ()=>{
-//   const m = selectedSymbol.value
-//   const p = piniastoredicon.value
 
-//   selectedSymbol.value = selected_tokenType_to_swap.value;
-//   piniastoredicon.value =  currency_i_want.value
-//   selected_tokenType_to_swap.value = m
-//   currency_i_want.value = p
+const toggleTokens = () => {
 
-// }
+  // Swapping currency names
+  const tempIcon = pinia.state.fiat_currency_i_want;
+  pinia.state.fiat_currency_i_want = pinia.state.preferredCurrency;
+  pinia.state.preferredCurrency = tempIcon;
+};
 
 const isChevronToggled = ref(false);
 const toggleChevron = () => {
