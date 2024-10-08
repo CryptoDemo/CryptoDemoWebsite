@@ -199,6 +199,7 @@ export const useStore = defineStore('app',()=> {
     state.tokenLists = payload;   
   };
 
+
   const setConvertedPriceValue = (payload) => {
     state.ConvertedPriceValue = payload;   
   };

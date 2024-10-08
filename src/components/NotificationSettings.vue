@@ -229,7 +229,6 @@ const activate_chat = ()=>{
 <style>
 .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > td, .v-table .v-table__wrapper > table > tbody > tr:not(:last-child) > th {
   border: none !important;
-  color: var(--Gray-Medium-light, #969696);
   font-feature-settings: 'clig' off, 'liga' off;
   font-family: Manrope;
   font-size: 14px;
@@ -244,9 +243,7 @@ const activate_chat = ()=>{
 .v-table--density-default > .v-table__wrapper > table > thead > tr > th, .v-table--density-default > .v-table__wrapper > table > tfoot > tr > th {
     border: none !important;
 }
-.v-table__wrapper > table > tfoot > tr > td, .v-table > .v-table__wrapper > table > tfoot > tr > th {
- color: var(--Gray-Medium-light, #969696) !important;
-}
+
 .v-table {
   --v-table-header-height: 56px;
   border-radius: inherit;
@@ -254,7 +251,6 @@ const activate_chat = ()=>{
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  color: var(--Gray-Medium-light, #969696) !important;
 }
 .header{
 color: var(--Gray-Medium-light, #969696);

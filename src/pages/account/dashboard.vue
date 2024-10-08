@@ -16,12 +16,10 @@
   
         <div style="display: flex; justify-content: space-between; overflow-x: auto;">
           <!-- Check if data is loaded, otherwise show skeleton loaders -->
-          <template v-if="multipliedValues && multipliedValues.length > 0">
-            <div v-for="(item, i) in multipliedValues.slice(0, 3)" :key="i">
+          <template v-if="tokensList.length">
+            <div v-for="(item, i) in tokensList.slice(0, 3)" :key="i">
               <v-card link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
-                <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'">
-                  {{ formatBalance(item.product) }} {{ pinia.state.preferredCurrency }}
-                </span>
+                <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'"> {{ formatBalance(item.balance * item.conversionRate) }} {{ pinia.state.preferredCurrency }} </span>
                 <span class="mt-2" :class="isDark ? 'text-dark':'text-light'">
                   {{ formatBalance(item.balance) }}
                   <span style="margin-left: 4px;">{{ item.symbol }}</span>
@@ -158,6 +156,7 @@ const marketPlace = computed(() => pinia.state.MarketPlace);
 const selectedNetworkId = pinia.state.BlockchainNetworks.find(b => b.name == network)?.id;
 const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.token_networks?.find(tkn => tkn.blockchain_id === selectedNetworkId));
 const symbols = tokensForSelectedNetwork.map(token => token.symbol);
+const tokensList = computed(()=>pinia.state.tokenLists);
 
 
 const fetchBanners = async () => {
@@ -207,7 +206,6 @@ const convertCurrencies = async () => {
           rate: item.value
         }));
 
-
       } else {
         console.log("Conversion failed:", data.message);
       }
@@ -218,25 +216,6 @@ const convertCurrencies = async () => {
     console.log("Error fetching coins:", error);
   }
 };
-
-const multipliedValues = computed(() => {
-  // Convert conversionRate array to a map for easy lookup
-  const rateMap = conversionRate.value.reduce((map, item) => {
-    map[item.from] = item.rate; // Assuming rate is the correct property
-    return map;
-  }, {});
-
-  return pinia.state.tokenLists.map(token => {
-    const balance = token.balance ?? 0;
-    const rate = rateMap[token.symbol] ?? 0; // Lookup the rate from the map
-    const product = balance * rate;
-
-    return {
-      ...token,
-      product // Attach the calculated product to the token object
-    };
-  });
-});
 
 
 const chainIcon = computed(() => {
@@ -251,11 +230,6 @@ const sellerCountries =  marketPlace.value.map((market) => {
 
   return sellerCountry ? sellerCountry : null; // Return null if country is not found
 });
-
-// Logging the seller's country information
-console.log(sellerCountries);
-
-
 
 
 
@@ -280,7 +254,7 @@ if (pinia.state.isAuthenticated) {
 
       // Update the token store with the new balances
 
-      pinia.setTokenLists(updatedTokensBals, addMinutes(5))
+      pinia.setTokenLists(updatedTokensBals)
 
       // Optionally, you can return or use `updatedTokens` as needed
 
