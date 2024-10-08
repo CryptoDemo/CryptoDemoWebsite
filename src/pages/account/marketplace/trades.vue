@@ -6,7 +6,7 @@
         <Sd-nav1 style="border: none" />
       </div>
 
-      <div class="trades-div" style="width: 100%; margin-left: 16px;">
+      <div class="trades-div" style="width: 100%; margin-left: 24px;">
         <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; margin-bottom: 40px; border: none;">
           <span style=" font-size: 24px; font-style: 28px; font-weight: 600;color: #5892ff;">Trade</span>
           <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
@@ -35,7 +35,7 @@
               <v-virtual-scroll :items="filteredOrders" item-height="150"> <!-- Adjust item-height based on your card height -->
                 <template v-slot="{ item: order, index }">
                   <v-card
-                    link
+                  :ripple="false"
                     v-bind="activatorProps"
                     @click.prevent="openDialog(order)"
                     :key="index"
@@ -73,7 +73,7 @@
                       </div>
 
                       <div style="display: flex; flex-direction: column; align-items: end;" :class="isDark ? 'text-dark' : 'text-light'">
-                        <button @click="navigateTo('/account/marketplace/tradechat'); pinia.state.selected_trade_ID = order?.id"
+                        <button @click.stop="navigateTo('/account/marketplace/tradechat'); pinia.state.selected_trade_ID = order?.id"
                           :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
                           class="chat-btn"
                           style="border-radius: 5px !important; height: fit-content !important; height: 38px; position: relative; z-index: 100;">

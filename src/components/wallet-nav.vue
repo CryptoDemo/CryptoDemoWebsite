@@ -120,6 +120,11 @@ const fetch_Web3_Balance = async () => {
   }
 };
 
+// Watch for changes in selectedNetwork and fetch new balance accordingly
+watch(() => pinia.state.selectedNetwork, (newNetwork, oldNetwork) => {
+  fetch_Web3_Balance();
+});
+
 
 onMounted(() => {
   fetch_Web3_Balance();

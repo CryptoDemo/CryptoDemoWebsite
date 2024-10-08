@@ -1,8 +1,8 @@
 <template>
   <div class="offers-div">
     <div v-for="offer in personalOffers" :key="offer.id">
-      <div class="py-3" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'">
-        <div class="px-4" style="display: flex; justify-content: space-between; border: none;">
+      <div class="py-3 mb-4" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'">
+        <div class="px-4 mb-4" style="display: flex; justify-content: space-between; border: none;">
 
           <div>
             <div style="display: flex; align-items: center; line-height: 30px;">
@@ -95,11 +95,6 @@ const offerID = ref([]);
 offerID.value = pinia.state.MarketPlace.map(item => item.id);
 
 const selectedCoinId = computed(() => pinia.state.selected_coin_to_buy_from_marketplace);
-
-// const productID = computed(() => offerID.value.find(id => id === selectedCoinId.value));
-
-// watch(productID, (newVal) => {
-// });
 
 
 const get_allMy_Offers = async () => {

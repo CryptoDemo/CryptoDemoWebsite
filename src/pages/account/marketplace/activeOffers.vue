@@ -150,7 +150,7 @@
 
 
 
-                      <div class="mb-3 px-4 pt-3" v-for="offer in filteredOffers" :key="offer.id" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'">
+                      <div class="mb-3 px-4 pt-3" v-for="offer in filteredOffers" :key="offer.id" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'" style="padding-bottom: 2px">
   
                         <div style="align-items: center; border: none; align-items: baseline; display: flex; justify-content: space-between;">
                           <div>
@@ -213,7 +213,7 @@
                        <div class="mb-3">                            
                           <v-dialog max-width="500">
                             <template v-slot:activator="{ props: activatorProps }">
-                              <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id; pinia.state.selected_coin_to_buy_from_marketplace_userID = offer?.user?.id" :disabled="!pinia.state.user.kyc_verified" v-bind="activatorProps" class="smaller-btn mt-2">Buy Offer</v-btn>
+                              <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id; pinia.state.selected_coin_to_buy_from_marketplace_userID = offer?.user?.id" :disabled="!pinia.state.user.kyc_verified" v-bind="activatorProps" class="smaller-btn mt-2 mb-4">Buy Offer</v-btn>
                             </template>            
       
                             <template v-slot:default="{  }">
@@ -363,7 +363,7 @@
 
                   </div> 
 
-                  <div v-else style="margin-bottom: 300px; overflow: scroll;">
+                  <div v-else style="overflow: scroll;">
                     <MyOffers />
                   </div>
 
@@ -561,7 +561,7 @@ const offers = computed(() => pinia.state.MarketPlace);
 const isCreating = ref(false);
 const tokenSelected = ref(false);
 const preferredTokenCurrency = ref();
-const selectedPaymentMethod = ref(pinia.state.selectedPaymentMethod_from_indexPage || "Bank Transfer");
+const selectedPaymentMethod = ref(pinia.state.selectedPaymentMethod_from_indexPage || "All payment methods");
 
 const selectedLimit = ref("");
 const method = ref();

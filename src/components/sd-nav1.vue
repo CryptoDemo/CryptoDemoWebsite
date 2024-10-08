@@ -20,7 +20,7 @@
           <div v-for="(nav, i) in activeNavigation" :key="i">
             <router-link :to="nav.link">
             <v-btn class="nav-options2" :class="[isDark ? 'text-dark' : 'text-light', isActive(nav.link) ? 'active-button' : '']"> 
-              <div v-html="nav.icon" class="me-2"></div>
+              <div v-html="nav.icon" class="me-2 mt-1"></div>
               {{ nav.title }}
             </v-btn>
           </router-link>      
@@ -110,6 +110,7 @@ const isActive = (link) => {
   box-shadow: none;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   letter-spacing: 0px;
   text-transform: capitalize;
   background: inherit;
@@ -129,6 +130,8 @@ const isActive = (link) => {
   line-height: normal;
   }
   .active-button {
+  display: flex;
+  align-items: center;
   background:#2873FF !important;  
   border-radius: 22px;
   width: 199px;

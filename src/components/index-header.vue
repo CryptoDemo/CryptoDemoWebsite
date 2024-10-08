@@ -4,7 +4,7 @@
    
         <v-container style="display: flex; align-items: center;">
       
-        <v-app-bar-title  :class="isDark ? 'nav-title':'nav-title-light'" >Demo</v-app-bar-title>
+        <v-app-bar-title  :class="isDark ? 'nav-title':'nav-title-light'" style="cursor: pointer;">Demo</v-app-bar-title>
 
  
           <div class="d-flex" style="position: absolute; margin-left: 150px;">

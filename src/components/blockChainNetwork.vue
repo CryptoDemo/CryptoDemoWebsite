@@ -84,6 +84,8 @@ const fetch_chainNetworks = async () => {
 };
 
 
+
+
 onMounted(() => {
   fetch_chainNetworks();
 });

@@ -65,7 +65,7 @@
             <div style="display: flex; flex-direction: column; line-height: 30px;">
               <span style="font-weight: 600; font-size: 14px">{{ offer.user.username }}</span>
               <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 14px; font-style: normal;">Buy limit</span>
-              <div class="d-flex" style="line-height: 30px;">
+              <div class="d-flex" style="line-height: 30px; margin-bottom: 2px;">
                 <img :src="offer.trading_pair?.crypto?.token?.icon" class="me-2" width="20px" />
                 <span class="me-1" style="color: #8e9bae; font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 600;">{{offer.trading_pair?.crypto?.token?.name }}</span>
               </div>
@@ -84,7 +84,7 @@
           <div style="display: flex; justify-content: space-between; align-items: center">
             <div style="display: flex; flex-direction: column;">
               <span style="font-weight:600; font-size: 16px;">Buy Coins</span>
-              <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 13px;">Choose your preferred withdrawal method</span>
+              <span :class="isDark ? 'text-dark' : 'text-light'" style="font-size: 13px;">Choose your preferred payment method</span>
             </div>
             <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1" style="font-size: 13px;">See More...</span>
           </div>
@@ -102,16 +102,10 @@
 
         
          
-          <v-carousel height="400" cycle :show-arrows="false" class="carousel-item" style="border-radius: 10px;">
+          <v-carousel height="400" cycle :show-arrows="false" class="carousel-item" style="width: 100%;">
             <v-carousel-item v-for="(slide, i) in slides" :key="i">
-              <div :style="`background-image: url(${slide.image_url}); background-size: cover; background-position: center; height: 100%; padding-top: 20px; background-color: ${slide.background};`">
-                <div class="d-flex fill-height justify-center align-center">
-                  <div class="d-flex justify-space-between">
-                    <div class="d-flex flex-column">
-                      <!-- Your overlay content goes here -->
-                    </div>
-                  </div>
-                </div>
+              <div :style="`background-image: url(${slide.image_url}); background-size: contain; background-position: center; height: 100%; width: 100%; padding-top: 20px; background-color: ${slide.background};`">
+               
               </div>
             </v-carousel-item>
           </v-carousel>
