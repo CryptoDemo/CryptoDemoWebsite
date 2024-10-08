@@ -47,6 +47,9 @@ import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 import { Resend_Code, Verify_account } from "@/composables/requests/auth";
 import { push } from 'notivue';
+definePageMeta({
+  middleware: 'auth'
+});
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);

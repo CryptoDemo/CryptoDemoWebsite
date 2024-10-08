@@ -82,6 +82,9 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import {newpassword} from "@/composables/requests/auth";
+definePageMeta({
+  middleware: 'auth'
+});
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);

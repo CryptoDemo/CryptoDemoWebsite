@@ -46,6 +46,9 @@
 import { ref } from "vue";
 import { useTheme } from "vuetify";
 import { Verify2FA } from "@/composables/requests/users";
+definePageMeta({
+  middleware: 'auth'
+});
 
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);

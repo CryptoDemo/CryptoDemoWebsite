@@ -260,6 +260,10 @@ color: #161D26 !important;
 letter-spacing: 0px;
 box-shadow: none;
 }
+.language-select{
+  display: flex;
+  margin: auto;
+}
 .nav-icon-text{
 color: #969696;
 text-align: center;

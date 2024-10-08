@@ -18,6 +18,10 @@ export default defineNuxtConfig ({
      
   ],
   
+  // router: {
+  //   middleware: ['auth'] // Apply the auth middleware globally
+  // },
+  
   components: {
     dirs: [
       { path: '~/components', pathPrefix: false, lazy: true },

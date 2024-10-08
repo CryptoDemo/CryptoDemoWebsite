@@ -120,6 +120,9 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+definePageMeta({
+  middleware: 'auth'
+});
 
 const isToggled = ref(true);
 const togglePassword = () => {

@@ -41,6 +41,9 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+definePageMeta({
+  middleware: 'auth'
+});
 
 const  otp = ref ('');
 const validating = ref (false);

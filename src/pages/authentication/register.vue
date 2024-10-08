@@ -130,7 +130,9 @@ import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import {register_} from "@/composables/requests/auth";
 import HCaptcha from '~/components/HCaptcha.vue'
-
+definePageMeta({
+  middleware: 'auth'
+});
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
