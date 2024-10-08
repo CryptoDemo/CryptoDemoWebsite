@@ -3,7 +3,7 @@
     <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true"/>
     <v-container class="d-flex" style="margin-top: 110px;">
        
-      <div class="">
+      <div class="dashboardSpace me-3">
         <Sd-nav1/>
       </div>
          
@@ -91,7 +91,7 @@
             <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1" style="font-size: 13px;">See More...</span>
           </div>
 
-          <v-card class="offer-card" link @click="navigateTo('/account/marketplace/activeOffers')" v-for="(method, index) in paymentMethods.slice(0, 3)" :key="index" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
+          <v-card class="offer-card" link @click="navigateTo('/account/marketplace/activeOffers'); pinia.state.selectedPaymentMethod_from_indexPage = method.name" v-for="(method, index) in paymentMethods.slice(0, 3)" :key="index" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
           
             <div style="display: flex; flex-direction: column; line-height: 30px;">
               <span style="font-weight: 600; font-size: 14px;">{{ method.name  }}</span>
@@ -102,24 +102,24 @@
 
           </v-card>
 
-          
-
+        
          
-
-      
           <v-carousel height="400" cycle :show-arrows="false" class="carousel-item" style="border-radius: 10px;">
             <v-carousel-item v-for="(slide, i) in slides" :key="i">
-              <v-sheet :style="`background-image: url(${slide.image_url}); background-size: cover; background-position: center; padding-top: 20px; background-color: ${slide.background};`" height="100%">
+              <div :style="`background-image: url(${slide.image_url}); background-size: cover; background-position: center; height: 100%; padding-top: 20px; background-color: ${slide.background};`">
                 <div class="d-flex fill-height justify-center align-center">
                   <div class="d-flex justify-space-between">
                     <div class="d-flex flex-column">
-                      <!-- Add any overlay content or text inside this block if needed -->
+                      <!-- Your overlay content goes here -->
                     </div>
                   </div>
                 </div>
-              </v-sheet>
+              </div>
             </v-carousel-item>
           </v-carousel>
+
+
+
 
 
     
@@ -536,6 +536,10 @@ color: #10192D;
 .balance{
 font-family: Manrope;
 font-size: 20px;
+}
+
+.dashboardSpace{
+  margin-inline-end: 0px !important;
 }
 
 }

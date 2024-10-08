@@ -561,7 +561,8 @@ const offers = computed(() => pinia.state.MarketPlace);
 const isCreating = ref(false);
 const tokenSelected = ref(false);
 const preferredTokenCurrency = ref();
-const selectedPaymentMethod = computed (() => pinia.state.selectedPaymentMethod_from_indexPage || "Bank Transfer");
+const selectedPaymentMethod = ref(pinia.state.selectedPaymentMethod_from_indexPage || "Bank Transfer");
+
 const selectedLimit = ref("");
 const method = ref();
 const selectedPriceRange = ref();
@@ -725,7 +726,7 @@ const resetFilters = () => {
   tokenSymbol.value = ''; // or default value
   currency_to_filterBy.value = ''; // or default value
   selectedLimit.value = { min: 0, max: Infinity }; // Reset to default or null, depending on your use case
-  selectedPaymentMethod.value = ""; // or default value
+  selectedPaymentMethod.value = "Bank Transfer"; // or default value
   selectedPriceType.value = undefined; // Reset price type filter
 };
 

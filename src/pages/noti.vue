@@ -11,30 +11,33 @@
         <div class="swap-container" style="width: 85%; display: flex; justify-content: center; align-self: center; flex-direction: column;"> 
 
           <v-card-text>
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-x-circle mt-5" viewBox="0 0 16 16" @click="dialog = false" style="display: flex; margin-inline-start: auto; cursor: pointer">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+
+
             <div class="py-7 ml-3" style="display: flex; align-items: center; justify-content: center; flex-direction: column">
               <span class="swap1">Real-Time Currency Exchange Hub</span>
               <span class="mt-4 trusted-gt">Your Trusted Gateway to Seamless and Secure Currency Exchange Solutions</span>
             </div>
 
 
-              <div class="ctnx-div" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 24px;  padding: 37px; margin-top: 70px; margin-bottom: 925px;  width: 97%; margin: auto; ">
+              <div class="ctnx-div" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 24px;  padding: 37px; margin-top: 70px; margin-bottom: 925px;  width: 100%; margin: auto; ">
                   <div class="d-flex" style="margin-bottom: 30px">
                   <span class="quick-swap me-3">Quick Swap</span>
                   </div>
           
-                  <div class="d-md-flex" style="justify-content: space-between; position: relative">
-                  <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="swap-div" style=" border-radius: 20px; width: 47%; display: flex; padding: 10px 20px; justify-content: space-between;">
-                      <div class="d-flex swp-dv" style="width: 12%">
-                      <div class="me-13" style="display: flex; flex-direction: column; z-index: 1000">
-                          <span class="have d-flex">I have :</span>
+                  <div class="d-md-flex" style="justify-content: space-between;">
+                  
+                  <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="swap-div" style=" border-radius: 20px;  display: flex; padding: 10px 20px; justify-content: space-between; width: -webkit-fill-available;">
+                    <!-- <div class="d-flex swp-dv"> -->
+                      <div class="me-2" style="display: flex; flex-direction: column;">
+                        <span class="have d-flex">I have :</span>
           
-                          <v-menu>
+                        <v-menu>
                           <template v-slot:activator="{ props }">
-                              <button
-                              @click="toggleChevron"
-                              class="inputstyling2"
-                              v-bind="props"
-                              style=" display: flex; align-items: center; margin-top: 13px;">
+                              <button @click="toggleChevron" class="inputstyling2" v-bind="props" style=" display: flex; align-items: center; margin-top: 13px;">
                               <div class="py-3" style=" display: flex; align-items: center; border-radius: 17px; background: inherit;">
                                   <span class="me-2">{{pinia.state.preferredCurrency}}</span>
                               </div>
@@ -62,9 +65,9 @@
                           </v-list>
                           </v-menu>
                       </div>
-                      </div>
+                      <!-- </div> -->
           
-                      <div style="display: flex; justify-content: center; align-self: center; margin-top: 30px; border-radius: 4px; height: 26px;z-index: 1000;">
+                      <div style="display: flex; justify-content: center; align-self: center; margin-top: 30px; border-radius: 4px; height: 26px;">
                       <v-btn @click="swapAmount = mytoken?.minimum_fiat_to_crypto_swap" class="me-4 min-btn" :class="isDark ? 'btn-segment' : 'btn-segment-light'"
                           style=" height: 26px; letter-spacing: 0px; text-transform: capitalize; background: inherit; box-shadow: none;"><span class="min">Min</span>
                       </v-btn>
@@ -76,48 +79,47 @@
                       </div>
 
 
-                      <div class="number-input" style="display: flex; margin-right: 10px; flex-direction: column; z-index: 1000;">
-                      <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom: 10px; display: flex;justify-content: end;">{{ pinia.state.Selectedcurrency_code }}
-                          {{ formatBalance(selectedBalance) }}</span>
-                      
-                      <input type="number" v-model="swapAmount" :class="isDark ? 'btn-segment' : 'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>
+                      <div class="number-input" style="display: flex; margin-right: 10px; flex-direction: column;">
+                        <span class="have" style="font-family: manrope; font-size: 14px; font-weight: 500; margin-bottom: 10px; display: flex;justify-content: end;">{{ pinia.state.Selectedcurrency_code }}
+                            {{ formatBalance(selectedBalance) }}</span>                        
+                        <input type="number" v-model="swapAmount" :class="isDark ? 'btn-segment' : 'btn-segment-light'" style=" outline: none; height: 50px; padding: 10px; border-radius: 8px; "/>
                       </div>
                   </div>
-          
-                  <!-- <div @click="toggleTokens()" class="flex-lg-and-up hidden-sm-and-down" style=" position: absolute; display: flex; left: 0; right: 0; justify-content: center; margin-top: 3px;" v-if="theme.global.current.value.dark">
-                      <img src="/svg/swap.svg" width="8%" />
-                  </div> -->
 
-
-                 
+                  <div>
+                    <div @click="toggleTokens()" class="" style="display: flex; justify-content: center; margin-top: 3px;" v-if="theme.global.current.value.dark">
+                        <img src="/svg/swap.svg" width="100px" />
+                    </div>
+            
+                    <div @click="toggleTokens()" class="" style="position: absolute; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-else>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="90" height="85" viewBox="0 0 70 71" fill="none">
+                        <path
+                            d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z"
+                            fill="#4284FF"/>
+                        <path
+                            d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z"
+                            fill="url(#paint0_linear_5037_31025)"/>
+                        <path
+                            d="M63 35.1992C63 19.7352 50.464 7.19922 35 7.19922C19.536 7.19922 7 19.7352 7 35.1992C7 50.6632 19.536 63.1992 35 63.1992C50.464 63.1992 63 50.6632 63 35.1992Z"
+                            stroke="#fff"
+                            stroke-width="14"/>
+                        <path
+                            d="M29.167 36.3659H39.667V38.6992H35.0003V42.1992L29.167 36.3659ZM35.0003 31.6992V28.1992L40.8337 34.0326H30.3337V31.6992H35.0003Z"
+                            fill="white"/>
+                        <defs>
+                            <linearGradient id="paint0_linear_5037_31025" x1="35.0003" y1="15.3672" x2="35.0003" y2="55.0339" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#2873FF" />
+                            <stop offset="1" stop-color="#0B6B96" />
+                            </linearGradient>
+                        </defs>
+                        </svg>
+                    </div>
+                  </div>
           
-                  <!-- <div @click="toggleTokens()" class="flex-lg-and-up hidden-sm-and-down" style="position: absolute; display: flex; left: 0; right: 0; justify-content: center; margin-top: 5px;" v-else>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="90" height="85" viewBox="0 0 70 71" fill="none">
-                      <path
-                          d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z"
-                          fill="#4284FF"/>
-                      <path
-                          d="M54.8337 35.2005C54.8337 24.2469 45.954 15.3672 35.0003 15.3672C24.0467 15.3672 15.167 24.2469 15.167 35.2005C15.167 46.1542 24.0467 55.0339 35.0003 55.0339C45.954 55.0339 54.8337 46.1542 54.8337 35.2005Z"
-                          fill="url(#paint0_linear_5037_31025)"/>
-                      <path
-                          d="M63 35.1992C63 19.7352 50.464 7.19922 35 7.19922C19.536 7.19922 7 19.7352 7 35.1992C7 50.6632 19.536 63.1992 35 63.1992C50.464 63.1992 63 50.6632 63 35.1992Z"
-                          stroke="#fff"
-                          stroke-width="14"/>
-                      <path
-                          d="M29.167 36.3659H39.667V38.6992H35.0003V42.1992L29.167 36.3659ZM35.0003 31.6992V28.1992L40.8337 34.0326H30.3337V31.6992H35.0003Z"
-                          fill="white"/>
-                      <defs>
-                          <linearGradient id="paint0_linear_5037_31025" x1="35.0003" y1="15.3672" x2="35.0003" y2="55.0339" gradientUnits="userSpaceOnUse">
-                          <stop stop-color="#2873FF" />
-                          <stop offset="1" stop-color="#0B6B96" />
-                          </linearGradient>
-                      </defs>
-                      </svg>
-                  </div> -->
           
-                  <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="swap-div" style="border-radius: 20px; display: flex; width: 47%; padding: 10px 20px; justify-content: space-between;">
+                  <div :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'" class="swap-div" style="border-radius: 20px; display: flex; padding: 10px 20px; justify-content: space-between; width: -webkit-fill-available;">
                       <div class="d-flex">
-                      <div class="me-13"  style="display: flex; flex-direction: column; margin-left: 10px">
+                      <div class="me-2"  style="display: flex; flex-direction: column; margin-left: 10px">
                           <span class="have">I want:</span>
                           <v-menu>
                           <template v-slot:activator="{ props }">
@@ -152,24 +154,20 @@
                           </v-menu>
                       </div>
                       </div>
-                      <div style="display: flex; flex-direction: column">
-                      <span class="have mb-2" style="font-size: 14px; font-weight: 500; font-family: manrope; display: flex; justify-content: end;">
-                          Expected ammount
-                      </span>
+                      <div style="display: flex; flex-direction: column; width: 88%;">
+                        <span class="have mb-2" style="font-size: 14px; font-weight: 500; font-family: manrope; display: flex; justify-content: end;">Expected ammount</span>
 
-                      <input type="number" disabled v-model="amount_to_recieve" :class="isDark ? 'btn-segment' : 'btn-segment-light'"
-                          style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>
+                        <input type="number" disabled v-model="amount_to_recieve" :class="isDark ? 'btn-segment' : 'btn-segment-light'" style="outline: none; height: 50px; padding: 10px; border-radius: 8px;"/>
                       </div>
 
                   </div>
                   </div>
 
-                  <div>
                     <div class="quick-swap mt-2 text-subtitle-2" :class="isDark ? 'text-dark' : 'text-light'" type="info" density="compact" style="width: 40%; border-radius: 10px; line-height: 20px;">
                         Minimum swap amount is {{ pinia.state.Selectedcurrency_code}}{{ formatBalance(mytoken.minimum_fiat_to_crypto_swap) }} and
                         the maximum swap ammount is {{ pinia.state.Selectedcurrency_code}}{{ formatBalance(mytoken.maximum_fiat_funding) }}
                     </div>
-                  </div>
+
           
                   <div style="display: flex; justify-content: end; margin-top: 55px; align-items: center;">
           
@@ -222,12 +220,6 @@
               </div>
           </v-card-text>
 
-
-          <v-card-actions style="margin-top: 180px; justify-content: end;">
-          <div class="px-4 mb-3">
-            <v-btn @click="dialog = false" style="letter-spacing: 0px; width: 100px; font-weight: 600; text-transform: unset; font-size: 16px;">Cancel</v-btn>
-          </div>
-        </v-card-actions>
       </div>
   
       </v-card>
