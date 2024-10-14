@@ -22,7 +22,7 @@
                                 </div>
                             </div>
 
-                            <div>
+                            <div style="display: flex; justify-items: center; align-items: center;">
                                 <span style="color: rgb(145, 163, 176)">{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.transfer?.country_id).currency_code }}</span>
                                 <span style="color: rgb(145, 163, 176)">{{formatNumber(transaction?.details?.fiat?.transfer?.amount)}}</span>
                             </div>
@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
 
-                                <div class="d-flex">
+                                <div class="d-flex" style="justify-items: center; align-items: center;">
                                     <span style="color: #007F80">{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.swap?.from_country_id).currency_code }}</span>
                                     <span style="color: #007F80">{{formatNumber(transaction?.details?.fiat?.swap?.from_amount)}}</span>
                                 </div>

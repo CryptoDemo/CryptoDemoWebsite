@@ -53,7 +53,7 @@
                                     </div> -->
                                 </div>
                 
-                                <div class="d-flex">
+                                <div class="d-flex" style="justify-items: center; align-items: center;">
                                     <span v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" style="color: #35B233; font-weight: 600;">{{formatNumber(transaction?.details?.crypto?.transfer?.amount)}}</span>
                                     <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" style="color: #91A3B0; font-weight: 600">{{formatNumber(transaction?.details?.crypto?.transfer?.amount)}}</span>
 
@@ -79,7 +79,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="d-flex">
+                                        <div class="d-flex" style="justify-items: center;align-items: center;">
                                             <span style="color: #007F80">{{formatNumber(transaction?.details?.crypto?.swap?.from?.amount)}}</span>
                                             <span style="color: #007F80">{{tokenLists.find((p) => p.id === transaction?.details?.crypto?.swap?.from?.token_id)?.symbol}}</span>
                                         </div>
