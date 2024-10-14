@@ -60,7 +60,7 @@
             <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1" style="font-size: 14px;">See More...</span>
           </div>
 
-          <v-card link class="offer-card" @click="navigateTo('/account/marketplace/activeOffers')" v-for="offer in pinia.state.MarketPlace.slice(0, 3)" :key="offer.id"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: 100px; margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
+          <v-card link class="offer-card" @click="navigateTo('/account/marketplace/activeOffers')" v-for="offer in pinia.state.MarketPlace.slice(0, 3)" :key="offer.id"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: auto; margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
           
             <div style="display: flex; flex-direction: column; line-height: 30px;">
               <span style="font-weight: 600; font-size: 14px">{{ offer.user.username }}</span>
@@ -109,10 +109,6 @@
               </div>
             </v-carousel-item>
           </v-carousel>
-
-
-
-
 
     
         <div style="margin-top: -130px;">

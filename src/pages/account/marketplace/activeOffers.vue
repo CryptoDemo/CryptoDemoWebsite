@@ -7,8 +7,8 @@
           <Sd-nav1 style="border: none;" />
         </div>
      
-        <div class="offer-body" style="width: 100%; margin-left: 16px;">
-            <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; margin-bottom: 40px; border: none">
+        <div class="offer-body" style="width: 100%; margin-left: 20px;">
+            <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; margin-bottom: 20px; border: none">
               <span class="marketPlace" style="font-size: 24px; font-style: 28px; font-weight: 600; color: #5892FF;">Marketplace</span>
               <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
             </div>
@@ -187,8 +187,8 @@
   
   
                           <div style="display: flex; flex-direction: column; justify-content: flex-end; line-height: 30px;">
-                            <span v-if="offer.user?.is_verified" class="resend-code" style="font-weight: 500;  text-align-last: right; font-size: 14px;">Verified</span>
-                            <span style="font-size: 14px; color: orangered" v-else>Unverified User</span>
+                            <span v-if="offer.user?.is_verified" class="resend-code" style="font-weight: 600;  text-align-last: right; font-size: 14px;">Verified</span>
+                            <span style="font-size: 14px; color: orangered; font-weight: 600;" v-else>Unverified User</span>
                             <span style="display: flex; justify-content: end; font-size: 14px; font-weight: 600;"> {{ offer?.trading_pair?.crypto?.unit_value }} {{ offer?.trading_pair?.crypto?.token.symbol }}</span>
                             <span :class="isDark ? 'text-dark' : 'text-light'" style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400; align-self: self-end;">{{
                                 formatBalance(offer?.trading_pair?.fiat?.minimum_buy_limit) }} - {{formatBalance(offer?.trading_pair?.fiat?.maximum_buy_limit) }} {{ offer?.countryCurrencyName}}
@@ -858,10 +858,7 @@ watch(()=>amount_to_pay.value, (newValue) => {
   }
 });
 
-  
-onMounted(() => {
-  // get_allMarket_Offers();
-});
+
 
 </script>
 

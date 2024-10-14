@@ -37,8 +37,6 @@ import intercom from '@intercom/messenger-js-sdk';
 const pageNumber = ref(1);
 const pinia = useStore();
 
-
-
 const activate_chat = ()=>{
   const activate = intercom({
       app_id:'lwqnsoko',
@@ -54,7 +52,6 @@ const activate_chat = ()=>{
 
 const network = pinia.state.selectedNetwork.toLowerCase();
 const selectedNetworkId = pinia.state.BlockchainNetworks.find(b=>b.name==network)?.id;
-
 
 const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.token_networks?.find(tkn=>tkn.blockchain_id === selectedNetworkId));
 
