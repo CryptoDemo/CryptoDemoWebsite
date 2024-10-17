@@ -2,7 +2,7 @@
   <div class="section">
     <LoginBG/>
    
-    <Header text2="Already have an account," title="Create account" link="/authentication/register" :newUserLanguage="true"/> 
+    <Header text2="Already have an account," loginTitle="Create account" link="/authentication/register" :newUserLanguage="true"/> 
       <v-container class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
         <div class="section">
         <v-row no-gutters>

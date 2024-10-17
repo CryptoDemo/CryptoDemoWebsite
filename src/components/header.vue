@@ -17,9 +17,10 @@
 
         <div  style="position: relative"> <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink> </div>
         
-        <div class="header-nav-div align-lg-center" style="display: flex;margin-inline-start: auto;">
+        <div class="header-nav-div align-lg-center" style="display: flex; margin-inline-start: auto;">
           <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
           <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center;"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
+          <NuxtLink :to="props.link" class="d-flex loginText" style="align-self: center;"> <span :class="isDark ? 'loginText':'text2-light'">{{props.loginTitle}}</span></NuxtLink>
 
           <div class="language-select">
             <LanguageDropdown v-if="newUserLanguage"/>
@@ -72,7 +73,7 @@
             <Notifications/>
             <span class="nav-icon-text mb-3 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark':'text-light'" style="display: flex; justify-content: flex-start;">Notification</span>     
           </div>
-    </div>   
+        </div>   
     </v-container>
  
   </div>
@@ -141,6 +142,7 @@ onMounted(()=>{{
 const props = defineProps(
   {
   title:String,
+  loginTitle:String,
   text2:String,
   link:String,
   icon:String,
@@ -222,6 +224,17 @@ line-height: normal;
 margin-right: 15px;
 }
 .text2{
+color: #FFF;
+text-align: center;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-right: 15px ;
+cursor: pointer;
+}
+
+.loginText{
 color: #FFF;
 text-align: center;
 font-size: 16px;
@@ -424,13 +437,7 @@ margin-top: 15px !important;
 }
 .nav-btn{
   background: inherit !important;
-}
-.dropdown-btn1i{
-  position: absolute;
-  right: 8px;
-  bottom: 3px;
-  /* margin-top: 40px !important; */
-}
+}text
 .v-btn__content {
   margin-top: 9px !important;
 }
@@ -455,8 +462,16 @@ position: absolute !important;
 right: 13px !important;
 top: 26%;
 }
+
+.loginText{
+  display: contents;
+}
 .text2{
-  margin-right: 45px;
+  margin-right: 75px;
+}
+
+.dropdown-btn1i{
+  margin-left: 15px;
 }
 
 }
