@@ -5,7 +5,7 @@
         <v-container class="d-flex">
 
 
-          <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="flex-lg-and-up hidden-sm-and-down" style="width: 400px; overflow-y: scroll !important; margin-top: 95px; padding: 20px; margin-right: 24px; border-radius: 10px !important;">
+          <div :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="flex-lg-and-up hidden-sm-and-down" style="width: 400px; overflow-y: scroll !important; margin-top: 95px; padding: 20px; margin-right: 24px; border-radius: 10px !important; z-index: 10;">
 
             <div style="display: flex; align-items: center" v-if="selectedCoin?.status !== 'expired'">
               <img src="/svg/Ellipse-active.svg" />
@@ -296,8 +296,8 @@
 
                 <div class="dialog-div" style="position: relative; margin-top: 0px;">
                   <!-- <div class="chat-border" style="margin-top: 15px;"></div> -->
-                  <div class="msg-div" :class="isDark ? 'footer' : 'footer-light'"
-                    style="display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 55px; left: 35%; right: 9%; width: 55%; height: 70px; padding: 0 15px; box-sizing: border-box;">
+                  <div class="msg-div ml-3" :class="isDark ? 'footer' : 'footer-light'"
+                    style="display: flex; justify-content: space-between; align-items: center; position: fixed; bottom: 75px; left: 35%; right: 9%; width: 55%; height: 70px; padding: 0 15px; box-sizing: border-box;">
 
                     <v-dialog v-model="dialog" transition="dialog-bottom-transition" fullscreen>
 
@@ -1028,6 +1028,7 @@ textarea {
     right: 0 !important;
     left: 0 !important;
     bottom: 0 !important;
+    margin-left: 0 !important;
   }
 
   .receiver-msg {

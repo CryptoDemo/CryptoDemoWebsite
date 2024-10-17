@@ -456,12 +456,9 @@ right: 13px !important;
 top: 26%;
 }
 .text2{
-  margin-right: 70px;
+  margin-right: 45px;
 }
 
-.language-select{
-  margin-right: 50px !important;
-}
 }
 
 
