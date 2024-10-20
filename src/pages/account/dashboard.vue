@@ -19,7 +19,7 @@
           <template v-if="tokensList.length">
             <div v-for="(item, i) in tokensList.slice(0, 3)" :key="i">
               <v-card link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
-                <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'"> {{ formatBalance(item.balance * item.conversionRate) }} {{ pinia.state.preferredCurrency }} </span>
+                <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'"> {{ formatBalance((item.balance || 0) * (item.conversionRate || 0)) }} {{ pinia.state.preferredCurrency }} </span>
                 <span class="mt-2" :class="isDark ? 'text-dark':'text-light'">
                   {{ formatBalance(item.balance) }}
                   <span style="margin-left: 4px;">{{ item.symbol }}</span>
