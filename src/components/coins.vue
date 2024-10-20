@@ -155,21 +155,45 @@ const getTokens_ = async () => {
 };
 
 // Function to fetch token balances
+// const getTokenBals = async () => {
+//   if (pinia.state.isAuthenticated) {
+//     try {
+//       // Fetch token balances
+//       const data = await getTokenBalance(symbols);
+
+//       if (data.success) {
+//         // Update the tokens with the new balance
+//         const updatedTokensBals = updateTokenBalances(pinia.state.tokenLists, data.data);
+
+//         // Force state change by creating a new reference
+//         pinia.setTokenLists([...updatedTokensBals]); // Spread to create a new array reference
+
+//       } else {
+//         console.log('Error fetching balances:', data.message);
+//       }
+//     } catch (error) {
+//       console.log('Fetch error:', error);
+//     }
+//   }
+// };
+
 const getTokenBals = async () => {
   if (pinia.state.isAuthenticated) {
     try {
-      // Fetch token balances
+      const symbols = pinia.state.tokenLists.map(token => token.symbol);
       const data = await getTokenBalance(symbols);
 
       if (data.success) {
-        // Update the tokens with the new balance
-        const updatedTokensBals = updateTokenBalances(pinia.state.tokenLists, data.data);
-
-        // Force state change by creating a new reference
-        pinia.setTokenLists([...updatedTokensBals]); // Spread to create a new array reference
-
+        const updatedTokens = pinia.state.tokenLists.map(token => {
+          const tokenData = data.data.find(t => t.token === token.symbol);
+          if (tokenData) {
+            return { ...token, balance: tokenData.balance };
+          }
+          return token;
+        });
+        pinia.setTokenLists(updatedTokens);
       } else {
-        console.log('Error fetching balances:', data.message);
+        console.log('Error:', data.message);
       }
     } catch (error) {
       console.log('Fetch error:', error);
@@ -267,11 +291,12 @@ const fetch_token_bals = async()=>{
 
 }
 
+fetch_token_bals();
 
 
-onBeforeMount(() => {
-  fetch_token_bals();
-});
+// onBeforeMount(() => {
+//   fetch_token_bals();
+// });
 
 
 </script>

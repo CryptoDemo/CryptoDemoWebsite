@@ -272,7 +272,7 @@ const getTokenBals = async () => {
           }
           return token;
         });
-        pinia.setTokenLists(updatedTokens, addMinutes(5));
+        pinia.setTokenLists(updatedTokens);
       } else {
         console.log('Error:', data.message);
       }
