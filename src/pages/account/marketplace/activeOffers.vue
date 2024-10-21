@@ -119,14 +119,79 @@
                                 </v-btn>
                               </template>
 
-                              <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 15px; margin-top: 10px;">
+                              <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 15px; margin-top: 10px; margin-top: 10px; max-height: 300px; overflow-y: auto; width: 225px;">
                                 <v-list-item style="display: contents">
-                                  <v-row dense style="max-width: 240px; height: 250px; overflow: scroll;">
+                                  <v-row dense>
                                     <div v-for="tokens in pinia.state.tokenLists" :key="tokens.id" style="width: 100%;">
                                       <v-list-item @click="selectToken(tokens)" style="display: flex;">
                                         <div style="display: flex; align-items: center;">
                                           <img :src="tokens.icon" width="30" class="me-2" />
                                           <span class="currency-list">{{ tokens.name }}</span>
+                                        </div>
+                                      </v-list-item>
+                                    </div>
+                                  </v-row>
+                                </v-list-item>
+                              </v-list>
+                            </v-menu>
+
+                            <v-menu>
+                    <template v-slot:activator="{ props }">
+                      <v-btn  v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"  style="width: fit-content; height: 50px; margin-top: 3px; border-radius: 10px; margin-top: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
+                        <div class="d-flex" style="align-items: center; justify-content: space-between;">
+                          <span class="slt">{{ selectedLimitLabel }}</span>
+                          <span v-if="!selectedLimitLabel" style="position: absolute;">Select Buy Limit</span>
+                        </div>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']" style="position: absolute; display: flex; right: 5px">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
+                          </svg>
+                      </v-btn>
+                    </template>
+
+                    <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 15px; margin-top: 10px;">
+                      <v-list-item style="display: contents">
+                        <v-row dense style="max-width: 240px; height: 250px; overflow: scroll;">
+                          <div v-for="(range, index) in priceLimits" :key="index" style="width: 100%;">
+
+                            <v-list-item @click="setSelectedLimit(range)" style="display: flex;">
+                              
+                              <span class="currency-list">{{ range.min }} - {{ range.max === Infinity ? 'Infinity' : range.max }}</span>
+                         
+                            </v-list-item>
+                          </div>
+                        </v-row>
+                      </v-list-item>
+                    </v-list>
+                            </v-menu>
+
+                            <v-menu>
+                              <template v-slot:activator="{ props }">
+                                <v-btn v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"
+                                      style="width: fit-content; height: 50px; margin-top: 3px; border-radius: 10px; margin-top: 10px; box-shadow: none; letter-spacing: 0px; width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
+                                  
+                                  <div class="d-flex" style="align-items: center; justify-content: space-between;">
+                                    <span class="slt">{{ selectedPriceType }}</span>
+                                    <span v-if="!selectedPriceType" style="position: absolute;">Select price type</span>
+                                  </div>
+                                  
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                      :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']"
+                                      style="position: absolute; display: flex; right: 5px">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
+                                  </svg>
+                                  
+                                </v-btn>
+                              </template>
+
+                              <v-list :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 15px; margin-top: 10px;">
+                                <v-list-item style="display: contents">
+                                  <v-row dense style="max-width: 240px; overflow-y: scroll;">
+                                    <div v-for="(price, index) in priceType" :key="index" style="width: 100%;">
+                                      <v-list-item @click="selectedPriceType = price" style="display: flex;">
+                                        <div style="display: flex; flex-direction: column">
+                                          <span class="currency-list">{{ price }}</span>
                                         </div>
                                       </v-list-item>
                                     </div>
