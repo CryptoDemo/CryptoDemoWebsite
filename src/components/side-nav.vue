@@ -52,21 +52,19 @@ const navigation = [
   <path d="M20.0416 11.9167C22.734 11.9167 24.9166 9.73414 24.9166 7.04175C24.9166 4.34936 22.734 2.16675 20.0416 2.16675C17.3492 2.16675 15.1666 4.34936 15.1666 7.04175C15.1666 9.73414 17.3492 11.9167 20.0416 11.9167Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`,  title: 'MarketPlace', link:'/account/marketplace/activeOffers', },
 
-  {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="currentColor">
-  <path d="M2.16663 18.4814H13" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M4.57159 14.625H10.595C12.5233 14.625 13 15.1017 13 17.0083V21.4608C13 23.3675 12.5233 23.8442 10.595 23.8442H4.57159C2.64326 23.8442 2.16663 23.3675 2.16663 21.4608V17.0083C2.16663 15.1017 2.64326 14.625 4.57159 14.625Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M23.8333 16.25C23.8333 20.4425 20.4425 23.8333 16.25 23.8333L17.3875 21.9375" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M2.16663 9.75008C2.16663 5.55758 5.55746 2.16675 9.74996 2.16675L8.61247 4.06258" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M20.0416 11.9167C22.734 11.9167 24.9166 9.73414 24.9166 7.04175C24.9166 4.34936 22.734 2.16675 20.0416 2.16675C17.3492 2.16675 15.1666 4.34936 15.1666 7.04175C15.1666 9.73414 17.3492 11.9167 20.0416 11.9167Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`,  title: 'Create Offer', link:'/account/marketplace/activeOffers', },
+  {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-database-fill" viewBox="0 0 16 16">
+    <path d="M3.904 1.777C4.978 1.289 6.427 1 8 1s3.022.289 4.096.777C13.125 2.245 14 2.993 14 4s-.875 1.755-1.904 2.223C11.022 6.711 9.573 7 8 7s-3.022-.289-4.096-.777C2.875 5.755 2 5.007 2 4s.875-1.755 1.904-2.223"/>
+    <path d="M2 6.161V7c0 1.007.875 1.755 1.904 2.223C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777C13.125 8.755 14 8.007 14 7v-.839c-.457.432-1.004.751-1.49.972C11.278 7.693 9.682 8 8 8s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972"/>
+    <path d="M2 9.161V10c0 1.007.875 1.755 1.904 2.223C4.978 12.711 6.427 13 8 13s3.022-.289 4.096-.777C13.125 11.755 14 11.007 14 10v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972"/>
+    <path d="M2 12.161V13c0 1.007.875 1.755 1.904 2.223C4.978 15.711 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972"/>
+  </svg>`,  title: 'Create Offer', link:'/account/marketplace/createOffer', },
 
-  {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="currentColor">
-  <path d="M2.16663 18.4814H13" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M4.57159 14.625H10.595C12.5233 14.625 13 15.1017 13 17.0083V21.4608C13 23.3675 12.5233 23.8442 10.595 23.8442H4.57159C2.64326 23.8442 2.16663 23.3675 2.16663 21.4608V17.0083C2.16663 15.1017 2.64326 14.625 4.57159 14.625Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M23.8333 16.25C23.8333 20.4425 20.4425 23.8333 16.25 23.8333L17.3875 21.9375" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M2.16663 9.75008C2.16663 5.55758 5.55746 2.16675 9.74996 2.16675L8.61247 4.06258" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M20.0416 11.9167C22.734 11.9167 24.9166 9.73414 24.9166 7.04175C24.9166 4.34936 22.734 2.16675 20.0416 2.16675C17.3492 2.16675 15.1666 4.34936 15.1666 7.04175C15.1666 9.73414 17.3492 11.9167 20.0416 11.9167Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`,  title: 'Trades', link:'/account/marketplace/activeOffers', },
+  {icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M18.04 13.55C17.62 13.96 17.38 14.55 17.44 15.18C17.53 16.26 18.52 17.05 19.6 17.05H21.5V18.24C21.5 20.31 19.81 22 17.74 22H6.26C4.19 22 2.5 20.31 2.5 18.24V11.51C2.5 9.44001 4.19 7.75 6.26 7.75H17.74C19.81 7.75 21.5 9.44001 21.5 11.51V12.95H19.48C18.92 12.95 18.41 13.17 18.04 13.55Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M2.5 12.4113V7.84132C2.5 6.65132 3.23 5.59128 4.34 5.17128L12.28 2.17128C13.52 1.70128 14.85 2.62131 14.85 3.95131V7.7513" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M22.5588 13.9692V16.0292C22.5588 16.5792 22.1188 17.0292 21.5588 17.0492H19.5988C18.5188 17.0492 17.5288 16.2592 17.4388 15.1792C17.3788 14.5492 17.6188 13.9592 18.0388 13.5492C18.4088 13.1692 18.9188 12.9492 19.4788 12.9492H21.5588C22.1188 12.9692 22.5588 13.4192 22.5588 13.9692Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M7 12H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`,  title: 'Trades', link:'/account/marketplace/trades', },
 
 { icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
   <path d="M12.12 12.9807C12.05 12.9707 11.96 12.9707 11.88 12.9807C10.12 12.9207 8.72 11.4807 8.72 9.71066C8.72 7.90066 10.18 6.43066 12 6.43066C13.81 6.43066 15.28 7.90066 15.28 9.71066C15.27 11.4807 13.88 12.9207 12.12 12.9807Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
