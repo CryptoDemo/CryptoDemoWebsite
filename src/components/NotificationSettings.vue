@@ -129,7 +129,7 @@ const toggleNotification = async (key, value) => {
 
 const CountryID = ref();
 console.log("camouflage currency.........",pinia.state.camouflageCurrency)
-CountryID.value = pinia.state.allcountries.find(c => c.currency_name === pinia.state.camouflageCurrency);
+CountryID.value = pinia.state.allcountries.find(c => c.currency_name === pinia.state.camouflageCurrency)?.id;
 console.log('Selected country ID:', CountryID?.value?.id);
 
 
@@ -149,7 +149,7 @@ const setCamo = async () => {
   dialog.value = true
   const UpdateUserDetails = {
     camouflage: {
-      country_id: CountryID.value?.id,
+      country_id: CountryID.value,
       max_spend_balance: camouflagBalance.value,
     }
   };

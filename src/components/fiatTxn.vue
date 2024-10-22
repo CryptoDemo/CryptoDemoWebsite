@@ -321,8 +321,8 @@
                     </div>
                     
                     <v-card-actions class="mt-8" style="display: flex; justify-content: space-between; align-items: center;">
-                        <v-btn variant="tonal" text="Close Receipt" @click="isActive.value = false" style="text-transform: unset; letter-spacing: 0px; font-weight: 600;  width: 50%; height: 50px; border-radius: 10px !important;"></v-btn>
-                        <v-btn class="primary-btn1" text="Download Receipt" style="border-radius: 10px !important; width: 50%; font-weight: 600; height: 50px; color: white;"></v-btn>
+                        <v-btn variant="tonal" text="Close Receipt" @click="isActive.value = false" style="text-transform: unset; letter-spacing: 0px; font-weight: 600;  width: 100%; height: 50px; border-radius: 10px !important;"></v-btn>
+                        <!-- <v-btn class="primary-btn1" text="Download Receipt" style="border-radius: 10px !important; width: 50%; font-weight: 600; height: 50px; color: white;"></v-btn> -->
                     </v-card-actions>
                     </v-card>
                 </template> 
