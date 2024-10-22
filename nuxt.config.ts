@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify from 'vite-plugin-vuetify';
+import { scrollBehaviour } from './src/scrollBehaviour'; // Use named import for scrollBehaviour
 
 export default defineNuxtConfig ({
   ssr: false,
@@ -18,9 +19,6 @@ export default defineNuxtConfig ({
      
   ],
   
-  // router: {
-  //   middleware: ['auth'] // Apply the auth middleware globally
-  // },
   
   components: {
     dirs: [
@@ -67,4 +65,11 @@ export default defineNuxtConfig ({
 
   vite: {ssr:{noExternal:['vuetify']} },
   compatibilityDate: '2024-07-08',
+
+  // hooks: {
+  //   'pages:extend'(router) {
+  //     router.scrollBehavior = scrollBehaviour; // Set scroll behavior here
+  //   }
+  // }
+  
 })
