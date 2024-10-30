@@ -56,7 +56,7 @@
         </div>
        
       
-        <div class="d-flex" v-if="!pinia.state.user.token" style="align-items: center;">
+        <div class="d-flex" style="align-items: center;">
           <v-btn class="header-link me-3 flex-lg-and-up hidden-sm-and-down">  
             <NuxtLink to="/authentication/login"><span class="text2 d-flex" style="align-self: center; margin: auto;" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'">{{props.title}}</span></NuxtLink> </v-btn>
 
