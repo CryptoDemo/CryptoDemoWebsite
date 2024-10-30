@@ -14,7 +14,7 @@
               
             
               <div class="position-relative">
-                <v-text-field placeholder="Full Name" class="pr-14" variant="plain" :rules="username" :class="isDark ? 'input-styling':'input-styling-light'" v-model="name" style="font-size: 12px !important; margin-bottom: 21px;">
+                <v-text-field placeholder="First Name" class="pr-14" variant="plain" :rules="username" :class="isDark ? 'input-styling':'input-styling-light'" v-model="Firstname" style="font-size: 12px !important; margin-bottom: 21px;">
                 <v-icon class="prepend-inner-icon ml-3">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#b1b1b1" class="bi bi-person" viewBox="0 0 16 16">
                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
@@ -27,8 +27,8 @@
                     </svg>
                   </v-icon>
                 </v-text-field>
-                
-                <v-text-field placeholder="Full Name" class="pr-14" variant="plain" :rules="username" :class="isDark ? 'input-styling':'input-styling-light'" v-model="name" style="font-size: 12px !important; margin-bottom: 21px;">
+
+                <v-text-field placeholder="Last Name" class="pr-14" variant="plain" :rules="username" :class="isDark ? 'input-styling':'input-styling-light'" v-model="Lastname" style="font-size: 12px !important; margin-bottom: 21px;">
                 <v-icon class="prepend-inner-icon ml-3">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#b1b1b1" class="bi bi-person" viewBox="0 0 16 16">
                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
@@ -150,7 +150,8 @@ definePageMeta({
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
-const name=ref("");
+const Firstname=ref("");
+const Lastname=ref("");
 const pinia = useStore();
 const email=ref("");
 const password =ref("");
@@ -191,7 +192,7 @@ const passwordrules = [
   ];
 
 const register = async () => {
-  if (!name.value && !email.value && !password.value) {
+  if (!Firstname.value && !Lastname.value && !email.value && !password.value) {
       push.error("Please fill out all the fields");
       return;
     }
@@ -211,7 +212,7 @@ const register = async () => {
   }
 
   const registerInfo = {
-    name: name.value,
+    name: `${Firstname.value.trim()} ${Lastname.value.trim()}`,
     email: email.value.toLowerCase(),
     password: password.value,
     referralcode: referralcode.value,

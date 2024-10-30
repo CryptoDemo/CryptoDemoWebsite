@@ -90,7 +90,7 @@ const getPayment_meths = async () => {
       pinia.setPaymentMethod(data.data.result);
       console.log(data.data.result);
     } else {
-      push.error(`Error: ${data.message}`); // Custom error message
+      push.error(`Error: ${data.message || 'Failed to fetch payment methods'}`); // Custom error message
     }
   } catch (e) {
     console.error("Unexpected error:", e);

@@ -142,7 +142,7 @@ onMounted(async () => {
   // Handle the country and flag logic
   country.value = pinia.state.geo.country;
   const geoCountry = computed(() => pinia.state.allcountries.find((c) => country.value === c.country_name));
-  flag.value = geoCountry?.value?.flag_url;
+  flag.value = geoCountry?.value?.flag_url || pinia.state.flag_url[1];
   countryCode.value = geoCountry?.value?.country_code;
 });
 

@@ -125,3 +125,13 @@ export const debounce = (fn, value) => {
     fn(value);
   }, 1000);
 };
+
+export const scrollTo = (elementId) => {
+  const element = document.getElementById(elementId);
+  if (!element) return;
+  window.scroll({
+    behavior: 'smooth',
+    left: 0,
+    top: element.offsetTop
+  });
+};
