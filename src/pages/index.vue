@@ -371,8 +371,6 @@ const collectVals = () => {
 };
 
 
-
-
 const convertCurrencies = async () => {
 
 
