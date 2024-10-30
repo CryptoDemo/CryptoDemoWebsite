@@ -421,7 +421,7 @@
                       </div> 
 
                     <div v-if="!filteredOffers.length"
-                      style="text-align: center;  display: flex; flex-direction: column;align-items: center; height: 410px">
+                      style="text-align: center;  display: flex; flex-direction: column;align-items: center; height: 490px">
 
                       <span class="d-flex" :class="isDark ? 'text-dark' : 'text-light'" style="margin: auto;">No records found</span>
                     </div>

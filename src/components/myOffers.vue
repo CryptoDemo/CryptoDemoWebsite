@@ -72,8 +72,8 @@
     </div>
 
      
-      <div v-if="!personalOffers.length" style="text-align: center; margin-top: 80px; display: flex; flex-direction: column;align-items: center;">
-        <img src="/svg/blue-market.svg" width="150" />
+      <div v-if="!personalOffers.length" style="text-align: center; margin-top: 80px; height: 490px; display: flex; flex-direction: column;align-items: center;">
+        <!-- <img src="/svg/blue-market.svg" width="150" /> -->
         <span class="mt-6" :class="isDark ? 'text-dark' : 'text-light'">No records found</span>
       </div>
   </div>
