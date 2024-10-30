@@ -129,13 +129,16 @@ const fetch_allCountries = async()=>{
   }
 }
 
+const DEFAULT_FLAG_URL = 'https://storage.yeerlo.com/flags/au.svg'; // Replace with a valid fallback flag URL
+const DEFAULT_COUNTRY_CODE = 'AU'; // Set your preferred fallback country code
+
 onMounted(()=>{{
   country.value = pinia.state.geo.country;
 
   const geoCountry = computed(() =>pinia.state.allcountries.find((c) => country.value === c.country_name));
 
-  flag.value = geoCountry?.value?.flag_url;
-  Countryname.value = geoCountry?.value?.country_code
+  flag.value = geoCountry?.value?.flag_url || DEFAULT_FLAG_URL;
+  Countryname.value = geoCountry?.value?.country_code || DEFAULT_COUNTRY_CODE;
   fetch_allCountries()
 }})
 

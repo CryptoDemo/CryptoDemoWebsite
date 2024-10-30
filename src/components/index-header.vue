@@ -115,37 +115,48 @@ const flag = ref();
 const country = ref();
 const countryName = ref();
 
+const DEFAULT_FLAG_URL = 'https://storage.yeerlo.com/flags/au.svg'; // Replace with a valid fallback flag URL
+const DEFAULT_COUNTRY_CODE = 'AU'; // Set your preferred fallback country code
+
 onMounted(async () => {
-  // Only fetch if the countries list in the store is empty
+  // Fetch countries only if the store list is empty
   if (pinia.state.allcountries.length === 0) {
     try {
       const data = await getcountries(pageNumber.value);
-      
+
       if (data.success) {
-        const fetchedcountries = data.data.result;
-        const storedcountriesids = pinia.state.allcountries.map(item => item.id);
-        
-        // Check if there are any new items in the fetched data
-        const newItems = fetchedcountries.filter(item => !storedcountriesids.includes(item.id));
-        
+        const fetchedCountries = data.data.result;
+        const storedCountryIds = pinia.state.allcountries.map(item => item.id);
+
+        // Filter out new countries not already in the store
+        const newItems = fetchedCountries.filter(
+          item => !storedCountryIds.includes(item.id)
+        );
+
         if (newItems.length > 0) {
-          pinia.setallcountries([...pinia.state.allcountries, ...newItems]);
+          pinia.setallcountries([
+            ...pinia.state.allcountries,
+            ...newItems
+          ]);
         }
       } else {
-        console.error('Unavailable');
+        console.error('Failed to fetch countries: Response was unsuccessful.');
       }
     } catch (error) {
-      console.log(error);
+      console.error('An error occurred while fetching countries:', error);
     }
   }
 
-  // Handle the country and flag logic
+  // Handle country and flag logic with fallback
   country.value = pinia.state.geo.country;
-  const geoCountry = computed(() => pinia.state.allcountries.find((c) => country.value === c.country_name));
-  flag.value = geoCountry?.value?.flag_url;
-  countryCode.value = geoCountry?.value?.country_code;
-});
 
+  const geoCountry = computed(() =>
+    pinia.state.allcountries.find(c => c.country_name === country.value)
+  );
+
+  flag.value = geoCountry.value?.flag_url || DEFAULT_FLAG_URL;
+  countryCode.value = geoCountry.value?.country_code || DEFAULT_COUNTRY_CODE;
+});
 
 const navigateToOffers = () => {
   // Perform the check for user login
