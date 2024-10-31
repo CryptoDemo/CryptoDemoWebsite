@@ -327,6 +327,7 @@ const notifyUser = (message) => {
     setTimeout(clearMessage, 3000); // Clear message after 3 seconds
   };
 
+
 onMounted(() => {
   window.addEventListener('online', updateOnlineStatus);
   window.addEventListener('offline', updateOnlineStatus);

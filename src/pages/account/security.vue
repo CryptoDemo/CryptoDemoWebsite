@@ -215,6 +215,10 @@ import { useTheme } from 'vuetify';
 import { passwordUpdate, Init2fa, Remove2fa } from "@/composables/requests/users";
 import { set_Pin, Init_pin_recovery, reset_Pin} from "@/composables/requests/users";
 
+definePageMeta({
+  middleware: 'scroll-to-top'
+});
+
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();

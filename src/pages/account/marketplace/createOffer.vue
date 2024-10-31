@@ -188,6 +188,10 @@ import { useTheme } from "vuetify";
 import { createOffer } from "@/composables/requests/marketplace";
 import { getPaymentMethod } from "@/composables/requests/paymentMethods";
 
+definePageMeta({
+  middleware: 'scroll-to-top'
+});
+
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore();

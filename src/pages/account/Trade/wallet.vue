@@ -223,6 +223,9 @@
 import { ref, computed, watch, onMounted } from 'vue';
 import { useTheme } from 'vuetify';
 import { getTokens, getTokenBalance, currencyConverter } from "@/composables/requests/tokens";
+definePageMeta({
+  middleware: 'scroll-to-top'
+});
 
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
@@ -230,6 +233,8 @@ const pinia = useStore();
 const selectedNetwork = ref(pinia.state.selectedNetwork.toLowerCase());
 const selectedScreen = ref(true);
 const pageNumber = ref(1);
+
+
 
 const getTokens_ = async () => {
   try {
@@ -403,21 +408,6 @@ const fetch_token_bals = async()=>{
 
 }
 
-// const fetch_Web3_txn = async()=>{
-//   if(pinia.state.TransactionDetails.length){
-//     return 
-//   }else{
-//     await Promise.allSettled([
-//     getWebTrans(),
-//     ])
-    
-//   }
-
-// }
-
-// onMounted(() => {
-//   fetch_Web3_txn();
-// });
 
 onBeforeMount(() => {
   fetch_token_bals();

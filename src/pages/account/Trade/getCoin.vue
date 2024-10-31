@@ -90,6 +90,10 @@ import { useTheme } from 'vuetify';
 import {getWalletAddress, getTokenBalance} from "@/composables/requests/tokens";
 import QrcodeVue from 'qrcode.vue'
 
+definePageMeta({
+  middleware: 'scroll-to-top'
+});
+
 const theme = useTheme()
 const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore()

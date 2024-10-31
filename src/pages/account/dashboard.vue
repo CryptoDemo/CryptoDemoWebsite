@@ -129,7 +129,9 @@ import { useTheme } from 'vuetify';
 import { getBanners } from '@/composables/requests/admin'
 import { getMarketOffers } from "@/composables/requests/marketplace";
 import { getTokenBalance, currencyConverter } from "@/composables/requests/tokens";
-
+definePageMeta({
+  middleware: 'scroll-to-top'
+});
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);

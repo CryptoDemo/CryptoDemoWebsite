@@ -171,6 +171,10 @@ import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useTheme } from "vuetify";
 import { getmyOrders, cancelOrderforP2P } from "@/composables/requests/marketplace";
 
+definePageMeta({
+  middleware: 'scroll-to-top'
+});
+
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore();

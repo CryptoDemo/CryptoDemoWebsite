@@ -154,7 +154,9 @@ import { compressImage } from "@/composables/mixin";
 import {uploadUserFile} from "@/composables/requests/file";
 import { debounce } from "@/composables/mixin";
 import {checkUsernameAvailability, updateUser} from "@/composables/requests/users";
-
+definePageMeta({
+  middleware: 'scroll-to-top'
+});
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);

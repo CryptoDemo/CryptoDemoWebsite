@@ -160,6 +160,9 @@
   import { calculateTxnFees, executeTrans } from "@/composables/requests/transaction";
   import {  verify_Pin, set_Pin} from "@/composables/requests/users";
   
+  definePageMeta({
+  middleware: 'scroll-to-top'
+});
   const theme = useTheme()
   const isDark = computed(() => theme.global.current.value.dark);
   const pinia = useStore()
