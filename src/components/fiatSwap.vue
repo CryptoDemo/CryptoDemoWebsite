@@ -170,12 +170,12 @@
                     <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Create a 4-digit transaction pin</span>
                     
                     <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
-                      <v-otp-input v-model="newPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                      <v-otp-input v-model="newPinOtp" class="mx-auto" type="password" length="4" variant="underlined"></v-otp-input>
                       <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Set transaction pin</span>
                     </div>
 
                     <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
-                      <v-otp-input v-model="confirmPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                      <v-otp-input v-model="confirmPinOtp" class="mx-auto" type="password" length="4" variant="underlined"></v-otp-input>
                       <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">re-enter transaction pin</span>
                     </div>
 
@@ -192,7 +192,7 @@
 
               
                     <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
-                      <v-otp-input v-model="PinOtp" class="mx-auto"  length="4" variant="underlined"></v-otp-input>
+                      <v-otp-input v-model="PinOtp" class="mx-auto" type="password" length="4" variant="underlined"></v-otp-input>
                     </div>
               
                     <v-btn @click="VerifyPin()" :loading="loading" variant="tonal" style=" height: 45px; border-radius: 10px; color: #2873FF; font-weight: 600; width: 100%; letter-spacing: 0px;">Proceed</v-btn>

@@ -187,12 +187,12 @@
                     <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Create a 4-digit transaction pin</span>
                     
                     <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
-                      <v-otp-input v-model="newPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                      <v-otp-input v-model="newPinOtp" class="mx-auto" type="password" length="4" variant="underlined"></v-otp-input>
                       <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Set transaction pin</span>
                     </div>
 
                     <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
-                      <v-otp-input v-model="confirmPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                      <v-otp-input v-model="confirmPinOtp" class="mx-auto" type="password" length="4" variant="underlined"></v-otp-input>
                       <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">re-enter transaction pin</span>
                     </div>
 

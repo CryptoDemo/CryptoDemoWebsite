@@ -134,7 +134,7 @@
                                 <v-card-text v-if="showPinInput && hasPin" class="pin-form d-flex" style="flex-direction: column;">
                                     <span class="text-center text-h6 text-md-h5">Enter Your Transfer PIN</span>
                                     <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center;" :class="isDark ? 'text-dark' : 'text-light'">Please enter your 4-digit PIN to authorize this transaction.</h5>
-                                    <v-otp-input length="4" v-model="otp" variant="underlined"  style="margin: auto; margin-top: 10px; margin-bottom: 20px;"></v-otp-input>
+                                    <v-otp-input length="4" type="password" v-model="otp" variant="underlined"  style="margin: auto; margin-top: 10px; margin-bottom: 20px;"></v-otp-input>
                                     <v-btn :loading="loading_send_fiat" variant="tonal" @click=VerifyPin() style="letter-spacing: 0px; width: 100%; height: 45px; border-radius: 10px; font-weight: 600; color: #2873FF; text-transform: unset; font-size: 16px;">Proceed</v-btn>
                                 </v-card-text>
 
@@ -143,12 +143,12 @@
                                 <h5 class="text-center mb-2 mt-2" style="display: flex; justify-content: center; font-size: 14px !important" :class="isDark ? 'text-dark':'text-light'">For your security, please set a 4-digit PIN to authorize transfers.</h5>
                                 
                                 <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
-                                  <v-otp-input v-model="newPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                                  <v-otp-input v-model="newPinOtp" type="password" class="mx-auto" length="4" variant="underlined"></v-otp-input>
                                   <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Set transaction pin</span>
                                 </div>
 
                                 <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
-                                  <v-otp-input v-model="confirmPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                                  <v-otp-input v-model="confirmPinOtp" type="password" class="mx-auto" length="4" variant="underlined"></v-otp-input>
                                   <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">re-enter transaction pin</span>
                                 </div>
 

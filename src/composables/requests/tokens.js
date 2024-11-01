@@ -58,6 +58,19 @@ export const getWalletAddress = async(chain)=>{
     return data
 };
 
+export const verifyWalletAddress = async(chain, address)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}web3/verify-wallet-address/${chain}/${address}`, {
+        method: 'GET',
+        headers: {
+            // 'Content-Type': 'application/json',
+            'x-access-token': `${pinia.state.user?.token}`
+        }
+    }).then(res => res.json());
+    return data
+};
+
 export const getSingleTokenBal = async(chain)=>{
     const pinia = useStore();
     if(!pinia.state.user?.token) return

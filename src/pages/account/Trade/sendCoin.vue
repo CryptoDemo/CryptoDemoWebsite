@@ -61,7 +61,7 @@
             </div>
 
               <div class="position-relative" style="margin-bottom: 31px;">
-                <input type="number" class="px-4 mobile-css"  placeholder="Ammount to send..." id="hiddenInput" v-model="trfAmmount" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; display: -webkit-box !important; -webkit-box-orient: vertical !important; -webkit-line-clamp: 1 !important; text-overflow: ellipsis !important; overflow: hidden !important; margin-bottom: 6px; align-items: center; height: 65px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
+                <input type="number" class="px-4 mobile-css"  placeholder="Amount to send..." id="hiddenInput" v-model="trfAmmount" style="border-radius: 20px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; display: -webkit-box !important; -webkit-box-orient: vertical !important; -webkit-line-clamp: 1 !important; text-overflow: ellipsis !important; overflow: hidden !important; margin-bottom: 6px; align-items: center; height: 65px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
                 <img :src="pinia.state.coin_to_transfer" class="trf-coin" width="35" style="top: 16%;right: 1.5%; position: absolute;"/>
                 <span :class="isDark ? 'text-dark':'text-light'" style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">minimum transfer limit:  {{ minimumTransfer?.minimum_transfer }}</span>
             </div>
@@ -72,10 +72,12 @@
             </div>
             
               <div class="position-relative" style="margin-bottom: 32px">
-                <input class="px-4 mobile-css" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" id="hiddenInput" v-model="transferWallet" style="border-radius: 25px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; display: -webkit-box !important; -webkit-box-orient: vertical !important; -webkit-line-clamp: 1 !important; text-overflow: ellipsis !important; overflow: hidden !important; margin-bottom: 6px; align-items: center; height: 65px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between; ">
-                <v-btn @click="pasteText()" class="paste-btn" style="letter-spacing: 0px; width: 98px; font-family: Manrope; font-size: 16px; color: white; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 9%;right: 1.5%; position: absolute; display: flex;box-shadow: none; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Paste</v-btn>
-                <span :class="isDark ? 'text-dark':'text-light'" class="hint-text"  style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Ensure the receiver’s wallet is a valid <span :class="isDark ? 'coin-name':'coin-name-light'"  style="font-family: Manrope;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">{{ coin }}</span> wallet address</span>
-            </div>
+                <input class="px-4 mobile-css" placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" id="hiddenInput" v-model="transferWallet" style="border-radius: 20px; margin-top: 8px; outline: none; width:100%; padding-right: 110px !important; display: -webkit-box !important; -webkit-box-orient: vertical !important; -webkit-line-clamp: 1 !important; text-overflow: ellipsis !important; overflow: hidden !important; margin-bottom: 6px; align-items: center; height: 65px; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between; ">
+                <v-btn @click="pasteText()" class="paste-btn" style="letter-spacing: 0px; width: 98px; font-family: Manrope; font-size: 16px; color: white; font-style: normal; font-weight: 600; height: 59px; width: 90px; text-transform: unset; border-radius: 17px; top: 3%;right: 2px; position: absolute; display: flex;box-shadow: none; background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">Paste</v-btn>
+                <span v-if="!errorMessage && !walletVerified" :class="isDark ? 'text-dark':'text-light'" class="hint-text"  style=" font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">Ensure the receiver’s wallet is a valid <span :class="isDark ? 'coin-name':'coin-name-light'"  style="font-family: Manrope;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">{{ coin }}</span> wallet address</span>
+                <span v-if="!errorMessage" style="color: green; font-size: 14px;">{{ walletVerified }}</span>
+                <span v-else style="color: orangered; font-size: 14px;">{{ errorMessage }}</span>
+              </div>
 
             <v-btn @click.prevent="checkInputs()" :loading="loading" :disabled="loading_send_coin" class="primary-btn1" style="width: 100%; border-radius: 17px; height: 56px; color: white; box-shadow: none; font-weight: 600; font-size: 16px; font-family: Manrope;">
             Continue
@@ -92,7 +94,7 @@
                       <span>A tax fee of {{ tax_fee }}  applies, resulting in a total deduction of {{ from_amount_total }} from your account</span>        
                     
                     </v-alert>
-                    <span style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600;line-height: 150%; margin-top: 20px;">By clicking the confirm button you will be sending a non refundable ammount of <span style="font-weight: 600; font-size: 16px;">{{ trfAmmount }} {{  token_id  }}</span> to {{ transferWallet }}.
+                    <span style="font-family: Manrope;font-size: 14px;font-style: normal;font-weight: 600;line-height: 150%; margin-top: 20px;">By clicking the confirm button you will be sending a non refundable amount of <span style="font-weight: 600; font-size: 16px;">{{ trfAmmount }} {{  token_id  }}</span> to {{ transferWallet }}.
                     </span>
                   </div>
 
@@ -102,12 +104,12 @@
                         <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Create a 4-digit transaction pin</span>
                         
                         <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
-                          <v-otp-input v-model="newPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                          <v-otp-input v-model="newPinOtp" class="mx-auto" type="password" length="4" variant="underlined"></v-otp-input>
                           <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Set transaction pin</span>
                         </div>
 
                         <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
-                          <v-otp-input v-model="confirmPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                          <v-otp-input v-model="confirmPinOtp" class="mx-auto" type="password" length="4" variant="underlined"></v-otp-input>
                           <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">re-enter transaction pin</span>
                         </div>
 
@@ -124,7 +126,7 @@
 
                 
                       <div style="display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 20px;">
-                        <v-otp-input v-model="PinOtp" class="mx-auto"  length="4" variant="underlined"></v-otp-input>
+                        <v-otp-input v-model="PinOtp" class="mx-auto" type="password"  length="4" variant="underlined"></v-otp-input>
                       </div>
                 
                       <v-btn @click="VerifyPin()" :loading="loading" variant="tonal" style=" height: 45px; border-radius: 10px; color: #2873FF; font-weight: 600; width: 100%; letter-spacing: 0px;">Proceed</v-btn>
@@ -159,6 +161,7 @@
   import { useTheme } from 'vuetify';
   import { calculateTxnFees, executeTrans } from "@/composables/requests/transaction";
   import {  verify_Pin, set_Pin} from "@/composables/requests/users";
+  import {  verifyWalletAddress } from "@/composables/requests/tokens";
   
   definePageMeta({
   middleware: 'scroll-to-top'
@@ -181,7 +184,13 @@
   const network = computed(()=>pinia.state.selectedNetwork.toLowerCase());
   const coin =  ref();
   const showOtp = ref(false)
-
+  const fee_id = ref('');
+  const token_id = ref('');
+  const from_amount_total = ref(0);
+  const tax_fee = ref(0);
+  const is_balance_sufficient = ref(false);
+  const errorMessage = ref('');
+  const walletVerified = ref('');
   const selectedNetworkId = computed(()=>pinia.state.BlockchainNetworks.find(b=>b.name==network.value)?.id);
   const tokensForSelectedNetwork = computed(()=>pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId.value)));
   
@@ -226,12 +235,35 @@ watch(coin, (newCoin) => {
 }, { immediate: true });
 
 
-const fee_id = ref('');
-const token_id = ref('');
-const from_amount_total = ref(0);
-const tax_fee = ref(0);
-const is_balance_sufficient = ref(false);
+const verifyWalletAds = async () => {
+  if (pinia.state.isAuthenticated) {
+    try {
+      const data = await verifyWalletAddress(pinia.state.selectedNetwork.toLowerCase(), transferWallet.value);
+      if (data.success) {
+        if (data.data?.valid) {
+          errorMessage.value = ''; // Clear any previous error message
+          walletVerified.value = 'This is a verified wallet address'; // Clear any previous error message
+          return { address: data.data.address };
+        } else {
+          errorMessage.value = 'Invalid wallet address. Please check and try again.';
+          walletVerified.value = '';
+        }
+      } else {
+        errorMessage.value = `Error: ${data.message}`;
+      }
+    } catch (error) {
+      // Handle unexpected errors and show to user
+      errorMessage.value = `An unexpected error occurred: ${error.message}`;
+    }
+  }
+};
 
+// Watch walletAddress for changes and trigger verifyWalletAds when updated
+watch(transferWallet, (newAddress) => {
+  if (newAddress) {
+    verifyWalletAds();
+  }
+});
 
 const calculateFee = async () => {
   // Check if any required value is missing or if the transfer amount is less than the minimum transfer amount
@@ -276,7 +308,6 @@ const calculateFee = async () => {
     console.log(e);
   }
 };
-
 
 //execute transaction
 const execute = async()=>{
@@ -347,6 +378,14 @@ const checkInputs = async () => {
   // Validate inputs
   if (!trfAmmount.value || (parseFloat(trfAmmount.value) < minimumTransfer.value.minimum_transfer) || !transferWallet.value) {
     push.error('Required fields are missing or transfer amount is below minimum.');
+    return;
+  }
+
+
+  // Validate wallet address
+  const walletVerification = await verifyWalletAds();
+  if (!walletVerification) {
+    push.error('Invalid wallet address. Please check and try again.');
     return;
   }
 
@@ -461,7 +500,7 @@ const toggleChevron = () => {
   display: -webkit-box;
   width: 171px;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
+  line-clamp: 1;
   }
   .snd-crypto{
   font-family: Manrope;
@@ -480,7 +519,7 @@ const toggleChevron = () => {
   }
   .inputstyling1{
   stroke-width: 1px;
-  border-radius: 26px !important;
+  border-radius: 20px !important;
   width: 100% !important;
   height: 65px !important;
   box-shadow: none!important;

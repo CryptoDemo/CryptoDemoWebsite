@@ -91,8 +91,8 @@
 
                         
                               <div style="display: flex; flex-direction: column; margin-top: 8px; margin-bottom: 20px;">
-                                <v-otp-input v-model="setPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
-                                <v-otp-input v-model="ConfirmsetPinOtp" class="mx-auto" length="4" variant="underlined"></v-otp-input>
+                                <v-otp-input v-model="setPinOtp" class="mx-auto" type="password" length="4" variant="underlined"></v-otp-input>
+                                <v-otp-input v-model="ConfirmsetPinOtp" class="mx-auto" length="4" type="password" variant="underlined"></v-otp-input>
                               </div>
                         
                               <v-btn  @click="setPin()" :loading="loading" class="primary-btn1" style=" height: 50px; border-radius: 10px !important; font-weight: 600; width: 100%; color: white;">Set Pin</v-btn>
@@ -132,12 +132,12 @@
 
                         
                               <div style="display: flex; flex-direction: column;">
-                                <v-otp-input v-model="Newotp" length="4" class="mx-auto" variant="underlined"></v-otp-input>  
+                                <v-otp-input v-model="Newotp" length="4" class="mx-auto" type="password" variant="underlined"></v-otp-input>  
                                 <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Enter new transfer pin here</span>
                               </div>
                           
                               <div style="display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 15px;">
-                                <v-otp-input v-model="Msgotp" length="4" class="mx-auto" variant="underlined"></v-otp-input>
+                                <v-otp-input v-model="Msgotp" length="4" type="password" class="mx-auto" variant="underlined"></v-otp-input>
                                 <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Enter the 4 digit pin sent to your email</span>
                               </div>
 

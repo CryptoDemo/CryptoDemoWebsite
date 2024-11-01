@@ -14,7 +14,7 @@
               </div>
               <span class="otp-text">Enter code</span>
 
-              <v-otp-input :length="6" v-model="otp" variant="plain" @input="onOtpChange"></v-otp-input>
+              <v-otp-input :length="6" v-model="otp" type="password" variant="plain" @input="onOtpChange"></v-otp-input>
 
               <div style="display: flex; justify-content: space-between; align-items: baseline;">
                 <div class="d-flex" style="margin-top: 23px"> </div>
