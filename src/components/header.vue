@@ -2,7 +2,7 @@
   <div class="dashboard-nav">
     <div :class="isDark ? 'Dashboard-navbar':'Dashboard-navbar-light'">
       <v-container style="display: flex; align-items: center;">   
-        <span @click.prevent="navigateTo('/')" class="logoName" :class="isDark ? 'nav-title':'nav-title-light'" style="font-family: SF Pro Display !important; font-size: 24px !important; font-style: normal; font-weight: 700 !important; line-height: normal; cursor: pointer">Demo</span>
+        <span @click.prevent="navigateTo('/')" class="logoName" :class="isDark ? 'nav-title':'nav-title-light'" style="font-family: SF Pro Display !important; font-size: 24px !important; font-style: normal; font-weight: 700 !important; line-height: normal; cursor: pointer">Betacrypto</span>
         <v-app-bar-title class="logoName" :class="isDark ? 'nav-title':'nav-title-light'">
 
           <v-text-field clearable  class="flex-lg-and-up hidden-sm-and-down" hide-details placeholder="Search in dashboard..." variant="plain" v-if="hide" :class="isDark ? 'nav-btn-dark':'nav-btn-light'" style="height: 55px; flex-shrink: 0; border-radius: 18px; margin-left: 20px; align-content: flex-end;"> 

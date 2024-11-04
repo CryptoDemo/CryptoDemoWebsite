@@ -3,7 +3,6 @@ export default defineNuxtRouteMiddleware(() => {
   // Smooth scroll to top on every route change
   document.body.scrollTo({
     top: 0,
-    behavior: 'smooth'
   });
   console.log("Smooth scroll to top triggered...");
 });

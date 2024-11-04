@@ -45,7 +45,7 @@ export const useStore = defineStore('app',()=> {
       Fiat_transactions: [],
       Total_fiat_bal:[],
       ConvertedPriceValue:[],
-      selectedOfferType_from_landing: [],
+      selectedOfferType_from_landing: {},
       fiat_currency_i_want: "",
       Fiat_swap_details: {},
       geo:{},

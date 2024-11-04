@@ -4,11 +4,11 @@
     <v-container style="display: flex; margin-top: 110px; margin-bottom: 113px;">
         <div>
 
-            <h1 style="font-weight: 700;">Demo, Inc. Privacy Notice</h1>
+            <h1 style="font-weight: 700;">Betacrypto, Inc. Privacy Notice</h1>
 
             <div  style="margin-bottom: 20px; margin-top: 15px; line-height: 28px;">
 
-                <span>Demo, Inc. (also referred to as “Demo,” “we,” “us,” or “our”) takes steps to protect your privacy. In this Privacy Notice (“Notice”), we describe the types of personal information we may collect from you in connection with your use of our websites including, but not limited to, https://Demo.com/, the Demo Wallet, our online bitcoin trading platform, mobile application, social media pages, or other online properties (collectively, the “Website”), or when you use any of the products, services, content, features, technologies, or functions we offer (collectively, the “Services”).</span>
+                <span>Betacrypto, Inc. (also referred to as “Betacrypto,” “we,” “us,” or “our”) takes steps to protect your privacy. In this Privacy Notice (“Notice”), we describe the types of personal information we may collect from you in connection with your use of our websites including, but not limited to, https://Betacrypto.com/, the Betacrypto Wallet, our online bitcoin trading platform, mobile application, social media pages, or other online properties (collectively, the “Website”), or when you use any of the products, services, content, features, technologies, or functions we offer (collectively, the “Services”).</span>
     
                 <div class="my-4">
                     <span>This Notice is designed to help you obtain information about our privacy practices and to help you understand your privacy choices when you use our Website and Services. Please note that our Service offerings may vary by region.</span>
@@ -37,7 +37,7 @@
                 </v-col>
 
                 <v-col sm="5" cols="12">
-                    <h3>Demo Account Details, including:</h3>
+                    <h3>Betacrypto Account Details, including:</h3>
                    <ul class="list-bullets-styled">
                         <li>Username</li>
                         <li>User Profile Information in the “Bio” section</li>
@@ -52,7 +52,7 @@
 
             <v-row style="display: flex; margin-top: 24px; justify-content: space-between;">
                 <v-col sm="5" cols="12">
-                    <h3>Demo Account Activity, including:</h3>
+                    <h3>Betacrypto Account Activity, including:</h3>
                    <ul class="list-bullets-styled">
                         <li>Trade Chat Messages (which may contain financial information if you provide it <br> to sellers)</li>
                         <li>Trade Chat Attachments</li>
@@ -146,7 +146,7 @@
                <ul class="list-bullets-styled">
                     <li><span style="font-weight: 700;">Directly from you:</span> We collect Personal Data directly from you when you use our Website or Services, communicate with us, or interact directly with us.</li>
                     <li><span style="font-weight: 700;">From service providers and/or data processors who assist us in providing the Website or the Services:</span> We may engage service providers to assist us in facilitating the Website or the Services to you, at our direction and on our behalf. These service providers may collect information about you and provide it to us.</li>
-                    <li><span>From other users on the Demo Website or from affiliates integrated with the Demo Website or Services: </span>Other users may provide us with information about you in connection with transactions or chats. Affiliates may also provide information to us about you related to your interactions or transactions with such affiliates.</li>
+                    <li><span>From other users on the Betacrypto Website or from affiliates integrated with the Betacrypto Website or Services: </span>Other users may provide us with information about you in connection with transactions or chats. Affiliates may also provide information to us about you related to your interactions or transactions with such affiliates.</li>
                     <li>From third-parties who may help us verify identity, prevent fraud, and protect the security of transactions.</li>
                     <li>From third-parties who may help us evaluate your creditworthiness or financial standing.</li>
                     <li>From third-parties who may help us analyze Personal Data, improve the Website or the Services or your experience on it, market products or services, or provide promotions and offers to you.</li>
@@ -171,7 +171,7 @@
                         <li>In response to a request by a government agency, such as law enforcement authorities or a judicial order;</li>
                         <li>To enforce our Website Terms of Service or our internal policies;</li>
                         <li>To prevent physical harm or financial loss, in connection with an investigation of suspected or actual illegal activity, or to otherwise protect our or others’ rights, property, or safety;</li>
-                        <li>To facilitate a purchase or sale of all or part of Demo’s business. For example, by sharing data with a company we plan to merge with or be acquired by; or</li>
+                        <li>To facilitate a purchase or sale of all or part of Betacrypto’s business. For example, by sharing data with a company we plan to merge with or be acquired by; or</li>
                         <li>To support our audit, compliance, and corporate governance functions.</li>
                         </ul>
                     </li>
@@ -188,7 +188,7 @@
                <ul class="list-bullets-styled">
                     <li>A cookie is a small text file that a website saves on your computer or mobile device when you visit the website.</li>
                     <li>Our Website uses cookies and tracking technologies to operate, and to target advertising that may be of interest to you. For further information, please refer to our Cookie Policy.</li>
-                    <li>Demo may partner with third-party ad networks to either display advertising on the Demo Website or on third-party websites. These websites and third-party ad networks are not controlled by Demo. Ad network partners use data technologies to collect information about your online activities to provide you targeted advertising based upon your interests. If you wish not to have this information used for the purpose of serving you targeted ads, you may be able to opt-out by visiting:
+                    <li>Betacrypto may partner with third-party ad networks to either display advertising on the Betacrypto Website or on third-party websites. These websites and third-party ad networks are not controlled by Betacrypto. Ad network partners use data technologies to collect information about your online activities to provide you targeted advertising based upon your interests. If you wish not to have this information used for the purpose of serving you targeted ads, you may be able to opt-out by visiting:
                        <ul class="list-bullets-styled">
                         <li><a href="http://optout.aboutads.info/" target="_blank">http://optout.aboutads.info/</a></li>
                         <li><a href="http://optout.networkadvertising.org/" target="_blank">http://optout.networkadvertising.org/</a></li>
@@ -207,27 +207,27 @@
 
             <div class="mt-7">
                 <h3>Data security</h3>
-                <span>Demo has implemented safeguards designed to protect your Personal Data, including measures designed to prevent Personal Data against loss, misuse, and unauthorized access and disclosure. Still, Demo cannot ensure or warrant the security or confidentiality of information you transmit to us or receive from us by Internet or wireless connection. Transferring data through the Internet always carries some risk, even if Demo makes efforts to protect data once it has received it.</span>
+                <span>Betacrypto has implemented safeguards designed to protect your Personal Data, including measures designed to prevent Personal Data against loss, misuse, and unauthorized access and disclosure. Still, Betacrypto cannot ensure or warrant the security or confidentiality of information you transmit to us or receive from us by Internet or wireless connection. Transferring data through the Internet always carries some risk, even if Betacrypto makes efforts to protect data once it has received it.</span>
             </div>
 
             <div class="mt-7">
                 <h3>Data security</h3>
-                <span>Demo has implemented safeguards designed to protect your Personal Data, including measures designed to prevent Personal Data against loss, misuse, and unauthorized access and disclosure. Still, Demo cannot ensure or warrant the security or confidentiality of information you transmit to us or receive from us by Internet or wireless connection. Transferring data through the Internet always carries some risk, even if Demo makes efforts to protect data once it has received it.</span>
+                <span>Betacrypto has implemented safeguards designed to protect your Personal Data, including measures designed to prevent Personal Data against loss, misuse, and unauthorized access and disclosure. Still, Betacrypto cannot ensure or warrant the security or confidentiality of information you transmit to us or receive from us by Internet or wireless connection. Transferring data through the Internet always carries some risk, even if Betacrypto makes efforts to protect data once it has received it.</span>
             </div>
 
             <div class="mt-7">
                 <h3>Children under 18 years of age</h3>
-                <span>Demo’s Website is not intended for children under the age of 18. We do not knowingly collect data from children under the age of 18 without verified parental consent. If we learn that we have collected information, including Personal Data, from an individual under 18 years of age without parental consent, we will delete that information immediately.</span>
+                <span>Betacrypto’s Website is not intended for children under the age of 18. We do not knowingly collect data from children under the age of 18 without verified parental consent. If we learn that we have collected information, including Personal Data, from an individual under 18 years of age without parental consent, we will delete that information immediately.</span>
             </div>
 
             <div class="mt-7">
                 <h3>Modifications to the privacy notice</h3>
-                <span>Demo reserves the right to change this Notice from time to time. We will notify you of modifications to this Notice by posting a revised version of this Notice here, by email, or by means of a prominent notice on the Demo Website home page. We recommend that you periodically check the Website for any changes.</span>
+                <span>Betacrypto reserves the right to change this Notice from time to time. We will notify you of modifications to this Notice by posting a revised version of this Notice here, by email, or by means of a prominent notice on the Betacrypto Website home page. We recommend that you periodically check the Website for any changes.</span>
             </div>
 
             <div class="mt-7">
                 <h3>Contact us</h3>
-                <span>If you have any questions about this Notice, or wish to make an inquiry with us regarding Personal Data or privacy, please contact us at: privacy@Demo.com</span>
+                <span>If you have any questions about this Notice, or wish to make an inquiry with us regarding Personal Data or privacy, please contact us at: privacy@Betacrypto.com</span>
             </div>
 
             <div class="mt-7">
@@ -237,7 +237,7 @@
 
             <div class="mt-7">
                 <h3>Data Controller</h3>
-                <span> The controller for your Personal Data is Demo, Inc.</span>
+                <span> The controller for your Personal Data is Betacrypto, Inc.</span>
             </div>
 
             <div class="mt-7">
@@ -246,11 +246,11 @@
 
                <ul class="list-bullets-styled">
                 <li>The right to request access to and rectification of your Personal Data.</li>
-                <li>The right to request that Demo delete certain Personal Data relating to you.</li>
+                <li>The right to request that Betacrypto delete certain Personal Data relating to you.</li>
                 <li>The right to data portability, which includes the right to request that certain Personal Data you have provided to us be transferred from us to another data controller.</li>
-                <li>The right to withdraw any consent you have provided to Demo to collect, use, or share your data at any time. Please note that withdrawing consent does not affect the lawfulness of Demo processing your Personal Data before your withdrawal.</li>
-                <li>The right to object to Demo’s processing of your Personal Data, based on grounds specific to your particular situation.</li>
-                <li>The right to request that Demo restrict the processing of your Personal Data, if certain statutory conditions for restriction are met.</li>
+                <li>The right to withdraw any consent you have provided to Betacrypto to collect, use, or share your data at any time. Please note that withdrawing consent does not affect the lawfulness of Betacrypto processing your Personal Data before your withdrawal.</li>
+                <li>The right to object to Betacrypto’s processing of your Personal Data, based on grounds specific to your particular situation.</li>
+                <li>The right to request that Betacrypto restrict the processing of your Personal Data, if certain statutory conditions for restriction are met.</li>
                 <li>The right to lodge a complaint with a European supervisory authority.</li>
                 </ul>
 
@@ -258,7 +258,7 @@
 
             <div class="mt-7">
                 <h3>International Transfers</h3>
-                <span>We may transfer Personal Data relating to EEA residents to countries that have not been found by the European Commission to provide adequate protection, including the United States. For any such transfers, Demo implements safeguards designed to ensure that your Personal Data receives an adequate level of protection. If you are located in the EEA, Demo will only transfer your Personal Data if: the country to which the Personal Data will be transferred has been granted a European Commission adequacy decision; the recipient of the Personal Data is located in the United States and has certified to the US-EU Privacy Shield Framework; Demo has put in place appropriate safeguards in respect of the transfer, for example by entering into EU Standard Contractual Clauses with the recipient, or; an applicable statutory exception to the GDPR general transfer prohibition applies. To obtain a copy of the mechanisms that Demo has executed to support its transfers of personal data outside the EEA, contact us as set forth in the above “Contact Us” section.</span>
+                <span>We may transfer Personal Data relating to EEA residents to countries that have not been found by the European Commission to provide adequate protection, including the United States. For any such transfers, Betacrypto implements safeguards designed to ensure that your Personal Data receives an adequate level of protection. If you are located in the EEA, Betacrypto will only transfer your Personal Data if: the country to which the Personal Data will be transferred has been granted a European Commission adequacy decision; the recipient of the Personal Data is located in the United States and has certified to the US-EU Privacy Shield Framework; Betacrypto has put in place appropriate safeguards in respect of the transfer, for example by entering into EU Standard Contractual Clauses with the recipient, or; an applicable statutory exception to the GDPR general transfer prohibition applies. To obtain a copy of the mechanisms that Betacrypto has executed to support its transfers of personal data outside the EEA, contact us as set forth in the above “Contact Us” section.</span>
             </div>
 
             <div class="mt-7">
@@ -284,7 +284,7 @@
                 </v-col>
                 <v-col cols="10">
                     <v-sheet class="pa-3" style="height: 70px; background: inherit;">
-                    <h1 style="color: #2873FF;">What does Demo do with your personal information?</h1>
+                    <h1 style="color: #2873FF;">What does Betacrypto do with your personal information?</h1>
                     </v-sheet>
                 </v-col>
             </v-row>
@@ -330,7 +330,7 @@
                 </v-col>
                 <v-col cols="10">
                     <v-sheet class="pa-3" style="height: 90px; background: inherit; display: flex; align-items: center;">
-                    <span>All financial companies need to share customers' personal information to run their everyday business. In the section below, we list the reasons financial companies can share their customers' personal information; the reasons Demo chooses to share; and whether you can limit this sharing.</span>
+                    <span>All financial companies need to share customers' personal information to run their everyday business. In the section below, we list the reasons financial companies can share their customers' personal information; the reasons Betacrypto chooses to share; and whether you can limit this sharing.</span>
                     </v-sheet>
                 </v-col>
             </v-row>
@@ -344,7 +344,7 @@
                     </th>
 
                     <th class="text-left" style="border-right: 1px solid rgba(142, 155, 174, 0.5); width: 16%;">
-                    <span style="font-size: 16px;">Does Demo share?</span>
+                    <span style="font-size: 16px;">Does Betacrypto share?</span>
                     </th>
 
                     <th class="text-left" style="width: 23%;">
@@ -383,7 +383,7 @@
                 </v-col>
                 <v-col cols="10">
                     <v-sheet class="pa-3" style="height: 90px; background: inherit; display: flex; align-items: center;">
-                        <span><a href="http://optout.aboutads.info/" target="_blank">Go to www.Demo.com</a></span>
+                        <span><a href="http://optout.aboutads.info/" target="_blank">Go to www.Betacrypto.com</a></span>
                     
                     </v-sheet>
                 </v-col>
@@ -407,7 +407,7 @@
                         </td>
 
                         <td class="py-3" style="border-right: 1px solid rgba(142, 155, 174, 0.5); width: 20px; align-items: center;">
-                            <span style="font-size: 16px;"> The privacy notice is provided by Demo and is applicable to your personal Demo account. </span>
+                            <span style="font-size: 16px;"> The privacy notice is provided by Betacrypto and is applicable to your personal Betacrypto account. </span>
                         </td>
 
                     </tr>
@@ -427,7 +427,7 @@
 
                 <tbody>
 
-                    <tr v-for="item in AboutDemo" :key="item.name" style="height: 80px">
+                    <tr v-for="item in AboutBetacrypto" :key="item.name" style="height: 80px">
                         <td style="border-right: 1px solid rgba(142, 155, 174, 0.5); width: fit-content;">
                             
                             <span style="font-weight: 700; font-size: 16px;" :class="isDark ? 'card-title':'card-title-light'">{{ item.questionBold }}</span>
@@ -494,11 +494,11 @@
                         </td>
 
                         <td class="py-3" style="align-items: center; width: max-content;">
-                            <span style="font-size: 16px;"> California: If your Demo account has a California mailing address, we will not share personal information we collect about you except to the extent <br> permitted under California law.</span>
+                            <span style="font-size: 16px;"> California: If your Betacrypto account has a California mailing address, we will not share personal information we collect about you except to the extent <br> permitted under California law.</span>
                         </td>
 
                         <td class="py-3" style="align-items: center;">
-                            <span style="font-size: 16px;"> Vermont: If your Demo account has a Vermont address, we will not share personal information we collect about you with nonaffiliates unless the law allows or you provide authorization. </span>
+                            <span style="font-size: 16px;"> Vermont: If your Betacrypto account has a Vermont address, we will not share personal information we collect about you with nonaffiliates unless the law allows or you provide authorization. </span>
                         </td>
                     </tr>
                 </v-container>
@@ -556,14 +556,14 @@ const  policyQuestions = ([
           },
         ]);
         
-const  AboutDemo = ([
+const  AboutBetacrypto = ([
           {
-            questionBold: 'How does Demo protect my personal information?',
+            questionBold: 'How does Betacrypto protect my personal information?',
             answer: 'To protect your personal information from unauthorized access and use, we use security measures that comply with federal law. These measures include computer safeguards and secured files and buildings.s',
          
           },
           {
-            questionBold: 'How does Demo collect my personal information?',
+            questionBold: 'How does Betacrypto collect my personal information?',
             answer: 'Yes',
            
           },
@@ -590,7 +590,7 @@ const  definitions = ([
           {
             questionBold: 'Affiliates',
             answer: 'Companies related by common ownership or control. They can be financial and nonfinancial companies.',
-            caption:'Our affiliates include companies under common control of Demo Holdings, Inc.',
+            caption:'Our affiliates include companies under common control of Betacrypto Holdings, Inc.',
          
           },
           {

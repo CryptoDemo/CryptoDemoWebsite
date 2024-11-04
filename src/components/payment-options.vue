@@ -16,7 +16,7 @@
 
       <div class="section2i section2" :class="isDark ? 'section2':'section2-light'">
         <span class="section2-subtitle card-sub1">TRADE YOUR COIN LIKE A FOREX EXPERT</span>
-        <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Over 350 ways to buy and sell Bitcoin.</span>
+        <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Over 20 ways to buy and sell Bitcoin.</span>
         <span class="explore-trade">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
         <div class="mx-auto btn-segment2" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
 
@@ -33,7 +33,7 @@
             <v-row align="center" justify="center">
               <v-col v-for="(method, index) in paymentMethods.slice(0, 6)" :key="index" sm="4" cols="12">
                 <v-card  :class="isDark ? 'card-layout':'card-layout-light'" bg-color="#10192D"  color="white" variant="text">
-                    <v-card-item style="padding: 0px !important">
+                    <v-card-item style="padding: 0px !important; cursor: pointer;"  @click="Nav_marketPlace(); pinia.state.selectedPaymentMethod_from_indexPage = method.name">
                         <div>
                             <div class="">
                               <img src="/svg/Featured icon (4).svg"/>
@@ -42,8 +42,8 @@
                               {{ method.name  }}
                             </div>
                             <!-- <div  :class="isDark ? 'text-caption':'text-caption-light'">{{transaction1? variant.textCaption : variant.textCaption1}}</div> -->
-                            <button @click="Nav_marketPlace(); pinia.state.selectedPaymentMethod_from_indexPage = method.name" style="margin-top: 18px; display: inline-flex;">
-                              <span class="sell-btc-text me-2" style="color: #2873FF !important">Buy Crypto</span>  
+                            <button style="margin-top: 18px; display: inline-flex;">
+                              <span class="sell-btc-text me-2" style="color: #2873FF !important">{{ transaction1? "Sell Crypto" : "Buy Crypto" }}</span>  
                               <img src="/svg/blue-arrow.svg" class=""/>
                             </button>
                         </div>

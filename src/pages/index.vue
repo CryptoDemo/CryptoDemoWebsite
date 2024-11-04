@@ -16,7 +16,8 @@
           </div>
             <div>
               <div class="frame-1" :class="isDark ? 'frame-1':'frame-1-light'">
-                <v-btn color="#2873FF" class="writing-btn">Writing</v-btn>
+                <v-btn @click="push.info('Our site is currently under development and will be live soon. We welcome any feedback to help us improve.', { duration: 5000 })" color="#2873FF" class="writing-btn">Betacrypto</v-btn>
+
                 <span class="writing-text" :class="isDark ? 'writing-text-dark':'writing-text-light'">The number one trading platform in Europe</span>
                 <img src="/svg/blue-arrow.svg"/>
               </div>
@@ -27,11 +28,11 @@
               </div>
 
             <div class="d-flex text-img position-relative" v-if="theme.global.current.value.dark">
-              <span class="web webi" style="margin-right: 78px; z-index: 1000;">Demo Web</span>
+              <span class="web webi" style="margin-right: 78px; z-index: 1000;">Betacrypto</span>
               <img src="/svg/Frame 1305.svg" class="demo-star" style="position: absolute; margin-left: 375px ;top: -27px;  max-width: 100%; height: auto;" /> 
             </div>
             <div class="d-flex text-img" v-else>
-              <span class="web">Demo Web✨️</span>
+              <span class="web">Betacrypto✨️</span>
             </div>
               <div class="position-relative">
                 <img src="/svg/Group 1318.svg" class="position-absolute flex-lg-and-up hidden-sm-and-down" style="top: -76px; left: -4%;"/>
@@ -57,6 +58,14 @@
                   <v-btn :class="`${!transaction ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction=false" >Sell</v-btn>
                 </div>
 
+
+                <div style="margin-top: 24px;">
+                  <BlockChain/>
+                   <div style=" margin-top: 9px ;">
+                    <span class="hint-text mt-8">Select Blockchain network</span>
+                  </div>
+                  
+                </div>
 
                 <div style="margin-top: 24px;">
                   <v-menu>
@@ -104,42 +113,38 @@
                     <span class="btc-ammt">1 {{coin}} = USD <span class="btc-ammt1" style="color: #2873FF; font-family: Manrope;">{{ conversionResult.find(c=>c.from==coin)?.value || 0 }}</span></span>
                   </div>
                   
-                  <div style="margin-top: 24px;">
-                    <BlockChain />
-                     <div style=" margin-top: 9px ;">
-                      <span class="hint-text mt-8">Select preferred BlockChain Network</span>
-                    </div>
-                    
-                  </div>
                  
                   <div style="margin-top: 30px;">
                     <span :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to buy" : "I want to sell" }}</span>
                     <div class="d-flex" style="margin-top:9px; position: relative;">
-                    <input type="number" v-model="ammount_of_coin" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'"
-                       placeholder="Enter Amount"/>
-                    <v-menu transition="scale-transition">
-                        <template v-slot:activator="{ props }">
-                          <v-btn v-bind="props" class="position-absolute show-all" :class="isDark ? 'show-all-dark':'show-all-light'" style="right: 10px;margin-top: 8px;font-weight: 700;">
-                            {{ Selectedcurrency }}
-                            <v-icon  icon="mdi-chevron-down notranslate"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
-                           
-                        </v-btn>
-                        </template>
+                    
+                      <input type="number" v-model="ammount_of_coin" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" placeholder="Enter Amount"/>
+                      
+                      <v-menu transition="scale-transition">
+                          <template v-slot:activator="{ props }">
+                            <v-btn v-bind="props" class="position-absolute show-all" :class="isDark ? 'show-all-dark':'show-all-light'" style="right: 10px;margin-top: 8px;font-weight: 700;">
+                              {{ Selectedcurrency }}
+                              <v-icon  icon="mdi-chevron-down notranslate"  color="#8E9BAE" style="margin-left: 6px "></v-icon>
+                            
+                          </v-btn>
+                          </template>
 
-                        <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="height: 160px !important; width: 130px !important; border-radius: 15px !important">
-                          <v-list-item v-for="(currency, i) in pinia.state.allcountries" :key="i">
-                            <div>
-                              <v-list-item @click="Selectedcurrency=currency.currency_name">
-                                <span class="ml-4">{{ currency.currency_name  }} </span>
-                              </v-list-item>
-                            </div>
-                          </v-list-item>
-                        </v-list>  
-                    </v-menu>
+                          <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="height: 160px !important; width: 130px !important; border-radius: 15px !important">
+                            <v-list-item v-for="(currency, i) in pinia.state.allcountries" :key="i">
+                              <div>
+                                <v-list-item @click="Selectedcurrency=currency.currency_name">
+                                  <span class="ml-4">{{ currency.currency_name  }} </span>
+                                </v-list-item>
+                              </div>
+                            </v-list-item>
+                          </v-list>  
+                      </v-menu>
                     </div>
+
                     <div style=" margin-top: 9px ;">
                       <span class="hint-text">Mininum: 10 {{ Selectedcurrency }}</span>
                     </div>
+
                   </div>
                   <v-btn @click="collectVals()" class="exchange-btn" color="" style="letter-spacing: 0px !important;"> <span class="exchange-text">Trade Now </span></v-btn>
                 </div>
@@ -157,7 +162,7 @@
       <v-container class=" position-relative section2ii" >
             <img v-lazy="'/svg/Ellipse 2813.svg'" class="position-absolute blue-ellipse2" style="right:0; margin-top: 144px ;"/>
            <div class="section2ii2 section2"  :class="isDark ? 'section2':'section2-light'">
-              <span class="section2-subtitle sub-text2" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features of The demo web</span>
+              <span class="section2-subtitle sub-text2" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features of Betacrypto</span>
               <span class="section2-titleii" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-bottom: 88px;">Welcome to a financial system for the 100%.</span>
            </div>
 
@@ -185,8 +190,9 @@
                         </v-btn>
                     
                         <div style="display: grid; position: relative;">
-                          <span class="buy" :class="isDark ? 'free-demo':'free-demo-light'">Free Demo Web Wallet</span>
-                          <span  style="margin-top: 8px;  color: #8E9BAE;line-height: 140%; font-family: SF Pro Display ;">Get a free <NuxtLink to="#"><span class="text-demoi"  style="font-size: 16px;color: #2873FF;font-weight: 600; font-family: SF Pro Display; letter-spacing: 0.32px;">Demo Web</span></NuxtLink> 
+                          <span class="buy" :class="isDark ? 'free-demo':'free-demo-light'">Free Betacrypto Wallet</span>
+                          <span  style="margin-top: 8px;  color: #8E9BAE;line-height: 140%; font-family: SF Pro Display ;">Get a free 
+                            <span class="text-demoi"  style="font-size: 16px; color: #8E9BAE; font-family: SF Pro Display; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline; cursor: pointer">Betacrypto wallet</span> 
                           when you sign up to receive, send, and store your Bitcoin.</span>
                         </div>
         
@@ -220,7 +226,7 @@
                             <span style="margin-top: 14px; color: #8E9BAE;line-height: 140%; font-family: SF Pro Display;">Get your friends and family  to
                               <NuxtLink to="/authentication/register">
                                 <span class="text-demoi"  style="font-size: 16px; color: #8E9BAE; font-family: SF Pro Display; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline;">sign up</span></NuxtLink> 
-                            for Demo Web
+                            for Betacrypto 
                             </span>
                           </div>
                     </div>
@@ -236,9 +242,9 @@
               <v-row no-gutters  class="phone-section" style="padding-top: 170px; padding-bottom: 140px">
             <v-col cols="md-7" sm="12">
               <div class="">
-                <span class="section2-subtitlei1 sub-text2i" style="justify-content: flex-start; margin-top: 0px !important">THE DEMO WEB IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
-                <span class="section2-titlei2 section2-title1" :class="isDark ? 'header-text1-dark':'header-text1-light'" style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Demo Web</span>
-                <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Demo Web. Download now and dive into the world of crypto trading!"</span>
+                <span class="section2-subtitlei1 sub-text2i" style="justify-content: flex-start; margin-top: 0px !important">THE BETACRYPTO APP IS ALL YOU NEED FOR DAY TO DAY TRADING</span>
+                <span class="section2-titlei2 section2-title1" :class="isDark ? 'header-text1-dark':'header-text1-light'" style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join the Future of <br>Crypto Trading with <br>Betacrypto</span>
+                <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Betacrypto. Download now and dive into the world of crypto trading!"</span>
                  <div class="d-flex social-icons-div" style="margin-top: 88px; width: fit-content; align-items: center">
                   <v-btn class="image-button me-4 desktop-social-icons" :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
                   <v-btn class="image-button me-4 desktop-social-icons" :style="{ backgroundImage: `url(${imageSrc1})` }"></v-btn>
@@ -246,7 +252,7 @@
                     <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc2})`}"></v-btn>
                     <v-btn class="image-button1 me-3 mobile-social-icons" :style="{ backgroundImage: `url(${imageSrc3})`}"></v-btn>
 
-                    <span class="icon-text" style="color: #64748B; font-family: SF Pro Display; font-size: 16px; width: 180px;">Demo Web App now available for download</span>
+                    <span class="icon-text" style="color: #64748B; font-family: SF Pro Display; font-size: 16px; width: 180px;">Betacrypto App now available for download</span>
                   </div>
               </div>
 
@@ -280,7 +286,7 @@
 
       <div class="position-relative">
         <v-container style="position: absolute; top: -197px; left: 0; right: 0;">
-          <span class="Demo-header">Demo Web</span>
+          <span class="Betacrypto-header">Betacrypto</span>
         </v-container>
           <Footer class="desktop-footer"/>
           <Mobile-footer class="mobile-footer"/>
@@ -298,7 +304,6 @@ const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 
 const transaction = ref(true);
-const transaction1 = ref(true);
 const pinia = useStore()
 const pageNumber = ref(1)
 const conversionResult = ref([]);
@@ -307,6 +312,7 @@ const coin = ref ("");
 const piniastoredicon = ref(null);
 const ammount_of_coin = ref();
 const Selectedcurrency =ref("USD");
+const dialog = ref(false)
 
 const LazyPaymentOptions = defineAsyncComponent(() => import('@/components/payment-options.vue'));
 
@@ -351,8 +357,7 @@ const collectVals = () => {
     currency: Selectedcurrency.value,
   };
   pinia.saveTradingData(payload);
-  console.log(payload);
-
+ 
   // Check if user is authenticated
   if (!pinia.state.isAuthenticated) {
     // Redirect to login if not authenticated
@@ -360,14 +365,27 @@ const collectVals = () => {
     return;
   }
 
-  // User is authenticated
-  if (pinia.state.selectedOfferType_from_landing.type === "sell") {
+ // User is authenticated
+ if (pinia.state.selectedOfferType_from_landing.type === "sell") {
     // Navigate to create sell offer page
     navigateTo('/account/marketplace/createOffer'); // Adjust navigation method and URL as per your router setup
+
+    // Clear data after a brief delay
+    setTimeout(clearData, 100); // Adjust the delay as necessary
   } else {
     // Redirect to active offers page for buys or any other case
     navigateTo('/account/marketplace/activeOffers'); // Adjust navigation method and URL as per your router setup
+
+    // Clear data after a brief delay
+    setTimeout(clearData, 100); // Adjust the delay as necessary
   }
+};
+// Function to clear data
+const clearData = () => {
+  pinia.state.selectedOfferType_from_landing.name = "";
+  pinia.state.selectedOfferType_from_landing.type = false;
+  pinia.state.selectedOfferType_from_landing.amount = "";
+  pinia.state.selectedOfferType_from_landing.currency = "";
 };
 
 
@@ -435,18 +453,6 @@ onBeforeMount(async () => {
   select.value = pinia.state?.tokenLists[1]?.name
   coin.value = pinia.state?.tokenLists[1]?.symbol
 });
-
-
-
-
-const variants = [
-{ cardImages: '/svg/Featured icon.svg', title:'Bank transfer', textCaption:'Our guided bank transfer trades make it even easier to sell Bitcoin and receive payment.', textCaption1:'Our guided bank transfer trades makes it even easier to Buy Bitcoin.'}, 
-{ cardImages: '/svg/Featured icon (1).svg', title:'Cash payment' , textCaption:'Happy to accept cash? Then you can do just that.', textCaption1:'Happy to accept cash? Then you can do just that.'}, 
-{ cardImages: '/svg/Featured icon (2).svg', title:'Online Wallets' , textCaption:'Receive payment through popular online wallets including MTN Mobile Money.', textCaption1:'Buy Bitcoin using a huge range of popular online wallets, including MTN Mobile Money.'}, 
-{ cardImages: '/svg/Featured icon (3).svg', title:'Discounted gift cards' , textCaption:'Use your Bitcoin to get big discounts on popular gift cards.', textCaption1:'Have a gift card you dont need? You can trade it for Bitcoin.'}, 
-{ cardImages: '/svg/Featured icon (4).svg', title:'Digital currencies' , textCaption:'Use Tether, Ethereum, Litecoin, and more to sell Bitcoin.', textCaption1:'Use Tether, Ethereum, Litecoin, and more to buy Bitcoin.'}, 
-{ cardImages: '/svg/Featured icon (5).svg', title:'Goods and services' , textCaption:'Use Bitcoin to pay for goods and services from around the world.', textCaption1:'Use Bitcoin to Buy  goods and services from around the world.'}, 
-];
 
 
 
@@ -947,7 +953,7 @@ top: 190px;
 
 
 
-.Demo-header{
+.Betacrypto-header{
 -webkit-text-stroke-width: 1;
 -webkit-text-stroke-color: #000 !important;
 font-family: "SF Pro Display";

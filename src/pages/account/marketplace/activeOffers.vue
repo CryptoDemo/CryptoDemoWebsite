@@ -498,8 +498,8 @@
                       <v-btn  v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"  style="width: fit-content; height: 50px; margin-top: 3px; border-radius: 10px; margin-top: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
                         <div class="d-flex" style="align-items: center; justify-content: space-between;">
                           <img width="25" class="me-2" :src="tokenIcon" style="" />
-                          <span class="slt">{{ tokenSymbol }}</span>
-                          <span v-if="!tokenSelected" style="position: absolute;">All Coins</span>
+                          <span class="slt">{{ tokenSymbol || 'All Coins' }}</span>
+                          <!-- <span v-if="!tokenSelected" style="position: absolute;">All Coins</span> -->
                         </div>
                         
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']" style="position: absolute; display: flex; right: 5px">
@@ -605,14 +605,10 @@
 </template>
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
-import { useTheme } from "vuetify";
-import { getMarketOffers } from "@/composables/requests/marketplace";
+import { useTheme } from "vuetify";;
 import { createOrder, createOrderforP2P } from "@/composables/requests/marketplace";
 import { currencyConverter } from "@/composables/requests/tokens";
 
-definePageMeta({
-  middleware: 'scroll-to-top'
-});
 
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
@@ -621,15 +617,13 @@ const selectedScreen = ref(true);
 const pageNumber = ref(1);
 const loading = ref(false);
 const tokenIcon = ref();
-const tokenSymbol = ref();
+const tokenSymbol = ref(pinia.state.selectedOfferType_from_landing.name || "");
 const amount_to_pay = ref();
 const ammount_to_receive = ref();
 const offers = computed(() => pinia.state.MarketPlace);
 const isCreating = ref(false);
 const tokenSelected = ref(false);
-const preferredTokenCurrency = ref();
 const selectedPaymentMethod = ref(pinia.state.selectedPaymentMethod_from_indexPage || "All payment methods");
-
 const selectedLimit = ref("");
 const method = ref();
 const selectedPriceRange = ref();
@@ -639,7 +633,7 @@ const priceType = ['Fixed Price', 'Market Price'];
 const sellerDialog = ref(false);
 const marketplace  = pinia.state.MarketPlace || [];
 const buyDirectlyDialog = ref();
-const currency_to_filterBy = ref()
+const currency_to_filterBy = ref(pinia.state.selectedOfferType_from_landing.currency || "")
 
 
 const selectToken = (tokens) => {
@@ -925,6 +919,11 @@ watch(()=>amount_to_pay.value, (newValue) => {
   }
 });
 
+onBeforeMount(() => {
+  definePageMeta({
+  middleware: 'scroll-to-top'
+});
+});
 
 
 </script>

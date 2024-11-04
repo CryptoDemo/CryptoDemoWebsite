@@ -3,7 +3,7 @@
         <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
               <button class="network-btn" v-bind="props" variant="text" style="display: flex; align-self: flex-start; border-radius: 16px; box-shadow: none; width: fit-content;" @click="toggleChevron">
-                <span style="text-transform: capitalize; font-family: Manrope; color: white;">{{pinia.state.selectedNetwork}}</span>
+                <span style="text-transform: capitalize; font-family: Manrope; color: white; text-transform: uppercase;">{{pinia.state.selectedNetwork}}</span>
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled },]">
                   <g clip-path="url(#clip0_10476_6360)">

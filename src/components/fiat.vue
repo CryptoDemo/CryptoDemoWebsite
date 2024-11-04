@@ -95,7 +95,7 @@
                             <div class="d-flex" style="align-items: center;">
                                 <h1 style="color: #2873FF;">@</h1>
                                 <div class="d-flex" style="flex-direction: column;">
-                                    <span class="ml-2" style="font-size: 14px; font-weight: 600; align-items: flex-start;text-align: justify;">Send Money using CryptoDemo Tag</span>
+                                    <span class="ml-2" style="font-size: 14px; font-weight: 600; align-items: flex-start;text-align: justify;">Send Money using Betacrypto Tag</span>
                                     <span class="ml-2" style="font-weight: 400; font-size: 14px;">Easily transfer funds globally using the crypto demo tag for instant transactions.</span>
                                 </div>
                             </div>

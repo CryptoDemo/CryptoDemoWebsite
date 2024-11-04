@@ -2,11 +2,9 @@
     <div>
         <v-menu transition="slide-y-transition">
             <template v-slot:activator="{ props }">
-              <button v-bind="props" variant="text" style="display: flex; align-self: flex-start; width: 100%; box-shadow: none; margin-top: 15px; letter-spacing: 0px;" @click="toggleChevron">
-                <span class="me-2" :class="isDark ? 'country-text':'country-text-light'" style="text-transform: capitalize; font-family: Manrope; font-size: 16px;">{{pinia.state.selectedNetwork}}</span>
-
-                <!-- <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']" style="position: absolute; right: 14px;"></v-icon> -->
-
+              <button v-bind="props" variant="text" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" style="display: flex; align-self: flex-start; width: 100%; box-shadow: none; margin-top: 15px; letter-spacing: 0px;" @click="toggleChevron">
+                <span class="me-2" :class="isDark ? 'country-text':'country-text-light'" style="text-transform: uppercase;; font-family: Manrope; font-size: 16px;">{{pinia.state.selectedNetwork}}</span>
+                <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']"></v-icon>
               </button>
             </template>
 

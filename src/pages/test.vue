@@ -25,7 +25,7 @@
                 </svg>
               </div>
               <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'"> 
-                Keep trades within Demo. Some users may ask you to trade outside the Demo platform. This is against our Terms of Services and likely a scam attempt. You must insist on keeping all trade conversations within Demo, note that we cannot help or support you if you are scammed during such trades. 
+                Keep trades within Betacrypto. Some users may ask you to trade outside the Betacrypto platform. This is against our Terms of Services and likely a scam attempt. You must insist on keeping all trade conversations within Betacrypto, note that we cannot help or support you if you are scammed during such trades. 
               </span>
             </div>
         
@@ -62,7 +62,7 @@
             <v-main>
               <div class="d-flex justify-center align-center Position-relative" style="position: fixed; margin-top: 51px;">
                 <v-btn variant="text" @click.stop="drawer = !drawer" style="text-transform: capitalize; letter-spacing: 0px; color: #2873FF">
-                Demo Guidlines
+                Betacrypto Guidlines
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
                   <path d="M5.94043 13.7807L10.2871 9.43404C10.8004 8.9207 10.8004 8.0807 10.2871 7.56737L5.94043 3.2207" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>

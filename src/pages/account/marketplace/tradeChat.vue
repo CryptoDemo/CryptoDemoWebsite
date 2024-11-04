@@ -32,8 +32,8 @@
                 </svg>
               </div>
               <span class="warning-text ml-3" :class="isDark ? 'text-dark' : 'text-light'">
-                Keep trades within Demo. Some users may ask you to trade outside the Demo platform. This is against our
-                Terms of Services and likely a scam attempt. You must insist on keeping all trade conversations within Demo,
+                Keep trades within Betacrypto. Some users may ask you to trade outside the Betacrypto platform. This is against our
+                Terms of Services and likely a scam attempt. You must insist on keeping all trade conversations within Betacrypto,
                 note that we cannot help or support you if you are scammed during such trades.
               </span>
             </div>
@@ -192,9 +192,9 @@
                     <v-card-text>
                       <span class="mb-4" style="font-weight: 600; display: flex; justify-content: center;">Risk
                         Notice!!</span>
-                      <span style="font-size: 13px;"> Keep trades within Demo. Some users may ask you to trade outside the
-                        Demo platform. This is against our Terms of Services and likely a scam attempt. You must insist on
-                        keeping all trade conversations within Demo, note that we cannot help or support you if you are
+                      <span style="font-size: 13px;"> Keep trades within Betacrypto. Some users may ask you to trade outside the
+                        Betacrypto platform. This is against our Terms of Services and likely a scam attempt. You must insist on
+                        keeping all trade conversations within Betacrypto, note that we cannot help or support you if you are
                         scammed during such trades.</span>
                     </v-card-text>
 

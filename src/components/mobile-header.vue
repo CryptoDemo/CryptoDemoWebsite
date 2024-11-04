@@ -7,7 +7,7 @@
         
         <div style="display: flex; align-items: center; justify-content: space-between; width: fit-content;">
           
-          <v-toolbar-title class="header-title" :class="isDark ? 'header-title':'header-title-light'">Demo Web</v-toolbar-title>
+          <v-toolbar-title class="header-title" :class="isDark ? 'header-title':'header-title-light'">Betacrypto Web</v-toolbar-title>
           <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"  style="position: absolute; right: 9px; width: 32px"/>
         
         </div>
