@@ -71,7 +71,7 @@ const pageNumber = ref(1);
 
 const Nav_marketPlace = () => {
   // Perform the check for user login
-  if (pinia.state.user.token) {
+  if (pinia?.state?.user?.token) {
     navigateTo('/account/marketplace/activeOffers');
   } else {
     navigateTo('/authentication/login');
