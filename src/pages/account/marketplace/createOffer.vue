@@ -42,7 +42,7 @@
                     <v-menu>
                         <template v-slot:activator="{ props }">
                           <v-btn v-bind="props" style="min-width: 70px; height: 53px; position: absolute; top: 4px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 0; letter-spacing: 0px;  text-transform: capitalize;"> 
-                            <span class="currency-list">{{ tokenSymbol }}</span>
+                            <span class="currency-list">{{ token_from_index || tokenSymbol }}</span>
                           </v-btn>
                         </template>
 
@@ -196,6 +196,8 @@ const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore();
 
+const tokenSymbol= ref();
+
 const priceType = ref(false);
 
 const setPriceType = (isFixedPrice) => {
@@ -212,7 +214,6 @@ const tokenName = ref();
 
 const tokenIcon = ref();
 
-const tokenSymbol= ref(pinia.state.selectedOfferType_from_landing.name || "");
 
 const selectedCoinID = ref();
 
@@ -241,6 +242,10 @@ try {
 } catch (error) { 
 };
 };
+
+
+const token_from_index = pinia.state.tokenLists.find(e => e.name === pinia.state.selectedOfferType_from_landing.name)?.symbol;
+console.log(token_from_index)
 
 
 const create_offer = async () => {

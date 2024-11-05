@@ -20,7 +20,7 @@
         <div class="header-nav-div align-lg-center" style="display: flex; margin-inline-start: auto;">
           <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1':'text1-light'" style="align-items: center; display: flex;">{{props.text2}}</span>
           <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center;"> <span :class="isDark ? 'text2':'text2-light'">{{props.title}}</span></NuxtLink>
-          <NuxtLink :to="props.link" class="d-flex loginText" style="align-self: center;"> <span :class="isDark ? 'loginText':'text2-light'">{{props.loginTitle}}</span></NuxtLink>
+          <NuxtLink :to="props.link" class="d-flex loginText" style="align-self: center;"> <span :class="isDark ? 'text2':'text2-light'">{{props.loginTitle}}</span></NuxtLink>
 
           <div class="language-select">
             <LanguageDropdown v-if="newUserLanguage"/>
@@ -468,8 +468,9 @@ top: 26%;
 }
 
 .loginText{
-  width: max-content;
-  margin: 0px;
+  /* margin-right: 59px !important; */
+  align-items: center;
+  margin-top: 20px;
 }
 .text2{
   margin-right: 64px;

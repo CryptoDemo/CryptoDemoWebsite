@@ -91,7 +91,7 @@
                           </svg>
                           <v-textarea clearable variant="plain" rows="1" no-resize  placeholder="Search for Coins..." v-model="input" style=" border: 1px solid #64748B; height: 55px; margin: auto;  border-radius: 30px; padding-left: 45px; align-items: center; width: 90%;"></v-textarea>
                         </div>
-                      <div style="height: 250px; overflow: scroll">
+                      <div style="height: auto; max-height: 250px; overflow: scroll">
                         <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-2">
                           <v-list-item @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
                           <div class="ml-7" style="display: flex">
@@ -142,7 +142,7 @@
                     </div>
 
                     <div style=" margin-top: 9px ;">
-                      <span class="hint-text">Mininum: 10 {{ Selectedcurrency }}</span>
+                      <span class="hint-text">Enter the amount and preferred currency.</span>
                     </div>
 
                   </div>
@@ -316,7 +316,7 @@ const dialog = ref(false)
 
 const LazyPaymentOptions = defineAsyncComponent(() => import('@/components/payment-options.vue'));
 
-
+const getTokens_ = async () => {
   try {
     const data = await getTokens(pageNumber.value);
     if(data.success) {
@@ -337,6 +337,7 @@ const LazyPaymentOptions = defineAsyncComponent(() => import('@/components/payme
   } catch (error) {
     console.log(error);
   };
+}
 
   watch(()=>conversionResult.value,(newVal)=>{
     pinia.state.tokenLists.map(t=>{
@@ -458,6 +459,17 @@ lowername.includes(searchTerm) || symbol.includes(searchTerm)
 );
 });
 });
+
+const selectedNetwork = ref(pinia.state.selectedNetwork.toLowerCase());
+
+watch(() => pinia.state.selectedNetwork, async (newNetwork) => {
+  if (newNetwork.toLowerCase() !== selectedNetwork.value) {
+    selectedNetwork.value = newNetwork.toLowerCase();
+    await getTokens_();
+    await convertCurrencies();
+  }
+});
+
 
 const imageSrc=('/svg/applestore.svg') ; // Replace with your image path
 const imageSrc1=('/svg/playstore.svg') ; 

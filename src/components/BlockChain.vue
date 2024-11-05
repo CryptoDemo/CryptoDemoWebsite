@@ -7,11 +7,10 @@
                 <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']"></v-icon>
               </button>
             </template>
-
-
+        
             <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 10px; height: 120px !important; background: white;">
               <v-list-item style="display: contents">
-                <v-row dense style="max-width: 250px; display: block;">
+                <v-row dense style="display: block;">
                   <v-col v-for="(item, index) in pinia.state.BlockchainNetworks" :key="index">
                   <v-list-item @click="pinia.state.selectedNetwork = item.name;" style="display: flex;">
                       <span style="text-transform: uppercase;">{{ item.name }}</span>
