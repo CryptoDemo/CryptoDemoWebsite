@@ -95,8 +95,9 @@ import { useTheme } from 'vuetify';
 import { signIn } from "@/composables/requests/auth";
 import HCaptcha from '~/components/HCaptcha.vue'
 definePageMeta({
-  middleware: 'auth'
+  middleware: ['auth', 'scroll-to-top']
 });
+
 
 const theme = useTheme()
 const isDark = computed(() =>  theme?.global?.current.value?.dark);

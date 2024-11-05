@@ -95,7 +95,8 @@
                         <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" class="d-flex py-2">
                           <v-list-item @click="select=item.name; coin=item.symbol; icon =item.icon" class="d-flex" style="align-items: center">
                           <div class="ml-7" style="display: flex">
-                            <img width="25" class="rounded-5 me-3" :src="item.icon"/>    
+                            <img width="35" class="rounded-5 me-3" :src="item.icon"/> 
+                            <img :src="chainIcon?.icon" width="15" style="position: relative; right: 25px; margin-top: 16px;"/>   
                             <div>                  
                               <span> {{ item.name }} </span>
                               <span class="small-text">{{ item.symbol }}</span>
@@ -468,6 +469,10 @@ watch(() => pinia.state.selectedNetwork, async (newNetwork) => {
     await getTokens_();
     await convertCurrencies();
   }
+});
+
+const chainIcon = computed(() => {
+  return pinia.state.tokenLists.find(c => c?.symbol === "BNB" || c?.symbol === "TRX");
 });
 
 

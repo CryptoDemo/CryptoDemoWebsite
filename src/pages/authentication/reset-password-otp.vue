@@ -50,7 +50,8 @@ import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import { Resend_Code } from "@/composables/requests/auth";
 definePageMeta({
-  middleware: 'auth'
+  middleware: 'auth',
+  middleware: 'scroll-to-top'
 });
 
 const theme = useTheme()
