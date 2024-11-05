@@ -32,8 +32,8 @@
       <div class="card-layout1">
             <v-row align="center" justify="center">
               <v-col v-for="(method, index) in paymentMethods.slice(0, 6)" :key="index" sm="4" cols="12">
-                <v-card  :class="isDark ? 'card-layout':'card-layout-light'" bg-color="#10192D"  color="white" variant="text" @click="Nav_marketPlace(); pinia.state.selectedPaymentMethod_from_indexPage = method.name" style="cursor: pointer">
-                    <v-card-item style="padding: 0px !important;">
+                <v-card @click="Nav_marketPlace(); pinia.state.selectedPaymentMethod_from_indexPage = method.name" :class="isDark ? 'card-layout':'card-layout-light'" bg-color="#10192D"  color="white" variant="text" style="cursor: pointer;">
+                    <v-card-item style="padding: 0px !important">
                         <div>
                             <div class="">
                               <img src="/svg/Featured icon (4).svg"/>
@@ -42,7 +42,7 @@
                               {{ method.name  }}
                             </div>
                             <!-- <div  :class="isDark ? 'text-caption':'text-caption-light'">{{transaction1? variant.textCaption : variant.textCaption1}}</div> -->
-                            <button style="margin-top: 18px; display: inline-flex;">
+                            <button  style="margin-top: 18px; display: inline-flex;">
                               <span class="sell-btc-text me-2" style="color: #2873FF !important">{{ transaction1? "Sell Crypto" : "Buy Crypto" }}</span>  
                               <img src="/svg/blue-arrow.svg" class=""/>
                             </button>
