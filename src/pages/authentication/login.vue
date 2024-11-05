@@ -178,10 +178,6 @@ const login = async () => {
 
 </script>
 <style scoped>
-.form-layout :deep(.Notivue__notification *) {
-    box-sizing: border-box;
-    background: red !important;
-}
 
 .form-layout :deep(.v-text-field .v-field--no-label input, .v-text-field .v-field--active input) {
     opacity: 1;

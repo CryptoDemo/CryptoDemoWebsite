@@ -608,7 +608,9 @@ import { ref, computed, onMounted, watch } from "vue";
 import { useTheme } from "vuetify";;
 import { createOrder, createOrderforP2P } from "@/composables/requests/marketplace";
 import { currencyConverter } from "@/composables/requests/tokens";
-
+definePageMeta({
+  middleware: 'scroll-to-top'
+});
 
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
@@ -919,11 +921,7 @@ watch(()=>amount_to_pay.value, (newValue) => {
   }
 });
 
-onBeforeMount(() => {
-  definePageMeta({
-  middleware: 'scroll-to-top'
-});
-});
+
 
 
 </script>

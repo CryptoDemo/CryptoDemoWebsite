@@ -70,7 +70,7 @@
                     <v-menu>
                         <template v-slot:activator="{ props }">
                           <v-btn @click.prevent="toggleChevron()" v-bind="props" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"  style="min-width: 70px; height: 60px; margin-top: 3px; border-radius: 15px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;"> 
-                            <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
+                            <span class="currency-list">{{ pinia.state.selectedOfferType_from_landing.currency || pinia.state.preferredCurrency }}</span>
                             <div style="display: flex; position: absolute; right: 1%">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']">
                                   <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13.5858L16.2929 9.29289C16.6834 8.90237 17.3166 8.90237 17.7071 9.29289C18.0976 9.68342 18.0976 10.3166 17.7071 10.7071L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L6.29289 10.7071C5.90237 10.3166 5.90237 9.68342 6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289L12 13.5858Z" />
@@ -95,12 +95,12 @@
                     </v-menu> 
                   </div>
 
-                  <span v-if="priceType" class="select1i">Enter Equivalent Unit Price of {{ tokenSymbol }} in {{ pinia.state.preferredCurrency }}</span>
+                  <span v-if="priceType" class="select1i">Enter Equivalent Unit Price of {{ tokenSymbol }} in {{ pinia.state.selectedOfferType_from_landing.currency || pinia.state.preferredCurrency }}</span>
                   
                   <div v-if="priceType" style="margin-top: 8px; margin-bottom: 16px;">
                     <input type="number" placeholder="0" v-model="EquivPrice" :disabled="!priceType" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                       <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
-                        <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
+                        <span class="currency-list">{{ pinia.state.selectedOfferType_from_landing.currency|| pinia.state.preferredCurrency }}</span>
                       </v-btn>
                   </div>
 
@@ -109,7 +109,7 @@
                     <input type="number" placeholder="0" v-model="minAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                   
                       <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
-                        <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
+                        <span class="currency-list">{{pinia.state.selectedOfferType_from_landing.currency || pinia.state.preferredCurrency }}</span>
                       </v-btn>
                   </div>
 
@@ -118,7 +118,7 @@
                     <input type="number" placeholder="0" v-model="maxAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                   
                     <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
-                      <span class="currency-list">{{ pinia.state.preferredCurrency }}</span>
+                      <span class="currency-list">{{pinia.state.selectedOfferType_from_landing.currency || pinia.state.preferredCurrency }}</span>
                     </v-btn>
                   </div>
 
@@ -212,7 +212,7 @@ const tokenName = ref();
 
 const tokenIcon = ref();
 
-const tokenSymbol= ref();
+const tokenSymbol= ref(pinia.state.selectedOfferType_from_landing.name || "");
 
 const selectedCoinID = ref();
 
@@ -222,7 +222,7 @@ const minAmmount = ref();
 
 const EquivPrice = ref();
 
-const unitPrice = ref();
+const unitPrice = ref(pinia.state.selectedOfferType_from_landing.amount || 0);
 
 const pageNumber = ref(1)
 

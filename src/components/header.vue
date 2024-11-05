@@ -129,16 +129,14 @@ const fetch_allCountries = async()=>{
   }
 }
 
-const DEFAULT_FLAG_URL = 'https://storage.yeerlo.com/flags/au.svg'; // Replace with a valid fallback flag URL
-const DEFAULT_COUNTRY_CODE = 'AU'; // Set your preferred fallback country code
 
 onMounted(()=>{{
   country.value = pinia.state.geo.country;
 
   const geoCountry = computed(() =>pinia.state.allcountries.find((c) => country.value === c.country_name));
 
-  flag.value = geoCountry?.value?.flag_url || DEFAULT_FLAG_URL;
-  Countryname.value = geoCountry?.value?.country_code || DEFAULT_COUNTRY_CODE;
+  flag.value = geoCountry?.value?.flag_url;
+  Countryname.value = geoCountry?.value?.country_code;
   fetch_allCountries()
 }})
 
@@ -279,6 +277,9 @@ box-shadow: none;
 .language-select{
   display: flex;
   margin: auto;
+}
+.language-select :deep(.google-translate-select-flag__en) {
+  display: none;
 }
 .nav-icon-text{
 color: #969696;
@@ -467,10 +468,11 @@ top: 26%;
 }
 
 .loginText{
-  display: contents;
+  width: max-content;
+  margin: 0px;
 }
 .text2{
-  margin-right: 75px;
+  margin-right: 64px;
 }
 
 .dropdown-btn1i{

@@ -1,8 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify from 'vite-plugin-vuetify';
 
-
-
 export default defineNuxtConfig ({
   ssr: false,
   devtools: { enabled: false },
@@ -10,6 +8,12 @@ export default defineNuxtConfig ({
 
   build: {
     transpile: ['vuetify'],
+  },
+
+  app: {
+    head: {
+      titleTemplate: 'Betacrypto', // Replace MyAppName with your app's name
+    }
   },
 
   css: [

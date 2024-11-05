@@ -3,7 +3,7 @@
     <LoginBG/>
    
     <Header @country="v => country = v" text2="Already have an account," title="Login" link="/authentication/login" :newUserLanguage="true" :flagDropdown="true"/> 
-      <v-container  class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
+      <v-container  class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'" style="overflow-y: scroll;">
         <div class="section">
         <v-row no-gutters>
           <v-col dense cols="md-5" class="form" :class="isDark ? 'form':'form-light'" style="padding: 0px 70px;">

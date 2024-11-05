@@ -7,7 +7,7 @@
         <v-app-bar-title  :class="isDark ? 'nav-title':'nav-title-light'" style="cursor: pointer;">Betacrypto</v-app-bar-title>
 
  
-          <div class="d-flex" style="position: absolute; margin-left: 150px;">
+          <div v-if="!pinia.state?.user?.token" class="d-flex" style="position: absolute; margin-left: 150px;">
              <v-btn @click.prevent="navigateToOffers()" class="header-link flex-lg-and-up hidden-sm-and-down"> 
                <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Create an offer</span>
             </v-btn>
@@ -53,7 +53,7 @@
               </v-menu>
             </div>
             <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Become a Vendor</span></NuxtLink> </v-btn>
-        </div>
+          </div>
        
       
         <div class="d-flex" v-if="!pinia.state?.user?.token" style="align-items: center;">
@@ -63,6 +63,10 @@
           <NuxtLink to="/authentication/register">  
             <v-btn class="register me-3 flex-lg-and-up hidden-sm-and-down" style="border-radius: 10px !important;"> <span class="register-text" >Register </span></v-btn>
           </NuxtLink>
+        </div>
+
+        <div v-if="pinia.state?.user?.token">
+          <v-btn class="header-link flex-lg-and-up hidden-sm-and-down me-4"><NuxtLink to="/account/trade/wallet"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'"> Dashboard </span> </NuxtLink></v-btn>
         </div>
 
     
@@ -115,8 +119,7 @@ const flag = ref();
 const country = ref();
 const countryName = ref();
 
-const DEFAULT_FLAG_URL = 'https://storage.yeerlo.com/flags/au.svg'; // Replace with a valid fallback flag URL
-const DEFAULT_COUNTRY_CODE = 'AU'; // Set your preferred fallback country code
+
 
 onMounted(async () => {
   // Fetch countries only if the store list is empty
@@ -154,8 +157,8 @@ onMounted(async () => {
     pinia.state.allcountries.find(c => c.country_name === country.value)
   );
 
-  flag.value = geoCountry.value?.flag_url || DEFAULT_FLAG_URL;
-  countryCode.value = geoCountry.value?.country_code || DEFAULT_COUNTRY_CODE;
+  flag.value = geoCountry.value?.flag_url;
+  countryCode.value = geoCountry.value?.country_code;
 });
 
 const navigateToOffers = () => {

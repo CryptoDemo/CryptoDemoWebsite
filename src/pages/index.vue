@@ -370,23 +370,13 @@ const collectVals = () => {
     // Navigate to create sell offer page
     navigateTo('/account/marketplace/createOffer'); // Adjust navigation method and URL as per your router setup
 
-    // Clear data after a brief delay
-    setTimeout(clearData, 100); // Adjust the delay as necessary
   } else {
     // Redirect to active offers page for buys or any other case
     navigateTo('/account/marketplace/activeOffers'); // Adjust navigation method and URL as per your router setup
 
-    // Clear data after a brief delay
-    setTimeout(clearData, 100); // Adjust the delay as necessary
   }
 };
-// Function to clear data
-const clearData = () => {
-  pinia.state.selectedOfferType_from_landing.name = "";
-  pinia.state.selectedOfferType_from_landing.type = false;
-  pinia.state.selectedOfferType_from_landing.amount = "";
-  pinia.state.selectedOfferType_from_landing.currency = "";
-};
+
 
 
 const convertCurrencies = async () => {
