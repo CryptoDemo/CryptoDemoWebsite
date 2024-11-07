@@ -279,6 +279,7 @@ export const useStore = defineStore('app',()=> {
     state.Total_fiat_bal = [],
     state.ConvertedPriceValue = [],
     state.MyOffers = [],
+    state.selectedNetwork= "TRC20",
     state.selected_coin_to_buy_from_marketplace = "",
     state.selected_offer_from_trades = "",
     state.selected_coin_to_buy_from_marketplace_userID = "",

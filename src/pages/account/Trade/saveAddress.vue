@@ -54,6 +54,7 @@ const pinia = useStore();
 
 const showScanner = ref(false);
 const decodedResult = ref(null);
+const wallet_name = ref("");  // The wallet address after decoding QR
 const wallet_address = ref("");  // The wallet address after decoding QR
 
 // Ref to handle timeout
