@@ -73,7 +73,7 @@
               <HCaptcha :siteKey="siteKey" class="mt-7"/>
   
               <NuxtLink to="/authentication/reset-password"><span class="resend-code d-flex" style="margin-top:21px; justify-content: end;">Forgot Password?</span></NuxtLink>
-              <Button :disabled="!isFormValid" :loading="loading" @click.prevent="isFormValid ? login() : null" buttonText="Continue" class="" style="margin-top: 47px; margin-bottom:55px"/>
+              <Button :loading="loading" @click.prevent="login()" buttonText="Continue" class="" style="margin-top: 47px; margin-bottom:55px"/>
             </v-form>
           </v-col>
         
@@ -110,7 +110,7 @@ const togglePassword = () => {
 const email = ref('');
 const password = ref('');
 const alert = ref(false);
-const isFormValid = computed(() => password.value.length && validateEmail(email.value));
+// const isFormValid = computed(() => password.value.length && validateEmail(email.value));
 const pinia = useStore();
 const loading= ref(false);
 
