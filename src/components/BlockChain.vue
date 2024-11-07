@@ -58,11 +58,14 @@ const fetch_allChainNetworks = async()=>{
 };
 };
 
-
 const isChevronToggled = ref(false);
 const toggleChevron = () => {
       isChevronToggled.value = !isChevronToggled.value;
 };
+
+onBeforeMount(async () => {
+  fetch_allChainNetworks()
+});
 </script>
 
 <style scoped>
