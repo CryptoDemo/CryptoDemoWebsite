@@ -25,7 +25,7 @@
         <div class="mt-5">
           <div v-if="!filteredOrders.length" style="display: flex; flex-direction: column; justify-content: center; margin: auto; margin: auto; height: 420px;">
             
-            <span class="text-center">No active trades available.</span>
+            <span class="text-center" style="font-size: 14px;">No active trades available.</span>
             <span @click="navigateTo('/account/marketplace/activeOffers')" class="text-decoration-underline text-subtitle-2 text-center cursor-pointer" :class="isDark ? 'text-dark' : 'text-light'">Perform trades to see them here</span>
           </div>
 
