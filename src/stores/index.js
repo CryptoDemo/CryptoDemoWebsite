@@ -61,6 +61,7 @@ export const useStore = defineStore('app',()=> {
       selectedPaymentMethod_from_indexPage: "",
       usernameChanged: false,
       preferredLanguage:"English",
+      addressBook: [],
     });
   
   
@@ -94,6 +95,10 @@ export const useStore = defineStore('app',()=> {
 
   const setPaymentMethod = (payload) => {
       state.PaymentMethod = payload;    
+  };
+
+  const setAddressBook = (payload) => {
+      state.addressBook = payload;    
   };
 
   const setpreferredLanguage = (payload) => {
@@ -160,7 +165,6 @@ export const useStore = defineStore('app',()=> {
     state.coin_to_transfer = payload;   
   };
 
-
   const setTransferWallet = (payload) => {
     state.TransferWallet = payload;   
   };
@@ -173,12 +177,10 @@ export const useStore = defineStore('app',()=> {
       state.camouflageCurrency = payload;  
   };
 
-
   const setSummedBalance = (payload) => {
     state.SummedBalance = payload;  
   };
  
-
   const setSelected_coin_Balance = (payload) => {
     state.Selected_coin_Balance = payload;  
   };
@@ -248,7 +250,6 @@ export const useStore = defineStore('app',()=> {
   };
   const setNotificationLogs = (payload) => {
       state.notificationLogs = payload;
-      // state.notificationLogs.reverse(state.notificationLogs)
       
   };
 
@@ -299,6 +300,7 @@ export const useStore = defineStore('app',()=> {
     state.selectedPaymentMethod_from_indexPage = "",
     state.chat_messages = [],
     state.new_chat_messages = [],
+    state.addressBook =[]
    
     navigateTo('/authentication/login')
   }
@@ -351,6 +353,7 @@ export const useStore = defineStore('app',()=> {
       setpreferredLanguage,
       setPaymentMethod,
       setSelectedScreen_for_Trades,
+      setAddressBook,
     }
 },
   {persist: {

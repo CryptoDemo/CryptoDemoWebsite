@@ -109,7 +109,8 @@ export const updateUser = async(UpdateUserDetails)=>{
 
 export const getNotifications = async(pageNumber)=>{
     const pinia = useStore();
-    const data = await fetch(`${baseURL}notification/${pageNumber}`,{ 
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}broadcast/user/${pageNumber}`,{ 
     headers: {
         'Content-Type': 'application/json',
         'x-access-token' : `${pinia.state.user?.token}`
@@ -200,6 +201,35 @@ export const reset_Pin = async(payload)=>{
         'x-access-token' : `${pinia.state.user?.token}`
     },
     body: JSON.stringify(payload)
+
+    }).then(res => res.json());
+    return data;
+};
+
+export const address_Book = async(payload)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}address-book`,{ 
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'x-access-token' : `${pinia.state.user?.token}`
+    },
+    body: JSON.stringify(payload)
+
+    }).then(res => res.json());
+    return data;
+};
+
+export const getAddress_Book = async(pageNumber)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}address-book/get/${pageNumber}`,{ 
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'x-access-token' : `${pinia.state.user?.token}`
+    },
 
     }).then(res => res.json());
     return data;

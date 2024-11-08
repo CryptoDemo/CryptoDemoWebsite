@@ -119,16 +119,16 @@ const login = async () => {
   const device = useDevice();
   loading.value = true;
 
+
   // Fetch hCaptcha response token from the form
   const hCaptchaToken = document.querySelector('[name="h-captcha-response"]').value;
 
-  if (!hCaptchaToken) {
+  if (!hCaptchaToken && !email.value  && !password.value) {
     // Display error if hCaptcha is not completed
-    push.error('Please complete the hCaptcha challenge.', { duration: 2000 });
+    push.error('Please fill out all the fields.', { duration: 2000 });
     loading.value = false;
     return;
   }
-
 
   const userLogin = {
     email: email.value.toLowerCase(),

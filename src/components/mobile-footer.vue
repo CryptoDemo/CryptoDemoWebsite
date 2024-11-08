@@ -29,7 +29,7 @@
                   </div>
                 </template> 
               </v-list-group>
-            </v-list-group>
+              </v-list-group>
               
 
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 72px;">

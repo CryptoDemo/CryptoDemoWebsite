@@ -1,4 +1,4 @@
-export const baseURL = 'https://crypto-demo-api.inhouse.codes/v1/'
+export const baseURL = 'https://api.betacrypto.com/'
 
 export const OneMB = 1024*1024;
 export const FiveMB = 5 * OneMB;

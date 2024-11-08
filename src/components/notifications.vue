@@ -41,12 +41,7 @@ const totalPages = ref(2);
 const isLoading = ref(false);
 
 
-const notificationLogs = ref( [{
-    "id": "x483...",
-    "image_url": null, // if there's an image for this notification
-    "message": "The notification message",
-    "timestamp": "2024-02-02T20:46:44.098Z"
-}] || pinia.state.notificationLogs || []);
+const notificationLogs = ref( pinia.state.notificationLogs || []);
 
 const fetchMore = async()=>{
   // increment the pageNumber
@@ -56,24 +51,34 @@ const fetchMore = async()=>{
   fetchActivityLogs();
 }
 
-const fetchNotificationLogs = async()=>{
-  try{
-    isLoading.value = true;
-    const result = await getNotifications(currentPageNumber.value);
-    isLoading.value = false;
-  
-    totalPages.value = result?.data?.total_pages || totalPages.value;
-  
-    if(result?.data?.result?.length){
-        notificationLogs.value = filterByKey("id",[...notificationLogs.value,...result?.data?.result]);
+const fetchNotificationLogs = async () => {
+  isLoading.value = true;
+  try {
+    const data = await getNotifications(currentPageNumber.value);
+
+    totalPages.value = data?.data?.total_pages || totalPages.value;
+
+    if (data.success) {
+      console.log("noti...", data.data);
+
+      // Append and filter by unique IDs if necessary
+      notificationLogs.value = filterByKey("id", [
+        ...notificationLogs.value,
+        ...data.data.result,
+      ]);
+
       pinia.setNotificationLogs(notificationLogs.value);
-      console.log(notificationLogs.value)
     }
-  }catch(e){
-    isLoading.value = false;
+  } catch (e) {
     push.error(`Error: ${e.message}`);
-  };
-}
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+onBeforeMount(() => {
+  fetchNotificationLogs();
+});
 
 </script>
 
