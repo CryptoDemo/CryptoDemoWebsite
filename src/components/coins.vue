@@ -154,28 +154,7 @@ const getTokens_ = async () => {
   }
 };
 
-// Function to fetch token balances
-// const getTokenBals = async () => {
-//   if (pinia.state.isAuthenticated) {
-//     try {
-//       // Fetch token balances
-//       const data = await getTokenBalance(symbols);
 
-//       if (data.success) {
-//         // Update the tokens with the new balance
-//         const updatedTokensBals = updateTokenBalances(pinia.state.tokenLists, data.data);
-
-//         // Force state change by creating a new reference
-//         pinia.setTokenLists([...updatedTokensBals]); // Spread to create a new array reference
-
-//       } else {
-//         console.log('Error fetching balances:', data.message);
-//       }
-//     } catch (error) {
-//       console.log('Fetch error:', error);
-//     }
-//   }
-// };
 
 const getTokenBals = async () => {
   if (pinia.state.isAuthenticated) {
@@ -224,7 +203,7 @@ const convertCurrencies = async () => {
           conversionRate: rateData ? rateData.value : null // Add conversionRate to token
         };
       });
-
+      console.log("updatedTokens...", updatedTokens)
       // Update the Pinia state with the new token list including conversion rates
       pinia.setTokenLists(updatedTokens);
 
@@ -236,7 +215,15 @@ const convertCurrencies = async () => {
   }
 };
 
-
+// Watch for changes in `preferredCurrency` and trigger `convertCurrencies`
+watch(() => pinia.state.preferredCurrency,
+  (newCurrency, oldCurrency) => {
+    console.log("now convertubng")
+    if (newCurrency !== oldCurrency) {
+      convertCurrencies();
+    }
+  }
+);
 
 
 const chainIcon = computed(() => {
@@ -293,7 +280,11 @@ const fetch_token_bals = async()=>{
 
 fetch_token_bals();
 
+onMounted(() => {
 
+  convertCurrencies();
+
+});
 // onBeforeMount(() => {
 //   fetch_token_bals();
 // });

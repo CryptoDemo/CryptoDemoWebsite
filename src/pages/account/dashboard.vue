@@ -324,15 +324,6 @@ watch(()=>conversionResult.value,(newVal)=>{
   });
 });
 
-// Watch for changes in `preferredCurrency` and trigger `convertCurrencies`
-watch(() => pinia.state.preferredCurrency,
-  (newCurrency, oldCurrency) => {
-    console.log("now convertubng")
-    if (newCurrency !== oldCurrency) {
-      convertCurrencies();
-    }
-  }
-);
 
 
 onMounted(() => {
