@@ -83,12 +83,9 @@ const getPayment_meths = async () => {
     // Fetch active offers
     const data = await getPaymentMethod(pageNumber.value);
 
-    console.log(data)
-
     // Check if the data retrieval was successful
     if (data.success) {
       pinia.setPaymentMethod(data.data.result);
-      console.log(data.data.result);
     } else {
       push.error(`Error: ${data.message || 'Failed to fetch payment methods'}`); // Custom error message
     }

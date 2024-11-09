@@ -39,8 +39,8 @@
                               <v-card-text>
                                 <h3 class="text-center">Two-Factor Authentication</h3>
                                 <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                                  <div class="qr-code mt-7" v-html="twoFactorCodeUrl"></div>
                                   <span class="scan-text" style="font-size: 14px; font-weight: 700; margin-top: 10px; color: #2873FF;">Scan the QR code with your Google Authenticator</span>
+                                  <div class="mt-7" v-html="twoFactorCodeUrl"></div>
                                 </div>
 
                               <div style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 5px; font-weight: 600;">

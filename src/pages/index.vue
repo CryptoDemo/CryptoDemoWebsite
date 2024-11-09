@@ -321,6 +321,7 @@ const getTokens_ = async () => {
   try {
     const data = await getTokens(pageNumber.value);
     if(data.success) {
+      console.log("tokena", data.data)
       const fetchedTokens = data.data.result;
 
       const storedTokenIds = pinia.state.tokenLists.map(item => item.id);
@@ -329,7 +330,6 @@ const getTokens_ = async () => {
       const newItems = fetchedTokens.filter(item => !storedTokenIds.includes(item.id));
 
       if (newItems.length > 0) {
-        console.log('fetching')
         pinia.setTokenLists(fetchedTokens);
       }
     } else {
@@ -441,6 +441,7 @@ const icon = ref(piniastoredicon)
 
 onBeforeMount(async () => {
   await convertCurrencies();
+  getTokens_()
   piniastoredicon.value = pinia.state?.tokenLists[1]?.icon
   select.value = pinia.state?.tokenLists[1]?.name
   coin.value = pinia.state?.tokenLists[1]?.symbol

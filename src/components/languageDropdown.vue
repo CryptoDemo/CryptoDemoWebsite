@@ -23,7 +23,6 @@ const pinia = useStore();
 const language = pinia.state.preferredLanguage.name
 const handleGoogleTranslateSelect = async (language) => {
   try {
-    console.log('Selected language:', language);
     pinia.setpreferredLanguage(language) // Update language in the store
   } catch (error) {
     console.error('Failed to set language:', error);

@@ -10,22 +10,30 @@
                     <!-- <span style="position: absolute; background: #FF3E46; width: 18px; height: 18px;  border-radius: 6px; right: 9px; top: 8px; font-family: manrope;">8</span> -->
                   </button>
             </template>
-            <div>
-            <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="width: 350px; height: 500px; border-radius: 15px;">
-                <v-list-item v-for="(msgs, i) in notificationLogs" :key="i">
-                    <v-list-item-title>
-                    <div class="d-flex">
-                        <img :src="msgs.image_url"/>
-                        <div style="display: flex; flex-direction: column;">
-                        <span>{{ msgs.message }}</span>
-                        <h5 class="mt-1">{{formatDate(msgs.timestamp)}}</h5>
+
+            
+            <div style="margin-top: 15px;">
+
+              <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 15px;">
+                <v-list-item style="display: contents;">
+                  <v-row dense style="width: 330px;">
+                  <v-col v-for="(msgs, i) in notificationLogs" :key="i" sm="12">
+                    <v-list-item style="display: flex;">
+                      <div style="display: flex; align-items: center; ">
+                        <img :src="msgs.image_url" style="width: 40px; height: 40px; border-radius: 40px;"/>
+                        <div class="ml-2" style="display: flex; flex-direction: column;">
+                          <span style="font-size: 14px;">{{ msgs.message }}</span>
+                          <span class="mt-1" style="font-size: 12px;">{{ formattedDate(msgs.c_at )}}</span>
                         </div>
                     </div>
-                    </v-list-item-title>
+                    </v-list-item>
+                  </v-col>
+                  </v-row>
                 </v-list-item>
-            </v-list>
-        </div>
-    </v-menu>
+              </v-list>
+
+            </div>
+        </v-menu>
     </div>
 </template>
 
@@ -59,7 +67,6 @@ const fetchNotificationLogs = async () => {
     totalPages.value = data?.data?.total_pages || totalPages.value;
 
     if (data.success) {
-      console.log("noti...", data.data);
 
       // Append and filter by unique IDs if necessary
       notificationLogs.value = filterByKey("id", [

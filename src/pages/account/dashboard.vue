@@ -16,7 +16,7 @@
   
         <div style="display: flex; justify-content: space-between; overflow-x: auto;">
           <!-- Check if data is loaded, otherwise show skeleton loaders -->
-          <template v-if="tokensList.length">
+          <template v-if="tokensList">
             <div v-for="(item, i) in tokensList.slice(0, 3)" :key="i">
               <v-card link @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="coinbox me-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
                 <span class="balance" :class="isDark ? 'coin-name':'coin-name-light'"> {{ formatBalance((item.balance || 0) * (item.conversionRate || 0)) }} {{ pinia.state.preferredCurrency }} </span>
@@ -147,7 +147,7 @@ const network = pinia.state.selectedNetwork.toLowerCase();
 const marketPlace = computed(() => pinia.state.MarketPlace);
 const selectedNetworkId = pinia.state.BlockchainNetworks.find(b => b.name == network)?.id;
 const tokensForSelectedNetwork = pinia.state.tokenLists?.filter(token => token?.token_networks?.find(tkn => tkn.blockchain_id === selectedNetworkId));
-const symbols = tokensForSelectedNetwork.map(token => token.symbol);
+const symbols = tokensForSelectedNetwork?.map(token => token.symbol);
 const tokensList = computed(()=>pinia.state.tokenLists);
 
 
@@ -191,12 +191,15 @@ const convertCurrencies = async () => {
     try {
       const data = await currencyConverter(convertCurrency);
 
+      console.log("conversion", data.data)
+
       if (data.success) {
         // Map conversion results to the conversionRate array
         conversionRate.value = data.data.map(item => ({
           from: item.from,
           rate: item.value
         }));
+        // pinia.setTokenLists(data.data.value)
 
       } else {
         console.log("Conversion failed:", data.message);
@@ -260,7 +263,6 @@ if (pinia.state.isAuthenticated) {
 };
 
 
-
 const get_allMarket_Offers = async () => {
   loading.value = true; // Start loading indicator
   try {
@@ -322,7 +324,15 @@ watch(()=>conversionResult.value,(newVal)=>{
   });
 });
 
-
+// Watch for changes in `preferredCurrency` and trigger `convertCurrencies`
+watch(() => pinia.state.preferredCurrency,
+  (newCurrency, oldCurrency) => {
+    console.log("now convertubng")
+    if (newCurrency !== oldCurrency) {
+      convertCurrencies();
+    }
+  }
+);
 
 
 onMounted(() => {

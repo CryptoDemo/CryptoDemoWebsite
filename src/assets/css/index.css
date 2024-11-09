@@ -1,5 +1,5 @@
 ol[data-notivue-align="top"]{
-  z-index: 3000!important;
+  z-index: 100000!important;
 }
 
 body{
@@ -1158,6 +1158,10 @@ line-height: 120%; /* 28.8px */
   .mail-text{
     font-size: 12px !important;
     font-weight: 500 !important;
+  }
+  .writing-btn{
+    font-size: 11.5px !important;
+    font-weight: 600;
   }
 }
 
