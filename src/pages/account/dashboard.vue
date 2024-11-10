@@ -4,7 +4,7 @@
     <v-container class="d-flex" style="margin-top: 110px;">
        
       <div class="dashboardSpace me-3">
-        <Sd-nav1/>
+        <Side-nav/>
       </div>
          
       <div class="dashboard-container" style="margin-left: 16px; width: 100%;">

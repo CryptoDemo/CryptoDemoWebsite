@@ -228,9 +228,10 @@ export const useStore = defineStore('app',()=> {
   };
 
   const setMyOffers = (payload) => {
-      state.MyOffers = payload; 
-      state.offersCount = payload.length;   
+    state.MyOffers = payload; 
+    state.offersCount = payload.length > 0 ? payload.length : ""; // If there are no offers, set offersCount to empty
   };
+  
 
   const setallMyOders = (payload) => {
       state.allMyOders = payload;    
@@ -301,6 +302,7 @@ export const useStore = defineStore('app',()=> {
     state.chat_messages = [],
     state.new_chat_messages = [],
     state.addressBook =[]
+    state.offersCount = ""
    
     navigateTo('/authentication/login')
   }

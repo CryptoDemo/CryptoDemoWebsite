@@ -101,7 +101,7 @@ const get_allMy_Offers = async () => {
   try {
     const data = await personal_Offer(pageNumber.value);
     if (data.success) {
-      console.log(data)
+      console.log("my offers", data)
       let newOffers = data.data.result;
 
       newOffers = newOffers.map(offer => {

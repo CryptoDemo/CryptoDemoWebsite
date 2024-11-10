@@ -130,7 +130,7 @@
                           </v-btn>
                           </template>
 
-                          <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="height: 160px !important; width: 130px !important; border-radius: 15px !important">
+                          <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="height: 120px !important; width: auto !important; border-radius: 10px !important; margin-top: 10px;">
                             <v-list-item v-for="(currency, i) in pinia.state.allcountries" :key="i">
                               <div>
                                 <v-list-item @click="Selectedcurrency=currency.currency_name">
@@ -638,7 +638,7 @@ text-transform: unset;
 }
 .frame-1{
 display: flex;
-width: 380px;
+width: fit-content;
 padding: 4px;
 align-items: center;
 justify-content: center !important;
@@ -652,18 +652,8 @@ margin-top: 169px ;
 
 }
 .frame-1-light{
-display: flex;
-width: 380px;
-padding: 4px;
-align-items: center;
-gap: 8px;
-border-radius: 100px;
-border: none;
 background: #E9F1FF;
 backdrop-filter: blur(18.950000762939453px);
-margin: auto;
-margin-top: 169px ;
-
 }
 .writing-text{
 text-align: center;
@@ -682,8 +672,7 @@ color: #1B2537;
 }
 .writing-btn {
 display: flex;
-width: 78px;
-padding: 8px;
+padding: 10px;
 justify-content: center;
 align-items: center;
 gap: 10px;

@@ -1,13 +1,16 @@
 <template>
   <div>
     <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true"/>
-    <div>
-      <v-container style="margin-top: 80px;">
+    <v-container style="margin-top: 110px; display: flex;">
 
-        <div style="margin: auto; margin-bottom: 280px;">      
-          <div class="offer-txt1 mt-10" :class="isDark ? 'card-text-dark':'card-text-light'">Create an Offer to Sell your Crypto</div>
+      <div class="flex-lg-and-up hidden-sm-and-down">
+          <Side-nav style="border: none;" />
+      </div>
 
-          <div class="trd-prc" style="display: flex; flex-direction: column; margin-top: 56px;">
+        <div style="margin: auto; margin-bottom: 280px; margin-left: 30px;">      
+          <div class="offer-txt1" :class="isDark ? 'card-text-dark':'card-text-light'">Create an Offer to Sell your Crypto</div>
+
+          <div class="trd-prc" style="display: flex; flex-direction: column; margin-top: 25px;">
               <span class="prc1">Trade Pricing</span>
               
           </div>
@@ -15,7 +18,7 @@
           <div>
           
 
-            <div class="d-md-flex price-div" style="justify-content: space-between; margin-top: 53px; margin-bottom: 66px;">
+            <div class="d-md-flex price-div" style="justify-content: space-between; margin-top: 24px; margin-bottom: 66px;">
               <div :class="{'box1': !priceType, 'box2': priceType}" @click="setPriceType(false)">
                 <span :class="{'mkt-place': !priceType, 'mkt-place1': priceType}">Market Price</span>
                 <span :class="{'mkt-place-caption': !priceType, 'mkt-place-caption1': priceType}">
@@ -178,7 +181,6 @@
     </v-container>
     <Footer class="desktop-footer flex-lg-and-up hidden-md-and-down"/>
     <Mobile-footer class="mobile-footer"/>
-  </div>
   </div>
 </template>
 

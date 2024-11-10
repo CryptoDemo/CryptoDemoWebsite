@@ -4,10 +4,10 @@
     <v-container class="mkt-ctxn" style="display: flex; margin-top: 110px;">
      
         <div class="flex-lg-and-up hidden-sm-and-down">
-          <Sd-nav1 style="border: none;" />
+          <Side-nav style="border: none;" />
         </div>
      
-        <div class="offer-body" style="width: 100%; margin-left: 20px;">
+        <div class="offer-body" style="width: 100%; margin-left: 28px;">
             <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; margin-bottom: 20px; border: none">
               <span class="marketPlace" style="font-size: 24px; font-style: 28px; font-weight: 600; color: #5892FF;">Marketplace</span>
               <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }}</span>
@@ -20,9 +20,14 @@
 
                     <div class="button-container py-3" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; border-radius: 10px; align-items: center;">
                       <v-btn class="me-3" :class="[selectedScreen ? 'personalBtn' : isDark ? 'marketBtn' : 'marketBtn-light']" @click.prevent="selectedScreen=true" >Market Offers</v-btn>
-                      <v-btn :class="[!selectedScreen ? 'personalBtn' : isDark ? 'marketBtn' : 'marketBtn-light']" @click.prevent="selectedScreen=false">Personal Offers 
-                        <span style="background: orangered; color: white; padding: 8px; border-radius: 15px; margin: 10px; height: 23px; display: flex; align-items: center; font-size: 12px">{{ pinia.state.offersCount }}</span>
-                      </v-btn>
+                      <v-btn :class="[!selectedScreen ? 'personalBtn' : isDark ? 'marketBtn' : 'marketBtn-light']" @click.prevent="selectedScreen=false">
+                        Personal Offers 
+                        <!-- Render the span only if offersCount is not empty -->
+                        <span v-if="pinia.state.offersCount" style="background: orangered; color: white; padding: 8px; border-radius: 15px; margin: 10px; height: 23px; display: flex; align-items: center; font-size: 12px">
+                          {{ pinia.state.offersCount }}
+                        </span>
+                    </v-btn>
+
 
                       <v-menu>
                         <template v-slot:activator="{ props }">

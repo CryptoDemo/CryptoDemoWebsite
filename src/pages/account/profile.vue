@@ -2,7 +2,7 @@
   <div>
      <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" :wallet="true"/>
   
-      <div class="div-wrap" style="margin-bottom: 300px; margin-top: 140px;">      
+      <div class="div-wrap" style="margin-bottom: 300px; margin-top: 110px;">      
           <v-container style="display: flex; flex-direction: column;">
             <div style="display: flex; position: relative;">
               <div  class="flex-lg-and-up hidden-sm-and-down">

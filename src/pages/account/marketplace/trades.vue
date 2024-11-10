@@ -3,7 +3,7 @@
     <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true"/>
     <v-container class="d-flex" style="margin-top: 110px">
       <div class="flex-lg-and-up hidden-sm-and-down">
-        <Sd-nav1 style="border: none" />
+        <Side-nav style="border: none" />
       </div>
 
       <div class="trades-div" style="width: 100%; margin-left: 24px;">

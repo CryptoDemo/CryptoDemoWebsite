@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" :wallet="true"/>
-    <v-container style="display: flex; margin-top: 110px; margin-bottom: 113px;">
+    <v-container style="display: flex; margin-top: 100px; margin-bottom: 113px;">
        
             <div class="me-4 flex-lg-and-up hidden-sm-and-down">
               <div class="mt-3">
@@ -12,7 +12,7 @@
          
             <div style="width: 122%;">
                
-                <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; width: 100%; margin-left: 16px; margin-top: 10px;">
+                <div class="acct-settings" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="display: flex; width: 100%; margin-left: 14px; margin-top: 10px;">
                   <span class="acct-text"> Account Settings</span>
                   <span class="mail-text" :class="isDark ? 'text-dark':'text-light'"> {{ pinia.state.user?.email }}</span>
                 </div>
@@ -88,7 +88,7 @@
 
                   <div style="position: relative">
 
-                    <input type="number" id="phone" placeholder="333-4444-4444"  v-model="phoneNumber" style="font-size: 16px; font-weight: 400; height: 64px; padding-left: 100px; outline: none; width: 100%" class="input-styling1 dateInput  pr-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"/>
+                    <input type="text" placeholder="333-4444-4444"  v-model="phoneNumber" style="font-size: 16px; font-weight: 400; height: 64px; padding-left: 100px; outline: none; width: 100%" class="input-styling1 dateInput  pr-4" :class="isDark ? 'profile-cards-dark':'profile-cards-light'"/>
                     
                     <v-menu transition="scale-transition">
                       <template v-slot:activator="{ props }">
@@ -97,7 +97,7 @@
                             <path d="M5.05508 5.99413C5.19232 5.99415 5.32822 5.96714 5.45502 5.91463C5.58182 5.86213 5.69705 5.78516 5.7941 5.68813L9.69409 1.78814C9.88995 1.59227 10 1.32663 10 1.04964C10 0.772651 9.88995 0.50701 9.69409 0.311147C9.49823 0.115285 9.23259 0.00523901 8.9556 0.00523901C8.67861 0.00523901 8.41296 0.115285 8.2171 0.311147L5.0531 2.71114L1.8891 0.311147C1.69324 0.115285 1.4276 0.00523901 1.1506 0.00523901C0.873613 0.00523901 0.607941 0.115285 0.412079 0.311147C0.216217 0.50701 0.106201 0.772651 0.106201 1.04964C0.106201 1.32663 0.216217 1.59227 0.412079 1.78814L4.3121 5.68813C4.4096 5.78569 4.52546 5.86297 4.65298 5.91549C4.78051 5.96801 4.91716 5.99473 5.05508 5.99413Z"/>
                           </svg>
                           
-                          {{  Countrycode?.phone_code  }}
+                          {{  Countrycode  }}
                         </v-btn>
                       </template>
 
@@ -127,18 +127,19 @@
                   <LanguageDropdown/>
                 </div>
 
-                <span class="number-caption ml-1 mb-1" :class="isDark ? 'text-dark':'text-light'">Enter a valid phone number for your wallet.</span>
+                <span class="number-caption ml-1 mb-1" :class="isDark ? 'text-dark':'text-light'">Select preferred language.</span>
                 </v-col>
 
               </v-row>
          
+              <div class="d-flex" style="justify-content: end; margin-top: 16px;">
+                <v-btn class="primary-btn1" :loading="loading" style="height: 55px; width:150px; color: white; box-shadow: none; font-weight: 600" @click="UpdateUserInfo()">Update Bio</v-btn>
+              </div>
 
                <div class="table-div" style="margin-left: 16px; width: 99%; margin-top: 32px !important">
                 <NotificationSettings />
                 
-              <div class="d-flex" style="justify-content: end; margin-top: 16px;">
-                <v-btn class="primary-btn1" :loading="loading" style="height: 60px; width:150px; color: white; box-shadow: none; font-weight: 600" @click="UpdateUserInfo()">Update Bio</v-btn>
-              </div>
+            
               </div>
             </div>
       
@@ -164,7 +165,7 @@ const pinia = useStore();
 const loading = ref(false);
 const profileImg = ref(null)
 const selectedImage = ref(null);
-const phoneNumber = ref(pinia.state?.user?.phone || "");
+const phoneNumber = computed(() => pinia.state?.user?.phone.replace(/^\+\d{1,3}/, '') || "");
 const username_ = ref(pinia.state?.user?.username || "")
 const Countrycode = ref();
 const handleImgChange = async(event)=> await handleFileChange(event,selectedImage,profileImg.value);
@@ -219,15 +220,12 @@ watchEffect(() => username_, debounce((value) => {
 
 
 const UpdateUserInfo = async () => {
-  const dobFormatted = formatDate(DateOfBirth.value);
   const phoneNumberString = phoneNumber.value.toString();
 
   const UpdateUserDetails = {
     phone: phoneNumberString,
-    dob: dobFormatted,
     username: username_.value
   }
-
 
   loading.value = true;
   console.log(UpdateUserDetails)
@@ -256,8 +254,8 @@ const UpdateUserInfo = async () => {
 };
 
 
-Countrycode.value = pinia.state.allcountries.find(c => c.country_name === pinia.state.user.country);
-console.log('Selected country code:', Countrycode?.value?.phone_code);
+Countrycode.value = pinia.state.allcountries.find(c => c.country_name === pinia.state.user.country)?.phone_code;
+console.log('Selected country code:', Countrycode.value);
 
 </script>
 <style scoped>
