@@ -4,9 +4,9 @@
         <div class="d-flex mt-5" style="justify-content: space-between;">
           <span  :class="isDark ?  'demo-web1':'demo-web1-light'" >Betacrypto</span>
 
-          <div>
+          <!-- <div>
             <LanguageDropdown/>
-          </div>
+          </div> -->
 
         </div>
       <div class="footer-bg" :class="isDark ? 'footer-bg-dark':'footer-bg-light'">
