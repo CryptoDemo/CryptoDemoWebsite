@@ -155,6 +155,7 @@ import { compressImage } from "@/composables/mixin";
 import {uploadUserFile} from "@/composables/requests/file";
 import { debounce } from "@/composables/mixin";
 import {checkUsernameAvailability, updateUser} from "@/composables/requests/users";
+
 definePageMeta({
   middleware: 'scroll-to-top'
 });
@@ -165,9 +166,9 @@ const pinia = useStore();
 const loading = ref(false);
 const profileImg = ref(null)
 const selectedImage = ref(null);
-const phoneNumber = computed(() => pinia.state?.user?.phone.replace(/^\+\d{1,3}/, '') || "");
+const phoneNumber = computed(() => pinia.state?.user?.phone || "");
 const username_ = ref(pinia.state?.user?.username || "")
-const Countrycode = ref();
+const Countrycode = ref("");
 const handleImgChange = async(event)=> await handleFileChange(event,selectedImage,profileImg.value);
 
 watch(()=> selectedImage.value,async(newval)=>{
@@ -204,7 +205,7 @@ watch(()=> selectedImage.value,async(newval)=>{
 
     push.error(`Error: ${error}`, { duration: 2000 })
   }
-  });
+});
 
 const isChevronToggled = ref(false);
 const toggleChevron = () => {

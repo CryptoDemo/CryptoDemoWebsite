@@ -94,9 +94,7 @@ import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 import { signIn } from "@/composables/requests/auth";
 import HCaptcha from '~/components/HCaptcha.vue'
-definePageMeta({
-  middleware: ['auth', 'scroll-to-top']
-});
+definePageMeta({ middleware: ['auth', 'scroll-to-top']});
 
 
 const theme = useTheme()
@@ -110,7 +108,7 @@ const togglePassword = () => {
 const email = ref('');
 const password = ref('');
 const alert = ref(false);
-// const isFormValid = computed(() => password.value.length && validateEmail(email.value));
+
 const pinia = useStore();
 const loading= ref(false);
 

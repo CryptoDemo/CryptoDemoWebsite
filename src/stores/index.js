@@ -65,10 +65,11 @@ export const useStore = defineStore('app',()=> {
   
   
   const setUser = (payload) => {
-      state.user = payload;
-      state.isAuthenticated = true;
-
-  };
+    if(!payload?.id) return;
+    let token = payload.token || state.user.token;
+    state.user = {...payload,token};
+    state.isAuthenticated = true;
+  };``
 
   const updateNotificationSettings = (payload) => {
       const {key, value} = payload;

@@ -157,14 +157,14 @@ const setCamo = async () => {
       const currentUser = pinia.state.user;
 
       // Merge the existing user data with the updated camouflage data
-      pinia.setUser({
-        ...currentUser,
-        camouflage: {
-          ...currentUser.camouflage,
-          country_id: CountryID.value.id,
-          max_spend_balance: camouflagBalance.value,
-        }
-      });
+      // pinia.setUser({
+      //   ...currentUser,
+      //   camouflage: {
+      //     ...currentUser.camouflage,
+      //     country_id: CountryID.value.id,
+      //     max_spend_balance: camouflagBalance.value,
+      //   }
+      // });
      
       dialog.value = false;
       switchValue.value = true;

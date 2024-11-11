@@ -285,9 +285,7 @@ onMounted(() => {
   convertCurrencies();
 
 });
-// onBeforeMount(() => {
-//   fetch_token_bals();
-// });
+
 
 
 </script>
