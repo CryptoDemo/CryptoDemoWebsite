@@ -29,10 +29,6 @@ font-weight: 400;
 line-height: normal;
 }
 
-.section {
-  height: 100%;
-  display: contents !important;
-}
 
 .txn-cards-dark {
   background: #162138;

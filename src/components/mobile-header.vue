@@ -50,23 +50,23 @@
              
             </div>
         
-          <div style="margin-top: 25px;">
+          <div v-if="!pinia.state?.user?.token" style="margin-top: 25px;">
             <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
           </div>
 
+          <nuxt-link to="/account/trade/wallet" v-if="!pinia.state?.user?.token"> <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" class="mt-5">Wallet</v-btn> </nuxt-link>
 
-          <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 17px; margin-top: 17px;">
-          <nuxt-link to="/account/trade/wallet"> <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" >Wallet</v-btn> </nuxt-link>
-          </div>
+
+          <nuxt-link to="/account/dashboard"> <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" class="mt-5">Dashboard</v-btn> </nuxt-link>
         
   
-          <v-menu style="position: relative; z-index: 10000;">
+          <v-menu v-if="!pinia.state?.user?.token" style="position: relative; z-index: 10000;">
                 <template v-slot:activator="{ props }">
-                    <v-btn v-bind="props" :class="isDark ? 'mobile-btn':'mobile-btn-light'">Gift Card Hub
+                    <v-btn v-bind="props" :class="isDark ? 'mobile-btn':'mobile-btn-light'">Features
                       <v-icon color="primary" class="mt-1"  icon="mdi-chevron-down"></v-icon>
                     </v-btn>
                 </template>
-                <div style="display: flex; align-items: center;  justify-content: end; position: relative; z-index: 1000000;">
+                <div style="display: flex; align-items: center;  justify-content: end; position: relative; z-index: 100;">
                 <v-list style="width: 100%;" :class="isDark ? 'card-hub':'card-hub-light'">
                   <div>
                   
@@ -99,8 +99,8 @@
                 </div>
           </v-menu>
 
-          <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
-            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Become a Vendor</v-btn>
+          <div v-if="!pinia.state?.user?.token" :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 25px;">
+            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Spot trading</v-btn>
           </div>
   
           <div style="display: flex; justify-content: flex-start; margin-top: 25px; align-items: center; margin-left: 10px;">
@@ -108,18 +108,16 @@
              <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> theme</span>
           </div>
 
-          <!-- <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-top: 5px; margin-bottom: 20px; padding: 10px;"> -->
-          <NuxtLink to="/authentication/login"><v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="width: 100%; justify-content: center; border-radius: 10px !important;">Log In</v-btn></NuxtLink> 
-          <!-- </div> -->
+          <NuxtLink to="/authentication/login"><v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" class="mt-3 mb-3" style="width: 100%; justify-content: center; border-radius: 10px !important;">Log In</v-btn></NuxtLink> 
   
-          <!-- <div :class="isDark ? 'mobile-btn':'mobile-btn-light'" style="margin-bottom: 30px; border-radius: 10px !important; background: #2873FF; padding: 11px;"> -->
+
           <NuxtLink to="/authentication/register"><v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; justify-content: center; border-radius: 10px !important;">Register</v-btn></NuxtLink>
-          <!-- </div> -->
+
         </v-navigation-drawer>
       </nav>
       </ClientOnly>
     </div>
-  <!-- </nav> -->
+  
 
    </div>
   </template>
@@ -192,6 +190,7 @@ const toggleChevron = () => {
 
 
   let input = ref("");   
+  const locations = ref("");   
 
   const filteredItems = computed(() => {
   const searchTerm = input.value.toLowerCase();

@@ -45,7 +45,7 @@ export const useStore = defineStore('app',()=> {
       Fiat_transactions: [],
       Total_fiat_bal:[],
       ConvertedPriceValue:[],
-      selectedOfferType_from_landing: {},
+      selectedOfferType_from_landing: [],
       fiat_currency_i_want: "",
       Fiat_swap_details: {},
       geo:{},
@@ -61,7 +61,6 @@ export const useStore = defineStore('app',()=> {
       selectedPaymentMethod_from_indexPage: "",
       usernameChanged: false,
       preferredLanguage:"English",
-      addressBook: [],
     });
   
   
@@ -95,10 +94,6 @@ export const useStore = defineStore('app',()=> {
 
   const setPaymentMethod = (payload) => {
       state.PaymentMethod = payload;    
-  };
-
-  const setAddressBook = (payload) => {
-      state.addressBook = payload;    
   };
 
   const setpreferredLanguage = (payload) => {
@@ -165,6 +160,7 @@ export const useStore = defineStore('app',()=> {
     state.coin_to_transfer = payload;   
   };
 
+
   const setTransferWallet = (payload) => {
     state.TransferWallet = payload;   
   };
@@ -177,10 +173,12 @@ export const useStore = defineStore('app',()=> {
       state.camouflageCurrency = payload;  
   };
 
+
   const setSummedBalance = (payload) => {
     state.SummedBalance = payload;  
   };
  
+
   const setSelected_coin_Balance = (payload) => {
     state.Selected_coin_Balance = payload;  
   };
@@ -231,7 +229,6 @@ export const useStore = defineStore('app',()=> {
     state.MyOffers = payload; 
     state.offersCount = payload.length > 0 ? payload.length : ""; // If there are no offers, set offersCount to empty
   };
-  
 
   const setallMyOders = (payload) => {
       state.allMyOders = payload;    
@@ -251,6 +248,7 @@ export const useStore = defineStore('app',()=> {
   };
   const setNotificationLogs = (payload) => {
       state.notificationLogs = payload;
+      // state.notificationLogs.reverse(state.notificationLogs)
       
   };
 
@@ -281,7 +279,6 @@ export const useStore = defineStore('app',()=> {
     state.Total_fiat_bal = [],
     state.ConvertedPriceValue = [],
     state.MyOffers = [],
-    state.selectedNetwork= "TRC20",
     state.selected_coin_to_buy_from_marketplace = "",
     state.selected_offer_from_trades = "",
     state.selected_coin_to_buy_from_marketplace_userID = "",
@@ -301,8 +298,6 @@ export const useStore = defineStore('app',()=> {
     state.selectedPaymentMethod_from_indexPage = "",
     state.chat_messages = [],
     state.new_chat_messages = [],
-    state.addressBook =[]
-    state.offersCount = ""
    
     navigateTo('/authentication/login')
   }
@@ -355,7 +350,6 @@ export const useStore = defineStore('app',()=> {
       setpreferredLanguage,
       setPaymentMethod,
       setSelectedScreen_for_Trades,
-      setAddressBook,
     }
 },
   {persist: {

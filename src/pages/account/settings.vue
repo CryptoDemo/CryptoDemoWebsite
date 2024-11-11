@@ -214,7 +214,6 @@ const toggleChevron = () => {
 
 const result = ref('');
 watchEffect(() => username_, debounce((value) => {
-      console.log('Updating username to:', value);
       // Your logic to update the username
  }, 500)); 
 
@@ -255,7 +254,7 @@ const UpdateUserInfo = async () => {
 
 
 Countrycode.value = pinia.state.allcountries.find(c => c.country_name === pinia.state.user.country)?.phone_code;
-console.log('Selected country code:', Countrycode.value);
+
 
 </script>
 <style scoped>

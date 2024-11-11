@@ -60,16 +60,17 @@
                 
                 <tr @click="pinia.state.getNewCoinInfo = token.symbol; navigateTo('/account/trade/coinId')" class="token-price py-2"  :class="isDark ? 'wallet-border' : 'wallet-border-light'" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
                   <td style="display: contents; cursor: pointer;">
-                    <div class="d-flex me-7" style="align-items: center; width: 25%;">
-                      <img :src="token.icon" width="35" class="me-3" />
-                      <img :src="chainIcon?.icon" width="15" style="position: relative; right: 25px; margin-top: 16px;"/>
+
+                    <div class="d-flex me-7 coin-wrap" style="align-items: center; width: 25%;">
+                      <img :src="token.icon" width="35" class="" />
+                      <img :src="chainIcon?.icon" width="15" class="chainIcon" style="position: relative; right: 6%; margin-top: 16px;"/>
                       <div class="coin-div" style="flex-direction: column; display: flex; overflow: hidden; text-overflow: ellipsis;">
-                        <span class="coin-name1 flex-lg-and-up hidden-sm-and-down"
+                        <span class="coin-name1"
                               :class="isDark ? 'coin-name' : 'coin-name-light'"
                               style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                           {{ token.name }}
                         </span>
-                        <span class="sml-text"
+                        <span class="sml-text flex-lg-and-up hidden-sm-and-down"
                               :class="isDark ? 'text-dark' : 'text-light'"
                               style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                           {{ token.symbol }}
@@ -80,7 +81,7 @@
 
                   <td class="mt-2" style="display: flex; align-items: center; width: 21%; cursor: pointer;"><span class="browser-txt coin-price" style="display: flex; align-self: start; margin-top: 3px;" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(token?.conversionRate) }}</span></td>
 
-                  <td style="display: flex; align-items: end; width: 15%; cursor: pointer;">
+                  <td class="quantity-div" style="display: flex; align-items: end; width: 15%; cursor: pointer;">
                     <span class="browser-txt mb-2 flex-md-and-up hidden-sm-and-down" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 700; display: flex; align-self: center;"> 
                       {{formatBalance(token.balance) }}
                     </span>
@@ -628,6 +629,21 @@ font-weight: 700;
 }
 .coin-price{
   margin-top: 11px !important;
+}
+.token-price{
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.chainIcon{
+  right: 13%!important;
+}
+.coin-name1{
+  font-size: 14px !important;
+}
+
+.quantity-div{
+  display: none !important;
 }
 
 }

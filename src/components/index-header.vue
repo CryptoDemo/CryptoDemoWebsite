@@ -15,7 +15,7 @@
              <div class="text-center flex-lg-and-up hidden-sm-and-down">
               <v-menu open-on-hover>
                   <template v-slot:activator="{ props }">
-                      <v-btn color="" class="header-link flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" v-bind="props">Gift Card Hub
+                      <v-btn color="" class="header-link flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" v-bind="props">Features
                         <v-icon color="primary" class="mt-1"  icon="mdi-chevron-down"></v-icon>
                       </v-btn>
                   </template>
@@ -52,7 +52,7 @@
                   </div>
               </v-menu>
             </div>
-            <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Become a Vendor</span></NuxtLink> </v-btn>
+            <v-btn class="header-link flex-lg-and-up hidden-sm-and-down"> <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle':'nav-subtitle-light'" >Spot trading</span></NuxtLink> </v-btn>
           </div>
        
       

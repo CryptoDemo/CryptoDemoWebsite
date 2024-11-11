@@ -3,7 +3,7 @@
     <Header :hide="true" :icon1="true" :icon3="true" :icon2="true" :wallet="true"/>
     <v-container class="d-flex" style="margin-top: 110px;">
        
-      <div class="dashboardSpace me-3">
+      <div class="dashboardSpace me-3 flex-lg-and-up hidden-sm-and-down">
         <Side-nav/>
       </div>
          
@@ -270,7 +270,7 @@ const get_allMarket_Offers = async () => {
 
     console.log(data)
 
-    if (data.success) {
+    if (data?.success) {
       // Retrieve the current user ID from Pinia store
       const userId = pinia.state.user.id; // Ensure 'pinia' and 'user' state are correctly set up
 
