@@ -31,7 +31,7 @@
           </div>
   
           <div style="display: flex; flex-direction: column;" v-else>
-            <span style="font-family: SF Pro Display; font-size: 24px; font-style: normal; font-weight: 800;">{{ camoflageCurrencyIcon }} {{ formatBalance(pinia.state.user.camouflage.max_spend_balance) }}</span>
+            <span style="font-family: SF Pro Display; font-size: 24px; font-style: normal; font-weight: 800;">{{ camoflageCurrencyIcon }}{{ formatBalance(pinia.state.user.camouflage.max_spend_balance) }}</span>
           </div>
           
         </div>
@@ -80,8 +80,8 @@
     return !camouflage || Object.keys(camouflage).length === 0;
   });
   
-  // const camoflageCurrencyIcon = pinia.state.allcountries.find(c=>c.id==pinia.state?.user?.camouflage?.country_id)?.currency_code;
-  // console.log(camoflageCurrencyIcon)
+  const camoflageCurrencyIcon = pinia.state?.allcountries.find(c=>c?.currency_name==pinia.state?.preferredCurrency)?.currency_code;
+
   
   const generateAsterisks = () => {
     const balance = formatBalance(pinia.state.SummedBalance);

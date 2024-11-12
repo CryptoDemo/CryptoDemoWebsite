@@ -95,7 +95,7 @@ const isCamouflageEmpty = computed(() => {
   return !camouflage || Object.keys(camouflage).length === 0;
 });
 
-const camoflageCurrencyIcon = pinia.state.allcountries.find(c=>c.currency_name==pinia.state.camouflageCurrency)?.currency_code;
+const camoflageCurrencyIcon = pinia.state?.allcountries.find(c=>c.currency_name==pinia.state?.preferredCurrency)?.currency_code;
 
 const generateAsterisks = () => {
   const balance = formatBalance(pinia.state.SummedBalance);
