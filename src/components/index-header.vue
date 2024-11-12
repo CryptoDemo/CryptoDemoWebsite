@@ -157,7 +157,7 @@ onMounted(async () => {
     pinia.state.allcountries.find(c => c.country_name === country.value)
   );
 
-  flag.value = geoCountry.value?.flag_url;
+  flag.value = geoCountry.value?.flag_url || "https://storage.yeerlo.com/flags/ng.svg";
   countryCode.value = geoCountry.value?.country_code;
 });
 
