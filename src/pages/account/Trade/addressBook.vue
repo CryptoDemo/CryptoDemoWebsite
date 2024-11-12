@@ -7,65 +7,85 @@
         </div>
   
         <div class="trades-div" style="width: 100%; margin-left: 24px;">
-          <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; margin-bottom: 40px; border: none;">
+          <div class="acct-settings" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="display: flex; justify-content: space-between; margin-bottom: 20px; border: none;">
             <span style=" font-size: 24px; font-style: 28px; font-weight: 600;color: #5892ff;">Address Book</span>
             <span class="mail-text" :class="isDark ? 'text-dark' : 'text-light'"> {{ pinia.state.user?.email }} </span>
+        </div>
+
+          <div v-if="All_address.length">
+
+            <v-expansion-panels class="address-book" style="border-radius: 10px;">
+              <div v-for="(address, id) in All_address" :key="id"  style="width: 100%;">
+              <v-expansion-panel  
+                :title="address.contact_name" class="my-2" style="border-radius: 10px;"
+                :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+                @click="collectAdressVals(address)">
+                <v-expansion-panel-text>
+                  <div style="display: flex; flex-direction: column;">
+                    <span class="answer-text">Chain Network: <span style="text-transform: uppercase;">{{ networkName }}</span></span>
+                    <span class="answer-text">Wallet Address: {{ address.contact_wallet_address }}</span>
+                    <v-btn variant="tonal" @click="deleteAddress()" class="mt-3" style="font-size: 14px; color: orangered; font-weight: 700; text-transform: unset; border-radius: 10px; height: 45px;">Delete wallet address</v-btn>
+                  </div>
+                </v-expansion-panel-text>
+              </v-expansion-panel>
+            </div>
+            </v-expansion-panels>
+
+            <v-btn variant="tonal" class="mt-3" @click="navigateTo('/account/trade/saveAddress')" style="font-size: 14px; color: #2873FF; font-weight: 700; text-transform: unset; border-radius: 10px; height: 50px;">Add another address</v-btn>
+            
           </div>
+      
 
-          <div style="height: auto; display: flex; flex-direction: column;">
-            <v-expansion-panels class="my-2" variant="popout">
-                <v-expansion-panel
-                    v-for="(address, i) in All_address"
-                    :key="i"
-                    :title="address.contact_name">
-
-                    <v-expansion-panel-text>
-                        <div style="display: flex; flex-direction: column;">
-                            <span class="answer-text">Wallet address: {{ address.contact_wallet_address }}</span>
-                            <span class="answer-text">{{ address.contact_wallet_address }}</span>
-                            <span class="answer-text">{{ address.contact_wallet_address }}</span>
-                        </div>
-                    </v-expansion-panel-text>
-                </v-expansion-panel>
-                </v-expansion-panels>
-
-
-
-
-            <div v-if="!All_address" style="display: flex; margin: auto; flex-direction: column; align-items: center;">     
+          <div v-else style="display: flex; margin: auto; flex-direction: column; align-items: center;">     
                 <img src="/svg/tag-user.svg" width="100"/>
                 <div style="display: flex; flex-direction: column;">
                     <span style="font-size: 14px;">You have not saved any address</span>
                     <span @click="navigateTo('/account/trade/saveAddress')" class="text-decoration-underline text-subtitle-2 text-center cursor-pointer" :class="isDark ? 'text-dark' : 'text-light'">save address to see them here</span>
                 </div>
-            </div>
+          </div>
 
           </div>
-        </div>
 
       </v-container>
       <Footer class="flex-lg-and-up hidden-sm-and-down" />
       <Mobile-footer class="mobile-footer" />
     </div>
   </template>
-  <script setup>
-  import { ref, computed, onMounted, onUnmounted } from "vue";
-  import { getAddress_Book } from "@/composables/requests/users";
-  import { useTheme } from "vuetify";
+<script setup>
+import { ref, computed, onMounted } from "vue";
+import { getAddress_Book, deleteAddress_Book } from "@/composables/requests/users";
+import { useTheme } from "vuetify";
 
-  definePageMeta({
-    middleware: 'scroll-to-top'
-  });
+definePageMeta({ middleware: 'scroll-to-top'});
 
-  const theme = useTheme()
-  const isDark = computed(() =>  theme.global.current.value.dark);
-  const pinia = useStore();
-  const pageNumber = ref(1)
-  const All_address = ref(pinia.state.addressBook)
+const theme = useTheme()
+const isDark = computed(() =>  theme.global.current.value.dark);
+const pinia = useStore();
+const pageNumber = ref(1)
+const All_address = computed(() => pinia.state.addressBook);
+const loading = ref(false)
 
-  const getAllWalletAddress = async () => {
-    if (pinia.state.isAuthenticated) {
-      try {
+const selectedNetwork = ref(pinia.state.selectedNetwork.toLowerCase());
+
+const networkId = computed(() => {
+  const network = pinia.state.BlockchainNetworks.find(
+    (n) => n.name.toLowerCase() === selectedNetwork.value
+  );
+  return network ? network.id : null; // Return the ID or null if not found
+});
+
+  
+const collectAdressVals = (address) => {
+  const payload = {
+    id: address?.id,
+    contact_id: address?.user_id,
+  };
+  pinia.setContactId(payload); // Assuming you have the pinia store setup
+};
+
+
+const getAllWalletAddress = async () => {
+  try {
         const data = await getAddress_Book(pageNumber.value)
         console.log(data)
         if (data.success) {
@@ -76,9 +96,48 @@
  
       } catch (error) {
         console.log(error)
-      }
-    }
+  } 
 };
+
+const networkName = computed(() => {
+  // Find the address book entry by a specific criterion
+  const addressEntry = pinia.state?.addressBook.find(
+    (entry) => entry.user_id === pinia.state?.selectedAdressBook_UserId?.contact_id
+ // Replace with your actual condition
+  );
+
+  // If an entry with the required chain_id is found, use it to find the network
+  if (addressEntry) {
+    const network = pinia.state.BlockchainNetworks.find(
+      (n) => n.id === addressEntry.chain_id
+    );
+    return network ? network.name : null; // Return network name or null if not found
+  }
+});
+
+const deleteAddress = async (addressId) => {
+  loading.value = true;
+
+  try {
+    // Call the delete function, passing the address ID to be deleted
+    const data = await deleteAddress_Book(pinia.state.selectedAdressBook_UserId.id);
+
+    if (data?.success) {
+      push.success("Wallet address deleted successfully.");
+      
+      // Filter out the deleted address from All_address
+      pinia.state.addressBook = pinia.state.addressBook.filter(address => address.id !== pinia.state.selectedAdressBook_UserId.id);
+    } else {
+      push.error(data.message || 'Failed to delete wallet address.');
+    }
+  } catch (error) {
+    push.error(`An error occurred: ${error.message}`);
+  } finally {
+    loading.value = false; // Always reset loading
+  }
+};
+
+
 
 onMounted(() => {
     getAllWalletAddress();
@@ -89,6 +148,14 @@ onMounted(() => {
 
 
 <style scoped>
+.address-book :deep(.v-expansion-panel__shadow){
+box-shadow: none !important;
+border: none !important;
+border-radius: 10px;
+}
+.answer-text{
+  font-size: 14px;
+}
 
 @media screen and (max-width: 600px) {
 .trades-div{

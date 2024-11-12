@@ -5,5 +5,5 @@
 </template>
 
 <script setup>
-// defineNuxtRouteMiddleware('scrollToTop');
+
 </script>

@@ -108,10 +108,11 @@
              <span :class="isDark ? 'Switch-text':'Switch-text-light'">Switch to <span class="switch-hint">light</span> theme</span>
           </div>
 
-          <NuxtLink to="/authentication/login"><v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" class="mt-3 mb-3" style="width: 100%; justify-content: center; border-radius: 10px !important;">Log In</v-btn></NuxtLink> 
+          <NuxtLink to="/authentication/login" v-if="pinia.state?.user?.token"><v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" class="mt-3 mb-3" style="width: 100%; justify-content: center; border-radius: 10px !important;">Log Out</v-btn></NuxtLink> 
+          
+          <NuxtLink to="/authentication/login" v-if="!pinia.state?.user?.token"><v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" class="mt-3 mb-3" style="width: 100%; justify-content: center; border-radius: 10px !important;">Log In</v-btn></NuxtLink> 
   
-
-          <NuxtLink to="/authentication/register"><v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; justify-content: center; border-radius: 10px !important;">Register</v-btn></NuxtLink>
+          <NuxtLink to="/authentication/register" v-if="!pinia.state?.user?.token"><v-btn class="mobile-btn" style="background: #2873FF !important; color: white; width: 100%; justify-content: center; border-radius: 10px !important;">Register</v-btn></NuxtLink>
 
         </v-navigation-drawer>
       </nav>

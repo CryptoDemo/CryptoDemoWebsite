@@ -39,6 +39,7 @@
                 <span v-if="errorMessage" style="color: orangered; font-size: 14px;">{{ errorMessage }}</span>
 
             <span class="mt-3" style="font-size: 14px; color: #2873FF; font-weight: 700; cursor: pointer;">+ Add another address</span>
+
             <v-btn class="primary-btn1 mt-5" :loading="loading" @click.prevent="saveWalletAddress()" style="height: 50px; font-weight: 700; color: white;">Save Address</v-btn>
         </div>
         
@@ -156,6 +157,9 @@ const saveWalletAddress = async () => {
     loading.value = false; // Always reset loading
   }
 };
+
+
+
 
 
 

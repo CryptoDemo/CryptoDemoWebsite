@@ -72,5 +72,21 @@ export const addHours = (date, hours = 7) => {
   };
 
 
-
-
+  export const asyncRequest = async (url, options, json = true) => {
+    const pinia = useStore();
+   return fetch(url, options)
+   .then(response => {
+     const statusCode = response.status;
+     if(statusCode == 401){
+       navigateTo("/authentication/login");
+       return;
+     }
+     return json ? response.json() : response.text();
+   })
+   .then((data) => {
+     return data;
+   })
+   .catch((error) => {
+     return error;
+   });
+ };

@@ -60,7 +60,7 @@
             <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1" style="font-size: 14px;">See More...</span>
           </div>
 
-          <v-card link class="offer-card" @click="navigateTo('/account/marketplace/activeOffers')" v-for="offer in pinia.state.MarketPlace.slice(0, 3)" :key="offer.id"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: auto; margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
+          <v-card link class="offer-card" @click="navigateTo('/account/marketplace/activeOffers')" v-for="offer in pinia.state.MarketPlace.slice(0, 3)" :key="offer.id"  :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="height: auto; margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center; box-shadow: none;">
           
             <div style="display: flex; flex-direction: column; line-height: 30px;">
               <span style="font-weight: 600; font-size: 14px">{{ offer.user.username }}</span>
@@ -89,7 +89,7 @@
             <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1" style="font-size: 13px;">See More...</span>
           </div>
 
-          <v-card class="offer-card" link @click="navigateTo('/account/marketplace/activeOffers'); pinia.state.selectedPaymentMethod_from_indexPage = method.name" v-for="(method, index) in paymentMethods.slice(0, 3)" :key="index" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center;">
+          <v-card class="offer-card" link @click="navigateTo('/account/marketplace/activeOffers'); pinia.state.selectedPaymentMethod_from_indexPage = method.name" v-for="(method, index) in paymentMethods.slice(0, 3)" :key="index" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center; box-shadow: none;">
           
             <div style="display: flex; flex-direction: column; line-height: 30px;">
               <span style="font-weight: 600; font-size: 14px;">{{ method.name  }}</span>
@@ -98,15 +98,11 @@
 
             <img src="/svg/bankTrf.svg"/>
 
-          </v-card>
-
-        
+          </v-card>      
          
           <v-carousel height="400" cycle :show-arrows="false" class="carousel-item" style="width: 100%;">
             <v-carousel-item v-for="(slide, i) in slides" :key="i">
-              <div :style="`background-image: url(${slide.image_url}); background-size: contain; background-position: center; height: 100%; width: 100%; padding-top: 20px; background-color: ${slide.background};`">
-               
-              </div>
+              <div :style="`background-image: url(${slide.image_url}); background-size: contain; background-position: center; height: 100%; width: 100%; padding-top: 20px; background-color: ${slide.background};`"></div>
             </v-carousel-item>
           </v-carousel>
 

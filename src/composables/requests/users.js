@@ -234,3 +234,18 @@ export const getAddress_Book = async(pageNumber)=>{
     }).then(res => res.json());
     return data;
 };
+
+export const deleteAddress_Book = async(id)=>{
+    const pinia = useStore();
+    if(!pinia.state.user?.token) return
+    const data = await fetch(`${baseURL}address-book/remove/${id}`,{ 
+    method: 'DELETE',
+    headers: {
+        'Content-Type': 'application/json',
+        'x-access-token' : `${pinia.state.user?.token}`
+    },
+    body: JSON.stringify(id)
+
+    }).then(res => res.json());
+    return data;
+};

@@ -61,6 +61,8 @@ export const useStore = defineStore('app',()=> {
       selectedPaymentMethod_from_indexPage: "",
       usernameChanged: false,
       preferredLanguage:"English",
+      addressBook:[],
+      selectedAdressBook_UserId:"",
     });
   
   
@@ -69,7 +71,7 @@ export const useStore = defineStore('app',()=> {
     let token = payload.token || state.user.token;
     state.user = {...payload,token};
     state.isAuthenticated = true;
-  };``
+  };
 
   const updateNotificationSettings = (payload) => {
       const {key, value} = payload;
@@ -107,6 +109,14 @@ export const useStore = defineStore('app',()=> {
 
   const setStoredBanners = (payload) => {
       state.storeBanners = payload;    
+  };
+
+  const setAddressBook = (payload) => {
+      state.addressBook = payload;    
+  };
+
+  const setContactId = (payload) => {
+      state.selectedAdressBook_UserId = payload;    
   };
 
   const setFAQs = (payload) => {
@@ -244,12 +254,10 @@ export const useStore = defineStore('app',()=> {
 };
   const setActivityLogs = (payload) => {
       state.activityLogs = payload;
-    //   state.activityLogs.reverse(state.activityLogs);
       
   };
   const setNotificationLogs = (payload) => {
       state.notificationLogs = payload;
-      // state.notificationLogs.reverse(state.notificationLogs)
       
   };
 
@@ -299,6 +307,8 @@ export const useStore = defineStore('app',()=> {
     state.selectedPaymentMethod_from_indexPage = "",
     state.chat_messages = [],
     state.new_chat_messages = [],
+    state.addressBook = [],
+    state.selectedAdressBook_UserId = "",
    
     navigateTo('/authentication/login')
   }
@@ -351,6 +361,8 @@ export const useStore = defineStore('app',()=> {
       setpreferredLanguage,
       setPaymentMethod,
       setSelectedScreen_for_Trades,
+      setAddressBook,
+      setContactId,
     }
 },
   {persist: {
