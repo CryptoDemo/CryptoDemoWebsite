@@ -34,7 +34,7 @@
                             {{ isEnabled ? 'Enable' : 'Disable' }}
                           </v-btn>
                       
-                          <v-dialog v-model="dialog" max-width="500">
+                          <v-dialog v-model="dialog" max-width="500" persistent>
                             <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
                               <v-card-text>
                                 <h3 class="text-center">Two-Factor Authentication</h3>
@@ -55,7 +55,8 @@
                                     </v-btn>
                                     <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; font-weight: 400; margin-top: 10px; display: flex; justify-content: center;">Copy and Paste this code into your Google Authenticator</span>
 
-                                    <v-alert class="flex-lg-and-up hidden-sm-and-down" text="A 6 digit code will be provided for you from google which will be needed when next you login" type="info" variant="tonal" style="font-size: 14px; margin-top: 20px; border-radius: 15px;"></v-alert> 
+                                    <v-btn variant="tonal" class="mt-3" @click="terminate2FA()" style="font-size: 14px; color: #2873FF; font-weight: 700; text-transform: unset; border-radius: 10px; height: 50px;">Close 2fa</v-btn>
+                                    <!-- <v-alert class="flex-lg-and-up hidden-sm-and-down" text="A 6 digit code will be provided for you from google which will be needed when next you login" type="info" variant="tonal" style="font-size: 14px; margin-top: 20px; border-radius: 15px;"></v-alert>  -->
                                 </div>
                               </v-card-text>
 
