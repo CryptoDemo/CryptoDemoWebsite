@@ -21,7 +21,7 @@
             
               <span :class="isDark ? 'text-dark':'text-light'" style="margin-top: -5px;">X-hide</span>
               
-              <v-switch @click="switchDialog()" :value="switchValue" inset color="#2873FF" class="v-switch-mobile" style="padding-right: 50px;"></v-switch>
+              <v-switch @click="dialog = true"  inset color="#2873FF" class="v-switch-mobile" style="padding-right: 50px;"></v-switch>
               
               <v-dialog v-model="dialog" style="width: 500px;" persistent>
                 
@@ -29,10 +29,8 @@
                   <span class="mb-3 text-center">Protect Your Privacy with Balance Camouflage</span>
                   <span class="text-subtitle-2 text-center" :class="isDark ? 'text-dark':'text-light'"> Once camouflage mode is activated, you will operate with the set balance and currency for privacy until deactivated.</span>
                   
-                  
                   <input type="number" placeholder="Enter camouflage Balance" v-model="camouflagBalance" style="outline: none; border: 1px solid rgba(142, 155, 174, 0.5); padding: 20px; height: 55px; border-radius: 15px; margin-top: 18px;"/>
                           
-
                   <template v-slot:actions>
                     <div style="display: flex; flex-direction: column; width: 100%;">
                       <v-btn class="ms-auto mt-4" variant="tonal" @click="setCamo()" style="letter-spacing: 0px; text-transform: unset; border-radius: 10px !important; font-weight: 600; color: #2873FF; width: 100%; height: 50px">Activate X-hide</v-btn>
@@ -63,10 +61,7 @@ const isDark = computed(() =>  theme.global.current.value.dark);
 const pinia = useStore();
 const notificationSettings = computed(()=> pinia.state.user?.settings?.notifications);
 const notifSettings = ref({});
-const camoCurrencyCode = ref();
 const dialog = ref(false);
-const confirmDialog = ref(false);
-const switchValue = ref(false);
 const camouflagBalance = ref();
 
 // if(notificationSettings.length && new Date()<expiration){
@@ -96,16 +91,6 @@ const CountryID = ref();
 CountryID.value = pinia.state.allcountries.find(c => c.currency_name === pinia.state.preferredCurrency)?.id;
 
 
-const switchDialog = () =>{
-  if (pinia.state.user.camouflage) {
-    switchValue.value = true
-    confirmDialog.value = true;
-  } else {
-    dialog.value = true;
-    switchValue.value = true;
-  }
-};
-
 const setCamo = async () => {
   dialog.value = true
   const UpdateUserDetails = {
@@ -132,7 +117,6 @@ const setCamo = async () => {
       });
      
       dialog.value = false;
-      switchValue.value = true;
       push.success('Update Successful');
     } else {
       push.error(data.message);
@@ -156,8 +140,7 @@ const deactivateCamouflage = async () => {
         ...currentUser,
         camouflage: null // Set the camouflage property to null
       });
-      switchValue.value = false;
-      confirmDialog.value = false; // Close the dialog
+      dialog.value = false
       push.success('Camouflage settings removed successfully.');
     } else {
       push.error(data.message);
@@ -168,23 +151,10 @@ const deactivateCamouflage = async () => {
   }
 };
 
-const activate_chat = ()=>{
-  const activate = intercom({
-      app_id:'lwqnsoko',
-      user_id:pinia.state.user.id,
-      email:pinia.state.user.email,
-      name:pinia.state.user.name,
-      created_at:pinia.state.user.created_at,
-      hide_default_launcher: true,
-      custom_launcher_selector:'#my_custom_link'
-  })
-  return activate
-}
 
-  onBeforeMount(()=>{
-    setupNotificationSettings();
-    activate_chat();
-  });
+onBeforeMount(()=>{
+  setupNotificationSettings();
+});
 </script>
 
 <style>

@@ -136,10 +136,8 @@
                 <v-btn class="primary-btn1" :loading="loading" style="height: 55px; width:150px; color: white; box-shadow: none; font-weight: 600" @click="UpdateUserInfo()">Update Bio</v-btn>
               </div>
 
-               <div class="table-div" style="margin-left: 16px; width: 99%; margin-top: 32px !important">
-                <NotificationSettings />
-                
-            
+              <div class="table-div" style="margin-left: 16px; width: 99%; margin-top: 32px !important">
+                <NotificationSettings />  
               </div>
             </div>
       

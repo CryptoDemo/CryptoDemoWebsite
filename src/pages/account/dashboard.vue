@@ -356,7 +356,6 @@ text-transform: unset;
 box-shadow: none;
 letter-spacing: 0px;
 margin-top: 5px;
-/* margin-left: 5px !important; */
 }
 .bg-color{
 background: #12181F;

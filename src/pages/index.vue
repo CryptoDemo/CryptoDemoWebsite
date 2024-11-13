@@ -782,7 +782,6 @@ margin-top: 9px
 }
 .hint-text{
 color: #8E9BAE;
-text-align: center;
 font-family: Manrope;
 font-size: 14px;
 font-style: normal;

@@ -16,16 +16,14 @@
 
               <v-list :class="isDark ? 'country-dropdown':'country-dropdown-light'" style="border-radius: 15px;">
                 <v-list-item style="display: contents;">
-                  <v-row dense style="width: 330px;">
+                  <v-row dense class="row-div" style="width: 330px;">
                   <v-col v-for="(msgs, i) in notificationLogs" :key="i" sm="12">
                     <v-list-item style="display: flex;">
-                      <div style="display: flex; align-items: center; ">
-                        <img :src="msgs.image_url" style="width: 40px; height: 40px; border-radius: 40px;"/>
+                        <!-- <img :src="msgs.image_url" style="width: 40px; height: 40px; border-radius: 40px;"/> -->
                         <div class="ml-2" style="display: flex; flex-direction: column;">
-                          <span style="font-size: 14px;">{{ msgs.message }}</span>
+                          <span style="font-size: 14px; text-transform: capitalize;">{{ msgs.message }}</span>
                           <span class="mt-1" style="font-size: 12px;">{{ formattedDate(msgs.c_at )}}</span>
                         </div>
-                    </div>
                     </v-list-item>
                   </v-col>
                   </v-row>
@@ -83,8 +81,20 @@ const fetchNotificationLogs = async () => {
   }
 };
 
+const fetch_notfications = async()=>{
+  if(pinia.state.notificationLogs.length){
+    return 
+  }else{
+    await Promise.allSettled([
+     
+    ])
+    
+  }
+
+}
+
 onBeforeMount(() => {
-  fetchNotificationLogs();
+  fetch_notfications();
 });
 
 </script>
@@ -153,6 +163,11 @@ fill: #10192D;
 }
 .nav-btn :deep(.v-btn__overlay, .v-btn__underlay) {
   width: 0% !important;
+}
+.row-div{
+  display: flex;
+  flex-direction: column;
+  width: auto;
 }
 
 }

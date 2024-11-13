@@ -223,7 +223,7 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue';
 import { useTheme } from 'vuetify';
-import { getTokens, getTokenBalance, currencyConverter } from "@/composables/requests/tokens";
+import { getTokens, getTokenBalance, currencyConverter, getSummedBalance } from "@/composables/requests/tokens";
 definePageMeta({
   middleware: 'scroll-to-top'
 });
@@ -234,7 +234,7 @@ const pinia = useStore();
 const selectedNetwork = ref(pinia.state.selectedNetwork.toLowerCase());
 const selectedScreen = ref(true);
 const pageNumber = ref(1);
-
+const balanceData = ref()
 
 
 const getTokens_ = async () => {
@@ -242,17 +242,17 @@ const getTokens_ = async () => {
     const data = await getTokens(pageNumber.value, selectedNetwork.value);
 
     if (data.success) {
-      const fetchedTokens = data.data.result;
+      const fetchedTokens = data.data.result.reverse();
 
       // Store the fetched tokens with a 5-minute expiry time
       pinia.setTokenLists(fetchedTokens);
 
       // Convert currencies after updating token balances
-      await convertCurrencies();
+      // await convertCurrencies();
 
 
       // Update token balances 
-      await getTokenBals();
+      // await getTokenBals();
 
     } else {
       // Display a message to the user if fetching tokens was unsuccessful
@@ -323,39 +323,13 @@ const convertCurrencies = async () => {
 };
 
 
-// const fetch_allChainNetworks = async()=>{
-//  try {
-//   const data = await getBlockchain();
-//   if (data.success) {
-//     const fetchedBlockchains = data.data;
-
-//     // Extract IDs of stored blockchains
-//     const storedBlockchainsIds = pinia.state.BlockchainNetworks.map(item => item.id);
-
-//     // Filter out already stored blockchains from fetched data
-//     const newItems = fetchedBlockchains.filter(item => !storedBlockchainsIds.includes(item.id));
-
-//     if (newItems.length > 0) {
-    
-//       // Update blockchainNetworks with new items
-//       pinia.state.BlockchainNetworks = [...pinia.state.BlockchainNetworks, ...newItems];
-//     }
-//   } else {
-//     console.error("API request failed:", data.message);
-//   }
-// } catch (error) {
-//   console.error('Fetch error:', error);
-// };
-// };
-
-
 watch(() => pinia.state.selectedNetwork, async (newNetwork) => {
   if (newNetwork.toLowerCase() !== selectedNetwork.value) {
     selectedNetwork.value = newNetwork.toLowerCase();
     await getTokens_();
     await getTokenBals();
     await convertCurrencies();
-    // await fetch_allChainNetworks();
+
   }
 });
 
@@ -386,33 +360,31 @@ const getSummedBal = async () => {
   }
 };
   
-  watch(chain, (newChain, oldChain) => {
-        if (newChain !== oldChain) {
-          getSummedBal();
-        }
-  }); 
+watch(chain, (newChain, oldChain) => {
+      if (newChain !== oldChain) {
+        getSummedBal();
+      }
+}); 
 
-
-
-const fetch_token_bals = async()=>{
-  if(pinia.state.tokenLists.length){
-    return 
-  }else{
-    await Promise.allSettled([
-      getTokens_(),
-      convertCurrencies(),
-      getTokenBals(),
-      getSummedBal(),
-    ])
-    
+// Watch for changes in `preferredCurrency` and trigger `convertCurrencies`
+watch(() => pinia.state.preferredCurrency,
+  (newCurrency, oldCurrency) => {
+    if (newCurrency !== oldCurrency) {
+      convertCurrencies();
+    }
   }
+);
 
-}
 
-
-onBeforeMount(() => {
-  fetch_token_bals();
+onBeforeMount( async() => {
+  // Fetch tokens and update relevant data
+  await getTokens_();
+  await convertCurrencies();
+  await getTokenBals();
+  await getSummedBal();
 });
+
+
 </script>
 
 

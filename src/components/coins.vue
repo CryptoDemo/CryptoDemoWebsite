@@ -131,7 +131,7 @@ const getTokens_ = async () => {
     const data = await getTokens(pageNumber.value, pinia.state.selectedNetwork.toLowerCase());
 
     if (data.success) {
-      const fetchedTokens = data.data.result;
+      const fetchedTokens = data.data.result.reverse();
 
       // Store the fetched tokens with a 5-minute expiry time
       pinia.setTokenLists(fetchedTokens);
@@ -218,7 +218,6 @@ const convertCurrencies = async () => {
 // Watch for changes in `preferredCurrency` and trigger `convertCurrencies`
 watch(() => pinia.state.preferredCurrency,
   (newCurrency, oldCurrency) => {
-    console.log("now convertubng")
     if (newCurrency !== oldCurrency) {
       convertCurrencies();
     }
