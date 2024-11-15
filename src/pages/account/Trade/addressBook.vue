@@ -22,8 +22,9 @@
                 @click="collectAdressVals(address)">
                 <v-expansion-panel-text>
                   <div style="display: flex; flex-direction: column;">
-                    <span class="answer-text">Chain Network: <span style="text-transform: uppercase;">{{ networkName }}</span></span>
+                    <span class="answer-text">Chain Network: <span style="text-transform: uppercase;">{{ getNetworkName(address.chain_id) }}</span></span>
                     <span class="answer-text">Wallet Address: {{ address.contact_wallet_address }}</span>
+                    <v-btn variant="tonal" @click="navigateTo('/account/trade/sendCoin')"  class="mt-3" style="font-size: 14px; color: #2873FF; font-weight: 700; text-transform: unset; border-radius: 10px; height: 45px;">Select wallet address</v-btn>
                     <v-btn variant="tonal" @click="deleteAddress()" class="mt-3" style="font-size: 14px; color: orangered; font-weight: 700; text-transform: unset; border-radius: 10px; height: 45px;">Delete wallet address</v-btn>
                   </div>
                 </v-expansion-panel-text>
@@ -79,6 +80,7 @@ const collectAdressVals = (address) => {
   const payload = {
     id: address?.id,
     contact_id: address?.user_id,
+    walletAdress: address.contact_wallet_address
   };
   pinia.setContactId(payload); // Assuming you have the pinia store setup
 };
@@ -87,7 +89,6 @@ const collectAdressVals = (address) => {
 const getAllWalletAddress = async () => {
   try {
         const data = await getAddress_Book(pageNumber.value)
-        console.log(data)
         if (data.success) {
             pinia.setAddressBook(data.data.result);
           }else {
@@ -99,21 +100,13 @@ const getAllWalletAddress = async () => {
   } 
 };
 
-const networkName = computed(() => {
-  // Find the address book entry by a specific criterion
-  const addressEntry = pinia.state?.addressBook.find(
-    (entry) => entry.user_id === pinia.state?.selectedAdressBook_UserId?.contact_id
- // Replace with your actual condition
-  );
 
-  // If an entry with the required chain_id is found, use it to find the network
-  if (addressEntry) {
-    const network = pinia.state.BlockchainNetworks.find(
-      (n) => n.id === addressEntry.chain_id
-    );
-    return network ? network.name : null; // Return network name or null if not found
-  }
-});
+const getNetworkName = (chainId) => {
+  const network = pinia.state.BlockchainNetworks.find((n) => n.id === chainId);
+  const networkName = network ? network.name : 'Unknown Network';
+  return networkName;
+};
+
 
 const deleteAddress = async (addressId) => {
   loading.value = true;

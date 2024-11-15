@@ -125,7 +125,7 @@
                             <div class="d-flex mt-6" style="justify-content: space-between;">
                                 <td style="display: flex; align-items: center;"> 
                                   <div style="width: 80px;"> 
-                                    <v-btn @click.once.stop="navigateTo('/account/trade/sendButton')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
+                                    <v-btn @click.once.stop="navigateTo('/account/trade/sendCoin')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
                                       <img src="/svg/get.svg" class="me-1"/>
                                       <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
                                     </v-btn>

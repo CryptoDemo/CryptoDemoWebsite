@@ -61,15 +61,21 @@
                    <span class="hint-text" style="font-family: Manrope; margin-left: 10px; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal;">BTC Address</span>
                  </div>
                  <div class="position-relative">
-                  <input class="px-4 mobile-css" disabled placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" v-model="walletAddress" style="border-radius: 25px; margin-top: 8px; outline: none; width: 100%; padding-right: 110px !important; margin-bottom: 36px; align-items:  center; height: 65px; display: -webkit-box; -webkit-box-orient: vertical; line-clamp: 1; text-overflow: ellipsis; overflow: hidden; border: 1px solid rgba(142, 155, 174, 0.5); background: inherit; display: flex; justify-content: space-between;">
-                    <v-btn @click="copyToClipboard()" class="paste-btn" style="letter-spacing: 0px; width: 98px; color: white; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 600; height: 46px; width: 90px; text-transform: unset; border-radius: 17px; top: 4.0%; right: 1%; position: absolute; display: flex;box-shadow: none;  background: var(--Primary-100, linear-gradient(180deg, #2873FF 0%, #0B6B96 100%), #2873FF);">
-                      <div v-if="!copied" class="d-flex">
-                        <span>Copy</span>
-                        <img src="/svg/copy1.svg" style="margin-left: 10px;"/>
-                      </div>
-    
-                      <span v-else>Copied</span>
-                    </v-btn>
+                  <input class="px-4 mobile-css" disabled placeholder="bc1qXY2kGdygjrsqtzE2n0yrf2XY3" v-model="walletAddress" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" style="border-radius: 15px; margin-top: 8px; outline: none; width: 100%; padding-right: 110px !important; margin-bottom: 36px; align-items:  center; height: 60px; display: -webkit-box; -webkit-box-orient: vertical; line-clamp: 1; text-overflow: ellipsis; overflow: hidden; background: inherit; display: flex; justify-content: space-between;">
+                  
+                  <svg xmlns="http://www.w3.org/2000/svg" @click="copyToClipboard()" width="30" height="30" viewBox="0 0 24 24" fill="none" style="top: 6%; right: 2%; position: absolute; display: flex; cursor: pointer;">
+                    <defs>
+                      <!-- Define a linear gradient with an id -->
+                      <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color: #4A90E2; stop-opacity:1" />
+                        <stop offset="100%" style="stop-color: #007AFF; stop-opacity:1" />
+                      </linearGradient>
+                    </defs>
+                    <!-- Apply the gradient as the fill of the path -->
+                    <path d="M6.8775 4.5H5.625C5.32663 4.5 5.04048 4.61853 4.8295 4.8295C4.61853 5.04048 4.5 5.32663 4.5 5.625V19.875C4.5 20.1734 4.61853 20.4595 4.8295 20.6705C5.04048 20.8815 5.32663 21 5.625 21H9C9.19891 21 9.38968 21.079 9.53033 21.2197C9.67098 21.3603 9.75 21.5511 9.75 21.75C9.75 21.9489 9.67098 22.1397 9.53033 22.2803C9.38968 22.421 9.19891 22.5 9 22.5H5.625C4.92881 22.5 4.26113 22.2234 3.76884 21.7312C3.27656 21.2389 3 20.5712 3 19.875V5.625C3 4.92881 3.27656 4.26113 3.76884 3.76885C4.26113 3.27656 4.92881 3 5.625 3H6.8775C7.03266 2.56113 7.32012 2.18119 7.70026 1.91254C8.0804 1.64389 8.53451 1.49976 9 1.5H13.5C14.4795 1.5 15.3135 2.12625 15.6225 3H16.875C17.5712 3 18.2389 3.27656 18.7312 3.76885C19.2234 4.26113 19.5 4.92881 19.5 5.625C19.5 5.82391 19.421 6.01468 19.2803 6.15533C19.1397 6.29598 18.9489 6.375 18.75 6.375C18.5511 6.375 18.3603 6.29598 18.2197 6.15533C18.079 6.01468 18 5.82391 18 5.625C18 5.32663 17.8815 5.04048 17.6705 4.8295C17.4595 4.61853 17.1734 4.5 16.875 4.5H15.6225C15.4673 4.93887 15.1799 5.31881 14.7997 5.58746C14.4196 5.85611 13.9655 6.00024 13.5 6H9C8.53451 6.00024 8.0804 5.85611 7.70026 5.58746C7.32012 5.31881 7.03266 4.93887 6.8775 4.5ZM8.25 3.75C8.25 3.94891 8.32902 4.13968 8.46967 4.28033C8.61032 4.42098 8.80109 4.5 9 4.5H13.5C13.6989 4.5 13.8897 4.42098 14.0303 4.28033C14.171 4.13968 14.25 3.94891 14.25 3.75C14.25 3.55109 14.171 3.36032 14.0303 3.21967C13.8897 3.07902 13.6989 3 13.5 3H9C8.80109 3 8.61032 3.07902 8.46967 3.21967C8.32902 3.36032 8.25 3.55109 8.25 3.75ZM10.5 10.125C10.5 9.42881 10.7766 8.76113 11.2688 8.26884C11.7611 7.77656 12.4288 7.5 13.125 7.5H19.125C19.8212 7.5 20.4889 7.77656 20.9812 8.26884C21.4734 8.76113 21.75 9.42881 21.75 10.125V19.875C21.75 20.5712 21.4734 21.2389 20.9812 21.7312C20.4889 22.2234 19.8212 22.5 19.125 22.5H13.125C12.4288 22.5 11.7611 22.2234 11.2688 21.7312C10.7766 21.2389 10.5 20.5712 10.5 19.875V10.125Z" fill="url(#blueGradient)"/>
+                  </svg>
+                  
+           
                 <div :class="isDark ? 'txn-cards-dark':'txn-cards-light'" class="bg-width" style="display: flex; justify-content: center; border: none; width:20%; margin: auto;">
                   <qrcode-vue :value="walletAddress" :size="150" level="H" />
                 </div>
@@ -187,6 +193,19 @@ font-style: normal;
 font-weight: 400;
 line-height: 140%; /* 19.6px */
 }
+.profile-cards-dark {
+  border: 1px solid #1B2537 !important;
+}
+
+.profile-cards-light {
+  border: 1px solid #E2E8F0 !important;
+}
+.coin-dropdown{
+border: 1px solid #1B2537;
+}
+.coin-dropdown-light{
+border: 1px solid #E2E8F0;
+}
 
 .confirmation-text{
 color: #E2E8F0;
@@ -228,12 +247,11 @@ line-height: 140%; /* 19.6px */
 }
 .inputstyling1{
 stroke-width: 1px;
-border-radius: 26px !important;
+border-radius: 15px !important;
 width: 100% !important;
-height: 65px !important;
+height: 60px !important;
 box-shadow: none!important;
 letter-spacing: 0px;
-border: 1px solid rgba(142, 155, 174, 0.5) !important;
 }
 .profile{
 background: #10192D !important;

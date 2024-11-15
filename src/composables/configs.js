@@ -72,7 +72,7 @@ export const addHours = (date, hours = 7) => {
   };
 
 
-  export const asyncRequest = async (url, options, json = true) => {
+export const asyncRequest = async (url, options, json = true) => {
     const pinia = useStore();
    return fetch(url, options)
    .then(response => {

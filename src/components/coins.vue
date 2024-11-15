@@ -8,8 +8,6 @@
           style="border-radius: 24px; width: 100%; margin-top: 28px; width: 100%;">
           <div style="display: flex; justify-content: space-evenly; align-items: baseline">
       
-            <!-- <span>Crypto Market Table</span> -->
-      
           
           </div>
 
@@ -17,25 +15,27 @@
 
           <v-table class="coin-table" style="display: grid! important; background: inherit; width: 100%; height: auto; padding-bottom: 20px;">
             <thead>
-              <div class="px-15 py-8 table-caption" style="display: flex; align-items: center;">
+              <div class="px-15 py-8 table-caption d-md-flex" style="align-items: center; width: 100%; position: relative;">
 
-                <div class="table-title" style="display: flex; flex-direction: column;">
-                  <span style="font-size: 16px; font-weight: 600;">CryptoCurrency Trading Market Table</span>
-                  <span class="mt-2" :class="isDark ? 'text-dark' : 'text-light'">Live market data at a glance.</span>
-                </div>
-
-                <div @click.stop class="search-div" style="margin-top: 3px; margin-bottom: 15px; display: flex; width: 40%; margin-inline-start: auto;">
-                <svg xmlns="http://www.w3.org/2000/svg" class="searchIcon" width="21" height="21" viewBox="0 0 21 21" fill="none"
-                  style="margin-left: 16px; margin-top: 19px; left: 15%; margin-right: 10px; position: relative;">
-                  <path
-                    d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z"
-                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                  <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="currentColor" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+                <!-- <div class="d-md-flex" style="width: 100%;"> -->
+                  <div class="table-title" style="display: flex; flex-direction: column;">
+                    <span style="font-size: 16px; font-weight: 600;">CryptoCurrency Trading Market Table</span>
+                    <span class="mt-2" :class="isDark ? 'text-dark' : 'text-light'">Live market data at a glance.</span>
+                  </div>
   
-                <input type="search" v-model="input" style="border: 1px solid #64748B; height: 55px; border-radius: 15px; padding-left: 45px; padding-right: 10px; outline: none; align-items: center; width: 80%;">
-              </div>
+                  <!-- <div @click.stop class="search-div" style="margin-bottom: 15px; display: flex;  margin-inline-start: auto; width: 60%; justify-content: end;"> -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="searchIcon" width="21" height="21" viewBox="0 0 21 21" fill="none"
+                      style="margin-left: 16px; margin-top: 2px; left: 50%; margin-right: 10px; position: absolute;">
+                      <path
+                        d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+      
+                    <input type="search" class="search-input" v-model="input" placeholder="search for coins here..." style="border: 1px solid #64748B; height: 55px; border-radius: 15px; padding-left: 45px; padding-right: 10px; outline: none; align-items: center; width: 50%; display: flex; margin-inline-start: auto;">
+                  <!-- </div> -->
+                <!-- </div> -->
               </div>
 
               <tr class="coin-table" style="display: flex; margin-bottom: 8px; justify-content: space-around;">
@@ -427,18 +427,22 @@ input[type="search"]::-webkit-search-cancel-button {
   .price-bal{
     margin-top: 2px;
   }
-  .search-div{
-    width: 80% !important;
+  .search-input{
+    width: 100% !important;
+    margin-bottom: 0px !important;
+    margin-top: 15px;
   }
   .searchIcon{
-    left: 17% !important;
+    left: 0% !important;
+    margin-top: 33px !important;
   }
   .table-caption{
     padding-right: 0px !important; 
     padding-left: 0px !important; 
+    padding-top: 10px !important; 
   }
-  .table-title{
-    display: none !important;
+  .coin-table{
+    padding-bottom: 0px !important;
   }
 
   }

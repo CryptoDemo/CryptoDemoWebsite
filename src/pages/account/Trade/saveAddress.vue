@@ -145,9 +145,12 @@ const saveWalletAddress = async () => {
     const data = await address_Book(payload);
 
     if (data?.success) {
-      // Uncomment this if you want to update the Pinia store with the new address book data
+ 
       pinia.setAddressBook(data.data);
+
       push.success("Wallet address saved successfully.");
+      
+      navigateTo("/account/trade/addressBook");
     } else {
       push.error(data.message || 'Failed to save the wallet address.');
     }

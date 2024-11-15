@@ -57,7 +57,7 @@
           <nuxt-link to="/account/trade/wallet" v-if="!pinia.state?.user?.token"> <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" class="mt-5">Wallet</v-btn> </nuxt-link>
 
 
-          <nuxt-link to="/account/dashboard"> <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" class="mt-5">Dashboard</v-btn> </nuxt-link>
+          <nuxt-link to="/account/dashboard" v-if="pinia.state?.user?.token"> <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" class="mt-5">Dashboard</v-btn> </nuxt-link>
         
   
           <v-menu v-if="!pinia.state?.user?.token" style="position: relative; z-index: 10000;">

@@ -75,8 +75,8 @@ const getSummedBal = async () => {
           // Ensure countryID.value is defined before making the request
           if (countryID.value) {
             const data = await getSummedBalance(pinia.state.selectedNetwork.toLowerCase(), countryID.value);
-            
             if (data.success) {
+              // console.log("summed", data)
               pinia.setSummedBalance(data.data);
             } else {
               console.error("Error:", data.message);
