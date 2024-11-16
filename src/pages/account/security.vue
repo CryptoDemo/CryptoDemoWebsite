@@ -91,9 +91,9 @@
                               <span :class="isDark ? 'text-dark':'text-light'" style="font-size: 14px; display: flex; justify-content: center;">Set transfer pin to authorize transactions</span>
 
                         
-                              <div style="display: flex; flex-direction: column; margin-top: 8px; margin-bottom: 20px;">
-                                <v-otp-input v-model="setPinOtp" class="mx-auto" type="password" length="4" variant="underlined"></v-otp-input>
-                                <v-otp-input v-model="ConfirmsetPinOtp" class="mx-auto" length="4" type="password" variant="underlined"></v-otp-input>
+                              <div class="otp-div" style="display: flex; flex-direction: column; margin-top: 8px; margin-bottom: 20px;">
+                                <v-otp-input v-model="setPinOtp" class="mx-auto" :class="isDark ? 'text-dark':'text-light'" type="password" length="4" variant="solo"></v-otp-input>
+                                <!-- <v-otp-input v-model="ConfirmsetPinOtp" class="mx-auto" length="4" type="password" variant="solo"></v-otp-input> -->
                               </div>
                         
                               <v-btn  @click="setPin()" :loading="loading" class="primary-btn1" style=" height: 50px; border-radius: 10px !important; font-weight: 600; width: 100%; color: white;">Set Pin</v-btn>
@@ -415,7 +415,6 @@ const setPin = async () => {
 };
 
 
-
 const recoverPin = async () => {
   loading_pin.value = true;
   
@@ -461,15 +460,36 @@ const changePin = async () => {
   }
 };
 
+
 </script>
 <style>
-
 .mail-text{
 font-family: Manrope;
 font-size: 16px;
 font-style: normal;
 font-weight: 500;
 line-height: 28px; 
+}
+
+.otp-div .v-field__field {
+  flex: 1 0;
+  grid-area: field;
+  position: relative;
+  align-items: flex-start;
+  display: flex;
+  width: 58px;
+  background: #162138;
+  border-radius: 11px;
+}
+
+.otp-light {
+  --v-input-bg-color: #ffffff;
+  --v-input-text-color: #000000;
+}
+
+.otp-dark {
+  --v-input-bg-color: #162138;
+  --v-input-text-color: #ffffff;
 }
 
 .toggled {

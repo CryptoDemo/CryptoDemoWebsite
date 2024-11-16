@@ -171,7 +171,7 @@
                       </div> 
                     </td>
 
-                    <td class=" flex-md-and-up hidden-sm-and-down me-3" style="display: flex; align-items: center; color: white;">
+                    <td class="flex-md-and-up hidden-sm-and-down me-3" style="display: flex; align-items: center; color: white;">
                         <div> 
                         <v-btn @click.prevent="navigateTo('/account/trade/getCoin')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
                           <img src="/svg/get.svg" class="me-1"/>

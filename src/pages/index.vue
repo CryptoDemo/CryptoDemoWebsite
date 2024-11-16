@@ -439,7 +439,7 @@ const WalletNav = () => {
 
 const icon = ref(piniastoredicon)
 
-onBeforeMount(async () => {
+onMounted(async () => {
   await convertCurrencies();
   getTokens_()
   piniastoredicon.value = pinia.state?.tokenLists[1]?.icon

@@ -199,38 +199,38 @@ import {  verifyWalletAddress } from "@/composables/requests/tokens";
 
 definePageMeta({middleware: 'scroll-to-top'});
 const router = useRouter();
-  const theme = useTheme()
-  const isDark = computed(() => theme.global.current.value.dark);
-  const pinia = useStore()
-  const hasPin = computed(() => pinia.state.user.is_pin_set !== null && pinia.state.user.is_pin_set !== false);
-  const dialog =  ref(false);
-  const dialog1 =  ref(false);
-  const transferWallet = ref(pinia.state.TransferWallet || pinia.state.selectedAdressBook_UserId.walletAdress || "");
-  const trfAmmount = ref();
-  const loading = ref(false);
-  const loading_pin = ref(false);
-  const minimumTransfer = ref(null);
-  const loading_send_coin = ref();
-  const PinOtp = ref("");
-  const newPinOtp = ref("");
-  const confirmPinOtp = ref("");
-  const network = computed(()=>pinia.state.selectedNetwork.toLowerCase());
-  const coin =  ref();
-  const showOtp = ref(false)
-  const fee_id = ref('');
-  const token_id = ref('');
-  const from_amount_total = ref(0);
-  const tax_fee = ref(0);
-  const is_balance_sufficient = ref(false);
-  const errorMessage = ref('');
-  const walletVerified = ref('');
-  const selectedNetworkId = computed(()=>pinia.state.BlockchainNetworks.find(b=>b.name==network.value)?.id);
-  const tokensForSelectedNetwork = computed(()=>pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId.value)));
-  
-  const symbols = tokensForSelectedNetwork.value.map(token => token.symbol);
-  
+const theme = useTheme()
+const isDark = computed(() => theme.global.current.value.dark);
+const pinia = useStore()
+const hasPin = computed(() => pinia.state.user.is_pin_set !== null && pinia.state.user.is_pin_set !== false);
+const dialog =  ref(false);
+const dialog1 =  ref(false);
+const transferWallet = ref(pinia.state.TransferWallet || pinia.state.selectedAdressBook_UserId.walletAdress || "");
+const trfAmmount = ref();
+const loading = ref(false);
+const loading_pin = ref(false);
+const minimumTransfer = ref(null);
+const loading_send_coin = ref();
+const PinOtp = ref("");
+const newPinOtp = ref("");
+const confirmPinOtp = ref("");
+const network = computed(()=>pinia.state.selectedNetwork.toLowerCase());
+const coin =  ref();
+const showOtp = ref(false)
+const fee_id = ref('');
+const token_id = ref('');
+const from_amount_total = ref(0);
+const tax_fee = ref(0);
+const is_balance_sufficient = ref(false);
+const errorMessage = ref('');
+const walletVerified = ref('');
+const selectedNetworkId = computed(()=>pinia.state.BlockchainNetworks.find(b=>b.name==network.value)?.id);
+const tokensForSelectedNetwork = computed(()=>pinia.state.tokenLists.filter(token => token.token_networks.find(tkn=>tkn.blockchain_id === selectedNetworkId.value)));
 
-  const selectedToken = computed(()=>tokensForSelectedNetwork.value.find(token => token.symbol === coin.value));
+const symbols = tokensForSelectedNetwork.value.map(token => token.symbol);
+
+
+const selectedToken = computed(()=>tokensForSelectedNetwork.value.find(token => token.symbol === coin.value));
 
   // Compute the balance of the selected token
   const selectedTokenBalance = computed(() => selectedToken.value?.balance || 0);
@@ -324,8 +324,8 @@ const calculateFee = async () => {
       token_id.value = data.data.token;
       from_amount_total.value = data.data.amount_plus_fee;
       tax_fee.value = data.data.fee_amount;
-      console.log(tax_fee.value);
       is_balance_sufficient.value = data.data.is_balance_sufficient;
+      console.log(tax_fee.value);
 
       pinia.setCalculatedTaxFee(data.data.fee_id);
 
@@ -472,15 +472,22 @@ const setPin = async () => {
 };
 
 const handleConfirm = () => {
-  // Clear previous information
-  showOtp.value = true;
-  if (!hasPin.value) {
-    showOtp.value = true; // Show the set pin step
-  } else {
-    showOtp.value = true; // Show the enter pin step
+  // Check balance sufficiency
+  if (!is_balance_sufficient.value) {
+    push.error("Insufficient balance");
+    return; // Exit early if balance is insufficient
   }
-  // Optionally, you might want to clear other state variables here
-}
+
+  // Proceed to the next step
+  showOtp.value = true; // Show the OTP step by default
+
+  if (!hasPin.value) {
+    // Optionally handle the "set PIN" step here
+  } else {
+    // Optionally handle the "enter PIN" step here
+  }
+};
+
 
 watch(dialog1, (newVal) => {
   if (!newVal) {
