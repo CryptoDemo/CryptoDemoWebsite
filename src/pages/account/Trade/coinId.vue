@@ -4,7 +4,7 @@
     <Header :hide="true" :icon1="true" :icon3="true"  :icon2="true" :wallet="true"/>
     <div>
         <v-container>
-          <div style="display: flex; align-items: center; margin-bottom: 44px; margin-top: 120px;">
+          <div class="ctn" style="display: flex; align-items: center; margin-bottom: 44px; margin-top: 120px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" @click.prevent="router.go(-1)" style="cursor: pointer;">
             <path d="M15 19.9181L8.47997 13.3981C7.70997 12.6281 7.70997 11.3681 8.47997 10.5981L15 4.07812" stroke="#B9D1FF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -56,7 +56,7 @@
 
           </div>    
 
-          <div style="margin-top: 80px; margin-bottom: 40px;">
+          <div style="margin-top: 40px; margin-bottom: 40px;">
               <span :class="isDark ? 'card-text-dark':'card-text-light'" style="font-family: Manrope; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Transaction History</span>
           </div>
 
@@ -66,8 +66,8 @@
           
         </v-container>
         <div style="margin-top: 500px;">
-            <Footer class="desktop-footer flex-lg-and-up hidden-sm-and-down"/>
-            <Mobile-footer class="mobile-footer"/>
+          <Footer class="desktop-footer flex-lg-and-up hidden-sm-and-down"/>
+          <Mobile-footer class="mobile-footer"/>
         </div>
     </div>
   </div>
@@ -79,9 +79,6 @@ import { useTheme } from 'vuetify';
 import {useRouter} from "vue-router";
 import {currencyConverter, getSingleTokenBal} from "@/composables/requests/tokens";
 
-definePageMeta({
-  middleware: 'scroll-to-top'
-});
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -93,7 +90,7 @@ const coin = pinia.state.tokenLists.find(e => e.symbol === pinia.state.getNewCoi
 
 const chain = pinia.state.selectedNetwork;  // Example chain, replace as needed
 
-const token = pinia.state.tokenLists.find(e => e.symbol === pinia.state.getNewCoinInfo);
+const token = computed(() => pinia.state.tokenLists.find(e => e.symbol === pinia.state.getNewCoinInfo));
 
 const fetchedBalance = ref(); // Define a ref to store the fetched balance
 
@@ -162,6 +159,9 @@ const calculateCurrencyEquivalent = () => {
 
 
 onBeforeMount(async() => {
+  definePageMeta({
+  middleware: 'scroll-to-top'
+});
  await fetchConversionRate()
  await getSingleBal();
   calculateCurrencyEquivalent()
@@ -232,13 +232,15 @@ border: 1px solid #E2E8F0;
 }
 
 @media only screen and (max-width: 600px) {
-  .coin-ctn{
-    padding: 20px !important;
-    height: fit-content !important;
-  }
-  .bal {
-  font-size: 30px;
+.coin-ctn{
+  padding: 20px !important;
+  height: fit-content !important;
 }
+
+.bal {
+font-size: 30px;
+}
+
 .bal-div{
   margin-top: 15px;
   margin-bottom: 15px;
@@ -249,6 +251,11 @@ border: 1px solid #E2E8F0;
 .btn-div{
   justify-content: space-between;
 }
+.ctn{
+  margin-bottom: 20px !important;
+  margin-top: 100px !important;
+}
+
 }
 
 </style>

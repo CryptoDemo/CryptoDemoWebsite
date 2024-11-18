@@ -27,7 +27,7 @@
 
         <div class="ml-4">
 
-          <v-dialog max-width="400">
+          <v-dialog v-model="dialog" max-width="400">
             <template v-slot:activator="{ props: activatorProps }">
               <v-btn  v-bind="activatorProps" class="profile-btn"  variant="flat" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="letter-spacing: 0px; text-transform: unset;">
                 <img src="/svg/logout.svg" class="me-1"/>
@@ -38,13 +38,15 @@
             <template v-slot:default="{ }">
               <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 15px;">
                 <v-card-text>
-                 <span class="text-center" style="display: flex; justify-content: center;">Are you sure you want to Logout?</span> 
+                 <span class="text-center" style="display: flex; justify-content: center; font-weight: 700; font-size: 16px;">Confirm Logout</span> 
+                 <span class="text-center mt-2" style="display: flex; justify-content: center; font-size: 14px;">Are you sure you want to Log out?</span> 
                 </v-card-text>
   
-                <v-card-actions>
-                  <v-spacer></v-spacer>
+                <v-card-actions style="display: flex; justify-content: center;">
+                
   
-                  <v-btn @click="Logout_()" style="background: red; letter-spacing: 0px; text-transform: unset; margin-bottom: 6px; margin-right: 6px;">Logout</v-btn>
+                  <v-btn @click="dialog = false" :class="isDark ? 'logout-dark':'txn-cards-light'" style="letter-spacing: 0px; text-transform: unset; margin-bottom: 6px; margin-right: 6px;">Not Now</v-btn>
+                  <v-btn @click="Logout_()" style="background: red; letter-spacing: 0px; text-transform: unset; margin-bottom: 6px; margin-right: 6px; font-weight: 700; width: 90px; height: 45px;">Log Out</v-btn>
                 </v-card-actions>
               </v-card>
             </template>
@@ -62,6 +64,7 @@ import { useTheme } from 'vuetify';
 const pinia = useStore();
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
+const dialog = ref(false)
 const items = [
   {icon:'/svg/friend.svg', title: 'Dashboard', link:'/account/dashboard'},
   {icon:'/svg/market.svg', title: 'Market Place', link:'/account/marketplace/activeOffers'},
@@ -128,6 +131,25 @@ background: #F8FAFC !important;
 background: #10192D !important;
 color: #8E9BAE;
 }
+
+.logout-light{
+background: #F8FAFC !important;
+font-weight: 700;
+color: #10192D !important;
+width: 90px;
+height: 45px;
+
+}
+
+.logout-dark{
+background: #060a1d !important;
+color: #fff !important;
+font-weight: 700;
+width: 90px;
+height: 45px;
+}
+
+
 .profile-cards-light{
 background: #F8FAFC !important;
 color: #10192D !important;

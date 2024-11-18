@@ -80,7 +80,7 @@
                           </div>
 
                                                     
-                          <v-btn @click="pindialog = true" class="primary-btn1" style="width: 100px; height: 60px; font-weight: 600; color: white">
+                          <v-btn @click="pindialog = true" class="primary-btn1 tggle-btn" style="width: 100px; height: 60px; font-weight: 600; color: white">
                             Set Pin
                           </v-btn>
                       
@@ -121,7 +121,7 @@
                           </div>
 
                                                     
-                          <v-btn @click="recoverPindialog = true; recoverPin()" class="primary-btn1" style="width: 100px; height: 60px; font-weight: 600; color: white;">
+                          <v-btn @click="recoverPindialog = true; recoverPin()" class="primary-btn1 tggle-btn" style="width: 100px; height: 60px; font-weight: 600; color: white;">
                             Reset Pin
                           </v-btn>
                       
@@ -634,7 +634,8 @@ line-height: 140%; /* 17.675px */
   font-size: 12px;
  }
  .tggle-btn{
-  height: 45px !important;
+  height: 50px !important;
+  margin-left: 10px;
  }
  .firstPassword{
   margin-top: 16px !important;
@@ -645,7 +646,7 @@ line-height: 140%; /* 17.675px */
  }
  .primary-btn1{
   height: 50px !important;
-  margin-top: 28px !important;
+  /* margin-top: 28px !important; */
  }
  .scan-text{
   font-size: 11px !important;

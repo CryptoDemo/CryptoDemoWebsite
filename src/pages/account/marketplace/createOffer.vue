@@ -427,6 +427,9 @@ font-family: Manrope;
   .box2, .box1 {
     width: 100% !important;
   }
+  .box1{
+    margin-bottom: 20px;
+  }
   .offer-txt1, .prc1 {
     font-size: 21px;
   }

@@ -58,7 +58,7 @@
 
               <tbody>
                 
-                <tr @click="pinia.state.getNewCoinInfo = token.symbol; navigateTo('/account/trade/coinId')" class="token-price py-2"  :class="isDark ? 'wallet-border' : 'wallet-border-light'" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
+                <tr @click.stop="pinia.state.getNewCoinInfo = token.symbol; navigateTo('/account/trade/coinId')" class="token-price py-2"  :class="isDark ? 'wallet-border' : 'wallet-border-light'" v-for="token in pinia.state.tokenLists" :key="token.id" style="display: flex; justify-content: space-between;">
                   <td style="display: contents; cursor: pointer;">
 
                     <div class="d-flex me-7 coin-wrap" style="align-items: center; width: 25%;">
@@ -79,7 +79,7 @@
                     </div>
                   </td>
 
-                  <td class="mt-2" style="display: flex; align-items: center; width: 21%; cursor: pointer;"><span class="browser-txt coin-price" style="display: flex; align-self: start; margin-top: 3px;" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(token?.conversionRate) }}</span></td>
+                  <td class="mt-2 coin-price-td" style="display: flex; align-items: center; width: 21%; cursor: pointer;"><span class="browser-txt coin-price" style="display: flex; align-self: start; margin-top: 3px;" :class="isDark ? 'coin-name':'coin-name-light'">{{ formatBalance(token?.conversionRate) }}</span></td>
 
                   <td class="quantity-div" style="display: flex; align-items: end; width: 15%; cursor: pointer;">
                     <span class="browser-txt mb-2 flex-md-and-up hidden-sm-and-down" :class="isDark ? 'coin-name':'coin-name-light'" style="font-weight: 700; display: flex; align-self: center;"> 
@@ -118,35 +118,36 @@
                                 </span>
                               </div>
 
-                            <h3 style="position: absolute; right: 7%; font-family: Manrope; font-weight: 700; font-size: 16px;">{{ pinia.state.preferredCurrency }} {{formatBalance (token.balance)}}</h3>
+                            <h3 style="position: absolute; right: 7%; font-family: Manrope; font-weight: 700; font-size: 16px;">{{formatBalance (token.balance)}}</h3>
                             </div>
                           </div>
                           
                             <div class="d-flex mt-6" style="justify-content: space-between;">
-                                <td style="display: flex; align-items: center;"> 
-                                  <div style="width: 80px;"> 
+                                <td class="me-2" style="display: flex; align-items: center; width: 100%"> 
+                                  
                                     <v-btn @click.once.stop="navigateTo('/account/trade/sendCoin')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
                                       <img src="/svg/get.svg" class="me-1"/>
-                                      <span :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
+                                      <span class="ml-1" :class="isDark ? 'coin-name':'coin-name-light'">Send</span>
                                     </v-btn>
-                                  </div> 
+                              
                                 </td>
-                                <td style="display: flex; align-items: center;"> 
-                                  <div style="width: 80px;"> 
+
+                                <td class="me-2" style="display: flex; align-items: center; width: 100%"> 
+                                  
                                     <v-btn @click.prevent="navigateTo('/account/trade/getCoin')" class="swap" :class="isDark ? 'btn-segment':'btn-segment-light'">
                                       <img src="/svg/send-arrow.svg" class="me-1"/>
-                                      <span :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
+                                      <span class="ml-1" :class="isDark ? 'coin-name':'coin-name-light'">Get</span>
                                     </v-btn>
-                                  </div> 
+                             
                                 </td>
-                                <td style="display: flex; align-items: center; color: white;">
-                                  <div style="width: 80px;">
+
+                                <td style="display: flex; align-items: center; color: white; width: 100%">
+                              
                                     <v-btn @click.prevent="navigateTo('/account/trade/swap')"  :class="isDark ? 'btn-segment':'btn-segment-light'" class="swap">
                                       <img src="/svg/arrow-swap.svg" class="me-1"/>
-                                      Swap
+                                      <span class="ml-1" :class="isDark ? 'coin-name':'coin-name-light'">Swap</span>
+                                      
                                     </v-btn>
-                                
-                                  </div> 
                                 </td>
                             </div>
                           
@@ -385,6 +386,7 @@ onBeforeMount( async() => {
 });
 
 
+
 </script>
 
 
@@ -392,12 +394,10 @@ onBeforeMount( async() => {
 .swap{
 border-radius: 16px;
 display: flex;
-width: 86.333px;
-height: 48px !important;
+height: 50px !important;
 padding: 12px 16px;
 justify-content: center;
 align-items: center;
-gap: 8px;
 flex-shrink: 0;
 letter-spacing: 0px;
 text-transform: unset;
@@ -555,7 +555,7 @@ line-height: normal;
   justify-content: space-between !important;
 }
 .price-th{
-width: 65% !important;
+width: -webkit-fill-available!important;
 margin-left: 9%;
 }
 
@@ -565,7 +565,8 @@ min-width: 0px !important;
 }
 
 .coin-th{
-  width: 45% !important;
+  width: -webkit-fill-available !important;
+  margin-inline-end: 0px !important;
 }
 
 .txn-div{
@@ -601,6 +602,7 @@ font-weight: 700;
 }
 .coin-price{
   margin-top: 11px !important;
+  font-size: 14px;
 }
 .token-price{
   padding-top: 0px !important;
@@ -616,6 +618,13 @@ font-weight: 700;
 
 .quantity-div{
   display: none !important;
+}
+
+.coin-wrap{
+  margin-inline-end: 0px !important;
+}
+.coin-price-td{
+  width: auto !important;
 }
 
 }

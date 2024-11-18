@@ -3,17 +3,8 @@
   
       
         <div class="d-flex" style="align-items: baseline; justify-content: space-between; ">
-          <span class="sm-num"  style="font-size: 14px; font-style: normal; color: white;  font-weight: 400;">Balance</span>
-          <BlockChainNetwork/>
-        </div>
-  
-  
-         <div style="margin-top: 17px; margin-bottom: 17px;  position: relative; display: flex; align-items: center; color: white;">
-      
-          <div style="display: flex; align-items: center; justify-content: space-between;" v-if="isCamouflageEmpty">
-            <span v-if="isBalanceVisible" style="font-family: SF Pro Display; font-size: 24px; font-style: normal; font-weight: 800;"> {{ `${pinia.state.Selectedcurrency_code} ${formatBalance(pinia.state.SummedBalance)}` }} </span>
-            <span class="lg-num" v-else>{{ generateAsterisks() }}</span>
-  
+          <div class="d-flex" style="align-items: center;">
+            <span class="sm-num"  style="font-size: 14px; font-style: normal; color: white;  font-weight: 400;">Balance</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="20" height="20" viewBox="0 0 20 20" fill="none" style="cursor: pointer;" v-if="isToggled"  @click="togglePassword()">
               <path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M9.99987 16.8918C12.9415 16.8918 15.6832 15.1584 17.5915 12.1584C18.3415 10.9834 18.3415 9.00843 17.5915 7.83343C15.6832 4.83343 12.9415 3.1001 9.99987 3.1001C7.0582 3.1001 4.31654 4.83343 2.4082 7.83343C1.6582 9.00843 1.6582 10.9834 2.4082 12.1584C4.31654 15.1584 7.0582 16.8918 9.99987 16.8918Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -29,6 +20,18 @@
                   <path d="M15.376 2.22202L10.3561 6.99238" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
+          <BlockChainNetwork/>
+        </div>
+  
+  
+         <div style="margin-top: 17px; margin-bottom: 17px;  position: relative; display: flex; align-items: center; color: white;">
+      
+          <div style="display: flex; align-items: center; justify-content: space-between;" v-if="isCamouflageEmpty">
+            <span v-if="isBalanceVisible" style="font-family: SF Pro Display; font-size: 24px; font-style: normal; font-weight: 800;"> {{ `${pinia.state.Selectedcurrency_code}${formatBalance(pinia.state.SummedBalance)}` }} </span>
+            <span class="lg-num" v-else>{{ generateAsterisks() }}</span>
+  
+         
+          </div>
   
           <div style="display: flex; flex-direction: column;" v-else>
             <span style="font-family: SF Pro Display; font-size: 24px; font-style: normal; font-weight: 800;">{{ camoflageCurrencyIcon }}{{ formatBalance(pinia.state.user.camouflage.max_spend_balance) }}</span>
@@ -37,23 +40,25 @@
         </div>
   
         <div style="display: flex; justify-content: space-between;">
-          <v-btn @click.prevent="navigateTo('/account/trade/getCoin')" class="fiat-btn me-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="font-weight: 600;">
+          <v-btn @click.prevent="navigateTo('/account/trade/getCoin')" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="font-weight: 600;">
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
               <path d="M4.08301 14.1665V15.8332C4.08301 16.2752 4.2586 16.6991 4.57116 17.0117C4.88372 17.3242 5.30765 17.4998 5.74967 17.4998H15.7497C16.1917 17.4998 16.6156 17.3242 16.9282 17.0117C17.2407 16.6991 17.4163 16.2752 17.4163 15.8332V14.1665" stroke="#10192D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M6.58301 9.1665L10.7497 13.3332L14.9163 9.1665" stroke="#10192D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M10.75 3.33325V13.3333" stroke="#10192D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span style="color: #10192D;">Get</span>
+            <span class="ml-1" style="color: #10192D;">Get</span>
                   
           </v-btn>
-          <v-btn @click.prevent="navigateTo('/account/trade/sendCoin')"  class="fiat-btn send-btn me-2" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="font-weight: 600;">
+
+          <v-btn @click.prevent="navigateTo('/account/trade/sendCoin')"  class="fiat-btn send-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="font-weight: 600;">
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
               <path d="M3.58301 5.8335V4.16683C3.58301 3.7248 3.7586 3.30088 4.07116 2.98832C4.38372 2.67576 4.80765 2.50016 5.24967 2.50016H15.2497C15.6917 2.50016 16.1156 2.67576 16.4282 2.98832C16.7407 3.30088 16.9163 3.7248 16.9163 4.16683V5.8335" stroke="#10192D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M6.08301 10.8335L10.2497 6.66683L14.4163 10.8335" stroke="#10192D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M10.25 16.6667V6.66675" stroke="#10192D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-             <span style="color: #10192D;">Send</span>
+             <span class="ml-1" style="color: #10192D;">Send</span>
           </v-btn>
+
           <v-btn @click.prevent="navigateTo('/account/trade/swap')" class="fiat-btn send-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="font-weight: 600;">
             <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.84202 17.0852L3.65869 12.9102" stroke="#10192D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -61,8 +66,9 @@
             <path d="M12.8253 2.91797L17.0086 7.09297" stroke="#10192D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12.8253 17.0846V2.91797" stroke="#10192D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span style="color: #10192D;">Swap</span>
+            <span class="ml-1" style="color: #10192D;">Swap</span>
           </v-btn>
+
         </div>
       </div>
   </template>
@@ -153,7 +159,7 @@
   
   .fiat-btn {
     height: 45px;
-    width: 100px;
+    width: 32%;
     border-radius: 12px;
     font-size: 14px;
     letter-spacing: 0px;

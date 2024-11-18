@@ -61,6 +61,16 @@ export const formattedDate = (dateString) => {
   return new Intl.DateTimeFormat('en-GB', options).format(date);
 };
 
+
+
+export const shortFormattedDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { year: '2-digit', month: 'short', day: '2-digit' };
+  return new Intl.DateTimeFormat('en-GB', options).format(date);
+};
+
+
+
 export const formatTime = (dateString) => {
   const date = new Date(dateString);
   const options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
