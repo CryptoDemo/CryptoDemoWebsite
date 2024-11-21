@@ -300,199 +300,199 @@
   }
   
   
-  // Calculate tax for swapping
-  const caltax = async () => {
-    if (swapAmount.value > selectedBalance.value) {
-        push.error("Insufficient balance");
-        return;
-      }
-  
-          const info = {
-              swap_input: {
-                from_token: selectedSymbol.value,
-                from_amount: parseFloat(swapAmount.value),
-                to_token: selected_tokenType_to_swap.value,
-              },
-          }
-  
-          console.log(info)
-          try {
-              loading.value = true
-              const data = await calculateTxnFees(info);
-              console.log(data);
-  
-              if (data.success) {
-                  amount_to_recieve.value = data.data.expected_swapped_amount.amount
-                  swap_fee_id.value = data.data.fee_id
-                  console.log(swap_fee_id.value)
-                  from_amount_total.value = data.data.amount_plus_fee
-                  if(pinia.state.selectedNetwork === 'trc20'){
-                      to_amount.value = data.data?.expected_swapped_amount
-                  }else{
-                      to_amount.value = data.data?.expected_swapped_amount?.amount
-                      
-                  }
-                  tax_fee.value = data.data.fee_amount
-                  is_balance_sufficient.value = data.data.is_balance_sufficient
-                  FeeCard.value = true;
-  
-                  pinia.setCalculatedTaxFee_for_swap(data.data.fee_id);
-  
-              } else {
-                  push.error(data.message);
-              }
-  
-              loading.value = false
-          } catch (e) {
-              console.log(e)
-              loading.value = false
-          }
-      };
-  
-    const executeTxn = async()=>{
-      const info = {
-        fee_id: pinia.state.calculatedTaxFee_for_swap
-      }
-      try{
-        loading.value = true
-  
-        const data = await executeTrans(info)
-  
-        if(data.success){
-          
-          loading.value = false
-          pinia.setTransactionDetails(data.data)
-  
-  
-          navigateTo('/account/Trade/success/')
-         
-          // navigateTo(/dashboard/wallet/get/`${pinia.state.transactionDetails.id}`)
-  
-  
-        }else{
-          
-          push.error(`${data.message}`, {
-          });
-          loading.value = false;
-          
-        }
-       
-  
-      }catch(e){
-         console.log(e)
-         loading.value = false;
-      }
-  
-  
-    }
-    
-    // Watch for changes in amount_to_swap and trigger tax calculation
-    watchEffect(() => {
-        if (swapAmount.value < minimumswap.value || swapAmount.value < selectedBalance.value) return;
-        debounce(caltax);
-      });
-  
-  
-    watch(()=>swapAmount.value,(newv)=>{
-      if(newv < minimumswap.value || newv < selectedBalance.value){
-        debounce(caltax);
-  
-      }
-      if(newv == null ){
-        swapAmount.value = ''
-      }
-    })
-  
-  const continueToOtp = () => {
-    // Clear previous information
-    showOtp.value = true;
-    if (!hasPin.value) {
-      showOtp.value = true; // Show the set pin step
-    } else {
-      showOtp.value = true; // Show the enter pin step
-    }
-    // Optionally, you might want to clear other state variables here
-  }
-  
-  const VerifyPin = async () => {
-    loading_pin.value = true;
-    const payload = {
-      pin: PinOtp.value,
-    }
-  
-    try {
-      const data = await verify_Pin(payload);
-      PinOtp.value  = "";
-      if (data.success) {
-          await executeTxn();
-      } else {
-      loading_pin.value = false;
-        push.error(data.message);
-      }
-    } catch (e) {
-      loading_pin.value = false;
-      console.log(e);
-      push.error(`${e}`);
-    }
-  };
-  
-  
-  const setNewPin = () => {
-    // Check if the pins match before clearing the values
-    if (newPinOtp.value !== confirmPinOtp.value) {
-      // Handle pin mismatch (show an alert or message)
-      push.error("Pins do not match. Please try again.");
+// Calculate tax for swapping
+const caltax = async () => {
+  if (swapAmount.value > selectedBalance.value) {
+      push.error("Insufficient balance");
       return;
     }
-  
-    // Logic to save the new pin
-    hasPin.value = true;
-  
-    // Call the function to save the pin to the backend
-    setPin(newPinOtp.value); // Pass the new pin to the setPin function
-  
-    // Clear the pin fields after the pin is successfully set
-    newPinOtp.value = "";
-    confirmPinOtp.value = "";
-  };
-  
-  const setPin = async () => {
-    loading_pin.value = true;
-    const payload = {
-      pin: newPinOtp.value,
+
+        const info = {
+            swap_input: {
+              from_token: selectedSymbol.value,
+              from_amount: parseFloat(swapAmount.value),
+              to_token: selected_tokenType_to_swap.value,
+            },
+        }
+
+        console.log(info)
+        try {
+            loading.value = true
+            const data = await calculateTxnFees(info);
+            console.log(data);
+
+            if (data.success) {
+                amount_to_recieve.value = data.data.expected_swapped_amount.amount
+                swap_fee_id.value = data.data.fee_id
+                console.log(swap_fee_id.value)
+                from_amount_total.value = data.data.amount_plus_fee
+                if(pinia.state.selectedNetwork === 'trc20'){
+                    to_amount.value = data.data?.expected_swapped_amount
+                }else{
+                    to_amount.value = data.data?.expected_swapped_amount?.amount
+                    
+                }
+                tax_fee.value = data.data.fee_amount
+                is_balance_sufficient.value = data.data.is_balance_sufficient
+                FeeCard.value = true;
+
+                pinia.setCalculatedTaxFee_for_swap(data.data.fee_id);
+
+            } else {
+                push.error(data.message);
+            }
+
+            loading.value = false
+        } catch (e) {
+            console.log(e)
+            loading.value = false
+        }
+};
+
+const executeTxn = async()=>{
+  const info = {
+      fee_id: pinia.state.calculatedTaxFee_for_swap
     }
-  
-    try {
-      const data = await set_Pin(payload);
-  
-      if (data.success) {
-          push.success(data.message);
-          execute();
-      } else {
-      loading_pin.value = false;
-        push.error(data.message);
+    try{
+      loading.value = true
+
+      const data = await executeTrans(info)
+
+      if(data.success){
+        
+        loading.value = false
+        pinia.setTransactionDetails(data.data)
+
+
+        navigateTo('/account/Trade/success/')
+        
+        // navigateTo(/dashboard/wallet/get/`${pinia.state.transactionDetails.id}`)
+
+
+      }else{
+        
+        push.error(`${data.message}`, {
+        });
+        loading.value = false;
+        
       }
-    } catch (e) {
-      loading_pin.value = false;
-      console.log(e);
-      push.error(`${e}`);
+      
+
+    }catch(e){
+        console.log(e)
+        loading.value = false;
     }
-  };
+
+
+}
+    
+// Watch for changes in amount_to_swap and trigger tax calculation
+watchEffect(() => {
+    if (swapAmount.value < minimumswap.value || swapAmount.value < selectedBalance.value) return;
+    debounce(caltax);
+  });
+
+
+watch(()=>swapAmount.value,(newv)=>{
+  if(newv < minimumswap.value || newv < selectedBalance.value){
+    debounce(caltax);
+
+  }
+  if(newv == null ){
+    swapAmount.value = ''
+  }
+})
+
+const continueToOtp = () => {
+// Clear previous information
+showOtp.value = true;
+if (!hasPin.value) {
+  showOtp.value = true; // Show the set pin step
+} else {
+  showOtp.value = true; // Show the enter pin step
+}
+// Optionally, you might want to clear other state variables here
+}
+
+const VerifyPin = async () => {
+loading_pin.value = true;
+const payload = {
+  pin: PinOtp.value,
+}
+
+  try {
+    const data = await verify_Pin(payload);
+    PinOtp.value  = "";
+    if (data.success) {
+        await executeTxn();
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+
+const setNewPin = () => {
+  // Check if the pins match before clearing the values
+  if (newPinOtp.value !== confirmPinOtp.value) {
+    // Handle pin mismatch (show an alert or message)
+    push.error("Pins do not match. Please try again.");
+    return;
+  }
+
+  // Logic to save the new pin
+  hasPin.value = true;
+
+  // Call the function to save the pin to the backend
+  setPin(newPinOtp.value); // Pass the new pin to the setPin function
+
+  // Clear the pin fields after the pin is successfully set
+  newPinOtp.value = "";
+  confirmPinOtp.value = "";
+};
+
+const setPin = async () => {
+  loading_pin.value = true;
+  const payload = {
+    pin: newPinOtp.value,
+  }
+
+  try {
+    const data = await set_Pin(payload);
+
+    if (data.success) {
+        push.success(data.message);
+        execute();
+    } else {
+    loading_pin.value = false;
+      push.error(data.message);
+    }
+  } catch (e) {
+    loading_pin.value = false;
+    console.log(e);
+    push.error(`${e}`);
+  }
+};
+
+const isChevronToggled = ref(false);
+const toggleChevron = () => {
+      isChevronToggled.value = !isChevronToggled.value;
+};
   
-  const isChevronToggled = ref(false);
-  const toggleChevron = () => {
-        isChevronToggled.value = !isChevronToggled.value;
-  };
+const isChevronToggled1 = ref(false);
+const toggleChevron1 = () => {
+      isChevronToggled1.value = !isChevronToggled1.value;
+};
+
   
-  const isChevronToggled1 = ref(false);
-  const toggleChevron1 = () => {
-        isChevronToggled1.value = !isChevronToggled1.value;
-  };
+</script>
   
-  
-  </script>
-  
-  <style>
+<style>
   
   .swap1{
   font-family: Manrope;

@@ -20,6 +20,7 @@
                             <img v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" src="/svg/greenGet.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
                             <img v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
                         </div>
+
                         <div style="display: flex; flex-direction: column">
                         <span v-if="transaction.details.crypto.transfer.transfer_type == 'IN'">Received</span>
                         <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'">Sent</span>
@@ -32,7 +33,7 @@
                         </div>
                     </div>
     
-                    <div class="d-flex">
+                    <div class="d-flex" style="align-items: center;">
                         <span v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" style="color: #35B233; font-weight: 600;">{{formatNumber(transaction?.details?.crypto?.transfer?.amount)}}</span>
                         <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" style="color: #91A3B0; font-weight: 600">{{formatNumber(transaction?.details?.crypto?.transfer?.amount)}}</span>
 

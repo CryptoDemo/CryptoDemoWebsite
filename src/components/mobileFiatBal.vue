@@ -26,7 +26,7 @@
                   </button>
                 </template>
     
-                <v-list style="border-radius: 10px; height: 90px !important; background: white; color: black;">
+                <v-list style="border-radius: 10px; height: 100px !important; background: white; color: #10192d;">
                   <v-list-item style="display: contents">
                     <v-row dense style="max-width: 270px; display: block;">
                       <v-col v-for="(currency, index) in pinia.state.allcountries" :key="index">
@@ -99,7 +99,9 @@
   line-height: normal;
   color: white;
   }
-  
+  .v-list-item--density-default.v-list-item--one-line {
+    min-height: 0px;
+  }
   .sm-num{
   color: var(--White, var(--Colors-Base-white, #FFF));
   text-align: center;

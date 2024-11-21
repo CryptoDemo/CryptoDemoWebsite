@@ -169,13 +169,11 @@
   line-height: normal;
   }
   
-
-  
-  .txn-cards-dark {
-    background: #162138;
-    padding: 10px;
-    border-radius: 15px;
-  }
+.txn-cards-dark {
+  background: #162138;
+  padding: 10px;
+  border-radius: 15px;
+}
   .txn-cards-light {
     background: #edf3ff;
     padding: 10px;

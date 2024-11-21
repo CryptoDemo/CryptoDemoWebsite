@@ -10,6 +10,7 @@
           <tbody>
 
             <tr>
+
             <div v-for="(v,k) in notifSettings" :key="k" style="display: flex; align-items: center; justify-content: space-between;">
               <td class="notification-text capitalize" :class="isDark ? 'text-dark':'text-light'">{{ k?.split("_")?.join(" ")?.replace("notify me on ","") }}</td>
               <td><v-switch class="v-switch-mobile" v-model="notifSettings[k]" @input="toggleNotification(k,v)" inset color="#2873FF" style="display: flex; justify-content: center; padding-right: 50px;"></v-switch></td>
@@ -21,9 +22,9 @@
             
               <span :class="isDark ? 'text-dark':'text-light'" style="margin-top: -5px;">X-hide</span>
               
-              <v-switch @click="dialog = true"  inset color="#2873FF" class="v-switch-mobile" style="padding-right: 50px;"></v-switch>
+              <v-switch v-model="isCamoActive"  inset color="#2873FF" class="v-switch-mobile" style="padding-right: 50px;"></v-switch>
               
-              <v-dialog v-model="dialog" style="width: 500px;" persistent>
+              <v-dialog v-model="dialog" persistent class="camo-dialog" style="width: 35%;">
                 
                 <v-card :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="padding: 20px; border-radius: 15px; width: 100%;">
                   <span class="mb-3 text-center">Protect Your Privacy with Balance Camouflage</span>
@@ -54,7 +55,6 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify';
 import { updateUser, removeCamouflage } from "@/composables/requests/users";
-import intercom from '@intercom/messenger-js-sdk';
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -62,6 +62,7 @@ const pinia = useStore();
 const notificationSettings = computed(()=> pinia.state.user?.settings?.notifications);
 const notifSettings = ref({});
 const dialog = ref(false);
+const isCamoActive = ref(false); // Tracks if camouflage mode is active
 const camouflagBalance = ref();
 
 // if(notificationSettings.length && new Date()<expiration){
@@ -83,15 +84,39 @@ const setupNotificationSettings = ()=>{
 }
 
 const toggleNotification = async (key, value) => {
-  pinia.updateNotificationSettings({key,value});
+  try {
+    if (value) {
+      // Notification activated
+      pinia.updateNotificationSettings({ key, value });
+      push.success(`Notification for "${key}" activated.`);
+    } else {
+      // Notification deactivated
+      pinia.updateNotificationSettings({ key, value });
+      push.success(`Notification for "${key}" deactivated.`);
+    }
+  } catch (error) {
+    console.error('Error updating notification:', error);
+    push.error('Failed to update notification.');
+    // Optionally revert the change locally if the backend call fails
+    notifSettings.value[key] = !value; // Revert the toggle
+  }
+};
 
-}
+
+// const toggleNotification = async (key, value) => {
+//   pinia.updateNotificationSettings({key,value});
+// }
 
 const CountryID = ref();
 CountryID.value = pinia.state.allcountries.find(c => c.currency_name === pinia.state.preferredCurrency)?.id;
 
 
 const setCamo = async () => {
+  if (!camouflagBalance.value) {
+    push.error('Please enter a valid camouflage balance.');
+    return;
+  }
+
   dialog.value = true
   const UpdateUserDetails = {
     camouflage: {
@@ -103,6 +128,9 @@ const setCamo = async () => {
   try {
     const data = await updateUser(UpdateUserDetails);
     if (data.success) {
+
+      camouflagBalance.value = "";
+
       // Get the existing user object from the state
       const currentUser = pinia.state.user;
 
@@ -117,7 +145,7 @@ const setCamo = async () => {
       });
      
       dialog.value = false;
-      push.success('Update Successful');
+      push.success('Camouflage mode activated successfully.');
     } else {
       push.error(data.message);
     }
@@ -151,6 +179,17 @@ const deactivateCamouflage = async () => {
   }
 };
 
+
+// Watch for changes in the switch state
+watch(isCamoActive, async (newVal) => {
+  if (!newVal) {
+    // Automatically deactivate camouflage when switch is turned off
+    await deactivateCamouflage();
+  } else {
+    // Show dialog when activating camouflage
+    dialog.value = true;
+  }
+});
 
 onBeforeMount(()=>{
   setupNotificationSettings();
@@ -241,6 +280,9 @@ border: 1px solid #E2E8F0;
   }
   .v-switch-mobile{
     padding-right: 20px !important;
+  }
+  .camo-dialog{
+    width: 100% !important;
   }
 }
 </style>

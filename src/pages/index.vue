@@ -116,7 +116,7 @@
                   
                  
                   <div style="margin-top: 30px;">
-                    <span :class="isDark ? 'pay-with':'pay-with-light'">{{ transaction? "I want to buy" : "I want to sell" }}</span>
+                    <span :class="isDark ? 'pay-with':'pay-with-light'" style="display: flex; justify-content: flex-start;">{{ transaction? "I want to buy" : "I want to sell" }}</span>
                     <div class="d-flex" style="margin-top:9px; position: relative;">
                     
                       <input type="number" v-model="ammount_of_coin" style="outline: none; position:relative; width: 100%;" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" placeholder="Enter Amount"/>

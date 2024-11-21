@@ -30,7 +30,7 @@
           <v-dialog v-model="dialog" max-width="400">
             <template v-slot:activator="{ props: activatorProps }">
               <v-btn  v-bind="activatorProps" class="profile-btn"  variant="flat" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="letter-spacing: 0px; text-transform: unset;">
-                <img src="/svg/logout.svg" class="me-1"/>
+                <img src="/svg/logout.svg" class="me-4"/>
                 Log out
               </v-btn>
             </template>
