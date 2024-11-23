@@ -139,7 +139,7 @@ letter-spacing: 0px !important;
   color: #8E9BAE !important;
 }
 .nav-options1-light{
-  color: #646464 !important;
+  color: #8e9bae!important;
 }
 .active-button-dark {
 border-radius: 8px;

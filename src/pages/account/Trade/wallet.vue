@@ -23,7 +23,7 @@
                   <MobilecryptoBal/>
                 </div>
 
-            <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; padding: 30px; margin-top: 30px;">
+            <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="border-radius: 24px; padding: 30px; margin-top: 30px; padding-top: 10px;">
               <v-table  style="display: grid! important; background: inherit; width: 100%; max-height: 400px;">
                   <thead>
                     <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
@@ -222,7 +222,7 @@
   </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useTheme } from 'vuetify';
 import { getTokens, getTokenBalance, currencyConverter, getSummedBalance } from "@/composables/requests/tokens";
 definePageMeta({

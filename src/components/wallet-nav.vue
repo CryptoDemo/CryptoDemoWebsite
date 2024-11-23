@@ -8,7 +8,7 @@
       </div>
 
 
-      <div  style="margin-top: 25px; margin-bottom: 25px; height: 90px;  position: relative; display: flex; align-items: center;">
+      <div  style="margin-top: 25px; position: relative; display: flex; align-items: center;">
     
         <div style="display: flex; align-items: center; justify-content: space-between;" v-if="isCamouflageEmpty">
           <span class="lg-num" v-if="isBalanceVisible"> {{ `${pinia.state.Selectedcurrency_code}${formatBalance(pinia.state.SummedBalance)}` }} </span>

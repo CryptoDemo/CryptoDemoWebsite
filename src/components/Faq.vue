@@ -178,7 +178,7 @@ line-height: 140%; /* 28px */
 }
 .v-expansion-panel-title--active > .v-expansion-panel-title__overlay, .v-expansion-panel-title[aria-haspopup=menu][aria-expanded=true] > .v-expansion-panel-title__overlay {
 background: rgb(182, 190, 213) !important;
-min-height: 130px ;
+height: auto ;
 position: absolute;
 /* padding: 85px !important; */
 opacity: 0.4;

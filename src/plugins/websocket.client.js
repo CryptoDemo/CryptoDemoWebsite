@@ -19,9 +19,3 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
   })
 
-// const app = createApp(app);
-// app.use(VueSimpleWebsocket, "wss://echo.websocket.org", {
-//     reconnectEnabled: true,
-//     reconnectInterval: 5000
-// });
-// app.mount("#app");

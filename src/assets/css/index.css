@@ -131,110 +131,112 @@ a {
 }
 
 .sell-btc-text{
-  color: white !important;
-  text-align: center;
-  font-family: "SF Pro Display";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 100%; /* 16px */
-  letter-spacing: 0.16px;
-  }
+color: white !important;
+text-align: center;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 100%; /* 16px */
+letter-spacing: 0.16px;
+}
 
-  .section2-title{
-  text-align: center;
-  font-family: "SF Pro Display";
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 120%; /* 76.8px */
-  letter-spacing: -1.92px;
-  background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  width: 688.35px;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  }
+.section2-title{
+text-align: center;
+font-family: "SF Pro Display";
+font-size: 64px;
+font-style: normal;
+font-weight: 700;
+line-height: 120%; /* 76.8px */
+letter-spacing: -1.92px;
+background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+width: 688.35px;
+display: flex;
+justify-content: center;
+margin: auto;
+}
 
-  .section2-title-light{
-  text-align: center;
-  font-family: "SF Pro Display";
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 120%; /* 76.8px */
-  letter-spacing: -1.92px;
-  background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.5) 97.69%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  }
+.section2-title-light{
+text-align: center;
+font-family: "SF Pro Display";
+font-size: 64px;
+font-style: normal;
+font-weight: 700;
+line-height: 120%; /* 76.8px */
+letter-spacing: -1.92px;
+background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.5) 97.69%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+display: flex;
+justify-content: center;
+margin: auto;
+}
 
 
 .buy-btn{
-  display: flex;
-  height: 40px;
-  padding: 8px;
-  border-radius: 12px !important;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex: 1 0 0;
-  font-family: "SF Pro Display";
-  border: 1px solid rgba(40, 115, 255, 0.33) !important;
-  background: #060A1D !important;
-  color: var(--Main-Primary-100, #2873FF) !important;
-  text-transform: unset!important;
-  letter-spacing: 0px!important;
-  }
-  .buy-btn-light{
-  background: var(--Others-White, #FFF) !important;
-  box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02) !important;
-  display: flex;
-  height: 40px;
-  padding: 8px;
-  font-family: "SF Pro Display";
-  justify-content: center;
-  align-items: center;
-  gap: 8.037px;
-  flex: 1 0 0;
-  border: unset !important;
-  text-transform: unset!important;
-  letter-spacing: 0px!important;
-  }
-  .sell-btn{
-  display: flex;
-  border-radius: 12px;
-  background: inherit !important;
-  border: unset;
-  box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02) !important;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  flex: 1 0 0;
-  color: var(--Main-Greyscale-40, #8E9BAE) !important;
-  background: inherit;
-  box-shadow: none !important;
-  text-transform: unset!important;
-  border: none !important;
-  }
+display: flex;
+height: 40px;
+padding: 8px;
+border-radius: 12px !important;
+justify-content: center;
+align-items: center;
+gap: 10px;
+flex: 1 0 0;
+font-family: "SF Pro Display";
+border: 1px solid rgba(40, 115, 255, 0.33) !important;
+background: #060A1D !important;
+color: var(--Main-Primary-100, #2873FF) !important;
+text-transform: unset!important;
+letter-spacing: 0px!important;
+}
 
-  .sell-btc-text-light{
-  color: #1B2537 !important;
-  text-align: center;
-  font-family: "SF Pro Display";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 100%; /* 16px */
-  letter-spacing: 0.16px;
-  }
+.buy-btn-light{
+background: var(--Others-White, #FFF) !important;
+box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02) !important;
+display: flex;
+height: 40px;
+padding: 8px;
+font-family: "SF Pro Display";
+justify-content: center;
+align-items: center;
+gap: 8.037px;
+flex: 1 0 0;
+border: unset !important;
+text-transform: unset!important;
+letter-spacing: 0px!important;
+}
+
+.sell-btn{
+display: flex;
+border-radius: 12px;
+background: inherit !important;
+border: unset;
+box-shadow: 0px 9.645px 9.645px 0px rgba(51, 65, 85, 0.02) !important;
+justify-content: center;
+align-items: center;
+gap: 15px;
+flex: 1 0 0;
+color: var(--Main-Greyscale-40, #8E9BAE) !important;
+background: inherit;
+box-shadow: none !important;
+text-transform: unset!important;
+border: none !important;
+}
+
+.sell-btc-text-light{
+color: #1B2537 !important;
+text-align: center;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 100%; /* 16px */
+letter-spacing: 0.16px;
+}
 
 .card-title {
 font-family: Manrope;
@@ -317,7 +319,7 @@ font-family: Manrope;
   color: #8e9bae !important;
 } 
 .text-light{
-  color: #646464 !important;
+  color: #8e9bae !important;
 } 
 .country-dropdown1{
   border-radius: 15px;

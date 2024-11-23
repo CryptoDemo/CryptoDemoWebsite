@@ -89,7 +89,7 @@
             <span @click="navigateTo('/account/marketplace/activeOffers')" class="resend-code me-1" style="font-size: 13px;">See More...</span>
           </div>
 
-          <v-card class="offer-card" link @click="navigateTo('/account/marketplace/activeOffers'); pinia.state.selectedPaymentMethod_from_indexPage = method.name" v-for="(method, index) in paymentMethods.slice(0, 3)" :key="index" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center; box-shadow: none;">
+          <v-card class="offer-card" link @click="navigateTo('/account/marketplace/activeOffers'); pinia.state.selectedPaymentMethod_from_indexPage = method.name" v-for="(method, index) in paymentMethods.slice().reverse().slice(0, 3)" :key="index" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 5px; margin-bottom: 20px; border-radius: 16px; display: flex; justify-content: space-between; padding: 15px; align-items: center; box-shadow: none;">
           
             <div style="display: flex; flex-direction: column; line-height: 30px;">
               <span style="font-weight: 600; font-size: 14px;">{{ method.name  }}</span>
@@ -125,9 +125,7 @@ import { useTheme } from 'vuetify';
 import { getBanners } from '@/composables/requests/admin'
 import { getMarketOffers } from "@/composables/requests/marketplace";
 import { getTokenBalance, currencyConverter } from "@/composables/requests/tokens";
-definePageMeta({
-  middleware: 'scroll-to-top'
-});
+definePageMeta({middleware: 'scroll-to-top'});
 
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
@@ -320,12 +318,22 @@ watch(()=>conversionResult.value,(newVal)=>{
   });
 });
 
+const fetch_banners = async()=>{
+  if(pinia.state.storeBanners.length){
+    return 
+  }else{
+    await Promise.allSettled([
+    fetchBanners(),
+    ])
+    
+  }
+}
 
 
 onMounted(() => {
   getTokenBals();
   convertCurrencies();
-  fetchBanners();
+  fetch_banners();
   get_allMarket_Offers()
 });
 </script>

@@ -9,8 +9,6 @@
             <path d="M16.7704 14.3308H18.6704C19.6324 14.3308 20.2444 14.5857 20.6196 14.9652C20.9963 15.3461 21.2504 15.9696 21.2504 16.9482V18.8696C21.2504 19.8482 20.9963 20.4717 20.6196 20.8526C20.2444 21.2321 19.6324 21.487 18.6704 21.487H16.7704C15.8084 21.487 15.1965 21.2321 14.8212 20.8526C14.4445 20.4717 14.1904 19.8482 14.1904 18.8696V16.9482C14.1904 15.9696 14.4445 15.3461 14.8212 14.9652C15.1965 14.5857 15.8084 14.3308 16.7704 14.3308Z" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
             <path d="M9.81001 16.955H9.81V16.9583V18.8797C9.81 19.8583 9.5559 20.4818 9.17922 20.8627C8.80392 21.2422 8.19199 21.4971 7.23 21.4971H5.33C4.36802 21.4971 3.75651 21.2423 3.38137 20.8621C3.00457 20.4802 2.75 19.8541 2.75 18.8696V16.9482C2.75 15.9696 3.00408 15.3465 3.38145 14.9658C3.75769 14.5862 4.37212 14.3308 5.34 14.3308H7.24C8.20225 14.3308 8.81319 14.5858 9.18679 14.9653C9.56176 15.3461 9.81445 15.971 9.81001 16.955Z" fill="currentColor" stroke="currentColor" stroke-width="1.5"/>
           </svg>
-
-        
         
         </button>
       </template>
@@ -18,7 +16,9 @@
       <v-list style="backdrop-filter: blur(20px)!important; border-radius: 15px; margin-top: 20px;" :class="isDark ? 'menu-bg-dark':'menu-bg-light'">
         <v-list-item v-for="(item, i) in items" :key="i">
           <div>
-            <v-btn @click.prevent="navigateTo(item.link)" class="profile-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
+            <v-btn @click.prevent="navigateTo(item.link)" class="profile-btn" 
+            :class="[ isDark ? 'profile-cards-dark' : 'profile-cards-light', route.path === item.link ? 'active-link' : '']"
+            >
             <img :src="item.icon" class="me-3" width="20"/>
             {{ item.title }}
             </v-btn>
@@ -58,10 +58,13 @@
     </v-menu>
   </div>
 </template>
+
 <script setup>
 import { useTheme } from 'vuetify';
 
 const pinia = useStore();
+const router = useRouter();
+const route = useRoute();
 const theme = useTheme()
 const isDark = computed(() =>  theme.global.current.value.dark);
 const dialog = ref(false)
@@ -74,6 +77,10 @@ const items = [
   {icon:'/svg/security.svg', title: 'Security', link:'/account/security'},
   {icon:'/svg/settings.svg', title: 'Settings', link:'/account/settings'},
 ];
+
+const navigateTo = (link) => {
+  router.push(link);
+};
 
 const Logout_= () => {
   // Clear the user state in Pinia
@@ -90,7 +97,7 @@ height: 48px !important;
 justify-content: flex-start !important;
 align-items: center;
 flex-shrink: 0;
-border-radius: 16px !important;
+border-radius: 13px !important;
 letter-spacing: 0px !important;
 text-transform: unset !important;
 font-family: Manrope !important;
@@ -116,6 +123,12 @@ background: #10192D !important;
 .nav-btn-light {
 background: #F8FAFC !important; 
 }
+
+.active-link {
+background-color: #2873FF !important;
+color: white !important;
+}
+
 .close-btn{
 fill: white;
 }
@@ -151,8 +164,8 @@ height: 45px;
 
 
 .profile-cards-light{
-background: #F8FAFC !important;
-color: #10192D !important;
+background: #F8FAFC;
+color: #10192D;
 }
 @media screen and (max-width: 600px) {
 .nav-btn{
