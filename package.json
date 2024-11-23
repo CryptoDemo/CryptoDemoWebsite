@@ -32,6 +32,7 @@
     "@sumsub/websdk": "^2.3.1",
     "apexcharts": "^3.49.0",
     "browser-image-compression": "^2.0.2",
+    "gsap": "^3.12.5",
     "notivue": "^2.2.1",
     "pinia": "^2.1.7",
     "qrcode.vue": "^3.4.1",

@@ -1,36 +1,36 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify from 'vite-plugin-vuetify';
 
-export default defineNuxtConfig ({
+export default defineNuxtConfig({
   ssr: false,
   devtools: { enabled: false },
-  srcDir: "src",
+  srcDir: "src", 
 
   build: {
-    transpile: ['vuetify'],
+    transpile: ['vuetify'],  
   },
-
-  app: {
+ 
+  app: { 
     head: {
       titleTemplate: 'Betacrypto', // Replace MyAppName with your app's name
-    }
-  },
+    } 
+  }, 
 
   css: [
-      "@/assets/css/index.css",
-      'notivue/notifications.css', // Only needed if using built-in notifications
-      'notivue/animations.css',
-      'notivue/notification-progress.css',
-     
+    "@/assets/css/index.css",
+    'notivue/notifications.css', // Only needed if using built-in notifications
+    'notivue/animations.css',
+    'notivue/notification-progress.css',
+
   ],
-  
-  
+
+
   components: {
     dirs: [
       { path: '~/components', pathPrefix: false, lazy: true },
     ],
   },
-  
+
 
   modules: [
     "@pinia/nuxt",
@@ -39,11 +39,11 @@ export default defineNuxtConfig ({
     '@nuxtjs/device',
     '@lambahq/nuxt',
     '@vueuse/nuxt',
-    async(options, nuxt) => {
+    async (options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', config => {
         // @ts-expect-error
         // config.plugins.push(vuetify({ autoImport: true }))
-        if(!config.plugins){
+        if (!config.plugins) {
           config.plugins = [];
         }
         config.plugins.push(vuetify(
@@ -68,7 +68,7 @@ export default defineNuxtConfig ({
     }
   },
 
-  vite: {ssr:{noExternal:['vuetify']} },
+  vite: { ssr: { noExternal: ['vuetify'] } },
   compatibilityDate: '2024-07-08',
 
 })
