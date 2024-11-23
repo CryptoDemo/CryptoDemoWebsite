@@ -13,17 +13,16 @@
 
 
 
-          <v-table class="coin-table" style="display: grid! important; background: inherit; width: 100%; height: auto; padding-bottom: 20px;">
+          <v-table class="coin-table" style="display: grid! important; background: inherit; width: 100%; height: auto; padding-bottom: 14px;">
             <thead>
-              <div class="px-15 py-8 table-caption d-md-flex" style="align-items: center; width: 100%; position: relative;">
+              <div class="py-8 table-caption d-md-flex" style="align-items: center; width: 100%; position: relative; padding-right: 28px; padding-left: 28px;">
 
-                <!-- <div class="d-md-flex" style="width: 100%;"> -->
+
                   <div class="table-title" style="display: flex; flex-direction: column;">
                     <span style="font-size: 16px; font-weight: 600;">CryptoCurrency Trading Market Table</span>
                     <span class="mt-2" :class="isDark ? 'text-dark' : 'text-light'">Live market data at a glance.</span>
                   </div>
-  
-                  <!-- <div @click.stop class="search-div" style="margin-bottom: 15px; display: flex;  margin-inline-start: auto; width: 60%; justify-content: end;"> -->
+
                     <svg xmlns="http://www.w3.org/2000/svg" class="searchIcon" width="21" height="21" viewBox="0 0 21 21" fill="none"
                       style="margin-left: 16px; margin-top: 2px; left: 50%; margin-right: 10px; position: absolute;">
                       <path
@@ -34,11 +33,9 @@
                     </svg>
       
                     <input type="search" class="search-input" v-model="input" placeholder="search for coins here..." style="border: 1px solid #64748B; height: 55px; border-radius: 15px; padding-left: 45px; padding-right: 10px; outline: none; align-items: center; width: 50%; display: flex; margin-inline-start: auto;">
-                  <!-- </div> -->
-                <!-- </div> -->
               </div>
 
-              <tr class="coin-table" style="display: flex; margin-bottom: 8px; justify-content: space-around;">
+              <tr class="coin-table" style="display: flex; margin-bottom: 8px; justify-content: space-between; padding-left: 28px; padding-right: 28px">
 
                 <th class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center; align-self: center; width: 3%; justify-content: center;">
                   <div class="d-flex">
@@ -67,7 +64,7 @@
             <tbody>
 
 
-            <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" style="display: flex; justify-content: space-evenly;">
+            <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="loop-table" style="display: flex; justify-content: space-between; padding-left: 28px; padding-right: 28px">
 
               <td class="mt-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark' : 'text-light'" style="display: flex; align-items: center;"> {{ index + 1 }}</td>
 
@@ -373,10 +370,7 @@ input[type="search"]::-webkit-search-cancel-button {
   display: none;
 }
 
-.coin-table {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+
 
 
 @media screen and (max-width: 600px) {
@@ -405,6 +399,8 @@ input[type="search"]::-webkit-search-cancel-button {
   .coin-table{
     margin-bottom: 0px !important;
     justify-content: flex-start !important;
+    padding-right: 0px !important; 
+    padding-left: 0px !important;
   }
   .bal-td{
     width: 23% !important;
@@ -444,6 +440,11 @@ input[type="search"]::-webkit-search-cancel-button {
   .coin-table{
     padding-bottom: 0px !important;
   }
+  .loop-table{
+  padding-left: 0px !important; 
+  padding-right: 0px !important; 
+  }
+
 
   }
 

@@ -53,7 +53,7 @@
         
           <div v-if="wallet" style="display: grid; margin-top: 25px; margin-inline-end: -4px;">
             <nuxt-link to="/account/trade/wallet">
-              <button class="nav-btn wallet-btn" :class="isDark ? 'nav-btn':'nav-btn-light'"> 
+              <button class="nav-btn wallet-btn" :class="[isWalletActive ? 'active-wallet-btn' : '', isDark ? 'nav-btn' : 'nav-btn-light']"> 
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" :style="{ fill: isWalletActive ? '#2873FF' : isDark ? '#fff' : '#10192D' }">
                   <path d="M22.7805 12.6201V14.6801C22.7805 15.2401 22.3205 15.7001 21.7505 15.7001H19.8205C18.7405 15.7001 17.7505 14.9101 17.6605 13.8301C17.6005 13.2001 17.8405 12.6101 18.2605 12.2001C18.6305 11.8201 19.1405 11.6001 19.7005 11.6001H21.7505C22.3205 11.6001 22.7805 12.0601 22.7805 12.6201Z" />
                   <path d="M16.1603 13.9599C16.0703 12.9099 16.4503 11.8799 17.2103 11.1299C17.8503 10.4799 18.7403 10.0999 19.7003 10.0999H20.2703C20.5503 10.0999 20.7803 9.8699 20.7403 9.5899C20.4703 7.6499 18.7903 6.1499 16.7803 6.1499H6.78027C4.57027 6.1499 2.78027 7.9399 2.78027 10.1499V17.1499C2.78027 19.3599 4.57027 21.1499 6.78027 21.1499H16.7803C18.8003 21.1499 20.4703 19.6499 20.7403 17.7099C20.7803 17.4299 20.5503 17.1999 20.2703 17.1999H19.8203C17.9203 17.1999 16.3203 15.7799 16.1603 13.9599ZM13.7803 11.8999H7.78027C7.37027 11.8999 7.03027 11.5699 7.03027 11.1499C7.03027 10.7299 7.37027 10.3999 7.78027 10.3999H13.7803C14.1903 10.3999 14.5303 10.7399 14.5303 11.1499C14.5303 11.5599 14.1903 11.8999 13.7803 11.8999Z"/>
@@ -268,6 +268,9 @@ text-transform: unset !important;
 color: white;
 letter-spacing: 0px;
 }
+.active-wallet-btn{
+  background: #edf3ff !important;
+}
 .dropdown-btn1i-light{
 width: 135px;
 flex-shrink: 0;
@@ -362,7 +365,7 @@ margin-top: 15px;
 }
 .nav-btn {
 border-radius: 20px; 
-background: #10192D !important; 
+background: #10192D; 
 width: 52px!important;
 height: 53.2px !important;
 flex-shrink: 0;
@@ -372,10 +375,10 @@ align-items: center;
 justify-content: center;
 }
 .nav-btn-dark{
-background: #10192D !important; 
+background: #10192D ; 
 }
 .nav-btn-light {
-background: #F8FAFC !important; 
+background: #F8FAFC; 
 }
 .v-btn--size-default{
   min-width: 0px !important;

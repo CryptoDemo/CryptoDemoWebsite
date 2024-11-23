@@ -51,7 +51,7 @@
               <img src="/svg/Rectangle 911.svg" class="img-fluid position absolute star-btm">
           </div>
               <div class="carousel-group-text" style="display: grid; position: relative; top: -28px;">
-              <span class="text-center d-grid" :class="isDark ? 'header-text':'header-text-light'">Secure Escrow Hub</span>
+              <span class="text-center d-grid" :class="isDark ? 'header-text':'header-text-light'">Secure Payment Providers</span>
               <span class="text-center carousel-text">Secure transactions – your funds are held safely <br> until your deal is done</span>
             </div>
         </div>
