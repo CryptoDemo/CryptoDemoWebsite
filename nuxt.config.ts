@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],  
   },
- 
+  
   app: { 
     head: {
       titleTemplate: 'Betacrypto', // Replace MyAppName with your app's name
