@@ -21,10 +21,10 @@
         <div class="mx-auto btn-segment2" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
 
           <v-btn :class="`${transaction1 ? 'buy-btn btn-seg1': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction1=true" style="border-radius: 41px !important; height: 40px !important;">
-            <span>{{transaction1 ?  'Sell✨' : 'Sell' }}</span>
+            <span>{{transaction1 ?  'Sell ✨' : 'Sell' }}</span>
           </v-btn>
           <v-btn :class="`${!transaction1 ? 'buy-btn': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}` " @click.prevent="transaction1=false" style="border-radius: 41px !important; height: 40px !important;" >
-          <span>{{transaction1 ?  'Buy' : 'Buy✨' }}</span>
+          <span>{{transaction1 ?  'Buy' : 'Buy ✨' }}</span>
           </v-btn>
         </div>
       </div>

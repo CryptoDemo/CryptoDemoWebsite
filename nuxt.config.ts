@@ -9,8 +9,8 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],  
   },
-  
-  app: { 
+   
+  app: {  
     head: {
       titleTemplate: 'Betacrypto', // Replace MyAppName with your app's name
     } 
@@ -54,7 +54,7 @@ export default defineNuxtConfig({
     },
     //...
   ],
-
+ 
   intercom: {
     // Required
     appId: "lwqnsoko"

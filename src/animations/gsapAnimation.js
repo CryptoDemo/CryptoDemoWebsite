@@ -4,9 +4,9 @@ import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 
 gsap.registerPlugin(MotionPathPlugin);
 
-export const rotateOrbitAnimation = (element, path, rotationValue = 180) => {
+export const rotateOrbitAnimation = (element, path, rotationValue, duration) => {
     gsap.to(element, {
-        duration: 15,
+        duration: duration,
         repeat: -1,
         yoyo: true,
         ease: "power1.inOut",
@@ -30,7 +30,8 @@ export const fadeAnimation = (element1, element2) => {
             repeat: -1,
             yoyo: true,
             ease: "back.inOut",
-            stagger: 5
+            stagger: 5,
+            rotation: 270
         }
     );
 };

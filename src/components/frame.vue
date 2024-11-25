@@ -7,16 +7,17 @@
             <div class="first-col-wrap"
               style="display: flex; align-self: center; position: relative; margin-bottom: 30px;">
               <img src="/img/mobile-frame.png" ref="img" class="mobile-frame"
-                style="max-width: 100%; width: 85%; display: flex; margin: auto;"
+                style="max-width: 100%; width: 85%; display: flex; margin: auto; z-index: 2"
                 v-if="theme.global.current.value.dark" />
-              <img src="/svg/Framelight.svg" ref="img" style="max-width: 100%;" height="94%" v-else />
+              <img src="/svg/Framelight.svg" ref="img" style="max-width: 100%;  z-index: 2" height="94%" v-else />
               <img src="/svg/greencoin1.svg" ref="img3" class="green-coin1"
-                style="position: absolute; max-width: 100%; top: 0; bottom: -273px; display: flex; margin: auto;"
+                style="position: absolute; max-width: 100%; top: 0; bottom: -273px; display: flex; margin: auto;  z-index: 4"
                 v-if="theme.global.current.value.dark" />
               <img src="/svg/greencoin1.svg" class="green-coin2" ref="img3"
-                style="position: absolute; top: 0; bottom: -310px; display: flex; margin: auto; left: -17%;" v-else />
+                style="position: absolute; top: 0; bottom: -310px; display: flex; margin: auto; left: -17%;  z-index: 4"
+                v-else />
               <img src="/svg/yellowCoin1.svg" ref="img2" class="yellow-coin1"
-                style="position: absolute; margin-top: 121px; right: 5%;" v-if="theme.global.current.value.dark" />
+                style="position: absolute; margin-top: 121px; right: 5%" v-if="theme.global.current.value.dark" />
               <img src="/svg/yellowCoin1.svg" class="yellow-coin2" ref="img2"
                 style="position: absolute; margin-top: 121px; right: -8%;" v-else />
             </div>
@@ -173,13 +174,13 @@ onMounted(() => {
       { x: 0, y: -10 },
       { x: -10, y: 0 },
       { x: -20, y: 20 },
-    ], 360);
+    ], 360, 13);
 
     rotateOrbitAnimation(img3.value, [
-      { x: 0, y: 0 },
+      { x: 5, y: 3 },
       { x: -10, y: -30 },
       { x: -20, y: -60 },
-    ], 360);
+    ], 360, 13);
 
     zoomAnimation(img.value, 1, 1.04, 7);
     stackAnimation(image1.value, image2.value)

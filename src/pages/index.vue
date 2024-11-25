@@ -225,9 +225,22 @@
             <div class="demo-div1" style="margin-inline-end: 28px;">
               <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'">
                 <div class="rectangle" style="display: flex; justify-self: center;">
-                  <img v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228018/frame-3-dark_cyersc.png'"
+                 <img v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228018/frame-3-dark_cyersc.png'"
                     alt="betacrypto-img-17" ref="zoomImg" style="display: flex; justify-self: center; width: 100%; margin: auto;"
                     class="" v-if="theme.global.current.value.dark" />
+                    <!-- <div v-if="theme.global.current.value.dark">
+                      <div>
+                        <img src="" alt="first-anime">
+                        <div>
+                          <img src="" alt="small1-anime">
+                          <img src="" alt="small-anime">
+                        </div>
+                      </div>
+                      <div>
+                        <img src="" alt="right-anime">
+                        <img src="" alt="right2-anime">
+                      </div>
+                    </div> -->
                   <div
                     style=" background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);border-radius: 15px; width: 100%;"
                     v-else>
@@ -428,25 +441,25 @@ onMounted(() => {
       { x: 0, y: 0 },
       { x: 50, y: -35 },
       { x: 100, y: -70 },
-    ]);
+    ], 180, 10);
 
     rotateOrbitAnimation(img2.value, [
       { x: 10, y: -20 },
       { x: -25, y: 0 },
       { x: -40, y: 40 },
-    ]);
+    ], 200, 13);
 
     rotateOrbitAnimation(img3.value, [
       { x: 0, y: 0 },
       { x: -40, y: -50 },
       { x: -80, y: -100 },
-    ]);
+    ], 360, 9);
 
     rotateOrbitAnimation(img4.value, [
       { x: 20, y: -20 },
       { x: -5, y: 0 },
       { x: -10, y: 20 },
-    ]);
+    ], 150, 6);
 
     fadeAnimation(fade1.value, fade2.value);
     zoomAnimation(zoomImg.value, 1, 1.02, 5);
@@ -827,7 +840,7 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 
 .writing-btn {
   display: flex;
-  padding: 10px;
+  padding: 10px 15px;
   justify-content: center;
   align-items: center;
   gap: 10px;

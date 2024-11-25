@@ -85,9 +85,9 @@ const footer = ref ([
   {
     title: 'Legal', 
     items: [
-      {subtitle:'Vendor Reminder', link:'#'},
+      // {subtitle:'Vendor Reminder', link:'#'},
       {subtitle:"Terms & Conditions", link:'#'},
-      {subtitle: 'AML Policy', link:'#'},
+      // {subtitle: 'AML Policy', link:'#'},
       {subtitle: 'Stablecoin Terms Of Service', link:'#'},
       {subtitle: 'Privacy Notice', link:'#'},
       {subtitle: 'Cookie Policy', link:'#'},
@@ -108,25 +108,25 @@ const footer = ref ([
       {subtitle:'Become Vendor'},
     ]
   },
-  {
-    title: 'For Your Business', 
-    items: [
-      {subtitle:'Betacrypto Pay'},
-      {subtitle:'Virtual Bitcoin Kiosk'},
-      {subtitle:'API Documentation'},
-    ]
+  // {
+  //   title: 'For Your Business', 
+  //   items: [
+  //     {subtitle:'Betacrypto Pay'},
+  //     {subtitle:'Virtual Bitcoin Kiosk'},
+  //     {subtitle:'API Documentation'},
+  //   ]
 
-  },
+  // },
 
-  {
-    title: 'Growth', 
-    items: [
-      {subtitle:'Betacrypto Rewards Program'},
-      {subtitle:'Betacrypto Trader Program'},
-      {subtitle:'Betacrypto Peer Program'},
-      {subtitle:'Community'},
-    ]
-  },
+  // {
+  //   title: 'Growth', 
+  //   items: [
+  //     {subtitle:'Betacrypto Rewards Program'},
+  //     {subtitle:'Betacrypto Trader Program'},
+  //     {subtitle:'Betacrypto Peer Program'},
+  //     {subtitle:'Community'},
+  //   ]
+  // },
 
   {
     title: 'Buy Anywhere', 
@@ -150,8 +150,8 @@ const footer = ref ([
     items: [
       {subtitle:'About Us'},
       {subtitle:'Business Contacts'},
-      {subtitle:'Careers'},
-      {subtitle:'Betacrypto Blog'},
+      // {subtitle:'Careers'},
+      // {subtitle:'Betacrypto Blog'},
       {subtitle:'Betacrypto Reviews'},
     ]
   },
@@ -180,7 +180,7 @@ backdrop-filter: blur(25px);
 .footer-text{
 color: #E2E8F0;
 font-family: "SF Pro Display";
-font-size: 14px;
+font-size: 16px;
 font-style: normal;
 font-weight: 700;
 line-height: 100%; /* 14px */
@@ -189,7 +189,7 @@ letter-spacing: 0.14px;
 .footer-text-light{
 color: #10192D;
 font-family: "SF Pro Display";
-font-size: 14px;
+font-size: 16px;
 font-style: normal;
 font-weight: 700;
 line-height: 100%; /* 14px */
@@ -199,7 +199,7 @@ letter-spacing: 0.14px;
 margin-bottom: 16px;
 color: #8E9BAE;
 font-family: "SF Pro Display";
-font-size: 14px;
+font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: 100%; /* 14px */

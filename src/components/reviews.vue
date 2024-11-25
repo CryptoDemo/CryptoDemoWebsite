@@ -136,7 +136,7 @@
   .card-inactive {
     z-index: 1;
     transform: translateY(100px);
-    opacity: 0.1;
+    opacity: 0;
     margin-left: 70px;
   }
   

@@ -74,7 +74,7 @@
 
           </v-menu>
 
-          <div v-if="wallet" style="display: grid; margin-top: 25px; margin-inline-end: -4px;">
+          <div v-if="wallet" style="display: grid; margin-top: 0px; align-items: center; margin-inline-end: -4px;">
             <nuxt-link to="/account/trade/wallet">
               <button class="nav-btn wallet-btn"
                 :class="[isWalletActive ? 'active-wallet-btn' : '', isDark ? 'nav-btn' : 'nav-btn-light']">
@@ -87,20 +87,38 @@
                   <path
                     d="M14.9899 3.9801C15.2499 4.2501 15.0199 4.6501 14.6399 4.6501H6.80994C5.71994 4.6501 4.69994 4.9701 3.84994 5.5201C3.45994 5.7701 2.92994 5.5001 3.11994 5.0701C3.67994 3.7601 4.98994 2.8501 6.49994 2.8501H12.1199C13.2799 2.8501 14.3099 3.2601 14.9899 3.9801Z" />
                 </svg>
-                <v-tooltip activator="parent" location="bottom">Wallet</v-tooltip>
+                <v-tooltip activator="parent" location="bottom" content-class="custom-tooltip">
+                  <template #default>
+                    <span style="text-transform: capitalize; color: #fff; font-size: 14px; font-weight: 600;">
+                      Wallet
+                    </span>
+                  </template>
+                </v-tooltip>
               </button>
             </nuxt-link>
           </div>
 
           <div class="profile-div flex-lg-and-up flex-sm-and-down" v-if="icon2"
-            style="display: flex; flex-direction: column; margin-top: 27px;">
+            style="display: flex; flex-direction: column; margin-top: 0px; align-items: center;">
             <Menu class="profile-nav me-4 ml-5" />
-            <v-tooltip activator="parent" location="bottom">Menu</v-tooltip>
+            <v-tooltip activator="parent" location="bottom" content-class="custom-tooltip">
+              <template #default>
+                <span style="text-transform: capitalize; color: #fff; font-size: 14px; font-weight: 600;">
+                  Menu
+                </span>
+              </template>
+            </v-tooltip>
           </div>
 
-          <div v-if="icon3" class="notify" style="display: grid; position: relative; margin-top: 27px;">
+          <div v-if="icon3" class="notify" style="display: grid; position: relative; margin-top: 0px; align-items: center;">
             <Notifications />
-            <v-tooltip activator="parent" location="bottom">notification</v-tooltip>
+            <v-tooltip activator="parent" location="bottom" content-class="custom-tooltip">
+              <template #default>
+                <span style="text-transform: capitalize; color: #fff; font-size: 14px; font-weight: 600;">
+                  Notification
+                </span>
+              </template>
+            </v-tooltip>
           </div>
         </div>
       </v-container>
@@ -208,6 +226,12 @@ const toggleChevron = () => {
 </script>
 
 <style scoped>
+/* ::v-deep(.custom-tooltip) {
+  background: rgba(255, 255, 255, 0.5) !important;
+  color: #fff; 
+  padding: 5px 10px !important; 
+} */
+
 .Dashboard-navbar {
   border-bottom: 1px solid #10192D;
   background: rgba(6, 10, 29, 0.60) !important;
@@ -501,7 +525,6 @@ const toggleChevron = () => {
 ::-webkit-scrollbar {
   display: none;
 }
-
 
 @media screen and (max-width: 600px) {
   .profile-nav {
