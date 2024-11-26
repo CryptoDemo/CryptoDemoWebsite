@@ -13,7 +13,7 @@
                 <div style="display: flex; align-items: center">
                   <div v-if="transaction?.details?.crypto?.transfer">
 
-                    <div v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" class="d-flex mb-2">
+                    <div v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" class="d-flex mb-2 mt-4">
                       <img src="/svg/greenGet.svg" class="me-2 p-2 mr-2"
                         :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
                         style="padding: 10px; border-radius: 30px;" />
@@ -27,7 +27,7 @@
 
                     </div>
 
-                    <div v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" class="d-flex mb-2"
+                    <div v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" class="d-flex mb-2 mt-4"
                       style="align-items: center">
                       <img src="/svg/transfer.svg" class="me-2 p-2 mr-2"
                         :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
@@ -111,7 +111,7 @@
 
         <template v-slot:default="{ isActive }">
           <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-            style="border-radius: 20px; padding: 20px">
+            style="border-radius: 1px; padding: 20px">
             <h2 class="text-center">Transaction Details</h2>
 
             <div v-if="transaction?.details?.crypto?.transfer">
@@ -240,8 +240,8 @@
 
     </div>
 
-    <div style="width: 100%; display: flex; justify-content: center; margin-top: 15px;">
-      <v-btn variant="outlined" @click="toggleTokens"> {{ showAll ? 'See Less' : 'See More' }}</v-btn>
+    <div v-show="displayedTransactions.length > 5" style="width: 100%; display: flex; justify-content: center; margin-top: 5px; padding: 0px">
+      <v-btn variant="none" @click="toggleTokens" style="text-transform: capitalize; padding: 0px 5px"> {{ showAll ? 'See Less' : 'See More' }}</v-btn>
     </div>
 
 

@@ -83,3 +83,85 @@ export const stackAnimation = (image1, image2) => {
             ease: 'power1.in',
         });
 };
+
+export const horizontalSlideInAnimation = (element, axisValue1, axisValue2, axisValue3, initialDuration, secondDuration, finalDuration, scaleValue) => {
+    const timeline = gsap.timeline({ repeat: -1 }); // repeat: -1 means infinite loop
+  
+    timeline
+      .from(element, {
+        x: axisValue1, // Slide in from the left
+        duration: initialDuration, // Animation duration
+        ease: "power2.out",
+         opacity: 0,
+      })
+      .to(element, {
+        x: axisValue2, // Stay in place
+        duration: secondDuration, // Time to stay
+        ease: "elastic.out(1, 0.5)",
+        scale:scaleValue
+      })
+      .to(element, {
+        x: axisValue3, // Move out to the right
+        duration: finalDuration, // Animation duration
+        ease: "power2.in",
+         opacity: 0,
+      })
+      .to(element, {
+        x: axisValue1, // Return to start position (immediate comeback)
+        duration: 0, // Instant transition
+         opacity: 0,
+      });
+  };
+
+
+export const verticalSlideInAnimation = (element, axisValue1, axisValue2, axisValue3, initialDuration, secondDuration, finalDuration, scaleValue) => {
+    const timeline = gsap.timeline({ repeat: -1 }); // repeat: -1 means infinite loop
+  
+    timeline
+      .from(element, {
+        y: axisValue1, // Slide in from the left
+        duration: initialDuration, // Animation duration
+        ease: "power2.out",
+        opacity: 0,
+      })
+      .to(element, {
+        y: axisValue2, // Stay in place
+        duration: secondDuration, // Time to stay
+        ease: "elastic.out(1, 0.5)",
+        scale:scaleValue
+      })
+      .to(element, {
+        y: axisValue3, // Move out to the right
+        duration: finalDuration, // Animation duration
+        opacity: 0,
+        ease: "power2.in",
+      })
+      .to(element, {
+        y: axisValue1, // Return to start position (immediate comeback)
+        duration: 0, // Instant transition
+        opacity: 0,
+      });
+  };
+
+  export const scrollImageUpDown = (element) => {
+    const timeline = gsap.timeline({ repeat: -1 }); // Infinite loop
+
+  timeline
+    .to(element, {
+      y: -200, // Scroll up (negative Y-axis)
+      duration: 5, // Time to scroll up and shrink
+      ease: "power2.out",
+    })
+    .to(element, {
+      duration: 4, // Pause while staying small
+      ease: "elastic.out(2, 2)",
+    })
+    .to(element, {
+      y: 0, // Return to normal position
+      duration: 5, // Time to return to normal
+      ease: "elastic.out(2, 2)",
+    })
+    .to(element, {
+      duration: 6, // Pause at normal position
+    });
+  };

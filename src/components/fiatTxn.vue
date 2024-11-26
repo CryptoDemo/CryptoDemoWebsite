@@ -133,14 +133,12 @@
                         </div>
                     
                     </div>
-
                 </div>
-        
-                
-                </template>
-
-                
-                <template v-slot:default="{ isActive }">
+            </template>
+            
+            
+            <template v-slot:default="{ isActive }">
+                   
                     <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 20px; padding: 20px">
                     <h2 class="text-center">Transaction Details</h2>
         
@@ -329,6 +327,9 @@
                 </v-dialog>
             </template>
         </v-virtual-scroll>
+            <div v-show="FiatTxnInfo.length > 5" style="width: 100%; display: flex; justify-content: center; margin-top: 5px; padding: 0px">
+                    <v-btn variant="text" @click="toggleTokens" style="text-transform: capitalize; padding: 0px 5px"> {{ showAll ? 'See Less' : 'See More' }}</v-btn>
+                </div>
 
 
         <div v-if="!FiatTxnInfo.length" class="no-transactions" style="height: 400px; display: flex; justify-content: center;">
@@ -355,11 +356,22 @@ const pinia = useStore();
 const isloading = ref(false);
 const pageNumber = ref(1);
 const copied = ref(false);
+const sliceEndValue = ref(5);
+const showAll = ref(false);
 
 
 const created_at = ref();
 
-const FiatTxnInfo = computed(() => pinia.state.Fiat_transactions);
+const FiatTxnInfo = computed(() => pinia.state.Fiat_transactions.slice(0,sliceEndValue.value));
+
+const toggleTokens = () => {
+  if (showAll.value) {
+    sliceEndValue.value = 5;
+  } else {
+    sliceEndValue.value = FiatTxnInfo.length;
+  }
+  showAll.value = !showAll.value;
+};
 
 // const getFiatTxn = async () => {
 //   isloading.value = true;

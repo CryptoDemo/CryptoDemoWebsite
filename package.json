@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxt/image": "^1.8.1",
     "@nuxtjs/device": "^3.1.1",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@vueuse/core": "^11.1.0",

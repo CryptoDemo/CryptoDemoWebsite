@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   },
    
   app: {  
-    head: {
+    head: { 
       titleTemplate: 'Betacrypto', // Replace MyAppName with your app's name
     } 
   }, 
@@ -29,16 +29,17 @@ export default defineNuxtConfig({
     dirs: [
       { path: '~/components', pathPrefix: false, lazy: true },
     ],
-  },
+  },   
 
 
-  modules: [
-    "@pinia/nuxt",
+  modules: [ 
+    "@pinia/nuxt", 
     "@pinia-plugin-persistedstate/nuxt",
     'notivue/nuxt',
     '@nuxtjs/device',
-    '@lambahq/nuxt',
+    '@lambahq/nuxt', 
     '@vueuse/nuxt',
+    '@nuxt/image',
     async (options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', config => {
         // @ts-expect-error

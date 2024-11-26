@@ -16,11 +16,10 @@
       </template>
 
 
-      <div style="margin-top: 15px;" v-if="notificationLogs.length > 0">
-
+      <div style="margin-top: 15px;">
         <v-list :class="isDark ? 'country-dropdown' : 'country-dropdown-light'" style="border-radius: 15px;">
           <v-list-item style="display: contents;">
-            <v-row dense class="row-div" style="width: 330px;">
+            <v-row v-if="notificationLogs.length > 0" dense class="row-div" style="width: 330px;">
               <v-col v-for="(msgs, i) in notificationLogs" :key="i" sm="12">
                 <v-list-item style="display: flex;">
                   <!-- <img :src="msgs.image_url" style="width: 40px; height: 40px; border-radius: 40px;"/> -->
@@ -28,6 +27,18 @@
                     <span style="font-size: 14px; text-transform: capitalize;">{{ msgs.message }}</span>
                     <span class="mt-1" style="font-size: 12px;">{{ formattedDate(msgs.c_at) }}</span>
                   </div>
+                </v-list-item>
+              </v-col>
+
+            </v-row>
+            <v-row v-else dense class="row-div" style="width: 330px;">
+
+              <v-col sm="12">
+                <v-list-item style="display: flex; justify-content: center;">
+                    <div
+                      style="height: 150px; display: flex; align-items: center; justify-content: center; padding: 16px; font-size: 14px; font-weight: 300; color: #8E9BAE;">
+                      You
+                      don't have any notification!</div>
                 </v-list-item>
               </v-col>
             </v-row>
@@ -182,5 +193,27 @@ onBeforeMount(() => {
     width: auto;
   }
 
+}
+
+.bounce-enter-active {
+  animation: bounce-in 5s;
+}
+
+.bounce-leave-active {
+  animation: bounce-in 5s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

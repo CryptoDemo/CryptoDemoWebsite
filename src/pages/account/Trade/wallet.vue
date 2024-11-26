@@ -4,12 +4,28 @@
     <v-container>
       <div style="margin-top: 90px; display: flex; width: 100% !important;">
 
+       <div style="display: flex; flex-direction: column; align-items: center;">
         <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-if="selectedScreen">
           <Wallet-nav />
         </div>
         <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-else>
           <FiatBal />
         </div>
+
+        <!-- <div class="adv flex-lg-and-up" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 32px;">
+      <div style="display: flex; justify-content: space-between;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 18 22" fill="none" class="me-3 mt-2">
+          <path d="M17 6V16C17 20 16 21 12 21H6C2 21 1 20 1 16V6C1 2 2 1 6 1H12C16 1 17 2 17 6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11 4.5H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9.00001 18.1C9.85605 18.1 10.55 17.406 10.55 16.55C10.55 15.694 9.85605 15 9.00001 15C8.14397 15 7.45001 15.694 7.45001 16.55C7.45001 17.406 8.14397 18.1 9.00001 18.1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <span :class="isDark ? 'text-dark':'text-light'" style="font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 800!important; line-height: 28px;">Download the Betacrypto✨️ mobile app and dive into<br> the world  <br> of crypto trading!</span>
+        </div>
+      </div>
+      <v-btn  style="border-radius: 8px; display: flex;  background: linear-gradient(360deg, #2873FF, #0B6B96); padding: 6px 45px; color: white; letter-spacing: 0px; box-shadow: none; text-transform: unset; width: 100%; height: 40px!important; font-weight: 600;">Get App</v-btn>
+    </div> -->
+       </div>
 
 
         <div style="width: -webkit-fill-available">
@@ -27,7 +43,7 @@
             </div>
 
             <div v-if="selectedScreen" class="wallet-box" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-              style="border-radius: 24px; padding: 30px; margin-top: 30px; padding-top: 10px;">
+              style="border-radius: 24px; padding: 10px 30px 15px 30px; margin-top: 30px;">
               <v-table style="display: grid! important; background: inherit; width: 100%;">
                 <thead>
                   <tr style="display: flex; margin-bottom: 8px; justify-content: space-between;">
@@ -234,8 +250,8 @@
                   </tr>
                 </tbody>
               </v-table>
-              <div style="width: 100%; display: flex; justify-content: center; margin-top: 25px;">
-                <v-btn variant="outlined" @click="toggleTokens"> {{ showAll ? 'See Less' : 'See More' }}</v-btn>
+              <div v-show="pinia.state.tokenLists.length > 4" style="width: 100%; display: flex; justify-content: center; margin-top: 5px; padding: 0px">
+                <v-btn variant="text" @click="toggleTokens" style="text-transform: capitalize; padding: 0px 5px"> {{ showAll ? 'See Less' : 'See More' }}</v-btn>
               </div>
             </div>
 
@@ -250,12 +266,12 @@
             </div>
 
             <div v-if="selectedScreen" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="txn-div"
-              style="padding: 10px; margin-bottom: 300px; overflow: scroll; border-radius: 10px !important;">
+              style="padding: 7px 30px 20px 30px; margin-bottom: 300px; border-radius: 24px !important;">
               <WebTxn />
             </div>
 
             <div v-else :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="txn-div"
-              style="padding: 10px; margin-bottom: 300px;  overflow: scroll; border-radius: 10px !important;">
+              style="padding: 18px 30px 20px 30px; margin-bottom: 300px;  border-radius: 24px !important;">
               <FiatTxn />
             </div>
 
@@ -283,12 +299,12 @@ const selectedNetwork = ref(pinia.state.selectedNetwork.toLowerCase());
 const selectedScreen = ref(true);
 const pageNumber = ref(1);
 const balanceData = ref();
-const sliceEndValue = ref(5);
+const sliceEndValue = ref(4);
 const showAll = ref(false);
 
 const toggleTokens = () => {
   if (showAll.value) {
-    sliceEndValue.value = 5;
+    sliceEndValue.value = 4;
   } else {
     sliceEndValue.value = pinia.state.tokenLists.length;
   }
@@ -717,5 +733,16 @@ onBeforeMount(async () => {
     width: auto !important;
   }
 
+}
+
+.adv{
+display: flex;
+width: 282px;
+padding: var(--spacing-3xl, 24px);
+align-items: center;
+align-content: center;
+gap: 23px 179px;
+flex-wrap: wrap;
+border-radius: 16px;
 }
 </style>

@@ -45,7 +45,7 @@
       </v-col>
 
       <v-col>
-        <v-col class="second-col mt-2" style="padding: 8px; margin-bottom: 8px;">
+        <v-col class="second-col mt-2" style="padding: 8px; margin-bottom: 8px; overflow: hidden;">
           <div class="frame2" :class="isDark ? 'frame2' : 'frame2-light'" style="padding: 0 40px; width: 100%;">
             <div>
               <div class="position-relative">
@@ -127,7 +127,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { rotateOrbitAnimation, zoomAnimation, stackAnimation } from '~/animations/gsapAnimation';
+import { rotateOrbitAnimation, zoomAnimation, horizontalSlideInAnimation, verticalSlideInAnimation } from '~/animations/gsapAnimation';
 import { useTheme } from 'vuetify';
 
 const theme = useTheme()
@@ -183,7 +183,8 @@ onMounted(() => {
     ], 360, 13);
 
     zoomAnimation(img.value, 1, 1.04, 7);
-    stackAnimation(image1.value, image2.value)
+    verticalSlideInAnimation(image1.value, '-50', 0,'50', 1.04, 7, 1,1);
+    horizontalSlideInAnimation(image2.value, '50', 0,'-300', 1.1, 6, 1.4,1.1);
 
   }
 

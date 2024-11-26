@@ -222,30 +222,36 @@
 
         <v-row no-gutters class="mt-7">
           <v-col cols="12" sm="6" md="6">
-            <div class="demo-div1" style="margin-inline-end: 28px;">
+            <div class="demo-div1" style="margin-inline-end: 28px; overflow: hidden">
               <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'">
-                <div class="rectangle" style="display: flex; justify-self: center;">
-                 <img v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228018/frame-3-dark_cyersc.png'"
+                <div class="rectangle" style="display: flex; justify-self: center; padding: 10px">
+                  <!-- <img v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228018/frame-3-dark_cyersc.png'"
                     alt="betacrypto-img-17" ref="zoomImg" style="display: flex; justify-self: center; width: 100%; margin: auto;"
-                    class="" v-if="theme.global.current.value.dark" />
-                    <!-- <div v-if="theme.global.current.value.dark">
-                      <div>
-                        <img src="" alt="first-anime">
-                        <div>
-                          <img src="" alt="small1-anime">
-                          <img src="" alt="small-anime">
-                        </div>
+                    class="" v-if="theme.global.current.value.dark" /> -->
+                  <div class="d-flex justify-center"
+                    style="width: 100%; justify-self: space-between; align-items: center; margin: 20px 10px 2px 10px;">
+                    <div style="width: 60%; display: flex; flex-direction: column; align-items: center">
+                      <img ref="cardImage1" src="/img/priceAct.png" style="width: 90%;" format="webp" densities="x1"
+                        alt="" class="rounded-t-md" />
+                      <div class="d-flex justify-end" style="padding: 0px; width: 100%">
+                        <img ref="cardBtn1" style="width: 45%;" src="/img/deposit.png" format="webp" densities="x1"
+                          alt="" class="rounded-t-md" />
+                        <img ref="cardBtn2" style="width: 50%;" src="/img/withdraw.png" format="webp" densities="x1"
+                          alt="" class="rounded-t-md" />
                       </div>
-                      <div>
-                        <img src="" alt="right-anime">
-                        <img src="" alt="right2-anime">
-                      </div>
-                    </div> -->
-                  <div
-                    style=" background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);border-radius: 15px; width: 100%;"
-                    v-else>
-                    <img v-lazy="'/svg/demo-light.svg'" alt="betacrypto-img-18"
-                      style="display: flex; align-self: center; justify-self: center; width: 90%; margin: auto; margin-top:27px;" />
+                    </div>
+                    <div style="width: 32%;" v-if="theme.global.current.value.dark">
+                      <img ref="cardRightImage1" style="width: 100%;" src="/img/Card.png" format="webp" densities="x1"
+                        alt="" class="rounded-t-md" />
+                      <img ref="cardRightImage2" style="width: 100%; margin-top: 5px;" src="/img/Card(1).png"
+                        format="webp" densities="x1" alt="" class="rounded-t-md" />
+                    </div>
+                    <div style="width: 32%;" v-else>
+                      <img ref="cardRightImageLight" style="width: 100%;" src="/img/lightcard.png" format="webp"
+                        densities="x1" alt="" class="rounded-t-md" />
+                      <img ref="cardRightImageLight2" style="width: 100%; margin-top: -35px;" src="/img/lightcard2.png"
+                        format="webp" densities="x1" alt="" class="rounded-t-md" />
+                    </div>
                   </div>
                 </div>
                 <div class="wallet-div" style="display:grid;  margin-left: 36px; position: relative; top: 6px;">
@@ -282,7 +288,7 @@
                   <div class="mb-7"
                     style="background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%); padding-top: 28px; border-radius: 15px; width: 100%;"
                     v-else>
-                    <img src="/svg/barcode-light.svg"
+                    <img src="/svg/barcode-light.svg" ref="zoomImg2"
                       style="display: flex; justify-self: center; margin: auto; width: 90%;" alt="betacrypto-img-21" />
                   </div>
                 </div>
@@ -361,21 +367,52 @@
               <div class="">
                 <div class="phone-rectangle"
                   style="position: relative; top: -58px; display: flex; justify-content: center;">
-                  <div v-if="theme.global.current.value.dark">
-                    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1712227730/demo-dark-mode_1_elqrup.png"
-                      class="mobile-screen" style="width: 500px;" alt="betacrypto-img-22" />
 
-                    <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"
-                      alt="betacrypto-img-23" />
+                  <div v-if="theme.global.current.value.dark">
+                    <div class="mobile-screen" style="width: 500px;" alt="betacrypto-img-24">
+                      <div class="mobileNimationBg" style="width: 530px; height: 669px;">
+                        <div class="mobile-animation">
+                          <img ref="scrollImageMobile" src="/img/animatedScreen.png" alt="" style="width: 100%;">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1712227730/demo-dark-mode_1_elqrup.png"
+    class="mobile-screen" style="width: 500px;" alt="betacrypto-img-22" /> -->
+
+                    <div class="desktop-screen flex-lg-and-up hidden-sm-and-down" alt="betacrypto-img-22">
+                      <div class="mobileNimationBg" style="width: 530px; height: 669px;">
+                        <div class="desktop-animation">
+                          <img ref="scrollImage" src="/img/animatedScreen.png" alt="" style="width: 100%;">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"
+    alt="betacrypto-img-23" /> -->
                   </div>
                   <div v-else>
-                    <img
-                      v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228232/new-demolight_rub0cb.png'"
-                      class="mobile-screen" style="width: 500px;" alt="betacrypto-img-24" />
-                    <img
-                      v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228578/new-desktop-light_tj7bjj.png'"
-                      style="max-width: 100%; z-index: 1000;" class="desktop-screen flex-lg-and-up hidden-sm-and-down"
-                      alt="betacrypto-img-25" />
+                    <div class="mobile-screen" style="width: 500px;" alt="betacrypto-img-24">
+                      <div class="lightmobileNimationBg" style="width: 530px; height: 669px;">
+                        <div class="mobile-animation">
+                          <img ref="scrollImageMobile" src="/img/animatedScreenLight.png" alt="" style="width: 100%;">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <img
+    v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228232/new-demolight_rub0cb.png'"
+    class="mobile-screen" style="width: 500px;" alt="betacrypto-img-24" /> -->
+
+                    <div style="max-width: 100%; z-index: 1000;"
+                      class="desktop-screen flex-lg-and-up hidden-sm-and-down" alt="betacrypto-img-25">
+                      <div class="lightmobileNimationBg" style="width: 530px; height: 669px;">
+                        <div class="desktop-animation">
+                          <img ref="scrollImage" src="/img/animatedScreenLight.png" alt="" style="width: 100%;">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <img
+    v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228578/new-desktop-light_tj7bjj.png'"
+    style="max-width: 100%; z-index: 1000;" class="desktop-screen flex-lg-and-up hidden-sm-and-down"
+    alt="betacrypto-img-25" /> -->
                   </div>
                 </div>
               </div>
@@ -408,7 +445,7 @@
 import { ref, onMounted } from 'vue';
 import { useTheme } from 'vuetify';
 import { getTokens, currencyConverter } from "@/composables/requests/tokens";
-import { rotateOrbitAnimation, fadeAnimation, zoomAnimation } from '~/animations/gsapAnimation';
+import { rotateOrbitAnimation, fadeAnimation, zoomAnimation, horizontalSlideInAnimation, verticalSlideInAnimation, scrollImageUpDown } from '~/animations/gsapAnimation';
 const theme = useTheme()
 const isDark = computed(() => theme.global.current.value.dark);
 
@@ -434,9 +471,19 @@ const fade1 = ref(null)
 const fade2 = ref(null)
 const zoomImg = ref(null)
 const zoomImg2 = ref(null)
+const cardImage1 = ref(null)
+const cardBtn1 = ref(null)
+const cardBtn2 = ref(null)
+const cardRightImage1 = ref(null)
+const cardRightImage2 = ref(null)
+const cardRightImageLight = ref(null)
+const cardRightImageLight2 = ref(null)
+const scrollImage = ref(null)
+const scrollImageMobile = ref(null)
+
 
 onMounted(() => {
-  if (img1.value || img2.value || img3.value || img3.value) {
+  if (img1.value || img2.value || img3.value || img3.value || cardImage1.value || scrollImage.value) {
     rotateOrbitAnimation(img1.value, [
       { x: 0, y: 0 },
       { x: 50, y: -35 },
@@ -464,6 +511,16 @@ onMounted(() => {
     fadeAnimation(fade1.value, fade2.value);
     zoomAnimation(zoomImg.value, 1, 1.02, 5);
     zoomAnimation(zoomImg2.value, 1, 1.025, 6);
+    horizontalSlideInAnimation(cardImage1.value, "-100", 0, "-100", 1, 8, 2.5, 1.05);
+    verticalSlideInAnimation(cardBtn1.value, "50", 0, "50", 1, 5, 1, 1);
+    verticalSlideInAnimation(cardBtn2.value, "50", 0, "50", 1.04, 5, 1.05, 1);
+
+    horizontalSlideInAnimation(cardRightImage1.value, "100", 0, "100", 1.08, 5, 1.1, 1.01);
+    horizontalSlideInAnimation(cardRightImage2.value, "100", 0, "100", 1.04, 8, 2.7, 1.05)
+    horizontalSlideInAnimation(cardRightImageLight.value, "100", 0, "100", 1.08, 5, 1.1, 1.01);
+    horizontalSlideInAnimation(cardRightImageLight2.value, "100", 0, "100", 1.04, 8, 2.7, 1.05)
+    scrollImageUpDown(scrollImage.value)
+    scrollImageUpDown(scrollImageMobile.value)
   }
 });
 
@@ -1482,4 +1539,79 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 ::-webkit-scrollbar {
   display: none;
 }
+
+.mobileNimationBg {
+  background: url('../public/img/phonehands.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: contain;
+  background-attachment: scroll
+}
+
+.lightmobileNimationBg {
+  background: url('../public/img/lightthemhand.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: contain;
+  background-attachment: scroll
+}
+
+.mobile-animation {
+  width: 55%;
+  height: 345px;
+  position: absolute;
+  top: 31%;
+  left: 17%;
+  overflow: hidden;
+}
+
+.desktop-animation {
+  width: 42%;
+  height: 345px;
+  position: absolute;
+  top: 18%;
+  left: 22%;
+  overflow: hidden;
+}
+
+@media screen and (max-width:1118px) {
+  .desktop-animation {
+    width: 58%;
+    top: 17%;
+    left: 12%;
+  }
+}
+
+@media screen and (max-width:1159px) {
+  .desktop-animation {
+    width: 55%;
+    top: 18%;
+    left: 13%;
+  }
+}
+
+@media screen and (max-width:960px) {
+  .desktop-animation {
+    width: 63%;
+    top: 10%;
+    left: 8%;
+  }
+}
+
+
+/* @media screen and (max-width:609px) {
+  .mobile-animation {
+    width: 48%;
+    top: 18.5%;
+    left: 21%;
+}
+}
+
+@media screen and (max-width:958px) {
+  .mobile-animation {
+    width: 32%;
+    top: 19%;
+    left: 31%;
+  }
+} */
 </style>

@@ -7,89 +7,120 @@
         <div class="wallet-box" :class="isDark ? 'wallet-border' : 'wallet-border-light'"
           style="border-radius: 24px; width: 100%; margin-top: 28px; width: 100%;">
           <div style="display: flex; justify-content: space-evenly; align-items: baseline">
-      
-          
+
+
           </div>
 
 
 
-          <v-table class="coin-table" style="display: grid! important; background: inherit; width: 100%; height: auto; padding-bottom: 14px;">
+          <v-table class="coin-table"
+            style="display: grid! important; background: inherit; width: 100%; height: auto; padding-bottom: 14px;">
             <thead>
-              <div class="py-8 table-caption d-md-flex" style="align-items: center; width: 100%; position: relative; padding-right: 28px; padding-left: 28px;">
+              <div class="py-8 table-caption d-md-flex"
+                style="align-items: center; width: 100%; position: relative; padding-right: 28px; padding-left: 28px;">
 
 
-                  <div class="table-title" style="display: flex; flex-direction: column;">
-                    <span style="font-size: 16px; font-weight: 600;">CryptoCurrency Trading Market Table</span>
-                    <span class="mt-2" :class="isDark ? 'text-dark' : 'text-light'">Live market data at a glance.</span>
-                  </div>
+                <div class="table-title" style="display: flex; flex-direction: column;">
+                  <span style="font-size: 16px; font-weight: 600;">CryptoCurrency Trading Market Table</span>
+                  <span class="mt-2" :class="isDark ? 'text-dark' : 'text-light'">Live market data at a glance.</span>
+                </div>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="searchIcon" width="21" height="21" viewBox="0 0 21 21" fill="none"
-                      style="margin-left: 16px; margin-top: 2px; left: 50%; margin-right: 10px; position: absolute;">
-                      <path
-                        d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z"
-                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                      <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="currentColor" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-      
-                    <input type="search" class="search-input" v-model="input" placeholder="search for coins here..." style="border: 1px solid #64748B; height: 55px; border-radius: 15px; padding-left: 45px; padding-right: 10px; outline: none; align-items: center; width: 50%; display: flex; margin-inline-start: auto;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="searchIcon" width="21" height="21" viewBox="0 0 21 21"
+                  fill="none"
+                  style="margin-left: 16px; margin-top: 2px; left: 50%; margin-right: 10px; position: absolute;">
+                  <path
+                    d="M10.3033 18.2301C14.6756 18.2301 18.22 14.6148 18.22 10.1551C18.22 5.69538 14.6756 2.08008 10.3033 2.08008C5.93105 2.08008 2.38664 5.69538 2.38664 10.1551C2.38664 14.6148 5.93105 18.2301 10.3033 18.2301Z"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path opacity="0.4" d="M19.0533 19.0809L17.3866 17.3809" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+
+                <input type="search" class="search-input" v-model="input" placeholder="search for coins here..."
+                  style="border: 1px solid #64748B; height: 55px; border-radius: 15px; padding-left: 45px; padding-right: 10px; outline: none; align-items: center; width: 50%; display: flex; margin-inline-start: auto;">
               </div>
 
-              <tr class="coin-table" style="display: flex; margin-bottom: 8px; justify-content: space-between; padding-left: 28px; padding-right: 28px">
-
-                <th class="flex-lg-and-up hidden-sm-and-down" style="display: flex; align-items: center; align-self: center; width: 3%; justify-content: center;">
+              <tr class="coin-table"
+                style="display: flex; margin-bottom: 8px; justify-content: space-between; padding-left: 28px; padding-right: 28px;">
+                <!-- First column: S/N -->
+                <th class="flex-lg-and-up hidden-sm-and-down" style="flex-basis: 10%; text-align: center;">
                   <div class="d-flex">
                     <span class="table-header-text" :class="isDark ? 'text-dark' : 'text-light'">S/N</span>
                   </div>
                 </th>
 
-                <th class="coin-tr" style="display: flex; align-items: center; align-self: center; justify-content: center;">
+                <!-- Second column: Coin -->
+                <th class="coin-tr" style="flex-basis: 25%; text-align: center; margin-left: 5px">
                   <div class="d-flex">
                     <span class="table-header-text" :class="isDark ? 'text-dark' : 'text-light'">Coin</span>
                   </div>
                 </th>
 
-                <th class="price-tr" style="display: flex; align-items: center; align-self: center; position: relative; justify-content: center;">
-                  <span class="table-header-text" :class="isDark ? 'text-dark' : 'text-light'"
-                    style="margin-left: ">Price ({{ pinia.state.preferredCurrency }})</span>
+                <!-- Third column: Price -->
+                <th class="price-tr" style="flex-basis: 32.5%; text-align: center;">
+                  <span class="table-header-text" :class="isDark ? 'text-dark' : 'text-light'">
+                    Price ({{ pinia.state.preferredCurrency }})
+                  </span>
                 </th>
 
-                <th class="balance-tr" style="display: flex; align-items: center; align-self: center;">
-                  <span class="table-header-text me-1" :class="isDark ? 'text-dark' : 'text-light'">Quantity</span>
+                <!-- Fourth column: Quantity -->
+                <th class="balance-tr" style="flex-basis: 32.5%; text-align: center;">
+                  <span class="table-header-text" :class="isDark ? 'text-dark' : 'text-light'">Quantity</span>
                 </th>
-
               </tr>
             </thead>
 
             <tbody>
 
 
-            <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index" @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')" class="loop-table" style="display: flex; justify-content: space-between; padding-left: 28px; padding-right: 28px">
+              <tr v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists" :key="index"
+                @click="pinia.state.getNewCoinInfo = item.symbol; navigateTo('/account/trade/coinId')"
+                class="loop-table"
+                style="display: flex; justify-content: space-between; padding-left: 28px; padding-right: 28px">
 
-              <td class="mt-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark' : 'text-light'" style="display: flex; align-items: center;"> {{ index + 1 }}</td>
+                <!-- First column: S/N -->
+                <td class="mt-2 flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text-dark' : 'text-light'"
+                  style="flex-basis: 10%; display: flex; align-items: center; justify-content: start;">
+                  {{ index + 1 }}
+                </td>
 
-              <td style="display: contents; position: relative; width: 34%; cursor: pointer;">
-                <div class="d-flex coin-width" style="align-items: center; width: 150px; ">
-                  <img :src="item.icon" width="35" class="py-5" />
-                  <img :src="chainIcon?.icon" width="15" class=" py-5"
-                    style="position: relative; right: 11px; margin-top: 16px;" />
-                  <div style="flex-direction:row">
-                    <span class="coin-name1" :class="isDark ? 'coin-name' : 'coin-name-light'" style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height:normal">{{ item.name}}</span>
-                    <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down"
-                      :class="isDark ? 'text-dark' : 'text-light'">{{ item.symbol }}</span>
+                <!-- Second column: Coin -->
+                <td style="flex-basis: 25%; display: flex; position: relative; cursor: pointer; align-items: center;">
+                  <div class="d-flex coin-width" style="align-items: center; width: 150px;">
+                    <img :src="item.icon" width="35" class="py-5" />
+                    <img :src="chainIcon?.icon" width="15" class="py-5"
+                      style="position: relative; right: 11px; margin-top: 16px;" />
+                    <div style="flex-direction: row;">
+                      <span class="coin-name1" :class="isDark ? 'coin-name' : 'coin-name-light'"
+                        style="font-family: Manrope; font-weight: 600; font-size: 16px; line-height: normal;">
+                        {{ item.name }}
+                      </span>
+                      <span class="sml-text d-flex flex-lg-and-up hidden-md-and-down"
+                        :class="isDark ? 'text-dark' : 'text-light'">
+                        {{ item.symbol }}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </td>
+                </td>
 
-              <td class="mt-4 price-td" style="overflow: scroll;  display: flex; align-self: self-start; justify-content: center; width: 27%; cursor: pointer;">
-                <span class="browser-txt price-bal" :class="isDark ? 'coin-name' : 'coin-name-light'" style="margin-right: -13px;">{{formatConvertedValue(item.conversionRate || 0) }}</span>
-              </td>
+                <!-- Third column: Price -->
+                <td class="mt-4 price-td"
+                  style="flex-basis: 32.5%; display: flex; align-self: center; justify-content: center; cursor: pointer;">
+                  <span class="browser-txt price-bal" :class="isDark ? 'coin-name' : 'coin-name-light'"
+                    style="margin-right: -13px;">
+                    {{ formatConvertedValue(item.conversionRate || 0) }}
+                  </span>
+                </td>
 
-              <td class="mt-2 bal-td" style="display: flex; align-items: center; justify-content: center; width: 16%; cursor: pointer;">
-                <span class="coin-bal" :class="isDark ? 'coin-name' : 'coin-name-light'" style="font-weight: 600; font-size: 16px; width: 10px; margin-bottom: 16px;"> {{ formatBalance(item.balance) }} </span>
-              </td>
+                <!-- Fourth column: Quantity -->
+                <td class="mt-2 bal-td"
+                  style="flex-basis: 32.5%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                  <span class="coin-bal" :class="isDark ? 'coin-name' : 'coin-name-light'"
+                    style="font-weight: 600; font-size: 16px; margin-bottom: 16px;">
+                    {{ formatBalance(item.balance) }}
+                  </span>
+                </td>
 
-            </tr>
+              </tr>
             </tbody>
           </v-table>
         </div>
@@ -139,7 +170,7 @@ const getTokens_ = async () => {
       // Update token balances
       setTimeout(async () => {
         await getTokenBals();
-      }, 2000); 
+      }, 2000);
 
     } else {
       // Display a message to the user if fetching tokens was unsuccessful
@@ -262,14 +293,14 @@ watch(() => pinia.state.selectedNetwork, async (newNetwork) => {
 })
 
 
-const fetch_token_bals = async()=>{
-  if(pinia.state.tokenLists.length){
-    return 
-  }else{
+const fetch_token_bals = async () => {
+  if (pinia.state.tokenLists.length) {
+    return
+  } else {
     await Promise.allSettled([
       getTokens_(),
     ])
-    
+
   }
 
 }
@@ -293,6 +324,7 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: auto;
   cursor: pointer;
 }
+
 .swap {
   border-radius: 16px;
   box-shadow: 0px 10px 25px 0px rgba(27, 37, 55, 0.05);
@@ -388,65 +420,75 @@ input[type="search"]::-webkit-search-cancel-button {
     text-overflow: ellipsis;
   }
 
-  .table-header-text{
+  .table-header-text {
     font-weight: 600 !important;
     font-size: 14px !important;
   }
 
-  .coin-width{
+  .coin-width {
     width: 50% !important;
   }
-  .coin-table{
+
+  .coin-table {
     margin-bottom: 0px !important;
     justify-content: flex-start !important;
-    padding-right: 0px !important; 
+    padding-right: 0px !important;
     padding-left: 0px !important;
   }
-  .bal-td{
+
+  .bal-td {
     width: 23% !important;
   }
-  .price-td{
+
+  .price-td {
     width: 39% !important;
   }
-   .balance-tr{
+
+  .balance-tr {
     padding: 0px !important;
   }
-  .coin-tr{
+
+  .coin-tr {
     margin-inline-start: auto;
     padding: 0px;
     margin-inline: auto;
   }
-  .coin-bal{
+
+  .coin-bal {
     width: 28px !important;
     margin-bottom: 10px !important;
   }
-  .price-bal{
+
+  .price-bal {
     margin-top: 2px;
   }
-  .search-input{
+
+  .search-input {
     width: 100% !important;
     margin-bottom: 0px !important;
     margin-top: 15px;
   }
-  .searchIcon{
+
+  .searchIcon {
     left: 0% !important;
     margin-top: 33px !important;
   }
-  .table-caption{
-    padding-right: 0px !important; 
-    padding-left: 0px !important; 
-    padding-top: 10px !important; 
+
+  .table-caption {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    padding-top: 10px !important;
   }
-  .coin-table{
+
+  .coin-table {
     padding-bottom: 0px !important;
   }
-  .loop-table{
-  padding-left: 0px !important; 
-  padding-right: 0px !important; 
+
+  .loop-table {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
 
 
-  }
-
-
+}
 </style>
