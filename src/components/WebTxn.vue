@@ -8,7 +8,7 @@
             style="background: inherit; height: auto; cursor: pointer;">
             <div v-if="transaction.details?.crypto" :class="isDark ? 'wallet-border' : 'wallet-border-light'">
 
-              <div class="mt-2" v-if="transaction.details?.crypto?.transfer"
+              <div class="mt-1 mb-2 px-6" v-if="transaction.details?.crypto?.transfer"
                 style="display: flex; justify-content: space-between">
                 <div style="display: flex; align-items: center">
                   <div v-if="transaction?.details?.crypto?.transfer">
@@ -17,7 +17,7 @@
                       <img src="/svg/greenGet.svg" class="me-2 p-2 mr-2"
                         :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
                         style="padding: 10px; border-radius: 30px;" />
-                      <div class="d-flex" style="flex-direction: column;">
+                      <div class="d-flex" style="flex-direction: column; margin-left: 7px">
                         <span>Received</span>
                         <div style="display: flex;">
                           <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
@@ -32,7 +32,7 @@
                       <img src="/svg/transfer.svg" class="me-2 p-2 mr-2"
                         :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
                         style="padding: 10px; border-radius: 30px;" />
-                      <div class="d-flex" style="flex-direction: column;">
+                      <div class="d-flex" style="flex-direction: column; margin-left: 7px">
 
                         <span>Sent</span>
                         <div class="d-flex">

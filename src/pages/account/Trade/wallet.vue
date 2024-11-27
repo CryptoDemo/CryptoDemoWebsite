@@ -266,7 +266,7 @@
             </div>
 
             <div v-if="selectedScreen" :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="txn-div"
-              style="padding: 7px 30px 20px 30px; margin-bottom: 300px; border-radius: 24px !important;">
+              style="padding: 6px 0px 18px 0px; margin-bottom: 300px; border-radius: 24px !important;">
               <WebTxn />
             </div>
 
