@@ -511,14 +511,14 @@ onMounted(() => {
     fadeAnimation(fade1.value, fade2.value);
     zoomAnimation(zoomImg.value, 1, 1.02, 5);
     zoomAnimation(zoomImg2.value, 1, 1.025, 6);
-    horizontalSlideInAnimation(cardImage1.value, "-100", 0, "-100", 1, 8, 2.5, 1.05);
-    verticalSlideInAnimation(cardBtn1.value, "50", 0, "50", 1, 5, 1, 1);
-    verticalSlideInAnimation(cardBtn2.value, "50", 0, "50", 1.04, 5, 1.05, 1);
+    horizontalSlideInAnimation(cardImage1.value, "-100", 0, "-100", 1, 7, 2.5, 1.05);
+    verticalSlideInAnimation(cardBtn1.value, "50", 0, "50", 1, 4, 1, 1);
+    verticalSlideInAnimation(cardBtn2.value, "50", 0, "50", 1.04, 4, 1.05, 1);
 
-    horizontalSlideInAnimation(cardRightImage1.value, "100", 0, "100", 1.08, 5, 1.1, 1.01);
-    horizontalSlideInAnimation(cardRightImage2.value, "100", 0, "100", 1.04, 8, 2.7, 1.05)
-    horizontalSlideInAnimation(cardRightImageLight.value, "100", 0, "100", 1.08, 5, 1.1, 1.01);
-    horizontalSlideInAnimation(cardRightImageLight2.value, "100", 0, "100", 1.04, 8, 2.7, 1.05)
+    horizontalSlideInAnimation(cardRightImage1.value, "100", 0, "100", 1.08, 4, 1.1, 1.01);
+    horizontalSlideInAnimation(cardRightImage2.value, "100", 0, "100", 1.04, 7, 2.7, 1.05)
+    horizontalSlideInAnimation(cardRightImageLight.value, "100", 0, "100", 1.08, 4, 1.1, 1.01);
+    horizontalSlideInAnimation(cardRightImageLight2.value, "100", 0, "100", 1.04, 7, 2.7, 1.05)
     scrollImageUpDown(scrollImage.value)
     scrollImageUpDown(scrollImageMobile.value)
   }

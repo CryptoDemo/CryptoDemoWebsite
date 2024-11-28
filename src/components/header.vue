@@ -27,7 +27,7 @@
           <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink>
         </div>
 
-        <div class="header-nav-div align-lg-center" style="display: flex; margin-inline-start: auto;">
+        <div class="header-nav-div align-lg-center" style="display: flex; margin-inline-start: auto; align-items: center">
           <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1' : 'text1-light'"
             style="align-items: center; display: flex;">{{ props.text2 }}</span>
           <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center;"> <span
@@ -110,7 +110,7 @@
             </v-tooltip>
           </div>
 
-          <div v-if="icon3" class="notify" style="display: grid; position: relative; margin-top: 0px; align-items: center;">
+          <div v-if="icon3" class="notify" style="display: grid; position: relative; margin-top: 0px;">
             <Notifications />
             <v-tooltip activator="parent" location="bottom" content-class="custom-tooltip">
               <template #default>

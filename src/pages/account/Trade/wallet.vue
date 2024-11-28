@@ -4,12 +4,16 @@
     <v-container>
       <div style="margin-top: 90px; display: flex; width: 100% !important;">
 
-       <div style="display: flex; flex-direction: column; align-items: center;">
+       <div>
         <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-if="selectedScreen">
           <Wallet-nav />
         </div>
         <div class="ma-2 mt-5 me-6 flex-lg-and-up hidden-md-and-down" v-else>
           <FiatBal />
+        </div>
+
+        <div  class="ma-2 mt-9 me-6 flex-lg-and-up hidden-md-and-down">
+          <Advert/>
         </div>
 
         <!-- <div class="adv flex-lg-and-up" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="margin-top: 32px;">
@@ -202,7 +206,7 @@
                                 </td>
                               </div>
 
-                              <div style="display: flex; justify-content: end;">
+                              <div style="display: flex; justify-content: end;" :class="isDark? '':'addMarginTop'">
                                 <v-btn class="primary-btn1"
                                   style="border-radius: 10px !important; color: white; padding: 20px; width: 30%; display: flex;"
                                   text="Cancel" @click="isActive.value = false"></v-btn>
@@ -271,7 +275,7 @@
             </div>
 
             <div v-else :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" class="txn-div"
-              style="padding: 18px 30px 20px 30px; margin-bottom: 300px;  border-radius: 24px !important;">
+              style="padding: 6px 0px 18px 0px; margin-bottom: 300px;  border-radius: 24px !important;">
               <FiatTxn />
             </div>
 
@@ -624,6 +628,7 @@ onBeforeMount(async () => {
 
 .btn-segment-light {
   border: 1px solid #E2E8F0;
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -733,6 +738,10 @@ onBeforeMount(async () => {
     width: auto !important;
   }
 
+}
+
+.addMarginTop{
+  margin-top: 40px;
 }
 
 .adv{

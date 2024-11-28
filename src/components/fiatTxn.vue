@@ -8,7 +8,7 @@
 
                     <div :class="isDark ? 'wallet-border' : 'wallet-border-light'">
 
-                        <div v-if="transaction?.details?.fiat?.transfer" class="mt-2"  style="display: flex; justify-content: space-between">
+                        <div v-if="transaction?.details?.fiat?.transfer" class="px-6 mt-3" style="display: flex; align-items: center; justify-content: space-between;margin: 4px 0px 10px 0px;">
                             <div style="display: flex; align-items: center">
                         
                                 <img src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
@@ -29,8 +29,8 @@
                         </div>
 
 
-                        <div v-if="transaction?.details?.fiat?.funding" class="mt-2"  style="display: flex; justify-content: space-between">
-                            <div style="display: flex; align-items: center">
+                        <div v-if="transaction?.details?.fiat?.funding" class="px-6 mt-3"  style="display: flex; align-items: center; justify-content: space-between;margin: 4px 0px 10px 0px;">
+                            <div style="display: flex; align-items: center; ">
                         
                                 <img src="/svg/greenGet.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
                             

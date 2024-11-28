@@ -35,10 +35,10 @@
 
               <v-col sm="12">
                 <v-list-item style="display: flex; justify-content: center;">
-                    <div
-                      style="height: 150px; display: flex; align-items: center; justify-content: center; padding: 16px; font-size: 14px; font-weight: 300; color: #8E9BAE;">
-                      You
-                      don't have any notification!</div>
+                  <div
+                    style="height: 150px; display: flex; align-items: center; justify-content: center; padding: 16px; font-size: 14px; font-weight: 300; color: #8E9BAE;">
+                    You
+                    don't have any notification!</div>
                 </v-list-item>
               </v-col>
             </v-row>
@@ -137,12 +137,13 @@ onBeforeMount(() => {
 
 .country-dropdown {
   flex-shrink: 0;
-  background: #1B2537 !important;
+  background: #10192D !important;
   text-transform: unset !important;
   color: white;
   letter-spacing: 0px;
   margin-top: 10px !important;
-  border: 0.5px solid #2f3946;
+  border: 0.5px solid #10192D;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .country-dropdown-light {
@@ -152,7 +153,7 @@ onBeforeMount(() => {
   background: #F8FAFC !important;
   color: #060A1D;
   letter-spacing: 0px;
-  box-shadow: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   margin-top: 10px !important;
   border: 1px solid #DBE8FF;
 }
@@ -191,6 +192,14 @@ onBeforeMount(() => {
     display: flex;
     flex-direction: column;
     width: auto;
+  }
+
+  .country-dropdown {
+    right: -15%
+  }
+
+  .country-dropdown-light {
+    right: -15%
   }
 
 }

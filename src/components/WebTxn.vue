@@ -8,8 +8,8 @@
             style="background: inherit; height: auto; cursor: pointer;">
             <div v-if="transaction.details?.crypto" :class="isDark ? 'wallet-border' : 'wallet-border-light'">
 
-              <div class="mt-1 mb-2 px-6" v-if="transaction.details?.crypto?.transfer"
-                style="display: flex; justify-content: space-between">
+              <div class="px-6" v-if="transaction.details?.crypto?.transfer"
+                style="display: flex; justify-content: space-between; margin: 4px 0px 10px 0px;">
                 <div style="display: flex; align-items: center">
                   <div v-if="transaction?.details?.crypto?.transfer">
 

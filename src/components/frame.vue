@@ -78,8 +78,8 @@
         </v-col>
 
 
-        <v-col class="second-coli" style="padding: 8px; margin-bottom: 8px;">
-          <div class="frame2" :class="isDark ? 'frame2' : 'frame2-light'" style="padding: 0 30px; position: relative;">
+        <v-col class="second-coli" style="padding: 8px; margin-bottom: 8px; ">
+          <div class="frame2" :class="isDark ? 'frame2' : 'frame2-light'" style="padding: 0 30px; position: relative; overflow: hidden">
             <div class="img-wrap1 stack-container"
               style="display: flex; flex-direction: column; padding: 0 60px; position: relative; right: 10%; height: 205px;">
               <div class="position-relative">
@@ -127,8 +127,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { rotateOrbitAnimation, zoomAnimation, horizontalSlideInAnimation, verticalSlideInAnimation } from '~/animations/gsapAnimation';
+import { rotateOrbitAnimation, zoomAnimation, horizontalSlideInAnimation, verticalSlideInAnimation, swapAnimationUpDown } from '~/animations/gsapAnimation';
 import { useTheme } from 'vuetify';
+import gsap from 'gsap';
 
 const theme = useTheme()
 const isDark = computed(() => theme.global.current.value.dark);
@@ -168,6 +169,8 @@ const img3 = ref(null)
 const image1 = ref(null);
 const image2 = ref(null);
 
+const desktopScreens = ref([]);
+
 onMounted(() => {
   if (img2.value || img3.value || img.value) {
     rotateOrbitAnimation(img2.value, [
@@ -183,30 +186,38 @@ onMounted(() => {
     ], 360, 13);
 
     zoomAnimation(img.value, 1, 1.04, 7);
-    verticalSlideInAnimation(image1.value, '-50', 0,'50', 1.04, 7, 1,1);
-    horizontalSlideInAnimation(image2.value, '50', 0,'-300', 1.1, 6, 1.4,1.1);
+    verticalSlideInAnimation(image1.value, '-50', 0, '50', 1.04, 6, 1, 1);
+    horizontalSlideInAnimation(image2.value, '50', 0, '-300', 1.1, 5, 1.4, 1.1);
 
   }
 
-  const images = document.querySelectorAll('.desktop-screen');
+  // Collect all desktop-screen images
+  desktopScreens.value = document.querySelectorAll('.desktop-screen');
 
-  setInterval(() => {
-    // Get the current elements with the `.card1i` and `.card1ii` classes
-    const card1i = document.querySelector('.card1i');
-    const card1ii = document.querySelector('.card1ii');
+  // Function to get current class assignments
+  const getCurrentClasses = () => ({
+    card1i: document.querySelector('.card1i'),
+    card1ii: document.querySelector('.card1ii'),
+    neutral: [...desktopScreens.value].find(
+      (img) => !img.classList.contains('card1i') && !img.classList.contains('card1ii')
+    ),
+  });
 
-    // Find the image that doesn't have either `.card1i` or `.card1ii`
-    const neutral = [...images].find(img => !img.classList.contains('card1i') && !img.classList.contains('card1ii'));
+  const animateCycle = () => {
+    const { card1i, card1ii, neutral } = getCurrentClasses();
 
     if (card1i && card1ii && neutral) {
-      // Swap the classes
-      card1ii.classList.remove('card1ii');
-      neutral.classList.add('card1ii');
+      swapAnimationUpDown(card1i, card1ii, neutral);
 
-      card1i.classList.remove('card1i');
-      card1ii.classList.add('card1i');
+      // Delay before next cycle
+      setTimeout(() => {
+        animateCycle();
+      }, 6000); // 4-second pause for resting in positions
     }
-  }, 10000);
+  };
+
+  // Start the animation cycle
+  animateCycle();
 });
 
 //Gsap implementation ends
@@ -388,7 +399,7 @@ onMounted(() => {
   top: 64%;
 }
 
-.desktop-screen {
+/* .desktop-screen {
   transition: all 3.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
+} */
 </style>

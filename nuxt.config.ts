@@ -7,9 +7,9 @@ export default defineNuxtConfig({
   srcDir: "src", 
 
   build: {
-    transpile: ['vuetify'],  
+    transpile: ['vuetify'],   
   },
-   
+    
   app: {  
     head: { 
       titleTemplate: 'Betacrypto', // Replace MyAppName with your app's name
@@ -34,9 +34,9 @@ export default defineNuxtConfig({
 
   modules: [ 
     "@pinia/nuxt", 
-    "@pinia-plugin-persistedstate/nuxt",
+    "@pinia-plugin-persistedstate/nuxt", 
     'notivue/nuxt',
-    '@nuxtjs/device',
+    '@nuxtjs/device', 
     '@lambahq/nuxt', 
     '@vueuse/nuxt',
     '@nuxt/image',
