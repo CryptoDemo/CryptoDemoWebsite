@@ -153,7 +153,7 @@ export const scrollImageUpDown = (element) => {
   })
     // Pause while staying up
     .to(element, {
-      duration: 4, // Pause duration
+      duration: 3, // Pause duration
 
     })
     // Bounce back to the original position
@@ -164,7 +164,7 @@ export const scrollImageUpDown = (element) => {
     })
     // Pause at the normal position
     .to(element, {
-      duration: 4, // Pause duration
+      duration: 3, // Pause duration
 
     });
 };
