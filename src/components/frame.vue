@@ -79,7 +79,8 @@
 
 
         <v-col class="second-coli" style="padding: 8px; margin-bottom: 8px; ">
-          <div class="frame2" :class="isDark ? 'frame2' : 'frame2-light'" style="padding: 0 30px; position: relative; overflow: hidden">
+          <div class="frame2" :class="isDark ? 'frame2' : 'frame2-light'"
+            style="padding: 0 30px; position: relative; overflow: hidden">
             <div class="img-wrap1 stack-container"
               style="display: flex; flex-direction: column; padding: 0 60px; position: relative; right: 10%; height: 205px;">
               <div class="position-relative">
@@ -89,21 +90,27 @@
                   <img src="/svg/item1.svg" class="desktop-screen" style="max-width: 100%;" />
                   <img src="/img/item.png" class="mobile-screen btc1i2" style="max-width: 100%;" />
                 </div>
-                <img src="/img/item (1btc).png" class="btc-light-img" width="90%" style="max-width: 100%;" v-else />
+                <div v-else class="stack-item">
+                  <img src="/img/item (1btc).png" class="desktop-screen-light" style="max-width: 100%;" />
+                </div>
 
                 <div v-if="theme.global.current.value.dark" class="stack-item">
                   <img src="/svg/item2.svg" class="card1i desktop-screen" style="max-width: 100%;" />
                   <img src="/img/item (1).png" class="card1i2 mobile-screen" style="max-width: 100%;" />
                 </div>
-                <img src="/img/item (3usd).png" class="card1i btc-light-img" width="90%" style="max-width: 100%;"
-                  v-else />
+                <div v-else class="stack-item">
+                  <img src="/img/item (3usd).png" class="card1i-light desktop-screen-light" style="max-width: 100%;" />
+                </div>
+
 
                 <div v-if="theme.global.current.value.dark" class="stack-item">
                   <img src="/svg/item3.svg" class="card1ii desktop-screen" style="max-width: 100%;" />
                   <img src="/img/item (2).png" class="card1ii2 mobile-screen" style="max-width: 100%;" />
                 </div>
-                <img src="/img/item (4).png" class="card1ii btc-light-img" width="90%" style="max-width: 100%;"
-                  v-else />
+                <div v-else class="stack-item">
+                  <img src="/img/item (4).png" class="card1ii-light desktop-screen-light" style="max-width: 100%;" />
+                </div>
+
               </div>
             </div>
             <div class="position-relative sell-col  security-btn mb-5">
@@ -127,9 +134,8 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { rotateOrbitAnimation, zoomAnimation, horizontalSlideInAnimation, verticalSlideInAnimation, swapAnimationUpDown } from '~/animations/gsapAnimation';
+import { rotateOrbitAnimation, zoomAnimation, horizontalSlideInAnimation, verticalSlideInAnimation, swapAnimationUpDown,  } from '~/animations/gsapAnimation';
 import { useTheme } from 'vuetify';
-import gsap from 'gsap';
 
 const theme = useTheme()
 const isDark = computed(() => theme.global.current.value.dark);
@@ -170,6 +176,7 @@ const image1 = ref(null);
 const image2 = ref(null);
 
 const desktopScreens = ref([]);
+const desktopScreensLight = ref([]);
 
 onMounted(() => {
   if (img2.value || img3.value || img.value) {
@@ -193,6 +200,7 @@ onMounted(() => {
 
   // Collect all desktop-screen images
   desktopScreens.value = document.querySelectorAll('.desktop-screen');
+  desktopScreensLight.value = document.querySelectorAll('.desktop-screen-light');
 
   // Function to get current class assignments
   const getCurrentClasses = () => ({
@@ -200,6 +208,14 @@ onMounted(() => {
     card1ii: document.querySelector('.card1ii'),
     neutral: [...desktopScreens.value].find(
       (img) => !img.classList.contains('card1i') && !img.classList.contains('card1ii')
+    ),
+  });
+
+  const getCurrentLightClasses = () => ({
+    card1iLight: document.querySelector('.card1i-light'),
+    card1iiLight: document.querySelector('.card1ii-light'),
+    neutralLight: [...desktopScreensLight.value].find(
+      (img) => !img.classList.contains('card1i-light') && !img.classList.contains('card1ii-light')
     ),
   });
 
@@ -216,8 +232,22 @@ onMounted(() => {
     }
   };
 
+  const animateLightCycle = () => {
+    const { card1iLight, card1iiLight, neutralLight } = getCurrentLightClasses();
+
+    if (card1iLight && card1iiLight && neutralLight) {
+      swapAnimationUpDown(card1iLight, card1iiLight, neutralLight);
+
+      // Delay before next cycle
+      setTimeout(() => {
+        animateLightCycle();
+      }, 5000); // 4-second pause for resting in positions
+    }
+  };
+
   // Start the animation cycle
   animateCycle();
+  animateLightCycle()
 });
 
 //Gsap implementation ends
@@ -394,6 +424,19 @@ onMounted(() => {
 }
 
 .card1ii {
+  position: absolute;
+  left: 38px;
+  top: 64%;
+}
+
+.card1i-light {
+  display: flex;
+  position: absolute;
+  top: 42px;
+  margin-left: 104px;
+}
+
+.card1ii-light {
   position: absolute;
   left: 38px;
   top: 64%;

@@ -16,7 +16,7 @@
       </template>
 
 
-      <div style="margin-top: 15px;">
+      <div style="margin-top: 20px;">
         <v-list :class="isDark ? 'country-dropdown' : 'country-dropdown-light'" style="border-radius: 15px;">
           <v-list-item style="display: contents;">
             <v-row v-if="notificationLogs.length > 0" dense class="row-div" style="width: 330px;">

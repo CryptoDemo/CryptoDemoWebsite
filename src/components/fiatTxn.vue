@@ -2,7 +2,7 @@
     <div>
         <v-virtual-scroll :items="FiatTxnInfo" :key="FiatTxnInfo.id">
             <template v-slot="{ item: transaction }">
-                <v-dialog max-width="420">
+                <v-dialog max-width="420" origin="center center">
                 <template v-slot:activator="{ props: activatorProps }">
                     <div v-bind="activatorProps" style="background: inherit; height: 60px; cursor: pointer;">
 
@@ -373,36 +373,6 @@ const toggleTokens = () => {
   showAll.value = !showAll.value;
 };
 
-// const getFiatTxn = async () => {
-//   isloading.value = true;
-
-//   try {
-//     const data = await allFiatTxn(pageNumber.value);
-
-//     if (data.success) {
-//       // Ensure both existing and new transactions are arrays
-//       const existingTransactions = Array.isArray(FiatTxnInfo.value) ? FiatTxnInfo.value : [];
-//       const newTransactions = Array.isArray(data.data.result) ? data.data.result : [];
-
-//       // Merge and filter transactions by unique ID
-//       const updatedTransactions = filterByKey("id", [
-//         ...existingTransactions,
-//         ...newTransactions,
-//       ]);
-
-//       pinia.setFiat_transactions(updatedTransactions);
-
-//     } else {
-//       push.error(`${data.message}`);
-//     }
-//   } catch (e) {
-//     console.error("An error occurred while fetching transactions:", e);
-//     push.error("An error occurred while fetching transactions. Please try again.");
-//   } finally {
-//     isloading.value = false;
-//   }
-// };
-
 const getFiatTxn = async () => {
   isloading.value = true;
 
@@ -437,9 +407,6 @@ const getFiatTxn = async () => {
   }
 };
 
-
-
-
 const copyToClipboard = (text) => {
   navigator.clipboard.writeText(text).then(() => {
   copied.value = true;
@@ -450,9 +417,6 @@ const copyToClipboard = (text) => {
     console.error('Failed to copy: ', err);
   });
 }
-
-
-
 
 onMounted(() => {
     getFiatTxn();
@@ -490,7 +454,4 @@ border:none;
  align-items: center;
  text-align: center;
 }
-
-
-
 </style>

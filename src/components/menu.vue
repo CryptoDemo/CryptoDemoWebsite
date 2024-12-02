@@ -22,13 +22,13 @@
         </button>
       </template>
 
-      <v-list style="backdrop-filter: blur(20px)!important; border-radius: 15px; margin-top: 20px;"
+      <v-list style="backdrop-filter: blur(20px)!important; border-radius: 15px; margin-top: 30px;"
         :class="isDark ? 'menu-bg-dark' : 'menu-bg-light'">
         <v-list-item v-for="(item, i) in items" :key="i">
           <div>
             <v-btn @click.prevent="navigateTo(item.link)" class="profile-btn"
               :class="[isDark ? 'profile-cards-dark' : 'profile-cards-light', route.path === item.link ? 'active-link' : '']">
-              <img :src="item.icon" class="me-3" width="20" />
+              <img :src="route.path === item.link ? item.selectedIcon : (isDark ? item.icon : item.darkIcon)" class="me-3" width="20" />
               {{ item.title }}
             </v-btn>
           </div>
@@ -41,7 +41,7 @@
               <v-btn v-bind="activatorProps" class="profile-btn" variant="flat"
                 :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
                 style="letter-spacing: 0px; text-transform: unset;">
-                <img src="/svg/logout.svg" class="me-4" />
+                <img :src="isDark? '/svg/logout.svg':'/svg/activeDark/logout.svg'" class="me-4" />
                 Log out
               </v-btn>
             </template>
@@ -87,13 +87,13 @@ const theme = useTheme()
 const isDark = computed(() => theme.global.current.value.dark);
 const dialog = ref(false)
 const items = [
-  { icon: '/svg/friend.svg', title: 'Dashboard', link: '/account/dashboard' },
-  { icon: '/svg/market.svg', title: 'Market Place', link: '/account/marketplace/activeOffers' },
-  { icon: '/svg/createoffer.svg', title: 'Create Offers', link: '/account/marketplace/createOffer' },
-  { icon: '/svg/trades.svg', title: 'Trades', link: '/account/marketplace/trades' },
-  { icon: '/svg/profile1.svg', title: 'My profile', link: '/account/profile' },
-  { icon: '/svg/security.svg', title: 'Security', link: '/account/security' },
-  { icon: '/svg/settings.svg', title: 'Settings', link: '/account/settings' },
+  { icon: '/svg/friend.svg', darkIcon: '/svg/activeDark/friend.svg', selectedIcon: '/svg/active/friend.svg', title: 'Dashboard', link: '/account/dashboard' },
+  { icon: '/svg/market.svg', darkIcon: '/svg/activeDark/market.svg', selectedIcon: '/svg/active/market.svg', title: 'Market Place', link: '/account/marketplace/activeOffers' },
+  { icon: '/svg/createoffer.svg', darkIcon: '/svg/activeDark/createoffer.svg', selectedIcon: '/svg/active/createoffer.svg', title: 'Create Offers', link: '/account/marketplace/createOffer' },
+  { icon: '/svg/trades.svg', darkIcon: '/svg/activeDark/trades.svg', selectedIcon: '/svg/active/trades.svg', title: 'Trades', link: '/account/marketplace/trades' },
+  { icon: '/svg/profile1.svg', darkIcon: '/svg/activeDark/profile1.svg', selectedIcon: '/svg/active/profile1.svg', title: 'My profile', link: '/account/profile' },
+  { icon: '/svg/security.svg', darkIcon: '/svg/activeDark/security.svg', selectedIcon: '/svg/active/security.svg', title: 'Security', link: '/account/security' },
+  { icon: '/svg/settings.svg', darkIcon: '/svg/activeDark/settings.svg', selectedIcon: '/svg/active/settings.svg', title: 'Settings', link: '/account/settings' },
 ];
 
 const navigateTo = (link) => {
@@ -121,7 +121,7 @@ const Logout_ = () => {
   font-family: Manrope !important;
   font-size: 14px !important;
   font-style: normal;
-  font-weight: 600 !important;
+  font-weight: 900 !important;
   line-height: 28px !important;
   /* 200% */
   box-shadow: none;
@@ -148,7 +148,9 @@ const Logout_ = () => {
 
 .active-link {
   background-color: #2873FF !important;
-  color: white !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  font-size: 16px !important;
 }
 
 .close-btn {
@@ -208,7 +210,7 @@ const Logout_ = () => {
     background: inherit !important;
     min-width: 0px !important;
     height: 30px !important;
-    margin-top: -12px;
+    margin-top: -2px;
     margin-right: 20px;
   }
 

@@ -83,7 +83,7 @@
   <style scoped>
   .mainContainer {
     background: #10192d; /*linear-gradient(360deg, #2873FF, #0B6B96)*/
-    border-radius: 2px;
+    border-radius: 15px;
   }
   </style>
   

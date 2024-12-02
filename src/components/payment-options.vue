@@ -82,6 +82,7 @@ const getPayment_meths = async () => {
   try {
     // Fetch active offers
     const data = await getPaymentMethod(pageNumber.value);
+    console.log("You are logging: ",data)
 
     // Check if the data retrieval was successful
     if (data.success) {
@@ -96,12 +97,12 @@ const getPayment_meths = async () => {
 };
 
 const variants = [
-{ cardImages: '/svg/Featured icon.svg', title:'Bank transfer', textCaption:'Our guided bank transfer trades make it even easier to sell Bitcoin and receive payment.', textCaption1:'Our guided bank transfer trades makes it even easier to Buy Bitcoin.'}, 
-{ cardImages: '/svg/Featured icon (1).svg', title:'Cash payment' , textCaption:'Happy to accept cash? Then you can do just that.', textCaption1:'Happy to accept cash? Then you can do just that.'}, 
-{ cardImages: '/svg/Featured icon (2).svg', title:'Online Wallets' , textCaption:'Receive payment through popular online wallets including MTN Mobile Money.', textCaption1:'Buy Bitcoin using a huge range of popular online wallets, including MTN Mobile Money.'}, 
-{ cardImages: '/svg/Featured icon (3).svg', title:'Discounted gift cards' , textCaption:'Use your Bitcoin to get big discounts on popular gift cards.', textCaption1:'Have a gift card you dont need? You can trade it for Bitcoin.'}, 
-{ cardImages: '/svg/Featured icon (4).svg', title:'Digital currencies' , textCaption:'Use Tether, Ethereum, Litecoin, and more to sell Bitcoin.', textCaption1:'Use Tether, Ethereum, Litecoin, and more to buy Bitcoin.'}, 
-{ cardImages: '/svg/Featured icon (5).svg', title:'Goods and services' , textCaption:'Use Bitcoin to pay for goods and services from around the world.', textCaption1:'Use Bitcoin to Buy  goods and services from around the world.'}, 
+{ cardImages: '/svg/payments/Bank.svg', title:'Bank transfer', textCaption:'Our guided bank transfer trades make it even easier to sell Bitcoin and receive payment.', textCaption1:'Our guided bank transfer trades makes it even easier to Buy Bitcoin.'}, 
+{ cardImages: '/svg/payments/Money.svg', title:'Cash payment' , textCaption:'Happy to accept cash? Then you can do just that.', textCaption1:'Happy to accept cash? Then you can do just that.'}, 
+{ cardImages: '/svg/payments/Wallet.svg', title:'Online Wallets' , textCaption:'Receive payment through popular online wallets including MTN Mobile Money.', textCaption1:'Buy Bitcoin using a huge range of popular online wallets, including MTN Mobile Money.'}, 
+{ cardImages: '/svg/payments/Gift.svg', title:'Discounted gift cards' , textCaption:'Use your Bitcoin to get big discounts on popular gift cards.', textCaption1:'Have a gift card you dont need? You can trade it for Bitcoin.'}, 
+{ cardImages: '/svg/payments/Coins.svg', title:'Digital currencies' , textCaption:'Use Tether, Ethereum, Litecoin, and more to sell Bitcoin.', textCaption1:'Use Tether, Ethereum, Litecoin, and more to buy Bitcoin.'}, 
+{ cardImages: '/svg/payments/Handbag.svg', title:'Goods and services' , textCaption:'Use Bitcoin to pay for goods and services from around the world.', textCaption1:'Use Bitcoin to Buy  goods and services from around the world.'}, 
 ];
 
 onMounted(() => {

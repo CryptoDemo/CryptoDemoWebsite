@@ -1556,6 +1556,7 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   background-attachment: scroll
 }
 
+
 .mobile-animation {
   width: 55%;
   height: 345px;
@@ -1566,11 +1567,11 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 }
 
 .desktop-animation {
-  width: 42%;
+  width: 41%;
   height: 345px;
   position: absolute;
   top: 18%;
-  left: 22%;
+  left: 22.25%;
   overflow: hidden;
 }
 

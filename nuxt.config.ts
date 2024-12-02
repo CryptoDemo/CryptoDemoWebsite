@@ -23,21 +23,21 @@ export default defineNuxtConfig({
     'notivue/notification-progress.css',
 
   ],
-
+ 
 
   components: {
     dirs: [
       { path: '~/components', pathPrefix: false, lazy: true },
     ],
-  },   
+  },    
 
 
   modules: [ 
-    "@pinia/nuxt", 
+    "@pinia/nuxt",    
     "@pinia-plugin-persistedstate/nuxt", 
     'notivue/nuxt',
     '@nuxtjs/device', 
-    '@lambahq/nuxt', 
+    '@lambahq/nuxt',  
     '@vueuse/nuxt',
     '@nuxt/image',
     async (options, nuxt) => {

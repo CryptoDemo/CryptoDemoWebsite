@@ -147,24 +147,24 @@ export const scrollImageUpDown = (element) => {
   const timeline = gsap.timeline({ repeat: -1 }); // Infinite loop
 
   timeline.to(element, {
-    y: -200, // Move up
-    duration: 1.5, // Time for movement
-    ease: "elastic.out(1.5, 3)"
+    y: -1120, // Move up
+    duration: 8, // Time for movement
+    ease: "circ.inOut",
   })
     // Pause while staying up
     .to(element, {
-      duration: 3, // Pause duration
+      duration: 1.5, // Pause duration
 
     })
     // Bounce back to the original position
     .to(element, {
-      y: 0, // Return to normal
-      duration: 1.5, // Time to return
-      ease: "elastic.out(1.5, 3)"
+      y: -1, // Return to normal
+      duration: 8, // Time to return
+      ease: "circ.inOut",
     })
     // Pause at the normal position
     .to(element, {
-      duration: 3, // Pause duration
+      duration: 2.5, // Pause duration
 
     });
 };
