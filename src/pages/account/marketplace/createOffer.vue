@@ -48,7 +48,7 @@
                     
                     <v-menu>
                         <template v-slot:activator="{ props }">
-                          <v-btn v-bind="props" style="min-width: 70px; height: 53px; position: absolute; top: 4px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 0; letter-spacing: 0px;  text-transform: capitalize;"> 
+                          <v-btn v-bind="props" :class="isDark? 'darkbg':'lightbg'" style="min-width: 70px; height: 53px; position: absolute; top: 4px; border-radius: 15px; box-shadow: none; right: 0; letter-spacing: 0px;  text-transform: capitalize;"> 
                             <span class="currency-list">{{ token_from_index || tokenSymbol }}</span>
                           </v-btn>
                         </template>
@@ -118,7 +118,7 @@
                   <div class="select-div" style="margin-top: 8px; margin-bottom: 16px;">
                     <input type="number" placeholder="0" v-model="minAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                   
-                      <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
+                      <v-btn :class="isDark? 'darkbg':'lightbg'" style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
                         <span class="currency-list">{{pinia.state.selectedOfferType_from_landing.currency || pinia.state.preferredCurrency }}</span>
                       </v-btn>
                   </div>
@@ -128,7 +128,7 @@
                   <div class="select-div" style="margin-top: 8px; margin-bottom: 16px;">
                     <input type="number" placeholder="0" v-model="maxAmmount" :class="isDark ? 'profile-cards-dark':'profile-cards-light'" style="outline: none; height: 60px; padding-right: 25px!important; position: relative; border-radius: 15px; width: 100%;  padding-left: 15px;"/>
                   
-                    <v-btn style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; background: rgba(19, 29, 53, 1); box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
+                    <v-btn :class="isDark? 'darkbg':'lightbg'" style="min-width: 70px; height: 53px; position: absolute; margin-top: 3px; border-radius: 15px; box-shadow: none; right: 4px; letter-spacing: 0px;  text-transform: capitalize;"> 
                       <span class="currency-list">{{pinia.state.selectedOfferType_from_landing.currency || pinia.state.preferredCurrency }}</span>
                     </v-btn>
                   </div>
@@ -453,5 +453,13 @@ fill: #10192D;
   margin-bottom: 6px !important;
 }
 
+}
+
+.darkbg{
+  background: rgba(19, 29, 53, 1)
+}
+
+.lightbg{
+  background: #E9F1FF;
 }
 </style>
