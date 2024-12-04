@@ -223,37 +223,58 @@
         <v-row no-gutters class="mt-7">
           <v-col cols="12" sm="6" md="6">
             <div class="demo-div1" style="margin-inline-end: 28px; overflow: hidden">
-              <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'">
-                <div class="rectangle" style="display: flex; justify-self: center; padding: 10px">
-                  <!-- <img v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228018/frame-3-dark_cyersc.png'"
-                    alt="betacrypto-img-17" ref="zoomImg" style="display: flex; justify-self: center; width: 100%; margin: auto;"
-                    class="" v-if="theme.global.current.value.dark" /> -->
+              <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'"
+                style="padding: 0px 0px 35px 0px">
+                <div :class="theme.global.current.value.dark ? 'rectangle' : 'addedbg rectangle'" style="display: flex; justify-self: center; padding: 10px">
                   <div class="d-flex justify-center"
-                    style="width: 100%; justify-self: space-between; align-items: center; margin: 20px 10px 2px 10px;">
+                    style="width: 100%; height:200px; overflow: hidden; justify-self: space-between; align-items: center; margin: 20px 10px 2px 10px;">
                     <div style="width: 60%; display: flex; flex-direction: column; align-items: center">
-                      <img ref="cardImage1" src="/img/priceAct.png" style="width: 90%;" format="webp" densities="x1"
-                        alt="" class="rounded-t-md" />
-                      <div class="d-flex justify-end" style="padding: 0px; width: 100%">
-                        <img ref="cardBtn1" style="width: 45%;" src="/img/deposit.png" format="webp" densities="x1"
-                          alt="" class="rounded-t-md" />
-                        <img ref="cardBtn2" style="width: 50%;" src="/img/withdraw.png" format="webp" densities="x1"
-                          alt="" class="rounded-t-md" />
+                      <img ref="zoomImg" src="/img/priceAct.png" style="width: 90%;" alt="" class="rounded-t-md" />
+                      <div class="d-flex justify-center ga-2 boxContainer"
+                        style="padding: 0px; width: 100%; margin-top: 6px">
+                        <img style="width: 20%; object-fit: contain" src="/img/sml1.png" alt="" class="box" />
+                        <img style="width: 20%; object-fit: contain" src="/img/sml2.png" alt="" class="box" />
+                        <img style="width: 20%; object-fit: contain" src="/img/sml3.png" alt="" class="box" />
+                        <img style="width: 20%; object-fit: contain" src="/img/sml4.png" alt="" class="box" />
                       </div>
                     </div>
-                    <div style="width: 32%;" v-if="theme.global.current.value.dark">
-                      <img ref="cardRightImage1" style="width: 100%;" src="/img/Card.png" format="webp" densities="x1"
-                        alt="" class="rounded-t-md" />
-                      <img ref="cardRightImage2" style="width: 100%; margin-top: 5px;" src="/img/Card(1).png"
-                        format="webp" densities="x1" alt="" class="rounded-t-md" />
+                    <div class="marquee-container" v-if="theme.global.current.value.dark">
+                      <div class="marquee">
+                        <!-- Original set of images -->
+                        <img src="/img/vertcard1.png" alt="Card 1" class="rounded-t-md" style="margin-top: 10px" />
+                        <img src="/img/vertcard2.png" alt="Card 2" class="rounded-t-md" style="margin-top: 10px" />
+                        <img src="/img/vertcard3.png" alt="Card 3" class="rounded-t-md" style="margin-top: 10px" />
+                        <img src="/img/vertcard4.png" alt="Card 4" class="rounded-t-md" style="margin-top: 10px" />
+                        <!-- Duplicate for seamless scrolling -->
+                        <img src="/img/vertcard1.png" alt="Card 1" class="rounded-t-md" style="margin-top: 10px" />
+                        <img src="/img/vertcard2.png" alt="Card 2" class="rounded-t-md" style="margin-top: 10px" />
+                        <img src="/img/vertcard3.png" alt="Card 3" class="rounded-t-md" style="margin-top: 10px" />
+                        <img src="/img/vertcard4.png" alt="Card 4" class="rounded-t-md" style="margin-top: 10px" />
+                      </div>
                     </div>
-                    <div style="width: 32%;" v-else>
-                      <img ref="cardRightImageLight" style="width: 100%;" src="/img/lightcard.png" format="webp"
-                        densities="x1" alt="" class="rounded-t-md" />
-                      <img ref="cardRightImageLight2" style="width: 100%; margin-top: -35px;" src="/img/lightcard2.png"
-                        format="webp" densities="x1" alt="" class="rounded-t-md" />
+                    <div class="marquee-container" v-else>
+                      <div class="marquee">
+                        <!-- Original set of images -->
+                        <img src="/img/verticallight1.png" alt="Card 1" class="rounded-t-md" />
+                        <img src="/img/verticallight2.png" alt="Card 2" class="rounded-t-md"
+                          style="margin-top: 10px !important" />
+                        <img src="/img/verticallight3.png" alt="Card 3" class="rounded-t-md"
+                          style="margin-top: 10px !important" />
+                        <img src="/img/verticallight4.png" alt="Card 4" class="rounded-t-md"
+                          style="margin-top: 10px !important" />
+                        <!-- Duplicate for seamless scrolling -->
+                        <img src="/img/verticallight1.png" alt="Card 1" class="rounded-t-md" />
+                        <img src="/img/verticallight2.png" alt="Card 2" class="rounded-t-md"
+                          style="margin-top: 10px !important" />
+                        <img src="/img/verticallight3.png" alt="Card 3" class="rounded-t-md"
+                          style="margin-top: 10px !important" />
+                        <img src="/img/verticallight4.png" alt="Card 4" class="rounded-t-md"
+                          style="margin-top: 10px !important" />
+                      </div>
                     </div>
                   </div>
                 </div>
+                <v-spacer></v-spacer>
                 <div class="wallet-div" style="display:grid;  margin-left: 36px; position: relative; top: 6px;">
 
                   <v-btn @click="WalletNav()" class="wallet-frame" style="width: 88px;">
@@ -275,21 +296,23 @@
                 </div>
               </div>
             </div>
-
           </v-col>
           <v-col cols="12" sm="6" md="6">
             <div class="">
               <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'">
                 <div class="rectangle">
-                  <div style="padding-top: 28px; margin-bottom: 28px;" v-if="theme.global.current.value.dark">
-                    <img v-lazy="'/img/Frame 48090.png'" ref="zoomImg2"
+                  <div style="padding-top: 28px; margin-bottom: 28px; height: 210px; position:relative; overflow:hidden"
+                    v-if="theme.global.current.value.dark">
+                    <img v-lazy="'/img/barcode-dark.png'"
                       style="display: flex; justify-self: center; margin: auto; width: 93%;" alt="betacrypto-img-20" />
+                    <img src="/img/imgspin2.png" class="spinner-img">
                   </div>
                   <div class="mb-7"
-                    style="background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%); padding-top: 28px; border-radius: 15px; width: 100%;"
+                    style="background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%); padding-top: 28px; border-radius: 15px; width: 100%; height: 210px; position:relative; overflow:hidden"
                     v-else>
-                    <img src="/svg/barcode-light.svg" ref="zoomImg2"
+                    <img src="/img/barcode-light.png"
                       style="display: flex; justify-self: center; margin: auto; width: 90%;" alt="betacrypto-img-21" />
+                    <img src="/img/imgspin1.png" class="spinner-img" style="width: 30px;">
                   </div>
                 </div>
                 <div class="wallet-div" style="margin-left: 36px;">
@@ -368,51 +391,22 @@
                 <div class="phone-rectangle"
                   style="position: relative; top: -58px; display: flex; justify-content: center;">
 
-                  <div v-if="theme.global.current.value.dark">
+                  <div>
                     <div class="mobile-screen" style="width: 500px;" alt="betacrypto-img-24">
-                      <div class="mobileNimationBg" style="width: 530px; height: 669px;">
+                      <div :class="theme.global.current.value.dark ? 'mobileNimationBg':'lightmobileNimationBg'" style="width: 530px; height: 669px;">
                         <div class="mobile-animation">
-                          <img ref="scrollImageMobile" src="/img/animatedScreen.png" alt="" style="width: 100%;">
+                          <img ref="scrollImageMobile" :src="theme.global.current.value.dark ? '/img/animatedScreen.png' : '/img/animatedScreenLight.png'" alt="" style="width: 100%;">
                         </div>
                       </div>
                     </div>
-                    <!-- <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1712227730/demo-dark-mode_1_elqrup.png"
-    class="mobile-screen" style="width: 500px;" alt="betacrypto-img-22" /> -->
 
                     <div class="desktop-screen flex-lg-and-up hidden-sm-and-down" alt="betacrypto-img-22">
-                      <div class="mobileNimationBg" style="width: 530px; height: 669px;">
+                      <div :class="theme.global.current.value.dark ? 'mobileNimationBg':'lightmobileNimationBg'" style="width: 530px; height: 669px;">
                         <div class="desktop-animation">
-                          <img ref="scrollImage" src="/img/animatedScreen.png" alt="" style="width: 100%;">
+                          <img ref="scrollImage" :src="theme.global.current.value.dark ? '/img/animatedScreen.png' : '/img/animatedScreenLight.png'" alt="" style="width: 100%;">
                         </div>
                       </div>
                     </div>
-                    <!-- <img src="/svg/phoneHand.svg" class="desktop-screen flex-lg-and-up hidden-sm-and-down"
-    alt="betacrypto-img-23" /> -->
-                  </div>
-                  <div v-else>
-                    <div class="mobile-screen" style="width: 500px;" alt="betacrypto-img-24">
-                      <div class="lightmobileNimationBg" style="width: 530px; height: 669px;">
-                        <div class="mobile-animation">
-                          <img ref="scrollImageMobile" src="/img/animatedScreenLight.png" alt="" style="width: 100%;">
-                        </div>
-                      </div>
-                    </div>
-                    <!-- <img
-    v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228232/new-demolight_rub0cb.png'"
-    class="mobile-screen" style="width: 500px;" alt="betacrypto-img-24" /> -->
-
-                    <div style="max-width: 100%; z-index: 1000;"
-                      class="desktop-screen flex-lg-and-up hidden-sm-and-down" alt="betacrypto-img-25">
-                      <div class="lightmobileNimationBg" style="width: 530px; height: 669px;">
-                        <div class="desktop-animation">
-                          <img ref="scrollImage" src="/img/animatedScreenLight.png" alt="" style="width: 100%;">
-                        </div>
-                      </div>
-                    </div>
-                    <!-- <img
-    v-lazy="'https://res.cloudinary.com/dfejrmsq5/image/upload/v1712228578/new-desktop-light_tj7bjj.png'"
-    style="max-width: 100%; z-index: 1000;" class="desktop-screen flex-lg-and-up hidden-sm-and-down"
-    alt="betacrypto-img-25" /> -->
                   </div>
                 </div>
               </div>
@@ -445,7 +439,8 @@
 import { ref, onMounted } from 'vue';
 import { useTheme } from 'vuetify';
 import { getTokens, currencyConverter } from "@/composables/requests/tokens";
-import { rotateOrbitAnimation, fadeAnimation, zoomAnimation, horizontalSlideInAnimation, verticalSlideInAnimation, scrollImageUpDown } from '~/animations/gsapAnimation';
+import { gsap } from 'gsap';
+import { rotateOrbitAnimation, fadeAnimation, zoomAnimation, horizontalSlideInAnimation, scrollImageUpDown, staggerImg } from '~/animations/gsapAnimation';
 const theme = useTheme()
 const isDark = computed(() => theme.global.current.value.dark);
 
@@ -460,6 +455,7 @@ const ammount_of_coin = ref();
 const Selectedcurrency = ref("USD");
 const dialog = ref(false)
 
+
 const LazyPaymentOptions = defineAsyncComponent(() => import('@/components/payment-options.vue'));
 
 //Gsap implementation starts
@@ -470,20 +466,18 @@ const img4 = ref(null)
 const fade1 = ref(null)
 const fade2 = ref(null)
 const zoomImg = ref(null)
-const zoomImg2 = ref(null)
-const cardImage1 = ref(null)
-const cardBtn1 = ref(null)
-const cardBtn2 = ref(null)
-const cardRightImage1 = ref(null)
-const cardRightImage2 = ref(null)
 const cardRightImageLight = ref(null)
 const cardRightImageLight2 = ref(null)
 const scrollImage = ref(null)
 const scrollImageMobile = ref(null)
+const boxContainer = ref(null);
 
 
 onMounted(() => {
-  if (img1.value || img2.value || img3.value || img3.value || cardImage1.value || scrollImage.value) {
+
+  staggerImg('.box');
+
+  if (img1.value || img2.value || img3.value || img3.value || scrollImage.value || scrollImageMobile.value) {
     rotateOrbitAnimation(img1.value, [
       { x: 0, y: 0 },
       { x: 50, y: -35 },
@@ -509,18 +503,17 @@ onMounted(() => {
     ], 150, 6);
 
     fadeAnimation(fade1.value, fade2.value);
-    zoomAnimation(zoomImg.value, 1, 1.02, 5);
-    zoomAnimation(zoomImg2.value, 1, 1.025, 6);
-    horizontalSlideInAnimation(cardImage1.value, "-100", 0, "-100", 1, 7, 2.5, 1.05);
-    verticalSlideInAnimation(cardBtn1.value, "50", 0, "50", 1, 4, 1, 1);
-    verticalSlideInAnimation(cardBtn2.value, "50", 0, "50", 1.04, 4, 1.05, 1);
+    zoomAnimation(zoomImg.value, 1, 1.04, 4);
 
-    horizontalSlideInAnimation(cardRightImage1.value, "100", 0, "100", 1.08, 4, 1.1, 1.01);
-    horizontalSlideInAnimation(cardRightImage2.value, "100", 0, "100", 1.04, 7, 2.7, 1.05)
     horizontalSlideInAnimation(cardRightImageLight.value, "100", 0, "100", 1.08, 4, 1.1, 1.01);
     horizontalSlideInAnimation(cardRightImageLight2.value, "100", 0, "100", 1.04, 7, 2.7, 1.05)
     scrollImageUpDown(scrollImage.value)
     scrollImageUpDown(scrollImageMobile.value)
+    
+    if(!isDark){
+      scrollImageUpDown(scrollImageMobile2.value)
+      scrollImageUpDown(scrollImage2.value)
+    }
   }
 });
 
@@ -1599,20 +1592,58 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   }
 }
 
-
-/* @media screen and (max-width:609px) {
-  .mobile-animation {
-    width: 48%;
-    top: 18.5%;
-    left: 21%;
+.marquee-container {
+  width: 32%;
+  /* Adjust as needed */
+  height: 200px;
+  /* Adjust based on your design */
+  overflow: hidden;
+  position: relative;
 }
+
+.marquee {
+  display: flex;
+  flex-direction: column;
+  animation: verticalAnime 15s linear infinite;
+  /* Adjust duration for speed */
 }
 
-@media screen and (max-width:958px) {
-  .mobile-animation {
-    width: 32%;
-    top: 19%;
-    left: 31%;
+.marquee img {
+  width: 100%;
+  flex-shrink: 0;
+  /* Prevent images from shrinking */
+}
+
+.addedbg {
+  background: linear-gradient(rgb(219, 232, 255) 0%, rgba(219, 232, 255, 0) 101.34%);
+  border-radius: 25px;
+}
+
+@keyframes verticalAnime {
+  0% {
+    transform: translateY(0);
   }
-} */
+
+  100% {
+    transform: translateY(-50%);
+    /* Moves half of the marquee's total height */
+  }
+}
+
+.box {
+  transform-origin: center;
+}
+
+.spinner-img {
+  position: absolute;
+  top: 21%;
+  left: 47.5%;
+  animation: spinImg 3s linear infinite
+}
+
+@keyframes spinImg {
+  100% {
+    transform: rotate(360deg)
+  }
+}
 </style>

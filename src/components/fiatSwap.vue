@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn @click="dialog = true" class="fiat-btn" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-            <img src="/svg/arrow-swap.svg" class="me-1"/>
+            <img :src="isDark ? '/svg/arrow-swap.svg' : '/svg/arrow-swap-dark.svg'" class="me-1"/>
             Swap
     </v-btn>
 

@@ -136,8 +136,8 @@
   .card-inactive {
     z-index: 1;
     transform: translateY(100px);
-    opacity: 0;
-    margin-left: 70px;
+    opacity: 0.05;
+    margin-left: 0px;
   }
   
   .testimonial-card img {

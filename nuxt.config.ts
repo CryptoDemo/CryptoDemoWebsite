@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     'notivue/notification-progress.css',
 
   ],
- 
+  
 
   components: {
     dirs: [

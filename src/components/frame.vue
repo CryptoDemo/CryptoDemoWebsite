@@ -82,7 +82,7 @@
           <div class="frame2" :class="isDark ? 'frame2' : 'frame2-light'"
             style="padding: 0 30px; position: relative; overflow: hidden">
             <div class="img-wrap1 stack-container"
-              style="display: flex; flex-direction: column; padding: 0 60px; position: relative; right: 10%; height: 205px;">
+              style="display: flex; flex-direction: column; padding: 0 30px; position: relative; right: 0%; overflow: hidden; height: 200px;">
               <div class="position-relative">
                 <div class="coin-wrap1i" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
 
@@ -102,13 +102,20 @@
                   <img src="/img/item (3usd).png" class="card1i-light desktop-screen-light" style="max-width: 100%;" />
                 </div>
 
-
                 <div v-if="theme.global.current.value.dark" class="stack-item">
                   <img src="/svg/item3.svg" class="card1ii desktop-screen" style="max-width: 100%;" />
                   <img src="/img/item (2).png" class="card1ii2 mobile-screen" style="max-width: 100%;" />
                 </div>
                 <div v-else class="stack-item">
                   <img src="/img/item (4).png" class="card1ii-light desktop-screen-light" style="max-width: 100%;" />
+                </div>
+
+                <div v-if="theme.global.current.value.dark" class="stack-item hiddenImg">
+                  <img src="/svg/item3.svg" class="card1iii desktop-screen" style="max-width: 100%;" />
+                  <img src="/img/item (2).png" class="card1iii2 mobile-screen" style="max-width: 100%;" />
+                </div>
+                <div v-else class="stack-item hiddenImg">
+                  <img src="/img/item (4).png" class="card1iii-light desktop-screen-light" style="max-width: 100%;" />
                 </div>
 
               </div>
@@ -440,6 +447,10 @@ onMounted(() => {
   position: absolute;
   left: 38px;
   top: 64%;
+}
+
+.hiddenImg{
+display: none
 }
 
 /* .desktop-screen {

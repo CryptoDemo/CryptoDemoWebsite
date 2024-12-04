@@ -65,7 +65,7 @@
 
       </div>
 
-      <v-dialog v-model="dialog" origin="center center" width="420px">
+      <v-dialog v-model="dialog" origin="center center" width="420px" opacity="0.08">
         <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
           style="border-radius: 24px; padding: 20px">
           <h2 class="text-center">Transaction Details</h2>
@@ -401,6 +401,7 @@ onMounted(() => {
   border-bottom: 1px solid #1B2537 !important;
   border: none;
 }
+
 
 .wallet-border-light {
   border-bottom: 1px solid #e2e8f0 !important;

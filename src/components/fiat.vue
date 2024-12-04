@@ -12,7 +12,7 @@
         <div style="display: flex; justify-content: space-between; align-items: self-end; width: 100%;">
     
             <v-btn @click="dialog = true" class="fiat-btn send-btn me-" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-                <img src="/svg/send-arrow.svg" class="me-1"/>
+                <img :src="isDark ? '/svg/send-arrow.svg' : '/svg/send-arrow-dark.svg'" class="me-1"/>
                 Fund
             </v-btn>
     
@@ -73,7 +73,7 @@
             </v-dialog>
 
             <v-btn @click="dialog1 = true" class="fiat-btn me-" :class="isDark ? 'profile-cards-dark':'profile-cards-light'">
-                <img src="/svg/get.svg" class="me-1"/>
+                <img :src="isDark ? '/svg/get.svg' : '/svg/get-dark.svg'" class="me-1"/>
                 Send
             </v-btn>
     

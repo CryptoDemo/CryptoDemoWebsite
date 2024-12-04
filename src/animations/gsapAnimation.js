@@ -40,14 +40,14 @@ export const zoomAnimation = (element, initialScale, finalScale, duration) => {
   gsap.to(element, {
     scale: initialScale,
     duration: duration,
-    ease: "power1.out",
+    ease: "slow(0.7,0.7,false)",
     onComplete: () => {
       gsap.to(element, {
         yoyo: true,
         repeat: -1,
         scale: finalScale,
         duration: duration,
-        ease: "power1.in"
+        ease: "slow(0.7,0.7,false)",
       });
     }
   });
@@ -237,6 +237,20 @@ export const swapAnimationUpDown = (card1i, card1ii, neutral) => {
       y: 0,
       ease: 'bounce.out',
       onStart: () => card1ii.classList.add('card1i'),
+    }
+  );
+}
+
+export const staggerImg = (element) => {
+  const tl = gsap.timeline({ repeat: -1, repeatDelay: 3.2 }); // Repeat infinitely with a 4s total cycle
+  tl.fromTo(
+    element,
+    { scale: 0 },
+    {
+      scale: 1,
+      duration: 2,
+      stagger: 0.2,
+      ease: 'power2.out',
     }
   );
 }

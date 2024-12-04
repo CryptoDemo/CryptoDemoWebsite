@@ -20,7 +20,7 @@
                 :title="address.contact_name" class="my-2" style="border-radius: 10px;"
                 :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
                 @click="collectAdressVals(address)">
-                <v-expansion-panel-text>
+                <v-expansion-panel-text> 
                   <div style="display: flex; flex-direction: column;">
                     <span class="answer-text">Chain Network: <span style="text-transform: uppercase;">{{ getNetworkName(address.chain_id) }}</span></span>
                     <span class="answer-text">Wallet Address: {{ address.contact_wallet_address }}</span>
