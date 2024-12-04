@@ -1,9 +1,12 @@
 <template>
   <div>
-    <div v-for="transaction in displayedTransactions.slice(0, sliceEndValue)" :key="transaction.id">
+    <div v-for="(transaction, index) in displayedTransactions.slice(0, sliceEndValue)" :key="transaction.id" :class="[
+      isDark ? 'wallet-border' : 'wallet-border-light',
+      index === displayedTransactions.slice(0, sliceEndValue).length - 1 ? 'no-border' : ''
+    ]">
       <div @click="getSingleWebTrans(transaction.id); dialog = true"
         style="background: inherit; height: auto; cursor: pointer;">
-        <div v-if="transaction.details?.crypto" :class="isDark ? 'wallet-border' : 'wallet-border-light'">
+        <div v-if="transaction.details?.crypto">
 
           <div class="px-6" v-if="transaction.details?.crypto?.transfer"
             style="display: flex; justify-content: space-between; margin: 4px 0px 10px 0px;">
@@ -402,10 +405,13 @@ onMounted(() => {
   border: none;
 }
 
-
 .wallet-border-light {
   border-bottom: 1px solid #e2e8f0 !important;
   border: none;
+}
+
+.no-border {
+  border-bottom: none !important;
 }
 
 .txn-cards-dark {

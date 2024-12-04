@@ -255,7 +255,7 @@
                     <div class="marquee-container" v-else>
                       <div class="marquee">
                         <!-- Original set of images -->
-                        <img src="/img/verticallight1.png" alt="Card 1" class="rounded-t-md" />
+                        <img src="/img/verticallight1.png" alt="Card 1" class="rounded-t-md" style="margin-top: 10px"/>
                         <img src="/img/verticallight2.png" alt="Card 2" class="rounded-t-md"
                           style="margin-top: 10px !important" />
                         <img src="/img/verticallight3.png" alt="Card 3" class="rounded-t-md"
@@ -263,7 +263,7 @@
                         <img src="/img/verticallight4.png" alt="Card 4" class="rounded-t-md"
                           style="margin-top: 10px !important" />
                         <!-- Duplicate for seamless scrolling -->
-                        <img src="/img/verticallight1.png" alt="Card 1" class="rounded-t-md" />
+                        <img src="/img/verticallight1.png" alt="Card 1" class="rounded-t-md" style="margin-top: 10px"/>
                         <img src="/img/verticallight2.png" alt="Card 2" class="rounded-t-md"
                           style="margin-top: 10px !important" />
                         <img src="/img/verticallight3.png" alt="Card 3" class="rounded-t-md"
