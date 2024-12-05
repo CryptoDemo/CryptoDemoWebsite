@@ -4,7 +4,7 @@
       isDark ? 'wallet-border' : 'wallet-border-light',
       index === displayedTransactions.slice(0, sliceEndValue).length - 1 ? 'no-border' : ''
     ]">
-      <div @click="getSingleWebTrans(transaction.id); dialog = true"
+      <div @click="openDialog(transaction)"
         style="background: inherit; height: auto; cursor: pointer;">
         <div v-if="transaction.details?.crypto">
 
@@ -60,24 +60,20 @@
                   transaction?.details?.crypto?.swap?.from?.token_id)?.symbol }}</span>
               </div>
             </div>
-
           </div>
-
         </div>
-
-
       </div>
 
-      <v-dialog v-model="dialog" origin="center center" width="420px" opacity="0.08">
+      <v-dialog v-model="dialog" origin="center center" width="420px" opacity="0.01">
         <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
           style="border-radius: 24px; padding: 20px">
           <h2 class="text-center">Transaction Details</h2>
 
-          <div v-if="transData?.details?.crypto?.transfer">
+          <div v-if="selectedTransaction?.details?.crypto?.transfer">
             <div class="d-flex py-4" style="justify-content: center;">
               <v-chip>
-                <h4 class="me-1">{{ transData?.details?.crypto?.transfer?.amount }}</h4>
-                <h4>{{ tokenLists.find((p) => p.id === transData?.details?.crypto?.transfer?.token_id).symbol }}
+                <h4 class="me-1">{{ selectedTransaction?.details?.crypto?.transfer?.amount }}</h4>
+                <h4>{{ tokenLists.find((p) => p.id === selectedTransaction?.details?.crypto?.transfer?.token_id).symbol }}
                 </h4>
               </v-chip>
             </div>
@@ -94,37 +90,37 @@
               </div>
 
               <div style="text-align: right;">
-                <p style="font-size: 14px;">{{ formattedDate(transData.created_at) }}, {{
-                  formatTime(transData.created_at) }}</p>
-                <p style="font-size: 14px;">{{ transData?.details?.crypto?.transfer?.fees.find((p) =>
+                <p style="font-size: 14px;">{{ formattedDate(selectedTransaction.created_at) }}, {{
+                  formatTime(selectedTransaction.created_at) }}</p>
+                <p style="font-size: 14px;">{{ selectedTransaction?.details?.crypto?.transfer?.fees.find((p) =>
                   p.recipient_type === "TOTAL")?.amount || 0 }}</p>
 
                 <p class="truncate" style="font-size: 14px;width: 157px">{{
-                  transData?.details?.crypto?.transfer?.to_address }}</p>
+                  selectedTransaction?.details?.crypto?.transfer?.to_address }}</p>
 
                 <div class="d-flex">
                   <p class="truncate" style="font-size: 14px;width: 134px">{{
-                    transData?.details?.crypto.transfer?.transaction_hash }}</p>
-                  <button @click="copyToClipboard(transData?.details?.crypto?.transfer?.transaction_hash)"
+                    selectedTransaction?.details?.crypto.transfer?.transaction_hash }}</p>
+                  <button @click="copyToClipboard(selectedTransaction?.details?.crypto?.transfer?.transaction_hash)"
                     variant="plain" style=" background: inherit !important; box-shadow: none;">
                     <img v-if="!copied" src="/svg/copy.svg" />
                     <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;"
                       v-else>Copied!</p>
                   </button>
                 </div>
-                <div v-if="transData?.details?.crypto?.transfer?.transfer_type">
-                  <v-chip :color="transData.details.crypto.transfer.transfer_type == 'IN' ? 'green' : 'orange'"
+                <div v-if="selectedTransaction?.details?.crypto?.transfer?.transfer_type">
+                  <v-chip :color="selectedTransaction.details.crypto.transfer.transfer_type == 'IN' ? 'green' : 'orange'"
                     style="font-size: 14px; border-radius: 20px;">
-                    {{ transData.details.crypto.transfer.transfer_type == 'IN' ? 'IN' : 'OUT' }}
+                    {{ selectedTransaction.details.crypto.transfer.transfer_type == 'IN' ? 'IN' : 'OUT' }}
                   </v-chip>
                 </div>
 
                 <p class="truncate" style="font-size: 14px; width: 157px"
-                  v-if="transData?.details?.crypto?.transfer?.status">
+                  v-if="selectedTransaction?.details?.crypto?.transfer?.status">
                   <v-chip style="font-weight: 700 !important;"
-                    :color="transData?.details?.crypto?.transfer?.status?.fulfilled ? 'green' : transData?.details?.crypto?.transfer?.status?.failed ? 'red' : 'orange'">
-                    {{ transData?.details?.crypto?.transfer?.status?.fulfilled ? 'Successful' :
-                      transData?.details?.crypto?.transfer?.status?.failed ? 'Failed' : 'Pending' }}</v-chip>
+                    :color="selectedTransaction?.details?.crypto?.transfer?.status?.fulfilled ? 'green' : selectedTransaction?.details?.crypto?.transfer?.status?.failed ? 'red' : 'orange'">
+                    {{ selectedTransaction?.details?.crypto?.transfer?.status?.fulfilled ? 'Successful' :
+                      selectedTransaction?.details?.crypto?.transfer?.status?.failed ? 'Failed' : 'Pending' }}</v-chip>
                 </p>
               </div>
             </div>
@@ -172,11 +168,11 @@
 
 
                 <p class="truncate" style="font-size: 14px; width: 187px"
-                  v-if="transData?.details?.crypto?.swap?.status">
+                  v-if="selectedTransaction?.details?.crypto?.swap?.status">
                   <v-chip
-                    :color="transData?.details?.crypto?.swap?.status?.fulfilled ? 'green' : transData?.details?.crypto?.swap?.status?.failed ? 'red' : 'orange'">
-                    {{ transData?.details?.crypto?.swap?.status?.fulfilled ? 'Successful' :
-                      transData?.details?.crypto?.swap?.status?.failed ? 'Failed' : 'Pending' }}</v-chip>
+                    :color="selectedTransaction?.details?.crypto?.swap?.status?.fulfilled ? 'green' : selectedTransaction?.details?.crypto?.swap?.status?.failed ? 'red' : 'orange'">
+                    {{ selectedTransaction?.details?.crypto?.swap?.status?.fulfilled ? 'Successful' :
+                      selectedTransaction?.details?.crypto?.swap?.status?.failed ? 'Failed' : 'Pending' }}</v-chip>
                 </p>
 
               </div>
@@ -240,6 +236,12 @@ const dialog = ref(false);
 const sliceEndValue = ref(5);
 const showAll = ref(false);
 
+const selectedTransaction = ref(null);
+const openDialog = (transaction) => {
+    selectedTransaction.value = transaction;
+    dialog.value = true;
+};
+
 const toggleTokens = () => {
   if (showAll.value) {
     sliceEndValue.value = 5;
@@ -252,9 +254,6 @@ const toggleTokens = () => {
 const created_at = ref();
 
 const displayedTransactions = ref(pinia.state.TransactionDetails || []);
-
-const transData = ref(null)
-
 
 const worker = new Worker('/worker/index.js'); // Path to your worker file
 let hasMoreData = ref(true);
@@ -308,12 +307,6 @@ const getWebTrans = async () => {
   };
 };
 
-
-
-
-
-
-
 watch(() => pinia.state.selectedNetwork.toLowerCase(),
   (newNetwork, oldNetwork) => {
     if (newNetwork !== oldNetwork) {
@@ -326,34 +319,6 @@ watch(() => pinia.state.selectedNetwork.toLowerCase(),
     }
   }
 );
-
-
-
-const getSingleWebTrans = async (id) => {
-  isloading.value = true;
-  try {
-
-    const data = await getSingleTransactions(id);
-
-
-    if (data.success) {
-
-      transData.value = data.data;
-
-      // Optionally handle any additional logic with the data here
-    } else {
-      // Display error message
-      push.error(data.message || 'An error occurred');
-    }
-  } catch (error) {
-    // Log the error with context
-    console.error('Failed to fetch transaction:', error);
-  } finally {
-    // Ensure that the loading state is updated regardless of success or failure
-    isloading.value = false;
-  }
-};
-
 
 const copyToClipboard = (text) => {
   navigator.clipboard.writeText(text).then(() => {

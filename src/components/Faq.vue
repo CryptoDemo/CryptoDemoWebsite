@@ -46,6 +46,7 @@ const UserFaqs = ref(pinia.state.UserFaqs || []);
 
 const skeletonArray = Array(5).fill({}); // Temporary skeleton items
 
+
 const fetchFaqs = async () => {
   isLoading.value = true;
 

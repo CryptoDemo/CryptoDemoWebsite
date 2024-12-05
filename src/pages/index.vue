@@ -225,7 +225,8 @@
             <div class="demo-div1" style="margin-inline-end: 28px; overflow: hidden">
               <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'"
                 style="padding: 0px 0px 35px 0px">
-                <div :class="theme.global.current.value.dark ? 'rectangle' : 'addedbg rectangle'" style="display: flex; justify-self: center; padding: 10px">
+                <div :class="theme.global.current.value.dark ? 'rectangle' : 'addedbg rectangle'"
+                  style="display: flex; justify-self: center; padding: 10px">
                   <div class="d-flex justify-center"
                     style="width: 100%; height:200px; overflow: hidden; justify-self: space-between; align-items: center; margin: 20px 10px 2px 10px;">
                     <div style="width: 60%; display: flex; flex-direction: column; align-items: center">
@@ -255,7 +256,7 @@
                     <div class="marquee-container" v-else>
                       <div class="marquee">
                         <!-- Original set of images -->
-                        <img src="/img/verticallight1.png" alt="Card 1" class="rounded-t-md" style="margin-top: 10px"/>
+                        <img src="/img/verticallight1.png" alt="Card 1" class="rounded-t-md" style="margin-top: 10px" />
                         <img src="/img/verticallight2.png" alt="Card 2" class="rounded-t-md"
                           style="margin-top: 10px !important" />
                         <img src="/img/verticallight3.png" alt="Card 3" class="rounded-t-md"
@@ -263,7 +264,7 @@
                         <img src="/img/verticallight4.png" alt="Card 4" class="rounded-t-md"
                           style="margin-top: 10px !important" />
                         <!-- Duplicate for seamless scrolling -->
-                        <img src="/img/verticallight1.png" alt="Card 1" class="rounded-t-md" style="margin-top: 10px"/>
+                        <img src="/img/verticallight1.png" alt="Card 1" class="rounded-t-md" style="margin-top: 10px" />
                         <img src="/img/verticallight2.png" alt="Card 2" class="rounded-t-md"
                           style="margin-top: 10px !important" />
                         <img src="/img/verticallight3.png" alt="Card 3" class="rounded-t-md"
@@ -367,7 +368,7 @@
                 <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Betacrypto.
                   Download
                   now and dive into the world of crypto trading!"</span>
-                <div class="d-flex social-icons-div" style="margin-top: 88px; width: fit-content; align-items: center">
+                <div class="d-flex social-icons-div" style="margin-top: 88px; padding-bottom: 60px; width: fit-content; align-items: center">
                   <v-btn class="image-button me-4 desktop-social-icons"
                     :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
                   <v-btn class="image-button me-4 desktop-social-icons"
@@ -386,27 +387,16 @@
               </div>
 
             </v-col>
-            <v-col cols="md-5">
-              <div class="">
-                <div class="phone-rectangle"
-                  style="position: relative; top: -58px; display: flex; justify-content: center;">
-
-                  <div>
-                    <div class="mobile-screen" style="width: 500px;" alt="betacrypto-img-24">
-                      <div :class="theme.global.current.value.dark ? 'mobileNimationBg':'lightmobileNimationBg'" style="width: 530px; height: 669px;">
-                        <div class="mobile-animation">
-                          <img ref="scrollImageMobile" :src="theme.global.current.value.dark ? '/img/animatedScreen.png' : '/img/animatedScreenLight.png'" alt="" style="width: 100%;">
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="desktop-screen flex-lg-and-up hidden-sm-and-down" alt="betacrypto-img-22">
-                      <div :class="theme.global.current.value.dark ? 'mobileNimationBg':'lightmobileNimationBg'" style="width: 530px; height: 669px;">
-                        <div class="desktop-animation">
-                          <img ref="scrollImage" :src="theme.global.current.value.dark ? '/img/animatedScreen.png' : '/img/animatedScreenLight.png'" alt="" style="width: 100%;">
-                        </div>
-                      </div>
-                    </div>
+            <v-col cols="md-5" sm="12">
+              <div class="phone-rectangle w-100"
+                style="position: relative; top: -58px; display: flex; justify-content: center;">
+                <div class="d-flex justify-center"
+                  :class="theme.global.current.value.dark ? 'mobileNimationBg' : 'lightmobileNimationBg'"
+                  style="width:100%;max-width: 530px; height: 669px; position: relative; overflow: hidden">
+                  <div class="animationContainer">
+                    <img ref="scrollImage"
+                      :src="theme.global.current.value.dark ? '/img/animatedScreen.png' : '/img/animatedScreenLight.png'"
+                      alt="" style="width: 100%; position: absolute">
                   </div>
                 </div>
               </div>
@@ -508,12 +498,6 @@ onMounted(() => {
     horizontalSlideInAnimation(cardRightImageLight.value, "100", 0, "100", 1.08, 4, 1.1, 1.01);
     horizontalSlideInAnimation(cardRightImageLight2.value, "100", 0, "100", 1.04, 7, 2.7, 1.05)
     scrollImageUpDown(scrollImage.value)
-    scrollImageUpDown(scrollImageMobile.value)
-    
-    if(!isDark){
-      scrollImageUpDown(scrollImageMobile2.value)
-      scrollImageUpDown(scrollImage2.value)
-    }
   }
 });
 
@@ -1549,46 +1533,61 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   background-attachment: scroll
 }
 
-
-.mobile-animation {
-  width: 55%;
-  height: 345px;
-  position: absolute;
-  top: 31%;
-  left: 17%;
+.animationContainer {
+  width: 41.5%;
+  height: 51%;
+  position: relative;
   overflow: hidden;
+  left: -7.35%;
+  top: 18.5%;
 }
 
-.desktop-animation {
-  width: 41%;
-  height: 345px;
-  position: absolute;
-  top: 18%;
-  left: 22.25%;
-  overflow: hidden;
+@media screen and (max-width: 1279px) {
+  .animationContainer {
+    width: 54%;
+    left: -10%;
+  }
 }
 
-@media screen and (max-width:1118px) {
-  .desktop-animation {
+@media screen and (max-width: 1024px) {
+  .animationContainer {
+    width: 59%;
+    left: -10.5%;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .animationContainer {
+    width: 38.6%;
+    left: -6.8%;
+  }
+}
+
+@media screen and (max-width: 707px) {
+  .animationContainer {
+    width: 42.5%;
+    left: -7.7%;
+  }
+}
+
+@media screen and (max-width: 595px) {
+  .animationContainer {
+    width: 38.6%;
+    left: -6.8%;
+  }
+}
+
+@media screen and (max-width: 465px) {
+  .animationContainer {
+    width: 47.5%;
+    left: -8.3%;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .animationContainer {
     width: 58%;
-    top: 17%;
-    left: 12%;
-  }
-}
-
-@media screen and (max-width:1159px) {
-  .desktop-animation {
-    width: 55%;
-    top: 18%;
-    left: 13%;
-  }
-}
-
-@media screen and (max-width:960px) {
-  .desktop-animation {
-    width: 63%;
-    top: 10%;
-    left: 8%;
+    left: -10.3%;
   }
 }
 
