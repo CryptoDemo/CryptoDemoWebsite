@@ -1,8 +1,8 @@
 <template>
   <div class="offers-div">
     <div v-for="offer in personalOffers" :key="offer.id">
-      <div class="py-3 mb-4" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'">
-        <div class="px-4 mb-4" style="display: flex; justify-content: space-between; border: none;">
+      <div class="mb-4" style="padding-top: 12px;" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'">
+        <div class="px-4" style="display: flex; justify-content: space-between; border: none; margin-bottom: 2px">
 
           <div>
             <div style="display: flex; align-items: center; line-height: 30px;">
@@ -55,54 +55,47 @@
               <span
                 style="font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 400;  align-self: self-end;">{{
                   offer?.trading_pair?.fiat?.unit_value }} {{ offer.countryCurrencyName }}</span>
-
             </div>
-
           </div>
-
         </div>
 
-        <div style="padding: 15px">
-          <v-expansion-panels :bg-color="isDark ? '#1B2537':'#fafafa'" elevation="1" class="my-offers" style="border-radius: 10px;">
-          <v-expansion-panel title="Offer">
-            <v-expansion-panel-text>
-              <v-btn @click="navigateTo('/account/marketplace/createOffer')" class="primary-btn1"
-                style="width: 95%; display: flex; margin: auto; border-radius: 10px !important; font-weight: 600; height: 40px;">Edit
-                offer</v-btn>
-              <div style="display: flex; justify-content: end">
-                <v-dialog max-width="500">
-                  <template v-slot:activator="{ props: activatorProps }">
-                    <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id"
-                      v-bind="activatorProps" variant="outlined" color="red" class="smaller-btn mt-2">Delete
-                      offer</v-btn>
-                  </template>
+        <div v-show="toggleChevron" :class="isDark ? 'dropdowndark' : 'dropdownlight'" style="padding-top: 15px">
+          <v-btn @click="navigateTo('/account/marketplace/createOffer')" class="primary-btn1"
+            style="width: 95%; display: flex; margin: auto; border-radius: 10px !important; font-weight: 600; height: 40px;">Edit
+            offer</v-btn>
+          <div style="display: flex; justify-content: end">
+            <v-dialog max-width="500">
+              <template v-slot:activator="{ props: activatorProps }">
+                <v-btn @click.prevent="pinia.state.selected_coin_to_buy_from_marketplace = offer?.id"
+                  v-bind="activatorProps" variant="outlined" color="red" class="smaller-btn mt-2">Delete
+                  offer</v-btn>
+              </template>
 
-                  <template v-slot:default>
-                    <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-                      style="border-radius: 15px; box-shadow: none;">
-                      <v-card-text>
-                        <div class="d-flex" style="flex-direction: column; justify-content: center;">
-                          <img src="/img/Frame 41502.png" width="90" class="mx-auto mb-3" />
-                          <h3 class="text-center mb-3">Are you sure you want to delete this offer?</h3>
-                          <span class=""> This action cannot be undone. Once deleted, this offer will no longer be
-                            visible on
-                            the marketplace.</span>
-                        </div>
-                      </v-card-text>
+              <template v-slot:default>
+                <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
+                  style="border-radius: 15px; box-shadow: none;">
+                  <v-card-text>
+                    <div class="d-flex" style="flex-direction: column; justify-content: center;">
+                      <img src="/img/Frame 41502.png" width="90" class="mx-auto mb-3" />
+                      <h3 class="text-center mb-3">Are you sure you want to delete this offer?</h3>
+                      <span class=""> This action cannot be undone. Once deleted, this offer will no longer be
+                        visible on
+                        the marketplace.</span>
+                    </div>
+                  </v-card-text>
 
-                      <v-card-actions class="px-3">
-
-                        <v-btn @click="delete_My_Offers()" variant="tonal"
-                          style="letter-spacing: 0px; color: #E33E38; height: 50px; width: 100%; border-radius: 15px; margin-bottom: 10px; font-weight: 600; font-size: 16px; text-transform: unset;">Delete
-                          Permanently</v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </template>
-                </v-dialog>
-              </div>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-        </v-expansion-panels>
+                  <v-card-actions class="px-3">
+                    <v-btn @click="delete_My_Offers()" variant="tonal"
+                      style="letter-spacing: 0px; color: #E33E38; height: 50px; width: 100%; border-radius: 15px; margin-bottom: 10px; font-weight: 600; font-size: 16px; text-transform: unset;">Delete
+                      Permanently</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </template>
+            </v-dialog>
+          </div>
+        </div>
+        <div @click="toggleChevron = !toggleChevron" class="d-flex justify-center" :class="isDark ? 'dropdowndark' : 'dropdownlight'" style="cursor: pointer; padding-bottom: 11px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+          <img :src="!toggleChevron ? '/svg/active/arrowdown.svg' : '/svg/active/arrowup.svg'">
         </div>
       </div>
     </div>
@@ -126,6 +119,7 @@ const isDark = computed(() => theme.global.current.value.dark);
 const pinia = useStore();
 const pageNumber = ref(1);
 const loading = ref(false);
+const toggleChevron = ref(false)
 const personalOffers = computed(() => pinia.state.MyOffers || []);
 
 const offerID = ref([]);
@@ -238,6 +232,13 @@ onMounted(() => {
   background: #0D1526;
   height: fit-content;
   border-radius: 10px;
+}
+
+.dropdowndark{
+  background: #1B2537;
+}
+.dropdownlight{
+  background: #fafafa;
 }
 
 @media screen and (max-width: 600px) {

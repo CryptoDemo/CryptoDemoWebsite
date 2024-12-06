@@ -101,7 +101,7 @@ export const horizontalSlideInAnimation = (element, axisValue1, axisValue2, axis
       scale: scaleValue
     })
     .to(element, {
-      x: axisValue3, // Move out to the right
+      y: axisValue3, // Move out to the right
       duration: finalDuration, // Animation duration
       ease: "power2.in",
       opacity: 0,
@@ -242,15 +242,25 @@ export const swapAnimationUpDown = (card1i, card1ii, neutral) => {
 }
 
 export const staggerImg = (element) => {
-  const tl = gsap.timeline({ repeat: -1, repeatDelay: 3.2 }); // Repeat infinitely with a 4s total cycle
+  const tl = gsap.timeline({ repeat: -1 }); // Repeat infinitely with no delay
+
   tl.fromTo(
     element,
-    { scale: 0 },
+    { scale: 0 }, // Start scale
     {
-      scale: 1,
-      duration: 2,
-      stagger: 0.2,
+      scale: 1, // End scale
+      duration: 5,
+      stagger: 0.5,
       ease: 'power2.out',
     }
+  ).to(
+    element,
+    {
+      scale: 0, // Return to start scale
+      duration: 2,
+      stagger: -0.5, // Reverse order
+      ease: 'power2.in',
+    }
   );
+  
 }

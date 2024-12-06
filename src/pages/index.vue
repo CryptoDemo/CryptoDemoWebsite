@@ -239,38 +239,18 @@
                         <img style="width: 20%; object-fit: contain" src="/img/sml4.png" alt="" class="box" />
                       </div>
                     </div>
-                    <div class="marquee-container" v-if="theme.global.current.value.dark">
+                    <div class="marquee-container">
                       <div class="marquee">
                         <!-- Original set of images -->
-                        <img src="/img/vertcard1.png" alt="Card 1" class="rounded-t-md" style="margin-top: 10px" />
-                        <img src="/img/vertcard2.png" alt="Card 2" class="rounded-t-md" style="margin-top: 10px" />
-                        <img src="/img/vertcard3.png" alt="Card 3" class="rounded-t-md" style="margin-top: 10px" />
-                        <img src="/img/vertcard4.png" alt="Card 4" class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="theme.global.current.value.dark ? '/img/vertcard1.png' : '/img/verticallight1.png'" alt="Card 1" class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="theme.global.current.value.dark ? '/img/vertcard2.png' : '/img/verticallight2.png'" alt="Card 2" class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="theme.global.current.value.dark ? '/img/vertcard3.png' : '/img/verticallight3.png'" alt="Card 3" class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="theme.global.current.value.dark ? '/img/vertcard4.png' : '/img/verticallight4.png'" alt="Card 4" class="rounded-t-md" style="margin-top: 10px" />
                         <!-- Duplicate for seamless scrolling -->
-                        <img src="/img/vertcard1.png" alt="Card 1" class="rounded-t-md" style="margin-top: 10px" />
-                        <img src="/img/vertcard2.png" alt="Card 2" class="rounded-t-md" style="margin-top: 10px" />
-                        <img src="/img/vertcard3.png" alt="Card 3" class="rounded-t-md" style="margin-top: 10px" />
-                        <img src="/img/vertcard4.png" alt="Card 4" class="rounded-t-md" style="margin-top: 10px" />
-                      </div>
-                    </div>
-                    <div class="marquee-container" v-else>
-                      <div class="marquee">
-                        <!-- Original set of images -->
-                        <img src="/img/verticallight1.png" alt="Card 1" class="rounded-t-md" style="margin-top: 10px" />
-                        <img src="/img/verticallight2.png" alt="Card 2" class="rounded-t-md"
-                          style="margin-top: 10px !important" />
-                        <img src="/img/verticallight3.png" alt="Card 3" class="rounded-t-md"
-                          style="margin-top: 10px !important" />
-                        <img src="/img/verticallight4.png" alt="Card 4" class="rounded-t-md"
-                          style="margin-top: 10px !important" />
-                        <!-- Duplicate for seamless scrolling -->
-                        <img src="/img/verticallight1.png" alt="Card 1" class="rounded-t-md" style="margin-top: 10px" />
-                        <img src="/img/verticallight2.png" alt="Card 2" class="rounded-t-md"
-                          style="margin-top: 10px !important" />
-                        <img src="/img/verticallight3.png" alt="Card 3" class="rounded-t-md"
-                          style="margin-top: 10px !important" />
-                        <img src="/img/verticallight4.png" alt="Card 4" class="rounded-t-md"
-                          style="margin-top: 10px !important" />
+                        <img :src="theme.global.current.value.dark ? '/img/vertcard1.png' : '/img/verticallight1.png'" alt="Card 1" class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="theme.global.current.value.dark ? '/img/vertcard2.png' : '/img/verticallight2.png'" alt="Card 2" class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="theme.global.current.value.dark ? '/img/vertcard3.png' : '/img/verticallight3.png'" alt="Card 3" class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="theme.global.current.value.dark ? '/img/vertcard4.png' : '/img/verticallight4.png'" alt="Card 4" class="rounded-t-md" style="margin-top: 10px" />
                       </div>
                     </div>
                   </div>
@@ -302,18 +282,10 @@
             <div class="">
               <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'">
                 <div class="rectangle">
-                  <div style="padding-top: 28px; margin-bottom: 28px; height: 210px; position:relative; overflow:hidden"
-                    v-if="theme.global.current.value.dark">
-                    <img v-lazy="'/img/barcode-dark.png'"
+                  <div style="padding-top: 28px; margin-bottom: 28px; height: 210px; position:relative; overflow:hidden">
+                    <img :src="theme.global.current.value.dark ? '/img/barcode-dark.png':'/img/barcode-light.png'"
                       style="display: flex; justify-self: center; margin: auto; width: 93%;" alt="betacrypto-img-20" />
-                    <img src="/img/imgspin2.png" class="spinner-img">
-                  </div>
-                  <div class="mb-7"
-                    style="background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%); padding-top: 28px; border-radius: 15px; width: 100%; height: 210px; position:relative; overflow:hidden"
-                    v-else>
-                    <img src="/img/barcode-light.png"
-                      style="display: flex; justify-self: center; margin: auto; width: 90%;" alt="betacrypto-img-21" />
-                    <img src="/img/imgspin1.png" class="spinner-img" style="width: 30px;">
+                    <img :src="theme.global.current.value.dark ? '/img/imgspin2.png':'/img/imgspin1.png'" class="spinner-img">
                   </div>
                 </div>
                 <div class="wallet-div" style="margin-left: 36px;">
@@ -493,7 +465,7 @@ onMounted(() => {
     ], 150, 6);
 
     fadeAnimation(fade1.value, fade2.value);
-    zoomAnimation(zoomImg.value, 1, 1.04, 4);
+    zoomAnimation(zoomImg.value, 1, 1.05, 4);
 
     horizontalSlideInAnimation(cardRightImageLight.value, "100", 0, "100", 1.08, 4, 1.1, 1.01);
     horizontalSlideInAnimation(cardRightImageLight2.value, "100", 0, "100", 1.04, 7, 2.7, 1.05)
@@ -1622,9 +1594,6 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 
 .marquee-container {
   width: 32%;
-  /* Adjust as needed */
-  height: 200px;
-  /* Adjust based on your design */
   overflow: hidden;
   position: relative;
 }
@@ -1667,6 +1636,18 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   top: 21%;
   left: 47.5%;
   animation: spinImg 3s linear infinite
+}
+
+@media screen and (max-width: 1270px) {
+  .spinner-img{
+    top: 17%
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .spinner-img{
+    top: 14.5%
+  }
 }
 
 @keyframes spinImg {
