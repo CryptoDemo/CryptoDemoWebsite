@@ -1584,10 +1584,39 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   }
 }
 
+@media screen and (max-width: 430px) {
+  .animationContainer {
+    width: 51%;
+    left: -9%;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .animationContainer {
+    width: 52%;
+    left: -9.4%;
+  }
+}
+
 @media screen and (max-width: 390px) {
   .animationContainer {
-    width: 58%;
-    left: -10.3%;
+    width: 57%;
+    left: -10%;
+  }
+}
+
+
+@media screen and (max-width: 360px) {
+  .animationContainer {
+    width: 60%;
+    left: -10.8%;
+  }
+}
+
+@media screen and (max-width: 344px) {
+  .animationContainer {
+    width: 64.5%;
+    left: -11.3%;
   }
 }
 

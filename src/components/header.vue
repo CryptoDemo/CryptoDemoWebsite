@@ -99,7 +99,7 @@
           </div>
 
           <div class="profile-div flex-lg-and-up flex-sm-and-down" v-if="icon2"
-            style="display: flex; flex-direction: column; margin-top: 0px; align-items: center;">
+            style="display: flex; flex-direction: row; margin-top: 0px; align-items: center;">
             <Menu class="profile-nav me-4 ml-5" />
             <v-tooltip activator="parent" location="bottom" content-class="custom-tooltip">
               <template #default>
