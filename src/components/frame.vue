@@ -80,22 +80,60 @@
             style="padding: 0 30px; position: relative; overflow: hidden">
             <div class="img-wrap1 stack-container"
               style="display: flex; flex-direction: column; padding: 0 30px; position: relative; right: 0%; overflow: hidden; height: 200px;">
+             
+              <!-- <div class="position-relative">
+                <div class="coin-wrap1i" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
+
+                <div v-if="theme.global.current.value.dark" class="stack-item">
+                  <img :src="theme.global.current.value.dark ? '/svg/item1.svg':'/img/item (1btc).png'" class="desktop-screen-size" style="max-width: 100%;" />
+                  <img src="/img/item.png" class="mobile-screen btc1i2" style="max-width: 100%;" />
+                </div>
+                <div v-else class="stack-item">
+                  <img src="/img/item (1btc).png" class="desktop-screen-size-light" style="max-width: 100%;" />
+                </div>
+
+                <div v-if="theme.global.current.value.dark" class="stack-item">
+                  <img :src="theme.global.current.value.dark ? '/svg/item2.svg':''" class="card1i desktop-screen-size" style="max-width: 100%;" />
+                  <img src="/img/item (1).png" class="card1i2 mobile-screen" style="max-width: 100%;" />
+                </div>
+                <div v-else class="stack-item">
+                  <img src="/img/item (3usd).png" class="card1i-light desktop-screen-size-light" style="max-width: 100%;" />
+                </div>
+
+                <div v-if="theme.global.current.value.dark" class="stack-item">
+                  <img :src="theme.global.current.value.dark ? '/svg/item3.svg':''" class="card1ii desktop-screen-size" style="max-width: 100%;" />
+                  <img src="/img/item (2).png" class="card1ii2 mobile-screen" style="max-width: 100%;" />
+                </div>
+                <div v-else class="stack-item">
+                  <img src="/img/item (4).png" class="card1ii-light desktop-screen-size-light" style="max-width: 100%;" />
+                </div>
+
+                <div v-if="theme.global.current.value.dark" class="stack-item hiddenImg">
+                  <img src="/svg/item3.svg" class="card1iii desktop-screen-size" style="max-width: 100%;" />
+                  <img src="/img/item (2).png" class="card1iii2 mobile-screen" style="max-width: 100%;" />
+                </div>
+                <div v-else class="stack-item hiddenImg">
+                  <img src="/img/item (4).png" class="card1iii-light desktop-screen-size-light" style="max-width: 100%;" />
+                </div>
+
+              </div> -->
+             
               <div class="position-relative">
                 <div class="coin-wrap1i" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
 
                 <div class="stack-item">
                   <img :src="theme.global.current.value.dark ? '/svg/item1.svg' : '/img/item (1btc).png'"
-                    class="desktop-screen" style="max-width: 100%;" />
+                    class="desktop-screen-size" style="max-width: 100%;" />
                 </div>
 
                 <div class="stack-item">
                   <img :src="theme.global.current.value.dark ? '/svg/item2.svg' : '/img/item (3usd).png'"
-                    class="card1i desktop-screen" style="max-width: 100%;" />
+                    class="card1i desktop-screen-size" style="max-width: 100%;" />
                 </div>
 
                 <div class="stack-item">
                   <img :src="theme.global.current.value.dark ? '/svg/item3.svg' : '/img/item (4).png'"
-                    class="card1ii desktop-screen" style="max-width: 100%;" />
+                    class="card1ii desktop-screen-size" style="max-width: 100%;" />
                 </div>
               </div>
             </div>
@@ -184,9 +222,9 @@ onMounted(() => {
 
   }
 
-  // Collect all desktop-screen images
-  desktopScreens.value = document.querySelectorAll('.desktop-screen');
-  desktopScreensLight.value = document.querySelectorAll('.desktop-screen-light');
+  // Collect all desktop-screen-size images
+  desktopScreens.value = document.querySelectorAll('.desktop-screen-size');
+  desktopScreensLight.value = document.querySelectorAll('.desktop-screen-size-light');
 
   // Function to get current class assignments
   const getCurrentClasses = () => ({
@@ -432,7 +470,7 @@ onMounted(() => {
   display: none
 }
 
-/* .desktop-screen {
+/* .desktop-screen-size {
   transition: all 3.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 } */
 </style>

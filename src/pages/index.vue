@@ -3,7 +3,7 @@
 
     <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg"
       class="position-absolute bg-vector" style="opacity: 0.4; left: 0;  right: 0; display: flex; margin: auto"
-      alt="betacrypto-img1" v-if="theme.global.current.value.dark" />
+      alt="betacrypto-img1" v-if="isDark" />
     <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg"
       class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto"
       alt="betacrypto-img2" v-else />
@@ -38,7 +38,7 @@
                   class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down" alt="betacrypto-img-5" />
               </div>
 
-              <div class="d-flex text-img position-relative" v-if="theme.global.current.value.dark">
+              <div class="d-flex text-img position-relative" v-if="isDark">
                 <span class="web webi" style="margin-right: 78px; z-index: 1000;">Betacrypto</span>
                 <img src="/svg/Frame 1305.svg" class="demo-star"
                   style="position: absolute; margin-left: 375px ;top: -27px;  max-width: 100%; height: auto;"
@@ -225,10 +225,10 @@
             <div class="demo-div1" style="margin-inline-end: 28px; overflow: hidden">
               <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'"
                 style="padding: 0px 0px 35px 0px">
-                <div :class="theme.global.current.value.dark ? 'rectangle' : 'addedbg rectangle'"
+                <div :class="isDark ? 'rectangle' : 'addedbg rectangle'"
                   style="display: flex; justify-self: center; padding: 10px">
-                  <div class="d-flex justify-center"
-                    style="width: 100%; height:200px; overflow: hidden; justify-self: space-between; align-items: center; margin: 20px 10px 2px 10px;">
+                  <div class="d-flex justify-center adjustHeight"
+                    style="width: 100%; overflow: hidden; justify-self: space-between; align-items: center; margin: 20px 10px 2px 10px;">
                     <div style="width: 60%; display: flex; flex-direction: column; align-items: center">
                       <img ref="zoomImg" src="/img/priceAct.png" style="width: 90%;" alt="" class="rounded-t-md" />
                       <div class="d-flex justify-center ga-2 boxContainer"
@@ -242,15 +242,23 @@
                     <div class="marquee-container">
                       <div class="marquee">
                         <!-- Original set of images -->
-                        <img :src="theme.global.current.value.dark ? '/img/vertcard1.png' : '/img/verticallight1.png'" alt="Card 1" class="rounded-t-md" style="margin-top: 10px" />
-                        <img :src="theme.global.current.value.dark ? '/img/vertcard2.png' : '/img/verticallight2.png'" alt="Card 2" class="rounded-t-md" style="margin-top: 10px" />
-                        <img :src="theme.global.current.value.dark ? '/img/vertcard3.png' : '/img/verticallight3.png'" alt="Card 3" class="rounded-t-md" style="margin-top: 10px" />
-                        <img :src="theme.global.current.value.dark ? '/img/vertcard4.png' : '/img/verticallight4.png'" alt="Card 4" class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="isDark ? '/img/vertcard1.png' : '/img/verticallight1.png'" alt="Card 1"
+                          class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="isDark ? '/img/vertcard2.png' : '/img/verticallight2.png'" alt="Card 2"
+                          class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="isDark ? '/img/vertcard3.png' : '/img/verticallight3.png'" alt="Card 3"
+                          class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="isDark ? '/img/vertcard4.png' : '/img/verticallight4.png'" alt="Card 4"
+                          class="rounded-t-md" style="margin-top: 10px" />
                         <!-- Duplicate for seamless scrolling -->
-                        <img :src="theme.global.current.value.dark ? '/img/vertcard1.png' : '/img/verticallight1.png'" alt="Card 1" class="rounded-t-md" style="margin-top: 10px" />
-                        <img :src="theme.global.current.value.dark ? '/img/vertcard2.png' : '/img/verticallight2.png'" alt="Card 2" class="rounded-t-md" style="margin-top: 10px" />
-                        <img :src="theme.global.current.value.dark ? '/img/vertcard3.png' : '/img/verticallight3.png'" alt="Card 3" class="rounded-t-md" style="margin-top: 10px" />
-                        <img :src="theme.global.current.value.dark ? '/img/vertcard4.png' : '/img/verticallight4.png'" alt="Card 4" class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="isDark ? '/img/vertcard1.png' : '/img/verticallight1.png'" alt="Card 1"
+                          class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="isDark ? '/img/vertcard2.png' : '/img/verticallight2.png'" alt="Card 2"
+                          class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="isDark ? '/img/vertcard3.png' : '/img/verticallight3.png'" alt="Card 3"
+                          class="rounded-t-md" style="margin-top: 10px" />
+                        <img :src="isDark ? '/img/vertcard4.png' : '/img/verticallight4.png'" alt="Card 4"
+                          class="rounded-t-md" style="margin-top: 10px" />
                       </div>
                     </div>
                   </div>
@@ -282,10 +290,11 @@
             <div class="">
               <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'">
                 <div class="rectangle">
-                  <div style="padding-top: 28px; margin-bottom: 28px; height: 210px; position:relative; overflow:hidden">
-                    <img :src="theme.global.current.value.dark ? '/img/barcode-dark.png':'/img/barcode-light.png'"
+                  <div
+                    style="padding-top: 28px; margin-bottom: 28px; height: 210px; position:relative; overflow:hidden">
+                    <img :src="isDark ? '/img/barcode-dark.png' : '/img/barcode-light.png'"
                       style="display: flex; justify-self: center; margin: auto; width: 93%;" alt="betacrypto-img-20" />
-                    <img :src="theme.global.current.value.dark ? '/img/imgspin2.png':'/img/imgspin1.png'" class="spinner-img">
+                    <img :src="isDark ? '/img/imgspin2.png' : '/img/imgspin1.png'" class="spinner-img">
                   </div>
                 </div>
                 <div class="wallet-div" style="margin-left: 36px;">
@@ -340,7 +349,8 @@
                 <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Betacrypto.
                   Download
                   now and dive into the world of crypto trading!"</span>
-                <div class="d-flex social-icons-div" style="margin-top: 88px; padding-bottom: 60px; width: fit-content; align-items: center">
+                <div class="d-flex social-icons-div"
+                  style="margin-top: 88px; padding-bottom: 60px; width: fit-content; align-items: center">
                   <v-btn class="image-button me-4 desktop-social-icons"
                     :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
                   <v-btn class="image-button me-4 desktop-social-icons"
@@ -362,12 +372,10 @@
             <v-col cols="md-5" sm="12">
               <div class="phone-rectangle w-100"
                 style="position: relative; top: -58px; display: flex; justify-content: center;">
-                <div class="d-flex justify-center"
-                  :class="theme.global.current.value.dark ? 'mobileNimationBg' : 'lightmobileNimationBg'"
+                <div class="d-flex justify-center" :class="isDark ? 'mobileNimationBg' : 'lightmobileNimationBg'"
                   style="width:100%;max-width: 530px; height: 669px; position: relative; overflow: hidden">
                   <div class="animationContainer">
-                    <img ref="scrollImage"
-                      :src="theme.global.current.value.dark ? '/img/animatedScreen.png' : '/img/animatedScreenLight.png'"
+                    <img ref="scrollImage" :src="isDark ? '/img/animatedScreen.png' : '/img/animatedScreenLight.png'"
                       alt="" style="width: 100%; position: absolute">
                   </div>
                 </div>
@@ -1592,6 +1600,34 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   }
 }
 
+.adjustHeight {
+  height: 200px
+}
+
+@media screen and (max-width: 960px) {
+  .adjustHeight {
+    height: 160px
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .adjustHeight {
+    height: 140px
+  }
+}
+
+@media screen and (max-width: 574px) {
+  .adjustHeight {
+    height: 200px
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .adjustHeight {
+    height: 110px
+  }
+}
+
 .marquee-container {
   width: 32%;
   overflow: hidden;
@@ -1639,13 +1675,13 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 }
 
 @media screen and (max-width: 1270px) {
-  .spinner-img{
+  .spinner-img {
     top: 17%
   }
 }
 
 @media screen and (max-width: 670px) {
-  .spinner-img{
+  .spinner-img {
     top: 14.5%
   }
 }
