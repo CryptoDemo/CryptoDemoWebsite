@@ -8,9 +8,8 @@
           <v-btn @click.prevent="navigateToOffers()" class="header-link flex-lg-and-up hidden-sm-and-down">
             <span :class="isDark ? 'nav-subtitle' : 'nav-subtitle-light'">Create an offer</span>
           </v-btn>
-          <v-btn class="header-link flex-lg-and-up hidden-sm-and-down">
-            <NuxtLink to="/account/trade/wallet"> <span
-                :class="isDark ? 'nav-subtitle' : 'nav-subtitle-light'">Wallet</span> </NuxtLink>
+          <v-btn @click="pushToWallet()" class="header-link flex-lg-and-up hidden-sm-and-down">
+            <span :class="isDark ? 'nav-subtitle' : 'nav-subtitle-light'">Wallet</span>
           </v-btn>
           <div class="text-center flex-lg-and-up hidden-sm-and-down">
             <v-menu open-on-hover>
@@ -188,6 +187,14 @@ const navigateToOffers = () => {
   // Perform the check for user login
   if (pinia.state.user?.token) {
     navigateTo('/account/marketplace/createOffer');
+  } else {
+    navigateTo('/authentication/login');
+  }
+}
+
+function pushToWallet() {
+  if (pinia.state.user?.token) {
+    navigateTo('/account/trade/wallet');
   } else {
     navigateTo('/authentication/login');
   }

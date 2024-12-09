@@ -314,13 +314,6 @@ const getTokens_ = async () => {
       // Store the fetched tokens with a 5-minute expiry time
       pinia.setTokenLists(fetchedTokens);
 
-      // Convert currencies after updating token balances
-      // await convertCurrencies();
-
-
-      // Update token balances 
-      // await getTokenBals();
-
     } else {
       // Display a message to the user if fetching tokens was unsuccessful
       push.message(data.message, { position: 'top', timeout: 2000 });

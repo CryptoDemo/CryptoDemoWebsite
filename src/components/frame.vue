@@ -41,8 +41,8 @@
             <div>
               <div class="position-relative">
                 <div class="coin-wrap1" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
-                <img :src="isDark ? '/img/frame2-dark.png' : '/img/light-mode-img.png'"
-                  ref="image1" class="btc-box1" style="max-width: 100%; width: 75%;" />
+                <img :src="isDark ? '/img/frame2-dark.png' : '/img/light-mode-img.png'" ref="image1" class="btc-box1"
+                  style="max-width: 100%; width: 75%;" />
                 <img src="/img/pointer-vector.png" ref="image2"
                   style="max-width: 100%; width: 60%; left: 7px; z-index: 1000;" class="cursor" />
               </div>
@@ -112,21 +112,20 @@
 
               <div class="position-relative">
                 <div class="coin-wrap1i" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
+                  <div class="stack-item">
+                    <img :src="isDark ? '/svg/item1.svg' : '/img/item (1btc).png'" class="desktop-screen-size"
+                      style="max-width: 100%;" />
+                  </div>
 
-                <div class="stack-item">
-                  <img :src="isDark ? '/svg/item1.svg' : '/img/item (1btc).png'"
-                    class="desktop-screen-size" style="max-width: 100%;" />
-                </div>
+                  <div class="stack-item">
+                    <img :src="isDark ? '/svg/item2.svg' : '/img/item (3usd).png'" class="card1i desktop-screen-size"
+                      style="max-width: 100%;" />
+                  </div>
 
-                <div class="stack-item">
-                  <img :src="isDark ? '/svg/item2.svg' : '/img/item (3usd).png'"
-                    class="card1i desktop-screen-size" style="max-width: 100%;" />
-                </div>
-
-                <div class="stack-item">
-                  <img :src="isDark ? '/svg/item3.svg' : '/img/item (4).png'"
-                    class="card1ii desktop-screen-size" style="max-width: 100%;" />
-                </div>
+                  <div class="stack-item">
+                    <img :src="isDark ? '/svg/item3.svg' : '/img/item (4).png'" class="card1ii desktop-screen-size"
+                      style="max-width: 100%;" />
+                  </div>
               </div>
             </div>
             <div class="position-relative sell-col  security-btn mb-5">
@@ -150,7 +149,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { rotateOrbitAnimation, zoomAnimation, horizontalSlideInAnimation, verticalSlideInAnimation, swapAnimationUpDown, } from '~/animations/gsapAnimation';
+import { rotateOrbitAnimation, horizontalSlideInAnimation, verticalSlideInAnimation, swapAnimationUpDown, } from '~/animations/gsapAnimation';
 import { useTheme } from 'vuetify';
 
 const theme = useTheme()
@@ -208,7 +207,7 @@ onMounted(() => {
     ], 360, 13);
 
     verticalSlideInAnimation(image1.value, '-50', 0, '50', 1.04, 5, 1, 1);
-    horizontalSlideInAnimation(image2.value, '50', 0, '40', 1.1, 4.7, 1.4, 1.1);
+    horizontalSlideInAnimation(image2.value, '50', 0, '50', 1.04, 4.9, 1, 1);
 
   }
 

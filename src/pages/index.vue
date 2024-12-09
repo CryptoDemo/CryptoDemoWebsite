@@ -1,12 +1,10 @@
 <template>
   <div>
 
-    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg"
+    <img
+      :src="isDark ? 'https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg' : 'https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg'"
       class="position-absolute bg-vector" style="opacity: 0.4; left: 0;  right: 0; display: flex; margin: auto"
       alt="betacrypto-img1" v-if="isDark" />
-    <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg"
-      class="position-absolute bg-vector" style="opacity: 0.2; left: 0;  right: 0; display: flex; margin: auto"
-      alt="betacrypto-img2" v-else />
 
     <div>
 
@@ -20,7 +18,7 @@
                 alt="betacrypto-img-3" />
             </div>
             <div>
-              <div class="frame-1" :class="isDark ? 'frame-1' : 'frame-1-light'">
+              <div :class="isDark ? 'frame-1' : 'frame-1-light'">
                 <v-btn @click="showPushInfo" :disabled="isPushActive" color="#2873FF" class="writing-btn">
                   Betacrypto
                 </v-btn>
@@ -896,7 +894,13 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   line-height: 100%;
   /* 14px */
   letter-spacing: -0.14px !important;
+}
 
+@media screen and (max-width: 580px) {
+  .writing-btn {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+}
 }
 
 .chevron-icon {
