@@ -12,7 +12,12 @@ export default defineNuxtConfig({
     
   app: {  
     head: { 
-      titleTemplate: 'Betacrypto', // Replace MyAppName with your app's name
+      titleTemplate: 'Betacrypto', 
+      charset: "utf-8",
+      viewport: 'width=device-width, initial-scale=1.0',
+      link: [
+        {rel: 'shortcut icon', href: "/img/logo1.jpg"},
+      ],
     } 
   }, 
 

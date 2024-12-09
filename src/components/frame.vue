@@ -6,20 +6,11 @@
           <div class="position-relative" :class="isDark ? 'frame1' : 'frame1-light'">
             <div class="first-col-wrap"
               style="display: flex; align-self: center; position: relative; margin-bottom: 30px;">
-              <img src="/img/mobile-frame.png" ref="img" class="mobile-frame"
-                style="max-width: 100%; width: 85%; display: flex; margin: auto; z-index: 2"
-                v-if="theme.global.current.value.dark" />
-              <img src="/svg/Framelight.svg" ref="img" style="max-width: 100%;  z-index: 2" height="94%" v-else />
-              <img src="/svg/greencoin1.svg" ref="img3" class="green-coin1"
-                style="position: absolute; max-width: 100%; top: 0; bottom: -273px; display: flex; margin: auto;  z-index: 4"
-                v-if="theme.global.current.value.dark" />
-              <img src="/svg/greencoin1.svg" class="green-coin2" ref="img3"
-                style="position: absolute; top: 0; bottom: -310px; display: flex; margin: auto; left: -17%;  z-index: 4"
-                v-else />
-              <img src="/svg/yellowCoin1.svg" ref="img2" class="yellow-coin1"
-                style="position: absolute; margin-top: 121px; right: 5%" v-if="theme.global.current.value.dark" />
-              <img src="/svg/yellowCoin1.svg" class="yellow-coin2" ref="img2"
-                style="position: absolute; margin-top: 121px; right: -8%;" v-else />
+              <img :src="isDark ? '/img/mobile-frame.png' : '/svg/Framelight.svg'" ref="img"
+                :class="isDark ? 'mobile-frame' : 'mobile-frame'"
+                style="max-width: 100%; width: 85%; display: flex; margin: auto; z-index: 2" />
+              <img src="/svg/greencoin1.svg" ref="img3" :class="isDark ? 'green-coin1' : 'green-coin2'" />
+              <img src="/svg/yellowCoin1.svg" ref="img2" :class="isDark ? 'yellow-coin1' : 'yellow-coin2'" />
             </div>
 
             <div class="svg-frame" :class="isDark ? 'svg-frame' : 'svg-frame-light'" style="position: absolute"></div>
@@ -50,7 +41,8 @@
             <div>
               <div class="position-relative">
                 <div class="coin-wrap1" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
-                <img :src="theme.global.current.value.dark ? '/img/frame2-dark.png':'/img/light-mode-img.png'" ref="image1" class="btc-box1" style="max-width: 100%; width: 75%;"/>
+                <img :src="isDark ? '/img/frame2-dark.png' : '/img/light-mode-img.png'"
+                  ref="image1" class="btc-box1" style="max-width: 100%; width: 75%;" />
                 <img src="/img/pointer-vector.png" ref="image2"
                   style="max-width: 100%; width: 60%; left: 7px; z-index: 1000;" class="cursor" />
               </div>
@@ -80,35 +72,35 @@
             style="padding: 0 30px; position: relative; overflow: hidden">
             <div class="img-wrap1 stack-container"
               style="display: flex; flex-direction: column; padding: 0 30px; position: relative; right: 0%; overflow: hidden; height: 200px;">
-             
+
               <!-- <div class="position-relative">
                 <div class="coin-wrap1i" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
 
-                <div v-if="theme.global.current.value.dark" class="stack-item">
-                  <img :src="theme.global.current.value.dark ? '/svg/item1.svg':'/img/item (1btc).png'" class="desktop-screen-size" style="max-width: 100%;" />
+                <div v-if="isDark" class="stack-item">
+                  <img :src="isDark ? '/svg/item1.svg':'/img/item (1btc).png'" class="desktop-screen-size" style="max-width: 100%;" />
                   <img src="/img/item.png" class="mobile-screen btc1i2" style="max-width: 100%;" />
                 </div>
                 <div v-else class="stack-item">
                   <img src="/img/item (1btc).png" class="desktop-screen-size-light" style="max-width: 100%;" />
                 </div>
 
-                <div v-if="theme.global.current.value.dark" class="stack-item">
-                  <img :src="theme.global.current.value.dark ? '/svg/item2.svg':''" class="card1i desktop-screen-size" style="max-width: 100%;" />
+                <div v-if="isDark" class="stack-item">
+                  <img :src="isDark ? '/svg/item2.svg':''" class="card1i desktop-screen-size" style="max-width: 100%;" />
                   <img src="/img/item (1).png" class="card1i2 mobile-screen" style="max-width: 100%;" />
                 </div>
                 <div v-else class="stack-item">
                   <img src="/img/item (3usd).png" class="card1i-light desktop-screen-size-light" style="max-width: 100%;" />
                 </div>
 
-                <div v-if="theme.global.current.value.dark" class="stack-item">
-                  <img :src="theme.global.current.value.dark ? '/svg/item3.svg':''" class="card1ii desktop-screen-size" style="max-width: 100%;" />
+                <div v-if="isDark" class="stack-item">
+                  <img :src="isDark ? '/svg/item3.svg':''" class="card1ii desktop-screen-size" style="max-width: 100%;" />
                   <img src="/img/item (2).png" class="card1ii2 mobile-screen" style="max-width: 100%;" />
                 </div>
                 <div v-else class="stack-item">
                   <img src="/img/item (4).png" class="card1ii-light desktop-screen-size-light" style="max-width: 100%;" />
                 </div>
 
-                <div v-if="theme.global.current.value.dark" class="stack-item hiddenImg">
+                <div v-if="isDark" class="stack-item hiddenImg">
                   <img src="/svg/item3.svg" class="card1iii desktop-screen-size" style="max-width: 100%;" />
                   <img src="/img/item (2).png" class="card1iii2 mobile-screen" style="max-width: 100%;" />
                 </div>
@@ -117,22 +109,22 @@
                 </div>
 
               </div> -->
-             
+
               <div class="position-relative">
                 <div class="coin-wrap1i" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
 
                 <div class="stack-item">
-                  <img :src="theme.global.current.value.dark ? '/svg/item1.svg' : '/img/item (1btc).png'"
+                  <img :src="isDark ? '/svg/item1.svg' : '/img/item (1btc).png'"
                     class="desktop-screen-size" style="max-width: 100%;" />
                 </div>
 
                 <div class="stack-item">
-                  <img :src="theme.global.current.value.dark ? '/svg/item2.svg' : '/img/item (3usd).png'"
+                  <img :src="isDark ? '/svg/item2.svg' : '/img/item (3usd).png'"
                     class="card1i desktop-screen-size" style="max-width: 100%;" />
                 </div>
 
                 <div class="stack-item">
-                  <img :src="theme.global.current.value.dark ? '/svg/item3.svg' : '/img/item (4).png'"
+                  <img :src="isDark ? '/svg/item3.svg' : '/img/item (4).png'"
                     class="card1ii desktop-screen-size" style="max-width: 100%;" />
                 </div>
               </div>
@@ -167,7 +159,7 @@ const pinia = useStore();
 
 const navigateToSell = () => {
   // Perform the check for user login
-  if (pinia.state.user.token) {
+  if (pinia.state.user?.token) {
     navigateTo('/account/marketplace/activeOffers');
   } else {
     navigateTo('/authentication/login');
@@ -193,7 +185,6 @@ const navigateToSecurity = () => {
 }
 
 //Gsap implementation starts
-const img = ref(null)
 const img2 = ref(null)
 const img3 = ref(null)
 const image1 = ref(null);
@@ -203,7 +194,7 @@ const desktopScreens = ref([]);
 const desktopScreensLight = ref([]);
 
 onMounted(() => {
-  if (img2.value || img3.value || img.value) {
+  if (img2.value || img3.value) {
     rotateOrbitAnimation(img2.value, [
       { x: 0, y: -10 },
       { x: -10, y: 0 },
@@ -216,9 +207,8 @@ onMounted(() => {
       { x: -20, y: -60 },
     ], 360, 13);
 
-    zoomAnimation(img.value, 1, 1.04, 7);
-    verticalSlideInAnimation(image1.value, '-50', 0, '50', 1.04, 6, 1, 1);
-    horizontalSlideInAnimation(image2.value, '50', 0, '40', 1.1, 5.3, 1.4, 1.1);
+    verticalSlideInAnimation(image1.value, '-50', 0, '50', 1.04, 5, 1, 1);
+    horizontalSlideInAnimation(image2.value, '50', 0, '40', 1.1, 4.7, 1.4, 1.1);
 
   }
 
@@ -278,6 +268,69 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.yellow-coin1 {
+  position: absolute;
+  margin-top: 121px;
+  right: 5%
+}
+
+.yellow-coin2 {
+  position: absolute;
+  margin-top: 121px;
+  right: -8%;
+}
+
+.green-coin1 {
+  position: absolute;
+  max-width: 100%;
+  top: 0;
+  bottom: -273px;
+  display: flex;
+  margin: auto;
+  z-index: 4
+}
+
+.green-coin1 {
+  position: absolute;
+  max-width: 100%;
+  top: 0;
+  bottom: -273px;
+  display: flex;
+  margin: auto;
+  z-index: 4
+}
+
+.green-coin2 {
+  position: absolute;
+  top: 0;
+  bottom: -310px;
+  display: flex;
+  margin: auto;
+  left: -17%;
+  z-index: 4
+}
+
+.mobile-frame {
+  max-width: 100%;
+  width: 85%;
+  display: flex;
+  margin: auto;
+  z-index: 2
+}
+
+.desktop-frame {
+  max-width: 100%;
+  z-index: 2;
+  height: 94%
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
 .frame1 {
   border-radius: 25px;
   border: 0.5px solid #2f3946;

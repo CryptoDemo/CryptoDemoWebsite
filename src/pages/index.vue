@@ -21,9 +21,9 @@
             </div>
             <div>
               <div class="frame-1" :class="isDark ? 'frame-1' : 'frame-1-light'">
-                <v-btn
-                  @click="push.info('Our site is currently under development and will be live soon. We welcome any feedback to help us improve.', { duration: 5000 })"
-                  color="#2873FF" class="writing-btn">Betacrypto</v-btn>
+                <v-btn @click="showPushInfo" :disabled="isPushActive" color="#2873FF" class="writing-btn">
+                  Betacrypto
+                </v-btn>
 
                 <span class="writing-text" :class="isDark ? 'writing-text-dark' : 'writing-text-light'">The number one
                   trading platform in Europe</span>
@@ -233,32 +233,15 @@
                       <img ref="zoomImg" src="/img/priceAct.png" style="width: 90%;" alt="" class="rounded-t-md" />
                       <div class="d-flex justify-center ga-2 boxContainer"
                         style="padding: 0px; width: 100%; margin-top: 6px">
-                        <img style="width: 20%; object-fit: contain" src="/img/sml1.png" alt="" class="box" />
-                        <img style="width: 20%; object-fit: contain" src="/img/sml2.png" alt="" class="box" />
-                        <img style="width: 20%; object-fit: contain" src="/img/sml3.png" alt="" class="box" />
-                        <img style="width: 20%; object-fit: contain" src="/img/sml4.png" alt="" class="box" />
+                        <img v-for="(image, index) in btnImages" :key="index" :src="image.src" :alt="image.alt"
+                          style="width: 20%; object-fit: contain; border-radius: 18px" class="box" />
                       </div>
                     </div>
                     <div class="marquee-container">
                       <div class="marquee">
-                        <!-- Original set of images -->
-                        <img :src="isDark ? '/img/vertcard1.png' : '/img/verticallight1.png'" alt="Card 1"
-                          class="rounded-t-md" style="margin-top: 10px" />
-                        <img :src="isDark ? '/img/vertcard2.png' : '/img/verticallight2.png'" alt="Card 2"
-                          class="rounded-t-md" style="margin-top: 10px" />
-                        <img :src="isDark ? '/img/vertcard3.png' : '/img/verticallight3.png'" alt="Card 3"
-                          class="rounded-t-md" style="margin-top: 10px" />
-                        <img :src="isDark ? '/img/vertcard4.png' : '/img/verticallight4.png'" alt="Card 4"
-                          class="rounded-t-md" style="margin-top: 10px" />
-                        <!-- Duplicate for seamless scrolling -->
-                        <img :src="isDark ? '/img/vertcard1.png' : '/img/verticallight1.png'" alt="Card 1"
-                          class="rounded-t-md" style="margin-top: 10px" />
-                        <img :src="isDark ? '/img/vertcard2.png' : '/img/verticallight2.png'" alt="Card 2"
-                          class="rounded-t-md" style="margin-top: 10px" />
-                        <img :src="isDark ? '/img/vertcard3.png' : '/img/verticallight3.png'" alt="Card 3"
-                          class="rounded-t-md" style="margin-top: 10px" />
-                        <img :src="isDark ? '/img/vertcard4.png' : '/img/verticallight4.png'" alt="Card 4"
-                          class="rounded-t-md" style="margin-top: 10px" />
+                        <img v-for="(image, index) in imagesToRender" :key="index"
+                          :src="isDark ? image.darkSrc : image.lightSrc" :alt="image.alt" class="rounded-t-md"
+                          style="margin-top: 10px" />
                       </div>
                     </div>
                   </div>
@@ -440,8 +423,38 @@ const cardRightImageLight = ref(null)
 const cardRightImageLight2 = ref(null)
 const scrollImage = ref(null)
 const scrollImageMobile = ref(null)
-const boxContainer = ref(null);
 
+const btnImages = [
+  { src: '/img/sml1.png', alt: 'Image 1' },
+  { src: '/img/sml2.png', alt: 'Image 2' },
+  { src: '/img/sml3.png', alt: 'Image 3' },
+  { src: '/img/sml4.png', alt: 'Image 4' },
+];
+
+const scrollImages = [
+  {
+    darkSrc: '/img/vertcard1.png',
+    lightSrc: '/img/verticallight1.png',
+    alt: 'Card 1',
+  },
+  {
+    darkSrc: '/img/vertcard2.png',
+    lightSrc: '/img/verticallight2.png',
+    alt: 'Card 2',
+  },
+  {
+    darkSrc: '/img/vertcard3.png',
+    lightSrc: '/img/verticallight3.png',
+    alt: 'Card 3',
+  },
+  {
+    darkSrc: '/img/vertcard4.png',
+    lightSrc: '/img/verticallight4.png',
+    alt: 'Card 4',
+  },
+];
+
+const imagesToRender = [...scrollImages, ...scrollImages];
 
 onMounted(() => {
 
@@ -482,6 +495,21 @@ onMounted(() => {
 });
 
 //Gsap implementation ends
+
+const isPushActive = ref(false); // Tracks whether the notification is active
+
+const showPushInfo = () => {
+  if (isPushActive.value) return; // Prevent multiple clicks
+  isPushActive.value = true; // Set the state to active
+
+  push.info(
+    "Our site is currently under development and will be live soon. We welcome any feedback to help us improve.",
+    { duration: 5000 }
+  );
+  setTimeout(() => {
+    isPushActive.value = false;
+  }, 5000);
+};
 
 const getTokens_ = async () => {
   try {
