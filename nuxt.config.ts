@@ -16,7 +16,7 @@ export default defineNuxtConfig({
       charset: "utf-8",
       viewport: 'width=device-width, initial-scale=1.0',
       link: [
-        {rel: 'shortcut icon', href: "/img/logo1.jpg"},
+        {rel: 'shortcut icon', href: "/img/logo1.png"},
       ],
     } 
   }, 

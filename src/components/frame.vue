@@ -69,9 +69,10 @@
 
         <v-col class="second-coli" style="padding: 8px; margin-bottom: 8px; ">
           <div class="frame2" :class="isDark ? 'frame2' : 'frame2-light'"
-            style="padding: 0 30px; position: relative; overflow: hidden">
+            style="padding: 10px 30px 0 30px; position: relative; overflow: hidden">
             <div class="img-wrap1 stack-container"
-              style="display: flex; flex-direction: column; padding: 0 30px; position: relative; right: 0%; overflow: hidden; height: 200px;">
+              style="overflow: hidden; height: 200px;">
+              <drag-in-animation/>
 
               <!-- <div class="position-relative">
                 <div class="coin-wrap1i" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
@@ -110,23 +111,7 @@
 
               </div> -->
 
-              <div class="position-relative">
-                <div class="coin-wrap1i" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
-                  <div class="stack-item">
-                    <img :src="isDark ? '/svg/item1.svg' : '/img/item (1btc).png'" class="desktop-screen-size"
-                      style="max-width: 100%;" />
-                  </div>
-
-                  <div class="stack-item">
-                    <img :src="isDark ? '/svg/item2.svg' : '/img/item (3usd).png'" class="card1i desktop-screen-size"
-                      style="max-width: 100%;" />
-                  </div>
-
-                  <div class="stack-item">
-                    <img :src="isDark ? '/svg/item3.svg' : '/img/item (4).png'" class="card1ii desktop-screen-size"
-                      style="max-width: 100%;" />
-                  </div>
-              </div>
+             
             </div>
             <div class="position-relative sell-col  security-btn mb-5">
 
@@ -189,9 +174,6 @@ const img3 = ref(null)
 const image1 = ref(null);
 const image2 = ref(null);
 
-const desktopScreens = ref([]);
-const desktopScreensLight = ref([]);
-
 onMounted(() => {
   if (img2.value || img3.value) {
     rotateOrbitAnimation(img2.value, [
@@ -211,56 +193,6 @@ onMounted(() => {
 
   }
 
-  // Collect all desktop-screen-size images
-  desktopScreens.value = document.querySelectorAll('.desktop-screen-size');
-  desktopScreensLight.value = document.querySelectorAll('.desktop-screen-size-light');
-
-  // Function to get current class assignments
-  const getCurrentClasses = () => ({
-    card1i: document.querySelector('.card1i'),
-    card1ii: document.querySelector('.card1ii'),
-    neutral: [...desktopScreens.value].find(
-      (img) => !img.classList.contains('card1i') && !img.classList.contains('card1ii')
-    ),
-  });
-
-  const getCurrentLightClasses = () => ({
-    card1iLight: document.querySelector('.card1i-light'),
-    card1iiLight: document.querySelector('.card1ii-light'),
-    neutralLight: [...desktopScreensLight.value].find(
-      (img) => !img.classList.contains('card1i-light') && !img.classList.contains('card1ii-light')
-    ),
-  });
-
-  const animateCycle = () => {
-    const { card1i, card1ii, neutral } = getCurrentClasses();
-
-    if (card1i && card1ii && neutral) {
-      swapAnimationUpDown(card1i, card1ii, neutral);
-
-      // Delay before next cycle
-      setTimeout(() => {
-        animateCycle();
-      }, 6000); // 4-second pause for resting in positions
-    }
-  };
-
-  const animateLightCycle = () => {
-    const { card1iLight, card1iiLight, neutralLight } = getCurrentLightClasses();
-
-    if (card1iLight && card1iiLight && neutralLight) {
-      swapAnimationUpDown(card1iLight, card1iiLight, neutralLight);
-
-      // Delay before next cycle
-      setTimeout(() => {
-        animateLightCycle();
-      }, 5000); // 4-second pause for resting in positions
-    }
-  };
-
-  // Start the animation cycle
-  animateCycle();
-  animateLightCycle()
 });
 
 //Gsap implementation ends
@@ -491,38 +423,4 @@ onMounted(() => {
   opacity: 0.4;
   top: -25px;
 }
-
-.card1i {
-  display: flex;
-  position: absolute;
-  top: 42px;
-  margin-left: 104px;
-}
-
-.card1ii {
-  position: absolute;
-  left: 38px;
-  top: 64%;
-}
-
-.card1i-light {
-  display: flex;
-  position: absolute;
-  top: 42px;
-  margin-left: 104px;
-}
-
-.card1ii-light {
-  position: absolute;
-  left: 38px;
-  top: 64%;
-}
-
-.hiddenImg {
-  display: none
-}
-
-/* .desktop-screen-size {
-  transition: all 3.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-} */
 </style>
