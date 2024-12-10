@@ -51,10 +51,10 @@
             </div>
         
           <div v-if="!pinia.state?.user?.token" style="margin-top: 25px;">
-            <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
+            <v-btn @click.prevent="navigateToOffers()" :class="isDark ? 'mobile-btn':'mobile-btn-light'">Create an offer</v-btn>
           </div>
 
-          <nuxt-link to="/account/trade/wallet" v-if="!pinia.state?.user?.token"> <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" class="mt-5">Wallet</v-btn> </nuxt-link>
+          <nuxt-link :to="pinia.state?.user?.token ? '/account/trade/wallet' : '/authentication/login'" v-if="!pinia.state?.user?.token"> <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" class="mt-5">Wallet</v-btn> </nuxt-link>
 
 
           <nuxt-link to="/account/dashboard" v-if="pinia.state?.user?.token"> <v-btn :class="isDark ? 'mobile-btn':'mobile-btn-light'" class="mt-5">Dashboard</v-btn> </nuxt-link>
@@ -142,6 +142,15 @@ const pageNumber = ref(1);
 const country = ref('');
 const Countryname = ref('');
 const flag = ref('');
+
+const navigateToOffers = () => {
+  // Perform the check for user login
+  if (pinia.state.user?.token) {
+    navigateTo('/account/marketplace/createOffer');
+  } else {
+    navigateTo('/authentication/login');
+  }
+}
 
 onMounted(async () => {
   // Only fetch if the countries list in the store is empty
