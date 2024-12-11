@@ -1,5 +1,5 @@
 <template>
-  <div :class="isDark ? 'Dashboard-navbar' : 'Dashboard-navbar-light'" class="dashboard-nav">
+  <div :class="[isDark ? 'Dashboard-navbar' : 'Dashboard-navbar-light', { hidden: !showNavbar }]" class="dashboard-nav">
     <v-container style="display: flex; align-items: center;">
       <span @click.prevent="navigateTo('/')" class="logoName" :class="isDark ? 'nav-title' : 'nav-title-light'"
         style="font-family: SF Pro Display !important; font-size: 24px !important; font-style: normal; font-weight: 700 !important; line-height: normal; cursor: pointer">Betacrypto</span>
@@ -142,8 +142,8 @@ const emit = defineEmits(['country'])
 const pageNumber = ref(1);
 const country = ref('');
 const Countryname = ref('');
-
-
+let showNavbar = ref(true);
+let lastScrollPosition = 0;
 
 const flag = ref('');
 const getallCountries = async () => {
@@ -219,14 +219,33 @@ const isChevronToggled = ref(false);
 const toggleChevron = () => {
   isChevronToggled.value = !isChevronToggled.value;
 };
+
+const onScroll = () => {
+  const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (currentScrollPosition < 0) return;
+  if (Math.abs(currentScrollPosition - lastScrollPosition) < 60) return;
+
+  showNavbar.value = currentScrollPosition < lastScrollPosition;
+  lastScrollPosition = currentScrollPosition;
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', onScroll);
+});
 </script>
 
 <style scoped>
-/* ::v-deep(.custom-tooltip) {
-  background: rgba(255, 255, 255, 0.5) !important;
-  color: #fff; 
-  padding: 5px 10px !important; 
-} */
+.hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+  pointer-events: none; /* Prevent interactions while hidden */
+}
 
 .Dashboard-navbar {
   border-bottom: 1px solid #10192D;
@@ -578,6 +597,10 @@ const toggleChevron = () => {
 
   .text2 {
     margin-right: 64px;
+  }
+
+  .text1, .text1-light, .text2, .text2-light{
+    font-size: 14px
   }
 }
 </style>

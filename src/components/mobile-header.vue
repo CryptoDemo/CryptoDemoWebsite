@@ -161,7 +161,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useTheme } from 'vuetify';
 import { getcountries } from "@/composables/requests/admin";
 
@@ -258,12 +258,11 @@ const items = [
 
 ];
 
-
 const onScroll = () => {
   const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
   if (currentScrollPosition < 0) return;
-  if (Math.abs(currentScrollPosition - lastScrollPosition) < 80) return;
+  if (Math.abs(currentScrollPosition - lastScrollPosition) < 60) return;
 
   showNavbar.value = currentScrollPosition < lastScrollPosition;
   lastScrollPosition = currentScrollPosition;

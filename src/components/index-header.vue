@@ -220,7 +220,7 @@ const onScroll = () => {
   const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
   if (currentScrollPosition < 0) return; 
-  if (Math.abs(currentScrollPosition - lastScrollPosition) < 80) return; 
+  if (Math.abs(currentScrollPosition - lastScrollPosition) < 60) return; 
 
   showNavbar.value = currentScrollPosition < lastScrollPosition; 
   lastScrollPosition = currentScrollPosition; 
