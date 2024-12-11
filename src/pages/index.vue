@@ -8,8 +8,9 @@
 
     <div>
 
-      <Index-header title="Log in" link="https://cryptodemo-inhouse.netlify.app/login" class="desktop-header" />
-      <Mobile-header class="mobile-header" />
+        <Index-header title="Log in" link="https://cryptodemo-inhouse.netlify.app/login" class="desktop-header" />
+        <Mobile-header class="mobile-header" />
+     
       <div style="position: relative;">
         <section class="position-relative">
           <v-container class="position-relative">
@@ -387,10 +388,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useTheme } from 'vuetify';
 import { getTokens, currencyConverter } from "@/composables/requests/tokens";
-import { gsap } from 'gsap';
 import { rotateOrbitAnimation, fadeAnimation, zoomAnimation, horizontalSlideInAnimation, scrollImageUpDown, staggerImg } from '~/animations/gsapAnimation';
 const theme = useTheme()
 const isDark = computed(() => theme.global.current.value.dark);
@@ -405,7 +405,6 @@ const piniastoredicon = ref(null);
 const ammount_of_coin = ref();
 const Selectedcurrency = ref("USD");
 const dialog = ref(false)
-
 
 const LazyPaymentOptions = defineAsyncComponent(() => import('@/components/payment-options.vue'));
 
@@ -455,7 +454,6 @@ const scrollImages = [
 const imagesToRender = [...scrollImages, ...scrollImages];
 
 onMounted(() => {
-
   staggerImg('.box');
 
   if (img1.value || img2.value || img3.value || img3.value || scrollImage.value || scrollImageMobile.value) {
@@ -573,9 +571,6 @@ const collectVals = () => {
 
 const convertCurrencies = async () => {
 
-
-  // Get the list of coins from pinia state
-
   const coins = pinia.state.tokenLists;
 
   try {
@@ -601,9 +596,6 @@ const convertCurrencies = async () => {
     } catch (error) {
       console.log(`Error converting:`, error);
     }
-
-    // Optionally, store all conversion results in pinia
-    // pinia.setTokenPrices(conversionResults, addMinutes(10));
 
   } catch (error) {
     console.log(error);
@@ -898,9 +890,9 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 
 @media screen and (max-width: 580px) {
   .writing-btn {
-  font-size: 10px !important;
-  font-weight: 800 !important;
-}
+    font-size: 10px !important;
+    font-weight: 800 !important;
+  }
 }
 
 .chevron-icon {
@@ -1523,10 +1515,6 @@ const imageSrc3 = ('/svg/BTN-two.svg');
     opacity: 0.8;
     height: 98%;
   }
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
 
 .mobileNimationBg {

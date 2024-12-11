@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-app-bar :elevation="2" class="pt-3 pb-3" :class="isDark ? 'navbar-bg' : 'navbar-bg-light'">
+    <v-app-bar :elevation="2" class="pt-3 pb-3"
+      :class="[isDark ? 'navbar-bg' : 'navbar-bg-light', { hidden: !showNavbar }]">
       <v-container style="display: flex; align-items: center;">
         <v-app-bar-title :class="isDark ? 'nav-title' : 'nav-title-light'"
           style="cursor: pointer;">Betacrypto</v-app-bar-title>
@@ -140,8 +141,8 @@ const countryCode = ref();
 const flag = ref();
 const country = ref();
 const countryName = ref();
-
-
+let showNavbar = ref(true);
+let lastScrollPosition = 0;
 
 onMounted(async () => {
   // Fetch countries only if the store list is empty
@@ -215,8 +216,23 @@ const items = [
 
 ];
 
+const onScroll = () => {
+  const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
+  if (currentScrollPosition < 0) return; 
+  if (Math.abs(currentScrollPosition - lastScrollPosition) < 80) return; 
 
+  showNavbar.value = currentScrollPosition < lastScrollPosition; 
+  lastScrollPosition = currentScrollPosition; 
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', onScroll);
+});
 </script>
 
 <style scoped>
@@ -230,6 +246,7 @@ const items = [
   justify-content: center !important;
   position: fixed !important;
   top: 0 !important;
+  z-index: 1000;
 }
 
 .navbar-bg-light {
@@ -245,6 +262,14 @@ const items = [
   flex-shrink: 0;
   position: fixed !important;
   top: 0 !important;
+  z-index: 1000;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+  pointer-events: none; /* Prevent interactions while hidden */
 }
 
 .nav-title {
