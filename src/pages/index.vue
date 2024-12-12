@@ -897,7 +897,7 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 
 @media only screen and (width: 414px) and (height: 896px) and (-webkit-device-pixel-ratio: 3) {
   .writing-btn {
-    font-size: 10px !important;
+    font-size: 8px !important;
     font-weight: 800 !important;
   }
 }
