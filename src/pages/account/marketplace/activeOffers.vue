@@ -620,9 +620,8 @@
                 <v-btn v-bind="props" :class="isDark ? 'offers-cards-dark' : 'offers-cards-light'"
                   style="width: fit-content; height: 50px; margin-top: 3px; border-radius: 10px; margin-top: 10px;  box-shadow: none; letter-spacing: 0px;width: 100%; display: flex; justify-content: space-between; text-transform: capitalize;">
                   <div class="d-flex" style="align-items: center; justify-content: space-between;">
-                    <img width="25" class="me-2" :src="tokenIcon || '/svg/allCoins.svg'" style="" alt="Token-Coin"/>
+                    <img width="25" class="me-2" :src="tokenIcon ? tokenIcon : '/svg/allCoins.svg'" style="" alt="Token-Coin"/>
                     <span class="slt">{{ tokenSymbol || 'All Coins' }}</span>
-                    <!-- <span v-if="!tokenSelected" style="position: absolute;">All Coins</span> -->
                   </div>
 
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

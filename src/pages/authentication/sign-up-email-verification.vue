@@ -31,11 +31,11 @@
         </div>
       </v-col>
      
-       <v-col cols="7" class="flex-lg-and-up hidden-sm-and-down">
+       <!-- <v-col cols="7" class="flex-lg-and-up hidden-sm-and-down">
           <div class="ma-8  carousel-styling">
           <Carousel />
         </div>
-      </v-col>
+      </v-col> -->
 
     </v-row>
   </div>   

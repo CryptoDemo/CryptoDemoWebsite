@@ -8,9 +8,9 @@
 
     <div>
 
-        <Index-header title="Log in" link="https://cryptodemo-inhouse.netlify.app/login" class="desktop-header" />
-        <Mobile-header class="mobile-header" />
-     
+      <Index-header title="Log in" link="https://cryptodemo-inhouse.netlify.app/login" class="desktop-header" />
+      <Mobile-header class="mobile-header" />
+
       <div style="position: relative;">
         <section class="position-relative">
           <v-container class="position-relative">
@@ -888,7 +888,14 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   letter-spacing: -0.14px !important;
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 620px) {
+  .writing-btn {
+    font-size: 10px !important;
+    font-weight: 800 !important;
+  }
+}
+
+@media only screen and (width: 414px) and (height: 896px) and (-webkit-device-pixel-ratio: 3) {
   .writing-btn {
     font-size: 10px !important;
     font-weight: 800 !important;

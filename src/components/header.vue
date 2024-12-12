@@ -42,9 +42,9 @@
           <template v-slot:activator="{ props }">
             <v-btn class="me-4 flex-lg-and-up hidden-sm-and-down"
               :class="isDark ? 'dropdown-btn' : 'dropdown-btn-light'"
-              style="letter-spacing: 0px; display: flex; width: 115px; height: 40px; border-radius: 10px; justify-content: center;"
+              style="letter-spacing: 0px; display: flex; width: 125px; height: 52px; border-radius: 20px; justify-content: center;"
               v-bind="props">
-              <img :src="flag" class="me-2" style="object-fit: cover; border-radius: 4px; height: 28px; width: 45px;" />
+              <img :src="flag" class="me-2" style="object-fit: cover; border-radius: 4px; height: 28px; width: 40px;" />
               <span class="me-2" :class="isDark ? 'nav-subtitle1' : 'nav-subtitle1-light'">{{ Countryname }}</span>
               <v-icon icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
             </v-btn>

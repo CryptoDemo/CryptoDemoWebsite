@@ -7,6 +7,7 @@ export const register_ = async(registerInfo)=>{
     body: JSON.stringify(registerInfo)
 
     }).then(res => res.json());
+    console.log("Your sign up details is: ", data)
     return data;
 };
 
@@ -19,6 +20,7 @@ export const Verify_account = async(acct_verification)=>{
     body: JSON.stringify(acct_verification)
 
     }).then(res => res.json());
+    console.log("Your sign up details is: ", data)
     return data;
 };
 
