@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar :elevation="2" class="pt-3 pb-3"
-      :class="[isDark ? 'navbar-bg' : 'navbar-bg-light', { hidden: !showNavbar }]">
+      :class="[isDark ? 'navbar-bg' : 'navbar-bg-light', { hidden: !showNavbar }]" style="z-index: 1000;">
       <v-container style="display: flex; align-items: center;">
         <v-app-bar-title :class="isDark ? 'nav-title' : 'nav-title-light'"
           style="cursor: pointer;">Betacrypto</v-app-bar-title>
@@ -197,8 +197,7 @@ function pushToWallet() {
   if (pinia.state.user?.token) {
     navigateTo('/account/trade/wallet');
   } else {
-    // navigateTo('/authentication/login');
-    navigateTo('/account/trade/wallet');
+    navigateTo('/authentication/login');
   }
 }
 

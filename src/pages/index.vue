@@ -8,9 +8,9 @@
 
     <div>
 
-      <Index-header title="Log in" link="https://cryptodemo-inhouse.netlify.app/login" class="desktop-header" />
-      <Mobile-header class="mobile-header" />
-
+        <Index-header title="Log in" link="https://cryptodemo-inhouse.netlify.app/login" class="desktop-header" />
+        <Mobile-header class="mobile-header" />
+     
       <div style="position: relative;">
         <section class="position-relative">
           <v-container class="position-relative">
@@ -376,7 +376,7 @@
 
 
       <div class="position-relative">
-        <v-container style="position: absolute; top: -197px; left: 0; right: 0;">
+        <v-container style="position: absolute; top: -197px; left: -10px; right: 0;">
           <span class="Betacrypto-header">Betacrypto</span>
         </v-container>
         <Footer class="desktop-footer" />
@@ -416,8 +416,6 @@ const img4 = ref(null)
 const fade1 = ref(null)
 const fade2 = ref(null)
 const zoomImg = ref(null)
-const cardRightImageLight = ref(null)
-const cardRightImageLight2 = ref(null)
 const scrollImage = ref(null)
 const scrollImageMobile = ref(null)
 
@@ -483,9 +481,6 @@ onMounted(() => {
 
     fadeAnimation(fade1.value, fade2.value);
     zoomAnimation(zoomImg.value, 1, 1.05, 4);
-
-    horizontalSlideInAnimation(cardRightImageLight.value, "100", 0, "100", 1.08, 4, 1.1, 1.01);
-    horizontalSlideInAnimation(cardRightImageLight2.value, "100", 0, "100", 1.04, 7, 2.7, 1.05)
     scrollImageUpDown(scrollImage.value)
   }
 });
@@ -891,13 +886,6 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 @media screen and (max-width: 620px) {
   .writing-btn {
     font-size: 10px !important;
-    font-weight: 800 !important;
-  }
-}
-
-@media screen and (width: 430px) and (height: 932px) and (-webkit-device-pixel-ratio: 3) {
-  .writing-btn {
-    font-size: 8px !important;
     font-weight: 800 !important;
   }
 }

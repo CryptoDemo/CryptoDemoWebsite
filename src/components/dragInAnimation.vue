@@ -1,7 +1,7 @@
 <template>
     <div :style="{paddingLeft: $vuetify.display.mobile ? '20px' : '0'}">
         <img  :class="'imgs3' + i" v-for="(n, i) in items" :src="n.image" :key="i"
-            style="opacity: 0; width: 60%; position: absolute; top: 0; left: 25%;"></img>
+            :style="{opacity: 0, width: $vuetify.display.mobile ? '70%':'60%', position: 'absolute', top: 0, left: '25%'}"></img>
     </div>
 </template>
 
@@ -63,7 +63,7 @@ const animateImgs = async () => {
     await animatedvalue();
     interval.value = setInterval(() => {
         animatedvalue();
-        gsap.set(`.imgs3${selected3.value}`, { zIndex: 9999 });
+        gsap.set(`.imgs3${selected3.value}`, { zIndex: 9 });
     }, 4000);
 };
 
@@ -84,13 +84,13 @@ const moveIn = (img) => {
         {
             opacity: 0,
             scale: 1,
-            x: "-10px",
+            x: "-0px",
             y: "-100px",
-            rotation: -10,
+            rotation: -30,
         },
         {
             opacity: 1,
-            x: "-80px",
+            x: "-70px",
             y: "5px",
             ease: Back.easeOut.config(1.7),
             scale: 1,
@@ -106,7 +106,7 @@ const transcend2 = (img) => {
     transcendvar2 = gsap.fromTo(img,
         {
             opacity: 1,
-            x: "-100px",
+            x: "-60px",
             y: "5px",
             scale: 1,
             rotation: 0,
@@ -114,7 +114,7 @@ const transcend2 = (img) => {
         {
             opacity: 1,
             scale: 1,
-            x: "10px",
+            x: "20px",
             y: "40px",
             ease: Back.easeOut,
             duration: 1.2,
@@ -127,7 +127,7 @@ const transcend1 = (img) => {
     transcendvar1 = gsap.fromTo(img,
         {
             opacity: 1,
-            x: "10px",
+            x: "0px",
             y: "50px",
             scale: 1,
             rotation: 0,
@@ -135,7 +135,7 @@ const transcend1 = (img) => {
         {
             opacity: 1,
             scale: 1,
-            x: "-60px",
+            x: "-40px",
             y: "90px",
             ease: Back.easeOut,
             duration: 1.2,
@@ -150,18 +150,18 @@ const moveOut = (img) => {
         {
             opacity: 1,
             scale: 1,
-            x: "-65px",
+            x: "-40px",
             y: "100px",
             rotation: 0,
         },
         {
             opacity: 0,
             scale: 1.1,
-            x: "-80px",
-            y: "150px",
+            x: "-60px",
+            y: "100px",
             duration: 0.2,
             ease: "circ.inOut",
-            rotation: 10,
+            rotation: 30,
             onComplete: () => {
                 selected.value = selected.value === items.length - 1 ? 0 : selected.value + 1;
             },

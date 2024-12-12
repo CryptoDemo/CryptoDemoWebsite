@@ -4,7 +4,7 @@
             <template v-slot:activator="{ props }">
               <button v-bind="props" variant="text" :class="isDark ? 'coin-dropdown':'coin-dropdown-light'" style="display: flex; align-self: flex-start; width: 100%; box-shadow: none; margin-top: 15px; letter-spacing: 0px;" @click="toggleChevron">
                 <span class="me-2" :class="isDark ? 'country-text':'country-text-light'" style="text-transform: uppercase;; font-family: Manrope; font-size: 16px;">{{pinia.state.selectedNetwork}}</span>
-                <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']"></v-icon>
+                <v-icon icon="mdi-chevron-down" size="small" id="filter-toggle" color="#8E9BAE" class="chevron-icon" :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']" style="padding-right: 10px;"></v-icon>
               </button>
             </template>
         
@@ -19,7 +19,7 @@
                 </v-row>
               </v-list-item>
             </v-list>
-        </v-menu>
+        </v-menu> 
     </div>
 </template>
 

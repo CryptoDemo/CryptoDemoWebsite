@@ -72,46 +72,7 @@
             style="padding: 10px 30px 0 30px; position: relative; overflow: hidden">
             <div class="img-wrap1 stack-container"
               style="overflow: hidden; height: 200px;">
-              <drag-in-animation/>
-
-              <!-- <div class="position-relative">
-                <div class="coin-wrap1i" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
-
-                <div v-if="isDark" class="stack-item">
-                  <img :src="isDark ? '/svg/item1.svg':'/img/item (1btc).png'" class="desktop-screen-size" style="max-width: 100%;" />
-                  <img src="/img/item.png" class="mobile-screen btc1i2" style="max-width: 100%;" />
-                </div>
-                <div v-else class="stack-item">
-                  <img src="/img/item (1btc).png" class="desktop-screen-size-light" style="max-width: 100%;" />
-                </div>
-
-                <div v-if="isDark" class="stack-item">
-                  <img :src="isDark ? '/svg/item2.svg':''" class="card1i desktop-screen-size" style="max-width: 100%;" />
-                  <img src="/img/item (1).png" class="card1i2 mobile-screen" style="max-width: 100%;" />
-                </div>
-                <div v-else class="stack-item">
-                  <img src="/img/item (3usd).png" class="card1i-light desktop-screen-size-light" style="max-width: 100%;" />
-                </div>
-
-                <div v-if="isDark" class="stack-item">
-                  <img :src="isDark ? '/svg/item3.svg':''" class="card1ii desktop-screen-size" style="max-width: 100%;" />
-                  <img src="/img/item (2).png" class="card1ii2 mobile-screen" style="max-width: 100%;" />
-                </div>
-                <div v-else class="stack-item">
-                  <img src="/img/item (4).png" class="card1ii-light desktop-screen-size-light" style="max-width: 100%;" />
-                </div>
-
-                <div v-if="isDark" class="stack-item hiddenImg">
-                  <img src="/svg/item3.svg" class="card1iii desktop-screen-size" style="max-width: 100%;" />
-                  <img src="/img/item (2).png" class="card1iii2 mobile-screen" style="max-width: 100%;" />
-                </div>
-                <div v-else class="stack-item hiddenImg">
-                  <img src="/img/item (4).png" class="card1iii-light desktop-screen-size-light" style="max-width: 100%;" />
-                </div>
-
-              </div> -->
-
-             
+              <drag-in-animation/>             
             </div>
             <div class="position-relative sell-col  security-btn mb-5">
 
@@ -134,7 +95,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { rotateOrbitAnimation, horizontalSlideInAnimation, verticalSlideInAnimation, swapAnimationUpDown, } from '~/animations/gsapAnimation';
+import { rotateOrbitAnimation, horizontalSlideInAnimation, verticalSlideInAnimation } from '~/animations/gsapAnimation';
 import { useTheme } from 'vuetify';
 
 const theme = useTheme()
