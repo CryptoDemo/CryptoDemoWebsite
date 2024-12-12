@@ -895,7 +895,7 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   }
 }
 
-@media screen and (width: 414px) and (height: 896px) and (-webkit-device-pixel-ratio: 3) {
+@media screen and (width: 430px) and (height: 932px) and (-webkit-device-pixel-ratio: 3) {
   .writing-btn {
     font-size: 8px !important;
     font-weight: 800 !important;
