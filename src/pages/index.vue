@@ -21,7 +21,7 @@
             <div>
               <div :class="isDark ? 'frame-1' : 'frame-1-light'">
                 <v-btn @click="showPushInfo" :disabled="isPushActive" color="#2873FF" class="writing-btn"
-                  :style="{ display: $vuetify.display.mobile ? 'none' : 'block', padding: $vuetify.display.mobile ? '0px 10px 0px 10px !important' : '', fontSize: $vuetify.display.mobile ? '10px !important' : '14px !important', fontWeight: $vuetify.display.mobile ? '800 !important' : '500 !important' }">
+                  :style="{ display: $vuetify.display.mobile ? 'none' : 'block'}">
                   Betacrypto
                 </v-btn>
                 <button
@@ -890,6 +890,8 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   align-self: stretch;
   text-transform: unset !important;
   border-radius: 100px;
+  font-size: 14px !important;
+  font-weight: 500 !important;
   background: #2873FF;
   line-height: 100%;
   /* 14px */
