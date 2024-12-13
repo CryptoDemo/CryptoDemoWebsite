@@ -21,9 +21,12 @@
             <div>
               <div :class="isDark ? 'frame-1' : 'frame-1-light'">
                 <v-btn @click="showPushInfo" :disabled="isPushActive" color="#2873FF" class="writing-btn"
-                  :style="{ padding: $vuetify.display.mobile ? '0px 10px 0px 10px !important' : '', fontSize: $vuetify.display.mobile ? '10px !important' : '14px !important', fontWeight: $vuetify.display.mobile ? '800 !important' : '500 !important' }">
+                  :style="{ display: $vuetify.display.mobile ? 'none' : 'block', padding: $vuetify.display.mobile ? '0px 10px 0px 10px !important' : '', fontSize: $vuetify.display.mobile ? '10px !important' : '14px !important', fontWeight: $vuetify.display.mobile ? '800 !important' : '500 !important' }">
                   Betacrypto
                 </v-btn>
+                <button
+                  :style="{ fontSize: '10px !important', fontWeight: '800 !important', border: 'none', display: $vuetify.display.mobile ? 'block' : 'none', background: '#2873FF', padding: '7.5px 8px !important', borderRadius: '15px !important' }">
+                  Betacrypto</button>
                 <span class="writing-text" :class="isDark ? 'writing-text-dark' : 'writing-text-light'">The number one
                   trading platform in Europe</span>
                 <img src="/svg/blue-arrow.svg" alt="betacrypto-img-4" />
