@@ -19,21 +19,21 @@
             <div class="marquee-coin-container">
               <div class="new-marquee">
                 <img v-for="(image, index) in firstCoinScroll" :key="index" :src="image" alt="all coins"
-                  :style="{ marginRight: $vuetify.display.mobile ? '20px' : '52px', opacity: '0.5 !important', height: $vuetify.display.mobile ? '55px' : '', maxWidth: '100%' }" />
+                  :style="{ marginRight: $vuetify.display.mobile ? '30px' : '52px', opacity: '0.5 !important', height: $vuetify.display.mobile ? '60px' : '', maxWidth: '100%' }" />
               </div>
             </div>
 
             <div class="marquee-coin-container">
               <div class="negative-marquee">
                 <img v-for="(image, index) in secondCoinScroll" :key="index" :src="image" alt="all coins"
-                  :style="{ marginRight: $vuetify.display.mobile ? '20px' : '52px', opacity: '0.4 !important', marginTop: '24.01px', marginBottom: '24.01px', height: $vuetify.display.mobile ? '55px' : '' }" />
+                  :style="{ marginRight: $vuetify.display.mobile ? '30px' : '52px', opacity: '0.4 !important', marginTop: '24.01px', marginBottom: '24.01px', height: $vuetify.display.mobile ? '60px' : '' }" />
               </div>
             </div>
 
             <div class="marquee-coin-container">
               <div class="new-marquee">
                 <img v-for="(image, index) in thirdCoinScroll" :key="index" :src="image" alt="all coins"
-                  :style="{ marginLeft: $vuetify.display.mobile ? '20px' : '52px', opacity: $vuetify.display.mobile ? '0.3 !important' : '0.2 !important', height: $vuetify.display.mobile ? '30px' : '50px' }" />
+                  :style="{ marginLeft: $vuetify.display.mobile ? '30px' : '52px', opacity: $vuetify.display.mobile ? '0.3 !important' : '0.2 !important', height: $vuetify.display.mobile ? '40px' : '50px' }" />
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@
     
     <div class="footer-links"  :class="isDark ? 'footer-bg2':'footer-bg2-light'">
       <v-container>
-       <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px !important; align-items: center;">
+       <div class="d-flex mt-5" style="justify-content: space-between;padding: 10px 0px !important; align-items: center;">
           <span :class="isDark ? 'demo-web1':'demo-web1-light'">Betacrypto</span>
           <!-- <LanguageDropdown style="width: 136px;"/> -->
         </div>

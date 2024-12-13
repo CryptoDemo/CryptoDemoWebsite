@@ -25,7 +25,7 @@
                   Betacrypto
                 </v-btn>
                 <button @click="showPushInfo" :disabled="isPushActive"
-                  :style="{ fontSize: '10px !important', fontWeight: '800 !important', border: 'none', display: $vuetify.display.mobile ? 'block' : 'none', background: '#2873FF', padding: '7.5px 8px !important', borderRadius: '15px !important' }">
+                  :style="{color: '#fff', fontSize: '10px !important', fontWeight: '800 !important', border: 'none', display: $vuetify.display.mobile ? 'block' : 'none', background: '#2873FF', padding: '7.5px 8px !important', borderRadius: '15px !important' }">
                   Betacrypto</button>
                 <span class="writing-text" :class="isDark ? 'writing-text-dark' : 'writing-text-light'">The number one
                   trading platform in Europe</span>
@@ -376,13 +376,13 @@
       </v-container>
 
       <Coin-Banner
-        :style="{ marginBottom: '253.88px', marginTop: $vuetify.display.mobile ? '53px !important' : '103.88px' }"
+        :style="{ marginBottom: $vuetify.display.mobile ? '200px !important':'253.88px !important', marginTop: $vuetify.display.mobile ? '80px !important' : '103.88px' }"
         class="banner-wrap" />
 
 
       <div class="position-relative">
-        <v-container style="position: absolute; top: -197px; left: -10px; right: 0;">
-          <span class="Betacrypto-header">Betacrypto</span>
+        <v-container :style="{position: 'absolute', top: '-197px', left: $vuetify.display.mobile ? '-230px':'-10px', right: 0}">
+          <span class="Betacrypto-header" :style="{  width: '1194px', height: '313.157px', fontSize: $vuetify.display.mobile ? '135px':'240.955px', transform: $vuetify.display.mobile ? 'translateY(80px)':'none'}">Betacrypto</span>
         </v-container>
         <Footer class="desktop-footer" />
         <Mobile-footer class="mobile-footer" />
@@ -422,7 +422,6 @@ const fade1 = ref(null)
 const fade2 = ref(null)
 const zoomImg = ref(null)
 const scrollImage = ref(null)
-const scrollImageMobile = ref(null)
 
 const btnImages = [
   { src: '/img/sml1.png', alt: 'Image 1' },
@@ -459,7 +458,7 @@ const imagesToRender = [...scrollImages, ...scrollImages];
 onMounted(() => {
   staggerImg('.box');
 
-  if (img1.value || img2.value || img3.value || img3.value || scrollImage.value || scrollImageMobile.value) {
+  if (img1.value || img2.value || img3.value || img3.value || scrollImage.value) {
     rotateOrbitAnimation(img1.value, [
       { x: 0, y: 0 },
       { x: 50, y: -35 },
@@ -1201,7 +1200,6 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   -webkit-text-stroke-width: 1;
   -webkit-text-stroke-color: #000 !important;
   font-family: "SF Pro Display";
-  font-size: 240.955px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -1209,8 +1207,6 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   background-clip: text !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  width: 1194px;
-  height: 313.157px;
   display: block;
   -webkit-text-stroke-width: 0.2px;
   -webkit-text-stroke-color: #2873FF !important;
@@ -1521,7 +1517,7 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 }
 
 .mobileNimationBg {
-  background: url('../public/img/phonehands.png');
+  background: url('../public/svg/phonehand.svg');
   background-repeat: no-repeat;
   background-position: center;
   object-fit: contain;
