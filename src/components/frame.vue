@@ -36,8 +36,8 @@
       </v-col>
 
       <v-col>
-        <v-col class="second-col mt-2" style="padding: 8px; margin-bottom: 8px; overflow: hidden;">
-          <div class="frame2" :class="isDark ? 'frame2' : 'frame2-light'" style="padding: 0 40px; width: 100%;">
+        <v-col class="second-col mt-2" style="padding: 8px; margin-bottom: 8px;">
+          <div class="frame2" :class="isDark ? 'frame2' : 'frame2-light'" style="padding: 0 40px; width: 100%; overflow: hidden">
             <div>
               <div class="position-relative">
                 <div class="coin-wrap1" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
@@ -95,7 +95,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { rotateOrbitAnimation, horizontalSlideInAnimation, verticalSlideInAnimation } from '~/animations/gsapAnimation';
+import { rotateOrbitAnimation, simultaneousAnimation } from '~/animations/gsapAnimation';
 import { useTheme } from 'vuetify';
 
 const theme = useTheme()
@@ -145,13 +145,11 @@ onMounted(() => {
 
     rotateOrbitAnimation(img3.value, [
       { x: 5, y: 3 },
-      { x: -10, y: -30 },
+      { x: -10, y: -30 }, 
       { x: -20, y: -60 },
     ], 360, 13);
-
-    verticalSlideInAnimation(image1.value, '-50', 0, '50', 1.04, 5, 1, 1);
-    horizontalSlideInAnimation(image2.value, '50', 0, '50', 1.04, 4.9, 1, 1);
-
+    simultaneousAnimation(image1.value,'y', '-50', 1, 0);
+    simultaneousAnimation(image2.value,'x', '50', 1, 0.05);
   }
 
 });

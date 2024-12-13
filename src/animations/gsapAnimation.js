@@ -84,64 +84,29 @@ export const stackAnimation = (image1, image2) => {
     });
 };
 
-export const horizontalSlideInAnimation = (element, axisValue1, axisValue2, axisValue3, initialDuration, secondDuration, finalDuration, scaleValue) => {
-  const timeline = gsap.timeline({ repeat: -1 }); // repeat: -1 means infinite loop
+export const simultaneousAnimation = (element, fromAxis, axisValue1, finalDuration, delaying) => {
+  const timeline = gsap.timeline({ repeat: -1 });
 
-  timeline
-    .from(element, {
-      x: axisValue1, // Slide in from the left
-      duration: initialDuration, // Animation duration
-      ease: "power2.out",
-      opacity: 0,
-    })
-    .to(element, {
-      x: axisValue2, // Stay in place
-      duration: secondDuration, // Time to stay
-      ease: "elastic.out(1, 0.5)",
-      scale: scaleValue
-    })
-    .to(element, {
-      y: axisValue3, // Move out to the right
-      duration: finalDuration, // Animation duration
-      ease: "power2.in",
-      opacity: 0,
-    })
-    .to(element, {
-      x: axisValue1, // Return to start position (immediate comeback)
-      duration: 0, // Instant transition
-      opacity: 0,
-    });
-};
-
-
-export const verticalSlideInAnimation = (element, axisValue1, axisValue2, axisValue3, initialDuration, secondDuration, finalDuration, scaleValue) => {
-  const timeline = gsap.timeline({ repeat: -1 }); // repeat: -1 means infinite loop
-
-  timeline
-    .from(element, {
-      y: axisValue1, // Slide in from the left
-      duration: initialDuration, // Animation duration
-      ease: "power2.out",
-      opacity: 0,
-    })
-    .to(element, {
-      y: axisValue2, // Stay in place
-      duration: secondDuration, // Time to stay
-      ease: "elastic.out(1, 0.5)",
-      scale: scaleValue
-    })
-    .to(element, {
-      y: axisValue3, // Move out to the right
-      duration: finalDuration, // Animation duration
-      opacity: 0,
-      ease: "power2.in",
-    })
-    .to(element, {
-      y: axisValue1, // Return to start position (immediate comeback)
-      duration: 0, // Instant transition
-      opacity: 0,
-    });
-};
+  timeline.fromTo(element, {
+    [fromAxis]: axisValue1,
+    duration: 1,
+    ease: "power2.out",
+    opacity: 0,
+  }, {
+    [fromAxis]: 0,
+    duration: 5,
+    ease: "power2.out",
+    opacity: 1,
+    scale: 1.05
+  })
+  .to(element,{
+    y: 50, 
+    duration: finalDuration,
+    opacity: 0,
+    ease: "power2.in",
+    delay: delaying
+  })
+}
 
 export const scrollImageUpDown = (element) => {
   const timeline = gsap.timeline({ repeat: -1 }); // Infinite loop
@@ -262,5 +227,5 @@ export const staggerImg = (element) => {
       ease: 'power2.in',
     }
   );
-  
+
 }

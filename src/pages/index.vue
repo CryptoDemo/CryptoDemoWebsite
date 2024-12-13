@@ -8,9 +8,9 @@
 
     <div>
 
-        <Index-header title="Log in" link="https://cryptodemo-inhouse.netlify.app/login" class="desktop-header" />
-        <Mobile-header class="mobile-header" />
-     
+      <Index-header title="Log in" link="https://cryptodemo-inhouse.netlify.app/login" class="desktop-header" />
+      <Mobile-header class="mobile-header" />
+
       <div style="position: relative;">
         <section class="position-relative">
           <v-container class="position-relative">
@@ -20,10 +20,10 @@
             </div>
             <div>
               <div :class="isDark ? 'frame-1' : 'frame-1-light'">
-                <v-btn @click="showPushInfo" :disabled="isPushActive" color="#2873FF" class="writing-btn">
+                <v-btn @click="showPushInfo" :disabled="isPushActive" color="#2873FF" class="writing-btn"
+                  :style="{ fontSize: $vuetify.display.mobile ? '10px !important' : '14px !important', fontWeight: $vuetify.display.mobile ? '800 !important' : '500 !important' }">
                   Betacrypto
                 </v-btn>
-
                 <span class="writing-text" :class="isDark ? 'writing-text-dark' : 'writing-text-light'">The number one
                   trading platform in Europe</span>
                 <img src="/svg/blue-arrow.svg" alt="betacrypto-img-4" />
@@ -372,7 +372,9 @@
 
       </v-container>
 
-      <Coin-Banner style="margin-bottom:253.88px; margin-top: 19.33px" class="banner-wrap" />
+      <Coin-Banner
+        :style="{ marginBottom: '253.88px', marginTop: $vuetify.display.mobile ? '53px !important' : '103.88px' }"
+        class="banner-wrap" />
 
 
       <div class="position-relative">
@@ -391,7 +393,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useTheme } from 'vuetify';
 import { getTokens, currencyConverter } from "@/composables/requests/tokens";
-import { rotateOrbitAnimation, fadeAnimation, zoomAnimation, horizontalSlideInAnimation, scrollImageUpDown, staggerImg } from '~/animations/gsapAnimation';
+import { rotateOrbitAnimation, fadeAnimation, zoomAnimation, scrollImageUpDown, staggerImg } from '~/animations/gsapAnimation';
 const theme = useTheme()
 const isDark = computed(() => theme.global.current.value.dark);
 
@@ -842,8 +844,18 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 }
 
 .frame-1-light {
+  display: flex;
+  width: fit-content;
+  padding: 4px;
+  align-items: center;
+  justify-content: center !important;
+  gap: 8px;
+  border-radius: 100px;
+  border: 0.5px solid #2873FF;
   background: #E9F1FF;
   backdrop-filter: blur(18.950000762939453px);
+  margin: auto;
+  margin-top: 100px;
 }
 
 .writing-text {
@@ -876,18 +888,9 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   text-transform: unset !important;
   border-radius: 100px;
   background: #2873FF;
-  font-weight: 500 !important;
-  font-size: 14px;
   line-height: 100%;
   /* 14px */
   letter-spacing: -0.14px !important;
-}
-
-@media screen and (max-width: 620px) {
-  .writing-btn {
-    font-size: 10px !important;
-    font-weight: 800 !important;
-  }
 }
 
 .chevron-icon {
@@ -1637,9 +1640,9 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 430px) {
   .adjustHeight {
-    height: 110px
+    height: 125px
   }
 }
 

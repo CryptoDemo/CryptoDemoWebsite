@@ -1,1154 +1,280 @@
 <template>
-    <v-dialog max-width="420" origin="center center">
-    <template v-slot:activator="{ props: activatorProps }">
-      <div @click="pinia.state.getSingleTxnID = transaction.id; getSingleWebTrans()" v-bind="activatorProps"
-        style="background: inherit; height: auto; cursor: pointer;">
-        <div v-if="transaction.details?.crypto" :class="isDark ? 'wallet-border' : 'wallet-border-light'">
-
-          <div class="px-6" v-if="transaction.details?.crypto?.transfer"
-            style="display: flex; justify-content: space-between; margin: 4px 0px 10px 0px;">
-            <div style="display: flex; align-items: center">
-              <div v-if="transaction?.details?.crypto?.transfer">
-
-                <div v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" class="d-flex mb-2 mt-4">
-                  <img src="/svg/greenGet.svg" class="me-2 p-2 mr-2"
-                    :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
-                    style="padding: 10px; border-radius: 30px;" />
-                  <div class="d-flex" style="flex-direction: column; margin-left: 7px">
-                    <span>Received</span>
-                    <div style="display: flex;">
-                      <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
-                      <h5>{{ formatTime(transaction.created_at) }}</h5>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" class="d-flex mb-2 mt-4"
-                  style="align-items: center">
-                  <img src="/svg/transfer.svg" class="me-2 p-2 mr-2"
-                    :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
-                    style="padding: 10px; border-radius: 30px;" />
-                  <div class="d-flex" style="flex-direction: column; margin-left: 7px">
-
-                    <span>Sent</span>
-                    <div class="d-flex">
-                      <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
-                      <h5>{{ formatTime(transaction.created_at) }}</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- <div style="display: flex; flex-direction: column">
-                      <span style="color: green; font-weight: 700;" v-if="transData?.details?.crypto?.transfer?.status?.fulfilled || transaction?.details?.crypto?.transfer?.status?.fulfilled">Successful</span>
-                      <span style="color: red; font-weight: 700;" v-else-if="transData?.details?.crypto?.transfer?.status?.failed || transaction?.details?.crypto?.transfer?.status?.failed">Failed</span>
-                      <span style="color: orange; font-weight: 700;" v-else>Pending</span>
-
-                      <div class="d-flex" style="margin-bottom: 6px">
-                          <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
-                          <h5>{{ formatTime(transaction.created_at) }}</h5>
-                      </div>
-                    </div> -->
-            </div>
-
-            <div class="d-flex" style="justify-items: center; align-items: center;">
-              <span v-if="transaction.details.crypto.transfer.transfer_type == 'IN'"
-                style="color: #35B233; font-weight: 600;">{{
-                  formatNumber(transaction?.details?.crypto?.transfer?.amount) }}</span>
-              <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'"
-                style="color: #91A3B0; font-weight: 600">{{
-                  formatNumber(transaction?.details?.crypto?.transfer?.amount) }}</span>
-
-              <span v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" style="color: #35B233">{{
-                tokenLists.find((p) => p.id ===
-                  transaction?.details?.crypto?.transfer?.token_id)?.symbol}}</span>
-              <span v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" style="color: #91A3B0">{{
-                tokenLists.find((p) => p.id ===
-                  transaction?.details.crypto?.transfer?.token_id)?.symbol}}</span>
-            </div>
-          </div>
-
-
-
-          <div v-if="transaction?.details?.crypto.swap">
-            <div class="d-flex" style="justify-content: space-between;">
-              <div style="display: flex; align-items: center">
-                <img src="/svg/newSwap.svg" class="me-2 p-2 mr-2"
-                  :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
-                  style="padding: 10px; border-radius: 30px;" />
-                <div style="display: flex; flex-direction: column">
-                  <span>Swap</span>
-                  <div class="d-flex" style="margin-bottom: 6px">
-                    <h5 class="me-2">
-                      {{ formattedDate(transaction.created_at) }}
-                    </h5>
-                    <h5>{{ formatTime(transaction.created_at) }}</h5>
-                  </div>
-                </div>
-              </div>
-
-              <div class="d-flex" style="justify-items: center;align-items: center;">
-                <span style="color: #007F80">{{ formatNumber(transaction?.details?.crypto?.swap?.from?.amount)
-                  }}</span>
-                <span style="color: #007F80">{{ tokenLists.find((p) => p.id ===
-                  transaction?.details?.crypto?.swap?.from?.token_id)?.symbol }}</span>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-
-      </div>
-
-
-    </template>
-
-    <template v-slot:default="{ isActive }" origin="center center">
-      <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-        style="border-radius: 1px; padding: 20px">
-        <h2 class="text-center">Transaction Details</h2>
-
-        <div v-if="transaction?.details?.crypto?.transfer">
-          <div class="d-flex py-4" style="justify-content: center;">
-            <v-chip>
-              <h4 class="me-1">{{ (transaction?.details?.crypto?.transfer?.amount) }}</h4>
-              <h4>{{ tokenLists.find((p) => p.id === transaction?.details?.crypto?.transfer?.token_id).symbol }}
-              </h4>
-            </v-chip>
-          </div>
-
-          <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%"
-            :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
+    <section class="coin-wrap">
+      <v-container>
+        <div class="border-div">
+          <div :class="isDark ? 'coin-banner' : 'coin-banner-light'">
+            <img src="/svg/Vector 1186.svg" style="max-width: 100%;" class="position-absolute right-vector1" />
+            <img src="/svg/Vector 1187.svg" class="position-absolute left-vector1" style="right: 0; max-width: 100%;" />
+            <span class="caption1i ">The fastest and trusted platform to trade</span>
+            <span class="headline">Ready to get started?</span>
+            <span class="explore2i" :class="isDark ? 'subtitle' : 'subtitle-light'"
+              style="margin-bottom: 48px;display: flex; text-align: center;">Explore thousands of offers to buy and sell
+              Bitcoin to kickstart your trading journey.</span>
             <div>
-              <p style="font-size: 14px; font-weight: 600;">Date & Time:</p>
-              <p style="font-size: 14px; font-weight: 600;">Fees:</p>
-              <p style="font-size: 14px; font-weight: 600;">Sent To:</p>
-              <p style="font-size: 14px; font-weight: 600;">Transaction ID:</p>
-              <p style="font-size: 14px; font-weight: 600;">Transaction Type:</p>
-              <p style="font-size: 14px; font-weight: 600;">Status:</p>
+  
+              <v-btn @click.prevent="navigateTo('/authentication/register')" class="create-acct-btn">Create your account
+                <img src="/svg/ArrowUpRight.svg" style="margin-left: 5px" />
+              </v-btn>
+  
             </div>
-
-            <div style="text-align: right;">
-              <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{
-                formatTime(transaction.created_at) }}</p>
-              <p style="font-size: 14px;">{{ transaction?.details?.crypto?.transfer?.fees.find((p) =>
-                p.recipient_type === "TOTAL")?.amount || 0 }}</p>
-
-              <p class="truncate" style="font-size: 14px;width: 157px">{{
-                transaction?.details?.crypto?.transfer?.to_address }}</p>
-
-              <div class="d-flex">
-                <p class="truncate" style="font-size: 14px;width: 134px">{{
-                  transaction?.details?.crypto.transfer?.transaction_hash }}</p>
-                <button @click="copyToClipboard(transaction?.details?.crypto?.transfer?.transaction_hash)"
-                  variant="plain" style=" background: inherit !important; box-shadow: none;">
-                  <img v-if="!copied" src="/svg/copy.svg" />
-                  <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;"
-                    v-else>Copied!</p>
-                </button>
+            <div class="marquee-container" style="overflow: hidden; margin-top: 362px; border:2px solid green">
+              <div class="coin-container coin-box1 marquee" style="padding-left: 52px; opacity: 0.5!important;">
+                <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"
+                  class="d-flex coin-ani1" style="max-width: 100%;" />
               </div>
-              <div v-if="transaction?.details?.crypto?.transfer?.transfer_type">
-                <v-chip v-if="transaction.details.crypto.transfer.transfer_type == 'IN'" color="green"
-                  style="font-size: 14px; border-radius: 20px;"> IN </v-chip>
-                <v-chip v-if="transaction.details.crypto.transfer.transfer_type == 'OUT'" color="orange"
-                  style="font-size: 14px; border-radius: 20px"> OUT </v-chip>
+  
+              <div class="coin-container coin-box1 marquee marquee2" style="padding-left: 52px; opacity: 0.5!important;">
+                <img v-for="(imagePath, index) in firstCoin" :key="index" :src="imagePath" alt="Coins"
+                  class="d-flex coin-ani1" />
               </div>
-
-              <p class="truncate" style="font-size: 14px; width: 157px"
-                v-if="transaction?.details?.crypto?.transfer?.status">
-                <span style="color: green; font-weight: 700;"
-                  v-if="transData?.details?.crypto?.transfer?.status?.fulfilled || transaction?.details?.crypto?.transfer?.status?.fulfilled">Successful</span>
-                <span style="color: red; font-weight: 700;"
-                  v-else-if="transData?.details?.crypto?.transfer?.status?.failed || transaction?.details?.crypto?.transfer?.status?.failed">Failed</span>
-                <span style="color: orange; font-weight: 700;" v-else>Pending</span>
-              </p>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div v-if="transaction?.details?.crypto?.swap">
-          <div class="d-flex py-4" style="justify-content: center;">
-            <v-chip>
-              <h4 class="me-1">{{ (transaction?.details?.crypto?.swap?.from.amount) }}</h4>
-              <h4>{{ tokenLists.find((p) => p.id === transaction?.details?.crypto?.swap?.from?.token_id)?.symbol }}
-              </h4>
-            </v-chip>
-          </div>
-
-          <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%"
-            :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-            <div>
-              <p style="font-size: 14px;">Date & Time:</p>
-              <p style="font-size: 14px;">Fees:</p>
-              <p style="font-size: 14px;">User ID:</p>
-              <p style="font-size: 14px;">Txn ID:</p>
-              <p style="font-size: 14px;">Status:</p>
-            </div>
-
-            <div style="text-align: right;">
-              <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{
-                formatTime(transaction.created_at) }}</p>
-              <p style="font-size: 14px;">{{ transaction?.details?.crypto?.swap?.fees.find((p) => p.recipient_type
-                === "TOTAL").amount }}</p>
-
-              <p class="truncate" style="font-size: 14px;width: 187px">{{ transaction?.user_id }}</p>
-
-              <div class="d-flex">
-                <p class="truncate me-1" style="font-size: 14px;width: 157px">{{
-                  transaction.details.crypto.swap.transaction_hash }}</p>
-                <button @click="copyToClipboard(transaction?.details?.crypto?.swap?.transaction_hash)"
-                  variant="plain" style=" background: inherit !important; box-shadow: none;">
-                  <img v-if="!copied" src="/svg/copy.svg" />
-                  <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;"
-                    v-else>Copied!</p>
-                </button>
+  
+  
+              <div class="coin-container coin-box2 marquee-A row1"
+                style="padding-right: 52px; opacity: 0.5!important; margin-top: 24.01px; margin-bottom: 24.01px;">
+                <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins"
+                  class="d-flex coin-ani" />
               </div>
-
-
-              <p class="truncate" style="font-size: 14px; width: 187px"
-                v-if="transaction?.details?.crypto?.swap?.status">
-                <v-chip color="green"
-                  v-if="transaction?.details?.crypto?.swap?.status?.fulfilled">Successful</v-chip>
-                <v-chip color="red" v-else-if="transaction?.details?.crypto?.swap?.status?.failed">Failed</v-chip>
-                <v-chip color="orange" v-else>Pending</v-chip>
-              </p>
-
+  
+              <div class="coin-container coin-box2  marquee-A marquee2a"
+                style="padding-right: 52px; opacity: 0.5!important; margin-top: 24.01px; margin-bottom: 24.01px;">
+                <img v-for="(imagePath, index) in secondCoin" :key="index" :src="imagePath" alt="Coins"
+                  class="d-flex coin-ani" />
+              </div>
+  
+  
+  
+              <div class="coin-container coin-box3  marquee2b"
+                style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
+                <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins"
+                  class="coin-ani3  d-flex animated-coins" />
+              </div>
+              <div class="coin-container coin-box3 marquee2b marquee2"
+                style="padding-left: 58px; height: 50px; opacity: 0.3!important;">
+                <img v-for="(imagePath, index) in thirdCoin" :key="index" :src="imagePath" alt="Coins"
+                  class="coin-ani3 d-flex animated-coins" />
+              </div>
+  
             </div>
-
           </div>
-
-
         </div>
-
-
-        <v-card-actions class="mt-8" style="display: flex; justify-content: space-between; align-items: center;">
-          <v-btn variant="tonal" text="Close Receipt" @click="isActive.value = false"
-            style="text-transform: unset; letter-spacing: 0px; font-weight: 600;  width: 100%; height: 50px; border-radius: 10px !important;"></v-btn>
-          <!-- <v-btn class="primary-btn1" text="Download Receipt" style="border-radius: 10px !important; width: 50%; font-weight: 600; height: 50px; color: white;"></v-btn> -->
-        </v-card-actions>
-      </v-card>
-    </template>
-  </v-dialog>
-
-</template>
-
-
-
-
-<!-- <v-dialog v-model="dialog" origin="center center" width="420px">
-  <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-    style="border-radius: 1px; padding: 20px">
-    <h2 class="text-center">Transaction Details</h2>
-
-    <div v-if="transData?.details?.crypto?.transfer">
-      <div class="d-flex py-4" style="justify-content: center;">
-        <v-chip>
-          <h4 class="me-1">{{ (transData?.details?.crypto?.transfer?.amount) }}</h4>
-          <h4>{{ tokenLists.find((p) => p.id === transData?.details?.crypto?.transfer?.token_id).symbol }}
-          </h4>
-        </v-chip>
-      </div>
-
-      <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%"
-        :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-        <div>
-          <p style="font-size: 14px; font-weight: 600;">Date & Time:</p>
-          <p style="font-size: 14px; font-weight: 600;">Fees:</p>
-          <p style="font-size: 14px; font-weight: 600;">Sent To:</p>
-          <p style="font-size: 14px; font-weight: 600;">Transaction ID:</p>
-          <p style="font-size: 14px; font-weight: 600;">Transaction Type:</p>
-          <p style="font-size: 14px; font-weight: 600;">Status:</p>
-        </div>
-
-        <div style="text-align: right;">
-          <p style="font-size: 14px;">{{ formattedDate(transData.created_at) }}, {{
-            formatTime(transData.created_at) }}</p>
-          <p style="font-size: 14px;">{{ transData?.details?.crypto?.transfer?.fees.find((p) =>
-            p.recipient_type === "TOTAL")?.amount || 0 }}</p>
-
-          <p class="truncate" style="font-size: 14px;width: 157px">{{
-            transData?.details?.crypto?.transfer?.to_address }}</p>
-
-          <div class="d-flex">
-            <p class="truncate" style="font-size: 14px;width: 134px">{{
-              transData?.details?.crypto.transfer?.transaction_hash }}</p>
-            <button @click="copyToClipboard(transData?.details?.crypto?.transfer?.transaction_hash)"
-              variant="plain" style=" background: inherit !important; box-shadow: none;">
-              <img v-if="!copied" src="/svg/copy.svg" />
-              <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;"
-                v-else>Copied!</p>
-            </button>
-          </div>
-          <div v-if="transData?.details?.crypto?.transfer?.transfer_type">
-            <v-chip :color="transData.details.crypto.transfer.transfer_type == 'IN' ? 'green' : 'orange'"
-              style="font-size: 14px; border-radius: 20px;">
-              {{ transData.details.crypto.transfer.transfer_type == 'IN' ? 'IN' : 'OUT' }}
-              </v-chip>
-          </div>
-
-          <p class="truncate" style="font-size: 14px; width: 157px"
-            v-if="transData?.details?.crypto?.transfer?.status">
-            <v-chip style="font-weight: 700 !important;"
-              :color="transData?.details?.crypto?.transfer?.status?.fulfilled ? 'green' : transData?.details?.crypto?.transfer?.status?.failed ? 'red' : 'orange'">
-              {{ transData?.details?.crypto?.transfer?.status?.fulfilled ? 'Successful' :
-                transData?.details?.crypto?.transfer?.status?.failed ? 'Failed': 'Pending'}}</v-chip>
-          </p>
-        </div>
-      </div>
-    </div>
-
-
-
-    <div v-if="transaction?.details?.crypto?.swap">
-      <div class="d-flex py-4" style="justify-content: center;">
-        <v-chip>
-          <h4 class="me-1">{{ (transaction?.details?.crypto?.swap?.from.amount) }}</h4>
-          <h4>{{ tokenLists.find((p) => p.id === transaction?.details?.crypto?.swap?.from?.token_id)?.symbol }}
-          </h4>
-        </v-chip>
-      </div>
-
-      <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%"
-        :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-        <div>
-          <p style="font-size: 14px;">Date & Time:</p>
-          <p style="font-size: 14px;">Fees:</p>
-          <p style="font-size: 14px;">User ID:</p>
-          <p style="font-size: 14px;">Txn ID:</p>
-          <p style="font-size: 14px;">Status:</p>
-        </div>
-
-        <div style="text-align: right;">
-          <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{
-            formatTime(transaction.created_at) }}</p>
-          <p style="font-size: 14px;">{{ transaction?.details?.crypto?.swap?.fees.find((p) => p.recipient_type
-            === "TOTAL").amount }}</p>
-
-          <p class="truncate" style="font-size: 14px;width: 187px">{{ transaction?.user_id }}</p>
-
-          <div class="d-flex">
-            <p class="truncate me-1" style="font-size: 14px;width: 157px">{{
-              transaction.details.crypto.swap.transaction_hash }}</p>
-            <button @click="copyToClipboard(transaction?.details?.crypto?.swap?.transaction_hash)" variant="plain"
-              style=" background: inherit !important; box-shadow: none;">
-              <img v-if="!copied" src="/svg/copy.svg" />
-              <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;"
-                v-else>Copied!</p>
-            </button>
-          </div>
-
-
-          <p class="truncate" style="font-size: 14px; width: 187px"
-            v-if="transData?.details?.crypto?.swap?.status">
-            <v-chip
-              :color="transData?.details?.crypto?.swap?.status?.fulfilled ? 'green' : transData?.details?.crypto?.swap?.status?.failed ? 'red' : 'orange'">
-              {{ transData?.details?.crypto?.swap?.status?.fulfilled ? 'Successful' :
-                transData?.details?.crypto?.swap?.status?.failed ? 'Failed': 'Pending'}}</v-chip>
-          </p>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-
-    <v-card-actions class="mt-8" style="display: flex; justify-content: space-between; align-items: center;">
-      <v-btn variant="tonal" text="Close Receipt" @click="dialog = false"
-        style="text-transform: unset; letter-spacing: 0px; font-weight: 600;  width: 100%; height: 50px; border-radius: 10px !important;"></v-btn>
-      <!-- <v-btn class="primary-btn1" text="Download Receipt" style="border-radius: 10px !important; width: 50%; font-weight: 600; height: 50px; color: white;"></v-btn> -->
-    </v-card-actions>
-  </v-card>
-</v-dialog> -->
-
-
-
-
-<v-virtual-scroll :items="FiatTxnInfo" :key="FiatTxnInfo.id">
-            <template v-slot="{ item: transaction }">
-                <v-dialog max-width="420">
-                <template v-slot:activator="{ props: activatorProps }">
-                    <div v-bind="activatorProps" style="background: inherit; height: 60px; cursor: pointer;">
-
-                    <div :class="isDark ? 'wallet-border' : 'wallet-border-light'">
-
-                        <div v-if="transaction?.details?.fiat?.transfer" class="px-6 mt-3" style="display: flex; align-items: center; justify-content: space-between;margin: 4px 0px 10px 0px;">
-                            <div style="display: flex; align-items: center">
-                        
-                                <img src="/svg/transfer.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
-                            
-                                <div style="display: flex; flex-direction: column">
-                                    <span>Sent</span>
-                                    <div class="d-flex" style="margin-bottom: 6px">
-                                        <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
-                                        <h5>{{ formatTime(transaction.created_at) }}</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div style="display: flex; justify-items: center; align-items: center;">
-                                <span style="color: rgb(145, 163, 176)">{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.transfer?.country_id).currency_code }}</span>
-                                <span style="color: rgb(145, 163, 176)">{{formatNumber(transaction?.details?.fiat?.transfer?.amount)}}</span>
-                            </div>
-                        </div>
-
-
-                        <div v-if="transaction?.details?.fiat?.funding" class="px-6 mt-3"  style="display: flex; align-items: center; justify-content: space-between;margin: 4px 0px 10px 0px;">
-                            <div style="display: flex; align-items: center; ">
-                        
-                                <img src="/svg/greenGet.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
-                            
-                                <div style="display: flex; flex-direction: column">
-                                    <span>Received</span>
-                                    <div class="d-flex" style="margin-bottom: 6px">
-                                        <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
-                                        <h5>{{ formatTime(transaction.created_at) }}</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <span style="color: rgb(53, 178, 51)">{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.funding?.country_id).currency_code }}</span>
-                                <span style="color: rgb(53, 178, 51)">{{formatNumber(transaction?.details?.fiat?.funding?.amount)}}</span>
-                            </div>
-                        </div>
-        
-
-                        <div v-if="transaction?.details?.fiat.swap">
-                            <div class="d-flex" style="justify-content: space-between;">
-                                <div style="display: flex; align-items: center">
-                                    <img src="/svg/newSwap.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
-                                    <div style="display: flex; flex-direction: column">
-                                    <span>Swap</span>
-                                    <div class="d-flex" style="margin-bottom: 6px">
-                                        <h5 class="me-2">{{ formattedDate(transaction.created_at) }},</h5>
-                                        <h5>{{ formatTime(transaction.created_at) }}</h5>
-                                    </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex" style="justify-items: center; align-items: center;">
-                                    <span style="color: #007F80">{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.swap?.from_country_id).currency_code }}</span>
-                                    <span style="color: #007F80">{{formatNumber(transaction?.details?.fiat?.swap?.from_amount)}}</span>
-                                </div>
-                            </div>
-            
-                        </div> 
-
-
-
-                        
-                        <div v-if="transaction?.details?.fiat.exchange">
-                            <div class="d-flex" style="justify-content: space-between;">
-                                <div style="display: flex; align-items: center">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#4169E1" class="bi bi-arrow-repeat me-1 p-2 mr-2" viewBox="0 0 16 16"  :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;">
-                                            <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
-                                            <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
-                                        </svg>
-
-                                    <div style="display: flex; flex-direction: column;">
-                                    <span>P2P</span>
-                                    <div class="d-flex" style="margin-bottom: 6px">
-                                        <h5 class="me-2">
-                                        {{ formattedDate(transaction.updated_at) }},
-                                        </h5>
-                                        <h5>{{ formatTime(transaction.updated_at) }}</h5>
-                                    </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex">
-                                    <div style="display: flex; flex-direction: column;">
-                                        <div style="display:flex; justify-content: flex-end;">
-                                            <span style="color: #4169E1">{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.from_fiat.country_id)?.currency_code }}</span>
-                                            <span style="color: #4169E1">{{formatBalance(transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.from_fiat.amount)}}</span>
-                                        </div>
-                                        <div class="d-flex">
-                                            <span style="color: #4169E1">{{ formatBalance(transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.to_crypto?.amount) }}</span>
-                                            <span style="color: #4169E1">{{ pinia.state.tokenLists.find ((c) => c.id === transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.to_crypto?.token_id)?.symbol }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-            
-                        </div> 
-
-                        <!-- when you make a withdrwal and there is an error, quickly check here because i have not made any withdrawal to test this section of the code... -->
-
-                        <div v-if="transaction?.details?.fiat?.withdrawal">
-                            <div class="d-flex" style="justify-content: space-between;">
-                                <div style="display: flex; align-items: center">
-                                    <img src="/svg/newSwap.svg" class="me-1 p-2 mr-2" :class="isDark ?'txn-cards-dark' : 'txn-cards-light'" style="padding: 10px; border-radius: 30px;"/>
-                                    <div style="display: flex; flex-direction: column">
-                                    <span>Withdrawal</span>
-                                    <div class="d-flex" style="margin-bottom: 6px">
-                                        <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
-                                        <h5>{{ formatTime(transaction.created_at) }}</h5>
-                                    </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex">
-                                    <span style="color: #007F80">{{formatNumber(transaction?.details?.fiat?.withdrawal?.amount)}}</span>
-                                </div>
-                            </div>
-            
-                        </div>
-                    
-                    </div>
-                </div>
-            </template>
-            
-            
-            <template v-slot:default="{ isActive }">
-                   
-                    <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'" style="border-radius: 20px; padding: 20px">
-                    <h2 class="text-center">Transaction Details</h2>
-        
-                    <div v-if="transaction?.details?.fiat?.transfer">
-                        <div  class="d-flex py-4" style="justify-content: center;">
-                            <v-chip>
-                                <h4>{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.transfer?.country_id).currency_code }}</h4>
-                                <h4 class="me-1">{{formatBalance(transaction?.details?.fiat?.transfer?.amount)}}</h4>
-                            </v-chip>
-                        </div>
-        
-                        <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-                            <div>
-                                <p style="font-size: 14px; font-weight: 600;">Date & Time:</p>
-                                <p style="font-size: 14px; font-weight: 600;">Txn ID:</p>
-                                <p style="font-size: 14px; font-weight: 600;">Status:</p>
-                            </div>
-        
-                            <div style="text-align: right;">
-                                <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{ formatTime(transaction.created_at) }}</p>
-                            
-                                
-                            <div class="d-flex">
-                                <p class="truncate" style="font-size: 14px;width: 134px">{{ transaction?.id }}</p>
-                                <button @click="copyToClipboard(transaction?.id)" variant="plain" style=" background: inherit !important; box-shadow: none;">
-                                    <img v-if="!copied" src="/svg/copy.svg"/>
-                                    <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
-                                </button>
-                            </div>                     
-                                
-                            <p class="truncate" style="font-size: 14px; width: 157px" v-if="transaction?.details?.fiat?.transfer?.status">
-                                <span style="color: green; font-weight: 700;" v-if="transaction?.details?.fiat?.transfer?.status === 'fulfilled'">Successful</span>
-                                <span style="color: red; font-weight: 700;" v-else-if="transaction?.details?.fiat?.transfer?.status ==='failed' "> Failed</span>
-                                <span style="color: orange; font-weight: 700;" v-else>Pending</span>
-                            </p>
-                        
-                        </div>
-
-                    </div>
-
-                    </div>
-
-
-                    <div v-if="transaction?.details?.fiat?.swap">
-                        <div  class="d-flex py-4" style="justify-content: center;">
-                            <v-chip>
-                                <h4>{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.swap?.from_country_id).currency_code }}</h4>
-                                <h4 class="me-1">{{formatBalance(transaction?.details?.fiat?.swap?.from_amount)}}</h4>
-                            </v-chip>
-                        </div>
-        
-                        <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-                            <div>
-                                <p style="font-size: 14px;">Date & Time:</p>
-                                <p style="font-size: 14px;">Txn ID:</p>
-                                <p style="font-size: 14px;">Currency to swap</p>
-                                <p style="font-size: 14px;">Status:</p>
-                            </div>
-        
-                            <div style="text-align: right;">
-                                <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{ formatTime(transaction.created_at) }}</p>
-                            
-                                
-                                <div class="d-flex">
-                                    <p class="truncate me-1" style="font-size: 14px;width: 157px">{{ transaction?.id }}</p>
-                                    <button @click="copyToClipboard(transaction?.id)" variant="plain" style=" background: inherit !important; box-shadow: none;">
-                                        <img v-if="!copied" src="/svg/copy.svg"/>
-                                        <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
-                                    </button>
-                                </div>
-
-                                <div style="display: flex; align-items: center; justify-content: end;">
-                                    <span style="font-size: 14px;">{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.swap?.from_country_id).currency_code }}</span>
-                                    <span style="font-size: 14px;">{{formatBalance(transaction?.details?.fiat?.swap?.from_amount)}}</span>
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#007f80" class="bi bi-arrow-left-right" viewBox="0 0 16 16" style="margin-left: 4px; margin-right: 4px;">
-                                    <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
-                                    </svg>
-
-                                    <span style="font-size: 14px;">{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.swap?.to_country_id).currency_code }}</span>
-                                    <span style="font-size: 14px;">{{formatBalance(transaction?.details?.fiat?.swap?.to_amount)}}</span>
-                                </div>
-                            
-                                <p class="truncate" style="font-size: 14px; width: 187px" v-if="transaction?.details?.fiat?.swap?.status">
-                                    <span style="color: green; font-weight: 700;" v-if="transaction?.details?.fiat?.swap?.status === 'fulfilled'">Successful</span>
-                                    <span style="color: red; font-weight: 700;" v-else-if="transaction?.details?.fiat?.swap?.status === 'failed' ">Failed</span>
-                                    <span style="color: orange; font-weight: 700;" v-else>Pending</span>
-                                </p>
-                        
-                            </div>
-
-                    </div> 
-
-                    </div>
-
-
-                    <div v-if="transaction?.details?.fiat?.funding">
-                        <div  class="d-flex py-4" style="justify-content: center;">
-                            <v-chip>
-                                <h4>{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.funding?.country_id)?.currency_code }}</h4>
-                                <h4>{{formatBalance(transaction?.details?.fiat?.funding?.amount)}}</h4>
-                            </v-chip>
-                        </div>
-        
-                        <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-                            <div>
-                                <p style="font-size: 14px;">Date & Time:</p>
-                                <p style="font-size: 14px;">Txn ID:</p>
-                                <p style="font-size: 14px;">Status:</p>
-                            </div>
-        
-                            <div style="text-align: right;">
-                                <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{ formatTime(transaction.created_at) }}</p>
-                            
-                                
-                                <div class="d-flex">
-                                    <p class="truncate me-1" style="font-size: 14px;width: 157px">{{ transaction?.id }}</p>
-                                    <button @click="copyToClipboard(transaction?.id)" variant="plain" style=" background: inherit !important; box-shadow: none;">
-                                        <img v-if="!copied" src="/svg/copy.svg"/>
-                                        <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
-                                    </button>
-                                </div>
-
-                    
-                            
-                                <p class="truncate" style="font-size: 14px; width: 187px" v-if="transaction?.details?.fiat?.funding?.status">
-                                    <span style="color: green; font-weight: 700;" v-if="transaction?.details?.fiat?.funding?.status === 'fulfilled'">Successful</span>
-                                    <span style="color: red; font-weight: 700;" v-else-if="transaction?.details?.fiat?.funding?.status === 'failed' ">Failed</span>
-                                    <span style="color: orange; font-weight: 700;" v-else>Pending</span>
-                                </p>
-                        
-                            </div>
-
-                    </div> 
-
-                    </div>
-
-
-                    <div v-if="transaction?.details?.fiat?.exchange">
-                        <div  class="d-flex py-4" style="justify-content: center;">
-                            <v-chip>
-                                <h4>{{ pinia.state.allcountries.find ((c) => c.id === transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.from_fiat.country_id)?.currency_code }}</h4>
-                                <h4>{{formatBalance(transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.from_fiat.amount)}}</h4>
-                            </v-chip>
-                        </div>
-        
-                        <div class="py-6 mb-5" style="display: flex; justify-content:space-between;line-height: 260%" :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-                            <div>
-                                <p style="font-size: 14px;">Date & Time:</p>
-                                <p style="font-size: 14px;">Txn ID:</p>
-                                <p style="font-size: 14px;">Status:</p>
-                            </div>
-        
-                            <div style="text-align: right;">
-                                <p style="font-size: 14px;">{{ formattedDate(transaction.updated_at) }}, {{ formatTime(transaction.updated_at) }}</p>
-                            
-                                
-                                <div class="d-flex">
-                                    <p class="truncate me-1" style="font-size: 14px;width: 157px">{{ transaction?.id }}</p>
-                                    <button @click="copyToClipboard(transaction?.id)" variant="plain" style=" background: inherit !important; box-shadow: none;">
-                                        <img v-if="!copied" src="/svg/copy.svg"/>
-                                        <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;" v-else>Copied!</p>
-                                    </button>
-                                </div>
-
-                    
-                            
-                                <p class="truncate" style="font-size: 14px; width: 187px" v-if="transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.status">
-                                    <span style="color: green; font-weight: 700;" v-if="transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.status === 'fulfilled'">Successful</span>
-                                    <span style="color: red; font-weight: 700;" v-else-if="transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.status === 'failed' ">Failed</span>
-                                    <span style="color: orange; font-weight: 700;" v-else>Pending</span>
-                                </p>
-                        
-                            </div>
-
-                    </div> 
-
-                    </div>
-                    
-                    <v-card-actions class="mt-8" style="display: flex; justify-content: space-between; align-items: center;">
-                        <v-btn variant="tonal" text="Close Receipt" @click="isActive.value = false" style="text-transform: unset; letter-spacing: 0px; font-weight: 600;  width: 100%; height: 50px; border-radius: 10px !important;"></v-btn>
-                        <!-- <v-btn class="primary-btn1" text="Download Receipt" style="border-radius: 10px !important; width: 50%; font-weight: 600; height: 50px; color: white;"></v-btn> -->
-                    </v-card-actions>
-                    </v-card>
-                </template> 
-                </v-dialog>
-            </template>
-        </v-virtual-scroll>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <v-virtual-scroll :items="FiatTxnInfo" :key="FiatTxnInfo.id">
-            <template v-slot="{ item: transaction }">
-                <v-dialog max-width="420" origin="center center">
-                    <template v-slot:activator="{ props: activatorProps }">
-                        <div v-bind="activatorProps" style="background: inherit; height: 60px; cursor: pointer;">
-
-                            <div :class="isDark ? 'wallet-border' : 'wallet-border-light'">
-
-                                <div v-if="transaction?.details?.fiat?.transfer" class="px-6 mt-3"
-                                    style="display: flex; align-items: center; justify-content: space-between;margin: 4px 0px 10px 0px;">
-                                    <div style="display: flex; align-items: center">
-
-                                        <img src="/svg/transfer.svg" class="me-1 p-2 mr-2"
-                                            :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
-                                            style="padding: 10px; border-radius: 30px;" />
-
-                                        <div style="display: flex; flex-direction: column">
-                                            <span>Sent</span>
-                                            <div class="d-flex" style="margin-bottom: 6px">
-                                                <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
-                                                <h5>{{ formatTime(transaction.created_at) }}</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div style="display: flex; justify-items: center; align-items: center;">
-                                        <span style="color: rgb(145, 163, 176)">{{ pinia.state.allcountries.find((c) =>
-                                            c.id === transaction?.details?.fiat?.transfer?.country_id).currency_code
-                                            }}</span>
-                                        <span style="color: rgb(145, 163, 176)">{{
-                                            formatNumber(transaction?.details?.fiat?.transfer?.amount) }}</span>
-                                    </div>
-                                </div>
-
-
-                                <div v-if="transaction?.details?.fiat?.funding" class="px-6 mt-3"
-                                    style="display: flex; align-items: center; justify-content: space-between;margin: 4px 0px 10px 0px;">
-                                    <div style="display: flex; align-items: center; ">
-
-                                        <img src="/svg/greenGet.svg" class="me-1 p-2 mr-2"
-                                            :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
-                                            style="padding: 10px; border-radius: 30px;" />
-
-                                        <div style="display: flex; flex-direction: column">
-                                            <span>Received</span>
-                                            <div class="d-flex" style="margin-bottom: 6px">
-                                                <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
-                                                <h5>{{ formatTime(transaction.created_at) }}</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <span style="color: rgb(53, 178, 51)">{{ pinia.state.allcountries.find((c) =>
-                                            c.id === transaction?.details?.fiat?.funding?.country_id).currency_code
-                                            }}</span>
-                                        <span style="color: rgb(53, 178, 51)">{{
-                                            formatNumber(transaction?.details?.fiat?.funding?.amount) }}</span>
-                                    </div>
-                                </div>
-
-
-                                <div v-if="transaction?.details?.fiat.swap">
-                                    <div class="d-flex" style="justify-content: space-between;">
-                                        <div style="display: flex; align-items: center">
-                                            <img src="/svg/newSwap.svg" class="me-1 p-2 mr-2"
-                                                :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
-                                                style="padding: 10px; border-radius: 30px;" />
-                                            <div style="display: flex; flex-direction: column">
-                                                <span>Swap</span>
-                                                <div class="d-flex" style="margin-bottom: 6px">
-                                                    <h5 class="me-2">{{ formattedDate(transaction.created_at) }},</h5>
-                                                    <h5>{{ formatTime(transaction.created_at) }}</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex" style="justify-items: center; align-items: center;">
-                                            <span style="color: #007F80">{{ pinia.state.allcountries.find((c) => c.id
-                                                === transaction?.details?.fiat?.swap?.from_country_id).currency_code
-                                                }}</span>
-                                            <span style="color: #007F80">{{
-                                                formatNumber(transaction?.details?.fiat?.swap?.from_amount) }}</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-
-
-                                <div v-if="transaction?.details?.fiat.exchange">
-                                    <div class="d-flex" style="justify-content: space-between;">
-                                        <div style="display: flex; align-items: center">
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
-                                                fill="#4169E1" class="bi bi-arrow-repeat me-1 p-2 mr-2"
-                                                viewBox="0 0 16 16"
-                                                :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
-                                                style="padding: 10px; border-radius: 30px;">
-                                                <path
-                                                    d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9" />
-                                                <path fill-rule="evenodd"
-                                                    d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z" />
-                                            </svg>
-
-                                            <div style="display: flex; flex-direction: column;">
-                                                <span>P2P</span>
-                                                <div class="d-flex" style="margin-bottom: 6px">
-                                                    <h5 class="me-2">
-                                                        {{ formattedDate(transaction.updated_at) }},
-                                                    </h5>
-                                                    <h5>{{ formatTime(transaction.updated_at) }}</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex">
-                                            <div style="display: flex; flex-direction: column;">
-                                                <div style="display:flex; justify-content: flex-end;">
-                                                    <span style="color: #4169E1">
-                                                        {{ pinia.state.allcountries.find((c) => c.id ===
-                                                            transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.from_fiat.country_id)?.currency_code
-                                                        }}</span>
-                                                    <span style="color: #4169E1">{{
-                                                        formatBalance(transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.from_fiat.amount)
-                                                        }}</span>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <span style="color: #4169E1">{{
-                                                        formatBalance(transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.to_crypto?.amount)
-                                                    }}</span>
-                                                    <span style="color: #4169E1">{{ pinia.state.tokenLists.find((c) =>
-                                                        c.id ===
-                                                        transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.to_crypto?.token_id)?.symbol
-                                                        }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <!-- when you make a withdrwal and there is an error, quickly check here because i have not made any withdrawal to test this section of the code... -->
-
-                                <div v-if="transaction?.details?.fiat?.withdrawal">
-                                    <div class="d-flex" style="justify-content: space-between;">
-                                        <div style="display: flex; align-items: center">
-                                            <img src="/svg/newSwap.svg" class="me-1 p-2 mr-2"
-                                                :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'"
-                                                style="padding: 10px; border-radius: 30px;" />
-                                            <div style="display: flex; flex-direction: column">
-                                                <span>Withdrawal</span>
-                                                <div class="d-flex" style="margin-bottom: 6px">
-                                                    <h5 class="me-2"> {{ formattedDate(transaction.created_at) }}, </h5>
-                                                    <h5>{{ formatTime(transaction.created_at) }}</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex">
-                                            <span style="color: #007F80">{{
-                                                formatNumber(transaction?.details?.fiat?.withdrawal?.amount) }}</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </template>
-
-                    <template v-slot:default="{ isActive }">
-
-                        <v-card :class="isDark ? 'profile-cards-dark' : 'profile-cards-light'"
-                            style="border-radius: 20px; padding: 20px">
-                            <h2 class="text-center">Transaction Details</h2>
-
-                            <div v-if="transaction?.details?.fiat?.transfer">
-                                <div class="d-flex py-4" style="justify-content: center;">
-                                    <v-chip>
-                                        <h4>{{ pinia.state.allcountries.find((c) => c.id ===
-                                            transaction?.details?.fiat?.transfer?.country_id).currency_code }}</h4>
-                                        <h4 class="me-1">{{ formatBalance(transaction?.details?.fiat?.transfer?.amount)
-                                            }}
-                                        </h4>
-                                    </v-chip>
-                                </div>
-
-                                <div class="py-6 mb-5"
-                                    style="display: flex; justify-content:space-between;line-height: 260%"
-                                    :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-                                    <div>
-                                        <p style="font-size: 14px; font-weight: 600;">Date & Time:</p>
-                                        <p style="font-size: 14px; font-weight: 600;">Txn ID:</p>
-                                        <p style="font-size: 14px; font-weight: 600;">Status:</p>
-                                    </div>
-
-                                    <div style="text-align: right;">
-                                        <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{
-                                            formatTime(transaction.created_at) }}</p>
-
-
-                                        <div class="d-flex">
-                                            <p class="truncate" style="font-size: 14px;width: 134px">{{ transaction?.id
-                                                }}</p>
-                                            <button @click="copyToClipboard(transaction?.id)" variant="plain"
-                                                style=" background: inherit !important; box-shadow: none;">
-                                                <img v-if="!copied" src="/svg/copy.svg" />
-                                                <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;"
-                                                    v-else>Copied!</p>
-                                            </button>
-                                        </div>
-
-                                        <p class="truncate" style="font-size: 14px; width: 157px"
-                                            v-if="transaction?.details?.fiat?.transfer?.status">
-                                            <span style="color: green; font-weight: 700;"
-                                                v-if="transaction?.details?.fiat?.transfer?.status === 'fulfilled'">Successful</span>
-                                            <span style="color: red; font-weight: 700;"
-                                                v-else-if="transaction?.details?.fiat?.transfer?.status === 'failed'">
-                                                Failed</span>
-                                            <span style="color: orange; font-weight: 700;" v-else>Pending</span>
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                            <div v-if="transaction?.details?.fiat?.swap">
-                                <div class="d-flex py-4" style="justify-content: center;">
-                                    <v-chip>
-                                        <h4>{{ pinia.state.allcountries.find((c) => c.id ===
-                                            transaction?.details?.fiat?.swap?.from_country_id).currency_code }}</h4>
-                                        <h4 class="me-1">
-                                            {{ formatBalance(transaction?.details?.fiat?.swap?.from_amount) }}</h4>
-                                    </v-chip>
-                                </div>
-
-                                <div class="py-6 mb-5"
-                                    style="display: flex; justify-content:space-between;line-height: 260%"
-                                    :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-                                    <div>
-                                        <p style="font-size: 14px;">Date & Time:</p>
-                                        <p style="font-size: 14px;">Txn ID:</p>
-                                        <p style="font-size: 14px;">Currency to swap</p>
-                                        <p style="font-size: 14px;">Status:</p>
-                                    </div>
-
-                                    <div style="text-align: right;">
-                                        <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{
-                                            formatTime(transaction.created_at) }}</p>
-
-
-                                        <div class="d-flex">
-                                            <p class="truncate me-1" style="font-size: 14px;width: 157px">{{
-                                                transaction?.id }}</p>
-                                            <button @click="copyToClipboard(transaction?.id)" variant="plain"
-                                                style=" background: inherit !important; box-shadow: none;">
-                                                <img v-if="!copied" src="/svg/copy.svg" />
-                                                <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;"
-                                                    v-else>Copied!</p>
-                                            </button>
-                                        </div>
-
-                                        <div style="display: flex; align-items: center; justify-content: end;">
-                                            <span style="font-size: 14px;">{{ pinia.state.allcountries.find((c) => c.id
-                                                === transaction?.details?.fiat?.swap?.from_country_id).currency_code
-                                                }}</span>
-                                            <span style="font-size: 14px;">{{
-                                                formatBalance(transaction?.details?.fiat?.swap?.from_amount) }}</span>
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="#007f80" class="bi bi-arrow-left-right" viewBox="0 0 16 16"
-                                                style="margin-left: 4px; margin-right: 4px;">
-                                                <path fill-rule="evenodd"
-                                                    d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5" />
-                                            </svg>
-
-                                            <span style="font-size: 14px;">{{ pinia.state.allcountries.find((c) => c.id
-                                                === transaction?.details?.fiat?.swap?.to_country_id).currency_code
-                                                }}</span>
-                                            <span style="font-size: 14px;">{{
-                                                formatBalance(transaction?.details?.fiat?.swap?.to_amount) }}</span>
-                                        </div>
-
-                                        <p class="truncate" style="font-size: 14px; width: 187px"
-                                            v-if="transaction?.details?.fiat?.swap?.status">
-                                            <span style="color: green; font-weight: 700;"
-                                                v-if="transaction?.details?.fiat?.swap?.status === 'fulfilled'">Successful</span>
-                                            <span style="color: red; font-weight: 700;"
-                                                v-else-if="transaction?.details?.fiat?.swap?.status === 'failed'">Failed</span>
-                                            <span style="color: orange; font-weight: 700;" v-else>Pending</span>
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                            <div v-if="transaction?.details?.fiat?.funding">
-                                <div class="d-flex py-4" style="justify-content: center;">
-                                    <v-chip>
-                                        <h4>{{ pinia.state.allcountries.find((c) => c.id ===
-                                            transaction?.details?.fiat?.funding?.country_id)?.currency_code }}</h4>
-                                        <h4>{{ formatBalance(transaction?.details?.fiat?.funding?.amount) }}</h4>
-                                    </v-chip>
-                                </div>
-
-                                <div class="py-6 mb-5"
-                                    style="display: flex; justify-content:space-between;line-height: 260%"
-                                    :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-                                    <div>
-                                        <p style="font-size: 14px;">Date & Time:</p>
-                                        <p style="font-size: 14px;">Txn ID:</p>
-                                        <p style="font-size: 14px;">Status:</p>
-                                    </div>
-
-                                    <div style="text-align: right;">
-                                        <p style="font-size: 14px;">{{ formattedDate(transaction.created_at) }}, {{
-                                            formatTime(transaction.created_at) }}</p>
-
-
-                                        <div class="d-flex">
-                                            <p class="truncate me-1" style="font-size: 14px;width: 157px">{{
-                                                transaction?.id }}</p>
-                                            <button @click="copyToClipboard(transaction?.id)" variant="plain"
-                                                style=" background: inherit !important; box-shadow: none;">
-                                                <img v-if="!copied" src="/svg/copy.svg" />
-                                                <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;"
-                                                    v-else>Copied!</p>
-                                            </button>
-                                        </div>
-
-
-
-                                        <p class="truncate" style="font-size: 14px; width: 187px"
-                                            v-if="transaction?.details?.fiat?.funding?.status">
-                                            <span style="color: green; font-weight: 700;"
-                                                v-if="transaction?.details?.fiat?.funding?.status === 'fulfilled'">Successful</span>
-                                            <span style="color: red; font-weight: 700;"
-                                                v-else-if="transaction?.details?.fiat?.funding?.status === 'failed'">Failed</span>
-                                            <span style="color: orange; font-weight: 700;" v-else>Pending</span>
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                            <div v-if="transaction?.details?.fiat?.exchange">
-                                <div class="d-flex py-4" style="justify-content: center;">
-                                    <v-chip>
-                                        <h4>{{ pinia.state.allcountries.find((c) => c.id ===
-                                            transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.from_fiat.country_id)?.currency_code
-                                            }}</h4>
-                                        <h4>{{
-                                            formatBalance(transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.from_fiat.amount)
-                                            }}
-                                        </h4>
-                                    </v-chip>
-                                </div>
-
-                                <div class="py-6 mb-5"
-                                    style="display: flex; justify-content:space-between;line-height: 260%"
-                                    :class="isDark ? 'txn-cards-dark' : 'txn-cards-light'">
-                                    <div>
-                                        <p style="font-size: 14px;">Date & Time:</p>
-                                        <p style="font-size: 14px;">Txn ID:</p>
-                                        <p style="font-size: 14px;">Status:</p>
-                                    </div>
-
-                                    <div style="text-align: right;">
-                                        <p style="font-size: 14px;">{{ formattedDate(transaction.updated_at) }}, {{
-                                            formatTime(transaction.updated_at) }}</p>
-
-
-                                        <div class="d-flex">
-                                            <p class="truncate me-1" style="font-size: 14px;width: 157px">{{
-                                                transaction?.id }}</p>
-                                            <button @click="copyToClipboard(transaction?.id)" variant="plain"
-                                                style=" background: inherit !important; box-shadow: none;">
-                                                <img v-if="!copied" src="/svg/copy.svg" />
-                                                <p style="color: green; font-weight: 400; font-size: 12px; text-transform: lowercase; letter-spacing: 0px;"
-                                                    v-else>Copied!</p>
-                                            </button>
-                                        </div>
-
-
-
-                                        <p class="truncate" style="font-size: 14px; width: 187px"
-                                            v-if="transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.status">
-                                            <span style="color: green; font-weight: 700;"
-                                                v-if="transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.status === 'fulfilled'">Successful</span>
-                                            <span style="color: red; font-weight: 700;"
-                                                v-else-if="transaction?.details?.fiat?.exchange?.from_fiat_to_crypto?.status === 'failed'">Failed</span>
-                                            <span style="color: orange; font-weight: 700;" v-else>Pending</span>
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <v-card-actions class="mt-8"
-                                style="display: flex; justify-content: space-between; align-items: center;">
-                                <v-btn variant="tonal" text="Close Receipt" @click="isActive.value = false"
-                                    style="text-transform: unset; letter-spacing: 0px; font-weight: 600;  width: 100%; height: 50px; border-radius: 10px !important;"></v-btn>
-                                <!-- <v-btn class="primary-btn1" text="Download Receipt" style="border-radius: 10px !important; width: 50%; font-weight: 600; height: 50px; color: white;"></v-btn> -->
-                            </v-card-actions>
-                        </v-card>
-                    </template>
-
-                </v-dialog>
-            </template>
-        </v-virtual-scroll>
+      </v-container>
+    </section>
+  </template>
+  <script setup>
+  import { ref } from 'vue';
+  import { useTheme } from 'vuetify';
+  
+  const theme = useTheme()
+  const isDark = computed(() => theme.global.current.value.dark);
+  
+  const firstCoin = ref([
+    '/svg/testball1.svg', '/img/Frame 19.png', '/img/Frame 2.png', '/img/Frame 3.png', '/img/Frame 6.png', '/img/Frame 12.png', '/img/Frame 8.png', '/img/Frame 19.png',
+  ]);
+  const secondCoin = ref([
+    '/img/Frame 20.png', '/img/Frame 4.png', '/img/Frame 9.png', '/img/Frame 10.png', '/img/Frame 18.png', '/img/Frame 20.png', '/img/Frame 22.png', '/img/Frame 23.png',
+  ]);
+  const thirdCoin = ref([
+    '/img/Frame 7.png', '/img/Frame 11.png', '/img/Frame 14 (1).png', '/img/Frame 15.png', '/img/Frame 16.png', '/img/Frame 17.png', '/img/Frame 18 (1).png', '/img/Frame 14 (1).png',
+  ])
+  </script>
+  <style scoped>
+  @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+  
+  .coin-banner {
+    position: relative;
+    background: linear-gradient(90deg, #10192D 0%, rgba(16, 25, 45, 0.00) 100%) !important;
+    width: auto;
+    border-radius: 15px !important;
+    height: 100%;
+    max-width: 100%;
+    z-index: 8;
+  }
+  
+  .border-div {
+    background: linear-gradient(120deg, #060A1D, #060A1D) padding-box,
+      linear-gradient(120deg, #fff, #10192D, #10192D, #fff) border-box !important;
+    width: auto;
+    border-radius: 15px !important;
+    border: 0.2px solid transparent;
+    content: "";
+    overflow: hidden;
+  }
+  
+  .coin-banner-light {
+    border-radius: 15px;
+    position: relative;
+    background: #165CDD;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    z-index: 1000;
+  }
+  
+  .caption1i {
+    color: #38BDF8;
+    text-align: center;
+    font-family: "SF Pro Display";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+    /* 22.4px */
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding-top: 109px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .headline {
+    text-align: center;
+    font-family: "SF Pro Display";
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    /* 76.8px */
+    letter-spacing: -1.92px;
+    background: linear-gradient(90deg, #FFF 8%, rgba(247, 242, 242, 0.68) 86.51%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 48px;
+  }
+  
+  .subtitle {
+    color: #8E9BAE;
+    display: flex;
+    margin: auto;
+    margin-top: 48px;
+    font-family: "SF Pro Display";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    /* 33.6px */
+    letter-spacing: 0.72px;
+    width: 547.609px;
+  }
+  
+  .subtitle-light {
+    color: #DBE8FF;
+    display: flex;
+    margin: auto;
+    margin-top: 48px;
+    font-family: "SF Pro Display";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    /* 33.6px */
+    letter-spacing: 0.72px;
+    width: 547.609px;
+  }
+  
+  .create-acct-btn {
+    /* width: 223px !important; */
+    height: 50px !important;
+    border-radius: 10px;
+    background: #FFF;
+    color: #060A1D;
+    letter-spacing: unset !important;
+    text-transform: unset;
+    display: flex;
+    margin: auto;
+    font-family: "SF Pro Display";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  
+  .coin-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .animated-coins {
+    opacity: 0.3 !important;
+  }
+  
+  .coin-wrap {
+    display: flex;
+    height: 1103px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  
+  .marquee-container {
+    width: 100vw !important;
+  }
+  
+  .marquee {
+    bottom: 23%;
+    left: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+  }
+  
+  .marquee2b {
+    bottom: 0%;
+    left: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+  }
+  
+  .marquee2 {
+    animation-delay: 15s;
+  }
+  
+  b {
+    padding-left: 10px;
+  }
+  
+  
+  @keyframes marquee {
+    0% {
+      left: -100%;
+    }
+  
+    100% {
+      left: 100%
+    }
+  }
+  
+  .marquee-A {
+    bottom: 6%;
+    right: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    white-space: nowrap;
+    animation-direction: reverse !important;
+    animation: marquee 30s linear infinite;
+  }
+  
+  .marquee2a {
+    animation-delay: 15s;
+  }
+  
+  b {
+    padding-left: 10px;
+  }
+  </style>
