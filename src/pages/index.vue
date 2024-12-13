@@ -21,7 +21,7 @@
             <div>
               <div :class="isDark ? 'frame-1' : 'frame-1-light'">
                 <v-btn @click="showPushInfo" :disabled="isPushActive" color="#2873FF" class="writing-btn"
-                  :style="{ fontSize: $vuetify.display.mobile ? '10px !important' : '14px !important', fontWeight: $vuetify.display.mobile ? '800 !important' : '500 !important' }">
+                  :style="{ padding: $vuetify.display.mobile ? '0px 10px 0px 10px !important' : '', fontSize: $vuetify.display.mobile ? '10px !important' : '14px !important', fontWeight: $vuetify.display.mobile ? '800 !important' : '500 !important' }">
                   Betacrypto
                 </v-btn>
                 <span class="writing-text" :class="isDark ? 'writing-text-dark' : 'writing-text-light'">The number one
