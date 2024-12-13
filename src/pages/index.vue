@@ -24,7 +24,7 @@
                   :style="{ display: $vuetify.display.mobile ? 'none' : 'block'}">
                   Betacrypto
                 </v-btn>
-                <button
+                <button @click="showPushInfo" :disabled="isPushActive"
                   :style="{ fontSize: '10px !important', fontWeight: '800 !important', border: 'none', display: $vuetify.display.mobile ? 'block' : 'none', background: '#2873FF', padding: '7.5px 8px !important', borderRadius: '15px !important' }">
                   Betacrypto</button>
                 <span class="writing-text" :class="isDark ? 'writing-text-dark' : 'writing-text-light'">The number one
