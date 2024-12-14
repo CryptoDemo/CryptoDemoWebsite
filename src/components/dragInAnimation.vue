@@ -114,7 +114,7 @@ const transcend2 = (img) => {
         {
             opacity: 1,
             scale: 1,
-            x: "20px",
+            x: "10px",
             y: "40px",
             ease: Back.easeOut,
             duration: 1.2,
