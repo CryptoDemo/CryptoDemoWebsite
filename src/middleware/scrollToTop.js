@@ -1,13 +1,3 @@
-// export default defineNuxtRouteMiddleware(() => {
-//   // Use requestAnimationFrame to ensure the DOM is ready
-//   requestAnimationFrame(() => {
-//     document.body.scrollTo({
-//       top: 0,
-//       behavior: 'smooth', // Enables smooth scrolling
-//     });
-//   });
-// });
-
 import { nextTick } from 'vue';
 
 export default defineNuxtRouteMiddleware(() => {

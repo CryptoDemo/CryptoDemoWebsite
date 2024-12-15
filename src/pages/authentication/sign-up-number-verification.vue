@@ -1,6 +1,7 @@
 <template>
 <div class="section">
-  <Header text2="Already have an account," title="Login"/>
+  <auth-header desc="Already have an account?," linkTitle="Login" link="/authentication/login"/>
+  <!-- <Header text2="Already have an account," title="Login"/> -->
   <v-container class="form-layout overflow-hidden">
     <v-row no-gutters  class="">
 

@@ -21,22 +21,21 @@
 
       </v-app-bar-title>
 
-
       <div style="position: relative">
         <NuxtLink to="#"> <img :src="props.Menuicon" /> </NuxtLink>
       </div>
 
       <div class="header-nav-div align-lg-center" style="display: flex; margin-inline-start: auto; align-items: center">
-        <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1' : 'text1-light'"
+        <!-- <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1' : 'text1-light'"
           style="align-items: center; display: flex;">{{ props.text2 }}</span>
         <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center;"> <span
             :class="isDark ? 'text2' : 'text2-light'">{{ props.title }}</span></NuxtLink>
         <NuxtLink :to="props.link" class="d-flex loginText" style="align-self: center;"> <span
-            :class="isDark ? 'text2' : 'text2-light'">{{ props.loginTitle }}</span></NuxtLink>
+            :class="isDark ? 'text2' : 'text2-light'">{{ props.loginTitle }}</span></NuxtLink> -->
 
-        <div class="language-select">
+        <!-- <div class="language-select">
           <LanguageDropdown v-if="newUserLanguage" />
-        </div>
+        </div> -->
 
         <v-menu transition="slide-y-transition"> 
           <template v-slot:activator="{ props }">

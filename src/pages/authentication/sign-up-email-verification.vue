@@ -1,7 +1,7 @@
 <template>
   <div class="section">
     <LoginBG/>
-  <Header text2="Already have an account," title="Login"/>
+  <auth-header desc="Already have an account?," linkTitle="Login" link="/authentication/login"/>
   <v-container class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
     <div class="section">
     <v-row no-gutters  class="">

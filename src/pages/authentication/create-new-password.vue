@@ -1,7 +1,7 @@
 <template>
   <div class="section">
     <LoginBG/>
-    <Header/>
+    <auth-header/>
     <v-container class="form-layout overflow-hidden">
       <div class="section">
       <v-row no-gutters >

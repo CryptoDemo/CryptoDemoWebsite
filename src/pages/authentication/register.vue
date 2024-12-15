@@ -1,9 +1,7 @@
 <template>
   <div class="section">
     <LoginBG />
-
-    <Header @country="v => country = v" text2="Already have an account?," title="Login" link="/authentication/login"
-      :newUserLanguage="true" :flagDropdown="true" />
+    <auth-header desc="Already have an account?," linkTitle="Login" link="/authentication/login" :newUserLanguage="true" :flagDropdown="true"/>
     <v-container class="form-layout overflow-hidden" :class="isDark ? 'form-layout' : 'form-layout-light'"
       style="overflow-y: scroll !important;">
       <div class="section">

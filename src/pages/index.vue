@@ -494,8 +494,8 @@ onMounted(() => {
 const isPushActive = ref(false); // Tracks whether the notification is active
 
 const showPushInfo = () => {
-  if (isPushActive.value) return; // Prevent multiple clicks
-  isPushActive.value = true; // Set the state to active
+  if (isPushActive.value) return; 
+  isPushActive.value = true; 
 
   push.info(
     "Our site is currently under development and will be live soon. We welcome any feedback to help us improve.",
@@ -503,7 +503,7 @@ const showPushInfo = () => {
   );
   setTimeout(() => {
     isPushActive.value = false;
-  }, 5000);
+  }, 4000);
 };
 
 const getTokens_ = async () => {

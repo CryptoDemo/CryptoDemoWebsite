@@ -197,7 +197,8 @@ function pushToWallet() {
   if (pinia.state.user?.token) {
     navigateTo('/account/trade/wallet');
   } else {
-    navigateTo('/authentication/login');
+    // navigateTo('/authentication/login');
+    navigateTo('/account/trade/wallet');
   }
 }
 
@@ -262,14 +263,14 @@ onBeforeUnmount(() => {
   flex-shrink: 0;
   position: fixed !important;
   top: 0 !important;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .hidden {
   opacity: 0;
   transform: translateY(-100%);
   transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-  pointer-events: none; /* Prevent interactions while hidden */
+  pointer-events: none;
 }
 
 .nav-title {

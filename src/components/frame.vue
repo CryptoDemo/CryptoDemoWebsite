@@ -44,7 +44,7 @@
                 <img :src="isDark ? '/img/frame2-dark.png' : '/img/light-mode-img.png'" ref="image1" class="btc-box1"
                   style="max-width: 100%; width: 75%;" />
                 <img src="/img/pointer-vector.png" ref="image2"
-                  style="max-width: 100%; width: 60%; left: 7px; z-index: 1000;" class="cursor" />
+                  style="max-width: 100%; width: 60%; left: 7px; z-index: 8;" class="cursor" />
               </div>
               <div class="sell-col sel-coli">
                 <v-btn @click="navigateToCreateOffer()"
