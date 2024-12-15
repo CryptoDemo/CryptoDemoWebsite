@@ -335,7 +335,7 @@
                   Download
                   now and dive into the world of crypto trading!"</span>
                 <div class="d-flex social-icons-div"
-                  style="margin-top: 88px; padding-bottom: 60px; width: fit-content; align-items: center">
+                  :style="{marginTop: '88px', marginBottom: $vuetify.display.mobile ? '150px' : '', width: 'fit-content', alignItems: 'center'}">
                   <v-btn class="image-button me-4 desktop-social-icons"
                     :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
                   <v-btn class="image-button me-4 desktop-social-icons"
@@ -1525,7 +1525,7 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 }
 
 .lightmobileNimationBg {
-  background: url('../public/img/lightthemhand.png');
+  background: url('../public/svg/lightthemhand.svg');
   background-repeat: no-repeat;
   background-position: center;
   object-fit: contain;
