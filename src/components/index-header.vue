@@ -5,6 +5,7 @@
       <v-container style="display: flex; align-items: center;">
         <v-app-bar-title :class="isDark ? 'nav-title' : 'nav-title-light'"
           style="cursor: pointer;">Betacrypto</v-app-bar-title>
+         
         <div v-if="!pinia.state?.user?.token" class="d-flex" style="position: absolute; margin-left: 150px;">
           <v-btn @click.prevent="navigateToOffers()" class="header-link flex-lg-and-up hidden-sm-and-down">
             <span :class="isDark ? 'nav-subtitle' : 'nav-subtitle-light'">Create an offer</span>
@@ -197,8 +198,8 @@ function pushToWallet() {
   if (pinia.state.user?.token) {
     navigateTo('/account/trade/wallet');
   } else {
-    navigateTo('/authentication/login');
-    // navigateTo('/account/trade/wallet');
+    // navigateTo('/authentication/login');
+    navigateTo('/account/trade/wallet');
   }
 }
 

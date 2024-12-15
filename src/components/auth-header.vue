@@ -3,7 +3,7 @@
         class="dashboard-nav">
         <v-container style="display: flex; align-items: center;">
             <span @click.prevent="navigateTo('/')" class="logoName" :class="isDark ? 'nav-title' : 'nav-title-light'"
-                :style="{ fontFamily: 'SF Pro Display !important', fontSize: $vuetify.display.mobile ? '21px !important' : '24px !important', fontStyle: 'normal', fontWeight: '700 !important', lineHeight: 'normal', cursor: 'pointer', color: isDark ? '#fff' : '#1B2537', marginBottom: $vuetify.display.mobile ? '2px' : '0' }">Betacrypto</span>
+                :style="{ fontFamily: 'SF Pro Display !important', fontSize: $vuetify.display.mobile ? '21px !important' : '24px !important', fontStyle: 'normal', fontWeight: '700 !important', lineHeight: 'normal', cursor: 'pointer', color: isDark ? '#fff' : '#1B2537', marginBottom: $vuetify.display.mobile ? '2px' : '0' }"><span :style="{display: $vuetify.display.mobile ? 'none':'block'}">Betacrypto</span><logo/></span>
 
             <div style="display: flex; margin-inline-start: auto; align-items: center">
                 <span

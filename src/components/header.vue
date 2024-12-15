@@ -2,7 +2,7 @@
   <div :class="[isDark ? 'Dashboard-navbar' : 'Dashboard-navbar-light', { hidden: !showNavbar }]" class="dashboard-nav">
     <v-container style="display: flex; align-items: center;">
       <span @click.prevent="navigateTo('/')" class="logoName" :class="isDark ? 'nav-title' : 'nav-title-light'"
-        style="font-family: SF Pro Display !important; font-size: 24px !important; font-style: normal; font-weight: 700 !important; line-height: normal; cursor: pointer">Betacrypto</span>
+        style="font-family: SF Pro Display !important; font-size: 24px !important; font-style: normal; font-weight: 700 !important; line-height: normal; cursor: pointer"><span :style="{display: $vuetify.display.mobile ? 'none':'block'}">Betacrypto</span><logo/></span>
       <v-app-bar-title class="logoName" :class="isDark ? 'nav-title' : 'nav-title-light'">
 
         <v-text-field clearable class="flex-lg-and-up hidden-sm-and-down" hide-details
