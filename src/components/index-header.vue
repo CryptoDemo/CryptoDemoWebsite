@@ -198,8 +198,8 @@ function pushToWallet() {
   if (pinia.state.user?.token) {
     navigateTo('/account/trade/wallet');
   } else {
-    // navigateTo('/authentication/login');
-    navigateTo('/account/trade/wallet');
+    navigateTo('/authentication/login');
+    // navigateTo('/account/trade/wallet');
   }
 }
 
