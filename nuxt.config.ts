@@ -21,6 +21,7 @@ export default defineNuxtConfig({
         { name: "keywords", content: "crypto, cryptocurrency, bitcoin, blockchain, Betacrypto, Safe P2P Trading" },
         { name: "author", content: "Betacrypto" },
         { name: "publisher", content: "Betacrypto" },
+        {name: "language", content: "eng"},
         { property: "og:title", content: "Betacrypto" },
         { property: "og:description", content: "Unlock trading's future with Betacrypto: Buy, sell, and trade crypto effortlessly using real-time data and advanced tools." },
         { property: "og:image", content: "/img/logo1.png" },
@@ -34,10 +35,12 @@ export default defineNuxtConfig({
     }
   },
 
-  runtimeConfig: {
-    public: {
-      "language": "en"
-    }
+  sitemap: {
+    hostname: 'https://betacrypto.com', // Required for full URLs
+    exclude: [
+      '/account/**', // Exclude all admin routes
+      '/authentication/**', // Exclude specific pages
+    ],
   },
 
   css: [
