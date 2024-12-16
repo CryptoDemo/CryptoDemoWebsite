@@ -6,7 +6,7 @@
           <img src="/svg/Vector 1186.svg" style="max-width: 100%;" class="position-absolute right-vector1" />
           <img src="/svg/Vector 1187.svg" class="position-absolute left-vector1" style="right: 0; max-width: 100%;" />
           <span class="caption1i ">The fastest and trusted platform to trade</span>
-          <span class="headline">Ready to get started?</span>
+          <h2 class="headline">Ready to get started?</h2>
           <span class="explore2i" :class="isDark ? 'subtitle' : 'subtitle-light'"
             style="margin-bottom: 48px;display: flex; text-align: center;">Explore thousands of offers to buy and sell
             Bitcoin to kickstart your trading journey.</span>

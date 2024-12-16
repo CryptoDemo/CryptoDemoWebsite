@@ -15,7 +15,7 @@
 
 
       <div class="section2i section2" :class="isDark ? 'section2':'section2-light'">
-        <span class="section2-subtitle card-sub1">TRADE YOUR COIN LIKE A FOREX EXPERT</span>
+        <h2 class="section2-subtitle card-sub1">TRADE YOUR COIN LIKE A FOREX EXPERT</h2>
         <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Over 20 ways to buy and sell Bitcoin.</span>
         <span class="explore-trade">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
         <div class="mx-auto btn-segment2" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">

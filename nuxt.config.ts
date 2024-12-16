@@ -4,22 +4,41 @@ import vuetify from 'vite-plugin-vuetify';
 export default defineNuxtConfig({
   ssr: false,
   devtools: { enabled: false },
-  srcDir: "src", 
+  srcDir: "src",
 
   build: {
-    transpile: ['vuetify'],   
+    transpile: ['vuetify'],
   },
-    
-  app: {  
-    head: { 
-      titleTemplate: 'Betacrypto', 
-      charset: "utf-8",
-      viewport: 'width=device-width, initial-scale=1.0',
-      link: [
-        {rel: 'shortcut icon', href: "/img/logo1.png"},
+
+  app: {
+    head: {
+      title: "Spot Trading | Safe P2P Trading | Trade Bitcoin & Altcoin",
+      titleTemplate: '%s - Betacrypto',
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+        { name: "description", content: "Unlock trading's future with Betacrypto: Buy, sell, and trade crypto effortlessly using real-time data and advanced tools." },
+        { name: "keywords", content: "crypto, cryptocurrency, bitcoin, blockchain, Betacrypto, Safe P2P Trading" },
+        { name: "author", content: "Betacrypto" },
+        { name: "publisher", content: "Betacrypto" },
+        { property: "og:title", content: "Betacrypto" },
+        { property: "og:description", content: "Unlock trading's future with Betacrypto: Buy, sell, and trade crypto effortlessly using real-time data and advanced tools." },
+        { property: "og:image", content: "/img/logo1.png" },
+        { property: "og:url", content: "https://betacrypto.com" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
-    } 
-  }, 
+      link: [
+        { rel: 'shortcut icon', href: "/img/logo1.png" },
+        { rel: 'canonical', href: "https://betacrypto.com" },
+      ],
+    }
+  },
+
+  runtimeConfig: {
+    public: {
+      "language": "en"
+    }
+  },
 
   css: [
     "@/assets/css/index.css",
@@ -28,23 +47,24 @@ export default defineNuxtConfig({
     'notivue/notification-progress.css',
 
   ],
-  
+
 
   components: {
     dirs: [
       { path: '~/components', pathPrefix: false, lazy: true },
     ],
-  },    
+  },
 
 
-  modules: [ 
-    "@pinia/nuxt",    
-    "@pinia-plugin-persistedstate/nuxt", 
+  modules: [
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
     'notivue/nuxt',
-    '@nuxtjs/device', 
-    '@lambahq/nuxt',  
+    '@nuxtjs/device',
+    '@lambahq/nuxt',
     '@vueuse/nuxt',
     '@nuxt/image',
+    '@nuxtjs/seo',
     async (options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', config => {
         // @ts-expect-error
@@ -60,7 +80,7 @@ export default defineNuxtConfig({
     },
     //...
   ],
- 
+
   intercom: {
     // Required
     appId: "lwqnsoko"

@@ -33,9 +33,9 @@
               </div>
 
               <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000;">
-                <span class="headertext1 header-text1"
+                <h2 class="headertext1 header-text1"
                   :class="isDark ? 'header-text1-dark' : 'header-text1-light'">Trade
-                  Bitcoin on</span>
+                  Bitcoin on</h2>
                 <img src="/img/Frame.png" ref="fade1"
                   class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down" alt="betacrypto-img-5" />
               </div>
@@ -212,8 +212,8 @@
           <span class="section2-subtitle sub-text2" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features
             of
             Betacrypto</span>
-          <span class="section2-titleii" :class="isDark ? 'section2-title' : 'section2-title-light'"
-            style="margin-bottom: 88px;">Welcome to a financial system for the 100%.</span>
+          <h2 class="section2-titleii" :class="isDark ? 'section2-title' : 'section2-title-light'"
+            style="margin-bottom: 88px;">Welcome to a financial system for the 100%.</h2>
         </div>
 
         <LazyFrame />
@@ -327,10 +327,10 @@
                   style="justify-content: flex-start; margin-top: 0px !important">THE BETACRYPTO APP IS ALL YOU NEED FOR
                   DAY
                   TO DAY TRADING</span>
-                <span class="section2-titlei2 section2-title1"
+                <h2 class="section2-titlei2 section2-title1"
                   :class="isDark ? 'header-text1-dark' : 'header-text1-light'"
                   style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join
-                  the Future of <br>Crypto Trading with <br>Betacrypto</span>
+                  the Future of <br>Crypto Trading with <br>Betacrypto</h2>
                 <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Betacrypto.
                   Download
                   now and dive into the world of crypto trading!"</span>
