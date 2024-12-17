@@ -107,12 +107,8 @@
 
                   </v-text-field>
                   <div class="position-relative">
-                    <span v-if="isToggled" @click="togglePassword()" class="eye-icon">
-                      <img src="/svg/visible.svg" />
-                    </span>
-
-                    <span v-else @click="togglePassword()" class="eye-icon">
-                      <img src="/svg/invisible.svg" />
+                    <span @click="togglePassword()" class="eye-icon">
+                      <img :src="isToggled ? '/svg/visible.svg':'/svg/invisible.svg'" />
                     </span>
                   </div>
                 </div>
