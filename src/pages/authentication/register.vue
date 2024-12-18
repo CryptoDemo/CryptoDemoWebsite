@@ -2,9 +2,8 @@
   <div class="section">
     <LoginBG />
     <auth-header desc="Already have an account?," linkTitle="Login" link="/authentication/login" :newUserLanguage="true" :flagDropdown="true"/>
-    <v-container class="form-layout overflow-hidden" :class="isDark ? 'form-layout' : 'form-layout-light'"
-      style="overflow-y: scroll !important;">
-      <div class="section">
+    <v-container class="form-layout" :class="isDark ? 'form-layout' : 'form-layout-light'">
+
         <v-row no-gutters>
           <v-col dense cols="md-5" class="form" :class="isDark ? 'form' : 'form-light'" style="padding: 0px 70px;">
             <v-form @click.prevent>
@@ -151,8 +150,6 @@
             </div>
           </v-col>
         </v-row>
-      </div>
-      <!-- </div>   -->
     </v-container>
   </div>
 </template>

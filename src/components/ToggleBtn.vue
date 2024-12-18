@@ -72,7 +72,7 @@
 	--trans-timing: cubic-bezier(0.65,0,0.35,1);
 	font-size: calc(10px + (120 - 50) * (45vw - 150px) / (2560 - 320));
 	overflow: hidden;
-	border-radius: 21px !important;
+	border-radius: 83px !important;
 	background: inherit;
 }
 
