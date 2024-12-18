@@ -1,394 +1,378 @@
 <template>
+
+  <img
+    :src="isDark ? 'https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg' : 'https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg'"
+    class="position-absolute bg-vector" style="opacity: 0.4; left: 0;  right: 0; display: flex; margin: auto"
+    alt="betacrypto-img1" v-if="isDark" />
+
   <div>
 
-    <img
-      :src="isDark ? 'https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg' : 'https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619522/Background_pattern_cr8ghg.svg'"
-      class="position-absolute bg-vector" style="opacity: 0.4; left: 0;  right: 0; display: flex; margin: auto"
-      alt="betacrypto-img1" v-if="isDark" />
+    <Index-header title="Log in" link="https://cryptodemo-inhouse.netlify.app/login" class="desktop-header" />
+    <Mobile-header class="mobile-header" />
 
-    <div>
+    <v-container class="position-relative">
+      <div class="position-absolute">
+        <img src="/svg/Frame.svg" ref="img1" class="pink-coin position-absolute flex-lg-and-up hidden-sm-and-down"
+          alt="betacrypto-img-3" />
+      </div>
+      <div>
+        <div class="frame-1"
+          :style="{ border: isDark ? '0.5px solid #64748B' : '0.5px solid #2873FF', background: isDark ? 'rgba(27, 37, 55, 0.50)' : '#E9F1FF' }">
+          <button @click="showPushInfo" :disabled="isPushActive"
+            :style="{height: '30px', color: '#fff', fontSize: $vuetify.display.mobile ? '12px !important':'14px !important', fontWeight: '700 !important', border: 'none', background: '#2873FF', padding: '2px 12px !important', borderRadius: '100px !important', letterSpacing:'-0.14px !important' }">
+            Trending</button>
+          <span class="writing-text" :style="{ color: isDark ? '#fff' : '#1B2537' }">See the top trending crypto gainers
+            today</span>
+          <img src="/svg/blue-arrow.svg" alt="betacrypto-img-4" style="cursor: pointer" @click="!pinia.state.user?.token && navigateTo('/authentication/login')" />
+        </div>
 
-      <Index-header title="Log in" link="https://cryptodemo-inhouse.netlify.app/login" class="desktop-header" />
-      <Mobile-header class="mobile-header" />
+        <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000;">
+          <h2 class="headertext1 header-text1" :class="isDark ? 'header-text1-dark' : 'header-text1-light'">Instant
+            Trading on</h2>
+          <img src="/img/Frame.png" ref="fade1" class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down"
+            alt="betacrypto-img-5" />
+        </div>
 
-      <div style="position: relative;">
-        <section class="position-relative">
-          <v-container class="position-relative">
-            <div class="position-absolute">
-              <img src="/svg/Frame.svg" ref="img1" class="pink-coin position-absolute flex-lg-and-up hidden-sm-and-down"
-                alt="betacrypto-img-3" />
+        <div class="d-flex text-img position-relative" v-if="isDark">
+          <span class="web webi" style="margin-right: 78px; z-index: 1000;">Betacrypto</span>
+          <img src="/svg/Frame 1305.svg" class="demo-star"
+            style="position: absolute; margin-left: 375px ;top: -27px;  max-width: 100%; height: auto;"
+            alt="betacrypto-img-6" />
+        </div>
+        <div class="d-flex text-img" v-else>
+          <span class="web">Betacrypto✨️</span>
+        </div>
+        <div class="position-relative">
+          <img src="/svg/Group 1318.svg" class="position-absolute flex-lg-and-up hidden-sm-and-down"
+            style="top: -76px; left: -4%;" alt="betacrypto-img-7" ref="fade2">
+          <img src="/svg/Group 1320.svg" ref="img2"
+            class="green-coin position-absolute flex-lg-and-up hidden-sm-and-down" alt="betacrypto-img-8" />
+        </div>
+        <div>
+          <span class="subtitle-text">Join us to unlock the future of finance with secure, fast, and intuitive crypto
+            trading at your fingertips.</span>
+        </div>
+        <div class="form-wrap position-relative">
+
+          <img src="/svg/Ellipse.svg" class="blue-ellipse position-absolute" alt="betacrypto-img-9" />
+
+          <div class="landing-page-form" :class="isDark ? 'landing-page-form' : 'light-landing-page-form'">
+            <span class="top-grad border-span"></span>
+            <span class="right-grad"></span>
+            <span class="bottom-grad border-span"></span>
+            <span class="left-grad"></span>
+            <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619519/bitcoin-star_h5jhpu.svg" ref="img3"
+              class="yellow-coin position-absolute" alt="betacrypto-img-10" />
+            <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute" alt="betacrypto-img-11"
+              ref="img4" />
+
+            <div class="btn-segment" :class="isDark ? 'btn-segment' : 'btn-segment-light'">
+              <v-btn :class="`${transaction ? 'buy-btn' : 'sell-btn'} ${isDark ? 'buy-btn' : 'buy-btn-light'}`"
+                @click.prevent="transaction = true"> Buy </v-btn>
+              <v-btn :class="`${!transaction ? 'buy-btn' : 'sell-btn'} ${isDark ? 'buy-btn' : 'buy-btn-light'}`"
+                @click.prevent="transaction = false">Sell</v-btn>
             </div>
-            <div>
-              <div :class="isDark ? 'frame-1' : 'frame-1-light'">
-                <v-btn @click="showPushInfo" :disabled="isPushActive" color="#2873FF" class="writing-btn"
-                  :style="{ display: $vuetify.display.mobile ? 'none' : 'block'}">
-                  Betacrypto
-                </v-btn>
-                <button @click="showPushInfo" :disabled="isPushActive"
-                  :style="{color: '#fff', fontSize: '10px !important', fontWeight: '800 !important', border: 'none', display: $vuetify.display.mobile ? 'block' : 'none', background: '#2873FF', padding: '7.5px 8px !important', borderRadius: '15px !important' }">
-                  Betacrypto</button>
-                <span class="writing-text" :class="isDark ? 'writing-text-dark' : 'writing-text-light'">The number one
-                  trading platform in Europe</span>
-                <img src="/svg/blue-arrow.svg" alt="betacrypto-img-4" />
+
+
+            <div style="margin-top: 24px;">
+              <BlockChain />
+              <div style=" margin-top: 9px ;">
+                <span class="hint-text mt-8">Select Blockchain network</span>
               </div>
 
-              <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000;">
-                <h2 class="headertext1 header-text1"
-                  :class="isDark ? 'header-text1-dark' : 'header-text1-light'">Trade
-                  Bitcoin on</h2>
-                <img src="/img/Frame.png" ref="fade1"
-                  class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down" alt="betacrypto-img-5" />
-              </div>
+            </div>
 
-              <div class="d-flex text-img position-relative" v-if="isDark">
-                <span class="web webi" style="margin-right: 78px; z-index: 1000;">Betacrypto</span>
-                <img src="/svg/Frame 1305.svg" class="demo-star"
-                  style="position: absolute; margin-left: 375px ;top: -27px;  max-width: 100%; height: auto;"
-                  alt="betacrypto-img-6" />
-              </div>
-              <div class="d-flex text-img" v-else>
-                <span class="web">Betacrypto✨️</span>
-              </div>
-              <div class="position-relative">
-                <img src="/svg/Group 1318.svg" class="position-absolute flex-lg-and-up hidden-sm-and-down"
-                  style="top: -76px; left: -4%;" alt="betacrypto-img-7" ref="fade2">
-                <img src="/svg/Group 1320.svg" ref="img2"
-                  class="green-coin position-absolute flex-lg-and-up hidden-sm-and-down" alt="betacrypto-img-8" />
-              </div>
-              <div>
-                <span class="subtitle-text">Join over 12 million people just like you on everyone's favorite
-                  peer-to-peer platform to buy and sell Bitcoin.</span>
-              </div>
-              <div class="form-wrap position-relative">
-
-                <img src="/svg/Ellipse.svg" class="blue-ellipse position-absolute" alt="betacrypto-img-9" />
-
-                <div class="landing-page-form" :class="isDark ? 'landing-page-form' : 'light-landing-page-form'">
-                  <span class="top-grad border-span"></span>
-                  <span class="right-grad"></span>
-                  <span class="bottom-grad border-span"></span>
-                  <span class="left-grad"></span>
-                  <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619519/bitcoin-star_h5jhpu.svg"
-                    ref="img3" class="yellow-coin position-absolute" alt="betacrypto-img-10" />
-                  <img src="/svg/Frame (2).svg" class="light-green-coin position-absolute" alt="betacrypto-img-11"
-                    ref="img4" />
-
-                  <div class="btn-segment" :class="isDark ? 'btn-segment' : 'btn-segment-light'">
-                    <v-btn :class="`${transaction ? 'buy-btn' : 'sell-btn'} ${isDark ? 'buy-btn' : 'buy-btn-light'}`"
-                      @click.prevent="transaction = true"> Buy </v-btn>
-                    <v-btn :class="`${!transaction ? 'buy-btn' : 'sell-btn'} ${isDark ? 'buy-btn' : 'buy-btn-light'}`"
-                      @click.prevent="transaction = false">Sell</v-btn>
-                  </div>
-
-
-                  <div style="margin-top: 24px;">
-                    <BlockChain />
-                    <div style=" margin-top: 9px ;">
-                      <span class="hint-text mt-8">Select Blockchain network</span>
+            <div style="margin-top: 24px;">
+              <v-menu>
+                <template v-slot:activator="{ props }">
+                  <v-btn @click="toggleChevron" :class="isDark ? 'coin-dropdown' : 'coin-dropdown-light'"
+                    style="letter-spacing: 0px; box-shadow: none" v-bind="props">
+                    <img width="25" class="me-3 select" :src="icon" alt="betacrypto-img-12" />
+                    <div class="py-3" style="display: grid; cursor: pointer;">
+                      <span class="me-2">{{ select }}</span>
+                      <span class="me-2 small-text">{{ coin }}</span>
                     </div>
+                    <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon"
+                      :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']"></v-icon>
+                  </v-btn>
+                </template>
 
-                  </div>
+                <div class="coin-overlay" style="height: 200px">
+                  <v-list :class="isDark ? 'coin-bg1' : 'coin-bg1-light'"
+                    style="border-radius: 10px; margin-top: 10px;">
 
-                  <div style="margin-top: 24px;">
-                    <v-menu>
-                      <template v-slot:activator="{ props }">
-                        <v-btn @click="toggleChevron" :class="isDark ? 'coin-dropdown' : 'coin-dropdown-light'"
-                          style="letter-spacing: 0px; box-shadow: none" v-bind="props">
-                          <img width="25" class="me-3 select" :src="icon" alt="betacrypto-img-12" />
-                          <div class="py-3" style="display: grid; cursor: pointer;">
-                            <span class="me-2">{{ select }}</span>
-                            <span class="me-2 small-text">{{ coin }}</span>
-                          </div>
-                          <v-icon icon="mdi-chevron-down" id="filter-toggle" color="#8E9BAE" class="chevron-icon"
-                            :class="['chevron-icon', { 'chevron-icon-rotated': isChevronToggled }, isDark ? 'close-btn' : 'close-btn-dark']"></v-icon>
-                        </v-btn>
-                      </template>
-
-                      <div class="coin-overlay" style="height: 200px">
-                        <v-list :class="isDark ? 'coin-bg1' : 'coin-bg1-light'"
-                          style="border-radius: 10px; margin-top: 10px;">
-
-                          <v-list-item style="width: -webkit-fill-available;">
-                            <div @click.stop style="margin-top: 8px; margin-bottom: 15px;">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
-                                fill="none" style="position: absolute; top: 33px; margin-left: 45px;">
-                                <path
-                                  d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z"
-                                  stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                              </svg>
-                              <v-textarea clearable variant="plain" rows="1" no-resize placeholder="Search for Coins..."
-                                v-model="input"
-                                style=" border: 1px solid #64748B; height: 55px; margin: auto;  border-radius: 30px; padding-left: 45px; align-items: center; width: 90%;"></v-textarea>
-                            </div>
-                            <div style="height: auto; max-height: 250px; overflow: scroll">
-                              <div
-                                v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists"
-                                :key="index" class="d-flex py-2">
-                                <v-list-item @click="select = item.name; coin = item.symbol; icon = item.icon"
-                                  class="d-flex" style="align-items: center">
-                                  <div class="ml-7" style="display: flex">
-                                    <img width="35" class="rounded-5 me-3" :src="item.icon" alt="betacrypto-img-14" />
-                                    <img :src="chainIcon?.icon" width="15"
-                                      style="position: relative; right: 25px; margin-top: 16px;"
-                                      alt="betacrypto-img-15" />
-                                    <div>
-                                      <span> {{ item.name }} </span>
-                                      <span class="small-text">{{ item.symbol }}</span>
-                                    </div>
-                                  </div>
-                                </v-list-item>
+                    <v-list-item style="width: -webkit-fill-available;">
+                      <div @click.stop style="margin-top: 8px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                          style="position: absolute; top: 33px; margin-left: 45px;">
+                          <path
+                            d="M17 17L12.9497 12.9497M12.9497 12.9497C14.2165 11.683 15 9.933 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C9.933 15 11.683 14.2165 12.9497 12.9497Z"
+                            stroke="#8E9BAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <v-textarea clearable variant="plain" rows="1" no-resize placeholder="Search for Coins..."
+                          v-model="input"
+                          style=" border: 1px solid #64748B; height: 55px; margin: auto;  border-radius: 30px; padding-left: 45px; align-items: center; width: 90%;"></v-textarea>
+                      </div>
+                      <div style="height: auto; max-height: 250px; overflow: scroll">
+                        <div v-for="(item, index) in filteredItems?.length ? filteredItems : pinia.state.tokenLists"
+                          :key="index" class="d-flex py-2">
+                          <v-list-item @click="select = item.name; coin = item.symbol; icon = item.icon" class="d-flex"
+                            style="align-items: center">
+                            <div class="ml-7" style="display: flex">
+                              <img width="35" class="rounded-5 me-3" :src="item.icon" alt="betacrypto-img-14" />
+                              <img :src="chainIcon?.icon" width="15"
+                                style="position: relative; right: 25px; margin-top: 16px;" alt="betacrypto-img-15" />
+                              <div>
+                                <span> {{ item.name }} </span>
+                                <span class="small-text">{{ item.symbol }}</span>
                               </div>
                             </div>
                           </v-list-item>
-                        </v-list>
+                        </div>
                       </div>
-                    </v-menu>
-
-                    <div style="margin-top:9px">
-                      <span class="btc-ammt">1 {{ coin }} = USD <span class="btc-ammt1"
-                          style="color: #2873FF; font-family: Manrope;">{{
-                            conversionResult.find(c => c.from == coin)?.value || 0 }}</span></span>
-                    </div>
-
-
-                    <div style="margin-top: 30px;">
-                      <span :class="isDark ? 'pay-with' : 'pay-with-light'"
-                        style="display: flex; justify-content: flex-start;">{{
-                          transaction ? "I want to buy" : "I want to sell" }}</span>
-                      <div class="d-flex" style="margin-top:9px; position: relative;">
-
-                        <input type="number" v-model="ammount_of_coin"
-                          style="outline: none; position:relative; width: 100%;"
-                          :class="isDark ? 'coin-dropdown' : 'coin-dropdown-light'" placeholder="Enter Amount" />
-
-                        <v-menu transition="scale-transition">
-                          <template v-slot:activator="{ props }">
-                            <v-btn v-bind="props" class="position-absolute show-all"
-                              :class="isDark ? 'show-all-dark' : 'show-all-light'"
-                              style="right: 10px;margin-top: 8px;font-weight: 700;">
-                              {{ Selectedcurrency }}
-                              <v-icon icon="mdi-chevron-down notranslate" color="#8E9BAE"
-                                style="margin-left: 6px "></v-icon>
-
-                            </v-btn>
-                          </template>
-
-                          <v-list :class="isDark ? 'country-dropdown' : 'country-dropdown-light'"
-                            style="height: 120px !important; width: auto !important; border-radius: 10px !important; margin-top: 10px;">
-                            <v-list-item v-for="(currency, i) in pinia.state.allcountries" :key="i">
-                              <div>
-                                <v-list-item @click="Selectedcurrency = currency.currency_name">
-                                  <span class="ml-4">{{ currency.currency_name }} </span>
-                                </v-list-item>
-                              </div>
-                            </v-list-item>
-                          </v-list>
-                        </v-menu>
-                      </div>
-
-                      <div style=" margin-top: 9px ;">
-                        <span class="hint-text">Enter the amount and preferred currency.</span>
-                      </div>
-
-                    </div>
-                    <v-btn @click="collectVals()" class="exchange-btn" color="" style="letter-spacing: 0px !important;">
-                      <span class="exchange-text">Trade Now </span></v-btn>
-                  </div>
+                    </v-list-item>
+                  </v-list>
                 </div>
+              </v-menu>
+
+              <div style="margin-top:9px">
+                <span class="btc-ammt">1 {{ coin }} = USD <span class="btc-ammt1"
+                    style="color: #2873FF; font-family: Manrope;">{{
+                      conversionResult.find(c => c.from == coin)?.value || 0 }}</span></span>
               </div>
+
+
+              <div style="margin-top: 30px;">
+                <span :class="isDark ? 'pay-with' : 'pay-with-light'"
+                  style="display: flex; justify-content: flex-start;">{{
+                    transaction ? "I want to buy" : "I want to sell" }}</span>
+                <div class="d-flex" style="margin-top:9px; position: relative;">
+
+                  <input type="number" v-model="ammount_of_coin" style="outline: none; position:relative; width: 100%;"
+                    :class="isDark ? 'coin-dropdown' : 'coin-dropdown-light'" placeholder="Enter Amount" />
+
+                  <v-menu transition="scale-transition">
+                    <template v-slot:activator="{ props }">
+                      <v-btn v-bind="props" class="position-absolute show-all"
+                        :class="isDark ? 'show-all-dark' : 'show-all-light'"
+                        style="right: 10px;margin-top: 8px;font-weight: 700;">
+                        {{ Selectedcurrency }}
+                        <v-icon icon="mdi-chevron-down notranslate" color="#8E9BAE" style="margin-left: 6px "></v-icon>
+
+                      </v-btn>
+                    </template>
+
+                    <v-list :class="isDark ? 'country-dropdown' : 'country-dropdown-light'"
+                      style="height: 120px !important; width: auto !important; border-radius: 10px !important; margin-top: 10px;">
+                      <v-list-item v-for="(currency, i) in pinia.state.allcountries" :key="i">
+                        <div>
+                          <v-list-item @click="Selectedcurrency = currency.currency_name">
+                            <span class="ml-4">{{ currency.currency_name }} </span>
+                          </v-list-item>
+                        </div>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
+                </div>
+
+                <div style=" margin-top: 9px ;">
+                  <span class="hint-text">Enter the amount and preferred currency.</span>
+                </div>
+
+              </div>
+              <v-btn @click="collectVals()" class="exchange-btn" color="" style="letter-spacing: 0px !important;">
+                <span class="exchange-text">Trade Now </span></v-btn>
             </div>
-          </v-container>
-        </section>
+          </div>
+        </div>
+      </div>
+    </v-container>
+
+    <v-container style="position: relative;">
+      <LazyPaymentOptions />
+    </v-container>
+
+    <v-container class=" position-relative section2ii">
+      <img v-lazy="'/svg/Ellipse 2813.svg'" class="position-absolute blue-ellipse2" style="right:0; margin-top: 144px ;"
+        alt="betacrypto-img-16" />
+      <div class="section2ii2 section2" :class="isDark ? 'section2' : 'section2-light'">
+        <span class="section2-subtitle sub-text2" style="margin-top: 201.5px; margin-bottom: 40px;">Discover the features of Betacrypto</span>
+        <h2 class="section2-titleii" :class="isDark ? 'section2-title' : 'section2-title-light'"
+          style="margin-bottom: 88px;">A financial system designed for everyone</h2>
       </div>
 
-      <v-container class=" position-relative">
-        <LazyPaymentOptions />
-      </v-container>
+      <LazyFrame />
 
-      <v-container class=" position-relative section2ii">
-        <img v-lazy="'/svg/Ellipse 2813.svg'" class="position-absolute blue-ellipse2"
-          style="right:0; margin-top: 144px ;" alt="betacrypto-img-16" />
-        <div class="section2ii2 section2" :class="isDark ? 'section2' : 'section2-light'">
-          <span class="section2-subtitle sub-text2" style="margin-top: 201.5px; margin-bottom: 40px;">Awesome features
-            of
-            Betacrypto</span>
-          <h2 class="section2-titleii" :class="isDark ? 'section2-title' : 'section2-title-light'"
-            style="margin-bottom: 88px;">Welcome to a financial system for the 100%.</h2>
-        </div>
+      <div style="margin-top: -5px;">
+        <LazyReviews />
+      </div>
 
-        <LazyFrame />
-
-        <div style="margin-top: -5px;">
-          <LazyReviews />
-        </div>
-
-        <v-row no-gutters class="mt-7">
-          <v-col cols="12" sm="6" md="6">
-            <div class="demo-div1" style="margin-inline-end: 28px; overflow: hidden">
-              <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'"
-                style="padding: 0px 0px 35px 0px">
-                <div :class="isDark ? 'rectangle' : 'addedbg rectangle'"
-                  style="display: flex; justify-self: center; padding: 10px">
-                  <div class="d-flex justify-center adjustHeight"
-                    style="width: 100%; overflow: hidden; justify-self: space-between; align-items: center; margin: 20px 10px 2px 10px;">
-                    <div style="width: 60%; display: flex; flex-direction: column; align-items: center">
-                      <img ref="zoomImg" src="/img/priceAct.png" style="width: 90%;" alt="" class="rounded-t-md" />
-                      <div class="d-flex justify-center ga-2 boxContainer"
-                        style="padding: 0px; width: 100%; margin-top: 6px">
-                        <img v-for="(image, index) in btnImages" :key="index" :src="image.src" :alt="image.alt"
-                          style="width: 20%; object-fit: contain; border-radius: 18px" class="box" />
-                      </div>
+      <v-row no-gutters class="mt-7">
+        <v-col cols="12" sm="6" md="6">
+          <div class="demo-div1" style="margin-inline-end: 28px; overflow: hidden">
+            <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'"
+              style="padding: 0px 0px 35px 0px">
+              <div :class="isDark ? 'rectangle' : 'addedbg rectangle'"
+                style="display: flex; justify-self: center; padding: 10px">
+                <div class="d-flex justify-center adjustHeight"
+                  style="width: 100%; overflow: hidden; justify-self: space-between; align-items: center; margin: 20px 10px 2px 10px;">
+                  <div style="width: 60%; display: flex; flex-direction: column; align-items: center">
+                    <img ref="zoomImg" src="/img/priceAct.png" style="width: 90%;" alt="" class="rounded-t-md" />
+                    <div class="d-flex justify-center ga-2 boxContainer"
+                      style="padding: 0px; width: 100%; margin-top: 6px">
+                      <img v-for="(image, index) in btnImages" :key="index" :src="image.src" :alt="image.alt"
+                        style="width: 20%; object-fit: contain; border-radius: 18px" class="box" />
                     </div>
-                    <div class="marquee-container">
-                      <div class="marquee">
-                        <img v-for="(image, index) in imagesToRender" :key="index"
-                          :src="isDark ? image.darkSrc : image.lightSrc" :alt="image.alt" class="rounded-t-md"
-                          style="margin-top: 10px" />
-                      </div>
+                  </div>
+                  <div class="marquee-container">
+                    <div class="marquee">
+                      <img v-for="(image, index) in imagesToRender" :key="index"
+                        :src="isDark ? image.darkSrc : image.lightSrc" :alt="image.alt" class="rounded-t-md"
+                        style="margin-top: 10px" />
                     </div>
                   </div>
                 </div>
-                <v-spacer></v-spacer>
-                <div class="wallet-div" style="display:grid;  margin-left: 36px; position: relative; top: 6px;">
+              </div>
+              <v-spacer></v-spacer>
+              <div class="wallet-div" style="display:grid;  margin-left: 36px; position: relative; top: 6px;">
 
-                  <v-btn @click="WalletNav()" class="wallet-frame" style="width: 88px;">
-                    <img src="/svg/Wallet.svg" class="me-2" alt="betacrypto-img-19">
+                <v-btn @click="WalletNav()" class="wallet-frame" style="width: 88px;">
+                  <img src="/svg/Wallet.svg" class="me-2" alt="betacrypto-img-19">
+                  <span :class="isDark ? 'sell-btc-text' : 'sell-btc-text-light'"
+                    style="font-size: 14px !important;  font-weight: 600;">wallet</span>
+                </v-btn>
+
+                <div style="display: grid; position: relative;">
+                  <span class="buy" :class="isDark ? 'free-demo' : 'free-demo-light'">Free Betacrypto Wallet</span>
+                  <span style="margin-top: 8px;  color: #8E9BAE;line-height: 140%; font-family: SF Pro Display ;">Get
+                    a free
+                    <span class="text-demoi"
+                      style="font-size: 16px; color: #8E9BAE; font-family: SF Pro Display; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline; cursor: pointer">Betacrypto
+                      wallet</span>
+                    when you sign up to receive, send, and store your Bitcoin.</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </v-col>
+        <v-col cols="12" sm="6" md="6">
+          <div class="">
+            <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'">
+              <div class="rectangle">
+                <div style="padding-top: 28px; margin-bottom: 28px; height: 210px; position:relative; overflow:hidden">
+                  <img :src="isDark ? '/img/barcode-dark.png' : '/img/barcode-light.png'"
+                    style="display: flex; justify-self: center; margin: auto; width: 93%;" alt="betacrypto-img-20" />
+                  <img :src="isDark ? '/img/imgspin2.png' : '/img/imgspin1.png'" class="spinner-img">
+                </div>
+              </div>
+              <div class="wallet-div" style="margin-left: 36px;">
+                <nuxt-link>
+                  <v-btn class="wallet-frame" style="width: 95px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                      class="me-2">
+                      <path
+                        d="M12.8492 15.7835C12.9107 15.8778 12.9456 15.987 12.9502 16.0995C12.9548 16.212 12.9289 16.3236 12.8753 16.4226C12.8217 16.5216 12.7423 16.6043 12.6456 16.6619C12.5489 16.7195 12.4384 16.7499 12.3258 16.7499H0.79924C0.686659 16.7499 0.576171 16.7195 0.479451 16.6619C0.382731 16.6043 0.303369 16.5216 0.249751 16.4226C0.196133 16.3236 0.17025 16.212 0.174835 16.0995C0.179421 15.987 0.214305 15.8778 0.275803 15.7835C1.15557 14.4293 2.44962 13.3959 3.96487 12.8374C3.12721 12.2798 2.49125 11.4674 2.15104 10.5203C1.81082 9.57325 1.78441 8.54185 2.07572 7.57862C2.36702 6.6154 2.96057 5.77149 3.76859 5.17169C4.57662 4.57189 5.55621 4.24805 6.56252 4.24805C7.56883 4.24805 8.54843 4.57189 9.35645 5.17169C10.1645 5.77149 10.758 6.6154 11.0493 7.57862C11.3406 8.54185 11.3142 9.57325 10.974 10.5203C10.6338 11.4674 9.99784 12.2798 9.16018 12.8374C10.6754 13.3959 11.9695 14.4293 12.8492 15.7835ZM19.7172 15.7718C18.8372 14.4233 17.546 13.3943 16.0352 12.8374C17.0241 12.1713 17.722 11.1534 17.9868 9.99084C18.2516 8.8283 18.0635 7.60853 17.4607 6.57981C16.8578 5.5511 15.8857 4.79076 14.742 4.45357C13.5984 4.11637 12.3692 4.22766 11.3047 4.76479C11.264 4.78581 11.2284 4.81552 11.2005 4.85182C11.1725 4.88811 11.1529 4.93011 11.143 4.97483C11.1331 5.01956 11.1331 5.06592 11.1431 5.11062C11.1531 5.15533 11.1728 5.19729 11.2008 5.23354C11.9923 6.22089 12.4469 7.43576 12.498 8.70019C12.549 9.96463 12.1938 11.2122 11.4844 12.2601C11.4385 12.3286 11.4216 12.4124 11.4373 12.4933C11.4529 12.5742 11.4999 12.6457 11.568 12.6921C12.4929 13.3377 13.2847 14.1554 13.9 15.1007C14.1482 15.4808 14.2495 15.9381 14.1852 16.3874C14.1779 16.4321 14.1805 16.4779 14.1927 16.5215C14.2048 16.5651 14.2263 16.6055 14.2557 16.64C14.285 16.6745 14.3215 16.7022 14.3626 16.7212C14.4038 16.7401 14.4485 16.75 14.4938 16.7499H19.2047C19.3423 16.75 19.4761 16.7046 19.5853 16.6208C19.6945 16.5371 19.773 16.4196 19.8086 16.2867C19.8303 16.1992 19.8334 16.1082 19.8177 16.0195C19.8019 15.9308 19.7677 15.8464 19.7172 15.7718Z"
+                        fill="#2873FF" />
+                    </svg>
                     <span :class="isDark ? 'sell-btc-text' : 'sell-btc-text-light'"
-                      style="font-size: 14px !important;  font-weight: 600;">wallet</span>
+                      style="font-size: 14px !important; font-weight: 600;">Friends</span>
                   </v-btn>
-
-                  <div style="display: grid; position: relative;">
-                    <span class="buy" :class="isDark ? 'free-demo' : 'free-demo-light'">Free Betacrypto Wallet</span>
-                    <span style="margin-top: 8px;  color: #8E9BAE;line-height: 140%; font-family: SF Pro Display ;">Get
-                      a free
+                </nuxt-link>
+                <div style="display:grid;">
+                  <span class="buy" :class="isDark ? 'free-demo' : 'free-demo-light'" style="margin-top : 16px ">Invite
+                    friends</span>
+                  <span style="margin-top: 14px; color: #8E9BAE;line-height: 140%; font-family: SF Pro Display;">Get
+                    your
+                    friends and family to
+                    <NuxtLink to="/authentication/register">
                       <span class="text-demoi"
-                        style="font-size: 16px; color: #8E9BAE; font-family: SF Pro Display; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline; cursor: pointer">Betacrypto
-                        wallet</span>
-                      when you sign up to receive, send, and store your Bitcoin.</span>
-                  </div>
-
+                        style="font-size: 16px; color: #8E9BAE; font-family: SF Pro Display; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline;">sign
+                        up</span>
+                    </NuxtLink>
+                    for Betacrypto
+                  </span>
                 </div>
               </div>
             </div>
-          </v-col>
-          <v-col cols="12" sm="6" md="6">
+
+          </div>
+        </v-col>
+      </v-row>
+    </v-container>
+
+    <div class="section3" :class="isDark ? 'section3' : 'section3-light'" style="margin-top: 200px;">
+      <v-container>
+        <v-row no-gutters class="phone-section" style="padding-top: 170px; padding-bottom: 140px">
+          <v-col cols="md-7" sm="12">
             <div class="">
-              <div class="barcode-section" :class="isDark ? 'barcode-section' : 'barcode-section-light'">
-                <div class="rectangle">
-                  <div
-                    style="padding-top: 28px; margin-bottom: 28px; height: 210px; position:relative; overflow:hidden">
-                    <img :src="isDark ? '/img/barcode-dark.png' : '/img/barcode-light.png'"
-                      style="display: flex; justify-self: center; margin: auto; width: 93%;" alt="betacrypto-img-20" />
-                    <img :src="isDark ? '/img/imgspin2.png' : '/img/imgspin1.png'" class="spinner-img">
-                  </div>
-                </div>
-                <div class="wallet-div" style="margin-left: 36px;">
-                  <nuxt-link>
-                    <v-btn class="wallet-frame" style="width: 95px;">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none"
-                        class="me-2">
-                        <path
-                          d="M12.8492 15.7835C12.9107 15.8778 12.9456 15.987 12.9502 16.0995C12.9548 16.212 12.9289 16.3236 12.8753 16.4226C12.8217 16.5216 12.7423 16.6043 12.6456 16.6619C12.5489 16.7195 12.4384 16.7499 12.3258 16.7499H0.79924C0.686659 16.7499 0.576171 16.7195 0.479451 16.6619C0.382731 16.6043 0.303369 16.5216 0.249751 16.4226C0.196133 16.3236 0.17025 16.212 0.174835 16.0995C0.179421 15.987 0.214305 15.8778 0.275803 15.7835C1.15557 14.4293 2.44962 13.3959 3.96487 12.8374C3.12721 12.2798 2.49125 11.4674 2.15104 10.5203C1.81082 9.57325 1.78441 8.54185 2.07572 7.57862C2.36702 6.6154 2.96057 5.77149 3.76859 5.17169C4.57662 4.57189 5.55621 4.24805 6.56252 4.24805C7.56883 4.24805 8.54843 4.57189 9.35645 5.17169C10.1645 5.77149 10.758 6.6154 11.0493 7.57862C11.3406 8.54185 11.3142 9.57325 10.974 10.5203C10.6338 11.4674 9.99784 12.2798 9.16018 12.8374C10.6754 13.3959 11.9695 14.4293 12.8492 15.7835ZM19.7172 15.7718C18.8372 14.4233 17.546 13.3943 16.0352 12.8374C17.0241 12.1713 17.722 11.1534 17.9868 9.99084C18.2516 8.8283 18.0635 7.60853 17.4607 6.57981C16.8578 5.5511 15.8857 4.79076 14.742 4.45357C13.5984 4.11637 12.3692 4.22766 11.3047 4.76479C11.264 4.78581 11.2284 4.81552 11.2005 4.85182C11.1725 4.88811 11.1529 4.93011 11.143 4.97483C11.1331 5.01956 11.1331 5.06592 11.1431 5.11062C11.1531 5.15533 11.1728 5.19729 11.2008 5.23354C11.9923 6.22089 12.4469 7.43576 12.498 8.70019C12.549 9.96463 12.1938 11.2122 11.4844 12.2601C11.4385 12.3286 11.4216 12.4124 11.4373 12.4933C11.4529 12.5742 11.4999 12.6457 11.568 12.6921C12.4929 13.3377 13.2847 14.1554 13.9 15.1007C14.1482 15.4808 14.2495 15.9381 14.1852 16.3874C14.1779 16.4321 14.1805 16.4779 14.1927 16.5215C14.2048 16.5651 14.2263 16.6055 14.2557 16.64C14.285 16.6745 14.3215 16.7022 14.3626 16.7212C14.4038 16.7401 14.4485 16.75 14.4938 16.7499H19.2047C19.3423 16.75 19.4761 16.7046 19.5853 16.6208C19.6945 16.5371 19.773 16.4196 19.8086 16.2867C19.8303 16.1992 19.8334 16.1082 19.8177 16.0195C19.8019 15.9308 19.7677 15.8464 19.7172 15.7718Z"
-                          fill="#2873FF" />
-                      </svg>
-                      <span :class="isDark ? 'sell-btc-text' : 'sell-btc-text-light'"
-                        style="font-size: 14px !important; font-weight: 600;">Friends</span>
-                    </v-btn>
-                  </nuxt-link>
-                  <div style="display:grid;">
-                    <span class="buy" :class="isDark ? 'free-demo' : 'free-demo-light'"
-                      style="margin-top : 16px ">Invite
-                      friends</span>
-                    <span style="margin-top: 14px; color: #8E9BAE;line-height: 140%; font-family: SF Pro Display;">Get
-                      your
-                      friends and family to
-                      <NuxtLink to="/authentication/register">
-                        <span class="text-demoi"
-                          style="font-size: 16px; color: #8E9BAE; font-family: SF Pro Display; font-weight: 600; letter-spacing: 0.32px; text-decoration-line: underline;">sign
-                          up</span>
-                      </NuxtLink>
-                      for Betacrypto
-                    </span>
-                  </div>
+              <span class="section2-subtitlei1 sub-text2i"
+                style="justify-content: flex-start; margin-top: 0px !important">THE BETACRYPTO APP IS ALL YOU NEED FOR
+                DAY
+                TO DAY TRADING</span>
+              <h2 class="section2-titlei2 section2-title1" :class="isDark ? 'header-text1-dark' : 'header-text1-light'"
+                style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">
+                Join
+                the Future of <br>Crypto Trading with <br>Betacrypto</h2>
+              <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Betacrypto.
+                Download
+                now and dive into the world of crypto trading!"</span>
+              <div class="d-flex social-icons-div"
+                :style="{ marginTop: '88px', marginBottom: $vuetify.display.mobile ? '150px' : '', width: 'fit-content', alignItems: 'center' }">
+                <v-btn class="image-button me-4 desktop-social-icons"
+                  :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
+                <v-btn class="image-button me-4 desktop-social-icons"
+                  :style="{ backgroundImage: `url(${imageSrc1})` }"></v-btn>
+
+                <v-btn class="image-button1 me-3 mobile-social-icons"
+                  :style="{ backgroundImage: `url(${imageSrc2})` }"></v-btn>
+                <v-btn class="image-button1 me-3 mobile-social-icons"
+                  :style="{ backgroundImage: `url(${imageSrc3})` }"></v-btn>
+
+                <span class="icon-text"
+                  style="color: #64748B; font-family: SF Pro Display; font-size: 16px; width: 180px;">Betacrypto App
+                  now
+                  available for download</span>
+              </div>
+            </div>
+
+          </v-col>
+          <v-col cols="md-5" sm="12">
+            <div class="phone-rectangle w-100"
+              style="position: relative; top: -58px; display: flex; justify-content: center;">
+              <div class="d-flex justify-center" :class="isDark ? 'mobileNimationBg' : 'lightmobileNimationBg'"
+                style="width:100%;max-width: 530px; height: 669px; position: relative; overflow: hidden">
+                <div class="animationContainer">
+                  <img ref="scrollImage" :src="isDark ? '/img/animatedScreen.png' : '/img/animatedScreenLight.png'"
+                    alt="" style="width: 100%; position: absolute">
                 </div>
               </div>
-
             </div>
           </v-col>
         </v-row>
       </v-container>
-
-      <div class="section3" :class="isDark ? 'section3' : 'section3-light'" style="margin-top: 200px;">
-        <v-container>
-          <v-row no-gutters class="phone-section" style="padding-top: 170px; padding-bottom: 140px">
-            <v-col cols="md-7" sm="12">
-              <div class="">
-                <span class="section2-subtitlei1 sub-text2i"
-                  style="justify-content: flex-start; margin-top: 0px !important">THE BETACRYPTO APP IS ALL YOU NEED FOR
-                  DAY
-                  TO DAY TRADING</span>
-                <h2 class="section2-titlei2 section2-title1"
-                  :class="isDark ? 'header-text1-dark' : 'header-text1-light'"
-                  style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">Join
-                  the Future of <br>Crypto Trading with <br>Betacrypto</h2>
-                <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Betacrypto.
-                  Download
-                  now and dive into the world of crypto trading!"</span>
-                <div class="d-flex social-icons-div"
-                  :style="{marginTop: '88px', marginBottom: $vuetify.display.mobile ? '150px' : '', width: 'fit-content', alignItems: 'center'}">
-                  <v-btn class="image-button me-4 desktop-social-icons"
-                    :style="{ backgroundImage: `url(${imageSrc})` }"></v-btn>
-                  <v-btn class="image-button me-4 desktop-social-icons"
-                    :style="{ backgroundImage: `url(${imageSrc1})` }"></v-btn>
-
-                  <v-btn class="image-button1 me-3 mobile-social-icons"
-                    :style="{ backgroundImage: `url(${imageSrc2})` }"></v-btn>
-                  <v-btn class="image-button1 me-3 mobile-social-icons"
-                    :style="{ backgroundImage: `url(${imageSrc3})` }"></v-btn>
-
-                  <span class="icon-text"
-                    style="color: #64748B; font-family: SF Pro Display; font-size: 16px; width: 180px;">Betacrypto App
-                    now
-                    available for download</span>
-                </div>
-              </div>
-
-            </v-col>
-            <v-col cols="md-5" sm="12">
-              <div class="phone-rectangle w-100"
-                style="position: relative; top: -58px; display: flex; justify-content: center;">
-                <div class="d-flex justify-center" :class="isDark ? 'mobileNimationBg' : 'lightmobileNimationBg'"
-                  style="width:100%;max-width: 530px; height: 669px; position: relative; overflow: hidden">
-                  <div class="animationContainer">
-                    <img ref="scrollImage" :src="isDark ? '/img/animatedScreen.png' : '/img/animatedScreenLight.png'"
-                      alt="" style="width: 100%; position: absolute">
-                  </div>
-                </div>
-              </div>
-            </v-col>
-          </v-row>
-        </v-container>
-      </div>
-
-      <v-container style="margin-top: 70px">
-        <LazyFaq />
-
-      </v-container>
-
-      <Coin-Banner
-        :style="{ marginBottom: $vuetify.display.mobile ? '200px !important':'253.88px !important', marginTop: $vuetify.display.mobile ? '80px !important' : '103.88px' }"
-        class="banner-wrap" />
-
-
-      <div class="position-relative">
-        <v-container :style="{position: 'absolute', top: '-197px', left: $vuetify.display.mobile ? '-230px':'-10px', right: 0}">
-          <span class="Betacrypto-header" :style="{  width: '1194px', height: '313.157px', fontSize: $vuetify.display.mobile ? '135px':'240.955px', transform: $vuetify.display.mobile ? 'translateY(80px)':'none'}">Betacrypto</span>
-        </v-container>
-        <Footer class="desktop-footer" />
-        <Mobile-footer class="mobile-footer" />
-      </div>
-
     </div>
+
+    <v-container style="margin-top: 70px">
+      <LazyFaq />
+
+    </v-container>
+
+    <Coin-Banner
+      :style="{ marginBottom: $vuetify.display.mobile ? '200px !important' : '253.88px !important', marginTop: $vuetify.display.mobile ? '80px !important' : '103.88px' }"
+      class="banner-wrap" />
+
+
+    <div class="position-relative">
+      <v-container
+        :style="{ position: 'absolute', top: '-197px', left: $vuetify.display.mobile ? '-230px' : '-10px', right: 0 }">
+        <span class="Betacrypto-header"
+          :style="{ width: '1194px', height: '313.157px', fontSize: $vuetify.display.mobile ? '135px' : '240.955px', transform: $vuetify.display.mobile ? 'translateY(80px)' : 'none' }">Betacrypto</span>
+      </v-container>
+      <Footer class="desktop-footer" />
+      <Mobile-footer class="mobile-footer" />
+    </div>
+
   </div>
 </template>
 
@@ -494,8 +478,8 @@ onMounted(() => {
 const isPushActive = ref(false); // Tracks whether the notification is active
 
 const showPushInfo = () => {
-  if (isPushActive.value) return; 
-  isPushActive.value = true; 
+  if (isPushActive.value) return;
+  isPushActive.value = true;
 
   push.info(
     "Our site is currently under development and will be live soon. We welcome any feedback to help us improve.",
@@ -837,27 +821,9 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   justify-content: center !important;
   gap: 8px;
   border-radius: 100px;
-  border: 0.5px solid #64748B;
-  background: rgba(27, 37, 55, 0.50);
   backdrop-filter: blur(18.950000762939453px);
   margin: auto;
-  margin-top: 169px;
-
-}
-
-.frame-1-light {
-  display: flex;
-  width: fit-content;
-  padding: 4px;
-  align-items: center;
-  justify-content: center !important;
-  gap: 8px;
-  border-radius: 100px;
-  border: 0.5px solid #2873FF;
-  background: #E9F1FF;
-  backdrop-filter: blur(18.950000762939453px);
-  margin: auto;
-  margin-top: 100px;
+  margin-top: 150px;
 }
 
 .writing-text {
@@ -867,33 +833,20 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
-  /* 14px */
   letter-spacing: 0.14px;
-}
-
-.writing-text-dark {
-  color: var(--Colors-Base-white, #FFF);
-}
-
-.writing-text-light {
-  color: #1B2537;
+  text-overflow: ellipsis !important;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
 }
 
 .writing-btn {
-  display: flex;
-  padding: 10px 15px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  align-self: stretch;
   text-transform: unset !important;
   border-radius: 100px;
   font-size: 14px !important;
   font-weight: 500 !important;
   background: #2873FF;
   line-height: 100%;
-  /* 14px */
   letter-spacing: -0.14px !important;
 }
 

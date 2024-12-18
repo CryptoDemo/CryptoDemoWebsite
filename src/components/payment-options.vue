@@ -15,9 +15,9 @@
 
 
       <div class="section2i section2" :class="isDark ? 'section2':'section2-light'">
-        <h2 class="section2-subtitle card-sub1">TRADE YOUR COIN LIKE A FOREX EXPERT</h2>
-        <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Over 20 ways to buy and sell Bitcoin.</span>
-        <span class="explore-trade">Explore our Marketplace and start trading with your favorite payment methods or discover something new.</span>
+        <h2 class="section2-subtitle card-sub1">MASTER THE MARKET AND TRADE WITH EASE</h2>
+        <span class="section2-title" :class="isDark ? 'section2-title':'section2-title-light'" style="margin-top: 48px; margin-bottom: 48px">Enjoy multiple ways to trade your digital assets</span>
+        <span class="explore-trade">Explore various fast and secure payment channels as we continually roll out support for alternative methods.</span>
         <div class="mx-auto btn-segment2" :class="isDark ? 'btn-segment':'btn-segment-light'" style="width:365px; border-radius:100px; padding: 5px; margin-top:72px; margin-bottom: 72px;">
 
           <v-btn :class="`${transaction1 ? 'buy-btn btn-seg1': 'sell-btn'} ${isDark ? 'buy-btn':'buy-btn-light'}`" @click.prevent="transaction1=true" style="border-radius: 41px !important; height: 40px !important;">

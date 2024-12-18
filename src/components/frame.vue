@@ -29,7 +29,7 @@
             <div class="mb-3">
               <span class="buy" :class="isDark ? 'buy' : 'buy-light'">Buy Bitcoin</span>
             </div>
-            <span class="caption1">Buy Bitcoin from real people in our peer-to-peer Marketplace.</span>
+            <span class="caption1">Purchase Bitcoin directly from real users in our peer-to-peer marketplace.</span>
 
           </div>
         </div>
@@ -60,7 +60,7 @@
                 <div class="mb-3">
                   <span class="buy" :class="isDark ? 'buy' : 'buy-light'">Sell Bitcoin</span>
                 </div>
-                <span class="caption1">Set your own rates and choose how you want to be paid.</span>
+                <span class="caption1">Set your own rates and select your preferred payment method</span>
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@
 
         <v-col class="second-coli" style="padding: 8px; margin-bottom: 8px; ">
           <div class="frame2" :class="isDark ? 'frame2' : 'frame2-light'"
-            style="padding: 10px 30px 0 30px; position: relative; overflow: hidden">
+            style="padding: 10px 30px 100px 30px; position: relative; overflow: hidden">
             <div class="img-wrap1 stack-container"
               style="overflow: hidden; height: 200px;">
               <drag-in-animation/>             
@@ -84,7 +84,7 @@
               <div class="mb-3">
                 <span class="buy" :class="isDark ? 'buy' : 'buy-light'">Secure trading</span>
               </div>
-              <span class="caption1">Bitcoin is held in secure escrow until a trade is successfully completed.</span>
+              <span class="caption1">Enjoy safe trading with advanced wallet protection. Your transactions are always safe and secure.</span>
             </div>
           </div>
         </v-col>
