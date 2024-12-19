@@ -226,7 +226,7 @@ onBeforeUnmount(() => {
 .navbar-bg {
   backdrop-filter: blur(50px);
   display: flex !important;
-  height: 80px;
+  height: 64px;
   width: 100% !important;
   justify-content: center !important;
   position: fixed !important;
