@@ -1,526 +1,383 @@
 <template>
-  <div>
-    <v-app-bar :elevation="2" class="pt-3 pb-3"
-      :class="[isDark ? 'navbar-bg' : 'navbar-bg-light', { hidden: !showNavbar }]" style="z-index: 9999;">
-      <v-container style="display: flex; align-items: center; justify-content: space-between; width: 100%">
-        <v-app-bar-title :class="isDark ? 'nav-title' : 'nav-title-light'"
-          style="cursor: pointer; border: 2px solid pink; max-width:fit-content !important">Betacrypto</v-app-bar-title>
-
-        <div v-if="!pinia.state?.user?.token" class="d-flex"
-          style="border: 2px solid indigo; position: absolute; margin-left: 150px; width: fit-content">
-          <v-btn @click.prevent="navigateToOffers()" class="header-link flex-lg-and-up hidden-sm-and-down">
-            <span :class="isDark ? 'nav-subtitle' : 'nav-subtitle-light'">Create an offer</span>
-          </v-btn>
-          <v-btn @click="pushToWallet()" class="header-link flex-lg-and-up hidden-sm-and-down">
-            <span :class="isDark ? 'nav-subtitle' : 'nav-subtitle-light'">Wallet</span>
-          </v-btn>
-          <div class="text-center flex-lg-and-up hidden-sm-and-down">
-            <v-menu open-on-hover>
-              <template v-slot:activator="{ props }">
-                <v-btn color="" class="header-link flex-lg-and-up hidden-sm-and-down"
-                  :class="isDark ? 'nav-subtitle' : 'nav-subtitle-light'" v-bind="props">Features
-                  <v-icon color="primary" class="mt-1" icon="mdi-chevron-down"></v-icon>
-                </v-btn>
-              </template>
-              <div style="display: flex; align-items: center;  justify-content: end;">
-                <v-list :class="isDark ? 'hub-dropdown' : 'hub-dropdown-light'">
-                  <v-row>
-                    <v-col>
-                      <div :class="isDark ? 'avatar-bg' : 'avatar-bg-light'">
-                        <img src="https://res.cloudinary.com/dfejrmsq5/image/upload/v1711619581/hub_l6s401.svg"
-                          style="display: flex; margin: auto;" />
-                      </div>
-                    </v-col>
-                    <v-col cols="7">
-                      <v-list-item v-for="(item, index) in items" :key="index"
-                        :style="index === 1 ? 'margin-bottom: 30px; margin-top: 30px' : ''">
-                        <div class="d-flex">
-                          <img :src="isDark ? item.icon1 : item.icon2" class="me-4" />
-                          <div style="display: flex;">
-                            <div class="d-flex" style="flex-direction: column;">
-                              <v-list-item-title :class="isDark ? 'icon-text1' : 'icon-text1-light'">{{ item.title
-                                }}</v-list-item-title>
-                              <span class="icon-subtitle1 mt-1">{{ item.subtitle }}</span>
-                            </div>
-                            <div style="display: flex; align-items: center;">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
-                                fill="none">
-                                <path d="M10.4004 7.5L15.4004 12.5L10.4004 17.5" stroke="#2973FE" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round" />
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-                      </v-list-item>
-                    </v-col>
-                  </v-row>
-
-                </v-list>
-              </div>
-            </v-menu>
+  <v-row no-gutters style="border: 2px solid green">
+    <v-col cols="12" md="6" sm="6">
+      <div class="first-col" style="margin-inline-end: 16px;">
+        <div class="position-relative" :class="isDark ? 'frame1' : 'frame1-light'">
+          <div class="first-col-wrap"
+            style="display: flex; align-self: center; position: relative; margin-bottom: 30px;">
+            <img :src="isDark ? '/img/mobile-frame.png' : '/svg/Framelight.svg'" ref="img"
+              :class="isDark ? 'mobile-frame' : 'mobile-frame'"
+              style="max-width: 100%; width: 85%; display: flex; margin: auto; z-index: 2" />
+            <img src="/svg/greencoin1.svg" ref="img3" :class="isDark ? 'green-coin1' : 'green-coin2'" />
+            <img src="/svg/yellowCoin1.svg" ref="img2" :class="isDark ? 'yellow-coin1' : 'yellow-coin2'" />
           </div>
-          <v-btn class="header-link flex-lg-and-up hidden-sm-and-down">
-            <NuxtLink to="#"> <span :class="isDark ? 'nav-subtitle' : 'nav-subtitle-light'">Spot trading</span>
-            </NuxtLink>
+
+          <div class="svg-frame" :class="isDark ? 'svg-frame' : 'svg-frame-light'" style="position: absolute"></div>
+
+          <v-btn @click="navigateToSell()"
+            style="border-radius: 100px; letter-spacing: 0px; text-transform: capitalize; box-shadow: none; display: flex; margin-top: 30px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; align-items: center; width: 73px; height: 36px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none"
+              class="me-2">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M0.833496 10.4999C0.833496 5.43731 4.93755 1.33325 10.0002 1.33325C15.0628 1.33325 19.1668 5.43731 19.1668 10.4999C19.1668 15.5625 15.0628 19.6666 10.0002 19.6666C4.93755 19.6666 0.833496 15.5625 0.833496 10.4999ZM9.3335 5.49992C9.3335 4.94763 8.88578 4.49992 8.3335 4.49992C7.78121 4.49992 7.3335 4.94763 7.3335 5.49992V6.16658H6.66683C6.11454 6.16658 5.66683 6.6143 5.66683 7.16658C5.66683 7.71887 6.11454 8.16658 6.66683 8.16658H7.3335V10.4999V12.8333H6.66683C6.11454 12.8333 5.66683 13.281 5.66683 13.8333C5.66683 14.3855 6.11454 14.8333 6.66683 14.8333H7.3335V15.4999C7.3335 16.0522 7.78121 16.4999 8.3335 16.4999C8.88578 16.4999 9.3335 16.0522 9.3335 15.4999V14.8333H9.8335V15.4999C9.8335 16.0522 10.2812 16.4999 10.8335 16.4999C11.3858 16.4999 11.8335 16.0522 11.8335 15.4999V14.8276C12.2566 14.7995 12.8059 14.662 13.2928 14.3115C13.8975 13.8761 14.3335 13.1592 14.3335 12.1666C14.3335 11.4775 14.1234 10.9213 13.7926 10.4999C14.1234 10.0785 14.3335 9.52233 14.3335 8.83325C14.3335 7.84067 13.8975 7.12378 13.2928 6.68838C12.8059 6.33783 12.2566 6.20033 11.8335 6.17224V5.49992C11.8335 4.94763 11.3858 4.49992 10.8335 4.49992C10.2812 4.49992 9.8335 4.94763 9.8335 5.49992V6.16658H9.3335V5.49992ZM9.3335 9.49992V8.16658H10.8335H11.6668C11.7846 8.16658 11.9835 8.21014 12.1242 8.31145C12.1845 8.35486 12.2297 8.40518 12.2625 8.4688C12.2949 8.53162 12.3335 8.64268 12.3335 8.83325C12.3335 9.02382 12.2949 9.13488 12.2625 9.1977C12.2297 9.26133 12.1845 9.31165 12.1242 9.35505C11.9835 9.45637 11.7846 9.49992 11.6668 9.49992H9.3335ZM9.3335 11.4999H11.6668C11.7846 11.4999 11.9835 11.5435 12.1242 11.6448C12.1845 11.6882 12.2297 11.7385 12.2625 11.8021C12.2949 11.865 12.3335 11.976 12.3335 12.1666C12.3335 12.3572 12.2949 12.4682 12.2625 12.531C12.2297 12.5947 12.1845 12.645 12.1242 12.6884C11.9835 12.7897 11.7846 12.8333 11.6668 12.8333H10.8335H9.3335V11.4999Z"
+                fill="#2873FF" />
+            </svg>
+            <span :class="isDark ? 'buy1' : 'buy1-light'">Buy</span>
           </v-btn>
+
+          <div class="mb-3">
+            <span class="buy" :class="isDark ? 'buy' : 'buy-light'">Buy Bitcoin</span>
+          </div>
+          <span class="caption1">Purchase Bitcoin directly from real users in our peer-to-peer marketplace.</span>
+
         </div>
+      </div>
+    </v-col>
 
-
-        <div class="d-flex" v-if="!pinia.state?.user?.token" style="align-items: center; border: 2px solid lightgreen;">
-          <v-btn class="header-link me-3 flex-lg-and-up hidden-sm-and-down">
-            <NuxtLink to="/authentication/login"><span class="text2 d-flex" style="align-self: center; margin: auto;"
-                :class="isDark ? 'nav-subtitle' : 'nav-subtitle-light'">{{ props.title }}</span></NuxtLink>
-          </v-btn>
-
-          <NuxtLink to="/authentication/register">
-            <v-btn class="register me-3 flex-lg-and-up hidden-sm-and-down" style="border-radius: 10px !important;">
-              <span class="register-text">Register </span></v-btn>
-          </NuxtLink>
-
-          <div style="border: 2px solid white;" v-if="pinia.state?.user?.token">
-            <v-btn class="header-link flex-lg-and-up hidden-sm-and-down me-4">
-              <NuxtLink to="/account/trade/wallet"> <span :class="isDark ? 'nav-subtitle' : 'nav-subtitle-light'">
-                  Dashboard
-                </span>
-              </NuxtLink>
-            </v-btn>
-          </div>
-
-
-
-          <v-menu>
-            <template v-slot:activator="{ props }" style="border: 2px solid white">
-              <v-btn class="me-4 flex-lg-and-up hidden-sm-and-down"
-                :class="isDark ? 'dropdown-btn' : 'dropdown-btn-light'"
-                style="letter-spacing: 0px; display: flex; width: 115px; height: 40px; border-radius: 10px; justify-content: center;"
-                v-bind="props">
-                <img :src="flag" class="me-2"
-                  style="object-fit: cover; border-radius: 4px; height: 28px; width: 45px;" />
-                <span class="me-2" :class="isDark ? 'nav-subtitle1' : 'nav-subtitle1-light'">{{ countryCode }}</span>
-                <v-icon icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
+    <v-col>
+      <v-col class="second-col mt-2" style="padding: 8px; margin-bottom: 8px;">
+        <div class="frame2" :class="isDark ? 'frame2' : 'frame2-light'" style="padding: 0 40px; width: 100%; overflow: hidden">
+          <div>
+            <div class="position-relative">
+              <div class="coin-wrap1" :class="isDark ? 'coin-wrap1' : 'coin-wrap1-light'"></div>
+              <img :src="isDark ? '/img/frame2-dark.png' : '/img/light-mode-img.png'" ref="image1" class="btc-box1"
+                style="max-width: 100%; width: 75%;" />
+              <img src="/img/pointer-vector.png" ref="image2"
+                style="max-width: 100%; width: 60%; left: 7px; z-index: 8;" class="cursor" />
+            </div>
+            <div class="sell-col sel-coli">
+              <v-btn @click="navigateToCreateOffer()"
+                style="border-radius: 100px; box-shadow: none; text-transform: capitalize; letter-spacing: 0px; display: flex; margin-top: 5px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; width: 72px; height: 36px; align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                  class="me-2">
+                  <path
+                    d="M13.125 10.5C13.125 11.1181 12.9417 11.7223 12.5983 12.2362C12.255 12.7501 11.7669 13.1506 11.1959 13.3871C10.6249 13.6236 9.99653 13.6855 9.39034 13.565C8.78415 13.4444 8.22733 13.1467 7.79029 12.7097C7.35325 12.2727 7.05562 11.7158 6.93505 11.1097C6.81447 10.5035 6.87635 9.87513 7.11288 9.30411C7.3494 8.7331 7.74994 8.24504 8.26384 7.90166C8.77775 7.55828 9.38193 7.375 10 7.375C10.8288 7.375 11.6237 7.70424 12.2097 8.29029C12.7958 8.87634 13.125 9.6712 13.125 10.5ZM19.375 5.5V15.5C19.375 15.6658 19.3092 15.8247 19.1919 15.9419C19.0747 16.0592 18.9158 16.125 18.75 16.125H1.25C1.08424 16.125 0.925268 16.0592 0.808058 15.9419C0.690848 15.8247 0.625 15.6658 0.625 15.5V5.5C0.625 5.33424 0.690848 5.17527 0.808058 5.05806C0.925268 4.94085 1.08424 4.875 1.25 4.875H18.75C18.9158 4.875 19.0747 4.94085 19.1919 5.05806C19.3092 5.17527 19.375 5.33424 19.375 5.5ZM18.125 9.12109C17.4153 8.91125 16.7694 8.52719 16.2461 8.00389C15.7228 7.48059 15.3387 6.83468 15.1289 6.125H4.87109C4.66125 6.83468 4.27719 7.48059 3.75389 8.00389C3.23059 8.52719 2.58468 8.91125 1.875 9.12109V11.8789C2.58468 12.0887 3.23059 12.4728 3.75389 12.9961C4.27719 13.5194 4.66125 14.1653 4.87109 14.875H15.1289C15.3387 14.1653 15.7228 13.5194 16.2461 12.9961C16.7694 12.4728 17.4153 12.0887 18.125 11.8789V9.12109Z"
+                    fill="#2873FF" />
+                </svg>
+                <span :class="isDark ? 'buy1' : 'buy1-light'">Sell</span>
               </v-btn>
-            </template>
-
-            <v-list :class="isDark ? 'country-dropdown' : 'country-dropdown-light'">
-              <v-list-item style="display: contents">
-                <v-row dense style="width: 240px;">
-                  <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" :key="index">
-                    <v-list-item
-                      @click="countryCode = item.country_code; countryName = item.country_name; flag = item.flag_url"
-                      style="display: flex;">
-                      <div style="display: flex; align-items: center; ">
-                        <img :src="item.flag_url"
-                          style="object-fit: cover; border-radius: 4px; height: 28px; width: 45px;" />
-                        <span class="country-name ml-2" :class="isDark ? 'country-name' : 'country-name-light'">{{
-                          item.country_name }}</span>
-                      </div>
-                    </v-list-item>
-                  </v-col>
-                </v-row>
-              </v-list-item>
-            </v-list>
-
-          </v-menu>
-
-          <ToggleBtn class="flex-lg-and-up hidden-sm-and-down" style="border: 2px solid burlywood;" />
+              <div class="mb-3">
+                <span class="buy" :class="isDark ? 'buy' : 'buy-light'">Sell Bitcoin</span>
+              </div>
+              <span class="caption1">Set your own rates and select your preferred payment method</span>
+            </div>
+          </div>
         </div>
+      </v-col>
 
 
-      </v-container>
-    </v-app-bar>
-  </div>
+      <v-col class="second-coli" style="padding: 8px; margin-bottom: 8px; ">
+        <div class="frame2" :class="isDark ? 'frame2' : 'frame2-light'"
+          style="padding: 10px 30px 100px 30px; position: relative; overflow: hidden">
+          <div class="img-wrap1 stack-container"
+            style="overflow: hidden; height: 200px;">
+            <drag-in-animation/>             
+          </div>
+          <div class="position-relative sell-col  security-btn mb-5">
+
+            <v-btn @click.prevent="navigateToSecurity()"
+              style="border-radius: 100px; box-shadow: none; width: 101px; height: 36px; text-transform: capitalize; letter-spacing: 0px; display: flex;  margin-top: 5px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; width: 100px; align-items: center;">
+              <img src="/svg/shield1.svg" class="me-1" />
+              <span :class="isDark ? 'buy1' : 'buy1-light'">Security</span>
+            </v-btn>
+            <div class="mb-3">
+              <span class="buy" :class="isDark ? 'buy' : 'buy-light'">Secure trading</span>
+            </div>
+            <span class="caption1" style="margin-bottom: 23px;">Enjoy safe trading with advanced wallet protection. Your transactions are always safe and secure.</span>
+          </div>
+        </div>
+      </v-col>
+    </v-col>
+  </v-row>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue';
+import { rotateOrbitAnimation, simultaneousAnimation } from '~/animations/gsapAnimation';
 import { useTheme } from 'vuetify';
-import { getcountries } from "@/composables/requests/admin";
 
-
-const pinia = useStore()
 const theme = useTheme()
 const isDark = computed(() => theme.global.current.value.dark);
-const pageNumber = ref(1);
-const countryCode = ref();
-const flag = ref();
-const country = ref();
-const countryName = ref();
-let showNavbar = ref(true);
-let lastScrollPosition = 0;
+const pinia = useStore();
 
-onMounted(async () => {
-  // Fetch countries only if the store list is empty
-  if (pinia.state.allcountries.length === 0) {
-    try {
-      const data = await getcountries(pageNumber.value);
-
-      if (data.success) {
-        const fetchedCountries = data.data.result;
-        const storedCountryIds = pinia.state.allcountries.map(item => item.id);
-
-        // Filter out new countries not already in the store
-        const newItems = fetchedCountries.filter(
-          item => !storedCountryIds.includes(item.id)
-        );
-
-        if (newItems.length > 0) {
-          pinia.setallcountries([
-            ...pinia.state.allcountries,
-            ...newItems
-          ]);
-        }
-      } else {
-        console.error('Failed to fetch countries: Response was unsuccessful.');
-      }
-    } catch (error) {
-      console.error('An error occurred while fetching countries:', error);
-    }
-  }
-
-  // Handle country and flag logic with fallback
-  country.value = pinia.state.geo.country;
-
-  const geoCountry = computed(() =>
-    pinia.state.allcountries.find(c => c.country_name === country.value)
-  );
-
-  flag.value = geoCountry.value?.flag_url || "https://storage.yeerlo.com/flags/ng.svg";
-  countryCode.value = geoCountry.value?.country_code;
-});
-
-const navigateToOffers = () => {
-  // Perform the check for user login
-  if (pinia.state.user?.token) {
-    navigateTo('/account/marketplace/createOffer');
-  } else {
-    navigateTo('/authentication/login');
-  }
+const navigateToSell = () => {
+// Perform the check for user login
+if (pinia.state.user?.token) {
+  navigateTo('/account/marketplace/activeOffers');
+} else {
+  navigateTo('/authentication/login');
+}
 }
 
-function pushToWallet() {
-  if (pinia.state.user?.token) {
-    navigateTo('/account/trade/wallet');
-  } else {
-    navigateTo('/authentication/login');
-    // navigateTo('/account/trade/wallet');
-  }
+const navigateToCreateOffer = () => {
+// Perform the check for user login
+if (pinia.state.user.token) {
+  navigateTo('/account/marketplace/createOffer');
+} else {
+  navigateTo('/authentication/login');
+}
 }
 
-const props = defineProps(
-  {
-    title: String,
-    text2: String,
-    link: ""
-  }
-)
+const navigateToSecurity = () => {
+// Perform the check for user login
+if (pinia.state.user.token) {
+  navigateTo('/account/Security');
+} else {
+  navigateTo('/authentication/login');
+}
+}
 
-const items = [
-  { icon1: '/svg/bitcoin-hub.svg', icon2: '/svg/btc-logo-light1.svg', title: 'Buy with bitcoin', subtitle: 'Search for offers to buy gift cards with Bitcoin.' },
-  { icon1: '/svg/btc-logolight.svg', icon2: '/svg/tether-light.svg', title: 'Buy with Tether', subtitle: 'Search for offers to buy gift cards with Tether.' },
-  { icon1: '/svg/btc-logodark.svg', icon2: '/svg/binance-lightlogo.svg', title: 'Buy with Binance Coin', subtitle: 'Search for offers to buy gift cards with Binance Coin.' },
-
-];
-
-const onScroll = () => {
-  const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-
-  if (currentScrollPosition < 0) return;
-  if (Math.abs(currentScrollPosition - lastScrollPosition) < 60) return;
-
-  showNavbar.value = currentScrollPosition < lastScrollPosition;
-  lastScrollPosition = currentScrollPosition;
-};
+//Gsap implementation starts
+const img2 = ref(null)
+const img3 = ref(null)
+const image1 = ref(null);
+const image2 = ref(null);
 
 onMounted(() => {
-  window.addEventListener('scroll', onScroll);
+if (img2.value || img3.value) {
+  rotateOrbitAnimation(img2.value, [
+    { x: 0, y: -10 },
+    { x: -10, y: 0 },
+    { x: -20, y: 20 },
+  ], 360, 13);
+
+  rotateOrbitAnimation(img3.value, [
+    { x: 5, y: 3 },
+    { x: -10, y: -30 }, 
+    { x: -20, y: -60 },
+  ], 360, 13);
+  simultaneousAnimation(image1.value,'y', '-50', 1, 0);
+  simultaneousAnimation(image2.value,'x', '50', 1, 0.05);
+}
+
 });
 
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', onScroll);
-});
+//Gsap implementation ends
 </script>
 
 <style scoped>
-.navbar-bg {
-  border-bottom: 1px solid #10192D;
-  background: rgba(6, 10, 29, 0.60) !important;
-  backdrop-filter: blur(50px);
-  display: flex !important;
-  height: 80px;
-  width: 100% !important;
-  justify-content: center !important;
-  position: fixed !important;
-  top: 0 !important;
-  z-index: 1000;
+.yellow-coin1 {
+position: absolute;
+margin-top: 121px;
+right: 5%
 }
 
-.navbar-bg-light {
-  border-bottom: 1px solid #E2E8F0;
-  background: rgba(255, 255, 255, 0.60) !important;
-  backdrop-filter: blur(50px);
-  box-shadow: none !important;
-  display: flex;
-  height: 80px;
-  margin: auto;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  position: fixed !important;
-  top: 0 !important;
-  z-index: 9999;
+.yellow-coin2 {
+position: absolute;
+margin-top: 121px;
+right: -8%;
 }
 
-.hidden {
-  opacity: 0;
-  transform: translateY(-100%);
-  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-  pointer-events: none;
+.green-coin1 {
+position: absolute;
+max-width: 100%;
+top: 0;
+bottom: -273px;
+display: flex;
+margin: auto;
+z-index: 4
 }
 
-.nav-title {
-  color: var(--Colors-Base-white, #FFF);
-  font-family: "SF Pro Display" !important;
-  font-size: 24px !important;
-  font-style: normal;
-  font-weight: 700 !important;
-  line-height: normal;
+.green-coin1 {
+position: absolute;
+max-width: 100%;
+top: 0;
+bottom: -273px;
+display: flex;
+margin: auto;
+z-index: 4
 }
 
-.nav-title-light {
-  color: #10192D;
-  font-family: "SF Pro Display" !important;
-  font-size: 24px !important;
-  font-style: normal;
-  font-weight: 700 !important;
-  line-height: normal;
+.green-coin2 {
+position: absolute;
+top: 0;
+bottom: -310px;
+display: flex;
+margin: auto;
+left: -17%;
+z-index: 4
 }
 
-.v-toolbar {
-  padding: 0px;
+.mobile-frame {
+max-width: 100%;
+width: 85%;
+display: flex;
+margin: auto;
+z-index: 2
 }
 
-.text2 {
-  color: var(--Colors-Base-white, #FFF);
-  font-family: "SF Pro Display";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  cursor: pointer;
+.desktop-frame {
+max-width: 100%;
+z-index: 2;
+height: 94%
 }
 
-.dropdown-btn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #10192D !important;
-  text-transform: unset !important;
-  color: white !important;
+.image {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.5s ease-in-out;
 }
 
-.dropdown-btn-light {
-  display: flex;
-  justify-content: space-between;
-  background: #F8FAFC !important;
-  text-transform: unset !important;
-  color: white !important;
+.frame1 {
+border-radius: 25px;
+border: 0.5px solid #2f3946;
+background: #10192D;
+display: flex;
+/* height: 773px; */
+flex-direction: column;
+padding: 40px;
+position: relative;
+width: 100%;
 }
 
-.v-list {
-  background: rgba(6, 10, 29, 0.70) !important;
-  border-radius: 20px !important;
-  color: white;
-  margin-top: 15px;
-  cursor: pointer;
+.frame1-light {
+border-radius: 25px;
+border: 1px solid #DBE8FF;
+background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%);
+display: flex;
+/* height: 773px; */
+flex-direction: column;
+padding: 40px;
+position: relative;
+width: 100%;
 }
 
-.nav-subtitle {
-  display: flex;
-  color: var(--Colors-Base-white, #FFF);
-  font-family: "SF Pro Display";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  justify-content: center;
-  align-items: center;
-  letter-spacing: 0px !important;
+.svg-frame {
+border-radius: 15px;
+background: linear-gradient(180deg, rgba(16, 25, 45, 0.00) 65.19%, #10192D 100%);
+width: 95%;
+height: 490px;
+position: absolute;
+left: 0;
 }
 
-.nav-subtitle-light {
-  display: flex;
-  color: #10192D !important;
-  font-family: "SF Pro Display";
-  font-size: 16px !important;
-  font-style: normal;
-  font-weight: 400 !important;
-  line-height: normal;
-  justify-content: center;
-  align-items: center;
-
+.svg-frame-light {
+/* border-radius: 15px; */
+background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 65.19%, #F8FAFC 100%);
+width: 100%;
+height: 490px;
+position: absolute;
+left: 0;
+opacity: 0.4;
 }
 
-.nav-subtitle1-light {
-  display: flex;
-  color: #10192D !important;
-  color: var(--Colors-Base-white, #FFF);
-  font-family: "SF Pro Display";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.14px;
-  justify-content: center;
-  align-items: center;
-
+.buy {
+text-align: center;
+font-family: "SF Pro Display";
+font-size: 32px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%;
+/* 38.4px */
+background: linear-gradient(90deg, #FFF 5.29%, #64748B 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
-.register {
-  display: flex;
-  width: 115px;
-  height: 40px;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 10px !important;
-  background: #2873FF !important;
-  text-indent: unset !important;
-  text-transform: unset !important;
-  letter-spacing: 0px;
+.buy-light {
+text-align: center;
+font-family: "SF Pro Display";
+font-size: 32px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%;
+/* 38.4px */
+background: linear-gradient(90deg, #060A1D 6.17%, rgba(6, 10, 29, 0.50) 97.69%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
-.register-text {
-  color: var(--Colors-Base-white, #FFF);
-  font-family: "SF Pro Display";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+.caption1 {
+color: #8E9BAE;
+font-family: "SF Pro Display";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%;
+/* 22.4px */
+letter-spacing: 0.32px;
 }
 
-.header-link {
-  display: flex;
-  height: 50px;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  text-indent: unset !important;
-  text-transform: unset !important;
-  letter-spacing: 0px !important;
+.buy1 {
+color: var(--Colors-Base-white, #FFF);
+text-align: center;
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 100%;
+/* 14px */
+letter-spacing: 0.14px;
+align-items: center;
 }
 
-.hub-dropdown {
-  border-radius: 15px;
-  border: 1px solid #10192D;
-  background: rgba(6, 10, 29, 0.70);
-  box-shadow: 0px 4px 50px 0px rgba(6, 10, 29, 0.25);
-  backdrop-filter: blur(50px);
-  display: flex;
-  width: 659px;
-  /* height: 289px; */
-  padding: var(--spacing-2xl, 20px);
-  align-items: center;
-  gap: var(--spacing-3xl, 24px);
+.buy1-light {
+color: #1B2537;
+text-align: center;
+font-family: "SF Pro Display";
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 100%;
+/* 14px */
+letter-spacing: 0.14px;
 }
 
-.hub-dropdown-light {
-  border-radius: 15px !important;
-  border: 1px solid var(--Gradient-Line, rgba(226, 232, 240, 0.50)) !important;
-  background: #FFF !important;
-  box-shadow: 0px 4px 50px 0px rgba(27, 37, 55, 0.15) !important;
-  display: flex;
-  width: 659px;
-  padding: var(--spacing-2xl, 20px);
-  align-items: center;
-  gap: var(--spacing-3xl, 24px);
+.frame2 {
+border-radius: 15px;
+background: linear-gradient(180deg, rgba(16, 25, 45, 0.00) 65.19%, #10192D 100%);
+padding: 40px;
+height: 372px;
+border-radius: 15px;
+border: 0.5px solid #2f3946;
+background: #10192D;
+width: 100%;
 }
 
-.avatar-bg {
-  border-radius: 10px;
-  background: #10192D;
-  display: flex;
-  margin: auto;
-  padding: 51.69px 13.585px 0px 13.267px;
-  height: 249px !important;
+.frame2-light {
+border: 1px solid #DBE8FF !important;
+background: linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%) !important;
+padding: 40px;
+height: 372px;
+border-radius: 15px;
+border: 0.5px solid #64748B;
+background: #10192D;
+width: 100%;
 }
 
-.avatar-bg-light {
-  border-radius: 10px;
-  background: #E9F1FF;
-  padding: 51.69px 13.585px 0px 13.267px;
-  height: 249px !important;
-  display: flex;
-  margin: auto;
+.cursor {
+position: absolute;
+display: flex;
+left: 0;
+right: 0;
+margin-left: 237px;
+top: 36%;
 }
 
-.icon-text1 {
-  color: var(--Colors-Base-white, #FFF);
-  font-family: "SF Pro Display";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  display: flex;
-  align-items: center;
+.coin-wrap1 {
+display: flex;
+flex-direction: column;
+border-radius: 15px;
+background: linear-gradient(rgba(16, 25, 45, 0) 65.19%, rgb(16, 25, 45) 100%);
+height: 209.961px;
+width: 100%;
+position: absolute;
+z-index: 1000;
 }
 
-.icon-text1-light {
-  color: #10192D !important;
-  font-family: "SF Pro Display";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  display: flex;
-  align-items: center;
-}
-
-.icon-subtitle1 {
-  color: #64748B;
-  font-family: "SF Pro Display";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.country-dropdown {
-  border-radius: 15px;
-  border: 0.5px solid #2f3946;
-  background: #1B2537 !important;
-  backdrop-filter: blur(50px) !important;
-  height: 320px !important;
-}
-
-.country-dropdown-light {
-  border-radius: 15px;
-  background: #fff !important;
-  height: 320px !important;
-}
-
-.country-name {
-  color: var(--Colors-Base-white, #FFF) !important;
-  font-family: "SF Pro Display";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.14px;
-}
-
-.country-name-light {
-  color: #10192D !important;
-  font-family: "SF Pro Display";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.14px;
-}
-
-::-webkit-scrollbar {
-  display: none;
+.coin-wrap1-light {
+display: flex;
+flex-direction: column;
+border-radius: 15px;
+background: linear-gradient(180deg, rgba(248, 250, 252, 0.00) 95.19%, #F8FAFC 100%) !important;
+height: 208.961px;
+width: 100%;
+position: absolute;
+z-index: 1000;
+opacity: 0.4;
+top: -25px;
 }
 </style>

@@ -1,4 +1,3 @@
-
 <template>
 	<main class="main1">
 		<svg display="none">
@@ -148,13 +147,14 @@
 }
 .switch__input {
 	background-color: hsl(221, 48%, 12%);
-	border-radius: 0.75em;
+	border-radius: 83.04px;
 	box-shadow:
 		0 0 0 0.0625em hsla(var(--hue),90%,50%,0),
 		0 0.125em 0.5em hsla(var(--hue),10%,10%,0.1);
 	outline: transparent;
-	width: 2.75em;
-	height: 1.5em;
+	width: 73.07px;
+	height: 40px;
+	padding: 3.32px;
 	-webkit-appearance: none;
 	appearance: none;
 	transition:

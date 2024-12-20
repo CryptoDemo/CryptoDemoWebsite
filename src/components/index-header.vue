@@ -11,11 +11,11 @@
         <div v-if="!pinia.state?.user?.token" class="d-flex gc-2 flex-lg-and-up hidden-sm-and-down"
           style="width: fit-content">
           <v-btn @click.prevent="naviagteToRoute('/account/marketplace/createOffer')"
-            :style="{ color: isDark ? '#fff' : '#10192D !important' }" class="nav-subtitle">
+            :style="{ color: isDark ? '#fff' : '#10192D !important', borderRadius: '16px' }" class="nav-subtitle">
             Create an offer
           </v-btn>
           <v-btn @click.prevent="naviagteToRoute('/account/trade/wallet')"
-            :style="{ color: isDark ? '#fff' : '#10192D !important' }" class="nav-subtitle">
+            :style="{ color: isDark ? '#fff' : '#10192D !important', borderRadius: '16px' }" class="nav-subtitle">
             Wallet
           </v-btn>
           <div class="text-center">
@@ -61,8 +61,8 @@
               </v-list>
             </v-menu>
           </div>
-          <v-btn @click.prevent="naviagteToRoute('#')" :style="{ color: isDark ? '#fff' : '#10192D !important', borderRadius:'10px' }"
-            class="nav-subtitle">
+          <v-btn @click.prevent="naviagteToRoute('#')"
+            :style="{ color: isDark ? '#fff' : '#10192D !important', borderRadius: '16px' }" class="nav-subtitle">
             Spot trading
           </v-btn>
         </div>
@@ -70,11 +70,12 @@
 
       <div class="d-flex gc-4" style="align-items: center;">
         <v-btn v-if="!pinia.state?.user?.token" @click.prevent="navigateTo('/authentication/login')"
-          :style="{ color: isDark ? '#fff' : '#10192D !important', borderRadius:'10px' }" class="nav-subtitle">
+          :style="{ color: isDark ? '#fff' : '#10192D !important', borderRadius: '16px' }" class="nav-subtitle">
           {{ props.title }}
         </v-btn>
 
-        <v-btn v-if="!pinia.state?.user?.token" @click.prevent="navigateTo('/authentication/register')" class="register nav-subtitle">
+        <v-btn v-if="!pinia.state?.user?.token" @click.prevent="navigateTo('/authentication/register')"
+          class="register nav-subtitle">
           Register
         </v-btn>
 
@@ -87,9 +88,10 @@
           <template v-slot:activator="{ props }">
             <button class="flex-lg-and-up hidden-sm-and-down dropdown-btn"
               :style="{ background: isDark ? '#10192D !important' : '#F8FAFC !important' }"
-              style="letter-spacing: 0px; display: flex; width: 111px; height: 40px; border-radius: 100px; justify-content: space-between; padding: 10px 8px"
+              style="letter-spacing: 0px; display: flex; width: 111px; height: 40px; border-radius: 16px; justify-content: space-between; padding: 10px 8px"
               v-bind="props">
-              <img :src="flag" style="object-fit: cover; border-radius: 100px; height: 30px; width: 30px;" />
+              <img :src="countryCode === 'NG' ? '/svg/niger.svg' : flag"
+                style="object-fit: cover; border-radius: 8px; height: 30px; width: 30px;" />
               <span class="nav-subtitle1" :style="{ color: isDark ? '#fff' : '#10192D !important' }">{{ countryCode
                 }}</span>
               <v-icon size="24" icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
@@ -97,7 +99,7 @@
           </template>
 
           <v-list class="country-dropdown"
-            :style="{ border: isDark ? '0.5px solid #2f3946' : '', background: isDark ? '#1B2537 !important' : '#fff', marginTop:'20px' }">
+            :style="{ border: isDark ? '0.5px solid #2f3946' : '', background: isDark ? '#1B2537 !important' : '#fff', marginTop: '20px' }">
             <v-list-item style="display: contents">
               <v-row dense style="width: 240px;">
                 <v-col v-for="(item, index) in pinia.state.allcountries" sm="12" :key="index">
@@ -166,7 +168,7 @@ onMounted(async () => {
       }
     } catch (error) {
       console.error('An error occurred while fetching countries:', error);
-    }
+    } navbar - bg
   }
 
   // Handle country and flag logic with fallback
@@ -256,7 +258,7 @@ onBeforeUnmount(() => {
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  border-radius:10px !important;
+  border-radius: 10px !important;
   line-height: 19.09px;
   text-transform: unset !important;
   letter-spacing: 0px !important;
@@ -302,7 +304,7 @@ onBeforeUnmount(() => {
   width: 115px;
   height: 40px;
   padding: 10px;
-  border-radius: 10px !important;
+  border-radius: 16px !important;
   background: rgba(40, 115, 255, 1) !important;
   text-indent: unset !important;
   text-transform: unset !important;
@@ -333,7 +335,7 @@ onBeforeUnmount(() => {
 }
 
 .country-dropdown {
-  border-radius: 15px;
+  border-radius: 16px;
   backdrop-filter: blur(50px) !important;
   height: 320px !important;
 }

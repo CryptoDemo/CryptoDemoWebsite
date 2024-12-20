@@ -27,8 +27,7 @@
         </div>
 
         <div style="justify-content: center; display: flex; margin-top: 40px; position: relative; z-index: 1000;">
-          <h2 class="headertext1 header-text1" :class="isDark ? 'header-text1-dark' : 'header-text1-light'">Instant
-            Trading on</h2>
+          <h2 class="header-text1" :class="isDark ? 'header-text1-dark' : 'header-text1-light'">Instant Trading on</h2>
           <img src="/img/Frame.png" ref="fade1" class="orange-coin position-absolute flex-lg-and-up hidden-sm-and-down"
             alt="betacrypto-img-5" />
         </div>
@@ -36,7 +35,7 @@
         <div class="d-flex text-img position-relative" v-if="isDark">
           <span class="web webi" style="margin-right: 78px; z-index: 1000;">Betacrypto</span>
           <img src="/svg/Frame 1305.svg" class="demo-star"
-            style="position: absolute; margin-left: 375px ;top: -27px;  max-width: 100%; height: auto;"
+            style="position: absolute; margin-left: 375px ;top: -17px;  max-width: 100%; height: auto;"
             alt="betacrypto-img-6" />
         </div>
         <div class="d-flex text-img" v-else>
@@ -656,7 +655,7 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   font-size: 80px;
   font-style: normal;
   font-weight: 700;
-  line-height: 100%;
+  line-height: 100px;
   letter-spacing: -2.4px;
   background: linear-gradient(90deg, #FFF 8.61%, #8E9BAE 91.11%);
   justify-content: center
