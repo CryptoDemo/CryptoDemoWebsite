@@ -22,18 +22,18 @@
 			<input class="switch__input" type="checkbox" @input="changeTheme" role="switch" name="dark" 
 			:checked="currentTheme=='LightThemeConfig'" />
 			<svg class="switch__icon" width="24px" height="24px" aria-hidden="true">
-				<use href="#light" />
+				<use href="#dark" />
 			</svg>
 			<svg class="switch__icon" width="24px" height="24px" aria-hidden="true">
-				<use href="#dark" />
+				<use href="#light" />
 			</svg>
 			<span class="switch__inner"></span>
 			<span class="switch__inner-icons">
 				<svg class="switch__icon" width="24px" height="24px" aria-hidden="true">
-					<use href="#light" />
+					<use href="#dark" />
 				</svg>
 				<svg class="switch__icon" width="24px" height="24px" aria-hidden="true">
-					<use href="#dark" />
+					<use href="#light" />
 				</svg>
 			</span>
 			<span class="switch__sr">Dark Mode</span>
