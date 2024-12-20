@@ -1177,7 +1177,7 @@ const imageSrc3 = ('/svg/BTN-two.svg');
   flex-direction: column;
   border-radius: 15px;
   border: 0.5px solid #2f3946;
-  background: #10192D;
+  background: linear-gradient(180deg, rgba(16, 25, 45, 0.00) 25.19%, #10192D 100%);
   display: flex;
   /* padding: 30px ; */
 }
@@ -1608,7 +1608,7 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 .marquee {
   display: flex;
   flex-direction: column;
-  animation: verticalAnime 15s linear infinite;
+  animation: verticalAnime 10s linear infinite;
   /* Adjust duration for speed */
 }
 

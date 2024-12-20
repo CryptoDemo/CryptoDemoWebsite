@@ -1,14 +1,15 @@
 <template>
   <v-row no-gutters>
     <v-col cols="12" md="6" sm="6" class="frame1 mr-3"
-      :style="{overflow:'hidden', background: isDark ? 'linear-gradient(180deg, rgba(16, 25, 45, 0.00) 40.19%, #10192D 100%)' : 'linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%) !important', border: isDark ? '0.5px solid #2f3946' : '0.5px solid #64748B' }">
-      <div :style="{display: 'flex', alignSelf: 'center', position: 'relative', overflow: 'hidden', padding: $vuetify.display.mobile?'30px 0 50px 0':'40px 40px 30px 40px'}">
+      :style="{ overflow: 'hidden', background: isDark ? 'linear-gradient(180deg, rgba(16, 25, 45, 0.00) 40.19%, #10192D 100%)' : 'linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%) !important', border: isDark ? '0.5px solid #2f3946' : '0.5px solid #64748B' }">
+      <div
+        :style="{ display: 'flex', alignSelf: 'center', position: 'relative', overflow: 'hidden', padding: $vuetify.display.mobile ? '30px 0 50px 0' : '40px 40px 30px 40px' }">
         <img :src="isDark ? '/img/mobile-frame.png' : '/svg/Framelight.svg'" ref="img" class="mobile-frame"
           :style="{ width: isDark ? '85%' : '75%' }" />
         <img src="/svg/greencoin1.svg" ref="img3" class="green-coin1" />
         <img src="/svg/yellowCoin1.svg" ref="img2" class="yellow-coin1" />
       </div>
-      <div :style="{padding: $vuetify.display.mobile ? '0px 20px':'0px 40px'}">
+      <div :style="{ padding: $vuetify.display.mobile ? '0px 20px' : '0px 40px' }">
         <v-btn @click="navigateToSell()"
           style="border-radius: 100px; letter-spacing: 0px; text-transform: capitalize; box-shadow: none; display: flex; margin-top: 30px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; align-items: center; width: 73px; height: 36px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" class="me-2">
@@ -34,17 +35,18 @@
 
       </div>
     </v-col>
-    <v-col :class="$vuetify.display.mobile ? 'mt-6':'ml-3'">
+    <v-col :class="$vuetify.display.mobile ? 'mt-6' : 'ml-3'">
       <v-col class="frame2"
-        :style="{overflow:'hidden', background: isDark ? 'linear-gradient(180deg, rgba(16, 25, 45, 0.00) 35.19%, #10192D 100%)' : 'linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%) !important', border: isDark ? '0.5px solid #2f3946' : '0.5px solid #64748B'}">
-        <div class="position-relative" :style="{overflow: 'hidden', padding: '0px 20px', height: $vuetify.display.mobile ? '170px':'194px !important'}">
+        :style="{ overflow: 'hidden', background: isDark ? 'linear-gradient(180deg, rgba(16, 25, 45, 0.00) 35.19%, #10192D 100%)' : 'linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%) !important', border: isDark ? '0.5px solid #2f3946' : '0.5px solid #64748B' }">
+        <div class="position-relative"
+          :style="{ overflow: 'hidden', padding: '0px 20px', height: $vuetify.display.mobile ? '170px' : '194px !important' }">
           <img :src="isDark ? '/img/frame2-dark.png' : '/img/light-mode-img.png'" ref="image1" class="btc-box1"
             style="max-width: 100%; width: 75%" />
           <img src="/img/pointer-vector.png" ref="image2" style="max-width: 100%; width: 55%; left: 7px; z-index: 8;"
             class="cursor" />
         </div>
 
-        <div :style="{padding:$vuetify.display.mobile ? '0 25px':'0px 40px',}">
+        <div :style="{ padding: $vuetify.display.mobile ? '0 25px' : '0px 40px', }">
           <v-btn @click="navigateToCreateOffer()"
             style="border-radius: 100px; letter-spacing: 0px; text-transform: capitalize; box-shadow: none; display: flex; margin-top: 30px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; align-items: center; width: 73px; height: 36px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" class="me-2">
@@ -72,17 +74,18 @@
       </v-col>
 
       <v-col class="frame2 mt-6"
-        :style="{overflow:'hidden', background: isDark ? 'linear-gradient(180deg, rgba(16, 25, 45, 0.00) 35.19%, #10192D 100%)' : 'linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%) !important', border: isDark ? '0.5px solid #2f3946' : '0.5px solid #64748B' }">
-        <div class="position-relative" :style="{overflow: 'hidden', padding: '0px 20px', height: $vuetify.display.mobile ? '195px':'202px !important'}">
-          <drag-in-animation/> 
+        :style="{ overflow: 'hidden', background: isDark ? 'linear-gradient(180deg, rgba(16, 25, 45, 0.00) 35.19%, #10192D 100%)' : 'linear-gradient(180deg, #DBE8FF 0%, rgba(219, 232, 255, 0.00) 101.34%) !important', border: isDark ? '0.5px solid #2f3946' : '0.5px solid #64748B' }">
+        <div class="position-relative"
+          :style="{ overflow: 'hidden', padding: '0px 20px', height: $vuetify.display.mobile ? '195px' : '202px !important' }">
+          <drag-in-animation />
         </div>
 
-        <div :style="{padding: $vuetify.display.mobile ? '0px 25px':'0px 40px'}">
+        <div :style="{ padding: $vuetify.display.mobile ? '0px 25px' : '0px 40px' }">
           <v-btn @click.prevent="navigateToSecurity()"
-              style="border-radius: 100px; box-shadow: none; width: 101px; height: 36px; text-transform: capitalize; letter-spacing: 0px; display: flex;  margin-top: 5px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; width: 100px; align-items: center;">
-              <img src="/svg/shield1.svg" class="me-1" />
-              <span :class="isDark ? 'buy1' : 'buy1-light'">Security</span>
-            </v-btn>
+            style="border-radius: 100px; box-shadow: none; width: 101px; height: 36px; text-transform: capitalize; letter-spacing: 0px; display: flex;  margin-top: 5px; margin-bottom: 16px; background: rgba(40, 115, 255, 0.10); padding: 8px 10px; width: 100px; align-items: center;">
+            <img src="/svg/shield1.svg" class="me-1" />
+            <span :class="isDark ? 'buy1' : 'buy1-light'">Security</span>
+          </v-btn>
 
           <div class="mb-2">
             <span class="buy" :style="{
@@ -95,18 +98,21 @@
               Secure trading
             </span>
           </div>
-          <span class="caption1">Enjoy safe trading with advanced wallet protection. Your transactions are always safe and secure.</span>
+          <span class="caption1">Enjoy safe trading with advanced wallet protection. Your transactions are always safe
+            and secure.</span>
 
         </div>
       </v-col>
     </v-col>
 
-    
+
   </v-row>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { gsap, Back, CSSPlugin } from "gsap";
+gsap.registerPlugin(CSSPlugin);
 import { rotateOrbitAnimation, simultaneousAnimation } from '~/animations/gsapAnimation';
 import { useTheme } from 'vuetify';
 
@@ -142,28 +148,121 @@ const navigateToSecurity = () => {
 }
 
 //Gsap implementation starts
+const interval = ref(null);
+let coin1 = null;
+let coin2 = null;
+let frame1 = null;
+let frame2 = null;
+
 const img2 = ref(null)
 const img3 = ref(null)
 const image1 = ref(null);
 const image2 = ref(null);
 
+// Methods
+const clearIntervalAndKillGSAP = () => {
+  clearInterval(interval.value);
+  killGSAP(coin1);
+  killGSAP(coin2);
+  killGSAP(frame1);
+  killGSAP(frame2);
+};
+
+const killGSAP = (instance) => {
+  if (instance) {
+    instance.kill();
+  }
+};
+
+const animateImgs = async () => {
+  await animatedvalue();
+  interval.value = setInterval(() => {
+    animatedvalue();
+  }, 3500);
+};
+
+const animatedvalue = async () => {
+  await verticalAnime(image1.value);
+  await horizontalAnime(image2.value);
+};
+
+const verticalAnime = (element) => {
+  frame1 = gsap.timeline(); // Use a timeline for sequential animations
+
+  frame1.fromTo(
+    element,
+    {
+      opacity: 0,
+      y: "-50",
+    },
+    {
+      opacity: 1,
+      y: "0",
+      duration: 3,
+      ease:Back.easeOut.config(1.7),
+      scale: 1.05,
+    }
+  ).to(element, {
+    y: "50",
+    duration: 1,
+    opacity: 0,
+    ease: Back.easeOut,
+  });
+};
+
+
+const horizontalAnime = (element) => {
+  frame2 = gsap.timeline();
+
+  frame2
+    .fromTo(
+      element,
+      {
+        opacity: 0,
+        x: "50",
+        y: '0'
+      },
+      {
+        opacity: 1,
+        x: "0",
+        y: '0',
+        duration: 2.8,
+        ease:Back.easeOut.config(1.6),
+        scale: 1.05,
+      }
+    )
+    .to(element, {
+      y: "100",
+      x: '0',
+      duration: 1,
+      opacity: 0,
+      ease: Back.easeOut
+    });
+};
+
 onMounted(() => {
   if (img2.value || img3.value) {
-    rotateOrbitAnimation(img2.value, [
+    coin1 = rotateOrbitAnimation(img2.value, [
       { x: 0, y: -10 },
       { x: -10, y: 0 },
       { x: -20, y: 20 },
     ], 360, 13);
 
-    rotateOrbitAnimation(img3.value, [
+    coin2 = rotateOrbitAnimation(img3.value, [
       { x: 5, y: 3 },
       { x: -10, y: -30 },
       { x: -20, y: -60 },
     ], 360, 13);
-    simultaneousAnimation(image1.value, 'y', '-50', 1, 0);
-    simultaneousAnimation(image2.value, 'x', '50', 1, 0.05);
   }
 
+});
+
+onMounted(() => {
+  animateImgs();
+});
+
+onBeforeUnmount(() => {
+  clearIntervalAndKillGSAP();
 });
 
 //Gsap implementation ends
@@ -263,11 +362,11 @@ onMounted(() => {
 }
 
 .cursor {
-position: absolute;
-display: flex;
-left: 0;
-right: 0;
-margin-left: 237px;
-top: 36%;
+  position: absolute;
+  display: flex;
+  left: 0;
+  right: 0;
+  margin-left: 237px;
+  top: 36%;
 }
 </style>

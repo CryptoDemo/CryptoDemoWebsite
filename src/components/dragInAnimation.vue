@@ -64,7 +64,7 @@ const animateImgs = async () => {
     interval.value = setInterval(() => {
         animatedvalue();
         gsap.set(`.imgs3${selected3.value}`, { zIndex: 9 });
-    }, 4000);
+    }, 3000);
 };
 
 const animatedvalue = async () => {
@@ -92,7 +92,7 @@ const moveIn = (img) => {
             opacity: 1,
             x: "-70px",
             y: "5px",
-            ease: Back.easeOut.config(1.7),
+            ease: Back.easeOut.config(1),
             scale: 1,
             delay: 0.2,
             duration: 1,
@@ -117,7 +117,7 @@ const transcend2 = (img) => {
             x: "10px",
             y: "40px",
             ease: Back.easeOut,
-            duration: 1.2,
+            duration: 1,
             rotation: 0,
         }
     );
@@ -138,7 +138,7 @@ const transcend1 = (img) => {
             x: "-40px",
             y: "90px",
             ease: Back.easeOut,
-            duration: 1.2,
+            duration: 1,
             rotation: 0,
         }
     );
@@ -158,9 +158,9 @@ const moveOut = (img) => {
             opacity: 0,
             scale: 1.1,
             x: "-60px",
-            y: "100px",
+            y: "150px",
             duration: 0.2,
-            ease: "circ.inOut",
+            ease: Back.easeOut.config(1.4),
             rotation: 5,
             onComplete: () => {
                 selected.value = selected.value === items.length - 1 ? 0 : selected.value + 1;

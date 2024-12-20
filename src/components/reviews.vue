@@ -123,7 +123,7 @@ const animateImgs = async () => {
     await animatedvalue();
     interval.value = setInterval(() => {
         animatedvalue();
-    }, 4000);
+    }, 5000);
 };
 
 const animatedvalue = async () => {
@@ -140,11 +140,11 @@ const moveIn = (element) => {
   moveInvar = gsap.fromTo(element,
         {
             opacity: 0,
-            y: "200px",
+            y: "1000",
         },
         {
             opacity: 0.05,
-            y: "100px",
+            y: "100",
             ease: Back.easeOut.config(1.7),
             duration: 1,
         }
@@ -155,12 +155,13 @@ const transcendCard = (element) => {
   transcendvar = gsap.fromTo(element,
         {
             opacity: 0.05,
-            y: "100px",
+            y: "100",
+            ease: Back.easeOut,
         },
         {
             opacity: 1,
-            y: "0px",
-            ease: Back.easeOut.config(1.7),
+            y: "0",
+            ease: Back.easeOut.config(1),
             duration: 1,
         }
     );
@@ -170,12 +171,12 @@ const moveOut = (element) => {
   moveOutvar = gsap.fromTo(element,
         {
             opacity: 1,
-            y: "0px",
-        },
+            y: "0",
+        }, 
         {
             opacity: 0,
-            y: "-10000px",
-            ease: Back.easeOut.config(1.7),
+            y: "-1000",
+            ease: Back.easeOut.config(1.1),
             duration: 1,
             onComplete: () => {
                 selected.value = selected.value === testimonials.length - 1 ? 0 : selected.value + 1;
@@ -191,14 +192,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
     clearIntervalAndKillGSAP();
 });
-
-// const activeIndex = ref(0);
-
-// onMounted(() => {
-//   setInterval(() => {
-//     activeIndex.value = (activeIndex.value + 1) % testimonials.value.length;
-//   }, 5000); // Change testimonial every 3 seconds
-// });
 </script>
 
 
@@ -285,7 +278,7 @@ onBeforeUnmount(() => {
 .reviews {
   border-radius: 15px;
   border: 0.5px solid #2f3946 !important;
-  background: #10192D;
+  background: linear-gradient(180deg, rgba(16, 25, 45, 0.00) 35.19%, #10192D 100%);
   margin-top: 24px;
   overflow: hidden;
 }
