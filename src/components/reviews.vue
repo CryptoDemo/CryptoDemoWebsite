@@ -16,10 +16,10 @@
       </v-col>
 
 
-      <v-col cols="12" sm="6" style="display: flex;">
+      <v-col cols="12" sm="6" style="display: flex">
         <div class="testimonial-container">
           <div v-for="(testimonial, index) in testimonials" :key="index"
-            :class="['testimonial-card review-cards', index === activeIndex ? 'card-active' : 'card-inactive', isDark ? 'review-cards' : 'review-cards-light']">
+            :class="['testimonial-card review-cards', index === activeIndex ? 'card-active' : 'card-inactive', isDark ? 'review-cards' : 'review-cards-light','activeCard'+index]">
             <div class="d-flex" style="align-items: center; width: 100%; justify-content: space-between;">
               <div class="d-flex">
                 <img :src="testimonial.image" alt="profile" width="50" />
@@ -30,12 +30,12 @@
                 </div>
               </div>
 
-              <div
+              <div :class="index % 2 != activeIndex ? 'zoom':''"
                 style="border-radius: 100px; background: #2873FF; width: 82px; padding: 10px; display: flex; justify-content: center;">
                 <div style="border-radius: 100px; background: #5892FF; width: 40px; height: 6.169px;">
 
                 </div>
-              </div>
+              </div> 
 
             </div>
             <p class="testimonial-text">{{ testimonial.text }}</p>
@@ -48,14 +48,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, reactive, onMounted, onBeforeUnmount } from 'vue';
+import { gsap, Back, CSSPlugin } from "gsap";
 import { useTheme } from 'vuetify';
-
+gsap.registerPlugin(CSSPlugin);
 
 const theme = useTheme()
 const isDark = computed(() => theme.global.current.value.dark);
 
-const testimonials = ref([
+const selected = ref(0);
+const testimonials = reactive([
   {
     name: 'Bonaventure Okoli',
     time: '14th October, 2024',
@@ -93,13 +95,110 @@ const testimonials = ref([
   }
 ]);
 
-const activeIndex = ref(0);
+const interval = ref(null);
+let moveInvar = null;
+let moveOutvar = null;
+let transcendvar = null;
+
+// Computed properties
+const selected1 = computed(() => selected.value);
+const selected2 = computed(() => (selected.value + 1) % testimonials.length);
+const selected3 = computed(() => (selected2.value + 1) % testimonials.length);
+
+// Methods
+const clearIntervalAndKillGSAP = () => {
+    clearInterval(interval.value);
+    killGSAP(moveInvar);
+    killGSAP(moveOutvar);
+    killGSAP(transcendvar);
+};
+
+const killGSAP = (instance) => {
+    if (instance) {
+        instance.kill();
+    }
+};
+
+const animateImgs = async () => {
+    await animatedvalue();
+    interval.value = setInterval(() => {
+        animatedvalue();
+    }, 4000);
+};
+
+const animatedvalue = async () => {
+    const card1 = document.querySelector(`.activeCard${selected1.value}`);
+    const card2 = document.querySelector(`.activeCard${selected2.value}`);
+    const card3 = document.querySelector(`.activeCard${selected3.value}`);
+
+    await moveOut(card1);
+    await transcendCard(card2);
+    await moveIn(card3);
+};
+
+const moveIn = (element) => {
+  moveInvar = gsap.fromTo(element,
+        {
+            opacity: 0,
+            y: "200px",
+        },
+        {
+            opacity: 0.05,
+            y: "100px",
+            ease: Back.easeOut.config(1.7),
+            duration: 1,
+        }
+    );
+}
+
+const transcendCard = (element) => {
+  transcendvar = gsap.fromTo(element,
+        {
+            opacity: 0.05,
+            y: "100px",
+        },
+        {
+            opacity: 1,
+            y: "0px",
+            ease: Back.easeOut.config(1.7),
+            duration: 1,
+        }
+    );
+}
+
+const moveOut = (element) => {
+  moveOutvar = gsap.fromTo(element,
+        {
+            opacity: 1,
+            y: "0px",
+        },
+        {
+            opacity: 0,
+            y: "-10000px",
+            ease: Back.easeOut.config(1.7),
+            duration: 1,
+            onComplete: () => {
+                selected.value = selected.value === testimonials.length - 1 ? 0 : selected.value + 1;
+            },
+        }
+    );
+}
 
 onMounted(() => {
-  setInterval(() => {
-    activeIndex.value = (activeIndex.value + 1) % testimonials.value.length;
-  }, 5000); // Change testimonial every 3 seconds
+    animateImgs();
 });
+
+onBeforeUnmount(() => {
+    clearIntervalAndKillGSAP();
+});
+
+// const activeIndex = ref(0);
+
+// onMounted(() => {
+//   setInterval(() => {
+//     activeIndex.value = (activeIndex.value + 1) % testimonials.value.length;
+//   }, 5000); // Change testimonial every 3 seconds
+// });
 </script>
 
 
@@ -113,9 +212,24 @@ onMounted(() => {
   justify-content: center;
   position: relative;
   width: 100%;
-  height: 375px;
-  /* Adjust as needed */
+  height: 374px;
   overflow: hidden;
+}
+
+.zoom {
+  animation: zoomAnime 4s linear infinite;
+}
+
+@keyframes zoomAnime {
+  0% {
+    transform: scale(1); /* Initial size */
+  }
+  50% {
+    transform: scale(1.1); /* Slightly larger */
+  }
+  100% {
+    transform: scale(1); /* Back to initial size */
+  }
 }
 
 .testimonial-card {
@@ -135,15 +249,10 @@ onMounted(() => {
 
 .card-active {
   z-index: 2;
-  transform: translateY(0);
-  opacity: 1;
 }
 
 .card-inactive {
   z-index: 1;
-  transform: translateY(100px);
-  opacity: 0.05;
-  margin-left: 0px;
 }
 
 .testimonial-card img {

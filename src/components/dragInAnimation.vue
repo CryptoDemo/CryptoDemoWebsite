@@ -1,7 +1,7 @@
 <template>
     <div :style="{ paddingLeft: $vuetify.display.mobile ? '20px' : '0' }">
         <img :class="'imgs3' + i" v-for="(n, i) in items" :src="n.image" :key="i"
-            :style="{ opacity: 0, width: $vuetify.display.mobile ? '70%' : '60%', position: 'absolute', top: 0, left: '25%' }"></img>
+            :style="{ opacity: 0, width: $vuetify.display.mobile ? '70%' : '55%', position: 'absolute', top: 0, left: '25%' }"></img>
     </div>
 </template>
 
