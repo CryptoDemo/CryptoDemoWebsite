@@ -37,4 +37,6 @@ const handleGoogleTranslateSelect = async (language) => {
   margin-right: 31px !important;
 }
 }
+
+/* style="border: 1px solid #161D26; border-radius: 16px;" */
 </style>
