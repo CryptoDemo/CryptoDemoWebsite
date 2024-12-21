@@ -11,7 +11,9 @@
               </div>
              <div class="carousel-group-text" style="display: grid; margin-top:28px;">
               <span class="text-center" :class="isDark ? 'header-text':'header-text-light'">P2P Crypto exchange</span>
-              <span class="text-center carousel-text">Experience peer-to-peer cryptocurrency <br> transactions at vendor's price, With diverse <br>  payment options.</span>
+              <span class="text-center carousel-text">
+               Enjoy a peer-to-peer platform that <br> allows you to connect and trade with other <br> users at your own price!
+              </span>
             </div>
        </div>
     </Slide>
@@ -23,7 +25,7 @@
         <img src="/svg/Group1324.svg" style="position: relative; top: -39px;"/>
           <div class="carousel-group-text" style="display: grid; position: relative;top: -50px ">
               <span class="text-center" :class="isDark ? 'header-text':'header-text-light'">Free and Secure Wallet</span>
-              <span class="text-center carousel-text">Save or spend using our secure and free wallet.</span>
+              <span class="text-center carousel-text">Save and Trade your coins/fiats using the <br> in-app wallet that only you can access.</span>
             </div>
       </div>
     </Slide>

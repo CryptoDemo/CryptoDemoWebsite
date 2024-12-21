@@ -3,7 +3,6 @@
     <LoginBG/>
    
     <auth-header desc="Doesn't have an account?," linkTitle="Create account" link="/authentication/register" :newUserLanguage="true"/>
-    <!-- <Header text2="Doesn't have an account?," loginTitle="Create account" link="/authentication/register" :newUserLanguage="true"/>  -->
       <v-container class="form-layout overflow-hidden" :class="isDark ? 'form-layout':'form-layout-light'">
         <div class="section">
         <v-row no-gutters>
@@ -14,7 +13,6 @@
             </div>
 
               <div class="position-relative" style="margin-top:110px;">
-            
             
                 <v-text-field placeholder="Email Address" class="pr-14" variant="plain" :class="isDark ? 'input-styling':'input-styling-light'" v-model="email" style="font-size: 12px !important;" @keyup.enter="login()">
                   <v-icon class="prepend-inner-icon ml-3">

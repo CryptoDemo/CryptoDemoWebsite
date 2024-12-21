@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative;">
+  <div :style="{position: 'relative', display: $vuetify.display.mobile ? 'block':'none'}">
 
     <div style="position: fixed; top: 0; flex-wrap: wrap;  z-index: 10000;">
       <ClientOnly>
@@ -12,7 +12,7 @@
             <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"
               style="position: absolute; right: 9px; width: 32px" />
 
-          </div>
+          </div> 
         </v-app-bar>
 
         <nav :class="navbarClass">
@@ -143,14 +143,6 @@
                 class="mt-3 mb-3" style="width: 100%; justify-content: center; border-radius: 10px !important;">
                 {{ pinia.state?.user?.token ? 'Log Out' : 'Log In' }}
               </v-btn></NuxtLink>
-
-            <!-- <NuxtLink to="/authentication/login" v-if="pinia.state?.user?.token"><v-btn
-                :class="isDark ? 'mobile-btn' : 'mobile-btn-light'" class="mt-3 mb-3"
-                style="width: 100%; justify-content: center; border-radius: 10px !important;">Log Out</v-btn></NuxtLink>
-
-            <NuxtLink to="/authentication/login" v-if="!pinia.state?.user?.token"><v-btn
-                :class="isDark ? 'mobile-btn' : 'mobile-btn-light'" class="mt-3 mb-3"
-                style="width: 100%; justify-content: center; border-radius: 10px !important;">Log In</v-btn></NuxtLink> -->
 
             <NuxtLink to="/authentication/register" v-if="!pinia.state?.user?.token"><v-btn class="mobile-btn"
                 style="background: #2873FF !important; color: white; width: 100%; justify-content: center; border-radius: 10px !important;">Register</v-btn>

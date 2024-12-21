@@ -2,7 +2,7 @@
   <v-app-bar :elevation="2" class="pt-3 pb-3" :class="['navbar-bg', { hidden: !showNavbar }]" :style="{
     borderBottom: isDark ? '1px solid #10192D' : '1px solid #E2E8F0',
     background: isDark ? 'rgba(6, 10, 29, 0.60) !important' : 'rgba(255, 255, 255, 0.60) !important',
-    boxShadow: isDark ? '' : 'none !important'
+    boxShadow: isDark ? '' : 'none !important', display: $vuetify.display.mobile ? 'none':'block'
   }">
     <v-container style="display: flex; align-items: center; justify-content: space-between; width: 100%">
       <div class="d-flex">

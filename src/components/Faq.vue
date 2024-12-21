@@ -2,7 +2,7 @@
 <div>
     <span class="section2-subtitlei sub-text2i">Frequently asked questions</span>
     <div class="faq-div" style="margin-bottom: 88px; margin-top: 40px;">
-        <h2  class="section2-titlei2" :class="isDark ? 'section2-titlei':'section2-titlei-light'" >We know you have some questions for us.</h2>
+        <h2  class="section2-titlei2" :class="isDark ? 'section2-titlei':'section2-titlei-light'" >Find the answers you may need on our FAQs</h2>
      </div>    
      <v-expansion-panels variant="popout" style="display: contents !important;">
     <div v-for="(item, index) in (isLoading ? skeletonArray : UserFaqs)" :key="index"> 
