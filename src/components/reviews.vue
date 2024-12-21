@@ -11,7 +11,9 @@
           </v-btn>
           <span class="mb-2 valuable-feedback" :class="isDark ? 'valuable-feedback' : 'valuable-feedback-light'">Valuable
             feedback</span>
-          <span class="feedback-subtitle">Our feedback system highlights reliable, experienced users,<span> helping you to trade smoothly.</span></span>
+          <span class="feedback-subtitle">Join other users to enjoy all the benefits of trading with Betacrypto!
+            (change 3 feedback locations to Lagos, Nigeria. Accra, Ghana. Abuja, Nigeria.)
+            </span>
         </div>
       </v-col>
 

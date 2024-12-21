@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative;">
+  <div :style="{position: 'relative', display: $vuetify.display.mobile ? 'block':'none'}">
 
     <div style="position: fixed; top: 0; flex-wrap: wrap;  z-index: 10000;">
       <ClientOnly>
@@ -12,7 +12,7 @@
             <Harmbuger @click.prevent="ToggleMenu()" :is-open="drawer"
               style="position: absolute; right: 9px; width: 32px" />
 
-          </div>
+          </div> 
         </v-app-bar>
 
         <nav :class="navbarClass">
