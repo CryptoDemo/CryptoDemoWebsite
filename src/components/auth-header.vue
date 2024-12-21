@@ -20,19 +20,19 @@
                 </div>
 
                 <v-menu transition="slide-y-transition">
-
                     <template v-slot:activator="{ props }">
-                        <button class="flex-lg-and-up hidden-sm-and-down dropdown-btn"
-                        :style="{ background: isDark ? '#10192D !important' : '#F8FAFC !important' }"
-                        style="letter-spacing: 0px; display: flex; width: 111px; height: 40px; border-radius: 16px; justify-content: space-between; padding: 10px 8px"
-                        v-bind="props">
-                        <img :src="Countryname === 'NG' ? '/svg/niger.svg' : flag"
-                            style="object-fit: cover; border-radius: 8px; height: 30px; width: 30px;" />
-                        <span class="nav-subtitle1" :style="{ color: isDark ? '#fff' : '#10192D !important' }">{{ Countryname
-                            }}</span>
-                        <v-icon size="24" icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
-                        </button>
+                        <v-btn class="me-4 flex-lg-and-up hidden-sm-and-down"
+                            :class="isDark ? 'dropdown-btn' : 'dropdown-btn-light'"
+                            style="letter-spacing: 0px; display: flex; width: 125px; height: 52px; border-radius: 20px; justify-content: center;"
+                            v-bind="props">
+                            <img :src="flag" class="me-2"
+                                style="object-fit: cover; border-radius: 4px; height: 28px; width: 40px;" />
+                            <span class="me-2">{{ Countryname
+                                }}</span>
+                            <v-icon icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
+                        </v-btn>
                     </template>
+
                     <v-list class="country-list" :class="isDark ? 'country-dropdown' : 'country-dropdown-light'">
                         <v-list-item style="display: contents">
                             <v-row dense style="max-width: 250px;">
@@ -222,20 +222,21 @@ onBeforeUnmount(() => {
     width: 400px !important;
 }
 
-.nav-subtitle1 {
-  font-family: "SF Pro Display";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 16.72px;
-  letter-spacing: -1%;
+.dropdown-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #10192D;
+    text-transform: unset !important;
+    color: white;
 }
 
-.dropdown-btn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-transform: unset !important;
-  color: white !important;
+.dropdown-btn-light {
+    display: flex;
+    justify-content: space-between;
+    background-color: #F8FAFC;
+    text-transform: unset !important;
+    color: #161D26 !important;
+
 }
 </style>

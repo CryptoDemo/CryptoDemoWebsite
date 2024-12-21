@@ -26,19 +26,27 @@
       </div>
 
       <div class="header-nav-div align-lg-center" style="display: flex; margin-inline-start: auto; align-items: center">
+        <!-- <span class="flex-lg-and-up hidden-sm-and-down" :class="isDark ? 'text1' : 'text1-light'"
+          style="align-items: center; display: flex;">{{ props.text2 }}</span>
+        <NuxtLink :to="props.link" class="d-flex text2" style="align-self: center;"> <span
+            :class="isDark ? 'text2' : 'text2-light'">{{ props.title }}</span></NuxtLink>
+        <NuxtLink :to="props.link" class="d-flex loginText" style="align-self: center;"> <span
+            :class="isDark ? 'text2' : 'text2-light'">{{ props.loginTitle }}</span></NuxtLink> -->
+
+        <!-- <div class="language-select">
+          <LanguageDropdown v-if="newUserLanguage" />
+        </div> -->
 
         <v-menu transition="slide-y-transition"> 
-
           <template v-slot:activator="{ props }">
-              <button class="me-4 flex-lg-and-up hidden-sm-and-down dropdown-btn"
-              :style="{ background: isDark ? '#10192D !important' : '#F8FAFC !important' }"
-              style="letter-spacing: 0px; display: flex; width: 125px; height: 52px; border-radius: 20px; justify-content: space-between; padding: 10px 8px"
+            <v-btn class="me-4 flex-lg-and-up hidden-sm-and-down"
+              :class="isDark ? 'dropdown-btn' : 'dropdown-btn-light'"
+              style="letter-spacing: 0px; display: flex; width: 125px; height: 52px; border-radius: 20px; justify-content: center;"
               v-bind="props">
-              <img :src="Countryname === 'NG' ? '/svg/niger.svg' : flag"
-                  style="object-fit: cover; border-radius: 8px; height: 30px; width: 30px;" />
-              <span class="nav-subtitle1" :style="{ color: isDark ? '#fff' : '#10192D !important' }">{{ Countryname}}</span>
+              <img :src="flag" class="me-2" style="object-fit: cover; border-radius: 4px; height: 28px; width: 40px;" />
+              <span class="me-2" :class="isDark ? 'nav-subtitle1' : 'nav-subtitle1-light'">{{ Countryname }}</span>
               <v-icon icon="mdi-chevron-down" style="color: #8E9BAE;"></v-icon>
-              </button>
+            </v-btn>
           </template>
 
           <v-list class="country-list" :class="isDark ? 'country-dropdown' : 'country-dropdown-light'">

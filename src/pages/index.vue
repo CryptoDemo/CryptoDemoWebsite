@@ -7,8 +7,8 @@
 
   <div>
 
-    <Index-header title="Log in" link="https://cryptodemo-inhouse.netlify.app/login"  />
-    <Mobile-header/>
+    <Index-header title="Log in" link="https://cryptodemo-inhouse.netlify.app/login" class="desktop-header" />
+    <Mobile-header class="mobile-header" />
 
     <v-container class="position-relative">
       <div class="position-absolute">
@@ -311,8 +311,11 @@
                 TO DAY TRADING</span>
               <h2 class="section2-titlei2 section2-title1" :class="isDark ? 'header-text1-dark' : 'header-text1-light'"
                 style="text-align: start !important; display: flex; justify-content: flex-start !important;  margin-top: 24px; margin-bottom: 32px">
-                Welcome to the Future of Crypto Trading with Betacrypto</h2>
-              <span class="explore captionii">Unlock the power of peer-to-peer trading with Betacrypto. Download now and dive into the future of crypto trading!</span>
+                Join
+                the Future of <br>Crypto Trading with <br>Betacrypto</h2>
+              <span class="explore captionii">Experience the power of peer-to-peer Bitcoin trading with Betacrypto.
+                Download
+                now and dive into the world of crypto trading!"</span>
               <div class="d-flex social-icons-div"
                 :style="{ marginTop: '88px', marginBottom: $vuetify.display.mobile ? '150px' : '', width: 'fit-content', alignItems: 'center' }">
                 <v-btn class="image-button me-4 desktop-social-icons"
