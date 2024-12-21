@@ -1466,7 +1466,7 @@ const imageSrc3 = ('/svg/BTN-two.svg');
 }
 
 .mobileNimationBg {
-  background: url('../public/svg/phonehand.svg');
+  background: url('../public/svg/phonehnadark.svg');
   background-repeat: no-repeat;
   background-position: center;
   object-fit: contain;
